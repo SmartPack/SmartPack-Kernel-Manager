@@ -39,6 +39,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.widget.AppCompatEditText;
 
+import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.squareup.picasso.Picasso;
@@ -46,18 +47,13 @@ import com.squareup.picasso.Target;
 
 import java.io.File;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Created by willi on 16.04.16.
  */
 public class ViewUtils {
-
-    public static int getTextSecondaryColor(Context context) {
-        TypedValue value = new TypedValue();
-        context.getTheme().resolveAttribute(android.R.attr.textColorSecondary, value, true);
-        return value.data;
-    }
 
     public static Drawable getSelectableBackground(Context context) {
         TypedArray typedArray = context.obtainStyledAttributes(new int[]{R.attr.selectableItemBackground});
@@ -135,7 +131,7 @@ public class ViewUtils {
                 })
                 .setPositiveButton(context.getString(R.string.share), (dialogInterface, i) -> {
                     Uri uriFile = FileProvider.getUriForFile(context,
-                            "com.grarak.kerneladiutor.provider", new File(path));
+                            BuildConfig.APPLICATION_ID + ".provider", new File(path));
                     Intent sharelog = new Intent(Intent.ACTION_SEND);
                     sharelog.setType("text/plain");
                     sharelog.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.share_by, path));
@@ -188,7 +184,7 @@ public class ViewUtils {
             dialog
                     .setPositiveButton(context.getString(R.string.ok), (dialog1, which)
                             -> onDialogEditTextListener.onClick(
-                            editText.getText().toString(), editText2.getText().toString()))
+                            Objects.requireNonNull(editText.getText()).toString(), Objects.requireNonNull(editText2.getText()).toString()))
                     .setOnDismissListener(dialog1 -> {
                         if (negativeListener != null) {
                             negativeListener.onClick(dialog1, 0);
@@ -231,7 +227,7 @@ public class ViewUtils {
         }
         if (onDialogEditTextListener != null) {
             dialog.setPositiveButton(context.getString(R.string.ok), (dialog1, which)
-                    -> onDialogEditTextListener.onClick(editText.getText().toString()))
+                    -> onDialogEditTextListener.onClick(Objects.requireNonNull(editText.getText()).toString()))
                     .setOnDismissListener(dialog1 -> {
                         if (negativeListener != null) {
                             negativeListener.onClick(dialog1, 0);

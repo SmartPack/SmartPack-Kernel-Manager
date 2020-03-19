@@ -45,8 +45,8 @@
 
     <!-- Units -->
     <string name="mhz">MHz</string>
-    <string name="celsius">ºC</string>
-    <string name="fahrenheit">ºF</string>
+    <string name="celsius">°C</string>
+    <string name="fahrenheit">°F</string>
     <string name="mb">MB</string>
     <string name="ms">ms</string>
     <string name="mv">mV</string>
@@ -728,7 +728,9 @@
     <string name="empty_app">Empty Applications</string>
     <string name="very_light">Very light</string>
     <string name="light">Light</string>
+    <string name="low">Low</string>
     <string name="medium">Medium</string>
+    <string name="high">High</string>
     <string name="very_aggressive">Very Aggressive</string>
     <string name="kill_lmk">Kill LMK</string>
     <string name="kill_lmk_summary">Kill LMK when swap is in use.</string>
@@ -905,7 +907,6 @@
     <string name="sure_message">Are you sure to flash %s?</string>
     <string name="select_question">Select %s?</string>
     <string name="wrong_extension">Please select a file with %s extension.</string>
-    <string name="file_selection_error">Failed to get data from external file manager!</string>
     <string name="empty_flasher_log">It seems like flashing is failed!</string>
     <string name="share_log">In order to fix this issue, please consider sharing the log file created at \'%s\' with the developer of this app.\nDo you want to share it now?</string>
 
@@ -984,7 +985,7 @@
     <string name="rebooting">Rebooting</string>
     <string name="reboot_options">Reboot Options</string>
     <string name="reboot_options_summary">Turn off or reboot your device</string>
-    <string name="reboot_dialog">It is  highly recommended to reboot your device after %s.</string>
+    <string name="reboot_dialog">It is highly recommended to reboot your device after %s.</string>
     <string name="reboot_now">Reboot Now</string>
     <string name="reboot_later">Reboot Later</string>
     <string name="reboot_normal">Normal Reboot</string>
@@ -998,12 +999,8 @@
     <string name="reset_settings_summary">Reset User Settings</string>
     <string name="reset_settings_message">App settings will be completely erased. Are you sure?</string>
     <string name="reboot_message">To avoid configuration failures, it is highly recommended to reboot your device. Do you want to reboot Now?</string>
-    <string name="documentsui_message">Please use an external \'File Manager\' to pick your file. Selecting files via the default \'DocumentsUI\' is not yet supported.</string>
     <string name="unknown_link">Not provided by the developer yet!</string>
     <string name="remove">Remove</string>
-    <string name="remove_summary">Remove this channel</string>
-    <string name="share_channel">Share Channel</string>
-    <string name="share_channel_summary">Share this Channel</string>
     <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub:</string>
 
     <!-- Update Channel -->
@@ -1048,7 +1045,6 @@
     <string name="disable_ads_message">Congrats! Ads are disabled!\n\nHowever, please be noted that the revenue obtained from these Ads are really helpful for the developer to continue his android development projects more active. If it doesn\'t hurt you much, please consider allowing the Ads to support the development.</string>
     <string name="allow_ads_message">Thank you very much for supporting the developer by allowing Ads!</string>
     <string name="open_settings">Open Settings</string>
-    <string name="fahrenheit_title">Fahrenheit</string>
     <string name="fahrenheit_summary">Use fahrenheit to measure temperature</string>
     <string name="force_english">Force displaying english language</string>
     <string name="user_interface">User interface</string>

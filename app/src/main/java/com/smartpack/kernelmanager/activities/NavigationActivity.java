@@ -33,10 +33,11 @@ import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import com.google.android.material.navigation.NavigationView;
+
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -66,7 +67,7 @@ import com.smartpack.kernelmanager.fragments.kernel.VMFragment;
 import com.smartpack.kernelmanager.fragments.kernel.WakeFragment;
 import com.smartpack.kernelmanager.fragments.other.AboutFragment;
 import com.smartpack.kernelmanager.fragments.other.ContributorsFragment;
-import com.smartpack.kernelmanager.fragments.other.HelpFragment;
+import com.smartpack.kernelmanager.fragments.other.FAQFragment;
 import com.smartpack.kernelmanager.fragments.other.SettingsFragment;
 import com.smartpack.kernelmanager.fragments.statistics.DeviceFragment;
 import com.smartpack.kernelmanager.fragments.statistics.InputsFragment;
@@ -108,10 +109,10 @@ import com.smartpack.kernelmanager.utils.kernel.wakelock.Wakelocks;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.PriorityQueue;
 
 public class NavigationActivity extends BaseActivity
@@ -250,29 +251,27 @@ public class NavigationActivity extends BaseActivity
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.other));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.settings, SettingsFragment.class, R.drawable.ic_settings));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.contributors, ContributorsFragment.class, R.drawable.ic_people));
-        mFragments.add(new NavigationActivity.NavigationFragment(R.string.help, HelpFragment.class, R.drawable.ic_help));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.help, FAQFragment.class, R.drawable.ic_help));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.about, AboutFragment.class, R.drawable.ic_about));
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void init(Bundle savedInstanceState) {
 
         setContentView(R.layout.activity_navigation);
         Toolbar toolbar = getToolBar();
         setSupportActionBar(toolbar);
 
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawer, toolbar, 0, 0);
         mDrawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        mNavigationView = findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
-        mNavigationView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    v.clearFocus();
-                }
+        mNavigationView.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                v.clearFocus();
             }
         });
 
@@ -285,7 +284,7 @@ public class NavigationActivity extends BaseActivity
         if (section != null) {
             for (Map.Entry<Integer, Class<? extends Fragment>> entry : mActualFragments.entrySet()) {
                 Class<? extends Fragment> fragmentClass = entry.getValue();
-                if (fragmentClass != null && fragmentClass.getCanonicalName().equals(section)) {
+                if (fragmentClass != null && Objects.equals(fragmentClass.getCanonicalName(), section)) {
                     mSelection = entry.getKey();
                     break;
                 }
@@ -361,15 +360,12 @@ public class NavigationActivity extends BaseActivity
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) return;
 
         PriorityQueue<Class<? extends Fragment>> queue = new PriorityQueue<>(
-                new Comparator<Class<? extends Fragment>>() {
-                    @Override
-                    public int compare(Class<? extends Fragment> o1, Class<? extends Fragment> o2) {
-                        int opened1 = Prefs.getInt(o1.getSimpleName() + "_opened",
-                                0, NavigationActivity.this);
-                        int opened2 = Prefs.getInt(o2.getSimpleName() + "_opened",
-                                0, NavigationActivity.this);
-                        return opened2 - opened1;
-                    }
+                (o1, o2) -> {
+                    int opened1 = Prefs.getInt(o1.getSimpleName() + "_opened",
+                            0, NavigationActivity.this);
+                    int opened2 = Prefs.getInt(o2.getSimpleName() + "_opened",
+                            0, NavigationActivity.this);
+                    return opened2 - opened1;
                 });
 
         for (Map.Entry<Integer, Class<? extends Fragment>> entry : mActualFragments.entrySet()) {
@@ -381,6 +377,7 @@ public class NavigationActivity extends BaseActivity
 
         List<ShortcutInfo> shortcutInfos = new ArrayList<>();
         ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+        assert shortcutManager != null;
         shortcutManager.removeAllDynamicShortcuts();
         for (int i = 0; i < 4; i++) {
             NavigationFragment fragment = findNavigationFragmentByClass(queue.poll());
@@ -425,12 +422,7 @@ public class NavigationActivity extends BaseActivity
                 } else {
                     Utils.toast(R.string.press_back_again_exit, this);
                     mExit = true;
-                    mHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            mExit = false;
-                        }
-                    }, 2000);
+                    mHandler.postDelayed(() -> mExit = false, 2000);
                 }
             }
         }
@@ -452,7 +444,7 @@ public class NavigationActivity extends BaseActivity
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
         outState.putParcelableArrayList("fragments", mFragments);
@@ -467,7 +459,7 @@ public class NavigationActivity extends BaseActivity
 
     private void onItemSelected(final int res, final boolean delay, boolean saveOpened) {
         mDrawer.closeDrawer(GravityCompat.START);
-        getSupportActionBar().setTitle(getString(res));
+        Objects.requireNonNull(getSupportActionBar()).setTitle(getString(res));
         mNavigationView.setCheckedItem(res);
         mSelection = res;
         final Fragment fragment = getFragment(res);
@@ -486,7 +478,7 @@ public class NavigationActivity extends BaseActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = fragmentManager.findFragmentByTag(res + "_key");
         if (fragment == null && mActualFragments.containsKey(res)) {
-            fragment = Fragment.instantiate(this, mActualFragments.get(res).getCanonicalName());
+            fragment = Fragment.instantiate(this, Objects.requireNonNull(Objects.requireNonNull(mActualFragments.get(res)).getCanonicalName()));
         }
         return fragment;
     }
@@ -513,6 +505,7 @@ public class NavigationActivity extends BaseActivity
             mDrawable = parcel.readInt();
         }
 
+        @NonNull
         @Override
         public String toString() {
             return String.valueOf(mId);
@@ -530,7 +523,7 @@ public class NavigationActivity extends BaseActivity
             dest.writeInt(mDrawable);
         }
 
-        public static final Creator CREATOR = new Creator<NavigationFragment>() {
+        public static final Creator<? extends NavigationFragment> CREATOR = new Creator<NavigationFragment>() {
             @Override
             public NavigationFragment createFromParcel(Parcel source) {
                 return new NavigationFragment(source);

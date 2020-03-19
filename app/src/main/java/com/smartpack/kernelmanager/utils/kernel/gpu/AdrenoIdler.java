@@ -82,10 +82,6 @@ public class AdrenoIdler {
         return Utils.readFile(ADRENO_IDLER_ACTIVATE).equals("Y");
     }
 
-    public static boolean hasAdrenoIdlerEnable() {
-        return Utils.existFile(ADRENO_IDLER_ACTIVATE);
-    }
-
     public static boolean supported() {
         return Utils.existFile(ADRENO_IDLER_PARAMETERS);
     }

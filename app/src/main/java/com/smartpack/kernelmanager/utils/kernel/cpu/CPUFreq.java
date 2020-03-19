@@ -137,8 +137,8 @@ public class CPUFreq {
             if (isBigLITTLE()) {
                 List<Integer> bigCpus = getBigCpuRange();
                 List<Integer> littleCpus = getLITTLECpuRange();
-                run("#" + new ApplyCpu(path, value, min, max, bigCpus.toArray(new Integer[bigCpus.size()]),
-                        littleCpus.toArray(new Integer[littleCpus.size()]),
+                run("#" + new ApplyCpu(path, value, min, max, bigCpus.toArray(new Integer[0]),
+                        littleCpus.toArray(new Integer[0]),
                         mCoreCtlMinCpu).toString(), path + min, context);
             } else {
                 run("#" + new ApplyCpu(path, value, min, max).toString(), path + min, context);
@@ -615,12 +615,12 @@ public class CPUFreq {
 
     public int getLITTLECpu() {
         isBigLITTLE();
-        return mLITTLECpu < 0 ? 0 : mLITTLECpu;
+        return Math.max(mLITTLECpu, 0);
     }
 
     public int getBigCpu() {
         isBigLITTLE();
-        return mBigCpu < 0 ? 0 : mBigCpu;
+        return Math.max(mBigCpu, 0);
     }
 
     public boolean isBigLITTLE() {
@@ -722,7 +722,7 @@ public class CPUFreq {
         return usage;
     }
 
-    private class Usage {
+    private static class Usage {
 
         private long[] stats;
 

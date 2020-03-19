@@ -52,8 +52,8 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
         if (mLED.hasBacklightMax() || mLED.hasBacklightMin() || mLED.hascharginglight() || mLED.hasIntensity()
-                || mLED.hasLEDBrightnessB() || mLED.hasLEDBrightnessG() || mLED.hasLEDBrightnessR()
-                || mLED.hasLEDBrightnessW() || mLED.hasSpeed() || mLED.hasWhiteLED() || mLED.hasYellowLED()
+                || LED.hasLEDBrightnessB() || LED.hasLEDBrightnessG() || LED.hasLEDBrightnessR()
+                || LED.hasLEDBrightnessW() || mLED.hasSpeed() || LED.hasWhiteLED() || LED.hasYellowLED()
                 || Sec.hasNotificationRampDown() || Sec.hasNotificationRampUp() || Sec.hasNotificationRampControl()
                 || mLED.hasFade() || Sec.hasNotificationDelayOff() || Sec.hasNotificationDelayOn()
                 || Sec.hasLowpowerCurrent() || Sec.hasHighpowerCurrent()) {
@@ -71,16 +71,13 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
             backlightMax.setSummary("Max");
             backlightMax.setValue(mLED.getBacklightMax());
             backlightMax.setInputType(InputType.TYPE_CLASS_NUMBER);
-            backlightMax.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    mLED.setBacklightMax(value, getActivity());
-                    genericSelectView.setValue(value);
-		    getHandler().postDelayed(() -> {
-		    backlightMax.setValue(mLED.getBacklightMax());
-		    },
-	    	500);
-                }
+            backlightMax.setOnGenericValueListener((genericSelectView, value) -> {
+                mLED.setBacklightMax(value, getActivity());
+                genericSelectView.setValue(value);
+        getHandler().postDelayed(() -> {
+        backlightMax.setValue(mLED.getBacklightMax());
+        },
+        500);
             });
 
             DisplyAndLED.addItem(backlightMax);
@@ -94,16 +91,13 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
             BacklightMin.setSummary("Min");
             BacklightMin.setValue(mLED.getBacklightMin());
             BacklightMin.setInputType(InputType.TYPE_CLASS_NUMBER);
-            BacklightMin.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    mLED.setBacklightMin(value, getActivity());
-                    genericSelectView.setValue(value);
-		    getHandler().postDelayed(() -> {
-		    BacklightMin.setValue(mLED.getBacklightMin());
-		    },
-	    	500);
-                }
+            BacklightMin.setOnGenericValueListener((genericSelectView, value) -> {
+                mLED.setBacklightMin(value, getActivity());
+                genericSelectView.setValue(value);
+        getHandler().postDelayed(() -> {
+        BacklightMin.setValue(mLED.getBacklightMin());
+        },
+        500);
             });
 
             DisplyAndLED.addItem(BacklightMin);
@@ -192,15 +186,12 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
 	    }
             fade.setSummary(getString(R.string.fade));
             fade.setChecked(mLED.isFadeEnabled());
-            fade.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mLED.enableFade(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    fade.setChecked(mLED.isFadeEnabled());
-		    },
-	    	500);
-                }
+            fade.addOnSwitchListener((switchView, isChecked) -> {
+                mLED.enableFade(isChecked, getActivity());
+        getHandler().postDelayed(() -> {
+        fade.setChecked(mLED.isFadeEnabled());
+        },
+        500);
             });
 
             DisplyAndLED.addItem(fade);
@@ -313,15 +304,12 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
             notificationRampControl.setTitle(getString(R.string.fade_ramp_control));
             notificationRampControl.setSummary(getString(R.string.fade_ramp_control_summary));
             notificationRampControl.setChecked(Sec.isNotificationRampControlEnabled());
-            notificationRampControl.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Sec.enableNotificationRampControl(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    notificationRampControl.setChecked(Sec.isNotificationRampControlEnabled());
-		    },
-	    	500);
-                }
+            notificationRampControl.addOnSwitchListener((switchView, isChecked) -> {
+                Sec.enableNotificationRampControl(isChecked, getActivity());
+        getHandler().postDelayed(() -> {
+        notificationRampControl.setChecked(Sec.isNotificationRampControlEnabled());
+        },
+        500);
             });
 
             DisplyAndLED.addItem(notificationRampControl);
@@ -379,18 +367,18 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
             DisplyAndLED.addItem(notificationRampDown);
         }
 
-        if (mLED.hasLEDBrightnessR()) {
+        if (LED.hasLEDBrightnessR()) {
             SeekBarView maxBrightness = new SeekBarView();
             maxBrightness.setTitle(getString(R.string.led_brightness));
             maxBrightness.setSummary(getString(R.string.red));
             maxBrightness.setMax(255);
-            maxBrightness.setProgress(mLED.getLEDBrightnessR());
+            maxBrightness.setProgress(LED.getLEDBrightnessR());
             maxBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mLED.setLEDBrightnessR(position, getActivity());
                     getHandler().postDelayed(() -> {
-                                maxBrightness.setProgress(mLED.getLEDBrightnessR());
+                                maxBrightness.setProgress(LED.getLEDBrightnessR());
                             },
                             500);
                 }
@@ -403,17 +391,17 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
             DisplyAndLED.addItem(maxBrightness);
         }
 
-        if (mLED.hasLEDBrightnessG()) {
+        if (LED.hasLEDBrightnessG()) {
             SeekBarView maxBrightness = new SeekBarView();
             maxBrightness.setSummary(getString(R.string.green));
             maxBrightness.setMax(255);
-            maxBrightness.setProgress(mLED.getLEDBrightnessG());
+            maxBrightness.setProgress(LED.getLEDBrightnessG());
             maxBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mLED.setLEDBrightnessG(position, getActivity());
                     getHandler().postDelayed(() -> {
-                                maxBrightness.setProgress(mLED.getLEDBrightnessG());
+                                maxBrightness.setProgress(LED.getLEDBrightnessG());
                             },
                             500);
                 }
@@ -426,17 +414,17 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
             DisplyAndLED.addItem(maxBrightness);
         }
 
-        if (mLED.hasLEDBrightnessB()) {
+        if (LED.hasLEDBrightnessB()) {
             SeekBarView maxBrightness = new SeekBarView();
             maxBrightness.setSummary(getString(R.string.blue));
             maxBrightness.setMax(255);
-            maxBrightness.setProgress(mLED.getLEDBrightnessB());
+            maxBrightness.setProgress(LED.getLEDBrightnessB());
             maxBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mLED.setLEDBrightnessB(position, getActivity());
                     getHandler().postDelayed(() -> {
-                                maxBrightness.setProgress(mLED.getLEDBrightnessB());
+                                maxBrightness.setProgress(LED.getLEDBrightnessB());
                             },
                             500);
                 }
@@ -449,17 +437,17 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
             DisplyAndLED.addItem(maxBrightness);
         }
 
-        if (mLED.hasLEDBrightnessW()) {
+        if (LED.hasLEDBrightnessW()) {
             SeekBarView maxBrightness = new SeekBarView();
             maxBrightness.setSummary(getString(R.string.white));
             maxBrightness.setMax(255);
-            maxBrightness.setProgress(mLED.getLEDBrightnessW());
+            maxBrightness.setProgress(LED.getLEDBrightnessW());
             maxBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mLED.setLEDBrightnessW(position, getActivity());
                     getHandler().postDelayed(() -> {
-                                maxBrightness.setProgress(mLED.getLEDBrightnessW());
+                                maxBrightness.setProgress(LED.getLEDBrightnessW());
                             },
                             500);
                 }
@@ -472,18 +460,18 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
             DisplyAndLED.addItem(maxBrightness);
         }
 
-        if (mLED.hasWhiteLED()) {
+        if (LED.hasWhiteLED()) {
             SeekBarView whiteLEDBrightness = new SeekBarView();
             whiteLEDBrightness.setTitle(getString(R.string.flash_led));
             whiteLEDBrightness.setSummary(getString(R.string.white));
             whiteLEDBrightness.setUnit(" %");
-            whiteLEDBrightness.setProgress(mLED.getWhiteLED() / 2);
+            whiteLEDBrightness.setProgress(LED.getWhiteLED() / 2);
             whiteLEDBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mLED.setWhiteLED((position * 2), getActivity());
                     getHandler().postDelayed(() -> {
-                                whiteLEDBrightness.setProgress(mLED.getWhiteLED() / 2);
+                                whiteLEDBrightness.setProgress(LED.getWhiteLED() / 2);
                             },
                             500);
                 }
@@ -496,20 +484,20 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
             DisplyAndLED.addItem(whiteLEDBrightness);
         }
 
-        if (mLED.hasYellowLED()) {
+        if (LED.hasYellowLED()) {
             SeekBarView yellowLEDBrightness = new SeekBarView();
-            if (!mLED.hasWhiteLED()) {
+            if (!LED.hasWhiteLED()) {
                 yellowLEDBrightness.setTitle(getString(R.string.flash_led));
             }
             yellowLEDBrightness.setSummary(getString(R.string.yellow));
             yellowLEDBrightness.setUnit(" %");
-            yellowLEDBrightness.setProgress(mLED.getYellowLED() / 2);
+            yellowLEDBrightness.setProgress(LED.getYellowLED() / 2);
             yellowLEDBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mLED.setYellowLED((position * 2), getActivity());
                     getHandler().postDelayed(() -> {
-                                yellowLEDBrightness.setProgress(mLED.getYellowLED() / 2);
+                                yellowLEDBrightness.setProgress(LED.getYellowLED() / 2);
                             },
                             500);
                 }

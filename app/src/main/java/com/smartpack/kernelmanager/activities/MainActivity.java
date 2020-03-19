@@ -30,6 +30,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.ads.MobileAds;
+import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.database.tools.profiles.Profiles;
 import com.smartpack.kernelmanager.services.profile.Tile;
@@ -55,6 +56,7 @@ import com.smartpack.kernelmanager.utils.kernel.wake.Wake;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
 import com.smartpack.kernelmanager.utils.kernel.wakelock.Wakelocks;
+import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
 
 import org.frap129.spectrum.Spectrum;
 
@@ -73,7 +75,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /**
+        /*
          * Initialize Spectrum Profiles & Wakelock Blocker
          */
         if (RootUtils.rootAccess()) {
@@ -93,7 +95,7 @@ public class MainActivity extends BaseActivity {
         mBusybox = findViewById(R.id.busybox_text);
         mCollectInfo = findViewById(R.id.info_collect_text);
 
-        /**
+        /*
          * Hide huge banner in landscape mode
          */
         if (Utils.getOrientation(this) == Configuration.ORIENTATION_LANDSCAPE) {
@@ -263,6 +265,27 @@ public class MainActivity extends BaseActivity {
             }
 
             activity.launch();
+        }
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        // Initialize auto app update check
+        if (Utils.isPlayStoreInstalled(this)) {
+            return;
+        }
+        if (!Utils.isDownloadBinaries()) {
+            return;
+        }
+        if (Utils.isNetworkAvailable(this) && Prefs.getBoolean("auto_update", true, this)) {
+            if (!UpdateCheck.hasVersionInfo() || (UpdateCheck.lastModified() + 3720000L < System.currentTimeMillis())) {
+                UpdateCheck.getVersionInfo(this);
+            }
+            if (UpdateCheck.hasVersionInfo() && BuildConfig.VERSION_CODE < UpdateCheck.versionCode()) {
+                UpdateCheck.updateAvailableDialog(this);
+            }
         }
     }
 

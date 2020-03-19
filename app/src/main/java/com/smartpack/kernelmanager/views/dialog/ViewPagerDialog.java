@@ -64,8 +64,8 @@ public class ViewPagerDialog extends DialogFragment {
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.viewpager_view, container, false);
 
-        ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
-        CirclePageIndicator indicator = (CirclePageIndicator) rootView.findViewById(R.id.indicator);
+        ViewPager viewPager = rootView.findViewById(R.id.viewpager);
+        CirclePageIndicator indicator = rootView.findViewById(R.id.indicator);
         viewPager.setAdapter(new RecyclerViewFragment.ViewPagerAdapter(getChildFragmentManager(), mFragments));
         indicator.setViewPager(viewPager);
 

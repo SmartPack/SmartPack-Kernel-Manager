@@ -84,17 +84,14 @@ public class VMFragment extends RecyclerViewFragment {
                 vm.setInputType(InputType.TYPE_CLASS_NUMBER);
 
                 final int position = i;
-                vm.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                    @Override
-                    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                        VM.setValue(value, position, getActivity());
-                        genericSelectView.setValue(value);
-                        getHandler().postDelayed(() -> {
-                                    for (int i = 0; i < mVMs.size(); i++) {
-                                        vm.setValue(VM.getValue(i));
-                                    }},
-                                500);
-                    }
+                vm.setOnGenericValueListener((genericSelectView, value) -> {
+                    VM.setValue(value, position, getActivity());
+                    genericSelectView.setValue(value);
+                    getHandler().postDelayed(() -> {
+                                for (int i1 = 0; i1 < mVMs.size(); i1++) {
+                                    vm.setValue(VM.getValue(i1));
+                                }},
+                            500);
                 });
 
                 class vmTunablesManager {
@@ -165,17 +162,14 @@ public class VMFragment extends RecyclerViewFragment {
                     (" ") + getString(R.string.zram_algo_warning));
             zramAlgo.setItems(ZRAM.getAvailableZRAMAlgos());
             zramAlgo.setItem(ZRAM.getZRAMAlgo());
-            zramAlgo.setOnItemSelected(new SelectView.OnItemSelected() {
-                @Override
-                public void onItemSelected(SelectView selectView, int position, String item) {
-                    ZRAM.setDisksize(0, getActivity());
-                    ZRAM.setZRAMAlgo(item, getActivity());
-                    ZRAM.setDisksize((zRAMvalue), getActivity());
-                    getHandler().postDelayed(() -> {
-                                zramAlgo.setItem(ZRAM.getZRAMAlgo());
-                            },
-                            500);
-                }
+            zramAlgo.setOnItemSelected((selectView, position, item) -> {
+                ZRAM.setDisksize(0, getActivity());
+                ZRAM.setZRAMAlgo(item, getActivity());
+                ZRAM.setDisksize((zRAMvalue), getActivity());
+                getHandler().postDelayed(() -> {
+                            zramAlgo.setItem(ZRAM.getZRAMAlgo());
+                        },
+                        500);
             });
 
             zRAM.addItem(zramAlgo);
@@ -195,15 +189,12 @@ public class VMFragment extends RecyclerViewFragment {
             zswap.setTitle(getString(R.string.zswap));
             zswap.setSummary(getString(R.string.zswap_summary));
             zswap.setChecked(ZSwap.isEnabled());
-            zswap.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    ZSwap.enable(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    zswap.setChecked(ZSwap.isEnabled());
-		    },
-	    	500);
-                }
+            zswap.addOnSwitchListener((switchView, isChecked) -> {
+                ZSwap.enable(isChecked, getActivity());
+        getHandler().postDelayed(() -> {
+        zswap.setChecked(ZSwap.isEnabled());
+        },
+        500);
             });
 
             zswapCard.addItem(zswap);

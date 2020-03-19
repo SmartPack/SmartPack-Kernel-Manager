@@ -21,13 +21,13 @@
 
 package com.smartpack.kernelmanager.fragments.tools;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.Manifest;
 import android.net.Uri;
@@ -47,7 +47,6 @@ import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
-import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 
@@ -61,6 +60,7 @@ import com.smartpack.kernelmanager.utils.tools.UpdateChannel;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on July 24, 2018
@@ -95,7 +95,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
     @Override
     public int getSpanCount() {
-        int span = Utils.isTablet(getActivity()) ? Utils.getOrientation(getActivity()) ==
+        int span = Utils.isTablet(requireActivity()) ? Utils.getOrientation(getActivity()) ==
                 Configuration.ORIENTATION_LANDSCAPE ? 5 : 4 : Utils.getOrientation(getActivity()) ==
                 Configuration.ORIENTATION_LANDSCAPE ? 3 : 2;
         if (itemsSize() != 0 && span > itemsSize()) {
@@ -113,6 +113,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
     private void reload() {
         if (mLoader == null) {
             getHandler().postDelayed(new Runnable() {
+                @SuppressLint("StaticFieldLeak")
                 @Override
                 public void run() {
                     clearItems();
@@ -156,6 +157,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 getString(R.string.flasher_summary)));
     }
 
+    @SuppressLint("StringFormatInvalid")
     private void SmartPackInit(List<RecyclerViewItem> items) {
         TitleView smartpack = new TitleView();
         smartpack.setText(!KernelUpdater.getKernelName().equals("Unavailable") ? KernelUpdater.getKernelName() :
@@ -170,67 +172,91 @@ public class SmartPackFragment extends RecyclerViewFragment {
         items.add(kernelinfo);
 
         GenericInputView updateChannel = new GenericInputView();
+        updateChannel.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
         updateChannel.setTitle(getString(R.string.update_channel));
         updateChannel.setValue((!KernelUpdater.getKernelName().equals("Unavailable"))
                 ? KernelUpdater.getUpdateChannel() : getString(R.string.update_channel_summary));
-        updateChannel.setOnGenericValueListener(new GenericInputView.OnGenericValueListener() {
-            @Override
-            public void onGenericValueSelected(GenericInputView genericSelectView, String value) {
-                if (mPermissionDenied) {
-                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
-                    return;
-                }
-                if (!Utils.isNetworkAvailable(getActivity())) {
-                    Utils.toast(R.string.no_internet, getActivity());
-                    return;
-                }
-                if (value.isEmpty()) {
-                    KernelUpdater.clearUpdateInfo();
-                    Utils.toast(R.string.update_channel_empty, getActivity());
-                    reload();
-                    return;
-                }
-                KernelUpdater.acquireUpdateInfo(value, getActivity());
-                reload();
-
+        updateChannel.setOnGenericValueListener((genericSelectView, value) -> {
+            if (mPermissionDenied) {
+                Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                return;
             }
+            if (!Utils.isNetworkAvailable(requireActivity())) {
+                Utils.toast(R.string.no_internet, getActivity());
+                return;
+            }
+            if (value.isEmpty()) {
+                KernelUpdater.clearUpdateInfo();
+                Utils.toast(R.string.update_channel_empty, getActivity());
+                reload();
+                return;
+            }
+            KernelUpdater.acquireUpdateInfo(value, getActivity());
+            reload();
+
         });
+        if (!KernelUpdater.getKernelName().equals("Unavailable")) {
+            updateChannel.setOnMenuListener((itemslist1, popupMenu) -> {
+                Menu menu = popupMenu.getMenu();
+                menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.remove));
+                menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.share));
+                popupMenu.setOnMenuItemClickListener(item -> {
+                    switch (item.getItemId()) {
+                        case 0:
+                            new Dialog(requireActivity())
+                                    .setMessage(getString(R.string.sure_question))
+                                    .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                                    })
+                                    .setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {
+                                        KernelUpdater.clearUpdateInfo();
+                                        reload();
+                                    })
+                                    .show();
+                            break;
+                        case 1:
+                            if (Utils.isNetworkAvailable(requireActivity())) {
+                                Intent shareChannel = new Intent();
+                                shareChannel.setAction(Intent.ACTION_SEND);
+                                shareChannel.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+                                shareChannel.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_channel_message,
+                                        Utils.readFile(Utils.getInternalDataStorage() + "/updatechannel")) +
+                                        " https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true");
+                                shareChannel.setType("text/plain");
+                                Intent shareIntent = Intent.createChooser(shareChannel, null);
+                                startActivity(shareIntent);
+                            } else {
+                                Utils.toast(R.string.no_internet, getActivity());
+                            }
+                            break;
+                    }
+                    return false;
+                });
+            });
+        }
 
         items.add(updateChannel);
 
         if (KernelUpdater.getLatestVersion().equals("Unavailable")) {
-            CardView cardView = new CardView(getActivity());
-            cardView.setFullSpan(true);
-            cardView.setOnMenuListener(new CardView.OnMenuListener() {
-                @Override
-                public void onMenuReady(CardView cardView, androidx.appcompat.widget.PopupMenu popupMenu) {
-                    Menu menu = popupMenu.getMenu();
-                    menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.update_channel_create));
-
-                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            FragmentManager fragmentManager = getFragmentManager();
-                            fragmentManager.beginTransaction()
-                                    .replace(R.id.content_frame, new UpdateChannel()).commit();
-                            return false;
-                        }
-                    });
-                }
-            });
-
             DescriptionView info = new DescriptionView();
             info.setDrawable(getResources().getDrawable(R.drawable.ic_info));
+            info.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
             info.setTitle(getString(R.string.update_channel_info, Utils.getInternalDataStorage()));
-            info.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    Utils.launchUrl("https://smartpack.github.io/kerneldownloads/", getActivity());
-                }
+            info.setOnItemClickListener(item -> Utils.launchUrl("https://smartpack.github.io/kerneldownloads/", getActivity()));
+            info.setFullSpan(true);
+            info.setOnMenuListener((info1, popupMenu) -> {
+                Menu menu = popupMenu.getMenu();
+                menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.update_channel_create));
+
+                popupMenu.setOnMenuItemClickListener(item -> {
+                    FragmentManager fragmentManager = getFragmentManager();
+                    assert fragmentManager != null;
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.content_frame, new UpdateChannel()).commit();
+                    return false;
+                });
             });
 
-            cardView.addItem(info);
-            items.add(cardView);
+            items.add(info);
         }
 
         if (!KernelUpdater.getLatestVersion().equals("Unavailable")) {
@@ -245,20 +271,17 @@ public class SmartPackFragment extends RecyclerViewFragment {
             DescriptionView changelogs = new DescriptionView();
             changelogs.setTitle(getString(R.string.change_logs));
             changelogs.setSummary(getString(R.string.change_logs_summary));
-            changelogs.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    if (KernelUpdater.getChangeLog().contains("https://") ||
-                            KernelUpdater.getChangeLog().contains("http://")) {
-                        Utils.launchUrl(KernelUpdater.getChangeLog(), getActivity());
-                    } else {
-                        new Dialog(getActivity())
-                                .setTitle(KernelUpdater.getKernelName() + " " + KernelUpdater.getLatestVersion())
-                                .setMessage(KernelUpdater.getChangeLog())
-                                .setPositiveButton(getString(R.string.cancel), (dialog1, id1) -> {
-                                })
-                                .show();
-                    }
+            changelogs.setOnItemClickListener(item -> {
+                if (KernelUpdater.getChangeLog().contains("https://") ||
+                        KernelUpdater.getChangeLog().contains("http://")) {
+                    Utils.launchUrl(KernelUpdater.getChangeLog(), getActivity());
+                } else {
+                    new Dialog(requireActivity())
+                            .setTitle(KernelUpdater.getKernelName() + " " + KernelUpdater.getLatestVersion())
+                            .setMessage(KernelUpdater.getChangeLog())
+                            .setPositiveButton(getString(R.string.cancel), (dialog1, id1) -> {
+                            })
+                            .show();
                 }
             });
 
@@ -269,15 +292,12 @@ public class SmartPackFragment extends RecyclerViewFragment {
             DescriptionView support = new DescriptionView();
             support.setTitle(getString(R.string.support));
             support.setSummary(getString(R.string.support_summary));
-            support.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    if (KernelUpdater.getSupport().contains("https://") ||
-                            KernelUpdater.getSupport().contains("http://")) {
-                        Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
-                    } else {
-                        Utils.toast(R.string.unknown_link, getActivity());
-                    }
+            support.setOnItemClickListener(item -> {
+                if (KernelUpdater.getSupport().contains("https://") ||
+                        KernelUpdater.getSupport().contains("http://")) {
+                    Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
+                } else {
+                    Utils.toast(R.string.unknown_link, getActivity());
                 }
             });
 
@@ -288,99 +308,44 @@ public class SmartPackFragment extends RecyclerViewFragment {
             DescriptionView download = new DescriptionView();
             download.setTitle(getString(R.string.download));
             download.setSummary(getString(R.string.get_it_summary));
-            download.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    if (mPermissionDenied) {
-                        Utils.toast(R.string.permission_denied_write_storage, getActivity());
-                        return;
-                    }
-                    KernelUpdater.downloadKernel(getActivity());
+            download.setOnItemClickListener(item -> {
+                if (mPermissionDenied) {
+                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                    return;
                 }
+                KernelUpdater.downloadKernel(getActivity());
             });
 
             items.add(download);
-        }
-
-        if (!KernelUpdater.getKernelName().equals("Unavailable")) {
-            DescriptionView share = new DescriptionView();
-            share.setTitle(getString(R.string.share_channel));
-            share.setSummary(getString(R.string.share_channel_summary));
-            share.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    if (!Utils.isNetworkAvailable(getActivity())) {
-                        Utils.toast(R.string.no_internet, getActivity());
-                        return;
-                    }
-                    Intent shareChannel = new Intent();
-                    shareChannel.setAction(Intent.ACTION_SEND);
-                    shareChannel.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-                    shareChannel.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_channel_message,
-                            Utils.readFile(Utils.getInternalDataStorage() + "/updatechannel")) +
-                            " https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true");
-                    shareChannel.setType("text/plain");
-                    Intent shareIntent = Intent.createChooser(shareChannel, null);
-                    startActivity(shareIntent);
-                }
-            });
-
-            items.add(share);
-
-            DescriptionView remove = new DescriptionView();
-            remove.setTitle(getString(R.string.remove));
-            remove.setSummary(getString(R.string.remove_summary));
-            remove.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    new Dialog(getActivity())
-                            .setMessage(getString(R.string.sure_question))
-                            .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                            })
-                            .setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {
-                                KernelUpdater.clearUpdateInfo();
-                                reload();
-                            })
-                            .show();
-                }
-            });
-
-            items.add(remove);
         }
 
         if (!KernelUpdater.getLatestVersion().equals("Unavailable")) {
             DescriptionView donations = new DescriptionView();
             donations.setTitle(getString(R.string.donations));
             donations.setSummary(getString(R.string.donations_summary));
-            donations.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    if (KernelUpdater.getDonationLink().contains("https://") ||
-                                KernelUpdater.getDonationLink().contains("http://")) {
-                        Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
-                        Utils.launchUrl(KernelUpdater.getDonationLink(), getActivity());
-                    } else {
-                        Utils.toast(getString(R.string.unknown_link), getActivity());
-                    }
-
+            donations.setOnItemClickListener(item -> {
+                if (KernelUpdater.getDonationLink().contains("https://") ||
+                            KernelUpdater.getDonationLink().contains("http://")) {
+                    Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
+                    Utils.launchUrl(KernelUpdater.getDonationLink(), getActivity());
+                } else {
+                    Utils.toast(getString(R.string.unknown_link), getActivity());
                 }
+
             });
 
             items.add(donations);
         }
 
-        if (!KernelUpdater.getKernelName().equals("Unavailable")) {
+        if (!KernelUpdater.getKernelName().equals("Unavailable") && Utils.isDownloadBinaries()) {
             SwitchView update_check = new SwitchView();
             update_check.setSummary(getString(R.string.check_update));
             update_check.setChecked(Prefs.getBoolean("update_check", false, getActivity()));
-            update_check.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchview, boolean isChecked) {
-                    Prefs.saveBoolean("update_check", isChecked, getActivity());
-                    if (Prefs.getBoolean("update_check", true, getActivity())) {
-                        Utils.toast(getString(R.string.update_check_message, !KernelUpdater.getKernelName().
-                                equals("Unavailable") ? KernelUpdater.getKernelName() : "this"), getActivity());
-                    }
+            update_check.addOnSwitchListener((switchview, isChecked) -> {
+                Prefs.saveBoolean("update_check", isChecked, getActivity());
+                if (Prefs.getBoolean("update_check", true, getActivity())) {
+                    Utils.toast(getString(R.string.update_check_message, !KernelUpdater.getKernelName().
+                            equals("Unavailable") ? KernelUpdater.getKernelName() : "this"), getActivity());
                 }
             });
 
@@ -397,18 +362,15 @@ public class SmartPackFragment extends RecyclerViewFragment {
         DescriptionView logcat = new DescriptionView();
         logcat.setTitle(getString(R.string.logcat));
         logcat.setSummary(getString(R.string.logcat_summary));
-        logcat.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                if (mPermissionDenied) {
-                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
-                    return;
-                }
-                SmartPack.prepareLogFolder();
-                new Execute().execute("logcat -d > " + logFolder + "/logcat");
-                new Execute().execute("logcat  -b radio -v time -d > " + logFolder + "/radio");
-                new Execute().execute("logcat -b events -v time -d > " + logFolder + "/events");
+        logcat.setOnItemClickListener(item -> {
+            if (mPermissionDenied) {
+                Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                return;
             }
+            SmartPack.prepareLogFolder();
+            new Execute().execute("logcat -d > " + logFolder + "/logcat");
+            new Execute().execute("logcat  -b radio -v time -d > " + logFolder + "/radio");
+            new Execute().execute("logcat -b events -v time -d > " + logFolder + "/events");
         });
         items.add(logcat);
 
@@ -416,16 +378,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
             DescriptionView lastkmsg = new DescriptionView();
             lastkmsg.setTitle(getString(R.string.last_kmsg));
             lastkmsg.setSummary(getString(R.string.last_kmsg_summary));
-            lastkmsg.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    if (mPermissionDenied) {
-                        Utils.toast(R.string.permission_denied_write_storage, getActivity());
-                        return;
-                    }
-                    SmartPack.prepareLogFolder();
-                    new Execute().execute("cat /proc/last_kmsg > " + logFolder + "/last_kmsg");
+            lastkmsg.setOnItemClickListener(item -> {
+                if (mPermissionDenied) {
+                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                    return;
                 }
+                SmartPack.prepareLogFolder();
+                new Execute().execute("cat /proc/last_kmsg > " + logFolder + "/last_kmsg");
             });
             items.add(lastkmsg);
         }
@@ -433,16 +392,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
         DescriptionView dmesg = new DescriptionView();
         dmesg.setTitle(getString(R.string.driver_message));
         dmesg.setSummary(getString(R.string.driver_message_summary));
-        dmesg.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                if (mPermissionDenied) {
-                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
-                    return;
-                }
-                SmartPack.prepareLogFolder();
-                new Execute().execute("dmesg > " + logFolder + "/dmesg");
+        dmesg.setOnItemClickListener(item -> {
+            if (mPermissionDenied) {
+                Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                return;
             }
+            SmartPack.prepareLogFolder();
+            new Execute().execute("dmesg > " + logFolder + "/dmesg");
         });
         items.add(dmesg);
 
@@ -450,16 +406,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
             DescriptionView dmesgRamoops = new DescriptionView();
             dmesgRamoops.setTitle(getString(R.string.driver_ramoops));
             dmesgRamoops.setSummary(getString(R.string.driver_ramoops_summary));
-            dmesgRamoops.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    if (mPermissionDenied) {
-                        Utils.toast(R.string.permission_denied_write_storage, getActivity());
-                        return;
-                    }
-                    SmartPack.prepareLogFolder();
-                    new Execute().execute("cat /sys/fs/pstore/dmesg-ramoops* > " + logFolder + "/dmesg-ramoops");
+            dmesgRamoops.setOnItemClickListener(item -> {
+                if (mPermissionDenied) {
+                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                    return;
                 }
+                SmartPack.prepareLogFolder();
+                new Execute().execute("cat /sys/fs/pstore/dmesg-ramoops* > " + logFolder + "/dmesg-ramoops");
             });
             items.add(dmesgRamoops);
         }
@@ -468,16 +421,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
             DescriptionView ramoops = new DescriptionView();
             ramoops.setTitle(getString(R.string.console_ramoops));
             ramoops.setSummary(getString(R.string.console_ramoops_summary));
-            ramoops.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    if (mPermissionDenied) {
-                        Utils.toast(R.string.permission_denied_write_storage, getActivity());
-                        return;
-                    }
-                    SmartPack.prepareLogFolder();
-                    new Execute().execute("cat /sys/fs/pstore/console-ramoops* > " + logFolder + "/console-ramoops");
+            ramoops.setOnItemClickListener(item -> {
+                if (mPermissionDenied) {
+                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                    return;
                 }
+                SmartPack.prepareLogFolder();
+                new Execute().execute("cat /sys/fs/pstore/console-ramoops* > " + logFolder + "/console-ramoops");
             });
             items.add(ramoops);
         }
@@ -486,28 +436,19 @@ public class SmartPackFragment extends RecyclerViewFragment {
         shell.setTitle(getString(R.string.shell));
         shell.setValue(getString(R.string.shell_summary));
         shell.setFullSpan(true);
-        shell.setOnGenericValueListener(new GenericInputView.OnGenericValueListener() {
-            @Override
-            public void onGenericValueSelected(GenericInputView genericSelectView, String value) {
-                runCommand(value);
-            }
-        });
+        shell.setOnGenericValueListener((genericSelectView, value) -> runCommand(value));
 
         items.add(shell);
 
         DescriptionView reboot_options = new DescriptionView();
         reboot_options.setTitle(getString(R.string.reboot_options));
         reboot_options.setSummary(getString(R.string.reboot_options_summary));
-        reboot_options.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                mOptionsDialog = new Dialog(getActivity()).setItems(getResources().getStringArray(
-                        R.array.reboot_options), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
+        reboot_options.setOnItemClickListener(item -> {
+            mOptionsDialog = new Dialog(requireActivity()).setItems(getResources().getStringArray(
+                    R.array.reboot_options), (dialog, i) -> {
                         switch (i) {
                             case 0:
-                                new Dialog(getActivity())
+                                new Dialog(requireActivity())
                                         .setMessage(getString(R.string.sure_question))
                                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
                                         })
@@ -517,7 +458,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         .show();
                                 break;
                             case 1:
-                                new Dialog(getActivity())
+                                new Dialog(requireActivity())
                                         .setMessage(getString(R.string.sure_question))
                                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
                                         })
@@ -527,7 +468,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         .show();
                                 break;
                             case 2:
-                                new Dialog(getActivity())
+                                new Dialog(requireActivity())
                                         .setMessage(getString(R.string.sure_question))
                                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
                                         })
@@ -537,7 +478,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         .show();
                                 break;
                             case 3:
-                                new Dialog(getActivity())
+                                new Dialog(requireActivity())
                                         .setMessage(getString(R.string.sure_question))
                                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
                                         })
@@ -547,15 +488,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         .show();
                                 break;
                         }
-                    }
-                }).setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        mOptionsDialog = null;
-                    }
-                });
-                mOptionsDialog.show();
-            }
+                    }).setOnDismissListener(dialog -> mOptionsDialog = null);
+            mOptionsDialog.show();
         });
 
         items.add(reboot_options);
@@ -563,33 +497,29 @@ public class SmartPackFragment extends RecyclerViewFragment {
         DescriptionView reset = new DescriptionView();
         reset.setTitle(getString(R.string.reset_settings));
         reset.setSummary(getString(R.string.reset_settings_summary));
-        reset.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                new Dialog(getActivity())
-                        .setMessage(getString(R.string.reset_settings_message))
-                        .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                        })
-                        .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                            new Dialog(getActivity())
-                                    .setMessage(getString(R.string.reboot_message))
-                                    .setNegativeButton(getString(R.string.reboot_later), (dialogInterface, i) -> {
-                                        new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
-                                        new Execute().execute("pm clear com.smartpack.kernelmanager && " +
-                                                "am start -n com.smartpack.kernelmanager/com.smartpack.kernelmanager.activities.MainActivity");
-                                    })
-                                    .setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
-                                        new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
-                                        new Execute().execute(Utils.prepareReboot());
-                                    })
-                                    .show();
-                        })
-                        .show();
-            }
-        });
+        reset.setOnItemClickListener(item -> new Dialog(requireActivity())
+                .setMessage(getString(R.string.reset_settings_message))
+                .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                })
+                .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
+                    new Dialog(requireActivity())
+                            .setMessage(getString(R.string.reboot_message))
+                            .setNegativeButton(getString(R.string.reboot_later), (dialogInterface, i) -> {
+                                new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
+                                new Execute().execute("pm clear com.smartpack.kernelmanager && " +
+                                        "am start -n com.smartpack.kernelmanager/com.smartpack.kernelmanager.activities.MainActivity");
+                            })
+                            .setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
+                                new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
+                                new Execute().execute(Utils.prepareReboot());
+                            })
+                            .show();
+                })
+                .show());
         items.add(reset);
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class Execute extends AsyncTask<String, Void, Void> {
         private ProgressDialog mExecuteDialog;
         @Override
@@ -615,6 +545,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     private void runCommand(final String value) {
         new AsyncTask<Void, Void, String>() {
             private ProgressDialog mProgressDialog;
@@ -641,7 +572,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     mProgressDialog.dismiss();
                 } catch (IllegalArgumentException ignored) {
                 }
-                new Dialog(getActivity())
+                new Dialog(requireActivity())
                         .setTitle(value)
                         .setMessage(s != null && !s.isEmpty()? s : "")
                         .setCancelable(false)
@@ -674,15 +605,17 @@ public class SmartPackFragment extends RecyclerViewFragment {
         }
     }
 
+    @SuppressLint({"StringFormatInvalid", "StringFormatMatches"})
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             Uri uri = data.getData();
-            File file = new File(uri.getPath());
+            assert uri != null;
+            File file = new File(Objects.requireNonNull(uri.getPath()));
             if (Utils.isDocumentsUI(uri)) {
-                Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+                @SuppressLint("Recycle") Cursor cursor = requireActivity().getContentResolver().query(uri, null, null, null, null);
                 if (cursor != null && cursor.moveToFirst()) {
                     mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
                             cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
@@ -693,7 +626,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             if (SmartPack.fileSize(new File(mPath)) >= 100000000) {
                 Utils.toast(getString(R.string.file_size_limit, (SmartPack.fileSize(new File(mPath)) / 1000000)), getActivity());
             }
-            Dialog manualFlash = new Dialog(getActivity());
+            Dialog manualFlash = new Dialog(requireActivity());
             manualFlash.setIcon(R.mipmap.ic_launcher);
             manualFlash.setTitle(getString(R.string.flasher));
             manualFlash.setMessage(getString(R.string.sure_message, file.getName().replace("primary:", "")
@@ -713,9 +646,9 @@ public class SmartPackFragment extends RecyclerViewFragment {
         super.onStart();
 
         // Initialize kernel update check - Once in a day
-        if (Utils.isNetworkAvailable(getActivity()) && Prefs.getBoolean("update_check", true, getActivity())
-                && !KernelUpdater.getUpdateChannel().equals("Unavailable") && KernelUpdater.lastModified() +
-                89280000L < System.currentTimeMillis()) {
+        if (Utils.isNetworkAvailable(requireActivity()) && Prefs.getBoolean("update_check", true, getActivity())
+                && !KernelUpdater.getUpdateChannel().equals("Unavailable") && Utils.isDownloadBinaries() &&
+                KernelUpdater.lastModified() + 89280000L < System.currentTimeMillis()) {
             KernelUpdater.updateInfo(Utils.readFile(Utils.getInternalDataStorage() + "/updatechannel"), getActivity());
         }
     }

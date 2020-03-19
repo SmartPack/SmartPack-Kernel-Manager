@@ -80,19 +80,16 @@ public class ThermalFragment extends RecyclerViewFragment {
         SwitchView thermald = new SwitchView();
         thermald.setSummary(getString(R.string.thermald_summary));
         thermald.setChecked(Thermald.isThermaldEnabled());
-        thermald.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                Thermald.enableThermald(isChecked, getActivity());
-		getHandler().postDelayed(() -> {
-		thermald.setChecked(Thermald.isThermaldEnabled());
-		},
-	    500);
-            }
+        thermald.addOnSwitchListener((switchView, isChecked) -> {
+            Thermald.enableThermald(isChecked, getActivity());
+            getHandler().postDelayed(() -> {
+                        thermald.setChecked(Thermald.isThermaldEnabled());
+                    },
+                    500);
         });
 
-	ThermaldCard.addItem(thermald);
-	items.add(ThermaldCard);
+        ThermaldCard.addItem(thermald);
+        items.add(ThermaldCard);
     }
 
     private void msmThermalInit(List<RecyclerViewItem> items) {
@@ -104,12 +101,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             intelliThermal.setTitle(getString(R.string.intellithermal));
             intelliThermal.setSummary(getString(R.string.intellithermal_summary));
             intelliThermal.setChecked(mMSMThermal.isIntelliThermalEnabled());
-            intelliThermal.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMSMThermal.enableIntelliThermal(isChecked, getActivity());
-                }
-            });
+            intelliThermal.addOnSwitchListener((switchView, isChecked) -> mMSMThermal.enableIntelliThermal(isChecked, getActivity()));
 
             MSMThermal.addItem(intelliThermal);
         }
@@ -119,12 +111,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             intelliThermalOptimized.setTitle(getString(R.string.intellithermal_optimized));
             intelliThermalOptimized.setSummary(getString(R.string.intellithermal_optimized_summary));
             intelliThermalOptimized.setChecked(mMSMThermal.isIntelliThermalOptimizedEnabled());
-            intelliThermalOptimized.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMSMThermal.enableIntelliThermalOptimized(isChecked, getActivity());
-                }
-            });
+            intelliThermalOptimized.addOnSwitchListener((switchView, isChecked) -> mMSMThermal.enableIntelliThermalOptimized(isChecked, getActivity()));
 
             MSMThermal.addItem(intelliThermalOptimized);
         }
@@ -134,12 +121,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             debugMode.setTitle(getString(R.string.debug_mask));
             debugMode.setSummary(getString(R.string.thermal_debug_mask_summary));
             debugMode.setChecked(mMSMThermal.isThermalDebugModeEnabled());
-            debugMode.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMSMThermal.enableThermalDebugMode(isChecked, getActivity());
-                }
-            });
+            debugMode.addOnSwitchListener((switchView, isChecked) -> mMSMThermal.enableThermalDebugMode(isChecked, getActivity()));
 
             MSMThermal.addItem(debugMode);
         }
@@ -148,15 +130,12 @@ public class ThermalFragment extends RecyclerViewFragment {
             SwitchView coreControl = new SwitchView();
             coreControl.setSummary(getString(R.string.core_control));
             coreControl.setChecked(mMSMThermal.isCoreControlEnabled());
-            coreControl.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMSMThermal.enableCoreControl(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    coreControl.setChecked(mMSMThermal.isCoreControlEnabled());
-		    },
-	    	500);
-                }
+            coreControl.addOnSwitchListener((switchView, isChecked) -> {
+                mMSMThermal.enableCoreControl(isChecked, getActivity());
+                getHandler().postDelayed(() -> {
+                            coreControl.setChecked(mMSMThermal.isCoreControlEnabled());
+                        },
+                        500);
             });
 
             MSMThermal.addItem(coreControl);
@@ -166,15 +145,12 @@ public class ThermalFragment extends RecyclerViewFragment {
             SwitchView vddRestriction = new SwitchView();
             vddRestriction.setSummary(getString(R.string.vdd_restriction));
             vddRestriction.setChecked(mMSMThermal.isVddRestrictionEnabled());
-            vddRestriction.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMSMThermal.enableVddRestriction(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    vddRestriction.setChecked(mMSMThermal.isVddRestrictionEnabled());
-		    },
-	    	500);
-                }
+            vddRestriction.addOnSwitchListener((switchView, isChecked) -> {
+                mMSMThermal.enableVddRestriction(isChecked, getActivity());
+                getHandler().postDelayed(() -> {
+                            vddRestriction.setChecked(mMSMThermal.isVddRestrictionEnabled());
+                        },
+                        500);
             });
 
             MSMThermal.addItem(vddRestriction);
@@ -234,58 +210,49 @@ public class ThermalFragment extends RecyclerViewFragment {
             MSMThermal.addItem(coreLimitTempDegC);
         }
 
-        if (mMSMThermal.hasCoreTempLimit()) {
+        if (com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.hasCoreTempLimit()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
 
             GenericSelectView coretempLimit = new GenericSelectView();
             coretempLimit.setTitle(getString(R.string.cpu_throttle_temp) + (" (") + getString(fahrenheit ? R.string.fahrenheit : R.string.celsius) + (")"));
             coretempLimit.setSummary(getString(R.string.cpu_throttle_temp_summary));
-            coretempLimit.setValue(mMSMThermal.getCoreTempLimit());
+            coretempLimit.setValue(com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.getCoreTempLimit());
             coretempLimit.setInputType(InputType.TYPE_CLASS_NUMBER);
-            coretempLimit.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    mMSMThermal.setCoreTempLimit(value, getActivity());
-                    genericSelectView.setValue(value);
-                }
+            coretempLimit.setOnGenericValueListener((genericSelectView, value) -> {
+                mMSMThermal.setCoreTempLimit(value, getActivity());
+                genericSelectView.setValue(value);
             });
 
             MSMThermal.addItem(coretempLimit);
         }
 
-        if (mMSMThermal.hasFreqmitigTemp()) {
+        if (com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.hasFreqmitigTemp()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
 
             GenericSelectView Freqtemp = new GenericSelectView();
             Freqtemp.setTitle(getString(R.string.freq_mitg_temp) + (" (") + getString(fahrenheit ? R.string.fahrenheit : R.string.celsius) + (")"));
             Freqtemp.setSummary(getString(R.string.freq_mitg_temp_summary));
-            Freqtemp.setValue(mMSMThermal.getFreqmitigTemp());
+            Freqtemp.setValue(com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.getFreqmitigTemp());
             Freqtemp.setInputType(InputType.TYPE_CLASS_NUMBER);
-            Freqtemp.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    mMSMThermal.setFreqmitigTemp(value, getActivity());
-                    genericSelectView.setValue(value);
-                }
+            Freqtemp.setOnGenericValueListener((genericSelectView, value) -> {
+                mMSMThermal.setFreqmitigTemp(value, getActivity());
+                genericSelectView.setValue(value);
             });
 
             MSMThermal.addItem(Freqtemp);
         }
 
-        if (mMSMThermal.hasHotPlugTemp()) {
+        if (com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.hasHotPlugTemp()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
 
             GenericSelectView hotplugtemp = new GenericSelectView();
             hotplugtemp.setTitle(getString(R.string.hotplug_temp) + (" (") + getString(fahrenheit ? R.string.fahrenheit : R.string.celsius) + (")"));
             hotplugtemp.setSummary(getString(R.string.hotplug_temp_summary));
-            hotplugtemp.setValue(mMSMThermal.getHotPlugTemp());
+            hotplugtemp.setValue(com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.getHotPlugTemp());
             hotplugtemp.setInputType(InputType.TYPE_CLASS_NUMBER);
-            hotplugtemp.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    mMSMThermal.setHotPlugTemp(value, getActivity());
-                    genericSelectView.setValue(value);
-                }
+            hotplugtemp.setOnGenericValueListener((genericSelectView, value) -> {
+                mMSMThermal.setHotPlugTemp(value, getActivity());
+                genericSelectView.setValue(value);
             });
 
             MSMThermal.addItem(hotplugtemp);
@@ -341,12 +308,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             SwitchView immediatelyLimitStop = new SwitchView();
             immediatelyLimitStop.setSummary(getString(R.string.immediately_limit_stop));
             immediatelyLimitStop.setChecked(mMSMThermal.isImmediatelyLimitStopEnabled());
-            immediatelyLimitStop.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMSMThermal.enableImmediatelyLimitStop(isChecked, getActivity());
-                }
-            });
+            immediatelyLimitStop.addOnSwitchListener((switchView, isChecked) -> mMSMThermal.enableImmediatelyLimitStop(isChecked, getActivity()));
 
             MSMThermal.addItem(immediatelyLimitStop);
         }
@@ -355,18 +317,15 @@ public class ThermalFragment extends RecyclerViewFragment {
             GenericSelectView pollMs = new GenericSelectView();
             pollMs.setTitle(getString(R.string.poll) + (" (ms)"));
             pollMs.setSummary(getString(R.string.poll_summary));
-            pollMs.setValue(mMSMThermal.getPollMs());
+            pollMs.setValue(com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.getPollMs());
             pollMs.setInputType(InputType.TYPE_CLASS_NUMBER);
-            pollMs.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    mMSMThermal.setPollMs(value, getActivity());
-                    genericSelectView.setValue(value);
-		    getHandler().postDelayed(() -> {
-		    pollMs.setValue(mMSMThermal.getPollMs());
-		    },
-	    	500);
-                }
+            pollMs.setOnGenericValueListener((genericSelectView, value) -> {
+                mMSMThermal.setPollMs(value, getActivity());
+                genericSelectView.setValue(value);
+                getHandler().postDelayed(() -> {
+                            pollMs.setValue(com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.getPollMs());
+                        },
+                        500);
             });
 
             MSMThermal.addItem(pollMs);
@@ -442,12 +401,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             SwitchView tempSafety = new SwitchView();
             tempSafety.setSummary(getString(R.string.temp_safety));
             tempSafety.setChecked(mMSMThermal.isTempSafetyEnabled());
-            tempSafety.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMSMThermal.enableTempSafety(isChecked, getActivity());
-                }
-            });
+            tempSafety.addOnSwitchListener((switchView, isChecked) -> mMSMThermal.enableTempSafety(isChecked, getActivity()));
 
             MSMThermal.addItem(tempSafety);
         }
@@ -457,12 +411,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             tempThrottle.setTitle(getString(R.string.temp_throttle));
             tempThrottle.setSummary(getString(R.string.temp_throttle_summary));
             tempThrottle.setChecked(mMSMThermal.isTempThrottleEnabled());
-            tempThrottle.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMSMThermal.enableTempThrottle(isChecked, getActivity());
-                }
-            });
+            tempThrottle.addOnSwitchListener((switchView, isChecked) -> mMSMThermal.enableTempThrottle(isChecked, getActivity()));
 
             MSMThermal.addItem(tempThrottle);
         }
@@ -490,20 +439,17 @@ public class ThermalFragment extends RecyclerViewFragment {
             MSMThermal.addItem(tempLimit);
         }
 
-        if (mMSMThermal.hasTemp_Limit()) {
+        if (com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.hasTemp_Limit()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
 
             GenericSelectView tempLimit = new GenericSelectView();
             tempLimit.setTitle(getString(R.string.temp_limit) + (" (") + getString(fahrenheit ? R.string.fahrenheit : R.string.celsius) + (")"));
             tempLimit.setSummary(getString(R.string.temp_limit_summary));
-            tempLimit.setValue(mMSMThermal.getTemp_Limit());
+            tempLimit.setValue(com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.getTemp_Limit());
             tempLimit.setInputType(InputType.TYPE_CLASS_NUMBER);
-            tempLimit.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    mMSMThermal.setTemp_Limit(value, getActivity());
-                    genericSelectView.setValue(value);
-                }
+            tempLimit.setOnGenericValueListener((genericSelectView, value) -> {
+                mMSMThermal.setTemp_Limit(value, getActivity());
+                genericSelectView.setValue(value);
             });
 
             MSMThermal.addItem(tempLimit);
@@ -514,12 +460,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             freqLimitDebug.setTitle(getString(R.string.freq_limit_debug));
             freqLimitDebug.setSummary(getString(R.string.freq_limit_debug_summary));
             freqLimitDebug.setChecked(mMSMThermal.isFreqLimitDebugEnabled());
-            freqLimitDebug.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMSMThermal.enableFreqLimitDebug(isChecked, getActivity());
-                }
-            });
+            freqLimitDebug.addOnSwitchListener((switchView, isChecked) -> mMSMThermal.enableFreqLimitDebug(isChecked, getActivity()));
 
             MSMThermal.addItem(freqLimitDebug);
         }
@@ -530,12 +471,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             minFreqIndex.setSummary(getString(R.string.temp_limit_min_freq_summary));
             minFreqIndex.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
             minFreqIndex.setItem((mMSMThermal.getMinFreqIndex() / 1000) + getString(R.string.mhz));
-            minFreqIndex.setOnItemSelected(new SelectView.OnItemSelected() {
-                @Override
-                public void onItemSelected(SelectView selectView, int position, String item) {
-                    mMSMThermal.setMinFreqIndex(mCPUFreq.getFreqs().get(position), getActivity());
-                }
-            });
+            minFreqIndex.setOnItemSelected((selectView, position, item) -> mMSMThermal.setMinFreqIndex(mCPUFreq.getFreqs().get(position), getActivity()));
 
             MSMThermal.addItem(minFreqIndex);
         }
@@ -597,12 +533,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             allowedLowFreq.setSummary(getString(R.string.allowed_low_freq));
             allowedLowFreq.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
             allowedLowFreq.setItem((mMSMThermal.getAllowedLowFreq() / 1000) + getString(R.string.mhz));
-            allowedLowFreq.setOnItemSelected(new SelectView.OnItemSelected() {
-                @Override
-                public void onItemSelected(SelectView selectView, int position, String item) {
-                    mMSMThermal.setAllowedLowFreq(mCPUFreq.getFreqs().get(position), getActivity());
-                }
-            });
+            allowedLowFreq.setOnItemSelected((selectView, position, item) -> mMSMThermal.setAllowedLowFreq(mCPUFreq.getFreqs().get(position), getActivity()));
 
             MSMThermal.addItem(allowedLowFreq);
         }
@@ -664,12 +595,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             allowedMidFreq.setSummary(getString(R.string.allowed_mid_freq));
             allowedMidFreq.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
             allowedMidFreq.setItem((mMSMThermal.getAllowedMidFreq() / 1000) + getString(R.string.mhz));
-            allowedMidFreq.setOnItemSelected(new SelectView.OnItemSelected() {
-                @Override
-                public void onItemSelected(SelectView selectView, int position, String item) {
-                    mMSMThermal.setAllowedMidFreq(mCPUFreq.getFreqs().get(position), getActivity());
-                }
-            });
+            allowedMidFreq.setOnItemSelected((selectView, position, item) -> mMSMThermal.setAllowedMidFreq(mCPUFreq.getFreqs().get(position), getActivity()));
 
             MSMThermal.addItem(allowedMidFreq);
         }
@@ -731,12 +657,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             allowedMaxFreq.setSummary(getString(R.string.allowed_max_freq));
             allowedMaxFreq.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
             allowedMaxFreq.setItem((mMSMThermal.getAllowedMaxFreq() / 1000) + getString(R.string.mhz));
-            allowedMaxFreq.setOnItemSelected(new SelectView.OnItemSelected() {
-                @Override
-                public void onItemSelected(SelectView selectView, int position, String item) {
-                    mMSMThermal.setAllowedMaxFreq(mCPUFreq.getFreqs().get(position), getActivity());
-                }
-            });
+            allowedMaxFreq.setOnItemSelected((selectView, position, item) -> mMSMThermal.setAllowedMaxFreq(mCPUFreq.getFreqs().get(position), getActivity()));
 
             MSMThermal.addItem(allowedMaxFreq);
         }
@@ -762,55 +683,46 @@ public class ThermalFragment extends RecyclerViewFragment {
             MSMThermal.addItem(checkIntervalMs);
         }
 
-        if (mMSMThermal.hasCoreControlMask()) {
+        if (com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.hasCoreControlMask()) {
 
             GenericSelectView corecontrolMask = new GenericSelectView();
             corecontrolMask.setTitle(getString(R.string.core_control_mask));
             corecontrolMask.setSummary(getString(R.string.core_control_mask_summary));
-            corecontrolMask.setValue(mMSMThermal.getCoreControlMask());
+            corecontrolMask.setValue(com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.getCoreControlMask());
             corecontrolMask.setInputType(InputType.TYPE_CLASS_NUMBER);
-            corecontrolMask.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    mMSMThermal.setCoreControlMask(value, getActivity());
-                    genericSelectView.setValue(value);
-                }
+            corecontrolMask.setOnGenericValueListener((genericSelectView, value) -> {
+                mMSMThermal.setCoreControlMask(value, getActivity());
+                genericSelectView.setValue(value);
             });
 
             MSMThermal.addItem(corecontrolMask);
         }
 
-        if (mMSMThermal.hasFreqControlMask()) {
+        if (com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.hasFreqControlMask()) {
 
             GenericSelectView freqcontrolMask = new GenericSelectView();
             freqcontrolMask.setTitle(getString(R.string.freq_control_mask));
             freqcontrolMask.setSummary(getString(R.string.freq_control_mask_summary));
-            freqcontrolMask.setValue(mMSMThermal.getFreqControlMask());
+            freqcontrolMask.setValue(com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.getFreqControlMask());
             freqcontrolMask.setInputType(InputType.TYPE_CLASS_NUMBER);
-            freqcontrolMask.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    mMSMThermal.setFreqControlMask(value, getActivity());
-                    genericSelectView.setValue(value);
-                }
+            freqcontrolMask.setOnGenericValueListener((genericSelectView, value) -> {
+                mMSMThermal.setFreqControlMask(value, getActivity());
+                genericSelectView.setValue(value);
             });
 
             MSMThermal.addItem(freqcontrolMask);
         }
 
-        if (mMSMThermal.hasFreqMitigControlMask()) {
+        if (com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.hasFreqMitigControlMask()) {
 
             GenericSelectView freqmitcontrolMask = new GenericSelectView();
             freqmitcontrolMask.setTitle(getString(R.string.freq_mit_control_mask));
             freqmitcontrolMask.setSummary(getString(R.string.freq_mit_control_mask_summary));
-            freqmitcontrolMask.setValue(mMSMThermal.getFreqMitigControlMask());
+            freqmitcontrolMask.setValue(com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.getFreqMitigControlMask());
             freqmitcontrolMask.setInputType(InputType.TYPE_CLASS_NUMBER);
-            freqmitcontrolMask.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    mMSMThermal.setFreqMitigControlMask(value, getActivity());
-                    genericSelectView.setValue(value);
-                }
+            freqmitcontrolMask.setOnGenericValueListener((genericSelectView, value) -> {
+                mMSMThermal.setFreqMitigControlMask(value, getActivity());
+                genericSelectView.setValue(value);
             });
 
             MSMThermal.addItem(freqmitcontrolMask);
@@ -841,9 +753,9 @@ public class ThermalFragment extends RecyclerViewFragment {
 
             MSMThermal.addItem(shutDownTemp);
         }
-	if (MSMThermal.size() > 0) {
+        if (MSMThermal.size() > 0) {
             items.add(MSMThermal);
-	}
+        }
 
     }
 
@@ -855,60 +767,51 @@ public class ThermalFragment extends RecyclerViewFragment {
             SwitchView enableswitch = new SwitchView();
             enableswitch.setSummary(getString(R.string.msm_thermal_simple_summary));
             enableswitch.setChecked(MSMThermalSimple.issimplemsmthermalEnabled());
-            enableswitch.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-		@Override
-		public void onChanged(SwitchView switchView, boolean isChecked) {
-		    MSMThermalSimple.enablesimplemsmthermal(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    enableswitch.setChecked(MSMThermalSimple.issimplemsmthermalEnabled());
-		    },
-	    	500);
-		}
+            enableswitch.addOnSwitchListener((switchView, isChecked) -> {
+                MSMThermalSimple.enablesimplemsmthermal(isChecked, getActivity());
+                getHandler().postDelayed(() -> {
+                            enableswitch.setChecked(MSMThermalSimple.issimplemsmthermalEnabled());
+                        },
+                        500);
             });
             SimpleMSMThermal.addItem(enableswitch);
-	}
+        }
 
-	if (MSMThermalSimple.hasSamplingMS()) {
+        if (MSMThermalSimple.hasSamplingMS()) {
             GenericSelectView samplingMS = new GenericSelectView();
             samplingMS.setSummary(getString(R.string.sampling_rate) + (" (ms)"));
             samplingMS.setValue(MSMThermalSimple.getSamplingMS());
             samplingMS.setInputType(InputType.TYPE_CLASS_NUMBER);
-            samplingMS.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    MSMThermalSimple.setSamplingMS(value, getActivity());
-                    genericSelectView.setValue(value);
-		    getHandler().postDelayed(() -> {
-		    samplingMS.setValue(MSMThermalSimple.getSamplingMS());
-		    },
-	    	500);
-                }
+            samplingMS.setOnGenericValueListener((genericSelectView, value) -> {
+                MSMThermalSimple.setSamplingMS(value, getActivity());
+                genericSelectView.setValue(value);
+                getHandler().postDelayed(() -> {
+                            samplingMS.setValue(MSMThermalSimple.getSamplingMS());
+                        },
+                        500);
             });
 
             SimpleMSMThermal.addItem(samplingMS);
-	}
+        }
 
-	if (MSMThermalSimple.hasUserMaxFreq()) {
+        if (MSMThermalSimple.hasUserMaxFreq()) {
             GenericSelectView userMaxFreq = new GenericSelectView();
             userMaxFreq.setSummary(getString(R.string.usermax_freq) + (" (Hz)"));
             userMaxFreq.setValue(MSMThermalSimple.getUserMaxFreq());
             userMaxFreq.setInputType(InputType.TYPE_CLASS_NUMBER);
-            userMaxFreq.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    MSMThermalSimple.setUserMaxFreq(value, getActivity());
-                    genericSelectView.setValue(value);
-		    getHandler().postDelayed(() -> {
-		    userMaxFreq.setValue(MSMThermalSimple.getUserMaxFreq());
-		    },
-	    	500);
-                }
+            userMaxFreq.setOnGenericValueListener((genericSelectView, value) -> {
+                MSMThermalSimple.setUserMaxFreq(value, getActivity());
+                genericSelectView.setValue(value);
+                getHandler().postDelayed(() -> {
+                            userMaxFreq.setValue(MSMThermalSimple.getUserMaxFreq());
+                        },
+                        500);
             });
 
             SimpleMSMThermal.addItem(userMaxFreq);
-	}
+        }
 
-	for (int i = 0; i < MSMThermalSimple.size(); i++) {
+        for (int i = 0; i < MSMThermalSimple.size(); i++) {
             if (MSMThermalSimple.exists(i)) {
                 GenericSelectView thermalZone = new GenericSelectView();
                 thermalZone.setSummary(("Thermal ") + MSMThermalSimple.getName(i));
@@ -917,23 +820,21 @@ public class ThermalFragment extends RecyclerViewFragment {
                 thermalZone.setInputType(InputType.TYPE_CLASS_NUMBER);
 
                 final int position = i;
-                thermalZone.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                    @Override
-                    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                        MSMThermalSimple.setValue(value, position, getActivity());
-                        genericSelectView.setValue(value);
-			getHandler().postDelayed(() -> {
-			thermalZone.setValueRaw(thermalZone.getValue());
-			},
-		    500);
-                    }
+                thermalZone.setOnGenericValueListener((genericSelectView, value) -> {
+                    MSMThermalSimple.setValue(value, position, getActivity());
+                    genericSelectView.setValue(value);
+                    getHandler().postDelayed(() -> {
+                                thermalZone.setValueRaw(thermalZone.getValue());
+                            },
+                            500);
                 });
 
                 SimpleMSMThermal.addItem(thermalZone);
             }
         }
-	if (SimpleMSMThermal.size() > 0) {
+        if (SimpleMSMThermal.size() > 0) {
             items.add(SimpleMSMThermal);
-	}
+        }
     }
+
 }

@@ -65,7 +65,7 @@ public class ApplyOnBoot {
         void onFinish();
     }
 
-    public static boolean apply(final Context context, final ApplyOnBootListener listener) {
+    static boolean apply(final Context context, final ApplyOnBootListener listener) {
         if (!Prefs.getBoolean(ApplyOnBootFragment.getAssignment(CPUHotplugFragment.class), false, context)) {
             Prefs.remove("core_ctl_min_cpus_big", context);
         }
@@ -154,6 +154,7 @@ public class ApplyOnBoot {
                         }
                         builder.setContentText(context.getString(R.string.apply_on_boot_text, seconds - i));
                         builder.setProgress(seconds, i, false);
+                        assert notificationManager != null;
                         notificationManager.notify(NotificationId.APPLY_ON_BOOT, builder.build());
                     }
                     try {
@@ -163,6 +164,7 @@ public class ApplyOnBoot {
                     }
                 }
                 if (!hideNotification) {
+                    assert notificationManager != null;
                     notificationManager.cancel(NotificationId.APPLY_ON_BOOT);
                     if (confirmationNotification) {
                         builderComplete.setContentText(context.getString(sCancel ? R.string.apply_on_boot_canceled :

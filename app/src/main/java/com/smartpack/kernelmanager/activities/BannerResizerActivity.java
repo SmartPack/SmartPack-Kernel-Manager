@@ -36,6 +36,8 @@ import com.smartpack.kernelmanager.utils.ViewUtils;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
+import java.util.Objects;
+
 /**
  * Created by willi on 09.08.16.
  */
@@ -53,7 +55,7 @@ public class BannerResizerActivity extends BaseActivity {
 
         initToolBar();
 
-        getSupportActionBar().setTitle(getString(R.string.banner_resizer));
+        Objects.requireNonNull(getSupportActionBar()).setTitle(getString(R.string.banner_resizer));
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, getFragment(),
                 BannerResizerFragment.class.getSimpleName()).commit();
         findViewById(R.id.content_frame).setPadding(0, Math.round(ViewUtils.getActionBarSize(this)), 0, 0);
@@ -83,10 +85,10 @@ public class BannerResizerActivity extends BaseActivity {
             final int px = Prefs.getInt("banner_size", defaultHeight, requireActivity());
             setHeight(banner, px);
 
-            final TextView text = (TextView) rootView.findViewById(R.id.seekbar_text);
+            final TextView text = rootView.findViewById(R.id.seekbar_text);
             text.setText(Utils.strFormat("%d" + getString(R.string.px), px));
 
-            final DiscreteSeekBar seekBar = (DiscreteSeekBar) rootView.findViewById(R.id.seekbar);
+            final DiscreteSeekBar seekBar = rootView.findViewById(R.id.seekbar);
             seekBar.setMax(maxHeight - minHeight);
             seekBar.setProgress(px - minHeight);
             seekBar.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
@@ -105,19 +107,11 @@ public class BannerResizerActivity extends BaseActivity {
                 }
             });
 
-            rootView.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    seekBar.setProgress(px - minHeight);
-                }
-            });
+            rootView.findViewById(R.id.cancel).setOnClickListener(v -> seekBar.setProgress(px - minHeight));
 
-            rootView.findViewById(R.id.done).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Prefs.saveInt("banner_size", seekBar.getProgress() + minHeight, requireActivity());
-                    getActivity().finish();
-                }
+            rootView.findViewById(R.id.done).setOnClickListener(v -> {
+                Prefs.saveInt("banner_size", seekBar.getProgress() + minHeight, requireActivity());
+                requireActivity().finish();
             });
 
             return rootView;

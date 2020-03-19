@@ -67,10 +67,6 @@ public class SimpleGPU {
         return Utils.readFile(SIMPLE_GPU_ACTIVATE).equals("1");
     }
 
-    public static boolean hasSimpleGpuEnable() {
-        return Utils.existFile(SIMPLE_GPU_ACTIVATE);
-    }
-
     public static boolean supported() {
         return Utils.existFile(SIMPLE_GPU_PARAMETERS);
     }

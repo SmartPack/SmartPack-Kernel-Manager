@@ -61,19 +61,19 @@ public class MSMPerformance {
         CPU_MIN_FREQ_SUPPORTED = Utils.existFile(CPU_MIN_FREQ);
     }
 
-    public void setCpuMinFreq(int freq, int cpu, Context context) {
+    void setCpuMinFreq(int freq, int cpu, Context context) {
         run(Control.write(cpu + ":" + freq, CPU_MIN_FREQ), CPU_MIN_FREQ + cpu, context);
     }
 
-    public boolean hasCpuMinFreq() {
+    boolean hasCpuMinFreq() {
         return CPU_MIN_FREQ_SUPPORTED;
     }
 
-    public void setCpuMaxFreq(int freq, int cpu, Context context) {
+    void setCpuMaxFreq(int freq, int cpu, Context context) {
         run(Control.write(cpu + ":" + freq, CPU_MAX_FREQ_FILE), CPU_MAX_FREQ_FILE + cpu, context);
     }
 
-    public boolean hasCpuMaxFreq() {
+    boolean hasCpuMaxFreq() {
         return CPU_MAX_FREQ_FILE != null;
     }
 
@@ -81,11 +81,11 @@ public class MSMPerformance {
         setMaxCpus(big, little, ApplyOnBootFragment.CPU, context);
     }
 
-    public void setMaxCpus(int big, int little, String category, Context context) {
+    void setMaxCpus(int big, int little, String category, Context context) {
         Control.runSetting(Control.write(little + ":" + big, MAX_CPUS), category, MAX_CPUS, context);
     }
 
-    public boolean hasMaxCpus() {
+    boolean hasMaxCpus() {
         return MAX_CPUS_SUPPORTED;
     }
 

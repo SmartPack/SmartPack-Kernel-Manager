@@ -66,7 +66,7 @@ public class Contributors {
 
         private final JSONObject mContributorJSON;
 
-        public Contributor(JSONObject object) {
+        Contributor(JSONObject object) {
             mContributorJSON = object;
         }
 

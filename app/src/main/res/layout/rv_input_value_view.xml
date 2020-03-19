@@ -52,7 +52,9 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:baselineAligned="false" >
 
             <FrameLayout
                 android:id="@+id/value_parent"

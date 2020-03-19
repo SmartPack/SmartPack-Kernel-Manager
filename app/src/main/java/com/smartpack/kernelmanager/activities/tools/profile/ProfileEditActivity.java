@@ -40,6 +40,7 @@ import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by willi on 15.08.16.
@@ -62,7 +63,7 @@ public class ProfileEditActivity extends BaseActivity {
         setContentView(R.layout.activity_fragments);
         initToolBar();
 
-        getSupportActionBar().setTitle(getString(R.string.edit));
+        Objects.requireNonNull(getSupportActionBar()).setTitle(getString(R.string.edit));
 
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
                 getFragment(), "fragment").commit();
@@ -115,14 +116,15 @@ public class ProfileEditActivity extends BaseActivity {
             }
 
             if (mProfiles == null) {
-                mProfiles = new Profiles(getActivity());
+                mProfiles = new Profiles(requireActivity());
             }
             if (mItem == null) {
+                assert getArguments() != null;
                 mItem = mProfiles.getAllProfiles().get(getArguments()
                         .getInt(POSITION_INTENT));
                 if (mItem.getCommands().size() < 1) {
                     Utils.toast(R.string.profile_empty, getActivity());
-                    getActivity().finish();
+                    requireActivity().finish();
                 }
             }
         }
@@ -134,13 +136,10 @@ public class ProfileEditActivity extends BaseActivity {
 
         private void reload() {
             if (mLoader == null) {
-                getHandler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        clearItems();
-                        mLoader = new UILoader(ProfileEditFragment.this);
-                        mLoader.execute();
-                    }
+                getHandler().postDelayed(() -> {
+                    clearItems();
+                    mLoader = new UILoader(ProfileEditFragment.this);
+                    mLoader.execute();
                 }, 250);
             }
         }
@@ -150,30 +149,16 @@ public class ProfileEditActivity extends BaseActivity {
                 final DescriptionView descriptionView = new DescriptionView();
                 descriptionView.setTitle(commandItem.getPath());
                 descriptionView.setSummary(commandItem.getCommand());
-                descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                    @Override
-                    public void onClick(RecyclerViewItem item) {
-                        mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.delete_question,
-                                descriptionView.getTitle()), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        }, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                descriptionView.setOnItemClickListener(item -> {
+                    mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.delete_question,
+                            descriptionView.getTitle()), (dialog, which) -> {
+                            }, (dialog, which) -> {
                                 sChanged = true;
                                 mItem.delete(commandItem);
                                 mProfiles.commit();
                                 reload();
-                            }
-                        }, new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                                mDeleteDialog = null;
-                            }
-                        }, getActivity());
-                        mDeleteDialog.show();
-                    }
+                            }, dialog -> mDeleteDialog = null, getActivity());
+                    mDeleteDialog.show();
                 });
 
                 items.add(descriptionView);

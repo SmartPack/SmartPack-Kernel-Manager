@@ -186,10 +186,6 @@ public class Sound {
         return mFrancoLimits;
     }
 
-    public List<String> getBoefflaMICLimits() {
-        return mBoefflaMICLimits;
-    }
-
     public boolean hasMicrophoneGain() {
         return Utils.existFile(MIC_BOOST);
     }

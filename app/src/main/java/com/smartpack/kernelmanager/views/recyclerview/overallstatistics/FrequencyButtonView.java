@@ -45,35 +45,26 @@ public class FrequencyButtonView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(View view) {
-        AppCompatImageButton refresh = (AppCompatImageButton) view.findViewById(R.id.frequency_refresh);
-        AppCompatImageButton reset = (AppCompatImageButton) view.findViewById(R.id.frequency_reset);
-        AppCompatImageButton restore = (AppCompatImageButton) view.findViewById(R.id.frequency_restore);
+        AppCompatImageButton refresh = view.findViewById(R.id.frequency_refresh);
+        AppCompatImageButton reset = view.findViewById(R.id.frequency_reset);
+        AppCompatImageButton restore = view.findViewById(R.id.frequency_restore);
 
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rotate(v, false);
-                if (mRefreshListener != null) {
-                    mRefreshListener.onClick(v);
-                }
+        refresh.setOnClickListener(v -> {
+            rotate(v, false);
+            if (mRefreshListener != null) {
+                mRefreshListener.onClick(v);
             }
         });
-        reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rotate(v, true);
-                if (mResetListener != null) {
-                    mResetListener.onClick(v);
-                }
+        reset.setOnClickListener(v -> {
+            rotate(v, true);
+            if (mResetListener != null) {
+                mResetListener.onClick(v);
             }
         });
-        restore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rotate(v, true);
-                if (mRestoreListener != null) {
-                    mRestoreListener.onClick(v);
-                }
+        restore.setOnClickListener(v -> {
+            rotate(v, true);
+            if (mRestoreListener != null) {
+                mRestoreListener.onClick(v);
             }
         });
 

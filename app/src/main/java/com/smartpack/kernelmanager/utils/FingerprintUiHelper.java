@@ -101,12 +101,7 @@ public class FingerprintUiHelper extends FingerprintManagerCompat.Authentication
     @Override
     public void onAuthenticationSucceeded(FingerprintManagerCompat.AuthenticationResult result) {
         mSwirlView.setState(SwirlView.State.OFF);
-        mSwirlView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mCallback.onAuthenticated();
-            }
-        }, 100);
+        mSwirlView.postDelayed(mCallback::onAuthenticated, 100);
     }
 
     private void showError() {

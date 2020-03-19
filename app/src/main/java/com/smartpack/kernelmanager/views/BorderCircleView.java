@@ -71,6 +71,7 @@ public class BorderCircleView extends FrameLayout {
             setForeground(ViewUtils.getSelectableBackground(context));
         }
         mCheck = ContextCompat.getDrawable(context, R.drawable.ic_done);
+        assert mCheck != null;
         DrawableCompat.setTint(mCheck, Color.WHITE);
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);

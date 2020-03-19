@@ -53,8 +53,6 @@ public class SwitcherFragment extends BaseFragment {
     private boolean mChecked;
     private CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener;
 
-    private SwitchCompat mSwitch;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -66,7 +64,7 @@ public class SwitcherFragment extends BaseFragment {
         if (mSummary != null) {
             ((TextView) view.findViewById(R.id.summary)).setText(mSummary);
         }
-        mSwitch = view.findViewById(R.id.switcher);
+        SwitchCompat mSwitch = view.findViewById(R.id.switcher);
         mSwitch.setChecked(mChecked);
         mSwitch.setOnCheckedChangeListener(mOnCheckedChangeListener);
         return view;

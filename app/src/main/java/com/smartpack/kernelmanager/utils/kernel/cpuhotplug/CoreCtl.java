@@ -162,7 +162,7 @@ public class CoreCtl {
         return hasMinCpus(0);
     }
 
-    public boolean hasMinCpus(int core) {
+    private boolean hasMinCpus(int core) {
         return Utils.existFile(Utils.strFormat(PARENT + MIN_CPUS, core));
     }
 

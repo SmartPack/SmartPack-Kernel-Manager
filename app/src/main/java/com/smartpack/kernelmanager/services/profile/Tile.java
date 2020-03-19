@@ -48,7 +48,7 @@ public class Tile extends BroadcastReceiver {
 
     private static final String NAME = "name";
     private static final String COMMANDS = "commands";
-    private static final String ACTION_TOGGLE_STATE = "com.grarak.kerneladiutor.action.ACTION_TOGGLE_STATE";
+    private static final String ACTION_TOGGLE_STATE = "com.smartpack.kernelmanager.action.ACTION_TOGGLE_STATE";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -102,7 +102,7 @@ public class Tile extends BroadcastReceiver {
                 commands.add(commandItem.getCommand());
             }
             intent.putExtra(NAME, profiles.get(i).getName());
-            intent.putExtra(COMMANDS, commands.toArray(new String[commands.size()]));
+            intent.putExtra(COMMANDS, commands.toArray(new String[0]));
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, i, intent, 0);
 
             expandedListItem.setExpandedListItemOnClickIntent(pendingIntent);

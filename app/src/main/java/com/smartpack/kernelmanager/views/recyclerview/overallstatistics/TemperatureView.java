@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.views.recyclerview.overallstatistics;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.TextView;
 
@@ -63,6 +64,7 @@ public class TemperatureView extends RecyclerViewItem {
         refresh();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void refresh() {
         if (mCPUParent != null) {

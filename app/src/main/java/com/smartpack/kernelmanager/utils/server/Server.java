@@ -23,7 +23,7 @@ package com.smartpack.kernelmanager.utils.server;
  * Created by willi on 18.09.17.
  */
 
-public class Server {
+class Server {
 
     private String mAddress;
 
@@ -31,7 +31,7 @@ public class Server {
         mAddress = address;
     }
 
-    class Query {
+    static class Query {
 
         private String mKey;
         private String mValue;

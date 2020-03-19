@@ -179,10 +179,6 @@ public class MakoHotplug {
         return Utils.readFile(MAKO_HOTPLUG_ENABLED).equals("1");
     }
 
-    public static boolean hasMakoHotplugEnable() {
-        return Utils.existFile(MAKO_HOTPLUG_ENABLED);
-    }
-
     public static boolean supported() {
         return Utils.existFile(MAKO_HOTPLUG);
     }

@@ -77,7 +77,6 @@ public class CPUInputBoost {
         }
     }
 
-
     public void enablecpuinputboost(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", PARANT + CPU_INPUT_BOOST_ENABLED), PARANT + CPU_INPUT_BOOST_ENABLED, context);
     }

@@ -109,18 +109,6 @@ public class RootFile {
         return list;
     }
 
-    public boolean isDirectory() {
-        return "true".equals(mSU.runCommand("[ -d " + mFile + " ] && echo true"));
-    }
-
-    public RootFile getParentFile() {
-        return new RootFile(new File(mFile).getParent(), mSU);
-    }
-
-    public RootFile getRealPath() {
-        return new RootFile(mSU.runCommand("realpath \"" + mFile + "\""), mSU);
-    }
-
     public boolean isEmpty() {
         return "false".equals(mSU.runCommand("find '" + mFile + "' -mindepth 1 | read || echo false"));
     }

@@ -166,7 +166,7 @@ public class GPUFreq {
 
         for (String file : mAvailableFreqs.keySet()) {
             if (Utils.existFile(file)) {
-                String freqs[] = Utils.readFile(file).split(" ");
+                String[] freqs = Utils.readFile(file).split(" ");
                 AVAILABLE_FREQS = new ArrayList<>();
                 for (String freq : freqs) {
                     if (!AVAILABLE_FREQS.contains(Utils.strToInt(freq))) {

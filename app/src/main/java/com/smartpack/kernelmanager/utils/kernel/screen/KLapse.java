@@ -326,7 +326,7 @@ public class KLapse {
      * Convert K-lapse schedule times (in minutes) into a human readable format
      * (hr:min & AM/PM)
      */
-    public static String getAdjustedTime(String string) {
+    private static String getAdjustedTime(String string) {
         int time = Utils.strToInt(string);
         int timeHr = time / 60;
         int timeMin = time - (timeHr * 60);

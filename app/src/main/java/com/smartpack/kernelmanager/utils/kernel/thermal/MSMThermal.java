@@ -301,7 +301,7 @@ public class MSMThermal {
                 TEMP_LIMIT, context);
     }
 
-    public int getTempLimitMax() {
+    private int getTempLimitMax() {
         return mTempLimitMax.get(TEMP_LIMIT);
     }
 

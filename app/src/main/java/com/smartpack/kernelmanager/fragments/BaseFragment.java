@@ -83,13 +83,13 @@ public abstract class BaseFragment extends Fragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             List<String> needrequest = new ArrayList<>();
             for (String permission : permissions) {
-                if (ContextCompat.checkSelfPermission(getActivity(), permission)
+                if (ContextCompat.checkSelfPermission(requireActivity(), permission)
                         != PackageManager.PERMISSION_GRANTED) {
                     needrequest.add(permission);
                 }
             }
             if (needrequest.size() > 0) {
-                requestPermissions(needrequest.toArray(new String[needrequest.size()]), request);
+                requestPermissions(needrequest.toArray(new String[0]), request);
                 return;
             }
         }

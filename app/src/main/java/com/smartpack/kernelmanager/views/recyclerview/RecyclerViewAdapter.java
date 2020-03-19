@@ -78,6 +78,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             view = LayoutInflater.from(parent.getContext())
                     .inflate(item.getLayoutRes(), parent, false);
         }
+        assert view != null;
         ViewGroup viewGroup = (ViewGroup) view.getParent();
         if (viewGroup != null) {
             viewGroup.removeView(view);

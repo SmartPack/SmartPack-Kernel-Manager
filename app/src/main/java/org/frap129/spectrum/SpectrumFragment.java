@@ -60,10 +60,10 @@ public class SpectrumFragment extends RecyclerViewFragment {
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
 
-        final int balColor = ContextCompat.getColor(getContext(), R.color.colorBalance);
-        final int perColor = ContextCompat.getColor(getContext(), R.color.colorPerformance);
-        final int batColor = ContextCompat.getColor(getContext(), R.color.colorBattery);
-        final int gamColor = ContextCompat.getColor(getContext(), R.color.colorGaming);
+        final int balColor = ContextCompat.getColor(requireActivity(), R.color.colorBalance);
+        final int perColor = ContextCompat.getColor(requireActivity(), R.color.colorPerformance);
+        final int batColor = ContextCompat.getColor(requireActivity(), R.color.colorBattery);
+        final int gamColor = ContextCompat.getColor(requireActivity(), R.color.colorGaming);
 
         //CardView Balanced
         final CardView card0 = new CardView(getActivity());
@@ -72,14 +72,9 @@ public class SpectrumFragment extends RecyclerViewFragment {
 
         final DescriptionView desc0 = new DescriptionView();
         desc0.setSummary(getString(R.string.spec_balanced_summary));
-        desc0.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_spectrum_balanced));
+        desc0.setDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.ic_spectrum_balanced));
 
-        card0.setOnItemClickListener(new CardView.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                cardClick(card0, desc0, 0, balColor);
-            }
-        });
+        card0.setOnItemClickListener(item -> cardClick(card0, desc0, 0, balColor));
 
         card0.addItem(desc0);
         items.add(card0);
@@ -91,15 +86,9 @@ public class SpectrumFragment extends RecyclerViewFragment {
 
         final DescriptionView desc1 = new DescriptionView();
         desc1.setSummary(getString(R.string.spec_performance_summary));
-        desc1.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_spectrum_performance));
+        desc1.setDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.ic_spectrum_performance));
 
-        card1.setOnItemClickListener(new CardView.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                cardClick(card1, desc1, 1, perColor);
-            }
-
-        });
+        card1.setOnItemClickListener(item -> cardClick(card1, desc1, 1, perColor));
 
         card1.addItem(desc1);
         items.add(card1);
@@ -111,15 +100,9 @@ public class SpectrumFragment extends RecyclerViewFragment {
 
         final DescriptionView desc2 = new DescriptionView();
         desc2.setSummary(getString(R.string.spec_battery_summary));
-        desc2.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_spectrum_battery));
+        desc2.setDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.ic_spectrum_battery));
 
-        card2.setOnItemClickListener(new CardView.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                cardClick(card2, desc2, 2, batColor);
-            }
-
-        });
+        card2.setOnItemClickListener(item -> cardClick(card2, desc2, 2, batColor));
 
         card2.addItem(desc2);
         items.add(card2);
@@ -131,14 +114,9 @@ public class SpectrumFragment extends RecyclerViewFragment {
 
         final DescriptionView desc3 = new DescriptionView();
         desc3.setSummary(getString(R.string.spec_gaming_summary));
-        desc3.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_spectrum_game));
+        desc3.setDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.ic_spectrum_game));
 
-        card3.setOnItemClickListener(new CardView.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                cardClick(card3, desc3, 3, gamColor);
-            }
-        });
+        card3.setOnItemClickListener(item -> cardClick(card3, desc3, 3, gamColor));
 
         card3.addItem(desc3);
         items.add(card3);
@@ -184,4 +162,5 @@ public class SpectrumFragment extends RecyclerViewFragment {
             Prefs.saveInt("spectrum_profile", prof, getActivity());
         }
     }
+
 }

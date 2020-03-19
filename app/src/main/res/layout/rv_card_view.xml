@@ -75,7 +75,6 @@
                 android:layout_gravity="end"
                 android:layout_margin="5dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:rotation="90"
                 android:scaleType="fitCenter"
                 android:tint="?android:attr/textColorSecondary"
                 android:visibility="gone"

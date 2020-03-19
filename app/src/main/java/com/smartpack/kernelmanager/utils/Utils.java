@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.UiModeManager;
@@ -36,7 +37,6 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.PowerManager;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
@@ -44,6 +44,7 @@ import android.view.Display;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 
 import androidx.core.content.FileProvider;
@@ -60,17 +61,21 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -137,51 +142,8 @@ public class Utils {
         return new String(chars);
     }
 
-    public static boolean isScreenOn(Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            DisplayManager dm = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
-            for (Display display : dm.getDisplays()) {
-                if (display.getState() != Display.STATE_OFF) {
-                    return true;
-                }
-            }
-            return false;
-        } else {
-            PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-            return powerManager.isScreenOn();
-        }
-    }
-
-    public static String getRandomString(int length) {
-        Random random = new Random();
-        StringBuilder text = new StringBuilder();
-        String chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-        for (int i = 0; i < length; i++) {
-            text.append(chars.charAt(random.nextInt(chars.length())));
-        }
-        return text.toString();
-    }
-
-    public static long computeSHAHash(String password) throws Exception {
-        long begin = System.nanoTime();
-        MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
-        messageDigest.update(password.getBytes("ASCII"));
-        byte[] data = messageDigest.digest();
-        Base64.encodeToString(data, 0, data.length, 0);
-        return System.nanoTime() - begin;
-    }
-
-    public static String getAndroidId(Context context) {
-        String id;
-        if ((id = Prefs.getString("android_id", "", context)).isEmpty()) {
-            Prefs.saveString("android_id", id = Settings.Secure.getString(context.getContentResolver(),
-                    Settings.Secure.ANDROID_ID), context);
-        }
-        return id;
-    }
-
     public static boolean isTv(Context context) {
-        return ((UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE))
+        return ((UiModeManager) Objects.requireNonNull(context.getSystemService(Context.UI_MODE_SERVICE)))
                 .getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION;
     }
 
@@ -216,6 +178,7 @@ public class Utils {
 
     public static boolean isServiceRunning(Class<?> serviceClass, Context context) {
         ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        assert manager != null;
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
             if (serviceClass.getName().equals(service.service.getClassName())) {
                 return true;
@@ -224,22 +187,14 @@ public class Utils {
         return false;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static String decodeString(String text) {
-        try {
-            return new String(Base64.decode(text, Base64.DEFAULT), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return new String(Base64.decode(text, Base64.DEFAULT), StandardCharsets.UTF_8);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static String encodeString(String text) {
-        try {
-            return Base64.encodeToString(text.getBytes("UTF-8"), Base64.DEFAULT);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return Base64.encodeToString(text.getBytes(StandardCharsets.UTF_8), Base64.DEFAULT);
     }
 
     public static boolean hasCMSDK() {
@@ -266,11 +221,6 @@ public class Utils {
             cursor.close();
         }
         return path;
-    }
-
-    public static String getExternalStorage() {
-        String path = RootUtils.runCommand("echo ${SECONDARY_STORAGE%%:*}");
-        return path.contains("/") ? path : null;
     }
 
     public static String getInternalDataStorage() {
@@ -594,12 +544,16 @@ public class Utils {
         return RootUtils.runCommand("cp -r " + source + " " + dest);
     }
 
-    public static String mount(String command, String source, String dest) {
-        return RootUtils.runCommand("mount " + command + " " + source + " " + dest);
+    public static void mount(String command, String source, String dest) {
+        RootUtils.runCommand("mount " + command + " " + source + " " + dest);
     }
 
     public static String getChecksum(String path) {
         return RootUtils.runCommand("sha1sum " + path);
+    }
+
+    public static boolean isDownloadBinaries() {
+        return Utils.existFile("/system/bin/curl") || Utils.existFile("/system/bin/wget");
     }
 
     public static void downloadFile(String path, String url, Context context) {
@@ -607,12 +561,29 @@ public class Utils {
             toast(R.string.no_internet, context);
             return;
         }
-        RootUtils.runCommand((Utils.existFile("/system/bin/curl") ?
-                "curl -L -o " : "wget -O ") + path + " " + url);
+        if (isDownloadBinaries()) {
+            RootUtils.runCommand((Utils.existFile("/system/bin/curl") ?
+                    "curl -L -o " : "wget -O ") + path + " " + url);
+        } else {
+            /*
+             * Based on the following stackoverflow discussion
+             * Ref: https://stackoverflow.com/questions/15758856/android-how-to-download-file-from-webserver
+             */
+            try (InputStream input = new URL(url).openStream();
+                 OutputStream output = new FileOutputStream(path)) {
+                byte[] data = new byte[4096];
+                int count;
+                while ((count = input.read(data)) != -1) {
+                    output.write(data, 0, count);
+                }
+            } catch (Exception ignored) {
+            }
+        }
     }
 
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert cm != null;
         return (cm.getActiveNetworkInfo() != null) && cm.getActiveNetworkInfo().isConnectedOrConnecting();
     }
 
@@ -641,10 +612,6 @@ public class Utils {
         return path;
     }
 
-    public static String errorLog() {
-        return getInternalDataStorage() + "/file_path_error_log";
-    }
-
     public static boolean isDocumentsUI(Uri uri) {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }
@@ -652,6 +619,7 @@ public class Utils {
     /**
      * Taken and used almost as such from yoinx's Kernel Adiutor Mod (https://github.com/yoinx/kernel_adiutor/)
      */
+    @SuppressLint("DefaultLocale")
     public static String getDurationBreakdown(long millis)
     {
         StringBuilder sb = new StringBuilder(64);
@@ -701,4 +669,5 @@ public class Utils {
     public static String getExtension(String string) {
         return android.webkit.MimeTypeMap.getFileExtensionFromUrl(string);
     }
+
 }

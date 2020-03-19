@@ -133,7 +133,7 @@ public class Wakelocks {
                 RootUtils.runCommand("echo '" + list + "' > " + WAKELOCK_BLOCKER);
                 RootUtils.runCommand("echo '" + "" + "' > " + WAKELOCK_BLOCKER_DEFAULT);
             }
-        }catch(Exception ignored){
+        } catch (Exception ignored) {
         }
     }
 
@@ -153,22 +153,22 @@ public class Wakelocks {
     }
 
     public static void setWakelockAllowed(String wakelock, Context context){
-        String list = "";
+        StringBuilder list = new StringBuilder();
         try {
             String[] wakes = Utils.readFile(WAKELOCK_BLOCKER).split(";");
             for(String wake : wakes){
                 if(!wake.contentEquals(wakelock)){
-                    if (list.contentEquals("")) {
-                        list = wake;
+                    if (list.toString().contentEquals("")) {
+                        list = new StringBuilder(wake);
                     } else {
-                        list += ";" + wake;
+                        list.append(";").append(wake);
                     }
                 }
             }
         } catch (Exception ignored){
         }
 
-        run(Control.write(list, WAKELOCK_BLOCKER), WAKELOCK_BLOCKER, context);
+        run(Control.write(list.toString(), WAKELOCK_BLOCKER), WAKELOCK_BLOCKER, context);
     }
 
     public static int getWakelockOrder(){
@@ -188,7 +188,7 @@ public class Wakelocks {
             for (String line : lines) {
                 if (!line.startsWith("name")) {
                     String[] wl = line.split("\\s+");
-                    wakelocksinfo.add(new WakeLockInfo(wl[0], Integer.valueOf(wl[6]), Integer.valueOf(wl[3])));
+                    wakelocksinfo.add(new WakeLockInfo(wl[0], Integer.parseInt(wl[6]), Integer.parseInt(wl[3])));
                 }
             }
         }catch (Exception ignored) {
@@ -201,7 +201,7 @@ public class Wakelocks {
         }catch (Exception ignored){
         }
 
-        if( blocked != null){
+        if (blocked != null) {
             for (String name_bloqued : blocked) {
                 for (WakeLockInfo wakeLockInfo : wakelocksinfo) {
                     if (wakeLockInfo.wName.equals(name_bloqued)) {
@@ -339,7 +339,7 @@ public class Wakelocks {
         return sWakelocks;
     }
 
-    public static boolean hasotherWakeLocks() {
+    private static boolean hasotherWakeLocks() {
         return Utils.existFile(WL_PARENT_1) || Utils.existFile(WL_PARENT_2);
     }
 

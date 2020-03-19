@@ -810,7 +810,6 @@
     <string name="flash">刷入</string>
     <string name="select_question">選擇 %s 嗎？</string>
     <string name="wrong_extension">請選擇一個副檔名為 %s 的檔案</string>
-    <string name="file_selection_error">從外部檔案管理器取得資料失敗</string>
 
     <!-- Build prop Editor -->
     <string name="add">增加</string>
@@ -881,7 +880,6 @@
 
     <!-- Settings-->
     <string name="open_settings">開啟設定</string>
-    <string name="fahrenheit_title">使用華氏溫度</string>
     <string name="fahrenheit_summary">使用華氏溫度測量。</string>
     <string name="force_english">強制使用英文</string>
     <string name="user_interface">使用者界面</string>

@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.utils.tools;
 
+import android.annotation.SuppressLint;
 import android.os.Environment;
 
 import com.smartpack.kernelmanager.utils.Utils;
@@ -35,6 +36,7 @@ public class Buildprop {
 
     public static final String BUILD_PROP = "/system/build.prop";
 
+    @SuppressLint("SdCardPath")
     public static void backup() {
         File data = new File(Utils.getInternalDataStorage());
         if (!data.exists()) {

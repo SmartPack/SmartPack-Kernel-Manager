@@ -44,10 +44,6 @@ public class CustomControls {
         return new File(Utils.getInternalDataStorage() + "/controls/generic");
     }
 
-    public static boolean hasCustomControl(String string) {
-        return Utils.existFile(string);
-    }
-
     public static String getGenericValue(String string) {
         return Utils.readFile(string);
     }

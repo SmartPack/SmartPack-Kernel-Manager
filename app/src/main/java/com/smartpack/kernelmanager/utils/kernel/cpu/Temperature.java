@@ -143,9 +143,7 @@ public class Temperature {
         return hasCPU() || hasGPU();
     }
 
-    private class TempJson {
-
-        private final String TAG = TempJson.class.getSimpleName();
+    private static class TempJson {
 
         private JSONObject mDeviceJson;
 
@@ -160,6 +158,7 @@ public class Temperature {
                     }
                 }
             } catch (JSONException ignored) {
+                String TAG = TempJson.class.getSimpleName();
                 Log.e(TAG, "Can't read temp.json");
             }
         }

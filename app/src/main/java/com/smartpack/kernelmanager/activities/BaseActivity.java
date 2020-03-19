@@ -43,6 +43,7 @@ import com.smartpack.kernelmanager.utils.ViewUtils;
 
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * Created by willi on 14.04.16.
@@ -152,7 +153,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                     finish();
                 }
             });
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         }
     }
 

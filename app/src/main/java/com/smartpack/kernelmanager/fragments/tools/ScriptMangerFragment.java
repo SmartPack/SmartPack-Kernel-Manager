@@ -21,21 +21,17 @@
 package com.smartpack.kernelmanager.fragments.tools;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.OpenableColumns;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.CompoundButton;
-
-import androidx.appcompat.widget.PopupMenu;
 
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
@@ -48,13 +44,13 @@ import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.tools.ScriptManager;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
-import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 18, 2019
@@ -100,12 +96,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 getString(R.string.apply_on_boot),
                 getString(R.string.scripts_onboot_summary),
                 Prefs.getBoolean("scripts_onboot", false, getActivity()),
-                new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                        Prefs.saveBoolean("scripts_onboot", b, getActivity());
-                    }
-                })
+                (compoundButton, b) -> Prefs.saveBoolean("scripts_onboot", b, getActivity()))
         );
 
         if (mExecuteDialog != null) {
@@ -133,6 +124,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     private void reload() {
         if (mLoader == null) {
             getHandler().postDelayed(new Runnable() {
+                @SuppressLint("StaticFieldLeak")
                 @Override
                 public void run() {
                     clearItems();
@@ -170,87 +162,56 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     private void load(List<RecyclerViewItem> items) {
         for (final String script : ScriptManager.list()) {
             if (Utils.getExtension(script).equals("sh")) {
-                CardView cardView = new CardView(getActivity());
-                cardView.setOnMenuListener(new CardView.OnMenuListener() {
-                    @Override
-                    public void onMenuReady(CardView cardView, PopupMenu popupMenu) {
-                        Menu menu = popupMenu.getMenu();
-                        menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.execute));
-                        menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.edit));
-                        menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.share));
-                        menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.delete));
-
-                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                switch (item.getItemId()) {
-                                    case 0:
-                                        mExecuteDialog = ViewUtils.dialogBuilder(getString(R.string.exceute_question, script),
-                                                new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                    }
-                                                }, new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                        execute(script);
-                                                    }
-                                                }, new DialogInterface.OnDismissListener() {
-                                                    @Override
-                                                    public void onDismiss(DialogInterface dialogInterface) {
-                                                        mExecuteDialog = null;
-                                                    }
-                                                }, getActivity());
-                                        mExecuteDialog.show();
-                                        break;
-                                    case 1:
-                                        mEditScript = script;
-                                        Intent intent = new Intent(getActivity(), EditorActivity.class);
-                                        intent.putExtra(EditorActivity.TITLE_INTENT, script);
-                                        intent.putExtra(EditorActivity.TEXT_INTENT, ScriptManager.read(script));
-                                        startActivityForResult(intent, 0);
-                                        break;
-                                    case 2:
-                                        Utils.shareItem(getActivity(), script, ScriptManager.scriptFile() + "/" + script, getString(R.string.share_script) + "\n\n" +
-                                                getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME));
-                                        break;
-                                    case 3:
-                                        mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
-                                                new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                    }
-                                                }, new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                        ScriptManager.delete(script);
-                                                        reload();
-                                                    }
-                                                }, new DialogInterface.OnDismissListener() {
-                                                    @Override
-                                                    public void onDismiss(DialogInterface dialogInterface) {
-                                                        mDeleteDialog = null;
-                                                    }
-                                                }, getActivity());
-                                        mDeleteDialog.show();
-                                        break;
-                                }
-                                return false;
-                            }
-                        });
-                    }
-                });
-
                 DescriptionView descriptionView = new DescriptionView();
                 descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_file));
-                descriptionView.setSummary(script);
+                descriptionView.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
+                descriptionView.setTitle(script);
+                descriptionView.setSummary(ScriptManager.scriptFile() + "/" + script);
+                descriptionView.setOnMenuListener((descriptionView1, popupMenu) -> {
+                    Menu menu = popupMenu.getMenu();
+                    menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.execute));
+                    menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.edit));
+                    menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.share));
+                    menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.delete));
+                    popupMenu.setOnMenuItemClickListener(item -> {
+                        switch (item.getItemId()) {
+                            case 0:
+                                mExecuteDialog = ViewUtils.dialogBuilder(getString(R.string.exceute_question, script),
+                                        (dialogInterface, i) -> {
+                                        }, (dialogInterface, i) -> execute(script), dialogInterface -> mExecuteDialog = null, getActivity());
+                                mExecuteDialog.show();
+                                break;
+                            case 1:
+                                mEditScript = script;
+                                Intent intent = new Intent(getActivity(), EditorActivity.class);
+                                intent.putExtra(EditorActivity.TITLE_INTENT, script);
+                                intent.putExtra(EditorActivity.TEXT_INTENT, ScriptManager.read(script));
+                                startActivityForResult(intent, 0);
+                                break;
+                            case 2:
+                                Utils.shareItem(getActivity(), script, ScriptManager.scriptFile() + "/" + script, getString(R.string.share_script) + "\n\n" +
+                                        getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME));
+                                break;
+                            case 3:
+                                mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
+                                        (dialogInterface, i) -> {
+                                        }, (dialogInterface, i) -> {
+                                            ScriptManager.delete(script);
+                                            reload();
+                                        }, dialogInterface -> mDeleteDialog = null, getActivity());
+                                mDeleteDialog.show();
+                                break;
+                        }
+                        return false;
+                    });
+                });
 
-                cardView.addItem(descriptionView);
-                items.add(cardView);
+                items.add(descriptionView);
             }
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     private void execute(final String script) {
         new AsyncTask<Void, Void, String>() {
 
@@ -279,7 +240,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 } catch (IllegalArgumentException ignored) {
                 }
                 if (s != null && !s.isEmpty()) {
-                    new Dialog(getActivity())
+                    new Dialog(requireActivity())
                             .setMessage(s)
                             .setCancelable(false)
                             .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
@@ -314,17 +275,18 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
 
         if (data == null) return;
         if (requestCode == 0) {
-            ScriptManager.write(mEditScript, data.getCharSequenceExtra(EditorActivity.TEXT_INTENT).toString());
+            ScriptManager.write(mEditScript, Objects.requireNonNull(data.getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString());
             reload();
         } else if (requestCode == 1) {
-            ScriptManager.write(mCreateName, data.getCharSequenceExtra(EditorActivity.TEXT_INTENT).toString());
+            ScriptManager.write(mCreateName, Objects.requireNonNull(data.getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString());
             mCreateName = null;
             reload();
         } else if (requestCode == 2) {
             Uri uri = data.getData();
-            File file = new File(uri.getPath());
+            assert uri != null;
+            File file = new File(Objects.requireNonNull(uri.getPath()));
             if (Utils.isDocumentsUI(uri)) {
-                Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+                @SuppressLint("Recycle") Cursor cursor = requireActivity().getContentResolver().query(uri, null, null, null, null);
                 if (cursor != null && cursor.moveToFirst()) {
                     mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
                             cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
@@ -340,7 +302,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 Utils.toast(getString(R.string.script_exists, file.getName()), getActivity());
                 return;
             }
-            Dialog selectQuestion = new Dialog(getActivity());
+            Dialog selectQuestion = new Dialog(requireActivity());
             selectQuestion.setMessage(getString(R.string.select_question, file.getName().replace("primary:", "")
                     .replace("file%3A%2F%2F%2F", "").replace("%2F", "/")));
             selectQuestion.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
@@ -362,70 +324,51 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
             return;
         }
 
-        mOptionsDialog = new Dialog(getActivity()).setItems(getResources().getStringArray(
-                R.array.scripts_options), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                switch (i) {
-                    case 0:
-                        showCreateDialog();
-                        break;
-                    case 1:
-                        Intent intent  = new Intent(Intent.ACTION_GET_CONTENT);
-                        intent.setType("*/*");
-                        startActivityForResult(intent, 2);
-                        break;
-                }
-            }
-        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                mOptionsDialog = null;
-            }
-        });
+        mOptionsDialog = new Dialog(requireActivity()).setItems(getResources().getStringArray(
+                R.array.scripts_options), (dialogInterface, i) -> {
+                    switch (i) {
+                        case 0:
+                            showCreateDialog();
+                            break;
+                        case 1:
+                            Intent intent  = new Intent(Intent.ACTION_GET_CONTENT);
+                            intent.setType("*/*");
+                            startActivityForResult(intent, 2);
+                            break;
+                    }
+                }).setOnDismissListener(dialogInterface -> mOptionsDialog = null);
         mOptionsDialog.show();
     }
 
     private void showCreateDialog() {
         mShowCreateNameDialog = true;
-        ViewUtils.dialogEditText(null, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+        ViewUtils.dialogEditText(null, (dialogInterface, i) -> {
+        }, text -> {
+            if (text.isEmpty()) {
+                Utils.toast(R.string.name_empty, getActivity());
+                return;
             }
-        }, new ViewUtils.OnDialogEditTextListener() {
-            @Override
-            public void onClick(String text) {
-                if (text.isEmpty()) {
-                    Utils.toast(R.string.name_empty, getActivity());
-                    return;
-                }
 
-                if (!text.endsWith(".sh")) {
-                    text += ".sh";
-                }
-
-                if (text.contains(" ")) {
-                    text = text.replace(" ", "_");
-                }
-
-                if (ScriptManager.list().indexOf(text) > -1) {
-                    Utils.toast(getString(R.string.already_exists, text), getActivity());
-                    return;
-                }
-
-                mCreateName = text;
-                Intent intent = new Intent(getActivity(), EditorActivity.class);
-                intent.putExtra(EditorActivity.TITLE_INTENT, mCreateName);
-                intent.putExtra(EditorActivity.TEXT_INTENT, "#!/system/bin/sh\n\n");
-                startActivityForResult(intent, 1);
+            if (!text.endsWith(".sh")) {
+                text += ".sh";
             }
+
+            if (text.contains(" ")) {
+                text = text.replace(" ", "_");
+            }
+
+            if (ScriptManager.list().indexOf(text) > -1) {
+                Utils.toast(getString(R.string.already_exists, text), getActivity());
+                return;
+            }
+
+            mCreateName = text;
+            Intent intent = new Intent(getActivity(), EditorActivity.class);
+            intent.putExtra(EditorActivity.TITLE_INTENT, mCreateName);
+            intent.putExtra(EditorActivity.TEXT_INTENT, "#!/system/bin/sh\n\n");
+            startActivityForResult(intent, 1);
         }, getActivity()).setTitle(getString(R.string.name)).setOnDismissListener(
-                new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialogInterface) {
-                        mShowCreateNameDialog = false;
-                    }
-                }).show();
+                dialogInterface -> mShowCreateNameDialog = false).show();
     }
 
     @Override

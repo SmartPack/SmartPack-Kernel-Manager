@@ -68,6 +68,7 @@ public class ApplyOnBootService extends Service {
             NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID,
                     getString(R.string.apply_on_boot), NotificationManager.IMPORTANCE_DEFAULT);
             notificationChannel.setSound(null, null);
+            assert notificationManager != null;
             notificationManager.createNotificationChannel(notificationChannel);
 
             Notification.Builder builder = new Notification.Builder(
@@ -91,7 +92,7 @@ public class ApplyOnBootService extends Service {
             if (Wakelocks.boefflawlsupported()) {
                 Wakelocks.CopyWakelockBlockerDefault();
             }
-            if (Prefs.getBoolean("scripts_onboot", false, this) == true
+            if (Prefs.getBoolean("scripts_onboot", false, this)
                     && !ScriptManager.list().isEmpty()) {
                 for (final String script : ScriptManager.list()) {
                     if (Utils.getExtension(script).equals("sh")) {

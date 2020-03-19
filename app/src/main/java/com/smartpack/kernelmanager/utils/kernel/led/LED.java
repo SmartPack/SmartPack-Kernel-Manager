@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by willi on 31.07.16.
@@ -137,8 +138,8 @@ public class LED {
 
     public List<String> getSpeedMenu(Context context) {
         List<String> list = new ArrayList<>();
-        for (int i : mSpeeds.get(SPEED).keySet()) {
-            list.add(mSpeeds.get(SPEED).get(i) ? context.getString(i) : String.valueOf(i));
+        for (int i : Objects.requireNonNull(mSpeeds.get(SPEED)).keySet()) {
+            list.add(Objects.requireNonNull(mSpeeds.get(SPEED)).get(i) ? context.getString(i) : String.valueOf(i));
         }
         return list;
     }

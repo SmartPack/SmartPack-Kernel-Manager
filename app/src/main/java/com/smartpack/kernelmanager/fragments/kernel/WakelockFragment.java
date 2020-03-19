@@ -79,12 +79,9 @@ public class WakelockFragment extends RecyclerViewFragment {
         borfflawlorder.setSummary(getString(R.string.wkl_order_summary));
         borfflawlorder.setItems(Arrays.asList(getResources().getStringArray(R.array.b_wakelocks_oder)));
         borfflawlorder.setItem(Wakelocks.getWakelockOrder());
-        borfflawlorder.setOnItemSelected(new SelectView.OnItemSelected() {
-            @Override
-            public void onItemSelected(SelectView selectView, int position, String item) {
-                Wakelocks.setWakelockOrder(position);
-                bwCardReload();
-            }
+        borfflawlorder.setOnItemSelected((selectView, position, item) -> {
+            Wakelocks.setWakelockOrder(position);
+            bwCardReload();
         });
         bwl.add(borfflawlorder);
 
@@ -161,12 +158,7 @@ public class WakelockFragment extends RecyclerViewFragment {
                 switchView.setSummary(description);
             }
             switchView.setChecked(wakelock.isEnabled());
-            switchView.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    wakelock.enable(isChecked, getActivity());
-                }
-            });
+            switchView.addOnSwitchListener((switchView1, isChecked) -> wakelock.enable(isChecked, getActivity()));
              wakelocks.addItem(switchView);
 	}
 	if (Wakelocks.hasWlanrxDivider()) {

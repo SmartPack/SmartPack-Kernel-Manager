@@ -135,6 +135,7 @@ public class ApplyOnBootFragment extends BaseFragment {
         } else {
             View rootView = inflater.inflate(R.layout.fragment_apply_on_boot, container, false);
 
+            assert getArguments() != null;
             final String category = getArguments().getString("category");
             SwitchCompat switcher = (SwitchCompat) rootView.findViewById(R.id.switcher);
             switcher.setChecked(Prefs.getBoolean(category, false, getActivity()));

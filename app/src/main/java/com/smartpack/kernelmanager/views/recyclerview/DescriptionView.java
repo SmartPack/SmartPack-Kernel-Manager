@@ -185,4 +185,5 @@ public class DescriptionView extends RecyclerViewItem {
             });
         }
     }
+
 }

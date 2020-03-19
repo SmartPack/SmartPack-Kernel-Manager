@@ -108,12 +108,7 @@ public class GPUFragment extends RecyclerViewFragment {
             max2dFreq.setSummary(getString(R.string.gpu_2d_max_freq_summary));
             max2dFreq.setItems(mGPUFreq.get2dAdjustedFreqs(getActivity()));
             max2dFreq.setItem((mGPUFreq.get2dMaxFreq() / 1000000) + getString(R.string.mhz));
-            max2dFreq.setOnItemSelected(new SelectView.OnItemSelected() {
-                @Override
-                public void onItemSelected(SelectView selectView, int position, String item) {
-                    mGPUFreq.set2dMaxFreq(mGPUFreq.get2dAvailableFreqs().get(position), getActivity());
-                }
-            });
+            max2dFreq.setOnItemSelected((selectView, position, item) -> mGPUFreq.set2dMaxFreq(mGPUFreq.get2dAvailableFreqs().get(position), getActivity()));
 
             gpuCard.addItem(max2dFreq);
         }
@@ -124,12 +119,7 @@ public class GPUFragment extends RecyclerViewFragment {
             maxFreq.setSummary(getString(R.string.gpu_max_freq_summary));
             maxFreq.setItems(mGPUFreq.getAdjustedFreqs(getActivity()));
             maxFreq.setItem((mGPUFreq.getMaxFreq() / mGPUFreq.getMaxFreqOffset()) + getString(R.string.mhz));
-            maxFreq.setOnItemSelected(new SelectView.OnItemSelected() {
-                @Override
-                public void onItemSelected(SelectView selectView, int position, String item) {
-                    mGPUFreq.setMaxFreq(mGPUFreq.getAvailableFreqs().get(position), getActivity());
-                }
-            });
+            maxFreq.setOnItemSelected((selectView, position, item) -> mGPUFreq.setMaxFreq(mGPUFreq.getAvailableFreqs().get(position), getActivity()));
 
             gpuCard.addItem(maxFreq);
         }
@@ -140,12 +130,7 @@ public class GPUFragment extends RecyclerViewFragment {
             minFreq.setSummary(getString(R.string.gpu_min_freq_summary));
             minFreq.setItems(mGPUFreq.getAdjustedFreqs(getActivity()));
             minFreq.setItem((mGPUFreq.getMinFreq() / mGPUFreq.getMinFreqOffset()) + getString(R.string.mhz));
-            minFreq.setOnItemSelected(new SelectView.OnItemSelected() {
-                @Override
-                public void onItemSelected(SelectView selectView, int position, String item) {
-                    mGPUFreq.setMinFreq(mGPUFreq.getAvailableFreqs().get(position), getActivity());
-                }
-            });
+            minFreq.setOnItemSelected((selectView, position, item) -> mGPUFreq.setMinFreq(mGPUFreq.getAvailableFreqs().get(position), getActivity()));
 
             gpuCard.addItem(minFreq);
         }
@@ -156,12 +141,7 @@ public class GPUFragment extends RecyclerViewFragment {
             governor2d.setSummary(getString(R.string.gpu_2d_governor_summary));
             governor2d.setItems(mGPUFreq.get2dAvailableGovernors());
             governor2d.setItem(mGPUFreq.get2dGovernor());
-            governor2d.setOnItemSelected(new SelectView.OnItemSelected() {
-                @Override
-                public void onItemSelected(SelectView selectView, int position, String item) {
-                    mGPUFreq.set2dGovernor(item, getActivity());
-                }
-            });
+            governor2d.setOnItemSelected((selectView, position, item) -> mGPUFreq.set2dGovernor(item, getActivity()));
 
             gpuCard.addItem(governor2d);
         }
@@ -172,12 +152,7 @@ public class GPUFragment extends RecyclerViewFragment {
             governor.setSummary(getString(R.string.gpu_governor_summary));
             governor.setItems(mGPUFreq.getAvailableGovernors());
             governor.setItem(mGPUFreq.getGovernor());
-            governor.setOnItemSelected(new SelectView.OnItemSelected() {
-                @Override
-                public void onItemSelected(SelectView selectView, int position, String item) {
-                    mGPUFreq.setGovernor(item, getActivity());
-                }
-            });
+            governor.setOnItemSelected((selectView, position, item) -> mGPUFreq.setGovernor(item, getActivity()));
 
             gpuCard.addItem(governor);
 
@@ -185,16 +160,13 @@ public class GPUFragment extends RecyclerViewFragment {
                 DescriptionView tunables = new DescriptionView();
                 tunables.setTitle(getString(R.string.gpu_governor_tunables));
                 tunables.setSummary(getString(R.string.governor_tunables_summary));
-                tunables.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                    @Override
-                    public void onClick(RecyclerViewItem item) {
-                        String governor = mGPUFreq.getGovernor();
-                        setForegroundText(governor);
-                        mGPUGovernorTunableFragment.setError(getString(R.string.tunables_error, governor));
-                        mGPUGovernorTunableFragment.setPath(mGPUFreq.getTunables(mGPUFreq.getGovernor()),
-                                ApplyOnBootFragment.GPU);
-                        showForeground();
-                    }
+                tunables.setOnItemClickListener(item -> {
+                    String governor1 = mGPUFreq.getGovernor();
+                    setForegroundText(governor1);
+                    mGPUGovernorTunableFragment.setError(getString(R.string.tunables_error, governor1));
+                    mGPUGovernorTunableFragment.setPath(mGPUFreq.getTunables(mGPUFreq.getGovernor()),
+                            ApplyOnBootFragment.GPU);
+                    showForeground();
                 });
 
                 gpuCard.addItem(tunables);
@@ -207,16 +179,13 @@ public class GPUFragment extends RecyclerViewFragment {
             PowerLevel.setSummary(("Set ") + getString(R.string.gpu_powelevel));
             PowerLevel.setValue(GPUMisc.getgpuPwrLevel());
             PowerLevel.setInputType(InputType.TYPE_CLASS_NUMBER);
-            PowerLevel.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    GPUMisc.setgpuPwrLevel(value, getActivity());
-                    genericSelectView.setValue(value);
-                    getHandler().postDelayed(() -> {
-                                PowerLevel.setValue(GPUMisc.getgpuPwrLevel());
-                            },
-                            500);
-                }
+            PowerLevel.setOnGenericValueListener((genericSelectView, value) -> {
+                GPUMisc.setgpuPwrLevel(value, getActivity());
+                genericSelectView.setValue(value);
+                getHandler().postDelayed(() -> {
+                            PowerLevel.setValue(GPUMisc.getgpuPwrLevel());
+                        },
+                        500);
             });
 
             gpuCard.addItem(PowerLevel);
@@ -440,10 +409,10 @@ public class GPUFragment extends RecyclerViewFragment {
 
 	if (Adrenoboost.supported()) {
   		 List<String> list = new ArrayList<>();
-            list.add("Off");
-            list.add("Low");
-            list.add("Medium");
-            list.add("High");
+            list.add(getString(R.string.off));
+            list.add(getString(R.string.low));
+            list.add(getString(R.string.medium));
+            list.add(getString(R.string.high));
             SeekBarView boost = new SeekBarView();
             boost.setSummary(getString(R.string.adrenoboost_summary));
             boost.setItems(list);
@@ -479,16 +448,13 @@ public class GPUFragment extends RecyclerViewFragment {
             dbduration.setSummary(getString(R.string.devfreq_boost_ms_summary));
             dbduration.setValue(DevfreqBoost.getDevfreqboostDuration());
             dbduration.setInputType(InputType.TYPE_CLASS_NUMBER);
-            dbduration.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    DevfreqBoost.setDevfreqboostDuration(value, getActivity());
-                    genericSelectView.setValue(value);
-		    getHandler().postDelayed(() -> {
-		    dbduration.setValue(DevfreqBoost.getDevfreqboostDuration());
-		    },
-	    	500);
-                }
+            dbduration.setOnGenericValueListener((genericSelectView, value) -> {
+                DevfreqBoost.setDevfreqboostDuration(value, getActivity());
+                genericSelectView.setValue(value);
+        getHandler().postDelayed(() -> {
+        dbduration.setValue(DevfreqBoost.getDevfreqboostDuration());
+        },
+        500);
             });
 
 	    devfreqboost.addItem(dbduration);
@@ -501,16 +467,13 @@ public class GPUFragment extends RecyclerViewFragment {
             wakeBoostMS.setSummary(("Set ") + getString(R.string.wake_boost_duration));
             wakeBoostMS.setValue(DevfreqBoost.getwakeboostduration());
             wakeBoostMS.setInputType(InputType.TYPE_CLASS_NUMBER);
-            wakeBoostMS.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    DevfreqBoost.setwakeboostduration(value, getActivity());
-                    genericSelectView.setValue(value);
-		    getHandler().postDelayed(() -> {
-		    wakeBoostMS.setValue(DevfreqBoost.getwakeboostduration());
-		    },
-	    	500);
-                }
+            wakeBoostMS.setOnGenericValueListener((genericSelectView, value) -> {
+                DevfreqBoost.setwakeboostduration(value, getActivity());
+                genericSelectView.setValue(value);
+        getHandler().postDelayed(() -> {
+        wakeBoostMS.setValue(DevfreqBoost.getwakeboostduration());
+        },
+        500);
             });
 
             devfreqboost.addItem(wakeBoostMS);
@@ -522,16 +485,13 @@ public class GPUFragment extends RecyclerViewFragment {
             dbfreq.setSummary(getString(R.string.devfreq_boost_freq_summary));
             dbfreq.setValue(DevfreqBoost.getDevfreqboostFreq());
             dbfreq.setInputType(InputType.TYPE_CLASS_NUMBER);
-            dbfreq.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    DevfreqBoost.setDevfreqboostFreq(value, getActivity());
-                    genericSelectView.setValue(value);
-		    getHandler().postDelayed(() -> {
-		    dbfreq.setValue(DevfreqBoost.getDevfreqboostFreq());
-		    },
-	    	500);
-                }
+            dbfreq.setOnGenericValueListener((genericSelectView, value) -> {
+                DevfreqBoost.setDevfreqboostFreq(value, getActivity());
+                genericSelectView.setValue(value);
+        getHandler().postDelayed(() -> {
+        dbfreq.setValue(DevfreqBoost.getDevfreqboostFreq());
+        },
+        500);
             });
 
 	    devfreqboost.addItem(dbfreq);
@@ -582,7 +542,7 @@ public class GPUFragment extends RecyclerViewFragment {
             String text = "";
             if (mBusy != null) {
                 load = mBusy;
-                load = load > 100 ? 100 : load < 0 ? 0 : load;
+                load = load > 100 ? 100 : Math.max(load, 0);
                 text += load + "% - ";
             }
 
@@ -594,4 +554,5 @@ public class GPUFragment extends RecyclerViewFragment {
             mCurFreq.addPercentage(load >= 0 ? load : Math.round(per > 100 ? 100 : per < 0 ? 0 : per));
         }
     }
+
 }

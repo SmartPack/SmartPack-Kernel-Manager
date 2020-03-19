@@ -153,6 +153,7 @@ public class NavHeaderView extends LinearLayout {
                 try {
                     Uri selectedImageUri = data.getData();
                     sCallback.setImage(selectedImageUri);
+                    assert selectedImageUri != null;
                     Prefs.saveString("previewpicture", selectedImageUri.toString(), this);
                     sCallback.animate();
                 } catch (Exception e) {

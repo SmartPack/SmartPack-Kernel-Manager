@@ -19,7 +19,6 @@
  */
 package com.smartpack.kernelmanager.activities.tools.profile;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -55,6 +54,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by willi on 11.07.16.
@@ -82,6 +82,7 @@ public class ProfileActivity extends BaseActivity {
         ArrayList<NavigationActivity.NavigationFragment> fragments =
                 intent.getParcelableArrayListExtra(FRAGMENTS_INTENT);
 
+        assert fragments != null;
         for (NavigationActivity.NavigationFragment navigationFragment : fragments) {
             mItems.put(getString(navigationFragment.mId), getFragment(navigationFragment.mId,
                     navigationFragment.mFragmentClass));
@@ -104,17 +105,14 @@ public class ProfileActivity extends BaseActivity {
             }
         } else {
             new Dialog(this).setItems(getResources().getStringArray(R.array.profile_modes),
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            switch (which) {
-                                case 0:
-                                    initNewMode(savedInstanceState);
-                                    break;
-                                case 1:
-                                    currentSettings();
-                                    break;
-                            }
+                    (dialog, which) -> {
+                        switch (which) {
+                            case 0:
+                                initNewMode(savedInstanceState);
+                                break;
+                            case 1:
+                                currentSettings();
+                                break;
                         }
                     }).setCancelable(false).show();
         }
@@ -124,7 +122,7 @@ public class ProfileActivity extends BaseActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = fragmentManager.findFragmentByTag(res + "_key");
         if (fragment == null) {
-            fragment = Fragment.instantiate(this, fragmentClass.getCanonicalName());
+            fragment = Fragment.instantiate(this, Objects.requireNonNull(fragmentClass.getCanonicalName()));
         }
         return fragment;
     }
@@ -136,29 +134,21 @@ public class ProfileActivity extends BaseActivity {
         Control.clearProfileCommands();
         Control.setProfileMode(true);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        final ViewPager viewPager = findViewById(R.id.viewpager);
 
         if (savedInstanceState != null) {
             mHideWarningDialog = savedInstanceState.getBoolean("hidewarningdialog");
         }
         if (!mHideWarningDialog) {
-            ViewUtils.dialogBuilder(getString(R.string.profile_warning), null, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                }
-            }, new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    mHideWarningDialog = true;
-                }
-            }, this).show();
+            ViewUtils.dialogBuilder(getString(R.string.profile_warning), null, (dialogInterface, i) -> {
+            }, dialog -> mHideWarningDialog = true, this).show();
         }
 
         viewPager.setOffscreenPageLimit(mItems.size());
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), mItems);
         viewPager.setAdapter(pagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
+        TabLayout tabLayout = findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -178,12 +168,7 @@ public class ProfileActivity extends BaseActivity {
             }
         });
 
-        findViewById(R.id.done).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                returnIntent(Control.getProfileCommands());
-            }
-        });
+        findViewById(R.id.done).setOnClickListener(view -> returnIntent(Control.getProfileCommands()));
     }
 
     private void currentSettings() {
@@ -209,7 +194,7 @@ public class ProfileActivity extends BaseActivity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("mode", mMode);
         outState.putBoolean("hidewarningdialog", mHideWarningDialog);
@@ -223,13 +208,13 @@ public class ProfileActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        BaseFragment fragment = (BaseFragment) mItems.values().toArray(new Fragment[mItems.size()])[mCurPosition];
+        BaseFragment fragment = (BaseFragment) mItems.values().toArray(new Fragment[0])[mCurPosition];
         if (!fragment.onBackPressed()) {
             super.onBackPressed();
         }
     }
 
-    private class PagerAdapter extends FragmentStatePagerAdapter {
+    private static class PagerAdapter extends FragmentStatePagerAdapter {
 
         private final LinkedHashMap<String, Fragment> mFragments;
 
@@ -238,9 +223,10 @@ public class ProfileActivity extends BaseActivity {
             mFragments = fragments;
         }
 
+        @NonNull
         @Override
         public Fragment getItem(int position) {
-            return mFragments.get(mFragments.keySet().toArray(new String[mFragments.size()])[position]);
+            return Objects.requireNonNull(mFragments.get(mFragments.keySet().toArray(new String[0])[position]));
         }
 
         @Override
@@ -250,7 +236,7 @@ public class ProfileActivity extends BaseActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return mFragments.keySet().toArray(new String[mFragments.size()])[position];
+            return mFragments.keySet().toArray(new String[0])[position];
         }
     }
 
@@ -277,61 +263,50 @@ public class ProfileActivity extends BaseActivity {
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_profile_dialog, container, false);
 
-            LinearLayout checkBoxParent = (LinearLayout) rootView.findViewById(R.id.checkbox_parent);
+            LinearLayout checkBoxParent = rootView.findViewById(R.id.checkbox_parent);
             final HashMap<AppCompatCheckBox, Class> checkBoxes = new HashMap<>();
             for (final String name : mList.keySet()) {
-                AppCompatCheckBox compatCheckBox = new AppCompatCheckBox(getActivity());
+                AppCompatCheckBox compatCheckBox = new AppCompatCheckBox(requireActivity());
                 compatCheckBox.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT));
                 compatCheckBox.setText(name);
                 checkBoxParent.addView(compatCheckBox);
 
-                checkBoxes.put(compatCheckBox, mList.get(name).getClass());
+                checkBoxes.put(compatCheckBox, Objects.requireNonNull(mList.get(name)).getClass());
             }
 
-            rootView.findViewById(R.id.select_all).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    for (AppCompatCheckBox compatCheckBox : checkBoxes.keySet()) {
-                        compatCheckBox.setChecked(true);
-                    }
+            rootView.findViewById(R.id.select_all).setOnClickListener(v -> {
+                for (AppCompatCheckBox compatCheckBox : checkBoxes.keySet()) {
+                    compatCheckBox.setChecked(true);
                 }
             });
 
-            AppCompatImageButton cancel = (AppCompatImageButton) rootView.findViewById(R.id.cancel);
-            DrawableCompat.setTint(cancel.getDrawable(), ViewUtils.getThemeAccentColor(getActivity()));
-            cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getActivity().finish();
-                }
-            });
+            AppCompatImageButton cancel = rootView.findViewById(R.id.cancel);
+            DrawableCompat.setTint(cancel.getDrawable(), ViewUtils.getThemeAccentColor(requireActivity()));
+            cancel.setOnClickListener(v -> requireActivity().finish());
 
-            AppCompatImageButton done = (AppCompatImageButton) rootView.findViewById(R.id.done);
-            DrawableCompat.setTint(done.getDrawable(), ViewUtils.getThemeAccentColor(getActivity()));
-            done.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    List<String> categories = new ArrayList<>();
-                    for (AppCompatCheckBox compatCheckBox : checkBoxes.keySet()) {
-                        if (compatCheckBox.isChecked()) {
-                            categories.add(ApplyOnBootFragment.getAssignment(checkBoxes.get(compatCheckBox)));
-                        }
+            AppCompatImageButton done = rootView.findViewById(R.id.done);
+            DrawableCompat.setTint(done.getDrawable(), ViewUtils.getThemeAccentColor(requireActivity()));
+            done.setOnClickListener(v -> {
+                List<String> categories = new ArrayList<>();
+                for (AppCompatCheckBox compatCheckBox : checkBoxes.keySet()) {
+                    if (compatCheckBox.isChecked()) {
+                        categories.add(ApplyOnBootFragment.getAssignment(checkBoxes.get(compatCheckBox)));
                     }
-                    if (categories.size() < 1) {
-                        Utils.toast(R.string.nothing_selected, getActivity());
-                        return;
-                    }
-
-                    LinkedHashMap<String, String> items = new LinkedHashMap<>();
-                    List<Settings.SettingsItem> settingsItems = new Settings(getActivity()).getAllSettings();
-                    for (Settings.SettingsItem item : settingsItems) {
-                        if (categories.contains(item.getCategory())) {
-                            items.put(item.getId(), item.getSetting());
-                        }
-                    }
-                    ((ProfileActivity) getActivity()).returnIntent(items);
                 }
+                if (categories.size() < 1) {
+                    Utils.toast(R.string.nothing_selected, getActivity());
+                    return;
+                }
+
+                LinkedHashMap<String, String> items = new LinkedHashMap<>();
+                List<Settings.SettingsItem> settingsItems = new Settings(requireActivity()).getAllSettings();
+                for (Settings.SettingsItem item : settingsItems) {
+                    if (categories.contains(item.getCategory())) {
+                        items.put(item.getId(), item.getSetting());
+                    }
+                }
+                ((ProfileActivity) requireActivity()).returnIntent(items);
             });
 
             return rootView;

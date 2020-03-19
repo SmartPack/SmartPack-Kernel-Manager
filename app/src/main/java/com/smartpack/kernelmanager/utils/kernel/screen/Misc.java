@@ -110,6 +110,7 @@ public class Misc {
 
     public void enableGloveMode(boolean enable, Context context) {
         Switch gloveSwitch = mGloveMode.get(GLOVE_MODE);
+        assert gloveSwitch != null;
         run(Control.write(enable ? gloveSwitch.getEnable() : gloveSwitch.getDisable(),
                 GLOVE_MODE), GLOVE_MODE, context);
     }

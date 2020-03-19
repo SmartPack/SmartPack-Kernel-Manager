@@ -29,6 +29,7 @@ import com.smartpack.kernelmanager.utils.root.Control;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by willi on 25.06.16.
@@ -261,7 +262,7 @@ public class Misc {
 
     public List<String> getWakeMenu(Context context) {
         List<String> list = new ArrayList<>();
-        for (int id : mWakeFiles.get(WAKE)) {
+        for (int id : Objects.requireNonNull(mWakeFiles.get(WAKE))) {
             list.add(context.getString(id));
         }
         return list;

@@ -29,6 +29,7 @@ import com.smartpack.kernelmanager.utils.root.Control;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by willi on 24.06.16.
@@ -188,7 +189,7 @@ public class S2w {
 
     public List<String> getMenu(Context context) {
         List<String> list = new ArrayList<>();
-        for (int id : mFiles.get(FILE)) {
+        for (int id : Objects.requireNonNull(mFiles.get(FILE))) {
             list.add(context.getString(id));
         }
         return list;

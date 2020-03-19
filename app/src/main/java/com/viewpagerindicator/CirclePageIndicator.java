@@ -16,6 +16,7 @@
  */
 package com.viewpagerindicator;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -37,6 +38,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.smartpack.kernelmanager.R;
 
+import java.util.Objects;
+
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 import static android.widget.LinearLayout.HORIZONTAL;
 import static android.widget.LinearLayout.VERTICAL;
@@ -46,6 +49,7 @@ import static android.widget.LinearLayout.VERTICAL;
  * others are only stroked.
  */
 public class CirclePageIndicator extends View implements PageIndicator {
+
     private static final int INVALID_POINTER = -1;
 
     private float mRadius;
@@ -120,24 +124,6 @@ public class CirclePageIndicator extends View implements PageIndicator {
     }
 
 
-    public void setCentered(boolean centered) {
-        mCentered = centered;
-        invalidate();
-    }
-
-    public boolean isCentered() {
-        return mCentered;
-    }
-
-    public void setPageColor(int pageColor) {
-        mPaintPageFill.setColor(pageColor);
-        invalidate();
-    }
-
-    public int getPageColor() {
-        return mPaintPageFill.getColor();
-    }
-
     public void setFillColor(int fillColor) {
         mPaintFill.setColor(fillColor);
         invalidate();
@@ -164,46 +150,6 @@ public class CirclePageIndicator extends View implements PageIndicator {
         return mOrientation;
     }
 
-    public void setStrokeColor(int strokeColor) {
-        mPaintStroke.setColor(strokeColor);
-        invalidate();
-    }
-
-    public int getStrokeColor() {
-        return mPaintStroke.getColor();
-    }
-
-    public void setStrokeWidth(float strokeWidth) {
-        mPaintStroke.setStrokeWidth(strokeWidth);
-        invalidate();
-    }
-
-    public float getStrokeWidth() {
-        return mPaintStroke.getStrokeWidth();
-    }
-
-    public void setRadius(float radius) {
-        mRadius = radius;
-        invalidate();
-    }
-
-    public float getRadius() {
-        return mRadius;
-    }
-
-    public void setSnap(boolean snap) {
-        mSnap = snap;
-        invalidate();
-    }
-
-    public boolean isSnap() {
-        return mSnap;
-    }
-
-    public void setExtraSpacing(float extraSpacing) {
-        mExtraSpacing = extraSpacing;
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -211,7 +157,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
         if (mViewPager == null) {
             return;
         }
-        final int count = mViewPager.getAdapter().getCount();
+        final int count = Objects.requireNonNull(mViewPager.getAdapter()).getCount();
         if (count < 2) {
             return;
         }
@@ -290,11 +236,12 @@ public class CirclePageIndicator extends View implements PageIndicator {
         canvas.drawCircle(dX, dY, mRadius * 1.5f, mPaintFill);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     public boolean onTouchEvent(android.view.MotionEvent ev) {
         if (super.onTouchEvent(ev)) {
             return true;
         }
-        if ((mViewPager == null) || (mViewPager.getAdapter().getCount() == 0)) {
+        if ((mViewPager == null) || (Objects.requireNonNull(mViewPager.getAdapter()).getCount() == 0)) {
             return false;
         }
 
@@ -478,7 +425,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
             result = specSize;
         } else {
             //Calculate the width according the views count
-            final int count = mViewPager.getAdapter().getCount();
+            final int count = Objects.requireNonNull(mViewPager.getAdapter()).getCount();
             result = (int) (getPaddingLeft() + getPaddingRight()
                     + (count * 2 * mRadius) + (count - 1) * (mRadius + mExtraSpacing) + 1);
             //Respect AT_MOST value if that was what is called for by measureSpec
@@ -534,7 +481,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
     static class SavedState extends BaseSavedState {
         int currentPage;
 
-        public SavedState(Parcelable superState) {
+        SavedState(Parcelable superState) {
             super(superState);
         }
 
@@ -562,4 +509,5 @@ public class CirclePageIndicator extends View implements PageIndicator {
             }
         };
     }
+
 }

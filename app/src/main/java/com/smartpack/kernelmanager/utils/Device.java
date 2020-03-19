@@ -27,6 +27,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -327,6 +328,7 @@ public class Device {
             String prefix = PARTITIONS.get(partition);
             String raw = RootUtils.runCommand("strings " + partition + " | grep " + prefix);
             for (String line : raw.split("\\r?\\n")) {
+                assert prefix != null;
                 if (line.startsWith(prefix)) {
                     mVersion = line.replace(prefix, "");
                     break;
@@ -343,7 +345,7 @@ public class Device {
         return getKernelVersion(extended, true);
     }
 
-    public static String getKernelVersion(boolean extended, boolean root) {
+    private static String getKernelVersion(boolean extended, boolean root) {
         return extended ? Utils.readFile("/proc/version", root) : RootUtils.runCommand("uname -r");
     }
 
@@ -395,57 +397,24 @@ public class Device {
     private static HashMap<String, String> sBoardAliases = new HashMap<>();
 
     static {
-        sBoardFormatters.put(".*msm.+.\\d+.*", new BoardFormatter() {
-            @Override
-            public String format(String board) {
-                return "msm" + board.split("msm")[1].trim().split(" ")[0];
+        sBoardFormatters.put(".*msm.+.\\d+.*", board -> "msm" + board.split("msm")[1].trim().split(" ")[0]);
+
+        sBoardFormatters.put("mt\\d*.", board -> "mt" + board.split("mt")[1].trim().split(" ")[0]);
+
+        sBoardFormatters.put(".*apq.+.\\d+.*", board -> "apq" + board.split("apq")[1].trim().split(" ")[0]);
+
+        sBoardFormatters.put(".*omap+\\d.*", board -> {
+            Matcher matcher = Pattern.compile("omap+\\d").matcher(board);
+            if (matcher.find()) {
+                return matcher.group();
             }
+            return null;
         });
 
-        sBoardFormatters.put("mt\\d*.", new BoardFormatter() {
-            @Override
-            public String format(String board) {
-                return "mt" + board.split("mt")[1].trim().split(" ")[0];
-            }
-        });
+        sBoardFormatters.put("sun+\\d.", board -> board);
 
-        sBoardFormatters.put(".*apq.+.\\d+.*", new BoardFormatter() {
-            @Override
-            public String format(String board) {
-                return "apq" + board.split("apq")[1].trim().split(" ")[0];
-            }
-        });
-
-        sBoardFormatters.put(".*omap+\\d.*", new BoardFormatter() {
-            @Override
-            public String format(String board) {
-                Matcher matcher = Pattern.compile("omap+\\d").matcher(board);
-                if (matcher.find()) {
-                    return matcher.group();
-                }
-                return null;
-            }
-        });
-
-        sBoardFormatters.put("sun+\\d.", new BoardFormatter() {
-            @Override
-            public String format(String board) {
-                return board;
-            }
-        });
-
-        sBoardFormatters.put("spyder", new BoardFormatter() {
-            @Override
-            public String format(String board) {
-                return "omap4";
-            }
-        });
-        sBoardFormatters.put("tuna", new BoardFormatter() {
-            @Override
-            public String format(String board) {
-                return "omap4";
-            }
-        });
+        sBoardFormatters.put("spyder", board -> "omap4");
+        sBoardFormatters.put("tuna", board -> "omap4");
 
         sBoardAliases.put("msm8994v2.1", "msm8994");
         sBoardAliases.put("msm8974pro.*", "msm8974pro");
@@ -456,11 +425,12 @@ public class Device {
         String ret = null;
         for (String boardregex : sBoardFormatters.keySet()) {
             if (hardware.matches(boardregex)) {
-                ret = sBoardFormatters.get(boardregex).format(hardware);
+                ret = Objects.requireNonNull(sBoardFormatters.get(boardregex)).format(hardware);
             }
         }
         if (ret != null) {
             for (String alias : sBoardAliases.keySet()) {
+                assert ret != null;
                 if (ret.matches(alias)) {
                     ret = sBoardAliases.get(alias);
                 }

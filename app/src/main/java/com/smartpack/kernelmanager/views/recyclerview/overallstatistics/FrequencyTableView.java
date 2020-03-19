@@ -48,10 +48,10 @@ public class FrequencyTableView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(View view) {
-        mFrequency = (TextView) view.findViewById(R.id.frequency);
-        mPercentage = (TextView) view.findViewById(R.id.percentage);
-        mDuration = (TextView) view.findViewById(R.id.duration);
-        mProgress = (ProgressBar) view.findViewById(R.id.progress);
+        mFrequency = view.findViewById(R.id.frequency);
+        mPercentage = view.findViewById(R.id.percentage);
+        mDuration = view.findViewById(R.id.duration);
+        mProgress = view.findViewById(R.id.progress);
 
         super.onCreateView(view);
     }

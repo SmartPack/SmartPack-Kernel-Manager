@@ -26,19 +26,16 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.SystemClock;
 import android.view.Menu;
-import android.view.MenuItem;
 
-import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.FragmentManager;
 
-import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.fragments.kernel.BatteryFragment;
 import com.smartpack.kernelmanager.fragments.kernel.VMFragment;
 import com.smartpack.kernelmanager.utils.Device;
-import com.smartpack.kernelmanager.utils.Prefs;
+
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.battery.Battery;
 import com.smartpack.kernelmanager.utils.kernel.gpu.GPUFreq;
@@ -48,7 +45,6 @@ import com.smartpack.kernelmanager.views.recyclerview.StatsView;
 import com.smartpack.kernelmanager.views.recyclerview.overallstatistics.TemperatureView;
 import com.smartpack.kernelmanager.views.recyclerview.MultiStatsView;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUTimes;
-import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
 
 import java.util.List;
 
@@ -89,22 +85,17 @@ public class OverallFragment extends RecyclerViewFragment {
         CardView cardView = new CardView(getActivity());
         cardView.setDrawable(getResources().getDrawable(R.drawable.ic_chart));
         cardView.setTitle(getString(R.string.overall) + " " + getString(R.string.statistics));
-        cardView.setOnMenuListener(new CardView.OnMenuListener() {
-            @Override
-            public void onMenuReady(CardView cardView, androidx.appcompat.widget.PopupMenu popupMenu) {
-                Menu menu = popupMenu.getMenu();
-                menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.cpu_times));
+        cardView.setOnMenuListener((cardView1, popupMenu) -> {
+            Menu menu = popupMenu.getMenu();
+            menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.cpu_times));
 
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        FragmentManager fragmentManager = getFragmentManager();
-                        fragmentManager.beginTransaction()
-                                .replace(R.id.content_frame, new CPUTimes()).commit();
-                        return false;
-                    }
-                });
-            }
+            popupMenu.setOnMenuItemClickListener(item -> {
+                FragmentManager fragmentManager = getFragmentManager();
+                assert fragmentManager != null;
+                fragmentManager.beginTransaction()
+                        .replace(R.id.content_frame, new CPUTimes()).commit();
+                return false;
+            });
         });
         if (mGPUFreq.hasCurFreq()) {
             mGPUFreqStatsView = new StatsView();
@@ -120,22 +111,17 @@ public class OverallFragment extends RecyclerViewFragment {
         CardView device = new CardView(getActivity());
         device.setDrawable(getResources().getDrawable(R.drawable.ic_device));
         device.setTitle(Device.getModel());
-        device.setOnMenuListener(new CardView.OnMenuListener() {
-            @Override
-            public void onMenuReady(CardView device, androidx.appcompat.widget.PopupMenu popupMenu) {
-                Menu menu = popupMenu.getMenu();
-                menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
+        device.setOnMenuListener((device1, popupMenu) -> {
+            Menu menu = popupMenu.getMenu();
+            menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
 
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        FragmentManager fragmentManager = getFragmentManager();
-                        fragmentManager.beginTransaction()
-                                .replace(R.id.content_frame, new DeviceFragment()).commit();
-                        return false;
-                    }
-                });
-            }
+            popupMenu.setOnMenuItemClickListener(item -> {
+                FragmentManager fragmentManager = getFragmentManager();
+                assert fragmentManager != null;
+                fragmentManager.beginTransaction()
+                        .replace(R.id.content_frame, new DeviceFragment()).commit();
+                return false;
+            });
         });
         mUpTime = new MultiStatsView();
         mUpTime.setTitle(getString(R.string.device) + " " + getString(R.string.uptime));
@@ -146,22 +132,17 @@ public class OverallFragment extends RecyclerViewFragment {
             CardView battery = new CardView(getActivity());
             battery.setDrawable(getResources().getDrawable(R.drawable.ic_battery));
             battery.setTitle(getString(R.string.battery));
-            battery.setOnMenuListener(new CardView.OnMenuListener() {
-                @Override
-                public void onMenuReady(CardView battery, androidx.appcompat.widget.PopupMenu popupMenu) {
-                    Menu menu = popupMenu.getMenu();
-                    menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
+            battery.setOnMenuListener((battery1, popupMenu) -> {
+                Menu menu = popupMenu.getMenu();
+                menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
 
-                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            FragmentManager fragmentManager = getFragmentManager();
-                            fragmentManager.beginTransaction()
-                                    .replace(R.id.content_frame, new BatteryFragment()).commit();
-                            return false;
-                        }
-                    });
-                }
+                popupMenu.setOnMenuItemClickListener(item -> {
+                    FragmentManager fragmentManager = getFragmentManager();
+                    assert fragmentManager != null;
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.content_frame, new BatteryFragment()).commit();
+                    return false;
+                });
             });
 
             mBatteryInfo = new MultiStatsView();
@@ -170,27 +151,22 @@ public class OverallFragment extends RecyclerViewFragment {
             items.add(battery);
         }
 
-        if (mMemInfo.getItemMb("MemTotal") != 0 || mMemInfo.getInstance().
+        if (mMemInfo.getItemMb("MemTotal") != 0 || Device.MemInfo.getInstance().
                 getItemMb("SwapTotal") != 0) {
             CardView memmory = new CardView(getActivity());
             memmory.setDrawable(getResources().getDrawable(R.drawable.ic_cpu));
             memmory.setTitle(getString(R.string.memory));
-            memmory.setOnMenuListener(new CardView.OnMenuListener() {
-                @Override
-                public void onMenuReady(CardView memmory, androidx.appcompat.widget.PopupMenu popupMenu) {
-                    Menu menu = popupMenu.getMenu();
-                    menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
+            memmory.setOnMenuListener((memmory1, popupMenu) -> {
+                Menu menu = popupMenu.getMenu();
+                menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
 
-                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            FragmentManager fragmentManager = getFragmentManager();
-                            fragmentManager.beginTransaction()
-                                    .replace(R.id.content_frame, new VMFragment()).commit();
-                            return false;
-                        }
-                    });
-                }
+                popupMenu.setOnMenuItemClickListener(item -> {
+                    FragmentManager fragmentManager = getFragmentManager();
+                    assert fragmentManager != null;
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.content_frame, new VMFragment()).commit();
+                    return false;
+                });
             });
             mVM = new MultiStatsView();
             memmory.addItem(mVM);
@@ -231,9 +207,9 @@ public class OverallFragment extends RecyclerViewFragment {
                 mVM.setStatsOne("RAM - Total: " + mMemInfo.getItemMb("MemTotal") + " MB, Used: " + (mMemInfo.getItemMb("MemTotal")
                         - (mMemInfo.getItemMb("Cached") + mMemInfo.getItemMb("MemFree"))) + " MB");
             }
-            if (mMemInfo.getInstance().getItemMb("SwapTotal") != 0) {
-                mVM.setStatsTwo("Swap - Total: " + mMemInfo.getInstance().getItemMb("SwapTotal") + " MB, Used: "
-                        + (mMemInfo.getInstance().getItemMb("SwapTotal") - mMemInfo.getItemMb("SwapFree")) + " MB");
+            if (Device.MemInfo.getInstance().getItemMb("SwapTotal") != 0) {
+                mVM.setStatsTwo("Swap - Total: " + Device.MemInfo.getInstance().getItemMb("SwapTotal") + " MB, Used: "
+                        + (Device.MemInfo.getInstance().getItemMb("SwapTotal") - mMemInfo.getItemMb("SwapFree")) + " MB");
             } else {
                 mVM.setStatsTwo("Swap: N/A");
             }
@@ -250,35 +226,16 @@ public class OverallFragment extends RecyclerViewFragment {
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().registerReceiver(mBatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        requireActivity().registerReceiver(mBatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
     }
 
     @Override
     public void onPause() {
         super.onPause();
         try {
-            getActivity().unregisterReceiver(mBatteryReceiver);
+            requireActivity().unregisterReceiver(mBatteryReceiver);
         } catch (IllegalArgumentException ignored) {
         }
     }
-
-    @Override
-    public void onStart(){
-        super.onStart();
-
-        // Initialize auto app update check
-        if (Utils.isPlayStoreInstalled(getActivity())) {
-            return;
-        }
-        if (Utils.isNetworkAvailable(getActivity()) && Prefs.getBoolean("auto_update", true, getActivity())) {
-            if (!UpdateCheck.hasVersionInfo() || (UpdateCheck.lastModified() + 3720000L < System.currentTimeMillis())) {
-                UpdateCheck.getVersionInfo(getActivity());
-            }
-            if (UpdateCheck.hasVersionInfo() && BuildConfig.VERSION_CODE < UpdateCheck.versionCode()) {
-                UpdateCheck.updateAvailableDialog(getActivity());
-            }
-        }
-    }
-
 
 }

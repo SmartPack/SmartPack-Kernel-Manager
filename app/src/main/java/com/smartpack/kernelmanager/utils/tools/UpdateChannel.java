@@ -22,8 +22,8 @@
 package com.smartpack.kernelmanager.utils.tools;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 
 import androidx.fragment.app.FragmentManager;
@@ -47,6 +47,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on January 25, 2020
@@ -74,6 +75,7 @@ public class UpdateChannel extends RecyclerViewFragment {
     private void reload() {
         if (mLoader == null) {
             getHandler().postDelayed(new Runnable() {
+                @SuppressLint("StaticFieldLeak")
                 @Override
                 public void run() {
                     clearItems();
@@ -133,22 +135,19 @@ public class UpdateChannel extends RecyclerViewFragment {
         kernel_name.setTitle(getString(R.string.kernel_name));
         kernel_name.setValue(Utils.existFile(UPDATE_CHANNEL + "/kernel_name") ?
                 Utils.readFile(UPDATE_CHANNEL + "/kernel_name") : getString(R.string.kernel_name_summary));
-        kernel_name.setOnGenericValueListener(new GenericInputView.OnGenericValueListener() {
-            @Override
-            public void onGenericValueSelected(GenericInputView genericSelectView, String value) {
-                if (mPermissionDenied) {
-                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
-                    return;
-                }
-                if (value.isEmpty()) {
-                    KernelUpdater.clearUpdateInfo();
-                    Utils.toast(getString(R.string.item_empty, getString(R.string.kernel_name)), getActivity());
-                    return;
-                }
-                makeUpdateCHannelFolder();
-                kernel_name.setValue(value);
-                Utils.create(value, UPDATE_CHANNEL + "/kernel_name");
+        kernel_name.setOnGenericValueListener((genericSelectView, value) -> {
+            if (mPermissionDenied) {
+                Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                return;
             }
+            if (value.isEmpty()) {
+                KernelUpdater.clearUpdateInfo();
+                Utils.toast(getString(R.string.item_empty, getString(R.string.kernel_name)), getActivity());
+                return;
+            }
+            makeUpdateCHannelFolder();
+            kernel_name.setValue(value);
+            Utils.create(value, UPDATE_CHANNEL + "/kernel_name");
         });
 
         items.add(kernel_name);
@@ -157,22 +156,19 @@ public class UpdateChannel extends RecyclerViewFragment {
         kernel_version.setTitle(getString(R.string.kernel_version));
         kernel_version.setValue(Utils.existFile(UPDATE_CHANNEL + "/kernel_version") ?
                 Utils.readFile(UPDATE_CHANNEL + "/kernel_version") : getString(R.string.kernel_version_summary));
-        kernel_version.setOnGenericValueListener(new GenericInputView.OnGenericValueListener() {
-            @Override
-            public void onGenericValueSelected(GenericInputView genericSelectView, String value) {
-                if (mPermissionDenied) {
-                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
-                    return;
-                }
-                if (value.isEmpty()) {
-                    KernelUpdater.clearUpdateInfo();
-                    Utils.toast(getString(R.string.item_empty, getString(R.string.kernel_version)), getActivity());
-                    return;
-                }
-                makeUpdateCHannelFolder();
-                kernel_version.setValue(value);
-                Utils.create(value, UPDATE_CHANNEL + "/kernel_version");
+        kernel_version.setOnGenericValueListener((genericSelectView, value) -> {
+            if (mPermissionDenied) {
+                Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                return;
             }
+            if (value.isEmpty()) {
+                KernelUpdater.clearUpdateInfo();
+                Utils.toast(getString(R.string.item_empty, getString(R.string.kernel_version)), getActivity());
+                return;
+            }
+            makeUpdateCHannelFolder();
+            kernel_version.setValue(value);
+            Utils.create(value, UPDATE_CHANNEL + "/kernel_version");
         });
 
         items.add(kernel_version);
@@ -181,22 +177,19 @@ public class UpdateChannel extends RecyclerViewFragment {
         download_link.setTitle(getString(R.string.download_link));
         download_link.setValue(Utils.existFile(UPDATE_CHANNEL + "/download_link") ?
                 Utils.readFile(UPDATE_CHANNEL + "/download_link") : getString(R.string.download_link_summary));
-        download_link.setOnGenericValueListener(new GenericInputView.OnGenericValueListener() {
-            @Override
-            public void onGenericValueSelected(GenericInputView genericSelectView, String value) {
-                if (mPermissionDenied) {
-                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
-                    return;
-                }
-                if (value.isEmpty()) {
-                    KernelUpdater.clearUpdateInfo();
-                    Utils.toast(getString(R.string.item_empty, getString(R.string.download_link)), getActivity());
-                    return;
-                }
-                makeUpdateCHannelFolder();
-                download_link.setValue(value);
-                Utils.create(value, UPDATE_CHANNEL + "/download_link");
+        download_link.setOnGenericValueListener((genericSelectView, value) -> {
+            if (mPermissionDenied) {
+                Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                return;
             }
+            if (value.isEmpty()) {
+                KernelUpdater.clearUpdateInfo();
+                Utils.toast(getString(R.string.item_empty, getString(R.string.download_link)), getActivity());
+                return;
+            }
+            makeUpdateCHannelFolder();
+            download_link.setValue(value);
+            Utils.create(value, UPDATE_CHANNEL + "/download_link");
         });
 
         items.add(download_link);
@@ -205,17 +198,14 @@ public class UpdateChannel extends RecyclerViewFragment {
         change_logs.setTitle(getString(R.string.change_logs));
         change_logs.setValue(Utils.existFile(UPDATE_CHANNEL + "/change_logs") ?
                 Utils.readFile(UPDATE_CHANNEL + "/change_logs") : getString(R.string.changelog_summary));
-        change_logs.setOnGenericValueListener(new GenericInputView.OnGenericValueListener() {
-            @Override
-            public void onGenericValueSelected(GenericInputView genericSelectView, String value) {
-                if (mPermissionDenied) {
-                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
-                    return;
-                }
-                makeUpdateCHannelFolder();
-                change_logs.setValue(value);
-                Utils.create(value, UPDATE_CHANNEL + "/change_logs");
+        change_logs.setOnGenericValueListener((genericSelectView, value) -> {
+            if (mPermissionDenied) {
+                Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                return;
             }
+            makeUpdateCHannelFolder();
+            change_logs.setValue(value);
+            Utils.create(value, UPDATE_CHANNEL + "/change_logs");
         });
 
         items.add(change_logs);
@@ -224,17 +214,14 @@ public class UpdateChannel extends RecyclerViewFragment {
         sha1.setTitle(getString(R.string.sha1));
         sha1.setValue(Utils.existFile(UPDATE_CHANNEL + "/sha1") ?
                 Utils.readFile(UPDATE_CHANNEL + "/sha1") : getString(R.string.sha1_summary));
-        sha1.setOnGenericValueListener(new GenericInputView.OnGenericValueListener() {
-            @Override
-            public void onGenericValueSelected(GenericInputView genericSelectView, String value) {
-                if (mPermissionDenied) {
-                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
-                    return;
-                }
-                makeUpdateCHannelFolder();
-                sha1.setValue(value);
-                Utils.create(value, UPDATE_CHANNEL + "/sha1");
+        sha1.setOnGenericValueListener((genericSelectView, value) -> {
+            if (mPermissionDenied) {
+                Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                return;
             }
+            makeUpdateCHannelFolder();
+            sha1.setValue(value);
+            Utils.create(value, UPDATE_CHANNEL + "/sha1");
         });
 
         items.add(sha1);
@@ -243,17 +230,14 @@ public class UpdateChannel extends RecyclerViewFragment {
         supportGroup.setTitle(getString(R.string.support_group));
         supportGroup.setValue(Utils.existFile(UPDATE_CHANNEL + "/support_group") ?
                 Utils.readFile(UPDATE_CHANNEL + "/support_group") : getString(R.string.support_group_summary));
-        supportGroup.setOnGenericValueListener(new GenericInputView.OnGenericValueListener() {
-            @Override
-            public void onGenericValueSelected(GenericInputView genericSelectView, String value) {
-                if (mPermissionDenied) {
-                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
-                    return;
-                }
-                makeUpdateCHannelFolder();
-                supportGroup.setValue(value);
-                Utils.create(value, UPDATE_CHANNEL + "/support_group");
+        supportGroup.setOnGenericValueListener((genericSelectView, value) -> {
+            if (mPermissionDenied) {
+                Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                return;
             }
+            makeUpdateCHannelFolder();
+            supportGroup.setValue(value);
+            Utils.create(value, UPDATE_CHANNEL + "/support_group");
         });
 
         items.add(supportGroup);
@@ -262,17 +246,14 @@ public class UpdateChannel extends RecyclerViewFragment {
         donation_link.setTitle(getString(R.string.donation_link));
         donation_link.setValue(Utils.existFile(UPDATE_CHANNEL + "/donation_link") ?
                 Utils.readFile(UPDATE_CHANNEL + "/donation_link") : getString(R.string.donation_link_summary));
-        donation_link.setOnGenericValueListener(new GenericInputView.OnGenericValueListener() {
-            @Override
-            public void onGenericValueSelected(GenericInputView genericSelectView, String value) {
-                if (mPermissionDenied) {
-                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
-                    return;
-                }
-                makeUpdateCHannelFolder();
-                donation_link.setValue(value);
-                Utils.create(value, UPDATE_CHANNEL + "/donation_link");
+        donation_link.setOnGenericValueListener((genericSelectView, value) -> {
+            if (mPermissionDenied) {
+                Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                return;
             }
+            makeUpdateCHannelFolder();
+            donation_link.setValue(value);
+            Utils.create(value, UPDATE_CHANNEL + "/donation_link");
         });
 
         items.add(donation_link);
@@ -280,23 +261,20 @@ public class UpdateChannel extends RecyclerViewFragment {
         DescriptionView clear_all = new DescriptionView();
         clear_all.setTitle(getString(R.string.clear));
         clear_all.setSummary(getString(R.string.clear_summary));
-        clear_all.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                File file = new File(UPDATE_CHANNEL);
-                if (file.exists() && file.isDirectory() && file.list().length > 0) {
-                    new Dialog(getActivity())
-                            .setMessage(getString(R.string.sure_question))
-                            .setCancelable(false)
-                            .setNegativeButton(getString(R.string.cancel), (dialog, id) -> {
-                            })
-                            .setPositiveButton(getString(R.string.yes), (dialog, id) -> {
-                                clarAll();
-                            })
-                            .show();
-                } else {
-                    Utils.toast(getString(R.string.clear_message), getActivity());
-                }
+        clear_all.setOnItemClickListener(item -> {
+            File file = new File(UPDATE_CHANNEL);
+            if (file.exists() && file.isDirectory() && Objects.requireNonNull(file.list()).length > 0) {
+                new Dialog(requireActivity())
+                        .setMessage(getString(R.string.sure_question))
+                        .setCancelable(false)
+                        .setNegativeButton(getString(R.string.cancel), (dialog, id) -> {
+                        })
+                        .setPositiveButton(getString(R.string.yes), (dialog, id) -> {
+                            clarAll();
+                        })
+                        .show();
+            } else {
+                Utils.toast(getString(R.string.clear_message), getActivity());
             }
         });
 
@@ -306,22 +284,20 @@ public class UpdateChannel extends RecyclerViewFragment {
         create.setTitle(getString(R.string.update_channel_create));
         create.setSummary(getString(R.string.submit_summary));
         create.setFullSpan(true);
-        create.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                if (Utils.readFile(UPDATE_CHANNEL + "/kernel_name").isEmpty() &&
-                        Utils.readFile(UPDATE_CHANNEL + "/kernel_version").isEmpty() &&
-                        Utils.readFile(UPDATE_CHANNEL + "/download_link").isEmpty()) {
-                    Utils.toast(getString(R.string.submit_failed), getActivity());
-                } else {
-                    createChannel();
-                }
+        create.setOnItemClickListener(item -> {
+            if (Utils.readFile(UPDATE_CHANNEL + "/kernel_name").isEmpty() &&
+                    Utils.readFile(UPDATE_CHANNEL + "/kernel_version").isEmpty() &&
+                    Utils.readFile(UPDATE_CHANNEL + "/download_link").isEmpty()) {
+                Utils.toast(getString(R.string.submit_failed), getActivity());
+            } else {
+                createChannel();
             }
         });
 
         items.add(create);
     }
 
+    @SuppressLint("StaticFieldLeak")
     private void clarAll() {
         new AsyncTask<Void, Void, Void>() {
             private ProgressDialog mProgressDialog;
@@ -353,11 +329,9 @@ public class UpdateChannel extends RecyclerViewFragment {
 
     private void createChannel() {
         ViewUtils.dialogEditText(Utils.readFile(UPDATE_CHANNEL + "/kernel_name"),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
+                (dialogInterface, i) -> {
                 }, new ViewUtils.OnDialogEditTextListener() {
+                    @SuppressLint("StaticFieldLeak")
                     @Override
                     public void onClick(String text) {
                         if (text.isEmpty()) {
@@ -416,7 +390,7 @@ public class UpdateChannel extends RecyclerViewFragment {
                                     obj.put("support", support);
                                     Jsoner.serialize(obj, writer);
                                     writer.close();
-                                } catch (IOException e) {
+                                } catch (IOException ignored) {
                                 }
                                 return null;
                             }
@@ -428,11 +402,12 @@ public class UpdateChannel extends RecyclerViewFragment {
                                 } catch (IllegalArgumentException ignored) {
                                 }
                                 if (Utils.existFile(json)) {
-                                    new Dialog(getActivity())
+                                    new Dialog(requireActivity())
                                             .setMessage(getString(R.string.json_created, json))
                                             .setCancelable(false)
                                             .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
                                                 FragmentManager fragmentManager = getFragmentManager();
+                                                assert fragmentManager != null;
                                                 fragmentManager.beginTransaction()
                                                         .replace(R.id.content_frame, new SmartPackFragment()).commit();
                                             })
@@ -443,11 +418,8 @@ public class UpdateChannel extends RecyclerViewFragment {
                             }
                         }.execute();
                     }
-                }, getActivity()).setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-            }
-        }).show();
+                }, getActivity()).setOnDismissListener(dialogInterface -> {
+                }).show();
     }
 
     private void makeUpdateCHannelFolder(){

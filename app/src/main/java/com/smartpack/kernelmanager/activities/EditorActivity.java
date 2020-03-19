@@ -33,6 +33,8 @@ import androidx.appcompat.widget.AppCompatEditText;
 
 import com.smartpack.kernelmanager.R;
 
+import java.util.Objects;
+
 /**
  * Created by willi on 01.07.16.
  */
@@ -52,7 +54,7 @@ public class EditorActivity extends BaseActivity {
         initToolBar();
         String title = getIntent().getStringExtra(TITLE_INTENT);
         if (title != null) {
-            getSupportActionBar().setTitle(title);
+            Objects.requireNonNull(getSupportActionBar()).setTitle(title);
         }
 
         CharSequence text = getIntent().getCharSequenceExtra(TEXT_INTENT);
@@ -71,6 +73,7 @@ public class EditorActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         Drawable drawable = ContextCompat.getDrawable(this, R.drawable.ic_save);
+        assert drawable != null;
         DrawableCompat.setTint(drawable, Color.WHITE);
         menu.add(0, Menu.FIRST, Menu.FIRST, getString(R.string.save)).setIcon(drawable)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);

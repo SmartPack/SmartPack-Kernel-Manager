@@ -51,12 +51,7 @@ public class GenericSelectView extends ValueView {
 
     @Override
     public void onCreateView(View view) {
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialog(v.getContext());
-            }
-        });
+        view.setOnClickListener(v -> showDialog(v.getContext()));
         super.onCreateView(view);
     }
 
@@ -79,25 +74,14 @@ public class GenericSelectView extends ValueView {
         if (mValueRaw == null) return;
 
         mShowDialog = true;
-        ViewUtils.dialogEditText(mValueRaw, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        }, new ViewUtils.OnDialogEditTextListener() {
-            @Override
-            public void onClick(String text) {
-                setValueRaw(text);
-                if (mOnGenericValueListener != null) {
-                    mOnGenericValueListener.onGenericValueSelected(GenericSelectView.this, text);
-                }
+        ViewUtils.dialogEditText(mValueRaw, (dialog, which) -> {
+        }, text -> {
+            setValueRaw(text);
+            if (mOnGenericValueListener != null) {
+                mOnGenericValueListener.onGenericValueSelected(GenericSelectView.this, text);
             }
         }, mInputType, context).setTitle(getTitle()).setOnDismissListener(
-                new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        mShowDialog = false;
-                    }
-                }).show();
+                dialog -> mShowDialog = false).show();
     }
 
 }

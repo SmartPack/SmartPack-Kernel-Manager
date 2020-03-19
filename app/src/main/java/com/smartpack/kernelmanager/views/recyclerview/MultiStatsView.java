@@ -25,7 +25,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.smartpack.kernelmanager.R;
-import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 03, 2019

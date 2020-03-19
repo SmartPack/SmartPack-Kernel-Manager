@@ -21,6 +21,7 @@
 
 package com.smartpack.kernelmanager.utils.tools;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -63,7 +64,7 @@ public class SmartPack {
         return file.length();
     }
 
-    public static void prepareFlashFolder() {
+    private static void prepareFlashFolder() {
         if (Utils.existFile(FLASH_FOLDER)) {
             RootUtils.runCommand(CLEANING_COMMAND);
         } else {
@@ -88,6 +89,7 @@ public class SmartPack {
                 Utils.append("Path: " + file.toString() + "\n", FLASHER_LOG);
                 return manualFlash(file);
             }
+            @SuppressLint("StaticFieldLeak")
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 try {

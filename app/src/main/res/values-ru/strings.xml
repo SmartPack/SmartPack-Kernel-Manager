@@ -249,7 +249,6 @@
     <string name="disksize_summary">Улучшает производительность методом сжатия данных в RAM вместо постоянной памяти. Использует RAM до тех пор, пока не станет необходимым записать данные в постоянную память.</string>
     <string name="display_backlight">Подсветка дисплея</string>
     <string name="documentation">Документация</string>
-    <string name="documentsui_message">"Пожалуйста, используйте внешний «Файловый менеджер», чтобы выбрать файл. Выбор файлов через стандартный 'DocumentsUI' пока не поддерживается."</string>
     <string name="donate">Пожертвовать</string>
     <string name="donate_me">Пожертвовать мне</string>
     <string name="donate_me_message">"\nЕсли вам нравится моя работа, рассмотрите возможность пожертвования мне, поскольку полезно продолжать мои проекты более активно, хотя в этом нет необходимости.\n"</string>
@@ -327,7 +326,6 @@
     <string name="fadeback_time_summary">Количество минут до окончания времени, когда RGB должен вернуться к дневным цветам.</string>
     <string name="fahrenheit">ºF</string>
     <string name="fahrenheit_summary">Использовать измерение температуры по Фаренгейту.</string>
-    <string name="fahrenheit_title">По Фаренгейту</string>
     <string name="fast_charge">Быстрая зарядка</string>
     <string name="fast_charge_summary">Если включено, устройство будет заряжаться быстрее при подключении к USB. Выберите пользовательский режим для зарядки устройства на пользовательском уровне. Подключите зарядное устройство при изменении этих параметров.</string>
     <string name="fast_lane_load">Fast Lane нагрузки</string>
@@ -340,7 +338,6 @@
     <string name="feature_not_appearing_summary">Отображаются только функции, поддерживаемые устройством!</string>
     <string name="features">Характеристики</string>
     <string name="fifty_sec">50 секунд</string>
-    <string name="file_selection_error">Не удалось получить данные из внешнего файлового менеджера</string>
     <string name="file_size_limit">Обратите внимание: по соображениям безопасности файлы восстановления размером более 100 МБ не могут быть прошиты</string>
     <string name="fingerprint">Отпечаток</string>
     <string name="fingerprint_summary">Использовать отпечаток пальца для прохождения проверки безопасности. Это будет работать до тех пор, пока у вас есть зарегистрированные отпечатки.</string>
@@ -757,7 +754,6 @@
     <string name="register_hook_summary">Перехват регистра действует как средство, позволяющее перехватить настройки сценария и изменить их посредством дельта-управления. Если в базовой последовательности сценария нет настройки (регистра), то изменить его данным средством невозможно.</string>
     <string name="remove">Remove</string>
     <string name="remove_script_question">"%s также будет удален из диспетчера сценариев.\n\nВы уверены?"</string>
-    <string name="remove_summary">Remove this channel</string>
     <string name="reset">Сброс</string>
     <string name="reset_settings">Сброс настроек</string>
     <string name="reset_settings_message">"\nНастройки приложения будут полностью удалены.\n\nВы уверены?\n"</string>
@@ -830,9 +826,7 @@
     <string name="share_app_message">"Получить SmartPack-Kernel Manager %s из\n"</string>
     <string name="share_app_summary">Поделитесь этим приложением с друзьями</string>
     <string name="share_by">"'%s'  | поделиться SmartPack-Kernel Manager"</string>
-    <string name="share_channel">Поделиться каналом</string>
     <string name="share_channel_message">"Чтобы настроить этот канал обновление, просто введите '%s' в SmartPack-Kernel Manager -> SmartPack -> Канал обновления ядра\n\nВам SmartPack-ядра диспетчер\nОшибка: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nГитхаб:"</string>
-    <string name="share_channel_summary">Поделиться этим каналом</string>
     <string name="share_controller">"Чтобы применить этот контроллер, просто импортируйте этот файл в 'SmartPack-Kernel Manager -> Custom Controls"</string>
     <string name="share_log">"Чтобы устранить эту проблему, рассмотрите возможность совместного использования файла журнала, созданного в '%s', с разработчиком этого приложения.\nХотите поделиться этим сейчас?"</string>
     <string name="share_script">"Для установки этого скрипта, просто импортируйте этот файл в 'SmartPack-Kernel Manager -> Script Manager -> Import'."</string>

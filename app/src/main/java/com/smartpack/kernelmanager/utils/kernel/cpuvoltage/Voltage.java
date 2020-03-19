@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by willi on 07.05.16.
@@ -92,10 +93,10 @@ public class Voltage {
         if (PATH == null) return;
         String value = Utils.readFile(PATH).replace(" ", "");
         if (!value.isEmpty()) {
-            String[] lines = value.split(mSplitNewline.get(PATH));
+            String[] lines = value.split(Objects.requireNonNull(mSplitNewline.get(PATH)));
             sFreqs = new String[lines.length];
             for (int i = 0; i < sFreqs.length; i++) {
-                sFreqs[i] = lines[i].split(mSplitLine.get(PATH))[0].trim();
+                sFreqs[i] = lines[i].split(Objects.requireNonNull(mSplitLine.get(PATH)))[0].trim();
             }
         }
     }
@@ -141,10 +142,10 @@ public class Voltage {
     public List<String> getVoltages() {
         String value = Utils.readFile(PATH).replace(" ", "");
         if (!value.isEmpty()) {
-            String[] lines = value.split(mSplitNewline.get(PATH));
+            String[] lines = value.split(Objects.requireNonNull(mSplitNewline.get(PATH)));
             List<String> voltages = new ArrayList<>();
             for (String line : lines) {
-                String[] voltageLine = line.split(mSplitLine.get(PATH));
+                String[] voltageLine = line.split(Objects.requireNonNull(mSplitLine.get(PATH)));
                 if (voltageLine.length > 1) {
                     voltages.add(String.valueOf(Utils.strToInt(voltageLine[1].trim()) / mOffset.get(PATH)));
                 }

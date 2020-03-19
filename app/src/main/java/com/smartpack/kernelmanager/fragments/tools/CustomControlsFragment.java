@@ -21,10 +21,10 @@
 package com.smartpack.kernelmanager.fragments.tools;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -47,8 +47,7 @@ import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
-import com.smartpack.kernelmanager.views.recyclerview.CardView;
-import com.smartpack.kernelmanager.views.recyclerview.GenericSelectView;
+import com.smartpack.kernelmanager.views.recyclerview.GenericInputView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
 import com.smartpack.kernelmanager.utils.tools.CustomControls;
@@ -106,6 +105,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
     private void reload() {
         if (mLoader == null) {
             getHandler().postDelayed(new Runnable() {
+                @SuppressLint("StaticFieldLeak")
                 @Override
                 public void run() {
                     clearItems();
@@ -145,69 +145,50 @@ public class CustomControlsFragment extends RecyclerViewFragment {
         for (final String switchItems : CustomControls.switchList()) {
             if (CustomControls.switchFile().length() > 0 && Utils.existFile(Utils.readFile(
                     CustomControls.switchFile().toString() + "/" + switchItems))) {
-                CardView switchItemsCard = new CardView(getActivity());
-                switchItemsCard.setOnMenuListener(new CardView.OnMenuListener() {
-                    @Override
-                    public void onMenuReady(CardView switchItemsCard, PopupMenu popupMenu) {
-                        Menu menu = popupMenu.getMenu();
-                        menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.delete));
-                        menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.share));
-                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                switch (item.getItemId()) {
-                                    case 0:
-                                        mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
-                                                new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                    }
-                                                }, new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                        CustomControls.delete(CustomControls.switchFile().toString() + "/" + switchItems);
-                                                        reload();
-                                                    }
-                                                }, new DialogInterface.OnDismissListener() {
-                                                    @Override
-                                                    public void onDismiss(DialogInterface dialogInterface) {
-                                                        mDeleteDialog = null;
-                                                    }
-                                                }, getActivity());
-                                        mDeleteDialog.show();
-                                        break;
-                                    case 1:
-                                        Utils.shareItem(getActivity(), switchItems, CustomControls.switchFile().toString() +
-                                                        "/" + switchItems,getString(R.string.share_controller, CustomControls.switchFile()) +
-                                                " -> Import -> Switch'.\n\n" + getString(R.string.share_app_message, "v" +
-                                                BuildConfig.VERSION_NAME));
-                                        break;
-                                }
-                                return false;
-                            }
-                        });
-                    }
-                });
-
                 SwitchView itemslist = new SwitchView();
-                itemslist.setSummary(switchItems);
+                itemslist.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
+                itemslist.setSummary(Utils.readFile(CustomControls.switchFile().toString()+ "/" + switchItems));
                 itemslist.setChecked(CustomControls.isSwitchEnabled(Utils.readFile(
                         CustomControls.switchFile().toString() + "/" + switchItems)));
-                itemslist.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                    @Override
-                    public void onChanged(SwitchView switchView, boolean isChecked) {
-                        CustomControls.enableSwitch(isChecked, Utils.readFile(
-                                CustomControls.switchFile().toString() + "/" + switchItems), getActivity());
-                        getHandler().postDelayed(() -> {
-                                    itemslist.setChecked(CustomControls.isSwitchEnabled(Utils.readFile(
-                                            CustomControls.switchFile().toString() + "/" + switchItems)));
-                                },
-                                500);
-                    }
+                itemslist.addOnSwitchListener((switchView, isChecked) -> {
+                    CustomControls.enableSwitch(isChecked, Utils.readFile(
+                            CustomControls.switchFile().toString() + "/" + switchItems), getActivity());
+                    getHandler().postDelayed(() -> {
+                                itemslist.setChecked(CustomControls.isSwitchEnabled(Utils.readFile(
+                                        CustomControls.switchFile().toString() + "/" + switchItems)));
+                            },
+                            500);
+                });
+                itemslist.setOnMenuListener((itemslist1, popupMenu) -> {
+                    Menu menu = popupMenu.getMenu();
+                    menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.delete));
+                    menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.share));
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()) {
+                                case 0:
+                                    mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
+                                            (dialogInterface, i) -> {
+                                            }, (dialogInterface, i) -> {
+                                                CustomControls.delete(CustomControls.switchFile().toString() + "/" + switchItems);
+                                                reload();
+                                            }, dialogInterface -> mDeleteDialog = null, getActivity());
+                                    mDeleteDialog.show();
+                                    break;
+                                case 1:
+                                    Utils.shareItem(getActivity(), switchItems, CustomControls.switchFile().toString() +
+                                            "/" + switchItems,getString(R.string.share_controller, CustomControls.switchFile()) +
+                                            " -> Import -> Switch'.\n\n" + getString(R.string.share_app_message, "v" +
+                                            BuildConfig.VERSION_NAME));
+                                    break;
+                            }
+                            return false;
+                        }
+                    });
                 });
 
-                switchItemsCard.addItem(itemslist);
-                items.add(switchItemsCard);
+                items.add(itemslist);
             }
         }
     }
@@ -216,70 +197,49 @@ public class CustomControlsFragment extends RecyclerViewFragment {
         for (final String genericItems : CustomControls.genericList()) {
             if (CustomControls.switchFile().length() > 0 && Utils.existFile(Utils.readFile(
                     CustomControls.genericFile().toString() + "/" + genericItems))) {
-                CardView genericItemsCard = new CardView(getActivity());
-                genericItemsCard.setOnMenuListener(new CardView.OnMenuListener() {
-                    @Override
-                    public void onMenuReady(CardView genericItemsCard, PopupMenu popupMenu) {
-                        Menu menu = popupMenu.getMenu();
-                        menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.delete));
-                        menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.share));
-                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                switch (item.getItemId()) {
-                                    case 0:
-                                        mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
-                                                new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                    }
-                                                }, new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                        CustomControls.delete(CustomControls.genericFile().toString() + "/" + genericItems);
-                                                        reload();
-                                                    }
-                                                }, new DialogInterface.OnDismissListener() {
-                                                    @Override
-                                                    public void onDismiss(DialogInterface dialogInterface) {
-                                                        mDeleteDialog = null;
-                                                    }
-                                                }, getActivity());
-                                        mDeleteDialog.show();
-                                        break;
-                                    case 1:
-                                        Utils.shareItem(getActivity(), genericItems, CustomControls.genericFile().toString() +
-                                                "/" + genericItems,getString(R.string.share_controller, CustomControls.genericFile()) +
-                                                " -> Import -> Generic'.\n\n" + getString(R.string.share_app_message, "v" +
-                                                BuildConfig.VERSION_NAME));
-                                        break;
-                                }
-                                return false;
-                            }
-                        });
-                    }
-                });
-
-                GenericSelectView itemslist = new GenericSelectView();
-                itemslist.setSummary(genericItems);
+                GenericInputView itemslist = new GenericInputView();
+                itemslist.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
+                itemslist.setTitle(Utils.readFile(CustomControls.genericFile().toString()+ "/" + genericItems));
                 itemslist.setValue(CustomControls.getGenericValue(Utils.readFile(
                         CustomControls.genericFile().toString() + "/" + genericItems)));
                 itemslist.setInputType(InputType.TYPE_CLASS_NUMBER);
-                itemslist.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                    @Override
-                    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                        CustomControls.setGenericValue(value, Utils.readFile(CustomControls.genericFile().toString() +
-                                "/" + genericItems), getActivity());
-                        getHandler().postDelayed(() -> {
-                                    itemslist.setValue(CustomControls.getGenericValue(Utils.readFile(
-                                            CustomControls.genericFile().toString() + "/" + genericItems)));
-                                },
-                                500);
-                    }
+                itemslist.setOnGenericValueListener((genericInputView, value) -> {
+                    CustomControls.setGenericValue(value, Utils.readFile(CustomControls.genericFile().toString() +
+                            "/" + genericItems), getActivity());
+                    getHandler().postDelayed(() -> {
+                                itemslist.setValue(CustomControls.getGenericValue(Utils.readFile(
+                                        CustomControls.genericFile().toString() + "/" + genericItems)));
+                            },
+                            500);
                 });
 
-                genericItemsCard.addItem(itemslist);
-                items.add(genericItemsCard);
+                itemslist.setOnMenuListener((itemslist1, popupMenu) -> {
+                    Menu menu = popupMenu.getMenu();
+                    menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.delete));
+                    menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.share));
+                    popupMenu.setOnMenuItemClickListener(item -> {
+                        switch (item.getItemId()) {
+                            case 0:
+                                mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
+                                        (dialogInterface, i) -> {
+                                        }, (dialogInterface, i) -> {
+                                            CustomControls.delete(CustomControls.genericFile().toString() + "/" + genericItems);
+                                            reload();
+                                        }, dialogInterface -> mDeleteDialog = null, getActivity());
+                                mDeleteDialog.show();
+                                break;
+                            case 1:
+                                Utils.shareItem(getActivity(), genericItems, CustomControls.genericFile().toString() +
+                                        "/" + genericItems,getString(R.string.share_controller, CustomControls.genericFile()) +
+                                        " -> Import -> Generic'.\n\n" + getString(R.string.share_app_message, "v" +
+                                        BuildConfig.VERSION_NAME));
+                                break;
+                        }
+                        return false;
+                    });
+                });
+
+                items.add(itemslist);
             }
         }
     }
@@ -297,71 +257,47 @@ public class CustomControlsFragment extends RecyclerViewFragment {
             return;
         }
 
-        mSelectionMenu = new Dialog(getActivity()).setItems(getResources().getStringArray(
-                R.array.custom_controls_options), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                switch (i) {
-                    case 0:
-                        mSelectionMenu = new Dialog(getActivity()).setItems(getResources().getStringArray(
-                                R.array.create_controls_options), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                switch (i) {
-                                    case 0:
-                                        Intent switchIntent  = new Intent(Intent.ACTION_GET_CONTENT);
-                                        switchIntent.setType("*/*");
-                                        startActivityForResult(switchIntent, 0);
-                                        break;
-                                    case 1:
-                                        Intent genericIntent  = new Intent(Intent.ACTION_GET_CONTENT);
-                                        genericIntent.setType("*/*");
-                                        startActivityForResult(genericIntent, 1);
-                                        break;
-                                }
-                            }
-                        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialogInterface) {
-                                mSelectionMenu = null;
-                            }
-                        });
-                        mSelectionMenu.show();
-                        break;
-                    case 1:
-                        mSelectionMenu = new Dialog(getActivity()).setItems(getResources().getStringArray(
-                                R.array.create_controls_options), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                switch (i) {
-                                    case 0:
-                                        Intent switchIntent  = new Intent(Intent.ACTION_GET_CONTENT);
-                                        switchIntent.setType("*/*");
-                                        startActivityForResult(switchIntent, 2);
-                                        break;
-                                    case 1:
-                                        Intent genericIntent  = new Intent(Intent.ACTION_GET_CONTENT);
-                                        genericIntent.setType("*/*");
-                                        startActivityForResult(genericIntent, 3);
-                                        break;
-                                }
-                            }
-                        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialogInterface) {
-                                mSelectionMenu = null;
-                            }
-                        });
-                        mSelectionMenu.show();
-                        break;
-                }
-            }
-        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                mSelectionMenu = null;
-            }
-        });
+        mSelectionMenu = new Dialog(requireActivity()).setItems(getResources().getStringArray(
+                R.array.custom_controls_options), (dialogInterface, i) -> {
+                    switch (i) {
+                        case 0:
+                            mSelectionMenu = new Dialog(requireActivity()).setItems(getResources().getStringArray(
+                                    R.array.create_controls_options), (dialogInterface1, i1) -> {
+                                        switch (i1) {
+                                            case 0:
+                                                Intent switchIntent  = new Intent(Intent.ACTION_GET_CONTENT);
+                                                switchIntent.setType("*/*");
+                                                startActivityForResult(switchIntent, 0);
+                                                break;
+                                            case 1:
+                                                Intent genericIntent  = new Intent(Intent.ACTION_GET_CONTENT);
+                                                genericIntent.setType("*/*");
+                                                startActivityForResult(genericIntent, 1);
+                                                break;
+                                        }
+                                    }).setOnDismissListener(dialogInterface12 -> mSelectionMenu = null);
+                            mSelectionMenu.show();
+                            break;
+                        case 1:
+                            mSelectionMenu = new Dialog(requireActivity()).setItems(getResources().getStringArray(
+                                    R.array.create_controls_options), (dialogInterface13, i12) -> {
+                                        switch (i12) {
+                                            case 0:
+                                                Intent switchIntent  = new Intent(Intent.ACTION_GET_CONTENT);
+                                                switchIntent.setType("*/*");
+                                                startActivityForResult(switchIntent, 2);
+                                                break;
+                                            case 1:
+                                                Intent genericIntent  = new Intent(Intent.ACTION_GET_CONTENT);
+                                                genericIntent.setType("*/*");
+                                                startActivityForResult(genericIntent, 3);
+                                                break;
+                                        }
+                                    }).setOnDismissListener(dialogInterface14 -> mSelectionMenu = null);
+                            mSelectionMenu.show();
+                            break;
+                    }
+                }).setOnDismissListener(dialogInterface -> mSelectionMenu = null);
         mSelectionMenu.show();
     }
 
@@ -389,9 +325,10 @@ public class CustomControlsFragment extends RecyclerViewFragment {
 
         if (data != null) {
             Uri uri = data.getData();
-            File file = new File(uri.getPath());
+            assert uri != null;
+            File file = new File(Objects.requireNonNull(uri.getPath()));
             if (Utils.isDocumentsUI(uri)) {
-                Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+                @SuppressLint("Recycle") Cursor cursor = requireActivity().getContentResolver().query(uri, null, null, null, null);
                 if (cursor != null && cursor.moveToFirst()) {
                     mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
                             cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
@@ -420,7 +357,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                 Utils.toast(getString(R.string.already_added, mPath), getActivity());
                 return;
             }
-            Dialog selectControl = new Dialog(getActivity());
+            Dialog selectControl = new Dialog(requireActivity());
             selectControl.setMessage(getString(R.string.select_question, mPath));
             selectControl.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
             });

@@ -105,118 +105,86 @@ public class AboutFragment extends RecyclerViewFragment {
         support.setDrawable(getResources().getDrawable(R.drawable.ic_support));
         support.setTitle(getString(R.string.support));
         support.setSummary(getString(R.string.support_summary));
-        support.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                Utils.launchUrl("https://t.me/smartpack_kmanager", getActivity());
-            }
-        });
+        support.setOnItemClickListener(item -> Utils.launchUrl("https://t.me/smartpack_kmanager", getActivity()));
 
         DescriptionView sourcecode = new DescriptionView();
         sourcecode.setDrawable(getResources().getDrawable(R.drawable.ic_source));
         sourcecode.setTitle(getString(R.string.source_code));
         sourcecode.setSummary(getString(R.string.source_code_summary));
-        sourcecode.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager", requireActivity());
-            }
-        });
+        sourcecode.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager", requireActivity()));
 
         DescriptionView changelogs = new DescriptionView();
         changelogs.setDrawable(getResources().getDrawable(R.drawable.ic_changelog));
         changelogs.setTitle(getString(R.string.change_logs));
         changelogs.setSummary(getString(R.string.change_logs_summary));
-        changelogs.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/change-logs.md", getActivity());
-            }
-        });
+        changelogs.setOnItemClickListener(item -> Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/change-logs.md", getActivity()));
 
         DescriptionView playstore = new DescriptionView();
         playstore.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
         playstore.setTitle(getString(R.string.playstore));
         playstore.setSummary(getString(R.string.playstore_summary));
-        playstore.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                if (!Utils.isNetworkAvailable(requireActivity())) {
-                    Utils.toast(R.string.no_internet, getActivity());
-                    return;
-                }
-                Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager", requireActivity());
+        playstore.setOnItemClickListener(item -> {
+            if (!Utils.isNetworkAvailable(requireActivity())) {
+                Utils.toast(R.string.no_internet, getActivity());
+                return;
             }
+            Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager", requireActivity());
         });
 
         DescriptionView updatecheck = new DescriptionView();
         updatecheck.setDrawable(getResources().getDrawable(R.drawable.ic_update));
         updatecheck.setTitle(getString(R.string.check_update));
         updatecheck.setSummary(getString(R.string.check_update_summary));
-        updatecheck.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                if (!Utils.isNetworkAvailable(requireActivity())) {
-                    Utils.toast(R.string.no_internet, getActivity());
-                    return;
-                }
-                UpdateCheck.manualUpdateCheck(getActivity());
+        updatecheck.setOnItemClickListener(item -> {
+            if (!Utils.isNetworkAvailable(requireActivity())) {
+                Utils.toast(R.string.no_internet, getActivity());
+                return;
             }
+            UpdateCheck.manualUpdateCheck(getActivity());
         });
 
         SwitchView autoUpdateCheck = new SwitchView();
         autoUpdateCheck.setDrawable(getResources().getDrawable(R.drawable.ic_update));
         autoUpdateCheck.setSummary(getString(R.string.auto_update_check));
         autoUpdateCheck.setChecked(Prefs.getBoolean("auto_update", true, getActivity()));
-        autoUpdateCheck.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchview, boolean isChecked) {
-                Prefs.saveBoolean("auto_update", isChecked, getActivity());
-            }
-        });
+        autoUpdateCheck.addOnSwitchListener((switchview, isChecked) -> Prefs.saveBoolean("auto_update", isChecked, getActivity()));
 
         DescriptionView donatetome = new DescriptionView();
         donatetome.setDrawable(getResources().getDrawable(R.drawable.ic_donate));
         donatetome.setTitle(getString(R.string.donate_me));
         donatetome.setSummary(getString(R.string.donate_me_summary));
-        donatetome.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                Dialog donate_to_me = new Dialog(requireActivity());
-                donate_to_me.setIcon(R.mipmap.ic_launcher);
-                donate_to_me.setTitle(getString(R.string.donate_me));
-                if (Utils.isSPDonated(requireActivity())) {
-                    donate_to_me.setMessage(getString(R.string.donate_me_message));
-                    donate_to_me.setNeutralButton(getString(R.string.donate_nope), (dialogInterface, i) -> {
-                    });
-                } else {
-                    donate_to_me.setMessage(getString(R.string.donate_me_message) + getString(R.string.donate_me_playstore));
-                    donate_to_me.setNeutralButton(getString(R.string.purchase_app), (dialogInterface, i) -> {
-                        Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.donate", getActivity());
-                    });
-                }
-                donate_to_me.setPositiveButton(getString(R.string.paypal_donation), (dialog1, id1) -> {
-                    Utils.launchUrl("https://www.paypal.me/sunilpaulmathew", getActivity());
+        donatetome.setOnItemClickListener(item -> {
+            Dialog donate_to_me = new Dialog(requireActivity());
+            donate_to_me.setIcon(R.mipmap.ic_launcher);
+            donate_to_me.setTitle(getString(R.string.donate_me));
+            if (Utils.isSPDonated(requireActivity())) {
+                donate_to_me.setMessage(getString(R.string.donate_me_message));
+                donate_to_me.setNeutralButton(getString(R.string.donate_nope), (dialogInterface, i) -> {
                 });
-                donate_to_me.show();
+            } else {
+                donate_to_me.setMessage(getString(R.string.donate_me_message) + getString(R.string.donate_me_playstore));
+                donate_to_me.setNeutralButton(getString(R.string.purchase_app), (dialogInterface, i) -> {
+                    Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.donate", getActivity());
+                });
             }
+            donate_to_me.setPositiveButton(getString(R.string.paypal_donation), (dialog1, id1) -> {
+                Utils.launchUrl("https://www.paypal.me/sunilpaulmathew", getActivity());
+            });
+            donate_to_me.show();
         });
 
         DescriptionView share = new DescriptionView();
         share.setDrawable(getResources().getDrawable(R.drawable.ic_share));
         share.setTitle(getString(R.string.share_app));
         share.setSummary(getString(R.string.share_app_summary));
-        share.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                Intent shareapp = new Intent();
-                shareapp.setAction(Intent.ACTION_SEND);
-                shareapp.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-                shareapp.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME));
-                shareapp.setType("text/plain");
-                Intent shareIntent = Intent.createChooser(shareapp, null);
-                startActivity(shareIntent);
-            }
+        share.setOnItemClickListener(item -> {
+            Intent shareapp = new Intent();
+            shareapp.setAction(Intent.ACTION_SEND);
+            shareapp.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+            shareapp.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME));
+            shareapp.setType("text/plain");
+            Intent shareIntent = Intent.createChooser(shareapp, null);
+            startActivity(shareIntent);
         });
 
         items.add(about);
@@ -227,7 +195,9 @@ public class AboutFragment extends RecyclerViewFragment {
         items.add(playstore);
         if (!Utils.isPlayStoreInstalled(requireActivity())) {
             items.add(updatecheck);
-            items.add(autoUpdateCheck);
+            if (Utils.isDownloadBinaries()) {
+                items.add(autoUpdateCheck);
+            }
         }
         items.add(donatetome);
         items.add(share);
@@ -243,12 +213,7 @@ public class AboutFragment extends RecyclerViewFragment {
         Grarak.setTitle(getString(R.string.grarak));
         Grarak.setSummary(getString(R.string.grarak_summary));
         Grarak.setFullSpan(true);
-        Grarak.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                Utils.launchUrl("https://github.com/Grarak", getActivity());
-            }
-        });
+        Grarak.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/Grarak", getActivity()));
 
         items.add(Grarak);
 
@@ -257,12 +222,7 @@ public class AboutFragment extends RecyclerViewFragment {
         osm0sis.setTitle(getString(R.string.osm0sis));
         osm0sis.setSummary(getString(R.string.osm0sis_summary));
         osm0sis.setFullSpan(true);
-        osm0sis.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                Utils.launchUrl("https://github.com/osm0sis", getActivity());
-            }
-        });
+        osm0sis.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/osm0sis", getActivity()));
 
         items.add(osm0sis);
 
@@ -306,12 +266,7 @@ public class AboutFragment extends RecyclerViewFragment {
             }
             descriptionView.setTitle(lib.split(",")[1]);
             descriptionView.setSummary(lib.split(",")[0]);
-            descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    Utils.launchUrl(sCredits.get(lib), getActivity());
-                }
-            });
+            descriptionView.setOnItemClickListener(item -> Utils.launchUrl(sCredits.get(lib), getActivity()));
 
             items.add(descriptionView);
         }
@@ -343,12 +298,7 @@ public class AboutFragment extends RecyclerViewFragment {
             }
             descriptionView.setTitle(lib.split(",")[1]);
             descriptionView.setSummary(lib.split(",")[0]);
-            descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    Utils.launchUrl(sTranslations.get(lib), getActivity());
-                }
-            });
+            descriptionView.setOnItemClickListener(item -> Utils.launchUrl(sTranslations.get(lib), getActivity()));
 
             items.add(descriptionView);
         }
@@ -360,18 +310,15 @@ public class AboutFragment extends RecyclerViewFragment {
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                                  @Nullable Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_info, container, false);
-            rootView.findViewById(R.id.image).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Dialog licence = new Dialog(requireActivity());
-                    licence.setIcon(R.mipmap.ic_launcher);
-                    licence.setTitle(getString(R.string.licence));
-                    licence.setMessage(getString(R.string.licence_message));
-                    licence.setPositiveButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                    });
+            rootView.findViewById(R.id.image).setOnClickListener(view -> {
+                Dialog licence = new Dialog(requireActivity());
+                licence.setIcon(R.mipmap.ic_launcher);
+                licence.setTitle(getString(R.string.licence));
+                licence.setMessage(getString(R.string.licence_message));
+                licence.setPositiveButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                });
 
-                    licence.show();
-                }
+                licence.show();
             });
             return rootView;
         }

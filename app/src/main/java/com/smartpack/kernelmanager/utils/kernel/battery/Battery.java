@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.utils.kernel.battery;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
  
 import androidx.annotation.NonNull;
@@ -96,7 +97,7 @@ public class Battery {
     private Battery(Context context) {
         if (mCapacity == 0) {
             try {
-                Class<?> powerProfile = Class.forName("com.android.internal.os.PowerProfile");
+                @SuppressLint("PrivateApi") Class<?> powerProfile = Class.forName("com.android.internal.os.PowerProfile");
                 Constructor constructor = powerProfile.getDeclaredConstructor(Context.class);
                 Object powerProInstance = constructor.newInstance(context);
                 Method batteryCap = powerProfile.getMethod("getBatteryCapacity");
@@ -275,15 +276,15 @@ public class Battery {
         }
     }
     
-    public static String ChargingStatus() {
+    private static String ChargingStatus() {
         return Utils.readFile(CHARGE_STATUS);
     }
 
-    public static int ChargingType() {
+    private static int ChargingType() {
         return Utils.strToInt(Utils.readFile(CHARGE_SOURCE));
     }
 
-    public static boolean hasBatteryHealth() {
+    private static boolean hasBatteryHealth() {
         return Utils.existFile(HEALTH);
     }
 
@@ -291,12 +292,8 @@ public class Battery {
         return Utils.readFile(HEALTH);
     }
 
-    public static boolean hasBatteryLevel() {
+    private static boolean hasBatteryLevel() {
         return Utils.existFile(LEVEL);
-    }
-
-    public static int BatteryLevel() {
-        return Utils.strToInt(Utils.readFile(LEVEL).replace(".0", ""));
     }
 
     public static boolean hasBatteryVoltage() {
@@ -308,11 +305,11 @@ public class Battery {
         return String.valueOf(voltage / 1000);
     }
 
-    public static String ChargerType() {
+    private static String ChargerType() {
         return Utils.readFile(CHARGE_TYPE);
     }
 
-    public static String fastChgType() {
+    private static String fastChgType() {
         return Utils.readFile(FATCHG_TYPE);
     }
 

@@ -64,7 +64,7 @@ public abstract class RecyclerViewItem {
         mOnViewChangedListener = onViewChangeListener;
     }
 
-    protected OnItemClickListener getOnItemClickListener() {
+    OnItemClickListener getOnItemClickListener() {
         return mOnItemClickListener;
     }
 

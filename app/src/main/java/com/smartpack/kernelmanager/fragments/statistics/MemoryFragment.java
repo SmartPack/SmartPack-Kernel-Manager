@@ -51,7 +51,7 @@ public class MemoryFragment extends RecyclerViewFragment {
 
     @Override
     public int getSpanCount() {
-        int span = Utils.isTablet(getActivity()) ? Utils.getOrientation(getActivity()) ==
+        int span = Utils.isTablet(requireActivity()) ? Utils.getOrientation(getActivity()) ==
                 Configuration.ORIENTATION_LANDSCAPE ? 5 : 4 : Utils.getOrientation(getActivity()) ==
                 Configuration.ORIENTATION_LANDSCAPE ? 3 : 2;
         if (itemsSize() != 0 && span > itemsSize()) {

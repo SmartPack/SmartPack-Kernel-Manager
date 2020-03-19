@@ -859,8 +859,7 @@
 
      <!-- Settings-->
      <string name="open_settings">开启设定</string>
-     <string name="fahrenheit_title">使用华氏温度</string>
-     <string name="fahrenheit_summary">使用华氏温度测量。  </string>
+     <string name="fahrenheit_summary">使用华氏温度测量。  </string>
      <string name="force_english">强制使用英文</string>
      <string name="user_interface">使用者界面</string>
      <string name="dark_theme">深色主题</string>

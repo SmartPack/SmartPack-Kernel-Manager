@@ -39,6 +39,7 @@ import com.smartpack.kernelmanager.utils.root.RootUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by willi on 17.07.16.
@@ -78,7 +79,7 @@ public class Widget extends AppWidgetProvider {
     public void onReceive(final Context context, Intent intent) {
         super.onReceive(context, intent);
 
-        if (intent.getAction().equals(LIST_ITEM_CLICK)) {
+        if (Objects.equals(intent.getAction(), LIST_ITEM_CLICK)) {
             final int position = intent.getIntExtra(ITEM_ARG, 0);
             Profiles.ProfileItem profileItem = new Profiles(context).getAllProfiles().get(position);
             if (!Prefs.getBoolean("profileclicked" + position, false, context)) {

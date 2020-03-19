@@ -22,16 +22,15 @@
 package com.smartpack.kernelmanager.fragments.kernel;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.text.InputType;
 import android.widget.TimePicker;
 
-import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.smartpack.kernelmanager.BuildConfig;
@@ -75,7 +74,7 @@ public class KLapseFragment extends RecyclerViewFragment {
 
     @Override
     protected Drawable getTopFabDrawable() {
-        Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_add));
+        Drawable drawable = getResources().getDrawable(R.drawable.ic_add);
         DrawableCompat.setTint(drawable, Color.WHITE);
         return drawable;
     }
@@ -108,17 +107,14 @@ public class KLapseFragment extends RecyclerViewFragment {
             enable.setSummary(getString(R.string.klapse_summary));
             enable.setItems(KLapse.enable(getActivity()));
             enable.setItem(KLapse.getklapseEnable());
-            enable.setOnItemSelected(new SelectView.OnItemSelected() {
-                @Override
-                public void onItemSelected(SelectView selectView, int position, String item) {
-                    KLapse.setklapseEnable(position, getActivity());
-                    getHandler().postDelayed(() -> {
-                                KLapse.setklapseRed((nightR), getActivity());
-                                KLapse.setklapseGreen((nightG), getActivity());
-                                KLapse.setklapseBlue((nightB), getActivity());
-                            },
-                            100);
-                }
+            enable.setOnItemSelected((selectView, position, item) -> {
+                KLapse.setklapseEnable(position, getActivity());
+                getHandler().postDelayed(() -> {
+                            KLapse.setklapseRed((nightR), getActivity());
+                            KLapse.setklapseGreen((nightG), getActivity());
+                            KLapse.setklapseBlue((nightB), getActivity());
+                        },
+                        100);
             });
 
             klapseCard.addItem(enable);
@@ -132,22 +128,16 @@ public class KLapseFragment extends RecyclerViewFragment {
             DescriptionView klapseStart = new DescriptionView();
             klapseStart.setTitle(getString(R.string.night_mode_schedule));
             klapseStart.setSummary(getString(R.string.start_time) + ": " + KLapse.getklapseStart());
-            klapseStart.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
-                            new TimePickerDialog.OnTimeSetListener() {
-                                @Override
-                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                    KLapse.setklapseStart((hourOfDay * 60) + minute, getActivity());
-                                    getHandler().postDelayed(() -> {
-                                                klapseStart.setSummary(getString(R.string.start_time) + ": " + KLapse.getklapseStart());
-                                            },
-                                            500);
-                                }
-                            }, startHr, startMin, false);
-                    timePickerDialog.show();
-                }
+            klapseStart.setOnItemClickListener(item -> {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                        (view, hourOfDay, minute) -> {
+                            KLapse.setklapseStart((hourOfDay * 60) + minute, getActivity());
+                            getHandler().postDelayed(() -> {
+                                        klapseStart.setSummary(getString(R.string.start_time) + ": " + KLapse.getklapseStart());
+                                    },
+                                    500);
+                        }, startHr, startMin, false);
+                timePickerDialog.show();
             });
 
             klapseCard.addItem(klapseStart);
@@ -160,22 +150,16 @@ public class KLapseFragment extends RecyclerViewFragment {
 
             DescriptionView klapseStop = new DescriptionView();
             klapseStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getklapseStop());
-            klapseStop.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
-                            new TimePickerDialog.OnTimeSetListener() {
-                                @Override
-                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                    KLapse.setklapseStop((hourOfDay * 60) + minute, getActivity());
-                                    getHandler().postDelayed(() -> {
-                                                klapseStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getklapseStop());
-                                            },
-                                            500);
-                                }
-                            }, EndHr, EndMin, false);
-                    timePickerDialog.show();
-                }
+            klapseStop.setOnItemClickListener(item -> {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                        (view, hourOfDay, minute) -> {
+                            KLapse.setklapseStop((hourOfDay * 60) + minute, getActivity());
+                            getHandler().postDelayed(() -> {
+                                        klapseStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getklapseStop());
+                                    },
+                                    500);
+                        }, EndHr, EndMin, false);
+                timePickerDialog.show();
             });
 
             klapseCard.addItem(klapseStop);
@@ -187,12 +171,9 @@ public class KLapseFragment extends RecyclerViewFragment {
             scalingRate.setSummary(getString(R.string.scaling_rate_summary));
             scalingRate.setValue(KLapse.getScalingRate());
             scalingRate.setInputType(InputType.TYPE_CLASS_NUMBER);
-            scalingRate.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    KLapse.setScalingRate(value, getActivity());
-                    genericSelectView.setValue(value);
-                }
+            scalingRate.setOnGenericValueListener((genericSelectView, value) -> {
+                KLapse.setScalingRate(value, getActivity());
+                genericSelectView.setValue(value);
             });
 
             klapseCard.addItem(scalingRate);
@@ -204,12 +185,9 @@ public class KLapseFragment extends RecyclerViewFragment {
             fadebackMinutes.setSummary(getString(R.string.fadeback_time_summary));
             fadebackMinutes.setValue(KLapse.getFadeBackMinutes());
             fadebackMinutes.setInputType(InputType.TYPE_CLASS_NUMBER);
-            fadebackMinutes.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    KLapse.setFadeBackMinutes(value, getActivity());
-                    genericSelectView.setValue(value);
-                }
+            fadebackMinutes.setOnGenericValueListener((genericSelectView, value) -> {
+                KLapse.setFadeBackMinutes(value, getActivity());
+                genericSelectView.setValue(value);
             });
 
             klapseCard.addItem(fadebackMinutes);
@@ -337,12 +315,9 @@ public class KLapseFragment extends RecyclerViewFragment {
             pulseFreq.setSummary(getString(R.string.pulse_freq_summary));
             pulseFreq.setValue(KLapse.getPulseFreq());
             pulseFreq.setInputType(InputType.TYPE_CLASS_NUMBER);
-            pulseFreq.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    KLapse.setPulseFreq(value, getActivity());
-                    genericSelectView.setValue(value);
-                }
+            pulseFreq.setOnGenericValueListener((genericSelectView, value) -> {
+                KLapse.setPulseFreq(value, getActivity());
+                genericSelectView.setValue(value);
             });
 
             klapseCard.addItem(pulseFreq);
@@ -354,12 +329,9 @@ public class KLapseFragment extends RecyclerViewFragment {
             flowFreq.setSummary(getString(R.string.flow_freq_summary));
             flowFreq.setValue(KLapse.getFlowFreq());
             flowFreq.setInputType(InputType.TYPE_CLASS_NUMBER);
-            flowFreq.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    KLapse.setFlowFreq(value, getActivity());
-                    genericSelectView.setValue(value);
-                }
+            flowFreq.setOnGenericValueListener((genericSelectView, value) -> {
+                KLapse.setFlowFreq(value, getActivity());
+                genericSelectView.setValue(value);
             });
 
             klapseCard.addItem(flowFreq);
@@ -371,12 +343,9 @@ public class KLapseFragment extends RecyclerViewFragment {
             backlightRange.setSummary("Min");
             backlightRange.setValue(KLapse.getBLRangeLower());
             backlightRange.setInputType(InputType.TYPE_CLASS_NUMBER);
-            backlightRange.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    KLapse.setBLRangeLower(value, getActivity());
-                    genericSelectView.setValue(value);
-                }
+            backlightRange.setOnGenericValueListener((genericSelectView, value) -> {
+                KLapse.setBLRangeLower(value, getActivity());
+                genericSelectView.setValue(value);
             });
 
             klapseCard.addItem(backlightRange);
@@ -387,12 +356,9 @@ public class KLapseFragment extends RecyclerViewFragment {
             backlightRange.setSummary("Max");
             backlightRange.setValue(KLapse.getBLRangeUpper());
             backlightRange.setInputType(InputType.TYPE_CLASS_NUMBER);
-            backlightRange.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    KLapse.setBLRangeUpper(value, getActivity());
-                    genericSelectView.setValue(value);
-                }
+            backlightRange.setOnGenericValueListener((genericSelectView, value) -> {
+                KLapse.setBLRangeUpper(value, getActivity());
+                genericSelectView.setValue(value);
             });
 
             klapseCard.addItem(backlightRange);
@@ -453,22 +419,16 @@ public class KLapseFragment extends RecyclerViewFragment {
 
             brightFactStart.setTitle(getString(R.string.auto_dimming_schedule));
             brightFactStart.setSummary(getString(R.string.start_time) + ": " + KLapse.getBrightFactStart());
-            brightFactStart.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
-                            new TimePickerDialog.OnTimeSetListener() {
-                                @Override
-                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                    KLapse.setBrightFactStart((hourOfDay * 60) + minute, getActivity());
-                                    getHandler().postDelayed(() -> {
-                                                brightFactStart.setSummary(getString(R.string.start_time) + ": " + KLapse.getBrightFactStart());
-                                            },
-                                            500);
-                                }
-                            }, startHr, startMin, false);
-                    timePickerDialog.show();
-                }
+            brightFactStart.setOnItemClickListener(item -> {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                        (view, hourOfDay, minute) -> {
+                            KLapse.setBrightFactStart((hourOfDay * 60) + minute, getActivity());
+                            getHandler().postDelayed(() -> {
+                                        brightFactStart.setSummary(getString(R.string.start_time) + ": " + KLapse.getBrightFactStart());
+                                    },
+                                    500);
+                        }, startHr, startMin, false);
+                timePickerDialog.show();
             });
 
             if (KLapse.isAutoBrightnessFactorEnabled()) {
@@ -484,22 +444,19 @@ public class KLapseFragment extends RecyclerViewFragment {
             int EndMin = EndTime - (EndHr * 60);
 
             brightFactStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getBrightFactStop());
-            brightFactStop.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
-                            new TimePickerDialog.OnTimeSetListener() {
-                                @Override
-                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                    KLapse.setBrightFactStop((hourOfDay * 60) + minute, getActivity());
-                                    getHandler().postDelayed(() -> {
-                                                brightFactStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getBrightFactStop());
-                                            },
-                                            500);
-                                }
-                            }, EndHr, EndMin, false);
-                    timePickerDialog.show();
-                }
+            brightFactStop.setOnItemClickListener(item -> {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                KLapse.setBrightFactStop((hourOfDay * 60) + minute, getActivity());
+                                getHandler().postDelayed(() -> {
+                                            brightFactStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getBrightFactStop());
+                                        },
+                                        500);
+                            }
+                        }, EndHr, EndMin, false);
+                timePickerDialog.show();
             });
 
             if (KLapse.isAutoBrightnessFactorEnabled()) {
@@ -522,28 +479,16 @@ public class KLapseFragment extends RecyclerViewFragment {
             return;
         }
 
-        mOptionsDialog = new Dialog(getActivity()).setItems(getResources().getStringArray(
-                R.array.klapse), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                showCreateDialog();
-            }
-        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                mOptionsDialog = null;
-            }
-        });
+        mOptionsDialog = new Dialog(requireActivity()).setItems(getResources().getStringArray(
+                R.array.klapse), (dialogInterface, i) -> showCreateDialog()).setOnDismissListener(dialogInterface -> mOptionsDialog = null);
         mOptionsDialog.show();
     }
 
     private void showCreateDialog() {
         ViewUtils.dialogEditText("",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
+                (dialogInterface, i) -> {
                 }, new ViewUtils.OnDialogEditTextListener() {
+                    @SuppressLint("StaticFieldLeak")
                     @Override
                     public void onClick(String text) {
                         if (text.isEmpty()) {
@@ -591,7 +536,7 @@ public class KLapseFragment extends RecyclerViewFragment {
                                     mProgressDialog.dismiss();
                                 } catch (IllegalArgumentException ignored) {
                                 }
-                                new Dialog(getActivity())
+                                new Dialog(requireActivity())
                                         .setMessage(getString(R.string.profile_created, KLapse.profileFolder().toString() + "/" + path))
                                         .setCancelable(false)
                                         .setNegativeButton(getString(R.string.cancel), (dialog, id) -> {
@@ -605,11 +550,8 @@ public class KLapseFragment extends RecyclerViewFragment {
                             }
                         }.execute();
                     }
-                }, getActivity()).setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-            }
-        }).show();
+                }, getActivity()).setOnDismissListener(dialogInterface -> {
+                }).show();
     }
 
     @Override

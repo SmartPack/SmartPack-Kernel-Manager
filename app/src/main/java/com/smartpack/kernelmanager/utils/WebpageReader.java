@@ -50,69 +50,53 @@ public class WebpageReader {
     }
 
     public void get(final String link) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                BufferedReader reader = null;
+        new Thread(() -> {
+            BufferedReader reader = null;
+            try {
+                mConnection = (HttpURLConnection) new URL(link).openConnection();
+                mConnection.setRequestMethod("GET");
+                mConnection.setConnectTimeout(10000);
+                mConnection.setReadTimeout(10000);
+
+                InputStream inputStream;
+                if (mConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    inputStream = mConnection.getInputStream();
+                } else {
+                    inputStream = mConnection.getErrorStream();
+                }
+
+                reader = new BufferedReader(new InputStreamReader(inputStream));
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line).append("\n");
+                }
+
+                success(link, sb.toString());
+            } catch (IOException ignored) {
+                failure(link);
+            } finally {
                 try {
-                    mConnection = (HttpURLConnection) new URL(link).openConnection();
-                    mConnection.setRequestMethod("GET");
-                    mConnection.setConnectTimeout(10000);
-                    mConnection.setReadTimeout(10000);
-
-                    InputStream inputStream;
-                    if (mConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                        inputStream = mConnection.getInputStream();
-                    } else {
-                        inputStream = mConnection.getErrorStream();
-                    }
-
-                    reader = new BufferedReader(new InputStreamReader(inputStream));
-
-                    StringBuilder sb = new StringBuilder();
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        sb.append(line).append("\n");
-                    }
-
-                    success(link, sb.toString());
+                    if (reader != null) reader.close();
                 } catch (IOException ignored) {
-                    failure(link);
-                } finally {
-                    try {
-                        if (reader != null) reader.close();
-                    } catch (IOException ignored) {
-                    }
                 }
             }
         }).start();
     }
 
     private void success(final String url, final String result) {
-        mActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mWebpageListener.onSuccess(url, result, Utils.htmlFrom(result));
-            }
-        });
+        mActivity.runOnUiThread(() -> mWebpageListener.onSuccess(url, result, Utils.htmlFrom(result)));
     }
 
     private void failure(final String url) {
-        mActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mWebpageListener.onFailure(url);
-            }
-        });
+        mActivity.runOnUiThread(() -> mWebpageListener.onFailure(url));
     }
 
     public void cancel() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                if (mConnection != null) {
-                    mConnection.disconnect();
-                }
+        new Thread(() -> {
+            if (mConnection != null) {
+                mConnection.disconnect();
             }
         }).start();
     }

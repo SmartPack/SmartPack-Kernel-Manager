@@ -26,6 +26,7 @@ import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.Control;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * Created by willi on 29.06.16.
@@ -75,8 +76,8 @@ public class Vibration {
         }
 
         if (FILE == null) return;
-        MIN = mVibrations.get(FILE).getMin();
-        MAX = mVibrations.get(FILE).getMax();
+        MIN = Objects.requireNonNull(mVibrations.get(FILE)).getMin();
+        MAX = Objects.requireNonNull(mVibrations.get(FILE)).getMax();
     }
 
     public void setVibration(int value, Context context) {
@@ -86,7 +87,7 @@ public class Vibration {
         }
         run(Control.write(String.valueOf(value), FILE), FILE, context);
         if (Utils.existFile(VIB_LIGHT)) {
-            run(Control.write(String.valueOf(value - 300 < 116 ? 116 : value - 300), VIB_LIGHT), VIB_LIGHT, context);
+            run(Control.write(String.valueOf(Math.max(value - 300, 116)), VIB_LIGHT), VIB_LIGHT, context);
         }
         if (enable) {
             run(Control.write("0", VIB_ENABLE), VIB_ENABLE + "disable", context);
@@ -118,7 +119,7 @@ public class Vibration {
         Control.runSetting(command, ApplyOnBootFragment.MISC, id, context);
     }
 
-    private class MinMax {
+    private static class MinMax {
 
         private int mMin;
         private int mMax;

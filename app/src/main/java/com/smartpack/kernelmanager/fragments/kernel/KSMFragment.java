@@ -71,12 +71,7 @@ public class KSMFragment extends RecyclerViewFragment {
             enable.setTitle(getString(R.string.ksm));
             enable.setSummary(getString(R.string.ksm_summary));
             enable.setChecked(mKSM.isEnabled());
-            enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mKSM.enableKsm(isChecked, getActivity());
-                }
-            });
+            enable.addOnSwitchListener((switchView, isChecked) -> mKSM.enableKsm(isChecked, getActivity()));
 
             ksm.addItem(enable);
         }
@@ -97,12 +92,7 @@ public class KSMFragment extends RecyclerViewFragment {
             deferredTimer.setTitle(getString(R.string.deferred_timer));
             deferredTimer.setSummary(getString(R.string.deferred_timer_summary));
             deferredTimer.setChecked(mKSM.isDeferredTimerEnabled());
-            deferredTimer.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mKSM.enableDeferredTimer(isChecked, getActivity());
-                }
-            });
+            deferredTimer.addOnSwitchListener((switchView, isChecked) -> mKSM.enableDeferredTimer(isChecked, getActivity()));
 
             ksm.addItem(deferredTimer);
         }
@@ -177,7 +167,7 @@ public class KSMFragment extends RecyclerViewFragment {
         for (int i = 0; i < mKSM.getInfosSize(); i++) {
             if (mKSM.hasInfo(i)) {
                 DescriptionView info = new DescriptionView();
-                info.setTitle(mKSM.getInfoText(i, getActivity()));
+                info.setTitle(mKSM.getInfoText(i, requireActivity()));
 
                 items.add(info);
                 mInfos.add(info);
@@ -207,4 +197,5 @@ public class KSMFragment extends RecyclerViewFragment {
             }
         }
     }
+
 }

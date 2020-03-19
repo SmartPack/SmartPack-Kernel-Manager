@@ -41,7 +41,7 @@ public class TitleView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(View view) {
-        mTitle = (AppCompatTextView) view.findViewById(R.id.title);
+        mTitle = view.findViewById(R.id.title);
 
         setFullSpan(true);
         super.onCreateView(view);

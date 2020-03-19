@@ -175,15 +175,15 @@ public class KSM {
     }
 
     public String getInfo(int position) {
-        return Utils.readFile(PARENT + mInfos.keySet().toArray(new String[mInfos.size()])[position]);
+        return Utils.readFile(PARENT + mInfos.keySet().toArray(new String[0])[position]);
     }
 
     public boolean hasInfo(int position) {
-        return Utils.existFile(PARENT + mInfos.keySet().toArray(new String[mInfos.size()])[position]);
+        return Utils.existFile(PARENT + mInfos.keySet().toArray(new String[0])[position]);
     }
 
     public String getInfoText(int position, Context context) {
-        return context.getString(mInfos.get(mInfos.keySet().toArray(new String[mInfos.size()])[position]));
+        return context.getString(mInfos.get(mInfos.keySet().toArray(new String[0])[position]));
     }
 
     public int getInfosSize() {

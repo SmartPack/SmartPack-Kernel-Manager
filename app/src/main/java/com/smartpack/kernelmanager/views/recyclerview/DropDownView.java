@@ -67,24 +67,21 @@ public class DropDownView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(View view) {
-        mTitle = (TextView) view.findViewById(R.id.title);
-        mSummary = (TextView) view.findViewById(R.id.summary);
-        mArrow = (AppCompatImageView) view.findViewById(R.id.arrow_image);
-        mParent = (LinearLayout) view.findViewById(R.id.parent_layout);
+        mTitle = view.findViewById(R.id.title);
+        mSummary = view.findViewById(R.id.summary);
+        mArrow = view.findViewById(R.id.arrow_image);
+        mParent = view.findViewById(R.id.parent_layout);
 
         mItemHeight = view.getResources().getDimension(R.dimen.rv_drop_down_item_height);
 
         mArrow.setRotationX(mExpanded ? 0 : 180);
         setHeight(mExpanded && mItems != null ? Math.round(mItemHeight * mItems.size()) : 0);
 
-        view.findViewById(R.id.title_parent).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mExpanded) {
-                    collapse();
-                } else {
-                    expand();
-                }
+        view.findViewById(R.id.title_parent).setOnClickListener(v -> {
+            if (mExpanded) {
+                collapse();
+            } else {
+                expand();
             }
         });
 
@@ -147,16 +144,13 @@ public class DropDownView extends RecyclerViewItem {
                 item.findViewById(R.id.done_image).setVisibility(View.GONE);
 
                 final int position = i;
-                item.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mSelection = position;
-                        for (int i = 0; i < mDoneViews.size(); i++) {
-                            mDoneViews.get(i).setVisibility(position == i ? View.VISIBLE : View.INVISIBLE);
-                        }
-                        if (mOnDropDownListener != null) {
-                            mOnDropDownListener.onSelect(DropDownView.this, position, mItems.get(position));
-                        }
+                item.setOnClickListener(v -> {
+                    mSelection = position;
+                    for (int i1 = 0; i1 < mDoneViews.size(); i1++) {
+                        mDoneViews.get(i1).setVisibility(position == i1 ? View.VISIBLE : View.INVISIBLE);
+                    }
+                    if (mOnDropDownListener != null) {
+                        mOnDropDownListener.onSelect(DropDownView.this, position, mItems.get(position));
                     }
                 });
                 mParent.addView(item);
@@ -176,12 +170,7 @@ public class DropDownView extends RecyclerViewItem {
             }
             if (mItems == null) return;
             mAnimator = ValueAnimator.ofFloat(0, mItemHeight * mItems.size());
-            mAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    setHeight(Math.round((float) animation.getAnimatedValue()));
-                }
-            });
+            mAnimator.addUpdateListener(animation -> setHeight(Math.round((float) animation.getAnimatedValue())));
             mAnimator.setDuration(500);
             mAnimator.start();
         }
@@ -196,12 +185,7 @@ public class DropDownView extends RecyclerViewItem {
             }
             if (mItems == null) return;
             mAnimator = ValueAnimator.ofFloat(mItemHeight * mItems.size(), 0);
-            mAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    setHeight(Math.round((float) animation.getAnimatedValue()));
-                }
-            });
+            mAnimator.addUpdateListener(animation -> setHeight(Math.round((float) animation.getAnimatedValue())));
             mAnimator.setDuration(500);
             mAnimator.start();
         }

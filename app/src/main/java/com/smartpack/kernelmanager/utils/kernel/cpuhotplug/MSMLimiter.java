@@ -75,7 +75,7 @@ public class MSMLimiter {
     }
 
     public static boolean supported() {
-        return MSM_LIMITER != null;
+        return true;
     }
 
     private static void run(String command, String id, Context context) {

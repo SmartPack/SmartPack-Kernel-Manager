@@ -163,16 +163,16 @@ public class BuildpropFragment extends RecyclerViewFragment {
 
     private void load(final List<RecyclerViewItem> items) {
         if (mProps == null) return;
-        String[] titles = mProps.keySet().toArray(new String[mProps.size()]);
+        String[] titles = mProps.keySet().toArray(new String[0]);
         for (int i = 0; i < mProps.size(); i++) {
             final String title = titles[i];
-            final String value = mProps.values().toArray(new String[mProps.size()])[i];
+            final String value = mProps.values().toArray(new String[0])[i];
             if ((mKeyText != null && !title.contains(mKeyText)
                     || (mValueText != null && !value.contains(mValueText)))) {
                 continue;
             }
 
-            int color = ViewUtils.getThemeAccentColor(getActivity());
+            int color = ViewUtils.getThemeAccentColor(requireActivity());
             String colorCode = "#"
                     + Integer.toHexString(Color.red(color))
                     + Integer.toHexString(Color.green(color))
@@ -191,31 +191,20 @@ public class BuildpropFragment extends RecyclerViewFragment {
             } else {
                 descriptionView.setSummary(value);
             }
-            descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    mItemOptionsDialog = new Dialog(getActivity()).setItems(
-                            getResources().getStringArray(R.array.build_prop_item_options),
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    switch (i) {
-                                        case 0:
-                                            modify(title, value);
-                                            break;
-                                        case 1:
-                                            delete(title, value);
-                                            break;
-                                    }
-                                }
-                            }).setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialogInterface) {
-                            mItemOptionsDialog = null;
-                        }
-                    });
-                    mItemOptionsDialog.show();
-                }
+            descriptionView.setOnItemClickListener(item -> {
+                mItemOptionsDialog = new Dialog(requireActivity()).setItems(
+                        getResources().getStringArray(R.array.build_prop_item_options),
+                        (dialogInterface, i1) -> {
+                            switch (i1) {
+                                case 0:
+                                    modify(title, value);
+                                    break;
+                                case 1:
+                                    delete(title, value);
+                                    break;
+                            }
+                        }).setOnDismissListener(dialogInterface -> mItemOptionsDialog = null);
+                mItemOptionsDialog.show();
             });
 
             items.add(descriptionView);
@@ -223,14 +212,11 @@ public class BuildpropFragment extends RecyclerViewFragment {
 
         Activity activity;
         if (mSearchFragment != null && (activity = getActivity()) != null) {
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (isAdded()) {
-                        SearchFragment fragment = (SearchFragment)
-                                getViewPagerFragment(0);
-                        fragment.setCount(items.size());
-                    }
+            activity.runOnUiThread(() -> {
+                if (isAdded()) {
+                    SearchFragment fragment = (SearchFragment)
+                            getViewPagerFragment(0);
+                    fragment.setCount(items.size());
                 }
             });
         }
@@ -240,49 +226,27 @@ public class BuildpropFragment extends RecyclerViewFragment {
         mKey = key;
         mValue = value;
         ViewUtils.dialogEditTexts(key, value, getString(R.string.key), getString(R.string.value),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                (dialogInterface, i) -> {
+                }, (text, text2) -> {
+                    if (text.isEmpty()) {
+                        Utils.toast(R.string.key_empty, getActivity());
+                        return;
                     }
-                }, new ViewUtils.onDialogEditTextsListener() {
-                    @Override
-                    public void onClick(String text, String text2) {
-                        if (text.isEmpty()) {
-                            Utils.toast(R.string.key_empty, getActivity());
-                            return;
-                        }
 
-                        if (key != null) {
-                            overwrite(key.trim(), value.trim(), text.trim(), text2.trim());
-                        } else {
-                            add(text.trim(), text2.trim());
-                        }
+                    if (key != null) {
+                        overwrite(key.trim(), value.trim(), text.trim(), text2.trim());
+                    } else {
+                        add(text.trim(), text2.trim());
                     }
-                }, getActivity()).setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                mKey = null;
-                mValue = null;
-            }
-        }).show();
+                }, getActivity()).setOnDismissListener(dialogInterface -> {
+                    mKey = null;
+                    mValue = null;
+                }).show();
     }
 
     private void delete(final String key, final String value) {
-        mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
-        }, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                overwrite(key.trim(), value.trim(), "#" + key.trim(), value.trim());
-            }
-        }, new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                mDeleteDialog = null;
-            }
-        }, getActivity()).setTitle(key);
+        mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question), (dialogInterface, i) -> {
+        }, (dialogInterface, i) -> overwrite(key.trim(), value.trim(), "#" + key.trim(), value.trim()), dialogInterface -> mDeleteDialog = null, getActivity()).setTitle(key);
         mDeleteDialog.show();
     }
 
@@ -299,27 +263,19 @@ public class BuildpropFragment extends RecyclerViewFragment {
     @Override
     protected void onBottomFabClick() {
         super.onBottomFabClick();
-        mAddDialog = new Dialog(getActivity()).setItems(getResources().getStringArray(
-                R.array.build_prop_add_options), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case 0:
-                        modify(null, null);
-                        break;
-                    case 1:
-                        Buildprop.backup();
-                        Utils.toast(getString(R.string.backup_item, Buildprop.BUILD_PROP,
-                                Utils.getInternalDataStorage()), getActivity(), Toast.LENGTH_LONG);
-                        break;
-                }
-            }
-        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                mAddDialog = null;
-            }
-        });
+        mAddDialog = new Dialog(requireActivity()).setItems(getResources().getStringArray(
+                R.array.build_prop_add_options), (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                            modify(null, null);
+                            break;
+                        case 1:
+                            Buildprop.backup();
+                            Utils.toast(getString(R.string.backup_item, Buildprop.BUILD_PROP,
+                                    Utils.getInternalDataStorage()), getActivity(), Toast.LENGTH_LONG);
+                            break;
+                    }
+                }).setOnDismissListener(dialog -> mAddDialog = null);
         mAddDialog.show();
     }
 
@@ -345,14 +301,15 @@ public class BuildpropFragment extends RecyclerViewFragment {
                                  @Nullable Bundle savedInstanceState) {
             Fragment fragment = getParentFragment();
             if (!(fragment instanceof BuildpropFragment)) {
+                assert fragment != null;
                 fragment = fragment.getParentFragment();
             }
             final BuildpropFragment buildpropFragment = (BuildpropFragment) fragment;
 
             View rootView = inflater.inflate(R.layout.fragment_buildprop_search, container, false);
 
-            AppCompatEditText keyEdit = (AppCompatEditText) rootView.findViewById(R.id.key_edittext);
-            AppCompatEditText valueEdit = (AppCompatEditText) rootView.findViewById(R.id.value_edittext);
+            AppCompatEditText keyEdit = rootView.findViewById(R.id.key_edittext);
+            AppCompatEditText valueEdit = rootView.findViewById(R.id.value_edittext);
 
             keyEdit.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -365,6 +322,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
 
                 @Override
                 public void afterTextChanged(Editable s) {
+                    assert buildpropFragment != null;
                     buildpropFragment.mKeyText = s.toString();
                     buildpropFragment.reload(false);
                 }
@@ -380,11 +338,13 @@ public class BuildpropFragment extends RecyclerViewFragment {
 
                 @Override
                 public void afterTextChanged(Editable s) {
+                    assert buildpropFragment != null;
                     buildpropFragment.mValueText = s.toString();
                     buildpropFragment.reload(false);
                 }
             });
 
+            assert buildpropFragment != null;
             if (buildpropFragment.mKeyText != null) {
                 keyEdit.append(buildpropFragment.mKeyText);
             }
@@ -392,13 +352,13 @@ public class BuildpropFragment extends RecyclerViewFragment {
                 valueEdit.append(buildpropFragment.mKeyText);
             }
 
-            mItemsText = (TextView) rootView.findViewById(R.id.found_text);
+            mItemsText = rootView.findViewById(R.id.found_text);
             setCount(mItemsCount);
 
             return rootView;
         }
 
-        public void setCount(int count) {
+        void setCount(int count) {
             mItemsCount = count;
             if (mItemsText != null && isAdded()) {
                 mItemsText.setText(getString(count == 1 ? R.string.item_count : R.string.items_count, count));

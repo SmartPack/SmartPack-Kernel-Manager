@@ -81,7 +81,7 @@ public class CheckBoxView extends ValueView {
     }
 
     private void showDialog(Context context) {
-        String[] items = mItems.toArray(new String[mItems.size()]);
+        String[] items = mItems.toArray(new String[0]);
 
         setCheckBoxesFromInt();
         mDialog = new Dialog(context)
@@ -106,17 +106,10 @@ public class CheckBoxView extends ValueView {
     }
 
     private void setCheckBoxesFromInt(){
-        if ((mCurrValue & 1 ) != 0) mCheckBoxes[0]=true;
-        else mCheckBoxes[0] = false;
-
-        if ((mCurrValue & 2 ) != 0) mCheckBoxes[1]=true;
-        else mCheckBoxes[1] = false;
-
-        if ((mCurrValue & 4 ) != 0) mCheckBoxes[2]=true;
-        else mCheckBoxes[2] = false;
-
-        if ((mCurrValue & 8 ) != 0) mCheckBoxes[3]=true;
-        else mCheckBoxes[3] = false;
+        mCheckBoxes[0]= (mCurrValue & 1) != 0;
+        mCheckBoxes[1]= (mCurrValue & 2) != 0;
+        mCheckBoxes[2]= (mCurrValue & 4) != 0;
+        mCheckBoxes[3]= (mCurrValue & 8) != 0;
     }
 
     private void setIntValueFromCheckBoxes(Context context){
@@ -137,4 +130,5 @@ public class CheckBoxView extends ValueView {
             mView.setOnClickListener(v -> showDialog(v.getContext()));
         }
     }
+
 }

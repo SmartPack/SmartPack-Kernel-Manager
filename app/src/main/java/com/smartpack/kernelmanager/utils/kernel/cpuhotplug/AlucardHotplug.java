@@ -180,10 +180,6 @@ public class AlucardHotplug {
         return Utils.readFile(ALUCARD_HOTPLUG_ENABLE).equals("1");
     }
 
-    public static boolean hasAlucardHotplugEnable() {
-        return Utils.existFile(ALUCARD_HOTPLUG_ENABLE);
-    }
-
     public static void setHotplugFreq11(int value, Context context) {
         run(Control.write(String.valueOf(value), HOTPLUG_FREQ11), HOTPLUG_FREQ11, context);
     }

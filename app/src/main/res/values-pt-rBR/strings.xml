@@ -862,7 +862,6 @@
     <string name="sure_message">Tem certeza de que deseja flashear %s?</string>
     <string name="select_question">Selecionar %s?</string>
     <string name="wrong_extension">Por favor, selecione um arquivo com extensão %s.</string>
-    <string name="file_selection_error">Falha ao obter dados do gerenciador de arquivos externo</string>
 
     <!-- Build prop Editor -->
     <string name="add">Adicionar</string>
@@ -930,7 +929,6 @@
 
     <!-- Settings-->
     <string name="open_settings">Abrir Configurações</string>
-    <string name="fahrenheit_title">Fahrenheit</string>
     <string name="fahrenheit_summary">Usar fahrenheit para medir a temperatura.</string>
     <string name="force_english">Forçar a exibição no idioma inglês</string>
     <string name="user_interface">Interface de usuário</string>
@@ -1078,7 +1076,6 @@
     <string name="clearing">Limpando tudo</string>
     <string name="creating">Criando %s</string>
     <string name="credits">Créditos</string>
-    <string name="documentsui_message">Por favor, use um \'Gerenciador de Arquivos\' externo para escolher seu arquivo. A seleção de arquivos através do \'DocumentsUI\' padrão ainda não é suportada.</string>
     <string name="donation_link">Link de doação</string>
     <string name="donation_link_summary">link_de_doação</string>
     <string name="download_completed">%s foi baixado com sucesso. Você quer flasheá-lo?</string>
@@ -1104,15 +1101,12 @@
     <string name="rebooting">Reiniciando</string>
     <string name="remove">Remover</string>
     <string name="remove_script_question">%s também será removido do Gerenciador de scripts. Você tem certeza?</string>
-    <string name="remove_summary">Remover esse canal</string>
     <string name="script_exists">Um script chamado %s já existe! Abortando.</string>
     <string name="scripts_manager_summary">Nesta seção, você pode criar, importar, editar e executar facilmente qualquer shell script formatado corretamente.</string>
     <string name="scripts_onboot_summary">Se você habilitar essa opção, todos os scripts listados nesta página serão executados na inicialização.</string>
     <string name="section_icons">Ícones de seção</string>
     <string name="share_app">Compartilhar o app</string>
     <string name="share_app_summary">Compartilhar este app com seus amigos</string>
-    <string name="share_channel">Canal de compartilhamento</string>
-    <string name="share_channel_summary">Compartilhar este canal</string>
     <string name="shell">Executar Comando Shell</string>
     <string name="shell_summary">insira-o-comando-aqui</string>
     <string name="special_mentions">Menções especiais</string>

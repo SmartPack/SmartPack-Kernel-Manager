@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * Created by willi on 25.07.16.
  */
-public class HelpFragment extends RecyclerViewFragment {
+public class FAQFragment extends RecyclerViewFragment {
 
     private static final LinkedHashMap<Integer, Integer> sHelps = new LinkedHashMap<>();
 

@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.fragments.kernel;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 
@@ -66,11 +67,11 @@ public class PathReaderFragment extends RecyclerViewFragment {
     protected void addItems(List<RecyclerViewItem> items) {
     }
 
-    public void setPath(String path, String category) {
+    void setPath(String path, String category) {
         setPath(path, -1, -1, category);
     }
 
-    public void setPath(String path, int min, int max, String category) {
+    void setPath(String path, int min, int max, String category) {
         mPath = path;
         mMin = min;
         mMax = max;
@@ -78,13 +79,14 @@ public class PathReaderFragment extends RecyclerViewFragment {
         reload();
     }
 
-    public void setError(String error) {
+    void setError(String error) {
         mError = error;
     }
 
     private void reload() {
         if (mLoader == null) {
             getHandler().postDelayed(new Runnable() {
+                @SuppressLint("StaticFieldLeak")
                 @Override
                 public void run() {
                     clearItems();
@@ -136,20 +138,17 @@ public class PathReaderFragment extends RecyclerViewFragment {
                 DescriptionView descriptionView = new DescriptionView();
                 descriptionView.setTitle(name);
                 descriptionView.setSummary(value);
-                descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                    @Override
-                    public void onClick(RecyclerViewItem item) {
-                        List<Integer> freqs = CPUFreq.getInstance(getActivity()).getFreqs(mMin);
-                        int freq = Utils.strToInt(value);
-                        if (freqs != null && freq != 0 && freqs.contains(freq)) {
-                            String[] values = new String[freqs.size()];
-                            for (int i = 0; i < values.length; i++) {
-                                values[i] = String.valueOf(freqs.get(i));
-                            }
-                            showArrayDialog(value, values, mPath + "/" + name, name);
-                        } else {
-                            showEditTextDialog(value, name);
+                descriptionView.setOnItemClickListener(item -> {
+                    List<Integer> freqs = CPUFreq.getInstance(getActivity()).getFreqs(mMin);
+                    int freq = Utils.strToInt(value);
+                    if (freqs != null && freq != 0 && freqs.contains(freq)) {
+                        String[] values = new String[freqs.size()];
+                        for (int i = 0; i < values.length; i++) {
+                            values[i] = String.valueOf(freqs.get(i));
                         }
+                        showArrayDialog(value, values, mPath + "/" + name, name);
+                    } else {
+                        showEditTextDialog(value, name);
                     }
                 });
                 items.add(descriptionView);
@@ -159,40 +158,28 @@ public class PathReaderFragment extends RecyclerViewFragment {
 
     private void showArrayDialog(final String value, final String[] values, final String path,
                                  final String name) {
-        new Dialog(getActivity()).setItems(
+        new Dialog(requireActivity()).setItems(
                 getResources().getStringArray(R.array.path_reader_options),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which) {
-                            case 0:
-                                new Dialog(getActivity()).setItems(values, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        run(path, values[which], path);
-                                        reload();
-                                    }
-                                }).setTitle(name).show();
-                                break;
-                            case 1:
-                                showEditTextDialog(value, name);
-                                break;
-                        }
+                (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                            new Dialog(requireActivity()).setItems(values, (dialog1, which1) -> {
+                                run(path, values[which1], path);
+                                reload();
+                            }).setTitle(name).show();
+                            break;
+                        case 1:
+                            showEditTextDialog(value, name);
+                            break;
                     }
                 }).show();
     }
 
     private void showEditTextDialog(String value, final String name) {
-        ViewUtils.dialogEditText(value, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        }, new ViewUtils.OnDialogEditTextListener() {
-            @Override
-            public void onClick(String text) {
-                run(mPath + "/" + name, text, mPath + "/" + name);
-                reload();
-            }
+        ViewUtils.dialogEditText(value, (dialog, which) -> {
+        }, text -> {
+            run(mPath + "/" + name, text, mPath + "/" + name);
+            reload();
         }, getActivity()).show();
     }
 

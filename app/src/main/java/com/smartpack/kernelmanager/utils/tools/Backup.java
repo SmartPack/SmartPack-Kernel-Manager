@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.utils.tools;
 
+import android.annotation.SuppressLint;
 import android.os.Environment;
 import android.util.Log;
 
@@ -110,7 +111,7 @@ public class Backup {
         RootUtils.runCommand(command);
     }
 
-    public static String getPartition(PARTITION partition_type) {
+    private static String getPartition(PARTITION partition_type) {
         switch (partition_type) {
             case BOOT:
                 return getBootPartition();
@@ -123,6 +124,7 @@ public class Backup {
         }
     }
 
+    @SuppressLint("SdCardPath")
     public static String getPath(PARTITION PARTITION_type) {
         String folder = null;
         switch (PARTITION_type) {
@@ -190,7 +192,7 @@ public class Backup {
         return fota;
     }
 
-    public static String getBootSlot() {
+    private static String getBootSlot() {
         return RootUtils.runCommand("getprop ro.boot.slot_suffix");
     }
 

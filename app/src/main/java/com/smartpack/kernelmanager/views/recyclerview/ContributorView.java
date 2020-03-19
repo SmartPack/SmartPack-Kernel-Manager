@@ -48,20 +48,15 @@ public class ContributorView extends RecyclerViewItem {
     public void onCreateView(View view) {
         super.onCreateView(view);
 
-        CircularImageView image = (CircularImageView) view.findViewById(R.id.image);
-        TextView name = (TextView) view.findViewById(R.id.name);
-        TextView contributions = (TextView) view.findViewById(R.id.contributions);
+        CircularImageView image = view.findViewById(R.id.image);
+        TextView name = view.findViewById(R.id.name);
+        TextView contributions = view.findViewById(R.id.contributions);
 
         ViewUtils.loadImagefromUrl(mContributor.getAvatarUrl(), image, 200, 200);
         name.setText(mContributor.getLogin());
         contributions.setText(view.getResources().getString(R.string.commits, mContributor.getContributions()));
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Utils.launchUrl(mContributor.getHtmlUrl(), v.getContext());
-            }
-        });
+        view.setOnClickListener(v -> Utils.launchUrl(mContributor.getHtmlUrl(), v.getContext()));
     }
 
 }

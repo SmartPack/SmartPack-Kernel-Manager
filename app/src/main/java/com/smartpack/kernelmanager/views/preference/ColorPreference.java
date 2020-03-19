@@ -32,21 +32,17 @@ import com.smartpack.kernelmanager.R;
 
 public class ColorPreference extends Preference {
 
-    public ColorPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    private ColorPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         setWidgetLayoutResource(R.layout.preference_color_view);
     }
 
-    public ColorPreference(Context context, AttributeSet attrs, int defStyleAttr) {
+    private ColorPreference(Context context, AttributeSet attrs, int defStyleAttr) {
         this(context, attrs, defStyleAttr, 0);
     }
 
-    public ColorPreference(Context context, AttributeSet attrs) {
+    private ColorPreference(Context context, AttributeSet attrs) {
         this(context, attrs, androidx.preference.R.attr.preferenceStyle);
-    }
-
-    public ColorPreference(Context context) {
-        this(context, null);
     }
 
 }

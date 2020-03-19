@@ -53,6 +53,7 @@ public class RootUtils {
         } else {
             paths = "/sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin";
         }
+        assert paths != null;
         for (String path : paths.split(":")) {
             if (!path.endsWith("/")) path += "/";
             if (Utils.existFile(path + binary, false) || Utils.existFile(path + binary)) {
@@ -66,7 +67,7 @@ public class RootUtils {
         chmod(file, permission, getSU());
     }
 
-    public static void chmod(String file, String permission, SU su) {
+    static void chmod(String file, String permission, SU su) {
         su.runCommand("chmod " + permission + " " + file);
     }
 
@@ -78,20 +79,13 @@ public class RootUtils {
         mount(writeable, mountpoint, getSU());
     }
 
-    public static void mount(boolean writeable, String mountpoint, SU su) {
+    private static void mount(boolean writeable, String mountpoint, SU su) {
         su.runCommand(String.format("mount -o remount,%s %s %s",
                 writeable ? "rw" : "ro", mountpoint, mountpoint));
         su.runCommand(String.format("mount -o remount,%s %s",
                 writeable ? "rw" : "ro", mountpoint));
         su.runCommand(String.format("mount -o %s,remount %s",
                 writeable ? "rw" : "ro", mountpoint));
-    }
-
-    public static String runScript(String text, String... arguments) {
-        RootFile script = new RootFile("/data/local/tmp/kerneladiutortmp.sh");
-        script.mkdir();
-        script.write(text, false);
-        return script.execute(arguments);
     }
 
     public static void closeSU() {
