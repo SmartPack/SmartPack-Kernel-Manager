@@ -68,10 +68,8 @@
                     android:layout_marginLeft="10dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:tint="?android:attr/textColorSecondary"
-                    android:rotation="90"
                     android:scaleType="center"
-                    android:visibility="gone"
-                    app:srcCompat="@drawable/ic_dots" />
+                    android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

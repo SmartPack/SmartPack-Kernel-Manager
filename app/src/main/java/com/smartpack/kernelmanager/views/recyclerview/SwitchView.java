@@ -23,6 +23,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.CompoundButton;
 
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.PopupMenu;
@@ -47,12 +48,13 @@ public class SwitchView extends RecyclerViewItem {
     }
 
     private AppCompatImageView mImageView;
+    private AppCompatImageButton mMenuIconView;
     private AppCompatTextView mTitle;
     private AppCompatTextView mSummary;
     private SwitchCompat mSwitcher;
-    private View mMenuButton;
 
     private Drawable mImage;
+    private Drawable mMenuIcon;
     private CharSequence mTitleText;
     private CharSequence mSummaryText;
     private PopupMenu mPopupMenu;
@@ -73,8 +75,8 @@ public class SwitchView extends RecyclerViewItem {
         mSummary = view.findViewById(R.id.summary);
         mSwitcher = view.findViewById(R.id.switcher);
 
-        mMenuButton = view.findViewById(R.id.menu_button);
-        mMenuButton.setOnClickListener(new View.OnClickListener() {
+        mMenuIconView = view.findViewById(R.id.menu_button);
+        mMenuIconView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mPopupMenu != null) {
@@ -126,6 +128,11 @@ public class SwitchView extends RecyclerViewItem {
         refresh();
     }
 
+    public void setMenuIcon(Drawable menuIcon) {
+        mMenuIcon = menuIcon;
+        refresh();
+    }
+
     public void setChecked(boolean checked) {
         mChecked = checked;
         refresh();
@@ -150,9 +157,10 @@ public class SwitchView extends RecyclerViewItem {
     @Override
     protected void refresh() {
         super.refresh();
-        if (mMenuButton != null && mOnMenuListener != null) {
-            mMenuButton.setVisibility(View.VISIBLE);
-            mPopupMenu = new PopupMenu(mMenuButton.getContext(), mMenuButton);
+        if (mMenuIconView != null && mMenuIcon != null && mOnMenuListener != null) {
+            mMenuIconView.setImageDrawable(mMenuIcon);
+            mMenuIconView.setVisibility(View.VISIBLE);
+            mPopupMenu = new PopupMenu(mMenuIconView.getContext(), mMenuIconView);
             mOnMenuListener.onMenuReady(this, mPopupMenu);
         }
         if (mImageView != null) {

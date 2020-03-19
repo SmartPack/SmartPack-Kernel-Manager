@@ -24,8 +24,10 @@ package com.smartpack.kernelmanager.views.recyclerview;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.PopupMenu;
 
 import com.smartpack.kernelmanager.R;
@@ -45,8 +47,8 @@ public class GenericInputView extends InputValueView {
         void onMenuReady(GenericInputView cardView, PopupMenu popupMenu);
     }
 
-    private View mMenuButton;
-
+    private AppCompatImageButton mMenuIconView;
+    private Drawable mMenuIcon;
     private String mValueRaw;
     private OnGenericValueListener mOnGenericValueListener;
     private PopupMenu mPopupMenu;
@@ -72,8 +74,8 @@ public class GenericInputView extends InputValueView {
             }
         });
 
-        mMenuButton = view.findViewById(R.id.menu_button);
-        mMenuButton.setOnClickListener(v -> {
+        mMenuIconView = view.findViewById(R.id.menu_button);
+        mMenuIconView.setOnClickListener(v -> {
             if (mPopupMenu != null) {
                 mPopupMenu.show();
             }
@@ -88,6 +90,11 @@ public class GenericInputView extends InputValueView {
 
     public void setValueRaw(String value) {
         mValueRaw = value;
+    }
+
+    public void setMenuIcon(Drawable menuIcon) {
+        mMenuIcon = menuIcon;
+        refresh();
     }
 
     public void setOnGenericValueListener(OnGenericValueListener onGenericValueListener) {
@@ -129,9 +136,10 @@ public class GenericInputView extends InputValueView {
     @Override
     protected void refresh() {
         super.refresh();
-        if (mMenuButton != null && mOnMenuListener != null) {
-            mMenuButton.setVisibility(View.VISIBLE);
-            mPopupMenu = new PopupMenu(mMenuButton.getContext(), mMenuButton);
+        if (mMenuIconView != null && mMenuIcon != null && mOnMenuListener != null) {
+            mMenuIconView.setImageDrawable(mMenuIcon);
+            mMenuIconView.setVisibility(View.VISIBLE);
+            mPopupMenu = new PopupMenu(mMenuIconView.getContext(), mMenuIconView);
             mOnMenuListener.onMenuReady(this, mPopupMenu);
         }
     }
