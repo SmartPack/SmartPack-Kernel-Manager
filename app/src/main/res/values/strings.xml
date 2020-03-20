@@ -908,6 +908,7 @@
     <string name="select_question">Select %s?</string>
     <string name="wrong_extension">Please select a file with %s extension.</string>
     <string name="empty_flasher_log">It seems like flashing is failed!</string>
+    <string name="save_log">Save Log</string>
     <string name="share_log">In order to fix this issue, please consider sharing the log file created at \'%s\' with the developer of this app.\nDo you want to share it now?</string>
 
     <!-- Build prop Editor -->
@@ -980,7 +981,9 @@
     <string name="shell_summary">Input-command-here</string>
     <string name="support">Support</string>
     <string name="support_summary">Visit support page</string>
+    <string name="file_name_error">The file name or path contains characters such as \'(\' or \')\' which are currently unsupported. Please rename the zip file and try again!</string>
     <string name="flash_log">Flasher Log</string>
+    <string name="flash_log_summary">Flasher Log is exported as %s!</string>
     <string name="reboot">Reboot</string>
     <string name="rebooting">Rebooting</string>
     <string name="reboot_options">Reboot Options</string>

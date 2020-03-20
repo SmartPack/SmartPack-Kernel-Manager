@@ -150,7 +150,7 @@ public class KernelUpdater {
                             .setNegativeButton(context.getString(R.string.cancel), (dialog, id) -> {
                             })
                             .setPositiveButton(context.getString(R.string.flash), (dialog, id) -> {
-                                SmartPack.flashingTask(new File(LATEST_KERNEL), context);
+                                SmartPack.getInstance().flashingTask(new File(LATEST_KERNEL), context);
                             })
                             .show();
                 } else {

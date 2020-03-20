@@ -45,6 +45,7 @@ import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -623,19 +624,22 @@ public class SmartPackFragment extends RecyclerViewFragment {
             } else {
                 mPath = Utils.getFilePath(file);
             }
+            if (mPath.contains("(") || mPath.contains(")")) {
+                ViewUtils.fileNameError(getActivity());
+                return;
+            }
             if (SmartPack.fileSize(new File(mPath)) >= 100000000) {
                 Utils.toast(getString(R.string.file_size_limit, (SmartPack.fileSize(new File(mPath)) / 1000000)), getActivity());
             }
             Dialog manualFlash = new Dialog(requireActivity());
             manualFlash.setIcon(R.mipmap.ic_launcher);
             manualFlash.setTitle(getString(R.string.flasher));
-            manualFlash.setMessage(getString(R.string.sure_message, file.getName().replace("primary:", "")
-                    .replace("file%3A%2F%2F%2F", "").replace("%2F", "/")) + ("\n\n") +
+            manualFlash.setMessage(getString(R.string.sure_message, new File(mPath).getName()) + ("\n\n") +
                     getString(R.string.warning) + (" ") + getString(R.string.flasher_warning));
             manualFlash.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
             manualFlash.setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> {
-                SmartPack.flashingTask(new File(mPath), getActivity());
+                SmartPack.getInstance().flashingTask(new File(mPath), getActivity());
             });
             manualFlash.show();
         }

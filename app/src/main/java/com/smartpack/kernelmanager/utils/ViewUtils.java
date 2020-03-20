@@ -21,31 +21,26 @@ package com.smartpack.kernelmanager.utils;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import androidx.core.content.FileProvider;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.widget.AppCompatEditText;
 
-import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import java.io.File;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -123,21 +118,10 @@ public class ViewUtils {
                         -> Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.donate", context));
     }
 
-    public static void dialogError(String string, String path, Context context) {
+    public static void fileNameError(Context context) {
         new Dialog(context)
-                .setMessage(string + "\n" + context.getString(R.string.share_log,
-                        path))
-                .setNegativeButton(context.getString(R.string.cancel), (dialogInterface, i) -> {
-                })
-                .setPositiveButton(context.getString(R.string.share), (dialogInterface, i) -> {
-                    Uri uriFile = FileProvider.getUriForFile(context,
-                            BuildConfig.APPLICATION_ID + ".provider", new File(path));
-                    Intent sharelog = new Intent(Intent.ACTION_SEND);
-                    sharelog.setType("text/plain");
-                    sharelog.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.share_by, path));
-                    sharelog.putExtra(Intent.EXTRA_STREAM, uriFile);
-                    sharelog.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    context.startActivity(Intent.createChooser(sharelog, context.getString(R.string.share_with)));
+                .setMessage(context.getString(R.string.file_name_error))
+                .setPositiveButton(context.getString(R.string.cancel), (dialogInterface, i) -> {
                 })
                 .show();
     }
