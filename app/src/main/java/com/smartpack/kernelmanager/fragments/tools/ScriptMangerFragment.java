@@ -302,9 +302,12 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 Utils.toast(getString(R.string.script_exists, file.getName()), getActivity());
                 return;
             }
+            if (mPath.contains("(") || mPath.contains(")")) {
+                ViewUtils.fileNameError(getActivity());
+                return;
+            }
             Dialog selectQuestion = new Dialog(requireActivity());
-            selectQuestion.setMessage(getString(R.string.select_question, file.getName().replace("primary:", "")
-                    .replace("file%3A%2F%2F%2F", "").replace("%2F", "/")));
+            selectQuestion.setMessage(getString(R.string.select_question, new File(mPath).getName()));
             selectQuestion.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
             selectQuestion.setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {

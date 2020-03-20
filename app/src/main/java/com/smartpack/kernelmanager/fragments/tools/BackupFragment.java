@@ -479,6 +479,10 @@ public class BackupFragment extends RecyclerViewFragment {
                 Utils.toast(getString(R.string.wrong_extension, ".img"), getActivity());
                 return;
             }
+            if (mPath.contains("(") || mPath.contains(")")) {
+                ViewUtils.fileNameError(getActivity());
+                return;
+            }
             showBackupFlashingDialog(new File(mPath));
         }
     }

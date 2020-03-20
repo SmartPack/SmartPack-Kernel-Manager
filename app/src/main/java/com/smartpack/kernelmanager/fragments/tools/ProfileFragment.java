@@ -454,9 +454,12 @@ public class ProfileFragment extends RecyclerViewFragment {
                 Utils.toast(getString(R.string.wrong_extension, ".json"), getActivity());
                 return;
             }
+            if (mPath.contains("(") || mPath.contains(")")) {
+                ViewUtils.fileNameError(getActivity());
+                return;
+            }
             Dialog selectProfile = new Dialog(requireActivity());
-            selectProfile.setMessage(getString(R.string.select_question, file.getName().replace("primary:", "")
-                    .replace("file%3A%2F%2F%2F", "").replace("%2F", "/")));
+            selectProfile.setMessage(getString(R.string.select_question, new File(mPath).getName()));
             selectProfile.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
             });
             selectProfile.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {

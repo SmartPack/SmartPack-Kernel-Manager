@@ -336,6 +336,10 @@ public class CustomControlsFragment extends RecyclerViewFragment {
             } else {
                 mPath = Utils.getFilePath(file);
             }
+            if (mPath.contains("(") || mPath.contains(")")) {
+                ViewUtils.fileNameError(getActivity());
+                return;
+            }
             if (requestCode == 0 || requestCode == 1) {
                 if (!Utils.getExtension(file.getName()).isEmpty() || mPath.startsWith("/storage/")) {
                     Utils.toast(getString(R.string.invalid_path, mPath), getActivity());
