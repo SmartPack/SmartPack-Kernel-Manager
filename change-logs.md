@@ -1,5 +1,9 @@
 # Change-logs
 
+## 97. March 20, 2020
+*Release-tag: v10.0*<br>
+Changes: Overall cleaning & modernization of code. Updated kernel downloader to work without curl/wget binaries. Significantly improved auto-flashing. Prevent users from picking file paths contain unsupported characters. Update pt-rBR translations. Updated Scripts & Custom Controls view. Miscellaneous changes.
+
 ## 96. March 01, 2020
 *Release-tag: v9.16*<br>
 Changes: Main: Fully move to com.smartpack.kernelmanager (avoid conflicting with forks). Misc: Fixed rebooting from app not working on most cases. Misc: Added option to tweak auto-sync data. Misc: Improved sharing files. Gradle: Updated build tools and dependencies. Miscellaneous changes.
