@@ -168,7 +168,7 @@ public class AboutFragment extends RecyclerViewFragment {
                 });
             }
             donate_to_me.setPositiveButton(getString(R.string.paypal_donation), (dialog1, id1) -> {
-                Utils.launchUrl("https://www.paypal.me/sunilpaulmathew", getActivity());
+                Utils.launchUrl("https://www.paypal.me/menacherry", getActivity());
             });
             donate_to_me.show();
         });
