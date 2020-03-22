@@ -118,14 +118,6 @@ public class ViewUtils {
                         -> Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.donate", context));
     }
 
-    public static void fileNameError(Context context) {
-        new Dialog(context)
-                .setMessage(context.getString(R.string.file_name_error))
-                .setPositiveButton(context.getString(R.string.cancel), (dialogInterface, i) -> {
-                })
-                .show();
-    }
-
     public static Dialog dialogEditTexts(String text, String text2, String hint, String hint2,
                                          final DialogInterface.OnClickListener negativeListener,
                                          final onDialogEditTextsListener onDialogEditTextListener,

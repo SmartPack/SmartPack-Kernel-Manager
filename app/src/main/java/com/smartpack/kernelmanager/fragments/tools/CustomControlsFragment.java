@@ -22,7 +22,6 @@ package com.smartpack.kernelmanager.fragments.tools;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
@@ -337,8 +336,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                 mPath = Utils.getFilePath(file);
             }
             if (mPath.contains("(") || mPath.contains(")")) {
-                ViewUtils.fileNameError(getActivity());
-                return;
+                Utils.toast(getString(R.string.file_name_error), getActivity());
             }
             if (requestCode == 0 || requestCode == 1) {
                 if (!Utils.getExtension(file.getName()).isEmpty() || mPath.startsWith("/storage/")) {

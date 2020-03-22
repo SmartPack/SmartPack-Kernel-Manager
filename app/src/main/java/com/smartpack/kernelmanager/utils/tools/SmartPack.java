@@ -52,14 +52,26 @@ public class SmartPack {
     private static final String FLASH_FOLDER = Utils.getInternalDataStorage() + "/flash";
     private static final String CLEANING_COMMAND = "rm -r '" + FLASH_FOLDER + "'";
     private static final String ZIPFILE_EXTRACTED = Utils.getInternalDataStorage() + "/flash/META-INF/com/google/android/update-binary";
-    private static final String MAGISK_BUSYBOX = "/sbin/.magisk/busybox";
-    private static final String MAGISK_UNZIP = MAGISK_BUSYBOX + "/unzip";
     private static final String FLASHER_LOG = Utils.getInternalDataStorage() + "/flasher_log";
 
      private static StringBuilder mFlashingResult = null;
 
     private static String mountRootFS(String command) {
         return "mount " + command + " /";
+    }
+
+    private static boolean isUnzipAvailable() {
+        return Utils.existFile("/system/bin/unzip") || Utils.existFile("/system/xbin/unzip");
+    }
+
+    private static String busyboxUnzip() {
+        if (Utils.existFile("/sbin/.core/busybox/unzip")) {
+            return "/sbin/.core/busybox/unzip";
+        } else if (Utils.existFile("/sbin/.magisk/busybox/unzip")) {
+            return "/sbin/.magisk/busybox/unzip";
+        } else {
+            return null;
+        }
     }
 
     public static void prepareLogFolder() {
@@ -97,8 +109,8 @@ public class SmartPack {
             protected String doInBackground(Void... voids) {
                 mFlashingResult = new StringBuilder();
                 mFlashingResult.append("## Flasher log created by SmartPack-Kernel Manager\n\n");
-                mFlashingResult.append("Preparing to flash ").append(file.getName()).append("...\n\n");
-                mFlashingResult.append("Path: '").append(file.toString()).append("'\n\n");
+                mFlashingResult.append("** Preparing to flash ").append(file.getName()).append("...\n\n");
+                mFlashingResult.append("** Path: '").append(file.toString()).append("'\n\n");
                 return manualFlash(file);
             }
             protected void onPostExecute(String s) {
@@ -161,31 +173,30 @@ public class SmartPack {
         String flashingCommand = "sh '" + ZIPFILE_EXTRACTED + "' '" + RECOVERY_API + "' '" +
                 fd + "' '" + file.toString() + "'";
         prepareFlashFolder();
-        mFlashingResult.append("Checking BusyBox!\n");
-        if (Utils.existFile(MAGISK_UNZIP)) {
-            mFlashingResult.append("Magisk BusyBox available! Using magisk binaries...\n");
-            RootUtils.runCommand("cd '" + MAGISK_BUSYBOX + "'");
-            RootUtils.runCommand("./unzip '" + file.toString() + "' -d '" + FLASH_FOLDER + "'");
+        mFlashingResult.append("** Checking for unzip binary! ");
+        if (isUnzipAvailable()) {
+            mFlashingResult.append("Native binary available...\n");
+            RootUtils.runCommand("unzip " + file.toString() + " -d '" + FLASH_FOLDER + "'");
         } else {
-            mFlashingResult.append("Magisk BusyBox unavailable! Try using native binaries...\n");
-            RootUtils.runCommand("unzip '" + file.toString() + "' -d '" + FLASH_FOLDER + "'");
+            mFlashingResult.append("BusyBox binary available...\n");
+            RootUtils.runCommand(busyboxUnzip() + " " + file.toString() + " -d '" + FLASH_FOLDER + "'");
         }
         if (Utils.existFile(ZIPFILE_EXTRACTED)) {
-            mFlashingResult.append("\nExtracting ").append(file.getName()).append(" into working folder: Done\n\n");
-            mFlashingResult.append("Preparing a recovery-like environment for flashing...\n\n");
+            mFlashingResult.append("\n** Extracting ").append(file.getName()).append(" into working folder: Done *\n\n");
+            mFlashingResult.append("** Preparing a recovery-like environment for flashing...\n\n");
             RootUtils.runCommand("cd '" + FLASH_FOLDER + "'");
             RootUtils.runCommand(mountRootFS("-o remount,rw"));
-            mFlashingResult.append("Mounting root file system: Done\n\n");
+            mFlashingResult.append("** Mounting root file system: Done *\n\n");
             RootUtils.runCommand("mkdir /tmp");
             RootUtils.runCommand("mke2fs -F tmp.ext4 500000");
-            mFlashingResult.append("Preparing a temporary ext4 image and loop mounting to '/tmp': Done\n\n");
+            mFlashingResult.append("** Preparing a temporary ext4 image and loop mounting to '/tmp': Done *\n\n");
             Utils.mount("-o loop", "tmp.ext4", "/tmp/");
-            mFlashingResult.append("\nFlashing ").append(file.getName()).append(" ...\n");
+            mFlashingResult.append("\n** Flashing ").append(file.getName()).append(" ...\n");
             return RootUtils.runCommand(flashingCommand + " && " + CLEANING_COMMAND + " && " +
                     mountRootFS("-o remount,ro"));
         } else {
-            mFlashingResult.append("Extracting zip file failed!\n\n");
-            mFlashingResult.append("Flashing Failed!\nReason: Necessary BusyBox binaries not available!");
+            mFlashingResult.append("** Extracting zip file failed! *\n\n");
+            mFlashingResult.append("** Flashing Failed! *\n** Reason: Necessary BusyBox binaries not available! *");
             return RootUtils.runCommand(CLEANING_COMMAND + " && " +
                     mountRootFS("-o remount,ro"));
         }

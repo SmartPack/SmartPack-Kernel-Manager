@@ -31,7 +31,6 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.OpenableColumns;
 import android.view.Menu;
-import android.widget.CompoundButton;
 
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
@@ -303,8 +302,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 return;
             }
             if (mPath.contains("(") || mPath.contains(")")) {
-                ViewUtils.fileNameError(getActivity());
-                return;
+                Utils.toast(getString(R.string.file_name_error), getActivity());
             }
             Dialog selectQuestion = new Dialog(requireActivity());
             selectQuestion.setMessage(getString(R.string.select_question, new File(mPath).getName()));

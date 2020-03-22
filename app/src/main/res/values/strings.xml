@@ -981,7 +981,7 @@
     <string name="shell_summary">Input-command-here</string>
     <string name="support">Support</string>
     <string name="support_summary">Visit support page</string>
-    <string name="file_name_error">The file name or path contains characters such as \'(\' or \')\' which are currently unsupported. Please rename the zip file and try again!</string>
+    <string name="file_name_error">The file name or path you selected has characters such as \'(\' or \')\', which likely makes issues with the file picker!</string>
     <string name="flash_log">Flasher Log</string>
     <string name="flash_log_summary">Flasher Log is exported as %s!</string>
     <string name="reboot">Reboot</string>

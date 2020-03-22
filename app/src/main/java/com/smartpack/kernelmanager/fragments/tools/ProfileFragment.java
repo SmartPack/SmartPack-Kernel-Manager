@@ -23,11 +23,9 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -246,8 +244,45 @@ public class ProfileFragment extends RecyclerViewFragment {
         }
         for (int i = 0; i < profileItems.size(); i++) {
             final int position = i;
-            final CardView cardView = new CardView(getActivity());
-            cardView.setOnMenuListener((cardView1, popupMenu) -> {
+
+            final DescriptionView descriptionView = new DescriptionView();
+            descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_file));
+            descriptionView.setSummary(profileItems.get(i).getName());
+            descriptionView.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
+            descriptionView.setOnItemClickListener(item -> {
+                if (mTaskerMode) {
+                    mSelectDialog = ViewUtils.dialogBuilder(getString(R.string.select_question,
+                            descriptionView.getSummary()), (dialogInterface, i12) -> {
+                            }, (dialogInterface, i12) -> ((ProfileTaskerActivity) getActivity()).finish(
+                                    descriptionView.getSummary().toString(),
+                                    mProfiles.getAllProfiles().get(position).getCommands()), dialogInterface -> mSelectDialog = null, getActivity());
+                    mSelectDialog.show();
+                } else {
+                    mApplyDialog = ViewUtils.dialogBuilder(getString(R.string.apply_question,
+                            descriptionView.getSummary()), (dialogInterface, i12) -> {
+                            }, (dialogInterface, i12) -> {
+                        for (Profiles.ProfileItem.CommandItem command : mProfiles.getAllProfiles()
+                                .get(position).getCommands()) {
+                            CPUFreq.ApplyCpu applyCpu;
+                            if (command.getCommand().startsWith("#") && ((applyCpu =
+                                    new CPUFreq.ApplyCpu(command.getCommand().substring(1)))
+                                    .toString() != null)) {
+                                for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu,
+                                        RootUtils.getSU())) {
+                                    Control.runSetting(applyCpuCommand, null, null, null);
+                                }
+                            } else {
+                                Control.runSetting(command.getCommand(), null, null, null);
+                            }
+                        }
+                    }, dialogInterface -> mApplyDialog = null, getActivity());
+                    try {
+                        mApplyDialog.show();
+                    } catch (NullPointerException ignored) {
+                    }
+                }
+            });
+            descriptionView.setOnMenuListener((cardView1, popupMenu) -> {
                 Menu menu = popupMenu.getMenu();
                 menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.append));
                 menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.edit));
@@ -309,48 +344,10 @@ public class ProfileFragment extends RecyclerViewFragment {
                 });
             });
 
-            final DescriptionView descriptionView = new DescriptionView();
-            descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_file));
-            descriptionView.setSummary(profileItems.get(i).getName());
-            descriptionView.setOnItemClickListener(item -> {
-                if (mTaskerMode) {
-                    mSelectDialog = ViewUtils.dialogBuilder(getString(R.string.select_question,
-                            descriptionView.getSummary()), (dialogInterface, i12) -> {
-                            }, (dialogInterface, i12) -> ((ProfileTaskerActivity) getActivity()).finish(
-                                    descriptionView.getSummary().toString(),
-                                    mProfiles.getAllProfiles().get(position).getCommands()), dialogInterface -> mSelectDialog = null, getActivity());
-                    mSelectDialog.show();
-                } else {
-                    mApplyDialog = ViewUtils.dialogBuilder(getString(R.string.apply_question,
-                            descriptionView.getSummary()), (dialogInterface, i12) -> {
-                            }, (dialogInterface, i12) -> {
-                        for (Profiles.ProfileItem.CommandItem command : mProfiles.getAllProfiles()
-                                .get(position).getCommands()) {
-                            CPUFreq.ApplyCpu applyCpu;
-                            if (command.getCommand().startsWith("#") && ((applyCpu =
-                                    new CPUFreq.ApplyCpu(command.getCommand().substring(1)))
-                                    .toString() != null)) {
-                                for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu,
-                                        RootUtils.getSU())) {
-                                    Control.runSetting(applyCpuCommand, null, null, null);
-                                }
-                            } else {
-                                Control.runSetting(command.getCommand(), null, null, null);
-                            }
-                        }
-                    }, dialogInterface -> mApplyDialog = null, getActivity());
-                    try {
-                        mApplyDialog.show();
-                    } catch (NullPointerException ignored) {
-                    }
-                }
-            });
-
             if (mTaskerMode) {
                 items.add(descriptionView);
             } else {
-                cardView.addItem(descriptionView);
-                items.add(cardView);
+                items.add(descriptionView);
             }
         }
 
@@ -455,8 +452,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 return;
             }
             if (mPath.contains("(") || mPath.contains(")")) {
-                ViewUtils.fileNameError(getActivity());
-                return;
+                Utils.toast(getString(R.string.file_name_error), getActivity());
             }
             Dialog selectProfile = new Dialog(requireActivity());
             selectProfile.setMessage(getString(R.string.select_question, new File(mPath).getName()));

@@ -35,9 +35,7 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.OpenableColumns;
 import android.view.Menu;
-import android.view.MenuItem;
 
-import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.FragmentManager;
 
 import com.smartpack.kernelmanager.R;
@@ -45,7 +43,6 @@ import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
-import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -625,8 +622,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 mPath = Utils.getFilePath(file);
             }
             if (mPath.contains("(") || mPath.contains(")")) {
-                ViewUtils.fileNameError(getActivity());
-                return;
+                Utils.toast(getString(R.string.file_name_error), getActivity());
             }
             if (SmartPack.fileSize(new File(mPath)) >= 100000000) {
                 Utils.toast(getString(R.string.file_size_limit, (SmartPack.fileSize(new File(mPath)) / 1000000)), getActivity());
