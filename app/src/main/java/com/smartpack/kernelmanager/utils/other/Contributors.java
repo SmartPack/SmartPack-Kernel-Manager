@@ -71,7 +71,7 @@ public class Contributors {
         }
 
         public int getContributions() {
-            return getInt("contributions");
+            return getInt();
         }
 
         public String getHtmlUrl() {
@@ -94,9 +94,9 @@ public class Contributors {
             }
         }
 
-        private int getInt(String key) {
+        private int getInt() {
             try {
-                return mContributorJSON.getInt(key);
+                return mContributorJSON.getInt("contributions");
             } catch (JSONException ignored) {
                 return 0;
             }

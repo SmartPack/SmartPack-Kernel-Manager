@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         applicationId "com.smartpack.kernelmanager"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 98
         versionName "10.0"
@@ -61,8 +61,8 @@ dependencies {
     implementation 'androidx.preference:preference:1.1.0'
     implementation 'com.github.cliftonlabs:json-simple:3.1.1'
     implementation 'com.google.android.apps.dashclock:dashclock-api:2.0.0'
-    implementation 'com.google.android.gms:play-services-ads:18.3.0'
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.google.android.gms:play-services-ads:19.0.1'
+    implementation 'com.google.android.material:material:1.2.0-alpha05'
     implementation 'com.mattprecious.swirl:swirl:1.2.0'
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
     implementation 'com.squareup.picasso:picasso:2.71828'

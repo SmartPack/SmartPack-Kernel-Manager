@@ -32,7 +32,5 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:focusable="false"
-        app:itemBackground="@drawable/nav_selector_background"
         app:headerLayout="@layout/nav_header_layout" />
-
 </androidx.drawerlayout.widget.DrawerLayout>

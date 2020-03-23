@@ -20,7 +20,6 @@
 package com.smartpack.kernelmanager.fragments.tools;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 
 import com.smartpack.kernelmanager.R;

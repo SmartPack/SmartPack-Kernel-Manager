@@ -36,7 +36,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.core.content.ContextCompat;
@@ -116,7 +115,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         return rootView;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onResume() {
         super.onResume();
@@ -250,7 +248,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean onPreferenceClick(Preference preference) {
         String key = preference.getKey();
@@ -301,7 +298,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         return false;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void editPasswordDialog(final String oldPass) {
         mOldPassword = oldPass;
 
@@ -364,7 +360,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 }).setOnDismissListener(dialogInterface -> mOldPassword = null).show();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void deletePasswordDialog(final String password) {
         if (password.isEmpty()) {
             Utils.toast(getString(R.string.set_password_first), getActivity());
@@ -480,10 +475,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         int childCount = viewGroup.getChildCount();
         for (int i = 0; i < childCount; i++) {
             setZeroPaddingToLayoutChildren(viewGroup.getChildAt(i));
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
-                viewGroup.setPaddingRelative(0, viewGroup.getPaddingTop(), viewGroup.getPaddingEnd(), viewGroup.getPaddingBottom());
-            else
-                viewGroup.setPadding(0, viewGroup.getPaddingTop(), viewGroup.getPaddingRight(), viewGroup.getPaddingBottom());
+            viewGroup.setPaddingRelative(0, viewGroup.getPaddingTop(), viewGroup.getPaddingEnd(), viewGroup.getPaddingBottom());
         }
     }
 

@@ -33,6 +33,7 @@ import com.smartpack.kernelmanager.fragments.tools.ProfileFragment;
 import com.smartpack.kernelmanager.services.profile.Tasker;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by willi on 21.07.16.
@@ -46,7 +47,7 @@ public class ProfileTaskerActivity extends BaseActivity {
 
         initToolBar();
 
-        getSupportActionBar().setTitle(getString(R.string.profile_select));
+        Objects.requireNonNull(getSupportActionBar()).setTitle(getString(R.string.profile_select));
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, getFragment(),
                 "profile_fragment").commit();
     }

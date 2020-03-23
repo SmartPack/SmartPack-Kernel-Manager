@@ -464,6 +464,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             mFragments = fragments;
         }
 
+        @NonNull
         @Override
         public Fragment getItem(int position) {
             return mFragments.get(position);
@@ -483,7 +484,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         private ValueAnimator mAlphaAnimator;
 
         @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+        public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
             View firstItem = mRecyclerView.getChildAt(0);
             if (firstItem == null) {
@@ -562,7 +563,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         }
 
         @Override
-        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
 
             if (mAppBarLayout == null || newState != 0 || mAppBarLayoutDistance == 0
@@ -664,7 +665,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
         if (!hideBanner()) return;

@@ -25,7 +25,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 
 import androidx.core.app.NotificationCompat;
@@ -127,9 +126,7 @@ public class ApplyOnBoot {
                     .addAction(0, context.getString(R.string.cancel), cancelIntent)
                     .setOngoing(true)
                     .setWhen(0);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                builder.setPriority(Notification.PRIORITY_MAX);
-            }
+            builder.setPriority(Notification.PRIORITY_MAX);
         }
 
         final NotificationCompat.Builder builderComplete =

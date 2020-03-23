@@ -6,7 +6,6 @@ import android.widget.TextView;
 import androidx.annotation.StringRes;
 
 import com.smartpack.kernelmanager.R;
-import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 
 /**
  * Adapted from https://github.com/Grarak/KernelAdiutor by Willi Ye.

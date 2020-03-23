@@ -29,6 +29,7 @@ import com.smartpack.kernelmanager.utils.root.Control;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by willi on 23.06.16.
@@ -116,7 +117,7 @@ public class Misc {
     }
 
     public boolean isGloveModeEnabled() {
-        return Utils.readFile(GLOVE_MODE).equals(mGloveMode.get(GLOVE_MODE).getEnable());
+        return Utils.readFile(GLOVE_MODE).equals(Objects.requireNonNull(mGloveMode.get(GLOVE_MODE)).getEnable());
     }
 
     public boolean hasGloveMode() {

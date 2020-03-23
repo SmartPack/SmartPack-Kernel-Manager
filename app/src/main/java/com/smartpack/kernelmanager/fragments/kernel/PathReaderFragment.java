@@ -20,7 +20,6 @@
 package com.smartpack.kernelmanager.fragments.kernel;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 
 import com.google.android.material.snackbar.Snackbar;

@@ -37,7 +37,6 @@ import android.view.SubMenu;
 import androidx.annotation.NonNull;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -255,7 +254,6 @@ public class NavigationActivity extends BaseActivity
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.about, AboutFragment.class, R.drawable.ic_about));
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void init(Bundle savedInstanceState) {
 
         setContentView(R.layout.activity_navigation);

@@ -26,7 +26,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -135,12 +134,7 @@ public class NavHeaderView extends LinearLayout {
             super.onCreate(savedInstanceState);
 
             Intent intent;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-            } else {
-                intent = new Intent();
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-            }
+            intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.setType("image/*");
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             startActivityForResult(Intent.createChooser(intent, getString(R.string.select_picture)), 0);
@@ -199,8 +193,7 @@ public class NavHeaderView extends LinearLayout {
     }
 
     private static Bitmap uriToBitmap(Uri uri, Context context) throws IOException {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-            context.getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        context.getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
         InputStream inputStream = context.getContentResolver().openInputStream(uri);
         if (inputStream != null) {
             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);

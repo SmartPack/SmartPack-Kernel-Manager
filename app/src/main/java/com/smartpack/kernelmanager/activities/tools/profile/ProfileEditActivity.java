@@ -19,7 +19,6 @@
  */
 package com.smartpack.kernelmanager.activities.tools.profile;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;

@@ -41,9 +41,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.FileProvider;
 import androidx.core.view.ViewCompat;
 
@@ -84,7 +84,6 @@ public class Utils {
     private static final String KA_DONATION_PACKAGE = "com.grarak.kerneladiutordonate";
     private static final String SP_DONATION_PACKAGE = "com.smartpack.donate";
     private static final String PLAY_STORE = "com.android.vending";
-    public static boolean DARK_THEME;
 
     private static boolean isKADonated(Context context) {
         try {
@@ -114,6 +113,16 @@ public class Utils {
             return true;
         } catch (PackageManager.NameNotFoundException ignored) {
             return false;
+        }
+    }
+
+    public static void initializeAppTheme(Context context) {
+        if (Prefs.getBoolean("darktheme", true, context)) {
+            AppCompatDelegate.setDefaultNightMode(
+                    AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(
+                    AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
 
@@ -183,12 +192,10 @@ public class Utils {
         return false;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static String decodeString(String text) {
         return new String(Base64.decode(text, Base64.DEFAULT), StandardCharsets.UTF_8);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static String encodeString(String text) {
         return Base64.encodeToString(text.getBytes(StandardCharsets.UTF_8), Base64.DEFAULT);
     }

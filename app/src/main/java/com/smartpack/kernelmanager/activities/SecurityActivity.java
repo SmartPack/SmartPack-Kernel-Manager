@@ -75,7 +75,6 @@ public class SecurityActivity extends BaseActivity {
     private FingerprintUiHelper mFingerprintUiHelper;
     private FingerprintManagerCompat.CryptoObject mCryptoObject;
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

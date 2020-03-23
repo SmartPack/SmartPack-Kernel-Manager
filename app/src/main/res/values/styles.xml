@@ -1,19 +1,10 @@
 <resources>
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">?android:attr/colorAccent</item>
         <item name="colorOnPrimary">?android:attr/textColorPrimary</item>
-        <item name="colorSecondary">?android:attr/colorAccent</item>
-        <item name="colorOnSecondary">@color/colorOnPrimary</item>
-        <item name="banner_frame_drawable">@drawable/drawable_frame_light</item>
-    </style>
-
-    <style name="AppThemeDark" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">?android:attr/colorBackground</item>
-        <item name="colorOnPrimary">?android:attr/textColorPrimary</item>
-        <item name="colorSecondary">?android:attr/colorAccent</item>
-        <item name="colorOnSecondary">@color/colorOnPrimary</item>
+        <item name="colorOnSecondary">?android:colorBackground</item>
+        <item name="android:statusBarColor">@color/colorPrimaryVariant</item>
         <item name="banner_frame_drawable">@drawable/drawable_frame_light</item>
     </style>
 

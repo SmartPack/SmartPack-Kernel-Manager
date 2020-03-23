@@ -28,7 +28,6 @@ import android.view.View;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.kernel.wake.S2w;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
-import com.smartpack.kernelmanager.views.recyclerview.ValueView;
 
 import java.util.ArrayList;
 import java.util.List;

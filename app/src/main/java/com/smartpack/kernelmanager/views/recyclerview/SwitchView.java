@@ -21,7 +21,6 @@ package com.smartpack.kernelmanager.views.recyclerview;
 
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.CompoundButton;
 
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -44,7 +43,7 @@ public class SwitchView extends RecyclerViewItem {
     }
 
     public interface OnMenuListener {
-        void onMenuReady(SwitchView cardView, PopupMenu popupMenu);
+        void onMenuReady(SwitchView switchView, PopupMenu popupMenu);
     }
 
     private AppCompatImageView mImageView;

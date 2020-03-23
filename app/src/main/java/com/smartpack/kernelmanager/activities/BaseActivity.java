@@ -33,7 +33,6 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import com.google.android.material.appbar.AppBarLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import com.smartpack.kernelmanager.R;
@@ -51,7 +50,6 @@ import java.util.Objects;
 public abstract class BaseActivity extends AppCompatActivity {
 
     private static HashMap<String, Integer> sAccentColors = new HashMap<>();
-    private static HashMap<String, Integer> sAccentDarkColors = new HashMap<>();
 
     static {
         sAccentColors.put("red_accent", R.style.Theme_Red);
@@ -64,33 +62,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         sAccentColors.put("grey_accent", R.style.Theme_Grey);
         sAccentColors.put("blue_grey_accent", R.style.Theme_BlueGrey);
         sAccentColors.put("teal_accent", R.style.Theme_Teal);
-
-        sAccentDarkColors.put("red_accent", R.style.Theme_Red_Dark);
-        sAccentDarkColors.put("pink_accent", R.style.Theme_Pink_Dark);
-        sAccentDarkColors.put("purple_accent", R.style.Theme_Purple_Dark);
-        sAccentDarkColors.put("blue_accent", R.style.Theme_Blue_Dark);
-        sAccentDarkColors.put("green_accent", R.style.Theme_Green_Dark);
-        sAccentDarkColors.put("orange_accent", R.style.Theme_Orange_Dark);
-        sAccentDarkColors.put("brown_accent", R.style.Theme_Brown_Dark);
-        sAccentDarkColors.put("grey_accent", R.style.Theme_Grey_Dark);
-        sAccentDarkColors.put("blue_grey_accent", R.style.Theme_BlueGrey_Dark);
-        sAccentDarkColors.put("teal_accent", R.style.Theme_Teal_Dark);
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-        Utils.DARK_THEME = Prefs.getBoolean("darktheme", true, this);
-        int theme;
+        // Initialize App Theme
+        Utils.initializeAppTheme(this);
         String accent = Prefs.getString("accent_color", "blue_accent", this);
-        if (Utils.DARK_THEME) {
-            theme = sAccentDarkColors.get(accent);
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            theme = sAccentColors.get(accent);
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-        setTheme(theme);
+        setTheme(sAccentColors.get(accent));
         super.onCreate(savedInstanceState);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && setStatusBarColor()) {
@@ -111,27 +90,18 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public static ContextWrapper wrap(Context context, Locale newLocale) {
-
         Resources res = context.getResources();
         Configuration configuration = res.getConfiguration();
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             configuration.setLocale(newLocale);
-
             LocaleList localeList = new LocaleList(newLocale);
             LocaleList.setDefault(localeList);
             configuration.setLocales(localeList);
-
-            context = context.createConfigurationContext(configuration);
-
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            configuration.setLocale(newLocale);
             context = context.createConfigurationContext(configuration);
         } else {
-            configuration.locale = newLocale;
-            res.updateConfiguration(configuration, res.getDisplayMetrics());
+            configuration.setLocale(newLocale);
+            context = context.createConfigurationContext(configuration);
         }
-
         return new ContextWrapper(context);
     }
 

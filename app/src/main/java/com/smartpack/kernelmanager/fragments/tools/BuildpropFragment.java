@@ -20,7 +20,6 @@
 package com.smartpack.kernelmanager.fragments.tools;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;

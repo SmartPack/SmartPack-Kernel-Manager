@@ -23,7 +23,6 @@ package com.smartpack.kernelmanager.views.recyclerview;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
@@ -44,7 +43,7 @@ public class GenericInputView extends InputValueView {
     }
 
     public interface OnMenuListener {
-        void onMenuReady(GenericInputView cardView, PopupMenu popupMenu);
+        void onMenuReady(GenericInputView genericInputView, PopupMenu popupMenu);
     }
 
     private AppCompatImageButton mMenuIconView;

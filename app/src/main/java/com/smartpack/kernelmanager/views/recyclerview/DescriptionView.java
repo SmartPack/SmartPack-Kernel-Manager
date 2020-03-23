@@ -37,7 +37,7 @@ import com.smartpack.kernelmanager.R;
 public class DescriptionView extends RecyclerViewItem {
 
     public interface OnMenuListener {
-        void onMenuReady(DescriptionView cardView, PopupMenu popupMenu);
+        void onMenuReady(DescriptionView descriptionView, PopupMenu popupMenu);
     }
 
     private View mRootView;
