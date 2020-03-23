@@ -449,9 +449,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     }
 
     @Override
+    @SuppressLint("RestrictedApi")
     protected RecyclerView.Adapter onCreateAdapter(PreferenceScreen preferenceScreen) {
         return new PreferenceGroupAdapter(preferenceScreen) {
-            @SuppressLint("RestrictedApi")
             @Override
             public void onBindViewHolder(PreferenceViewHolder holder, int position) {
                 super.onBindViewHolder(holder, position);
@@ -484,8 +484,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         Intent intent = new Intent(getActivity(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra(NavigationActivity.INTENT_SECTION,
-                SettingsFragment.class.getCanonicalName());
+        intent.putExtra("selection", SettingsFragment.class.getCanonicalName());
         startActivity(intent);
     }
 

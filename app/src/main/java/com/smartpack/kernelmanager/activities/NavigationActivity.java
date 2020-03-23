@@ -35,8 +35,6 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 
 import androidx.annotation.NonNull;
-import com.google.android.material.navigation.NavigationView;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -45,6 +43,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.navigation.NavigationView;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
@@ -116,9 +116,6 @@ import java.util.PriorityQueue;
 
 public class NavigationActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private static final String PACKAGE = NavigationActivity.class.getCanonicalName();
-    public static final String INTENT_SECTION = PACKAGE + ".INTENT.SECTION";
 
     private ArrayList<NavigationFragment> mFragments = new ArrayList<>();
     private Map<Integer, Class<? extends Fragment>> mActualFragments = new LinkedHashMap<>();
@@ -274,11 +271,11 @@ public class NavigationActivity extends BaseActivity
         });
 
         if (savedInstanceState != null) {
-            mSelection = savedInstanceState.getInt(INTENT_SECTION);
+            mSelection = savedInstanceState.getInt("selection");
         }
 
         appendFragments(false);
-        String section = getIntent().getStringExtra(INTENT_SECTION);
+        String section = getIntent().getStringExtra("selection");
         if (section != null) {
             for (Map.Entry<Integer, Class<? extends Fragment>> entry : mActualFragments.entrySet()) {
                 Class<? extends Fragment> fragmentClass = entry.getValue();
@@ -287,7 +284,7 @@ public class NavigationActivity extends BaseActivity
                     break;
                 }
             }
-            getIntent().removeExtra(INTENT_SECTION);
+            getIntent().removeExtra("selection");
         }
 
         if (mSelection == 0 || mActualFragments.get(mSelection) == null) {
@@ -382,7 +379,7 @@ public class NavigationActivity extends BaseActivity
             if (fragment == null || fragment.mFragmentClass == null) continue;
             Intent intent = new Intent(this, MainActivity.class);
             intent.setAction(Intent.ACTION_VIEW);
-            intent.putExtra(INTENT_SECTION, fragment.mFragmentClass.getCanonicalName());
+            intent.putExtra("selection", fragment.mFragmentClass.getCanonicalName());
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
             ShortcutInfo shortcut = new ShortcutInfo.Builder(this,
