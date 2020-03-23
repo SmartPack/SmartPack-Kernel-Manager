@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - Overall code cleaning & modernization.\n - Significantly improved auto-flashing.\n - Updated kernel downloader to work without curl/wget binaries.\n - Prevent users from picking file paths contain unsupported characters.\n - Updated pt-rBR translations.\n - Updated Scripts and Custom Controls view.\n - Miscellaneous changes.",
-  "latestVersion": "10.0",
-  "latestVersionCode": 98
+  "releaseNotes": "Change-logs\n - Depreciate below lollipop (API < 21) support.\n - Fixed profile pop-up menu not showing.\n - Fixed falling back to overall page upon screen rotation.\n - Miscellaneous changes.",
+  "latestVersion": "10.1",
+  "latestVersionCode": 100
 }

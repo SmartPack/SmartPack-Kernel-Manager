@@ -1,5 +1,9 @@
 # Change-logs
 
+## 98. March 23, 2020
+*Release-tag: v10.1*<br>
+Changes: Depreciate below lollipop (API < 21) support. Fixed profile pop-up menu not showing. Fixed going back to overall page upon screen rotation. Miscellaneous changes.
+
 ## 97. March 20, 2020
 *Release-tag: v10.0*<br>
 Changes: Overall cleaning & modernization of code. Updated kernel downloader to work without curl/wget binaries. Significantly improved auto-flashing. Prevent users from picking file paths contain unsupported characters. Update pt-rBR translations. Updated Scripts & Custom Controls view. Miscellaneous changes.
