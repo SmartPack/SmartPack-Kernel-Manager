@@ -34,7 +34,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
+        android:requestLegacyExternalStorage="true"
+        tools:targetApi="q" >
 
         <activity android:name=".activities.StartActivity" android:label="@string/smartpack" >
             <intent-filter>
@@ -110,7 +111,9 @@
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <!-- CM SDK -->
-        <receiver android:name=".services.profile.Tile">
+        <receiver android:name=".services.profile.Tile"
+            android:permission="TODO"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name=".action.ACTION_TOGGLE_STATE" />
             </intent-filter>
@@ -137,7 +140,9 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".services.profile.Tasker">
+        <receiver android:name=".services.profile.Tasker"
+            android:permission="TODO"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
                 <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING" />
             </intent-filter>
