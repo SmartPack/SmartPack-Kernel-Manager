@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/apply_on_boot"
-        android:textColor="@color/colorOnPrimary"
-        android:textSize="16sp" />
+        android:textColor="?attr/colorSecondary"
+        android:textSize="17sp" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switcher"

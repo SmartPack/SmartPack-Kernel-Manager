@@ -18,8 +18,8 @@
             android:layout_height="wrap_content"
             android:focusable="false"
             android:gravity="center"
-            android:textColor="@color/colorOnPrimary"
-            android:textSize="16sp" />
+            android:textColor="?attr/colorSecondary"
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/summary"
@@ -27,6 +27,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:linksClickable="true"
-            android:textColor="@color/textcolor_dark" />
+            android:textColor="@color/colorOnPrimary" />
     </LinearLayout>
 </ScrollView>

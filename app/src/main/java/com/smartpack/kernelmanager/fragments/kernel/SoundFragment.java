@@ -68,7 +68,7 @@ public class SoundFragment extends RecyclerViewFragment {
 		SeekBarView headphoneGainRight = new SeekBarView();
 
 		if (mSound.hasboefflasoundenable()) {
-			enable.setTitle(getString(R.string.boefflasound) + " Version: " + mSound.getboefflasoundVersion());
+			enable.setTitle(getString(R.string.boefflasound) + " v" + mSound.getboefflasoundVersion());
 			enable.setSummary(getString(R.string.boefflasound_summary));
 			enable.setChecked(mSound.isboefflasoundenabled());
 			enable.addOnSwitchListener((switchView, isChecked) -> {

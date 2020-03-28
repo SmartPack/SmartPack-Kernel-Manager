@@ -83,7 +83,7 @@ public class IO {
         }
 
         List<String> sDm0 = new ArrayList<>();
-        sDm0.add("/sys/block/dm-0/queue/");
+        sDm0.add("/sys/block/dm-0/queue");
 
         DM0 = exists(sDm0);
     }

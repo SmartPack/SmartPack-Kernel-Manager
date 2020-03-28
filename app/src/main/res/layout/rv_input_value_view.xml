@@ -39,7 +39,6 @@
                     android:layout_height="20dp"
                     android:layout_gravity="end|center"
                     android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:tint="?android:attr/textColorSecondary"
                     android:scaleType="center"
@@ -52,7 +51,6 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
             android:baselineAligned="false" >
 

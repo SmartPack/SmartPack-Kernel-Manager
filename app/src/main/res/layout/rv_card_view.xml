@@ -30,7 +30,6 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
                     android:scaleType="fitCenter"
                     android:layout_gravity="center"
                     android:visibility="gone" />
@@ -41,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:focusable="false"
-                    android:textColor="?android:attr/textColorSecondary"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="18sp" />
 
                 <androidx.appcompat.widget.AppCompatImageView

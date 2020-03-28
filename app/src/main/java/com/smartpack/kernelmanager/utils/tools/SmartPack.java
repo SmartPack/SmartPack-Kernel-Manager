@@ -107,7 +107,11 @@ public class SmartPack {
                 mProgressDialog.show();
             }
             protected String doInBackground(Void... voids) {
-                mFlashingResult = new StringBuilder();
+                if (mFlashingResult == null) {
+                    mFlashingResult = new StringBuilder();
+                } else {
+                    mFlashingResult.setLength(0);
+                }
                 mFlashingResult.append("## Flasher log created by SmartPack-Kernel Manager\n\n");
                 mFlashingResult.append("** Preparing to flash ").append(file.getName()).append("...\n\n");
                 mFlashingResult.append("** Path: '").append(file.toString()).append("'\n\n");

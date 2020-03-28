@@ -68,7 +68,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         // Initialize App Theme
         Utils.initializeAppTheme(this);
-        String accent = Prefs.getString("accent_color", "blue_accent", this);
+        String accent = Prefs.getString("accent_color", "teal_accent", this);
         setTheme(sAccentColors.get(accent));
         super.onCreate(savedInstanceState);
 

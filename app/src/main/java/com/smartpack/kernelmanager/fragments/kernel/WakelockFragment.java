@@ -71,7 +71,7 @@ public class WakelockFragment extends RecyclerViewFragment {
         List<RecyclerViewItem> bwl = new ArrayList<>();
 
         TitleView title = new TitleView();
-        title.setText(getString(R.string.boeffla_wakelock) + "\n" + "Version: " + Wakelocks.getboefflawlVersion());
+        title.setText(getString(R.string.boeffla_wakelock) + "\nv" + Wakelocks.getboefflawlVersion());
         mWakeCard.clear();
 
         SelectView borfflawlorder = new SelectView();
