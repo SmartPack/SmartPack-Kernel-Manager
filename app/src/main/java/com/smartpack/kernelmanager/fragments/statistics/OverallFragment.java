@@ -27,6 +27,7 @@ import android.os.BatteryManager;
 import android.os.SystemClock;
 import android.view.Menu;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.smartpack.kernelmanager.R;
@@ -90,10 +91,7 @@ public class OverallFragment extends RecyclerViewFragment {
             menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.cpu_times));
 
             popupMenu.setOnMenuItemClickListener(item -> {
-                FragmentManager fragmentManager = getFragmentManager();
-                assert fragmentManager != null;
-                fragmentManager.beginTransaction()
-                        .replace(R.id.content_frame, new CPUTimes()).commit();
+                switchFragment(new CPUTimes());
                 return false;
             });
         });
@@ -116,10 +114,7 @@ public class OverallFragment extends RecyclerViewFragment {
             menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
 
             popupMenu.setOnMenuItemClickListener(item -> {
-                FragmentManager fragmentManager = getFragmentManager();
-                assert fragmentManager != null;
-                fragmentManager.beginTransaction()
-                        .replace(R.id.content_frame, new DeviceFragment()).commit();
+                switchFragment(new DeviceFragment());
                 return false;
             });
         });
@@ -137,10 +132,7 @@ public class OverallFragment extends RecyclerViewFragment {
                 menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
 
                 popupMenu.setOnMenuItemClickListener(item -> {
-                    FragmentManager fragmentManager = getFragmentManager();
-                    assert fragmentManager != null;
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.content_frame, new BatteryFragment()).commit();
+                    switchFragment(new BatteryFragment());
                     return false;
                 });
             });
@@ -161,10 +153,7 @@ public class OverallFragment extends RecyclerViewFragment {
                 menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
 
                 popupMenu.setOnMenuItemClickListener(item -> {
-                    FragmentManager fragmentManager = getFragmentManager();
-                    assert fragmentManager != null;
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.content_frame, new VMFragment()).commit();
+                    switchFragment(new VMFragment());
                     return false;
                 });
             });
@@ -172,6 +161,13 @@ public class OverallFragment extends RecyclerViewFragment {
             memmory.addItem(mVM);
             items.add(memmory);
         }
+    }
+
+    private void switchFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getFragmentManager();
+        assert fragmentManager != null;
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, fragment).commit();
     }
 
     private Integer mGPUCurFreq;
