@@ -162,7 +162,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 getString(R.string.flasher_summary)));
     }
 
-    @SuppressLint("StringFormatInvalid")
     private void SmartPackInit(List<RecyclerViewItem> items) {
         TitleView smartpack = new TitleView();
         smartpack.setText(!KernelUpdater.getKernelName().equals("Unavailable") ? KernelUpdater.getKernelName() :
@@ -326,7 +325,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     Utils.toast(R.string.permission_denied_write_storage, getActivity());
                     return;
                 }
-                KernelUpdater.downloadKernel(getActivity());
+                downloadKernel();
             });
 
             items.add(download);
@@ -550,6 +549,57 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     @SuppressLint("StaticFieldLeak")
+    private void downloadKernel() {
+        new AsyncTask<Void, Void, Void>() {
+            private ProgressDialog mProgressDialog;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                mProgressDialog = new ProgressDialog(getActivity());
+                mProgressDialog.setMessage(getString(R.string.downloading_update, KernelUpdater.getKernelName() +
+                        "-" + KernelUpdater.getLatestVersion()) + "...");
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
+            }
+            @Override
+            protected Void doInBackground(Void... voids) {
+                Utils.prepareInternalDataStorage();
+                Utils.mPath = Utils.getInternalDataStorage() + "/Kernel.zip";
+                Utils.downloadFile(Utils.mPath, KernelUpdater.getUrl(), getActivity());
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                try {
+                    mProgressDialog.dismiss();
+                } catch (IllegalArgumentException ignored) {
+                }
+                if (KernelUpdater.getChecksum().equals("Unavailable") || !KernelUpdater.getChecksum().equals("Unavailable") &&
+                        Utils.getChecksum(Utils.mPath).contains(KernelUpdater.getChecksum())) {
+                    new Dialog(requireActivity())
+                            .setMessage(getString(R.string.download_completed,
+                                    KernelUpdater.getKernelName() + "-" + KernelUpdater.getLatestVersion()))
+                            .setCancelable(false)
+                            .setNegativeButton(getString(R.string.cancel), (dialog, id) -> {
+                            })
+                            .setPositiveButton(getString(R.string.flash), (dialog, id) -> {
+                                flashingTask(new File(Utils.mPath));
+                            })
+                            .show();
+                } else {
+                    new Dialog(requireActivity())
+                            .setMessage(getString(R.string.download_failed))
+                            .setCancelable(false)
+                            .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
+                            })
+                            .show();
+                }
+            }
+        }.execute();
+    }
+
+    @SuppressLint("StaticFieldLeak")
     private void flashingTask(File file) {
         new AsyncTask<Void, Void, String>() {
             @Override
@@ -557,6 +607,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 super.onPreExecute();
                 Utils.mFlashing = true;
                 requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+                if (SmartPack.mFlashingResult == null) {
+                    SmartPack.mFlashingResult = new StringBuilder();
+                } else {
+                    SmartPack.mFlashingResult.setLength(0);
+                }
                 SmartPack.mFlashingResult.append("** Preparing to flash ").append(file.getName()).append("...\n\n");
                 SmartPack.mFlashingResult.append("** Path: '").append(file.toString()).append("'\n\n");
                 setForegroundText(getString(R.string.flashing_title, new File(Utils.mPath).getName().replace(".zip", "")));
