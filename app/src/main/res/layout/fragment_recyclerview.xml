@@ -44,10 +44,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_below="@+id/viewpagerparent"
         android:layout_marginEnd="@dimen/recyclerview_fab_margin_right"
-        android:layout_marginRight="@dimen/recyclerview_fab_margin_right"
         android:layout_marginTop="@dimen/recyclerview_fab_margin_top"
         android:visibility="gone" />
 
@@ -57,10 +55,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginBottom="@dimen/recyclerview_fab_margin_bottom"
         android:layout_marginEnd="@dimen/recyclerview_fab_margin_right"
-        android:layout_marginRight="@dimen/recyclerview_fab_margin_right"
         android:visibility="gone" />
 
     <com.google.android.gms.ads.AdView
@@ -95,7 +91,7 @@
             android:layout_gravity="bottom"
             android:orientation="vertical">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/foreground_text"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -106,6 +102,7 @@
                 android:paddingRight="16dp"
                 android:paddingStart="16dp"
                 android:textColor="@color/colorOnPrimary"
+                android:background="@color/colorPrimary"
                 android:textSize="17sp" />
 
             <FrameLayout

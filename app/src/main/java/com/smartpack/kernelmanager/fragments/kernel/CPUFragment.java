@@ -280,7 +280,7 @@ public class CPUFragment extends RecyclerViewFragment {
             mGovernorTunableFragment.setError(getString(R.string.tunables_error, governor));
             mGovernorTunableFragment.setPath(mCPUFreq.getGovernorTunablesPath(min, governor), min, max,
                     ApplyOnBootFragment.CPU);
-            showForeground();
+            Utils.showForeground();
         }
         if (offline) {
             mCPUFreq.onlineCpu(min, false, false, null);

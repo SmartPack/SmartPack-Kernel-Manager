@@ -214,7 +214,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
             activity.runOnUiThread(() -> {
                 if (isAdded()) {
                     SearchFragment fragment = (SearchFragment)
-                            getViewPagerFragment(0);
+                            getViewPagerFragment();
                     fragment.setCount(items.size());
                 }
             });

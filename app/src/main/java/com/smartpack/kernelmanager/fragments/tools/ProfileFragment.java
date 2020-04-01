@@ -67,7 +67,6 @@ import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
 import com.smartpack.kernelmanager.utils.root.Control;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
-import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 
@@ -91,7 +90,6 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     private boolean mTaskerMode;
     private Profiles mProfiles;
-    private String mPath;
 
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
     private boolean mLoaded;
@@ -104,7 +102,7 @@ public class ProfileFragment extends RecyclerViewFragment {
     private ImportProfile mImportProfile;
     private Dialog mSelectDialog;
 
-    private DetailsFragment mDetailsFragment;
+    private ForegroundFragment mDetailsFragment;
 
     @Override
     protected boolean showViewPager() {
@@ -118,7 +116,7 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     @Override
     protected BaseFragment getForegroundFragment() {
-        return mTaskerMode ? null : (mDetailsFragment = new DetailsFragment());
+        return mTaskerMode ? null : (mDetailsFragment = new ForegroundFragment());
     }
 
     @Override
@@ -250,10 +248,11 @@ public class ProfileFragment extends RecyclerViewFragment {
             descriptionView.setSummary(profileItems.get(i).getName());
             descriptionView.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
             descriptionView.setOnItemClickListener(item -> {
+                if (Utils.mForegroundVisible) return;
                 if (mTaskerMode) {
                     mSelectDialog = ViewUtils.dialogBuilder(getString(R.string.select_question,
                             descriptionView.getSummary()), (dialogInterface, i12) -> {
-                            }, (dialogInterface, i12) -> ((ProfileTaskerActivity) getActivity()).finish(
+                            }, (dialogInterface, i12) -> ((ProfileTaskerActivity) Objects.requireNonNull(getActivity())).finish(
                                     descriptionView.getSummary().toString(),
                                     mProfiles.getAllProfiles().get(position).getCommands()), dialogInterface -> mSelectDialog = null, getActivity());
                     mSelectDialog.show();
@@ -312,8 +311,23 @@ public class ProfileFragment extends RecyclerViewFragment {
                                     List<Profiles.ProfileItem.CommandItem> commands = items1.get(position).getCommands();
                                     if (commands.size() > 0) {
                                         setForegroundText(items1.get(position).getName().toUpperCase());
-                                        mDetailsFragment.setText(commands);
-                                        showForeground();
+                                        StringBuilder commandsText = new StringBuilder();
+                                        for (Profiles.ProfileItem.CommandItem command : commands) {
+                                            CPUFreq.ApplyCpu applyCpu;
+                                            if (command.getCommand().startsWith("#")
+                                                    & ((applyCpu =
+                                                    new CPUFreq.ApplyCpu(command.getCommand().substring(1))).toString() != null)) {
+                                                for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu, RootUtils.getSU())) {
+                                                    commandsText.append(applyCpuCommand).append("\n");
+                                                }
+                                            } else {
+                                                commandsText.append(command.getCommand()).append("\n");
+                                            }
+                                        }
+                                        commandsText.setLength(commandsText.length() - 1);
+                                        mDetailsFragment.setText(commandsText.toString());
+                                        mDetailsFragment.showCancel();
+                                        Utils.showForeground();
                                     } else {
                                         Utils.toast(R.string.profile_empty, getActivity());
                                     }
@@ -362,6 +376,8 @@ public class ProfileFragment extends RecyclerViewFragment {
     @Override
     protected void onTopFabClick() {
         super.onTopFabClick();
+
+        if (Utils.mForegroundVisible) return;
 
         mOptionsDialog = new Dialog(requireActivity()).setItems(getResources().getStringArray(
                 R.array.profile_options), (dialogInterface, i) -> {
@@ -441,25 +457,25 @@ public class ProfileFragment extends RecyclerViewFragment {
             if (Utils.isDocumentsUI(uri)) {
                 @SuppressLint("Recycle") Cursor cursor = requireActivity().getContentResolver().query(uri, null, null, null, null);
                 if (cursor != null && cursor.moveToFirst()) {
-                    mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
+                    Utils.mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
                             cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                 }
             } else {
-                mPath = Utils.getFilePath(file);
+                Utils.mPath = Utils.getFilePath(file);
             }
-            if (!Utils.getExtension(mPath).equals("json")) {
+            if (!Utils.getExtension(Utils.mPath).equals("json")) {
                 Utils.toast(getString(R.string.wrong_extension, ".json"), getActivity());
                 return;
             }
-            if (mPath.contains("(") || mPath.contains(")")) {
+            if (Utils.mPath.contains("(") || Utils.mPath.contains(")")) {
                 Utils.toast(getString(R.string.file_name_error), getActivity());
             }
             Dialog selectProfile = new Dialog(requireActivity());
-            selectProfile.setMessage(getString(R.string.select_question, new File(mPath).getName()));
+            selectProfile.setMessage(getString(R.string.select_question, new File(Utils.mPath).getName()));
             selectProfile.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
             });
             selectProfile.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
-                ImportProfile importProfile = new ImportProfile(mPath);
+                ImportProfile importProfile = new ImportProfile(Utils.mPath);
                 if (!importProfile.readable()) {
                     Utils.toast(R.string.import_malformed, getActivity());
                     return;
@@ -564,42 +580,6 @@ public class ProfileFragment extends RecyclerViewFragment {
             mLoader = null;
         }
         mLoaded = false;
-    }
-
-    public static class DetailsFragment extends BaseFragment {
-
-        private TextView mCodeText;
-
-        @Nullable
-        @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_profile_details, container, false);
-
-            mCodeText = rootView.findViewById(R.id.code_text);
-
-            return rootView;
-        }
-
-        private void setText(List<Profiles.ProfileItem.CommandItem> commands) {
-            StringBuilder commandsText = new StringBuilder();
-            for (Profiles.ProfileItem.CommandItem command : commands) {
-                CPUFreq.ApplyCpu applyCpu;
-                if (command.getCommand().startsWith("#")
-                        & ((applyCpu =
-                        new CPUFreq.ApplyCpu(command.getCommand().substring(1))).toString() != null)) {
-                    for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu, RootUtils.getSU())) {
-                        commandsText.append(applyCpuCommand).append("\n");
-                    }
-                } else {
-                    commandsText.append(command.getCommand()).append("\n");
-                }
-            }
-            commandsText.setLength(commandsText.length() - 1);
-
-            if (mCodeText != null) {
-                mCodeText.setText(commandsText.toString());
-            }
-        }
     }
 
     public static class TaskerToastFragment extends BaseFragment {

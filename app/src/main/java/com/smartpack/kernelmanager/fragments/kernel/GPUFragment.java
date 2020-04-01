@@ -25,6 +25,7 @@ import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
+import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.gpu.AdrenoIdler;
 import com.smartpack.kernelmanager.utils.kernel.gpu.GPUFreq;
 import com.smartpack.kernelmanager.utils.kernel.gpu.SimpleGPU;
@@ -166,7 +167,7 @@ public class GPUFragment extends RecyclerViewFragment {
                     mGPUGovernorTunableFragment.setError(getString(R.string.tunables_error, governor1));
                     mGPUGovernorTunableFragment.setPath(mGPUFreq.getTunables(mGPUFreq.getGovernor()),
                             ApplyOnBootFragment.GPU);
-                    showForeground();
+                    Utils.showForeground();
                 });
 
                 gpuCard.addItem(tunables);

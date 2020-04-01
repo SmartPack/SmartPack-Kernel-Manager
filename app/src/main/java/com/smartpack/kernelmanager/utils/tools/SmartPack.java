@@ -54,7 +54,7 @@ public class SmartPack {
     private static final String ZIPFILE_EXTRACTED = Utils.getInternalDataStorage() + "/flash/META-INF/com/google/android/update-binary";
     private static final String FLASHER_LOG = Utils.getInternalDataStorage() + "/flasher_log";
 
-     private static StringBuilder mFlashingResult = null;
+    public static StringBuilder mFlashingResult = null;
 
     private static String mountRootFS(String command) {
         return "mount " + command + " /";
@@ -95,7 +95,7 @@ public class SmartPack {
     }
 
     @SuppressLint("StaticFieldLeak")
-    public void flashingTask(File file, Context context) {
+    void flashingTask(File file, Context context) {
         new AsyncTask<Void, Void, String>() {
             private ProgressDialog mProgressDialog;
             @Override
@@ -167,7 +167,7 @@ public class SmartPack {
         }.execute();
     }
 
-    private static String manualFlash(File file) {
+    public static String manualFlash(File file) {
         /*
          * Flashing recovery zip without rebooting to custom recovery
          * Credits to osm0sis @ xda-developers.com

@@ -35,6 +35,7 @@ import android.view.Menu;
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.EditorActivity;
+import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.fragments.SwitcherFragment;
@@ -42,6 +43,7 @@ import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.tools.ScriptManager;
+import com.smartpack.kernelmanager.utils.tools.SmartPack;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -63,16 +65,17 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
 
     private boolean mLoaded;
     private boolean mPermissionDenied;
+    private boolean mShowCreateNameDialog;
 
     private Dialog mExecuteDialog;
     private Dialog mOptionsDialog;
     private Dialog mDeleteDialog;
-    private boolean mShowCreateNameDialog;
+
+    private ForegroundFragment mDetailsFragment;
 
     private String mCreateName;
 
     private String mEditScript;
-    private String mPath;
 
     @Override
     protected Drawable getTopFabDrawable() {
@@ -110,6 +113,11 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
         if (mShowCreateNameDialog) {
             showCreateDialog();
         }
+    }
+
+    @Override
+    protected BaseFragment getForegroundFragment() {
+        return mDetailsFragment = new ForegroundFragment();
     }
 
     @Override
@@ -170,8 +178,9 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                     Menu menu = popupMenu.getMenu();
                     menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.execute));
                     menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.edit));
-                    menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.share));
-                    menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.delete));
+                    menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.details));
+                    menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.share));
+                    menu.add(Menu.NONE, 4, Menu.NONE, getString(R.string.delete));
                     popupMenu.setOnMenuItemClickListener(item -> {
                         switch (item.getItemId()) {
                             case 0:
@@ -188,10 +197,16 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                                 startActivityForResult(intent, 0);
                                 break;
                             case 2:
+                                setForegroundText(script);
+                                mDetailsFragment.setText(ScriptManager.read(script));
+                                mDetailsFragment.showCancel();
+                                Utils.showForeground();
+                                break;
+                            case 3:
                                 Utils.shareItem(getActivity(), script, ScriptManager.scriptFile() + "/" + script, getString(R.string.share_script) + "\n\n" +
                                         getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME));
                                 break;
-                            case 3:
+                            case 4:
                                 mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
                                         (dialogInterface, i) -> {
                                         }, (dialogInterface, i) -> {
@@ -287,13 +302,13 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
             if (Utils.isDocumentsUI(uri)) {
                 @SuppressLint("Recycle") Cursor cursor = requireActivity().getContentResolver().query(uri, null, null, null, null);
                 if (cursor != null && cursor.moveToFirst()) {
-                    mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
+                    Utils.mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
                             cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                 }
             } else {
-                mPath = Utils.getFilePath(file);
+                Utils.mPath = Utils.getFilePath(file);
             }
-            if (!Utils.getExtension(mPath).equals("sh")) {
+            if (!Utils.getExtension(Utils.mPath).equals("sh")) {
                 Utils.toast(getString(R.string.wrong_extension, ".sh"), getActivity());
                 return;
             }
@@ -301,15 +316,15 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 Utils.toast(getString(R.string.script_exists, file.getName()), getActivity());
                 return;
             }
-            if (mPath.contains("(") || mPath.contains(")")) {
+            if (Utils.mPath.contains("(") || Utils.mPath.contains(")")) {
                 Utils.toast(getString(R.string.file_name_error), getActivity());
             }
             Dialog selectQuestion = new Dialog(requireActivity());
-            selectQuestion.setMessage(getString(R.string.select_question, new File(mPath).getName()));
+            selectQuestion.setMessage(getString(R.string.select_question, new File(Utils.mPath).getName()));
             selectQuestion.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
             selectQuestion.setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {
-                ScriptManager.importScript(mPath);
+                ScriptManager.importScript(Utils.mPath);
                 reload();
             });
             selectQuestion.show();
@@ -319,6 +334,8 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     @Override
     protected void onTopFabClick() {
         super.onTopFabClick();
+
+        if (Utils.mForegroundVisible) return;
 
         if (mPermissionDenied) {
             Utils.toast(R.string.permission_denied_write_storage, getActivity());

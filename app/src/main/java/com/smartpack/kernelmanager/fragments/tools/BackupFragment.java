@@ -69,8 +69,6 @@ public class BackupFragment extends RecyclerViewFragment {
 
     private boolean mLoaded;
 
-    private String mPath;
-
     @Override
     protected boolean showTopFab() {
         return true;
@@ -468,20 +466,20 @@ public class BackupFragment extends RecyclerViewFragment {
             if (Utils.isDocumentsUI(uri)) {
                 @SuppressLint("Recycle") Cursor cursor = requireActivity().getContentResolver().query(uri, null, null, null, null);
                 if (cursor != null && cursor.moveToFirst()) {
-                    mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
+                    Utils.mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
                             cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                 }
             } else {
-                mPath = Utils.getFilePath(file);
+                Utils.mPath = Utils.getFilePath(file);
             }
-            if (!Utils.getExtension(mPath).equals("img")) {
+            if (!Utils.getExtension(Utils.mPath).equals("img")) {
                 Utils.toast(getString(R.string.wrong_extension, ".img"), getActivity());
                 return;
             }
-            if (mPath.contains("(") || mPath.contains(")")) {
+            if (Utils.mPath.contains("(") || Utils.mPath.contains(")")) {
                 Utils.toast(getString(R.string.file_name_error), getActivity());
             }
-            showBackupFlashingDialog(new File(mPath));
+            showBackupFlashingDialog(new File(Utils.mPath));
         }
     }
 
