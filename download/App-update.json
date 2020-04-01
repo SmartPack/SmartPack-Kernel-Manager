@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - Depreciate below lollipop (API < 21) support.\n - Fixed profile pop-up menu not showing.\n - Fixed falling back to overall page upon screen rotation.\n - Miscellaneous changes.",
-  "latestVersion": "10.1",
-  "latestVersionCode": 100
+  "releaseNotes": "Change-logs\n - Added a recovery-like flashing view.\n - Added option to view Scripts.\n - Fixed creating app folder on Android 10.\n - Switched to Teal Accent color.\n - More UI updates.\n - Miscellaneous changes.",
+  "latestVersion": "10.2",
+  "latestVersionCode": 101
 }
