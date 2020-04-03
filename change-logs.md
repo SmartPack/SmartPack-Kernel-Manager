@@ -1,5 +1,9 @@
 # Change-logs
 
+## 100. April 03, 2020
+*Release-tag: v10.3*<br>
+Partially removed recent changes (including flashing view) to fix foreground issues. Added a Cancel button on foreground page. Fixed issues with Tasker integration. Miscellaneous changes.
+
 ## 99. April 01, 2020
 *Release-tag: v10.2*<br>
 Added a recovery-like flashing view. Added option to view Scripts. Fixed creating app folder on Android 10. Switched to Teal Accent color. More UI updates. Miscellaneous changes.
