@@ -89,19 +89,6 @@ public class Profiles extends Provider {
             }
         }
 
-        public ProfileItem(String name, List<String> commands) {
-            try {
-                mCommands = new JSONArray();
-                for (String command : commands) {
-                    mCommands.put(command);
-                }
-                getItem().put("name", name);
-                getItem().put("commands", mCommands);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
         public String getName() {
             return getString("name");
         }

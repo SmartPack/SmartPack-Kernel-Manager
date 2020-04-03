@@ -26,7 +26,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
@@ -40,7 +39,6 @@ import android.view.Menu;
 import androidx.fragment.app.FragmentManager;
 
 import com.smartpack.kernelmanager.R;
-import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
@@ -74,7 +72,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
     private Dialog mOptionsDialog;
 
-    private ForegroundFragment mFlashingFragment;
+    private String mPath;
 
     private String logFolder = Utils.getInternalDataStorage() + "/logs";
 
@@ -91,11 +89,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
     @Override
     protected void init() {
         super.init();
-    }
-
-    @Override
-    protected BaseFragment getForegroundFragment() {
-        return mFlashingFragment = new ForegroundFragment();
     }
 
     @Override
@@ -162,6 +155,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 getString(R.string.flasher_summary)));
     }
 
+    @SuppressLint("StringFormatInvalid")
     private void SmartPackInit(List<RecyclerViewItem> items) {
         TitleView smartpack = new TitleView();
         smartpack.setText(!KernelUpdater.getKernelName().equals("Unavailable") ? KernelUpdater.getKernelName() :
@@ -201,7 +195,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
         });
         if (!KernelUpdater.getKernelName().equals("Unavailable")) {
             updateChannel.setOnMenuListener((itemslist1, popupMenu) -> {
-                if (Utils.mForegroundVisible) return;
                 Menu menu = popupMenu.getMenu();
                 menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.remove));
                 menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.share));
@@ -246,21 +239,16 @@ public class SmartPackFragment extends RecyclerViewFragment {
             info.setDrawable(getResources().getDrawable(R.drawable.ic_info));
             info.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
             info.setTitle(getString(R.string.update_channel_info, Utils.getInternalDataStorage()));
-            info.setOnItemClickListener(item -> {
-                if (Utils.mForegroundVisible) return;
-                Utils.launchUrl("https://smartpack.github.io/kerneldownloads/", getActivity());
-            });
+            info.setOnItemClickListener(item -> Utils.launchUrl("https://smartpack.github.io/kerneldownloads/", getActivity()));
             info.setFullSpan(true);
             info.setOnMenuListener((info1, popupMenu) -> {
                 Menu menu = popupMenu.getMenu();
                 menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.update_channel_create));
                 popupMenu.setOnMenuItemClickListener(item -> {
-                    if (!Utils.mForegroundVisible) {
-                        FragmentManager fragmentManager = getFragmentManager();
-                        assert fragmentManager != null;
-                        fragmentManager.beginTransaction()
-                                .replace(R.id.content_frame, new UpdateChannel()).commit();
-                    }
+                    FragmentManager fragmentManager = getFragmentManager();
+                    assert fragmentManager != null;
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.content_frame, new UpdateChannel()).commit();
                     return false;
                 });
             });
@@ -281,7 +269,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
             changelogs.setTitle(getString(R.string.change_logs));
             changelogs.setSummary(getString(R.string.change_logs_summary));
             changelogs.setOnItemClickListener(item -> {
-                if (Utils.mForegroundVisible) return;
                 if (KernelUpdater.getChangeLog().contains("https://") ||
                         KernelUpdater.getChangeLog().contains("http://")) {
                     Utils.launchUrl(KernelUpdater.getChangeLog(), getActivity());
@@ -303,7 +290,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
             support.setTitle(getString(R.string.support));
             support.setSummary(getString(R.string.support_summary));
             support.setOnItemClickListener(item -> {
-                if (Utils.mForegroundVisible) return;
                 if (KernelUpdater.getSupport().contains("https://") ||
                         KernelUpdater.getSupport().contains("http://")) {
                     Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
@@ -320,12 +306,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
             download.setTitle(getString(R.string.download));
             download.setSummary(getString(R.string.get_it_summary));
             download.setOnItemClickListener(item -> {
-                if (Utils.mForegroundVisible) return;
                 if (mPermissionDenied) {
                     Utils.toast(R.string.permission_denied_write_storage, getActivity());
                     return;
                 }
-                downloadKernel();
+                KernelUpdater.downloadKernel(getActivity());
             });
 
             items.add(download);
@@ -336,7 +321,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
             donations.setTitle(getString(R.string.donations));
             donations.setSummary(getString(R.string.donations_summary));
             donations.setOnItemClickListener(item -> {
-                if (Utils.mForegroundVisible) return;
                 if (KernelUpdater.getDonationLink().contains("https://") ||
                             KernelUpdater.getDonationLink().contains("http://")) {
                     Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
@@ -355,7 +339,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
             update_check.setSummary(getString(R.string.check_update));
             update_check.setChecked(Prefs.getBoolean("update_check", false, getActivity()));
             update_check.addOnSwitchListener((switchview, isChecked) -> {
-                if (Utils.mForegroundVisible) return;
                 Prefs.saveBoolean("update_check", isChecked, getActivity());
                 if (Prefs.getBoolean("update_check", true, getActivity())) {
                     Utils.toast(getString(R.string.update_check_message, !KernelUpdater.getKernelName().
@@ -377,7 +360,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
         logcat.setTitle(getString(R.string.logcat));
         logcat.setSummary(getString(R.string.logcat_summary));
         logcat.setOnItemClickListener(item -> {
-            if (Utils.mForegroundVisible) return;
             if (mPermissionDenied) {
                 Utils.toast(R.string.permission_denied_write_storage, getActivity());
                 return;
@@ -394,7 +376,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
             lastkmsg.setTitle(getString(R.string.last_kmsg));
             lastkmsg.setSummary(getString(R.string.last_kmsg_summary));
             lastkmsg.setOnItemClickListener(item -> {
-                if (Utils.mForegroundVisible) return;
                 if (mPermissionDenied) {
                     Utils.toast(R.string.permission_denied_write_storage, getActivity());
                     return;
@@ -409,7 +390,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
         dmesg.setTitle(getString(R.string.driver_message));
         dmesg.setSummary(getString(R.string.driver_message_summary));
         dmesg.setOnItemClickListener(item -> {
-            if (Utils.mForegroundVisible) return;
             if (mPermissionDenied) {
                 Utils.toast(R.string.permission_denied_write_storage, getActivity());
                 return;
@@ -424,7 +404,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
             dmesgRamoops.setTitle(getString(R.string.driver_ramoops));
             dmesgRamoops.setSummary(getString(R.string.driver_ramoops_summary));
             dmesgRamoops.setOnItemClickListener(item -> {
-                if (Utils.mForegroundVisible) return;
                 if (mPermissionDenied) {
                     Utils.toast(R.string.permission_denied_write_storage, getActivity());
                     return;
@@ -440,7 +419,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
             ramoops.setTitle(getString(R.string.console_ramoops));
             ramoops.setSummary(getString(R.string.console_ramoops_summary));
             ramoops.setOnItemClickListener(item -> {
-                if (Utils.mForegroundVisible) return;
                 if (mPermissionDenied) {
                     Utils.toast(R.string.permission_denied_write_storage, getActivity());
                     return;
@@ -455,10 +433,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
         shell.setTitle(getString(R.string.shell));
         shell.setValue(getString(R.string.shell_summary));
         shell.setFullSpan(true);
-        shell.setOnGenericValueListener((genericSelectView, value) -> {
-            if (Utils.mForegroundVisible) return;
-            runCommand(value);
-        });
+        shell.setOnGenericValueListener((genericSelectView, value) -> runCommand(value));
 
         items.add(shell);
 
@@ -470,7 +445,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     R.array.reboot_options), (dialog, i) -> {
                         switch (i) {
                             case 0:
-                                if (Utils.mForegroundVisible) return;
                                 new Dialog(requireActivity())
                                         .setMessage(getString(R.string.sure_question))
                                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
@@ -481,7 +455,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         .show();
                                 break;
                             case 1:
-                                if (Utils.mForegroundVisible) return;
                                 new Dialog(requireActivity())
                                         .setMessage(getString(R.string.sure_question))
                                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
@@ -492,7 +465,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         .show();
                                 break;
                             case 2:
-                                if (Utils.mForegroundVisible) return;
                                 new Dialog(requireActivity())
                                         .setMessage(getString(R.string.sure_question))
                                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
@@ -503,7 +475,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         .show();
                                 break;
                             case 3:
-                                if (Utils.mForegroundVisible) return;
                                 new Dialog(requireActivity())
                                         .setMessage(getString(R.string.sure_question))
                                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
@@ -523,115 +494,26 @@ public class SmartPackFragment extends RecyclerViewFragment {
         DescriptionView reset = new DescriptionView();
         reset.setTitle(getString(R.string.reset_settings));
         reset.setSummary(getString(R.string.reset_settings_summary));
-        reset.setOnItemClickListener(item -> {
-            if (Utils.mForegroundVisible) return;
-            new Dialog(requireActivity())
-                    .setMessage(getString(R.string.reset_settings_message))
-                    .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                    })
-                    .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                        new Dialog(requireActivity())
-                                .setMessage(getString(R.string.reboot_message))
-                                .setNegativeButton(getString(R.string.reboot_later), (dialogInterface, i) -> {
-                                    new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
-                                    new Execute().execute("pm clear com.smartpack.kernelmanager && " +
-                                            "am start -n com.smartpack.kernelmanager/com.smartpack.kernelmanager.activities.MainActivity");
-                                })
-                                .setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
-                                    new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
-                                    new Execute().execute(Utils.prepareReboot());
-                                })
-                                .show();
-                    })
-                    .show();
-        });
+        reset.setOnItemClickListener(item -> new Dialog(requireActivity())
+                .setMessage(getString(R.string.reset_settings_message))
+                .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                })
+                .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
+                    new Dialog(requireActivity())
+                            .setMessage(getString(R.string.reboot_message))
+                            .setNegativeButton(getString(R.string.reboot_later), (dialogInterface, i) -> {
+                                new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
+                                new Execute().execute("pm clear com.smartpack.kernelmanager && " +
+                                        "am start -n com.smartpack.kernelmanager/com.smartpack.kernelmanager.activities.MainActivity");
+                            })
+                            .setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
+                                new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
+                                new Execute().execute(Utils.prepareReboot());
+                            })
+                            .show();
+                })
+                .show());
         items.add(reset);
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private void downloadKernel() {
-        new AsyncTask<Void, Void, Void>() {
-            private ProgressDialog mProgressDialog;
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                mProgressDialog = new ProgressDialog(getActivity());
-                mProgressDialog.setMessage(getString(R.string.downloading_update, KernelUpdater.getKernelName() +
-                        "-" + KernelUpdater.getLatestVersion()) + "...");
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.show();
-            }
-            @Override
-            protected Void doInBackground(Void... voids) {
-                Utils.prepareInternalDataStorage();
-                Utils.mPath = Utils.getInternalDataStorage() + "/Kernel.zip";
-                Utils.downloadFile(Utils.mPath, KernelUpdater.getUrl(), getActivity());
-                return null;
-            }
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                try {
-                    mProgressDialog.dismiss();
-                } catch (IllegalArgumentException ignored) {
-                }
-                if (KernelUpdater.getChecksum().equals("Unavailable") || !KernelUpdater.getChecksum().equals("Unavailable") &&
-                        Utils.getChecksum(Utils.mPath).contains(KernelUpdater.getChecksum())) {
-                    new Dialog(requireActivity())
-                            .setMessage(getString(R.string.download_completed,
-                                    KernelUpdater.getKernelName() + "-" + KernelUpdater.getLatestVersion()))
-                            .setCancelable(false)
-                            .setNegativeButton(getString(R.string.cancel), (dialog, id) -> {
-                            })
-                            .setPositiveButton(getString(R.string.flash), (dialog, id) -> {
-                                flashingTask(new File(Utils.mPath));
-                            })
-                            .show();
-                } else {
-                    new Dialog(requireActivity())
-                            .setMessage(getString(R.string.download_failed))
-                            .setCancelable(false)
-                            .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
-                            })
-                            .show();
-                }
-            }
-        }.execute();
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private void flashingTask(File file) {
-        new AsyncTask<Void, Void, String>() {
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                Utils.mFlashing = true;
-                requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
-                if (SmartPack.mFlashingResult == null) {
-                    SmartPack.mFlashingResult = new StringBuilder();
-                } else {
-                    SmartPack.mFlashingResult.setLength(0);
-                }
-                SmartPack.mFlashingResult.append("** Preparing to flash ").append(file.getName()).append("...\n\n");
-                SmartPack.mFlashingResult.append("** Path: '").append(file.toString()).append("'\n\n");
-                setForegroundText(getString(R.string.flashing_title, new File(Utils.mPath).getName().replace(".zip", "")));
-                mFlashingFragment.setText(SmartPack.mFlashingResult.toString());
-                mFlashingFragment.showCancel();
-                mFlashingFragment.showSave();
-                mFlashingFragment.showReboot();
-                Utils.showForeground();
-            }
-            protected String doInBackground(Void... voids) {
-                return SmartPack.manualFlash(file);
-            }
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                if (s != null && !s.isEmpty()) {
-                    SmartPack.mFlashingResult.append("\n").append(s);
-                }
-                Utils.mFlashing = false;
-            }
-        }.execute();
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -701,14 +583,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
     @Override
     protected void onTopFabClick() {
         super.onTopFabClick();
-        if (Utils.mForegroundVisible) {
-            if (Utils.mFlashing) {
-                Utils.toast(R.string.flashing_progress, getActivity());
-            } else {
-                Utils.dismissForeground();
-            }
-            return;
-        }
         if (mPermissionDenied) {
             Utils.toast(R.string.permission_denied_write_storage, getActivity());
             return;
@@ -740,34 +614,34 @@ public class SmartPackFragment extends RecyclerViewFragment {
             if (Utils.isDocumentsUI(uri)) {
                 @SuppressLint("Recycle") Cursor cursor = requireActivity().getContentResolver().query(uri, null, null, null, null);
                 if (cursor != null && cursor.moveToFirst()) {
-                    Utils.mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
+                    mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
                             cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                 }
             } else {
-                Utils.mPath = Utils.getFilePath(file);
+                mPath = Utils.getFilePath(file);
             }
-            if (Utils.mPath.contains("(") || Utils.mPath.contains(")")) {
+            if (mPath.contains("(") || mPath.contains(")")) {
                 Utils.toast(getString(R.string.file_name_error), getActivity());
             }
-            if (SmartPack.fileSize(new File(Utils.mPath)) >= 100000000) {
-                Utils.toast(getString(R.string.file_size_limit, (SmartPack.fileSize(new File(Utils.mPath)) / 1000000)), getActivity());
+            if (SmartPack.fileSize(new File(mPath)) >= 100000000) {
+                Utils.toast(getString(R.string.file_size_limit, (SmartPack.fileSize(new File(mPath)) / 1000000)), getActivity());
             }
             Dialog manualFlash = new Dialog(requireActivity());
             manualFlash.setIcon(R.mipmap.ic_launcher);
             manualFlash.setTitle(getString(R.string.flasher));
-            manualFlash.setMessage(getString(R.string.sure_message, new File(Utils.mPath).getName()) + ("\n\n") +
+            manualFlash.setMessage(getString(R.string.sure_message, new File(mPath).getName()) + ("\n\n") +
                     getString(R.string.warning) + (" ") + getString(R.string.flasher_warning));
             manualFlash.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
             manualFlash.setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> {
-                flashingTask(new File(Utils.mPath));
+                SmartPack.getInstance().flashingTask(new File(mPath), getActivity());
             });
             manualFlash.show();
         }
     }
 
     @Override
-    public void onStart() {
+    public void onStart(){
         super.onStart();
 
         // Initialize kernel update check - Once in a day
@@ -779,20 +653,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     @Override
-    protected void refresh() {
-        super.refresh();
-        if (mFlashingFragment != null) {
-            mFlashingFragment.setText(SmartPack.mFlashingResult.toString());
-        }
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
         if (mLoader != null) {
             mLoader.cancel(true);
         }
-        requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
     }
 
 }

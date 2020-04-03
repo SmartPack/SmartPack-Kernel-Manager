@@ -19,9 +19,6 @@
  */
 package com.smartpack.kernelmanager.utils;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -47,7 +44,6 @@ import android.widget.Toast;
 import androidx.annotation.StringRes;
 
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.FileProvider;
 import androidx.core.view.ViewCompat;
 
@@ -89,16 +85,6 @@ public class Utils {
     private static final String SP_DONATION_PACKAGE = "com.smartpack.donate";
     private static final String PLAY_STORE = "com.android.vending";
 
-    public static String mPath;
-    public static boolean mFlashing;
-    private static ValueAnimator mForegroundAnimator;
-    public static boolean mForegroundVisible;
-    @SuppressLint("StaticFieldLeak")
-    public static View mForegroundParent;
-    public static AppCompatTextView mForegroundText;
-    public static float mForegroundHeight;
-    public static CharSequence mForegroundStrText;
-
     private static boolean isKADonated(Context context) {
         try {
             context.getPackageManager().getApplicationInfo(KA_DONATION_PACKAGE, 0);
@@ -138,46 +124,6 @@ public class Utils {
             AppCompatDelegate.setDefaultNightMode(
                     AppCompatDelegate.MODE_NIGHT_NO);
         }
-    }
-
-    public static void showForeground() {
-        mForegroundText.setText(mForegroundStrText);
-        mForegroundText.setVisibility(View.VISIBLE);
-        if (mForegroundAnimator != null) mForegroundAnimator.cancel();
-        mForegroundAnimator = ValueAnimator.ofFloat(mForegroundHeight, 0f);
-        mForegroundAnimator.addUpdateListener(animation -> mForegroundParent.setTranslationY((float) animation.getAnimatedValue()));
-        mForegroundAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-                super.onAnimationStart(animation);
-                mForegroundParent.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                mForegroundVisible = true;
-                mForegroundAnimator = null;
-            }
-        });
-        mForegroundAnimator.start();
-    }
-
-    public static void dismissForeground() {
-        if (mFlashing) return;
-        float translation = mForegroundParent.getTranslationY();
-        mForegroundAnimator = ValueAnimator.ofFloat(translation, mForegroundHeight);
-        mForegroundAnimator.addUpdateListener(animation -> mForegroundParent.setTranslationY((float) animation.getAnimatedValue()));
-        mForegroundAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                mForegroundParent.setVisibility(View.GONE);
-                mForegroundVisible = false;
-                mForegroundAnimator = null;
-            }
-        });
-        mForegroundAnimator.start();
     }
 
     public static void startService(Context context, Intent intent) {

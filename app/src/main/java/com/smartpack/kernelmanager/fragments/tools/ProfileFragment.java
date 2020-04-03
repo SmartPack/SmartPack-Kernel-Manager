@@ -42,7 +42,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.SwitchCompat;
 
 import com.smartpack.kernelmanager.R;
@@ -90,6 +89,7 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     private boolean mTaskerMode;
     private Profiles mProfiles;
+    private String mPath;
 
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
     private boolean mLoaded;
@@ -102,7 +102,7 @@ public class ProfileFragment extends RecyclerViewFragment {
     private ImportProfile mImportProfile;
     private Dialog mSelectDialog;
 
-    private ForegroundFragment mDetailsFragment;
+    private DetailsFragment mDetailsFragment;
 
     @Override
     protected boolean showViewPager() {
@@ -116,7 +116,7 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     @Override
     protected BaseFragment getForegroundFragment() {
-        return mTaskerMode ? null : (mDetailsFragment = new ForegroundFragment());
+        return mTaskerMode ? null : (mDetailsFragment = new DetailsFragment());
     }
 
     @Override
@@ -247,114 +247,109 @@ public class ProfileFragment extends RecyclerViewFragment {
             descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_file));
             descriptionView.setSummary(profileItems.get(i).getName());
             descriptionView.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
-            descriptionView.setOnItemClickListener(item -> {
-                if (Utils.mForegroundVisible) return;
-                if (mTaskerMode) {
-                    mSelectDialog = ViewUtils.dialogBuilder(getString(R.string.select_question,
-                            descriptionView.getSummary()), (dialogInterface, i12) -> {
-                            }, (dialogInterface, i12) -> ((ProfileTaskerActivity) Objects.requireNonNull(getActivity())).finish(
-                                    descriptionView.getSummary().toString(),
-                                    mProfiles.getAllProfiles().get(position).getCommands()), dialogInterface -> mSelectDialog = null, getActivity());
-                    mSelectDialog.show();
-                } else {
-                    mApplyDialog = ViewUtils.dialogBuilder(getString(R.string.apply_question,
-                            descriptionView.getSummary()), (dialogInterface, i12) -> {
-                            }, (dialogInterface, i12) -> {
-                        for (Profiles.ProfileItem.CommandItem command : mProfiles.getAllProfiles()
-                                .get(position).getCommands()) {
-                            CPUFreq.ApplyCpu applyCpu;
-                            if (command.getCommand().startsWith("#") && ((applyCpu =
-                                    new CPUFreq.ApplyCpu(command.getCommand().substring(1)))
-                                    .toString() != null)) {
-                                for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu,
-                                        RootUtils.getSU())) {
-                                    Control.runSetting(applyCpuCommand, null, null, null);
-                                }
-                            } else {
-                                Control.runSetting(command.getCommand(), null, null, null);
-                            }
-                        }
-                    }, dialogInterface -> mApplyDialog = null, getActivity());
-                    try {
-                        mApplyDialog.show();
-                    } catch (NullPointerException ignored) {
-                    }
-                }
-            });
             descriptionView.setOnMenuListener((cardView1, popupMenu) -> {
                 Menu menu = popupMenu.getMenu();
-                menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.append));
-                menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.edit));
-                menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.details));
-                final MenuItem onBoot = menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.on_boot)).setCheckable(true);
+                menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.apply));
+                menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.append));
+                menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.edit));
+                menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.details));
+                final MenuItem onBoot = menu.add(Menu.NONE, 4, Menu.NONE, getString(R.string.on_boot)).setCheckable(true);
                 onBoot.setChecked(mProfiles.getAllProfiles().get(position).isOnBootEnabled());
-                menu.add(Menu.NONE, 4, Menu.NONE, getString(R.string.export));
-                menu.add(Menu.NONE, 5, Menu.NONE, getString(R.string.delete));
-
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        List<Profiles.ProfileItem> items1 = mProfiles.getAllProfiles();
-                        switch (item.getItemId()) {
-                            case 0:
-                                Intent create = createProfileActivityIntent();
-                                create.putExtra(ProfileActivity.POSITION_INTENT, position);
-                                startActivityForResult(create, 2);
-                                break;
-                            case 1:
-                                Intent edit = new Intent(getActivity(), ProfileEditActivity.class);
-                                edit.putExtra(ProfileEditActivity.POSITION_INTENT, position);
-                                startActivityForResult(edit, 3);
-                                break;
-                            case 2:
-                                if (items1.get(position).getName() != null) {
-                                    List<Profiles.ProfileItem.CommandItem> commands = items1.get(position).getCommands();
-                                    if (commands.size() > 0) {
-                                        setForegroundText(items1.get(position).getName().toUpperCase());
-                                        StringBuilder commandsText = new StringBuilder();
-                                        for (Profiles.ProfileItem.CommandItem command : commands) {
-                                            CPUFreq.ApplyCpu applyCpu;
-                                            if (command.getCommand().startsWith("#")
-                                                    & ((applyCpu =
-                                                    new CPUFreq.ApplyCpu(command.getCommand().substring(1))).toString() != null)) {
-                                                for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu, RootUtils.getSU())) {
-                                                    commandsText.append(applyCpuCommand).append("\n");
-                                                }
-                                            } else {
-                                                commandsText.append(command.getCommand()).append("\n");
+                menu.add(Menu.NONE, 5, Menu.NONE, getString(R.string.export));
+                menu.add(Menu.NONE, 6, Menu.NONE, getString(R.string.delete));
+                popupMenu.setOnMenuItemClickListener(item -> {
+                    List<Profiles.ProfileItem> items1 = mProfiles.getAllProfiles();
+                    switch (item.getItemId()) {
+                        case 0:
+                            if (mTaskerMode) {
+                                mSelectDialog = ViewUtils.dialogBuilder(getString(R.string.select_question,
+                                        descriptionView.getSummary()), (dialogInterface, i12) -> {
+                                }, (dialogInterface, i12) -> ((ProfileTaskerActivity) Objects.requireNonNull(getActivity())).finish(
+                                        descriptionView.getSummary().toString(),
+                                        mProfiles.getAllProfiles().get(position).getCommands()), dialogInterface -> mSelectDialog = null, getActivity());
+                                mSelectDialog.show();
+                            } else {
+                                mApplyDialog = ViewUtils.dialogBuilder(getString(R.string.apply_question,
+                                        descriptionView.getSummary()), (dialogInterface, i12) -> {
+                                }, (dialogInterface, i12) -> {
+                                    for (Profiles.ProfileItem.CommandItem command : mProfiles.getAllProfiles()
+                                            .get(position).getCommands()) {
+                                        CPUFreq.ApplyCpu applyCpu;
+                                        if (command.getCommand().startsWith("#") && ((applyCpu =
+                                                new CPUFreq.ApplyCpu(command.getCommand().substring(1)))
+                                                .toString() != null)) {
+                                            for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu,
+                                                    RootUtils.getSU())) {
+                                                Control.runSetting(applyCpuCommand, null, null, null);
                                             }
+                                        } else {
+                                            Control.runSetting(command.getCommand(), null, null, null);
                                         }
-                                        commandsText.setLength(commandsText.length() - 1);
-                                        mDetailsFragment.setText(commandsText.toString());
-                                        mDetailsFragment.showCancel();
-                                        Utils.showForeground();
-                                    } else {
-                                        Utils.toast(R.string.profile_empty, getActivity());
                                     }
+                                }, dialogInterface -> mApplyDialog = null, getActivity());
+                                try {
+                                    mApplyDialog.show();
+                                } catch (NullPointerException ignored) {
                                 }
-                                break;
-                            case 3:
-                                onBoot.setChecked(!onBoot.isChecked());
-                                items1.get(position).enableOnBoot(onBoot.isChecked());
-                                mProfiles.commit();
-                                break;
-                            case 4:
-                                mExportProfile = items1.get(position);
-                                requestPermission(0, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                                break;
-                            case 5:
-                                mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
-                                        (dialogInterface, i1) -> {
-                                        }, (dialogInterface, i1) -> {
-                                            mProfiles.delete(position);
-                                            mProfiles.commit();
-                                            reload();
-                                        }, dialogInterface -> mDeleteDialog = null, getActivity());
-                                mDeleteDialog.show();
-                                break;
-                        }
-                        return false;
+                            }
+                            break;
+                        case 1:
+                            Intent create = createProfileActivityIntent();
+                            create.putExtra(ProfileActivity.POSITION_INTENT, position);
+                            startActivityForResult(create, 2);
+                            break;
+                        case 2:
+                            Intent edit = new Intent(getActivity(), ProfileEditActivity.class);
+                            edit.putExtra(ProfileEditActivity.POSITION_INTENT, position);
+                            startActivityForResult(edit, 3);
+                            break;
+                        case 3:
+                            if (items1.get(position).getName() != null) {
+                                List<Profiles.ProfileItem.CommandItem> commands = items1.get(position).getCommands();
+                                if (commands.size() > 0) {
+                                    StringBuilder mCommandsText = new StringBuilder();
+                                    for (Profiles.ProfileItem.CommandItem command : commands) {
+                                        CPUFreq.ApplyCpu applyCpu;
+                                        if (command.getCommand().startsWith("#")
+                                                & ((applyCpu =
+                                                new CPUFreq.ApplyCpu(command.getCommand().substring(1))).toString() != null)) {
+                                            for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu, RootUtils.getSU())) {
+                                                mCommandsText.append(applyCpuCommand).append("\n");
+                                            }
+                                        } else {
+                                            mCommandsText.append(command.getCommand()).append("\n");
+                                        }
+                                    }
+                                    mCommandsText.setLength(mCommandsText.length() - 1);
+                                    setForegroundText(items1.get(position).getName().toUpperCase());
+                                    mDetailsFragment.setText(mCommandsText.toString());
+                                    showForeground();
+                                } else {
+                                    Utils.toast(R.string.profile_empty, getActivity());
+                                }
+                            }
+                            break;
+                        case 4:
+                            onBoot.setChecked(!onBoot.isChecked());
+                            items1.get(position).enableOnBoot(onBoot.isChecked());
+                            mProfiles.commit();
+                            break;
+                        case 5:
+                            mExportProfile = items1.get(position);
+                            requestPermission(0, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                            break;
+                        case 6:
+                            mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
+                                    (dialogInterface, i1) -> {
+                                    }, (dialogInterface, i1) -> {
+                                        mProfiles.delete(position);
+                                        mProfiles.commit();
+                                        reload();
+                                    }, dialogInterface -> mDeleteDialog = null, getActivity());
+                            mDeleteDialog.show();
+                            break;
                     }
+                    return false;
                 });
             });
 
@@ -376,8 +371,6 @@ public class ProfileFragment extends RecyclerViewFragment {
     @Override
     protected void onTopFabClick() {
         super.onTopFabClick();
-
-        if (Utils.mForegroundVisible) return;
 
         mOptionsDialog = new Dialog(requireActivity()).setItems(getResources().getStringArray(
                 R.array.profile_options), (dialogInterface, i) -> {
@@ -457,25 +450,25 @@ public class ProfileFragment extends RecyclerViewFragment {
             if (Utils.isDocumentsUI(uri)) {
                 @SuppressLint("Recycle") Cursor cursor = requireActivity().getContentResolver().query(uri, null, null, null, null);
                 if (cursor != null && cursor.moveToFirst()) {
-                    Utils.mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
+                    mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
                             cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                 }
             } else {
-                Utils.mPath = Utils.getFilePath(file);
+                mPath = Utils.getFilePath(file);
             }
-            if (!Utils.getExtension(Utils.mPath).equals("json")) {
+            if (!Utils.getExtension(mPath).equals("json")) {
                 Utils.toast(getString(R.string.wrong_extension, ".json"), getActivity());
                 return;
             }
-            if (Utils.mPath.contains("(") || Utils.mPath.contains(")")) {
+            if (mPath.contains("(") || mPath.contains(")")) {
                 Utils.toast(getString(R.string.file_name_error), getActivity());
             }
             Dialog selectProfile = new Dialog(requireActivity());
-            selectProfile.setMessage(getString(R.string.select_question, new File(Utils.mPath).getName()));
+            selectProfile.setMessage(getString(R.string.select_question, new File(mPath).getName()));
             selectProfile.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
             });
             selectProfile.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
-                ImportProfile importProfile = new ImportProfile(Utils.mPath);
+                ImportProfile importProfile = new ImportProfile(mPath);
                 if (!importProfile.readable()) {
                     Utils.toast(R.string.import_malformed, getActivity());
                     return;

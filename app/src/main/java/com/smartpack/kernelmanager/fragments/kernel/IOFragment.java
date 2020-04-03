@@ -25,7 +25,6 @@ import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
-import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.io.IO;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -254,7 +253,7 @@ public class IOFragment extends RecyclerViewFragment {
         setForegroundText(scheduler);
         mIOTunableFragment.setError(getString(R.string.tunables_error, scheduler));
         mIOTunableFragment.setPath(path, ApplyOnBootFragment.IO);
-        Utils.showForeground();
+        showForeground();
     }
 
 }

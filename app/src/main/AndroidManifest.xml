@@ -111,9 +111,7 @@
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <!-- CM SDK -->
-        <receiver android:name=".services.profile.Tile"
-            android:permission="TODO"
-            tools:ignore="ExportedReceiver">
+        <receiver android:name=".services.profile.Tile" >
             <intent-filter>
                 <action android:name=".action.ACTION_TOGGLE_STATE" />
             </intent-filter>
@@ -140,9 +138,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".services.profile.Tasker"
-            android:permission="TODO"
-            tools:ignore="ExportedReceiver">
+        <receiver android:name=".services.profile.Tasker" >
             <intent-filter>
                 <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING" />
             </intent-filter>

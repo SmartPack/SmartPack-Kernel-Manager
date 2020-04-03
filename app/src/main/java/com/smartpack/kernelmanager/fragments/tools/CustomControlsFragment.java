@@ -71,6 +71,8 @@ public class CustomControlsFragment extends RecyclerViewFragment {
     private Dialog mDeleteDialog;
     private Dialog mSelectionMenu;
 
+    private String mPath;
+
     @Override
     protected boolean showTopFab() {
         return true;
@@ -327,38 +329,38 @@ public class CustomControlsFragment extends RecyclerViewFragment {
             if (Utils.isDocumentsUI(uri)) {
                 @SuppressLint("Recycle") Cursor cursor = requireActivity().getContentResolver().query(uri, null, null, null, null);
                 if (cursor != null && cursor.moveToFirst()) {
-                    Utils.mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
+                    mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
                             cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                 }
             } else {
-                Utils.mPath = Utils.getFilePath(file);
+                mPath = Utils.getFilePath(file);
             }
-            if (Utils.mPath.contains("(") || Utils.mPath.contains(")")) {
+            if (mPath.contains("(") || mPath.contains(")")) {
                 Utils.toast(getString(R.string.file_name_error), getActivity());
             }
             if (requestCode == 0 || requestCode == 1) {
-                if (!Utils.getExtension(file.getName()).isEmpty() || Utils.mPath.startsWith("/storage/")) {
-                    Utils.toast(getString(R.string.invalid_path, Utils.mPath), getActivity());
+                if (!Utils.getExtension(file.getName()).isEmpty() || mPath.startsWith("/storage/")) {
+                    Utils.toast(getString(R.string.invalid_path, mPath), getActivity());
                     return;
                 }
             } else {
-                if (!Utils.getExtension(Utils.mPath).isEmpty()) {
-                    Utils.toast(getString(R.string.invalid_controller, Utils.mPath), getActivity());
+                if (!Utils.getExtension(mPath).isEmpty()) {
+                    Utils.toast(getString(R.string.invalid_controller, mPath), getActivity());
                     return;
                 }
             }
-            if ((requestCode == 2 || requestCode == 3) && !Utils.existFile(Utils.readFile(Utils.mPath))) {
-                Utils.toast(getString(R.string.unsupported_controller, Utils.readFile(Utils.mPath)), getActivity());
+            if ((requestCode == 2 || requestCode == 3) && !Utils.existFile(Utils.readFile(mPath))) {
+                Utils.toast(getString(R.string.unsupported_controller, Utils.readFile(mPath)), getActivity());
                 return;
             }
             File controls = (requestCode == 0 || requestCode == 2 ? CustomControls.switchFile() : CustomControls.genericFile());
-            if (Utils.existFile(controls + "/" + Utils.mPath.replaceFirst("/", "").
+            if (Utils.existFile(controls + "/" + mPath.replaceFirst("/", "").
                     replace("/", "-")) || Utils.existFile(controls + "/" + file.getName())) {
-                Utils.toast(getString(R.string.already_added, Utils.mPath), getActivity());
+                Utils.toast(getString(R.string.already_added, mPath), getActivity());
                 return;
             }
             Dialog selectControl = new Dialog(requireActivity());
-            selectControl.setMessage(getString(R.string.select_question, Utils.mPath));
+            selectControl.setMessage(getString(R.string.select_question, mPath));
             selectControl.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
             });
             selectControl.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
@@ -367,9 +369,9 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                 }
                 controls.mkdirs();
                 if (requestCode == 0 || requestCode == 1) {
-                    CustomControls.exportPath(Utils.mPath, (requestCode == 0 ? CustomControls.switchFile().toString() : CustomControls.genericFile().toString()));
+                    CustomControls.exportPath(mPath, (requestCode == 0 ? CustomControls.switchFile().toString() : CustomControls.genericFile().toString()));
                 } else {
-                    Utils.copy(Utils.mPath, (requestCode == 2 ? CustomControls.switchFile().toString() : CustomControls.genericFile().toString()));
+                    Utils.copy(mPath, (requestCode == 2 ? CustomControls.switchFile().toString() : CustomControls.genericFile().toString()));
                 }
                 reload();
             });

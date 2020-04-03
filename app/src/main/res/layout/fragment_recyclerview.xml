@@ -88,6 +88,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"
             android:layout_gravity="bottom"
             android:orientation="vertical">
 
@@ -101,15 +102,25 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:paddingStart="16dp"
-                android:textColor="@color/colorOnPrimary"
                 android:background="@color/colorPrimary"
+                android:textColor="@color/colorOnPrimary"
                 android:textSize="17sp" />
 
             <FrameLayout
                 android:id="@+id/foreground_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-
         </LinearLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/cancel_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_horizontal"
+            android:layout_gravity="bottom"
+            android:text="@string/cancel"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorOnPrimary" />
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

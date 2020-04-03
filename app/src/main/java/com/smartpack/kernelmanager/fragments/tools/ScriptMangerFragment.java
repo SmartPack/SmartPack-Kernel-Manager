@@ -43,7 +43,6 @@ import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.tools.ScriptManager;
-import com.smartpack.kernelmanager.utils.tools.SmartPack;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -65,17 +64,18 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
 
     private boolean mLoaded;
     private boolean mPermissionDenied;
-    private boolean mShowCreateNameDialog;
 
     private Dialog mExecuteDialog;
     private Dialog mOptionsDialog;
     private Dialog mDeleteDialog;
-
-    private ForegroundFragment mDetailsFragment;
+    private boolean mShowCreateNameDialog;
 
     private String mCreateName;
 
     private String mEditScript;
+    private String mPath;
+
+    private DetailsFragment mDetailsFragment;
 
     @Override
     protected Drawable getTopFabDrawable() {
@@ -85,6 +85,11 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     @Override
     protected boolean showTopFab() {
         return true;
+    }
+
+    @Override
+    protected BaseFragment getForegroundFragment() {
+        return mDetailsFragment = new DetailsFragment();
     }
 
     @Override
@@ -113,11 +118,6 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
         if (mShowCreateNameDialog) {
             showCreateDialog();
         }
-    }
-
-    @Override
-    protected BaseFragment getForegroundFragment() {
-        return mDetailsFragment = new ForegroundFragment();
     }
 
     @Override
@@ -199,8 +199,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                             case 2:
                                 setForegroundText(script);
                                 mDetailsFragment.setText(ScriptManager.read(script));
-                                mDetailsFragment.showCancel();
-                                Utils.showForeground();
+                                showForeground();
                                 break;
                             case 3:
                                 Utils.shareItem(getActivity(), script, ScriptManager.scriptFile() + "/" + script, getString(R.string.share_script) + "\n\n" +
@@ -302,13 +301,13 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
             if (Utils.isDocumentsUI(uri)) {
                 @SuppressLint("Recycle") Cursor cursor = requireActivity().getContentResolver().query(uri, null, null, null, null);
                 if (cursor != null && cursor.moveToFirst()) {
-                    Utils.mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
+                    mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
                             cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                 }
             } else {
-                Utils.mPath = Utils.getFilePath(file);
+                mPath = Utils.getFilePath(file);
             }
-            if (!Utils.getExtension(Utils.mPath).equals("sh")) {
+            if (!Utils.getExtension(mPath).equals("sh")) {
                 Utils.toast(getString(R.string.wrong_extension, ".sh"), getActivity());
                 return;
             }
@@ -316,15 +315,15 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 Utils.toast(getString(R.string.script_exists, file.getName()), getActivity());
                 return;
             }
-            if (Utils.mPath.contains("(") || Utils.mPath.contains(")")) {
+            if (mPath.contains("(") || mPath.contains(")")) {
                 Utils.toast(getString(R.string.file_name_error), getActivity());
             }
             Dialog selectQuestion = new Dialog(requireActivity());
-            selectQuestion.setMessage(getString(R.string.select_question, new File(Utils.mPath).getName()));
+            selectQuestion.setMessage(getString(R.string.select_question, new File(mPath).getName()));
             selectQuestion.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
             selectQuestion.setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {
-                ScriptManager.importScript(Utils.mPath);
+                ScriptManager.importScript(mPath);
                 reload();
             });
             selectQuestion.show();
@@ -334,8 +333,6 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     @Override
     protected void onTopFabClick() {
         super.onTopFabClick();
-
-        if (Utils.mForegroundVisible) return;
 
         if (mPermissionDenied) {
             Utils.toast(R.string.permission_denied_write_storage, getActivity());

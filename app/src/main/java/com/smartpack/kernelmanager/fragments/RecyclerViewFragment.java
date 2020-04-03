@@ -23,7 +23,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -46,6 +45,8 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -109,6 +110,13 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     private Toolbar mToolBar;
 
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
+
+    private ValueAnimator mForegroundAnimator;
+    private boolean mForegroundVisible;
+    private View mForegroundParent;
+    private AppCompatTextView mForegroundText;
+    private float mForegroundHeight;
+    private CharSequence mForegroundStrText;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -203,18 +211,16 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         }
 
         BaseFragment foregroundFragment = getForegroundFragment();
-        Utils.mForegroundVisible = false;
+        mForegroundVisible = false;
         if (foregroundFragment != null) {
-            Utils.mForegroundParent = mRootView.findViewById(R.id.foreground_parent);
-            Utils.mForegroundText = mRootView.findViewById(R.id.foreground_text);
-            Utils.mForegroundText.setVisibility(View.VISIBLE);
-            Utils.mForegroundText.setOnClickListener(v -> {
-                requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
-                Utils.dismissForeground();
-            });
+            mForegroundParent = mRootView.findViewById(R.id.foreground_parent);
+            mForegroundText = mRootView.findViewById(R.id.foreground_text);
+            mForegroundText.setOnClickListener(v -> dismissForeground());
+            AppCompatTextView cancelText = mRootView.findViewById(R.id.cancel_button);
+            cancelText.setOnClickListener(v -> dismissForeground());
             getChildFragmentManager().beginTransaction().replace(R.id.foreground_content,
                     foregroundFragment).commit();
-            Utils.mForegroundHeight = getResources().getDisplayMetrics().heightPixels;
+            mForegroundHeight = getResources().getDisplayMetrics().heightPixels;
         }
 
         if (itemsSize() == 0) {
@@ -618,7 +624,47 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     }
 
     public void setForegroundText(CharSequence text) {
-        Utils.mForegroundStrText = text;
+        mForegroundStrText = text;
+    }
+
+    public void showForeground() {
+        if (mForegroundStrText != null) {
+            mForegroundText.setText(mForegroundStrText);
+        }
+        if (mForegroundAnimator != null) mForegroundAnimator.cancel();
+        mForegroundAnimator = ValueAnimator.ofFloat(mForegroundHeight, 0f);
+        mForegroundAnimator.addUpdateListener(animation -> mForegroundParent.setTranslationY((float) animation.getAnimatedValue()));
+        mForegroundAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                super.onAnimationStart(animation);
+                mForegroundParent.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                mForegroundVisible = true;
+                mForegroundAnimator = null;
+            }
+        });
+        mForegroundAnimator.start();
+    }
+
+    private void dismissForeground() {
+        float translation = mForegroundParent.getTranslationY();
+        mForegroundAnimator = ValueAnimator.ofFloat(translation, mForegroundHeight);
+        mForegroundAnimator.addUpdateListener(animation -> mForegroundParent.setTranslationY((float) animation.getAnimatedValue()));
+        mForegroundAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                mForegroundParent.setVisibility(View.GONE);
+                mForegroundVisible = false;
+                mForegroundAnimator = null;
+            }
+        });
+        mForegroundAnimator.start();
     }
 
     @Override
@@ -714,13 +760,8 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
     @Override
     public boolean onBackPressed() {
-        if (Utils.mForegroundVisible) {
-            if (Utils.mFlashing) {
-                Utils.toast(R.string.flashing_progress, getActivity());
-            } else {
-                requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
-                Utils.dismissForeground();
-            }
+        if (mForegroundVisible) {
+            dismissForeground();
             return true;
         }
         return false;
