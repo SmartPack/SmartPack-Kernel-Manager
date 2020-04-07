@@ -776,6 +776,13 @@ public class CPUFragment extends RecyclerViewFragment {
             cpuBoost.addItem(hotplug);
         }
 
+        if (cpuBoost.size() > 0) {
+            items.add(cpuBoost);
+        }
+
+        CardView stuneBoostCard = new CardView(getActivity());
+        stuneBoostCard.setTitle(getString(R.string.stune_boost_sett));
+
         if (Misc.hasDynStuneBoost() || mCPUInputBoost.hasDynStuneBoost()) {
             SeekBarView dynstuneBoost = new SeekBarView();
             dynstuneBoost.setTitle(getString(R.string.dyn_stune_boost));
@@ -799,7 +806,7 @@ public class CPUFragment extends RecyclerViewFragment {
                 }
             });
 
-            cpuBoost.addItem(dynstuneBoost);
+            stuneBoostCard.addItem(dynstuneBoost);
 
             if (Misc.hasDynStuneBoostDuration()) {
                 GenericSelectView stuneBoostDuration = new GenericSelectView();
@@ -812,20 +819,18 @@ public class CPUFragment extends RecyclerViewFragment {
                     genericSelectView.setValue(value);
                 });
 
-                cpuBoost.addItem(stuneBoostDuration);
+                stuneBoostCard.addItem(stuneBoostDuration);
             }
         }
 
         if (!(Prefs.getBoolean("stune_boost", false, getActivity())))
             Prefs.saveBoolean("stune_boost", false, getActivity());
-
         final SwitchView stuneBoost = new SwitchView();
-        stuneBoost.setTitle(getString(R.string.stune_boost_sett));
         stuneBoost.setSummary(getString(R.string.stune_boost_sett_summary));
         stuneBoost.setChecked(Prefs.getBoolean("stune_boost", false, getActivity()));
 
         if (Misc.hasSchedBoostSettings()) {
-            cpuBoost.addItem(stuneBoost);
+            stuneBoostCard.addItem(stuneBoost);
         }
 
         for (int i = 0; i < Misc.size(); i++) {
@@ -846,30 +851,30 @@ public class CPUFragment extends RecyclerViewFragment {
                             500);
                 });
                 class stuneBoostManager {
-                    private void showstuneBoost(boolean enable) {
+                    private void stuneBoost(boolean enable) {
                         if (enable) {
-                            cpuBoost.addItem(advStune);
+                            stuneBoostCard.addItem(advStune);
                         } else {
-                            cpuBoost.removeItem(advStune);
+                            stuneBoostCard.removeItem(advStune);
                         }
                     }
                 }
 
                 final stuneBoostManager manager = new stuneBoostManager();
                 if (Prefs.getBoolean("stune_boost", false, getActivity())) {
-                    manager.showstuneBoost(true);
+                    manager.stuneBoost(true);
                 } else {
-                    manager.showstuneBoost(false);
+                    manager.stuneBoost(false);
                 }
                 stuneBoost.addOnSwitchListener((switchview, isChecked) -> {
                     Prefs.saveBoolean("stune_boost", isChecked, getActivity());
-                    manager.showstuneBoost(isChecked);
+                    manager.stuneBoost(isChecked);
                 });
             }
         }
 
-        if (cpuBoost.size() > 0) {
-            items.add(cpuBoost);
+        if (stuneBoostCard.size() > 0) {
+            items.add(stuneBoostCard);
         }
     }
 
