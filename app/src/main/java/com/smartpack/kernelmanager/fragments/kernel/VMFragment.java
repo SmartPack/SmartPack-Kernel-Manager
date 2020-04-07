@@ -35,15 +35,12 @@ import com.smartpack.kernelmanager.views.recyclerview.SeekBarView;
 import com.smartpack.kernelmanager.views.recyclerview.SelectView;
 import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by willi on 29.06.16.
  */
 public class VMFragment extends RecyclerViewFragment {
-
-    private List<GenericSelectView> mVMs = new ArrayList<>();
 
     @Override
     protected void init() {
@@ -64,7 +61,6 @@ public class VMFragment extends RecyclerViewFragment {
     private void VMInit(List<RecyclerViewItem> items) {
         CardView vmCard = new CardView(getActivity());
         vmCard.setTitle(getString(R.string.virtual_memory));
-        mVMs.clear();
 
         if (!(Prefs.getBoolean("vm_tunables", false, getActivity())))
             Prefs.saveBoolean("vm_tunables", false, getActivity());
@@ -87,11 +83,6 @@ public class VMFragment extends RecyclerViewFragment {
                 vm.setOnGenericValueListener((genericSelectView, value) -> {
                     VM.setValue(value, position, getActivity());
                     genericSelectView.setValue(value);
-                    getHandler().postDelayed(() -> {
-                                for (int i1 = 0; i1 < mVMs.size(); i1++) {
-                                    vm.setValue(VM.getValue(i1));
-                                }},
-                            500);
                 });
 
                 class vmTunablesManager {
