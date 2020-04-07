@@ -302,7 +302,6 @@
     <string name="eco_performance">Знижена продуктивність</string>
     <string name="edit">Редагувати</string>
     <string name="empty_app">Порожні додатки</string>
-    <string name="empty_flasher_log">Здається, перепрошивка не вдалася!</string>
     <string name="enabled">Включено</string>
     <string name="end_time">Кінець</string>
     <string name="entropy">Ентропія</string>
@@ -829,7 +828,6 @@ SmartPack-Kernel Manager.
     <string name="share_by">\'%s\' | поділитися SmartPack-Kernel Manager</string>
     <string name="share_channel_message">Щоб налаштувати цей канал оновлення, просто введіть \'%s\' в SmartPack-Kernel Manager -> SmartPack -> Канал оновлення ядра\n\nВам SmartPack-ядра диспетчер\nПомилка: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nГитхаб:</string>
     <string name="share_controller">Щоб застосувати цей контролер, просто імпортувати цей файл \'SmartPack-Kernel Manager -> Custom Controls</string>
-    <string name="share_log">Щоб усунути цю проблему, розгляньте можливість спільного використання файлів журналу, створеного у \'%s\', з розробником цього додатка.\nХочете поділитися цим зараз?</string>
     <string name="share_script">Для встановлення цього скрипта, просто імпортувати цей файл \'SmartPack-Kernel Manager -> Script Manager -> Import\'.</string>
     <string name="share_with">Поділитися з</string>
     <string name="shell">Запуск Shell Command</string>

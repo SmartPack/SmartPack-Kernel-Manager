@@ -33,7 +33,6 @@
 
     <dimen name="circleview_height">50dp</dimen>
     <dimen name="circleview_width">50dp</dimen>
-    <dimen name="circleview_border">1dp</dimen>
 
     <dimen name="color_dialog_margin">5dp</dimen>
 </resources>

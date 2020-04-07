@@ -11,7 +11,7 @@
             android:targetClass="com.smartpack.kernelmanager.activities.MainActivity"
             android:targetPackage="com.smartpack.kernelmanager">
             <extra
-                android:name="section"
+                android:name="selection"
                 android:value="com.smartpack.kernelmanager.fragments.other.SettingsFragment" />
         </intent>
         <categories android:name="android.shortcut.conversation" />

@@ -1080,7 +1080,6 @@
     <string name="donation_link_summary">link_de_doação</string>
     <string name="download_completed">%s foi baixado com sucesso. Você quer flasheá-lo?</string>
     <string name="download_failed">Parece que o download falhou ou um arquivo corrompido foi baixado!</string>
-    <string name="empty_flasher_log">Parece que o flash falhou!</string>
     <string name="get_it">Obter</string>
     <string name="grarak">Willi Ye</string>
     <string name="invalid_controller">%s não é um controlador personalizado válido! Abortando.</string>
@@ -1126,7 +1125,6 @@
     <string name="overall_summary">Bem-vindo à página inicial do SmartPack-Kernel Manager. Esta página fornece informações muito básicas do seu dispositivo. Opções avançadas de ajustes do kernel podem ser encontradas nas suas respectivas páginas.</string>
     <string name="share_app_message">Obtenha o SmartPack-Kernel Manager %s em\n\nGoogle Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
     <string name="share_channel_message">Para configurar esse canal, basta colocar \'%s\' em SmartPack-Kernel Manager -> SmartPack -> URL do canal de atualizações.\n\n\Obtenha o SmartPack-Kernel Manager em\nGoogle Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub:</string>
-    <string name="share_log">Para corrigir esse problema, considere compartilhar o arquivo de log criado em \'%s\' com o desenvolvedor deste aplicativo.\n Deseja compartilhá-lo agora?</string>
     <string name="submit_summary">Criar canal de atualização com as informações atuais</string>
     <string name="update_available">Nova atualização disponível!\nv%s</string>
     <string name="update_available_summary">%s\n\n**Importante: Por favor, faça o download e atualize manualmente o aplicativo!**</string>

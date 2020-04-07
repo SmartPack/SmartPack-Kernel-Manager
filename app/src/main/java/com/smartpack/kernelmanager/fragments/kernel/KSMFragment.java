@@ -68,7 +68,6 @@ public class KSMFragment extends RecyclerViewFragment {
 
         if (mKSM.hasEnable()) {
             SwitchView enable = new SwitchView();
-            enable.setTitle(getString(R.string.ksm));
             enable.setSummary(getString(R.string.ksm_summary));
             enable.setChecked(mKSM.isEnabled());
             enable.addOnSwitchListener((switchView, isChecked) -> mKSM.enableKsm(isChecked, getActivity()));
