@@ -54,7 +54,6 @@ public class BorderCircleView extends FrameLayout {
     private final Drawable mCheck;
     private boolean mChecked;
     private final Paint mPaint;
-    private final Paint mPaintBorder;
 
     public BorderCircleView(Context context) {
         this(context, null);
@@ -75,18 +74,11 @@ public class BorderCircleView extends FrameLayout {
         DrawableCompat.setTint(mCheck, Color.WHITE);
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(ViewUtils.getThemeAccentColor(context));
-
-        mPaintBorder = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaintBorder.setColor(ViewUtils.getColorPrimaryColor(context));
-        mPaintBorder.setStrokeWidth((int) getResources().getDimension(R.dimen.circleview_border));
-        mPaintBorder.setStyle(Paint.Style.STROKE);
-
+        mPaint.setColor(ViewUtils.getThemeAccentColor(getContext()));
         setWillNotDraw(false);
     }
 
-    @Override
-    public void setBackgroundColor(int color) {
+    public void setCircleColor(int color) {
         mPaint.setColor(color);
         invalidate();
     }
@@ -106,7 +98,6 @@ public class BorderCircleView extends FrameLayout {
         float radius = Math.min(width, height) / 2f - 4f;
 
         canvas.drawCircle(width / 2, height / 2, radius, mPaint);
-        canvas.drawCircle(width / 2, height / 2, radius, mPaintBorder);
 
         if (mChecked) {
             mCheck.setBounds(Math.round(width / 2 - radius), 0, Math.round(width / 2 + radius), height);
@@ -139,4 +130,5 @@ public class BorderCircleView extends FrameLayout {
 
         setMeasuredDimension((int) width, (int) height);
     }
+
 }

@@ -32,9 +32,10 @@
         <SwitchPreferenceCompat
             android:key="forcecards"
             android:summary="@string/force_cards_summary" />
-        <com.smartpack.kernelmanager.views.preference.ColorPreference
+        <Preference
             android:key="accent_color"
-            android:summary="@string/accent_color" />
+            android:summary="@string/accent_color"
+            android:widgetLayout="@layout/preference_color_view" />
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="section_icons"

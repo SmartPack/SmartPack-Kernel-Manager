@@ -36,6 +36,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.core.content.ContextCompat;
@@ -106,7 +107,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         assert rootView != null;
         rootView.setPadding(rootView.getPaddingLeft(),
@@ -240,7 +241,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         }
 
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             if (msg.arg1 == 1 && mContext != null) {
                 Utils.toast(R.string.nothing_apply, mContext);
@@ -414,7 +415,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
 
             BorderCircleView circle = new BorderCircleView(requireActivity());
             circle.setChecked(i == selection);
-            circle.setBackgroundColor(ContextCompat.getColor(requireActivity(),
+            circle.setCircleColor(ContextCompat.getColor(requireActivity(),
                     BorderCircleView.sAccentColors.keyAt(i)));
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
@@ -453,7 +454,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     protected RecyclerView.Adapter onCreateAdapter(PreferenceScreen preferenceScreen) {
         return new PreferenceGroupAdapter(preferenceScreen) {
             @Override
-            public void onBindViewHolder(PreferenceViewHolder holder, int position) {
+            public void onBindViewHolder(@NonNull PreferenceViewHolder holder, int position) {
                 super.onBindViewHolder(holder, position);
                 Preference preference = getItem(position);
                 if (preference instanceof PreferenceCategory)
