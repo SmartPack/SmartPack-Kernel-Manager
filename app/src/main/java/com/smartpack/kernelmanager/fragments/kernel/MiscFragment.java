@@ -22,7 +22,6 @@ package com.smartpack.kernelmanager.fragments.kernel;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.os.Vibrator;
-
 import android.text.InputType;
 
 import com.smartpack.kernelmanager.R;
@@ -33,6 +32,7 @@ import com.smartpack.kernelmanager.utils.kernel.misc.PowerSuspend;
 import com.smartpack.kernelmanager.utils.kernel.misc.Vibration;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
+import com.smartpack.kernelmanager.views.recyclerview.GenericInputView;
 import com.smartpack.kernelmanager.views.recyclerview.GenericSelectView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.SeekBarView;
@@ -69,6 +69,9 @@ public class MiscFragment extends RecyclerViewFragment {
 		}
 		if (PowerSuspend.supported()) {
 			powersuspendInit(items);
+		}
+		if (Misc.hasCPUSet()) {
+			cpusetInit(items);
 		}
 		networkInit(items);
 	}
@@ -422,6 +425,32 @@ public class MiscFragment extends RecyclerViewFragment {
 		if (psCard.size() > 0) {
 			items.add(psCard);
 		}
+	}
+
+	private void cpusetInit(List<RecyclerViewItem> items) {
+		CardView cpusetCard = new CardView(getActivity());
+		cpusetCard.setTitle(getString(R.string.cpuset));
+
+		for (int i = 0; i < Misc.size(); i++) {
+			if (Misc.exists(i)) {
+				GenericInputView cpuset = new GenericInputView();
+				cpuset.setTitle(Misc.getName(i));
+				cpuset.setValue(Misc.getValue(i));
+				cpuset.setValueRaw(cpuset.getValue());
+
+				final int position = i;
+				cpuset.setOnGenericValueListener((genericSelectView, value) -> {
+					mMisc.setValue(value, position, getActivity());
+					genericSelectView.setValue(value);
+				});
+				cpusetCard.addItem(cpuset);
+			}
+		}
+
+		if (cpusetCard.size() > 0) {
+			items.add(cpusetCard);
+		}
+
 	}
 
 	private void networkInit(List<RecyclerViewItem> items) {

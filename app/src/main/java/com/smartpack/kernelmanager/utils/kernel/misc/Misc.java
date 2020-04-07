@@ -64,6 +64,10 @@ public class Misc {
     private static final String HAPTICS_NOTIFICATION = HAPTICS + "/vmax_mv_strong";
     private static final String HAPTICS_CALL = HAPTICS + "/vmax_mv_call";
 
+    private static final String CPUSET = "/dev/cpuset";
+    private static final String[] PARAMETERS = {"audio-app/cpus", "background/cpus", "camera-daemon/cpus",
+            "foreground/cpus", "restricted/cpus", "system-background/cpus", "top-app/cpus"};
+
     private final List<String> mLoggers = new ArrayList<>();
     private final List<String> mCrcs = new ArrayList<>();
     private final List<String> mFsyncs = new ArrayList<>();
@@ -319,6 +323,31 @@ public class Misc {
 
     public static boolean hasHapticsCall() {
         return Utils.existFile(HAPTICS_CALL);
+    }
+
+    public void setValue(String value, int position, Context context) {
+        run(Control.write(value, CPUSET + "/" + PARAMETERS[position]), CPUSET + "/" +
+                PARAMETERS[position], context);
+    }
+
+    public static String getValue(int position) {
+        return Utils.readFile(CPUSET + "/" + PARAMETERS[position]);
+    }
+
+    public static String getName(int position) {
+        return Utils.upperCaseEachWord(PARAMETERS[position]).replace("/cpus", " CPU's");
+    }
+
+    public static boolean exists(int position) {
+        return Utils.existFile(CPUSET + "/" + PARAMETERS[position]);
+    }
+
+    public static int size() {
+        return PARAMETERS.length;
+    }
+
+    public static boolean hasCPUSet() {
+        return Utils.existFile(CPUSET);
     }
 
     private void run(String command, String id, Context context) {

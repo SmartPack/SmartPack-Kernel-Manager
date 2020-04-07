@@ -852,6 +852,7 @@
     <string name="lease_break_time_summary">The grace period that the kernel grants to a process holding a file lease after it has sent a signal to that process notifying it that another process is waiting to open the file.</string>
     <string name="auto_sync">Auto-Sync Data</string>
     <string name="auto_sync_summary">Allow apps to automatically refresh data.\nPlease Note: It will be applied, irrespective of your on-boot settings.</string>
+    <string name="cpuset">CPU Sets</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">Performance Tweaks</string>

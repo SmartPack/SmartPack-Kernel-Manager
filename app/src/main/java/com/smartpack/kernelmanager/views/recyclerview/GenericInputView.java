@@ -82,7 +82,7 @@ public class GenericInputView extends InputValueView {
         refresh();
     }
 
-    private void setValueRaw(String value) {
+    public void setValueRaw(String value) {
         mValueRaw = value;
     }
 
