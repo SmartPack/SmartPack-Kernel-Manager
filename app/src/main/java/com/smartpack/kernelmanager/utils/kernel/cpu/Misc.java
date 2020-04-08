@@ -57,15 +57,17 @@ public class Misc {
     private static final String SCHED_BOOST_ENABLED = ADVANCED + "/schedtune.sched_boost_enabled";
     private static final String SCHED_BOOST_NO_OVERRIDE = ADVANCED + "/schedtune.sched_boost_no_override";
 
-    private static final String[] STUNE = {"schedtune.sched_boost", "schedtune.sched_boost_enabled",
-	"schedtune.sched_boost_no_override", "schedtune.prefer_idle", "schedtune.colocate", "top-app/schedtune.sched_boost",
-	"top-app/schedtune.sched_boost_enabled", "top-app/schedtune.sched_boost_no_override", "top-app/schedtune.prefer_idle",
-	"top-app/schedtune.colocate", "rt/schedtune.sched_boost", "rt/schedtune.sched_boost_enabled",
-	"rt/schedtune.sched_boost_no_override", "rt/schedtune.prefer_idle", "rt/schedtune.colocate",
-	"foreground/schedtune.sched_boost", "foreground/schedtune.sched_boost_enabled","foreground/schedtune.sched_boost_no_override",
-	"foreground/schedtune.prefer_idle", "foreground/schedtune.colocate", "background/schedtune.sched_boost",
-	"background/schedtune.sched_boost_enabled", "background/schedtune.sched_boost_no_override",
-	"background/schedtune.prefer_idle", "background/schedtune.colocate"};
+    private static final String[] STUNE = {"schedtune.boost", "schedtune.sched_boost", "schedtune.sched_boost_enabled",
+            "schedtune.sched_boost_no_override", "schedtune.prefer_idle", "schedtune.colocate", "cgroup.clone_children",
+            "cgroup.sane_behavior", "top-app/schedtune.boost", "top-app/schedtune.sched_boost", "top-app/schedtune.sched_boost_enabled",
+            "top-app/schedtune.sched_boost_no_override", "top-app/schedtune.prefer_idle", "top-app/cgroup.clone_children",
+            "top-app/cgroup.sane_behavior", "rt/schedtune.boost", "rt/schedtune.sched_boost", "rt/schedtune.sched_boost_enabled",
+            "rt/schedtune.sched_boost_no_override", "rt/schedtune.prefer_idle", "rt/cgroup.clone_children", "rt/cgroup.sane_behavior",
+            "foreground/schedtune.boost", "foreground/schedtune.sched_boost", "foreground/schedtune.sched_boost_enabled",
+            "foreground/schedtune.sched_boost_no_override", "foreground/schedtune.prefer_idle", "foreground/cgroup.clone_children",
+            "foreground/cgroup.sane_behavior", "background/schedtune.boost", "background/schedtune.sched_boost",
+            "background/schedtune.sched_boost_enabled", "background/schedtune.sched_boost_no_override",
+            "background/schedtune.prefer_idle", "background/cgroup.clone_children", "background/cgroup.sane_behavior"};
 
     private static final String VOXPOPULI = "/dev/voxpopuli";
 
