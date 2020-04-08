@@ -44,6 +44,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.navigation.NavigationView;
 
 import com.smartpack.kernelmanager.R;
@@ -269,6 +271,13 @@ public class NavigationActivity extends BaseActivity
                 v.clearFocus();
             }
         });
+
+        // Initialize Banner Ad
+        if (Prefs.getBoolean("allow_ads", true, this)) {
+            AdView mAdView = findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
 
         if (savedInstanceState != null) {
             mSelection = savedInstanceState.getInt("selection");
