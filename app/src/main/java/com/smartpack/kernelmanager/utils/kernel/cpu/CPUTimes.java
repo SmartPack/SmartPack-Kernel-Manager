@@ -61,8 +61,10 @@ public class CPUTimes extends RecyclerViewFragment {
 
     private CPUFreq mCPUFreq;
 
+    private CardView mFreqPrime;
     private CardView mFreqBig;
     private CardView mFreqLITTLE;
+    private CpuSpyApp mCpuSpyPrime;
     private CpuSpyApp mCpuSpyBig;
     private CpuSpyApp mCpuSpyLITTLE;
 
@@ -73,7 +75,7 @@ public class CPUTimes extends RecyclerViewFragment {
         super.init();
 
         mCPUFreq = CPUFreq.getInstance();
-        addViewPagerFragment(new CPUTimes.CPUUsageFragment());
+        addViewPagerFragment(new CPUUsageFragment());
     }
 
     @Override
@@ -86,20 +88,33 @@ public class CPUTimes extends RecyclerViewFragment {
         frequencyButtonView.setRefreshListener(v -> updateFrequency());
         frequencyButtonView.setResetListener(v -> {
             CpuStateMonitor cpuStateMonitor = mCpuSpyBig.getCpuStateMonitor();
+            CpuStateMonitor cpuStateMonitorPrime = null;
             CpuStateMonitor cpuStateMonitorLITTLE = null;
+            if (mCpuSpyPrime != null) {
+                cpuStateMonitorPrime = mCpuSpyPrime.getCpuStateMonitor();
+            }
             if (mCpuSpyLITTLE != null) {
                 cpuStateMonitorLITTLE = mCpuSpyLITTLE.getCpuStateMonitor();
             }
             try {
+                if (cpuStateMonitorPrime != null) {
+                    cpuStateMonitorPrime.setOffsets();
+                }
                 cpuStateMonitor.setOffsets();
                 if (cpuStateMonitorLITTLE != null) {
                     cpuStateMonitorLITTLE.setOffsets();
                 }
             } catch (CpuStateMonitor.CpuStateMonitorException ignored) {
             }
+            if (mCpuSpyPrime != null) {
+                mCpuSpyPrime.saveOffsets(getActivity());
+            }
             mCpuSpyBig.saveOffsets(getActivity());
             if (mCpuSpyLITTLE != null) {
                 mCpuSpyLITTLE.saveOffsets(getActivity());
+            }
+            if (cpuStateMonitorPrime != null) {
+                updateView(cpuStateMonitorPrime, mFreqPrime);
             }
             updateView(cpuStateMonitor, mFreqBig);
             if (cpuStateMonitorLITTLE != null) {
@@ -109,17 +124,30 @@ public class CPUTimes extends RecyclerViewFragment {
         });
         frequencyButtonView.setRestoreListener(v -> {
             CpuStateMonitor cpuStateMonitor = mCpuSpyBig.getCpuStateMonitor();
+            CpuStateMonitor cpuStateMonitorPrime = null;
             CpuStateMonitor cpuStateMonitorLITTLE = null;
+            if (mCpuSpyPrime != null) {
+                cpuStateMonitorPrime = mCpuSpyPrime.getCpuStateMonitor();
+            }
             if (mCpuSpyLITTLE != null) {
                 cpuStateMonitorLITTLE = mCpuSpyLITTLE.getCpuStateMonitor();
+            }
+            if (cpuStateMonitorPrime != null) {
+                cpuStateMonitorPrime.removeOffsets();
             }
             cpuStateMonitor.removeOffsets();
             if (cpuStateMonitorLITTLE != null) {
                 cpuStateMonitorLITTLE.removeOffsets();
             }
+            if (mCpuSpyPrime != null) {
+                mCpuSpyPrime.saveOffsets(getActivity());
+            }
             mCpuSpyBig.saveOffsets(getActivity());
             if (mCpuSpyLITTLE != null) {
                 mCpuSpyLITTLE.saveOffsets(getActivity());
+            }
+            if (mCpuSpyPrime != null) {
+                updateView(cpuStateMonitorPrime, mFreqPrime);
             }
             updateView(cpuStateMonitor, mFreqBig);
             if (mCpuSpyLITTLE != null) {
@@ -135,6 +163,13 @@ public class CPUTimes extends RecyclerViewFragment {
         } else {
             mFreqBig.setTitle(getString(R.string.cpu));
         }
+
+        if (mCPUFreq.isBigLITTLE() && mCPUFreq.isPrimeCpu()) {
+            mFreqPrime = new CardView(getActivity());
+            mFreqPrime.setTitle(getString(R.string.cluster_prime));
+            items.add(mFreqPrime);
+        }
+
         items.add(mFreqBig);
 
         if (mCPUFreq.isBigLITTLE()) {
@@ -143,6 +178,9 @@ public class CPUTimes extends RecyclerViewFragment {
             items.add(mFreqLITTLE);
         }
 
+        if (mCPUFreq.isPrimeCpu()) {
+            mCpuSpyPrime = new CpuSpyApp(mCPUFreq.getPrimeCpu(), getActivity());
+        }
         mCpuSpyBig = new CpuSpyApp(mCPUFreq.getBigCpu(), getActivity());
         if (mCPUFreq.isBigLITTLE()) {
             mCpuSpyLITTLE = new CpuSpyApp(mCPUFreq.getLITTLECpu(), getActivity());
@@ -160,15 +198,26 @@ public class CPUTimes extends RecyclerViewFragment {
 
     private static class FrequencyTask extends AsyncTask<CPUTimes, Void, CPUTimes> {
 
+        private CpuStateMonitor mPrimeMonitor;
         private CpuStateMonitor mBigMonitor;
         private CpuStateMonitor mLITTLEMonitor;
 
         @Override
         protected CPUTimes doInBackground(CPUTimes... overallFragments) {
             CPUTimes fragment = overallFragments[0];
+            if (fragment.mCPUFreq.isPrimeCpu()) {
+                mPrimeMonitor = fragment.mCpuSpyPrime.getCpuStateMonitor();
+            }
             mBigMonitor = fragment.mCpuSpyBig.getCpuStateMonitor();
             if (fragment.mCPUFreq.isBigLITTLE()) {
                 mLITTLEMonitor = fragment.mCpuSpyLITTLE.getCpuStateMonitor();
+            }
+            if (fragment.mCPUFreq.isPrimeCpu()) {
+                try {
+                    mPrimeMonitor.updateStates();
+                } catch (CpuStateMonitor.CpuStateMonitorException ignored) {
+                    Log.e(TAG, "Problem getting CPU states");
+                }
             }
             try {
                 mBigMonitor.updateStates();
@@ -189,6 +238,9 @@ public class CPUTimes extends RecyclerViewFragment {
         protected void onPostExecute(CPUTimes fragment) {
             super.onPostExecute(fragment);
             fragment.updateView(mBigMonitor, fragment.mFreqBig);
+            if (fragment.mCPUFreq.isPrimeCpu()) {
+                fragment.updateView(mPrimeMonitor, fragment.mFreqPrime);
+            }
             if (fragment.mCPUFreq.isBigLITTLE()) {
                 fragment.updateView(mLITTLEMonitor, fragment.mFreqLITTLE);
             }

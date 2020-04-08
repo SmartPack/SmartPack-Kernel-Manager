@@ -61,6 +61,12 @@ public class CPUFragment extends RecyclerViewFragment {
     private CPUBoost mCPUBoost;
     private CPUInputBoost mCPUInputBoost;
 
+    private XYGraphView mCPUUsagePrime;
+    private SelectView mCPUMaxPrime;
+    private SelectView mCPUMinPrime;
+    private SelectView mCPUMaxScreenOffPrime;
+    private SelectView mCPUGovernorPrime;
+
     private XYGraphView mCPUUsageBig;
     private SelectView mCPUMaxBig;
     private SelectView mCPUMinBig;
@@ -73,6 +79,7 @@ public class CPUFragment extends RecyclerViewFragment {
     private SelectView mCPUMaxScreenOffLITTLE;
     private SelectView mCPUGovernorLITTLE;
 
+    private SparseArray<SwitchView> mCoresPrime = new SparseArray<>();
     private SparseArray<SwitchView> mCoresBig = new SparseArray<>();
     private SparseArray<SwitchView> mCoresLITTLE = new SparseArray<>();
 
@@ -132,6 +139,72 @@ public class CPUFragment extends RecyclerViewFragment {
         CardView cpuCard = new CardView(getActivity());
         if (!mCPUFreq.isBigLITTLE()) {
             cpuCard.setTitle(getString(R.string.cpu));
+        }
+
+        if (mCPUFreq.isPrimeCpu()) {
+            CardView cpuPrimeCard = new CardView(getActivity());
+            cpuPrimeCard.setTitle(getString(R.string.cluster_prime));
+
+            mCPUUsagePrime = new XYGraphView();
+            mCPUUsagePrime.setTitle(getString(R.string.cpu_usage_string, getString(R.string.cluster_prime)));
+
+            cpuPrimeCard.addItem(mCPUUsagePrime);
+
+            final List<Integer> PrimeCores = mCPUFreq.getPrimeCpuRange();
+
+            mCoresPrime.clear();
+            for (final int core : PrimeCores) {
+                SwitchView coreSwitch = new SwitchView();
+                coreSwitch.setSummary(getString(R.string.core, core + 1));
+
+                mCoresPrime.put(core, coreSwitch);
+                cpuPrimeCard.addItem(coreSwitch);
+            }
+
+            mCPUMaxPrime = new SelectView();
+            mCPUMaxPrime.setTitle(getString(R.string.cpu_max_freq));
+            mCPUMaxPrime.setSummary(getString(R.string.cpu_max_freq_summary));
+            mCPUMaxPrime.setItems(mCPUFreq.getAdjustedFreq(mCPUFreq.getPrimeCpu(), getActivity()));
+            mCPUMaxPrime.setOnItemSelected((selectView, position, item)
+                    -> mCPUFreq.setMaxFreq(mCPUFreq.getFreqs(mCPUFreq.getPrimeCpu()).get(position),
+                    PrimeCores.get(0), PrimeCores.get(PrimeCores.size() - 1), getActivity()));
+            cpuPrimeCard.addItem(mCPUMaxPrime);
+
+            mCPUMinPrime = new SelectView();
+            mCPUMinPrime.setTitle(getString(R.string.cpu_min_freq));
+            mCPUMinPrime.setSummary(getString(R.string.cpu_min_freq_summary));
+            mCPUMinPrime.setItems(mCPUFreq.getAdjustedFreq(mCPUFreq.getPrimeCpu(), getActivity()));
+            mCPUMinPrime.setOnItemSelected((selectView, position, item)
+                    -> mCPUFreq.setMinFreq(mCPUFreq.getFreqs(mCPUFreq.getPrimeCpu()).get(position),
+                    PrimeCores.get(0), PrimeCores.get(PrimeCores.size() - 1), getActivity()));
+            cpuPrimeCard.addItem(mCPUMinPrime);
+
+            if (mCPUFreq.hasMaxScreenOffFreq(mCPUFreq.getPrimeCpu())) {
+                mCPUMaxScreenOffPrime = new SelectView();
+                mCPUMaxScreenOffPrime.setTitle(getString(R.string.cpu_max_screen_off_freq));
+                mCPUMaxScreenOffPrime.setSummary(getString(R.string.cpu_max_screen_off_freq_summary));
+                mCPUMaxScreenOffPrime.setItems(mCPUFreq.getAdjustedFreq(mCPUFreq.getPrimeCpu(), getActivity()));
+                mCPUMaxScreenOffPrime.setOnItemSelected((selectView, position, item) -> mCPUFreq.setMaxScreenOffFreq(mCPUFreq.getFreqs(mCPUFreq.getPrimeCpu()).get(position),
+                        PrimeCores.get(0), PrimeCores.get(PrimeCores.size() - 1), getActivity()));
+                cpuPrimeCard.addItem(mCPUMaxScreenOffPrime);
+            }
+
+            mCPUGovernorPrime = new SelectView();
+            mCPUGovernorPrime.setTitle(getString(R.string.cpu_governor));
+            mCPUGovernorPrime.setSummary(getString(R.string.cpu_governor_summary));
+            mCPUGovernorPrime.setItems(mCPUFreq.getGovernors());
+            mCPUGovernorPrime.setOnItemSelected((selectView, position, item) -> mCPUFreq.setGovernor(item, PrimeCores.get(0), PrimeCores.get(PrimeCores.size() - 1),
+                    getActivity()));
+            cpuPrimeCard.addItem(mCPUGovernorPrime);
+
+            DescriptionView governorTunablesPrime = new DescriptionView();
+            governorTunablesPrime.setTitle(getString(R.string.cpu_governor_tunables));
+            governorTunablesPrime.setSummary(getString(R.string.governor_tunables_summary));
+            governorTunablesPrime.setOnItemClickListener(item
+                    -> showGovernorTunables(PrimeCores.get(0), PrimeCores.get(PrimeCores.size() - 1)));
+            cpuPrimeCard.addItem(governorTunablesPrime);
+
+            items.add(cpuPrimeCard);
         }
 
         mCPUUsageBig = new XYGraphView();
@@ -773,7 +846,7 @@ public class CPUFragment extends RecyclerViewFragment {
                             500);
                 });
                 class stuneBoostManager {
-                    void showstuneBoost(boolean enable) {
+                    private void showstuneBoost(boolean enable) {
                         if (enable) {
                             cpuBoost.addItem(advStune);
                         } else {
@@ -874,6 +947,10 @@ public class CPUFragment extends RecyclerViewFragment {
     private float[] mCPUUsages;
     private boolean[] mCPUStates;
     private int[] mCPUFreqs;
+    private int mCPUMaxFreqPrime;
+    private int mCPUMinFreqPrime;
+    private int mCPUMaxScreenOffFreqPrime;
+    private String mCPUGovernorStrPrime;
     private int mCPUMaxFreqBig;
     private int mCPUMinFreqBig;
     private int mCPUMaxScreenOffFreqBig;
@@ -903,6 +980,20 @@ public class CPUFragment extends RecyclerViewFragment {
             mCPUFreqs[i] = mCPUFreq.getCurFreq(i);
         }
 
+        if (mCPUMaxPrime != null) {
+            mCPUMaxFreqPrime = mCPUFreq.getMaxFreq(mCPUFreq.getPrimeCpu(), mCPUMaxFreqPrime == 0);
+        }
+        if (mCPUMinPrime != null) {
+            mCPUMinFreqPrime = mCPUFreq.getMinFreq(mCPUFreq.getPrimeCpu(), mCPUMinFreqPrime == 0);
+        }
+        if (mCPUMaxScreenOffPrime != null) {
+            mCPUMaxScreenOffFreqPrime = mCPUFreq.getMaxScreenOffFreq(mCPUFreq.getPrimeCpu(),
+                    mCPUMaxScreenOffFreqPrime == 0);
+        }
+        if (mCPUGovernorPrime != null) {
+            mCPUGovernorStrPrime = mCPUFreq.getGovernor(mCPUFreq.getPrimeCpu(),
+                    mCPUGovernorStrPrime == null);
+        }
         if (mCPUMaxBig != null) {
             mCPUMaxFreqBig = mCPUFreq.getMaxFreq(mCPUMaxFreqBig == 0);
         }
@@ -939,6 +1030,9 @@ public class CPUFragment extends RecyclerViewFragment {
             refreshUsages(mCPUUsages, mCPUUsageBig, mCPUFreq.getBigCpuRange(), mCPUStates);
             if (mCPUFreq.isBigLITTLE()) {
                 refreshUsages(mCPUUsages, mCPUUsageLITTLE, mCPUFreq.getLITTLECpuRange(), mCPUStates);
+                if (mCPUFreq.isPrimeCpu()) {
+                    refreshUsages(mCPUUsages, mCPUUsagePrime, mCPUFreq.getPrimeCpuRange(), mCPUStates);
+                }
             }
         }
 
@@ -953,6 +1047,18 @@ public class CPUFragment extends RecyclerViewFragment {
         }
         if (mCPUGovernorBig != null && mCPUGovernorStrBig != null && !mCPUGovernorStrBig.isEmpty()) {
             mCPUGovernorBig.setItem(mCPUGovernorStrBig);
+        }
+        if (mCPUMaxPrime != null && mCPUMaxFreqPrime != 0) {
+            mCPUMaxPrime.setItem((mCPUMaxFreqPrime / 1000) + getString(R.string.mhz));
+        }
+        if (mCPUMinPrime != null && mCPUMinFreqPrime != 0) {
+            mCPUMinPrime.setItem((mCPUMinFreqPrime / 1000) + getString(R.string.mhz));
+        }
+        if (mCPUMaxScreenOffPrime != null && mCPUMaxScreenOffFreqPrime != 0) {
+            mCPUMaxScreenOffPrime.setItem((mCPUMaxScreenOffFreqPrime / 1000) + getString(R.string.mhz));
+        }
+        if (mCPUGovernorPrime != null && mCPUGovernorStrPrime != null && !mCPUGovernorStrPrime.isEmpty()) {
+            mCPUGovernorPrime.setItem(mCPUGovernorStrPrime);
         }
         if (mCPUMaxLITTLE != null && mCPUMaxFreqLITTLE != 0) {
             mCPUMaxLITTLE.setItem((mCPUMaxFreqLITTLE / 1000) + getString(R.string.mhz));
@@ -971,6 +1077,9 @@ public class CPUFragment extends RecyclerViewFragment {
             refreshCores(mCoresBig, mCPUFreqs);
             if (mCPUFreq.isBigLITTLE()) {
                 refreshCores(mCoresLITTLE, mCPUFreqs);
+                if (mCPUFreq.isPrimeCpu()) {
+                    refreshCores(mCoresPrime, mCPUFreqs);
+                }
             }
         }
     }

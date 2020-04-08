@@ -22,6 +22,8 @@ package com.smartpack.kernelmanager.utils.kernel.cpu;
 import android.content.Context;
 import android.util.SparseArray;
 
+import androidx.annotation.NonNull;
+
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.utils.Device;
@@ -82,6 +84,7 @@ public class CPUFreq {
     private static final String CPU_GOVERNOR_TUNABLES_CORE = "/sys/devices/system/cpu/cpu%d/cpufreq/%s";
 
     private int mCpuCount;
+    private int mPrimeCpu = -1;
     private int mBigCpu = -1;
     private int mLITTLECpu = -1;
     public int mCoreCtlMinCpu = 2;
@@ -135,9 +138,11 @@ public class CPUFreq {
         }
         if (context != null) {
             if (isBigLITTLE()) {
+                List<Integer> primeCpus = getPrimeCpuRange();
                 List<Integer> bigCpus = getBigCpuRange();
                 List<Integer> littleCpus = getLITTLECpuRange();
                 run("#" + new ApplyCpu(path, value, min, max, bigCpus.toArray(new Integer[0]),
+                        primeCpus.toArray(new Integer[0]),
                         littleCpus.toArray(new Integer[0]),
                         mCoreCtlMinCpu).toString(), path + min, context);
             } else {
@@ -153,7 +158,8 @@ public class CPUFreq {
         private int mMin;
         private int mMax;
 
-        // big.LITTLE
+        // Prime.big.LITTLE
+        private List<Integer> mPrimeCpus;
         private List<Integer> mBigCpus;
         private List<Integer> mLITTLECpus;
         private int mCoreCtlMin;
@@ -167,13 +173,21 @@ public class CPUFreq {
             }
         }
 
-        private ApplyCpu(String path, String value, int min, int max, Integer[] bigCpus,
-                         Integer[] littleCpus, int corectlmin) {
+        private ApplyCpu(String path, String value, int min, int max,
+                         Integer[] bigCpus, Integer[] primeCpus, Integer[] littleCpus,
+                         int corectlmin) {
             try {
                 JSONObject main = new JSONObject();
                 init(main, path, value, min, max);
 
-                // big.LITTLE
+                // Prime.big.LITTLE
+                JSONArray PrimeCpusArray = new JSONArray();
+                for (int cpu : primeCpus) {
+                    PrimeCpusArray.put(cpu);
+                }
+                main.put("PrimeCpus", PrimeCpusArray);
+                mPrimeCpus = Arrays.asList(primeCpus);
+
                 JSONArray bigCpusArray = new JSONArray();
                 for (int cpu : bigCpus) {
                     bigCpusArray.put(cpu);
@@ -211,7 +225,12 @@ public class CPUFreq {
                 mMin = getInt(main, "min");
                 mMax = getInt(main, "max");
 
-                // big.LITTLE
+                // Prime.big.LITTLE
+                Integer[] PrimeCpus = getIntArray(main, "PrimeCpus");
+                if (PrimeCpus != null) {
+                    mPrimeCpus = Arrays.asList(PrimeCpus);
+                }
+
                 Integer[] bigCpus = getIntArray(main, "bigCpus");
                 if (bigCpus != null) {
                     mBigCpus = Arrays.asList(bigCpus);
@@ -270,6 +289,10 @@ public class CPUFreq {
             return mBigCpus;
         }
 
+        public List<Integer> getPrimeCpuRange() {
+            return mPrimeCpus;
+        }
+
         public boolean isBigLITTLE() {
             return getBigCpuRange() != null && getLITTLECpuRange() != null;
         }
@@ -290,6 +313,7 @@ public class CPUFreq {
             return mPath;
         }
 
+        @NonNull
         public String toString() {
             return mJson;
         }
@@ -606,10 +630,17 @@ public class CPUFreq {
                 list.add(i);
             }
         } else {
-            for (int i = getBigCpu(); i < getCpuCount(); i++) {
+            for (int i = getBigCpu(); i < (isPrimeCpu() ? getCpuCount() - 1 : getCpuCount()); i++) {
                 list.add(i);
             }
         }
+        return list;
+    }
+
+    public List<Integer> getPrimeCpuRange() {
+        List<Integer> list = new ArrayList<>();
+        // Core 8 is hard-coded as Prime CPU
+        list.add(7);
         return list;
     }
 
@@ -623,8 +654,24 @@ public class CPUFreq {
         return Math.max(mBigCpu, 0);
     }
 
+    public int getPrimeCpu() {
+        isBigLITTLE();
+        return Math.max(mPrimeCpu, 0);
+    }
+
+    public boolean isPrimeCpu() {
+        List<Integer> cpu6Freqs = getFreqs(6);
+        List<Integer> cpu7Freqs = getFreqs(7);
+        if (cpu6Freqs != null && cpu7Freqs != null) {
+            int cpu6Max = cpu6Freqs.get(cpu6Freqs.size() - 1);
+            int cpu7Max = cpu7Freqs.get(cpu7Freqs.size() - 1);
+            return cpu6Max < cpu7Max;
+        }
+        return false;
+    }
+
     public boolean isBigLITTLE() {
-        if (mBigCpu == -1 || mLITTLECpu == -1) {
+        if (mBigCpu == -1 || mPrimeCpu == -1 || mLITTLECpu == -1) {
             if (getCpuCount() <= 4 && !is8996()
                     || (Device.getBoard().startsWith("mt6") && !Device.getBoard().startsWith("mt6595"))
                     || Device.getBoard().startsWith("msm8929")) return false;
@@ -634,6 +681,10 @@ public class CPUFreq {
                 mLITTLECpu = 0;
             } else if (is6Little2Big()) {
                 mBigCpu = 6;
+                mLITTLECpu = 0;
+            } else if (isPrimeCpu()) {
+                mPrimeCpu = 7;
+                mBigCpu = 4;
                 mLITTLECpu = 0;
             } else {
                 List<Integer> cpu0Freqs = getFreqs(0);
