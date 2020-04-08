@@ -1,5 +1,9 @@
 # Change-logs
 
+## 101. April 09, 2020
+*Release-tag: v10.4*<br>
+Added support to devices with Prime CPU cluster. Added Stune Boost On Input to CPU Boost. Added CPU Set support in Misc page. Moved Dynamic and Stune Boost settings into a new Card. Fixed crashing Settings menu on some devices. Added a bottom copyright text (mainly to  cover Ads). Updated gradle build tools. Miscellaneous changes.
+
 ## 100. April 03, 2020
 *Release-tag: v10.3*<br>
 Partially removed recent changes (including flashing view) to fix foreground issues. Added a Cancel button on foreground page. Fixed issues with Tasker integration. Miscellaneous changes.
