@@ -59,6 +59,7 @@ public class CPUBoost {
     private static final String CPU_BOOST_INPUT_BOOST_FREQ = CPU_BOOST + "/input_boost_freq";
     private static final String CPU_BOOST_WAKEUP = CPU_BOOST + "/wakeup_boost";
     private static final String CPU_BOOST_HOTPLUG = CPU_BOOST + "/hotplug_boost";
+    private static final String SCHED_BOOST_ON_INPUT = CPU_BOOST + "/sched_boost_on_input";
 
     private String ENABLE;
 
@@ -105,6 +106,19 @@ public class CPUBoost {
 
     public boolean hasCpuBoostInputMs() {
         return Utils.existFile(CPU_BOOST_INPUT_MS);
+    }
+
+    public void enableSchedBoostOnInput(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", SCHED_BOOST_ON_INPUT), SCHED_BOOST_ON_INPUT, context);
+    }
+
+    public boolean isSchedBoostOnInputEnabled() {
+        return Utils.readFile(SCHED_BOOST_ON_INPUT).equals("1")
+                || Utils.readFile(SCHED_BOOST_ON_INPUT).equals("Y");
+    }
+
+    public boolean hasSchedBoostOnInput() {
+        return Utils.existFile(SCHED_BOOST_ON_INPUT);
     }
 
     public void setCpuBoostInputFreq(int value, int core, Context context) {

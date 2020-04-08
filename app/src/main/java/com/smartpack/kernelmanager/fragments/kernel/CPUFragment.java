@@ -550,8 +550,7 @@ public class CPUFragment extends RecyclerViewFragment {
             inputMs.setSummary(getString(R.string.input_interval_summary));
             inputMs.setUnit(" ms");
             inputMs.setMax(5000);
-            inputMs.setOffset(10);
-            inputMs.setProgress(mCPUBoost.getCpuBootInputMs() / 10);
+            inputMs.setProgress(mCPUBoost.getCpuBootInputMs());
             inputMs.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -559,15 +558,30 @@ public class CPUFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    mCPUBoost.setCpuBoostInputMs(position * 10, getActivity());
+                    mCPUBoost.setCpuBoostInputMs(position, getActivity());
                     getHandler().postDelayed(() -> {
-                                inputMs.setProgress(mCPUBoost.getCpuBootInputMs() / 10);
+                                inputMs.setProgress(mCPUBoost.getCpuBootInputMs());
                             },
                             500);
                 }
             });
 
             cpuBoost.addItem(inputMs);
+        }
+
+        if (mCPUBoost.hasSchedBoostOnInput()) {
+            SwitchView SchedBoostOnInput = new SwitchView();
+            SchedBoostOnInput.setSummary(getString(R.string.sched_boost_Input));
+            SchedBoostOnInput.setChecked(mCPUBoost.isSchedBoostOnInputEnabled());
+            SchedBoostOnInput.addOnSwitchListener((switchView, isChecked) -> {
+                mCPUBoost.enableSchedBoostOnInput(isChecked, getActivity());
+                getHandler().postDelayed(() -> {
+                            SchedBoostOnInput.setChecked(mCPUBoost.isSchedBoostOnInputEnabled());
+                        },
+                        500);
+            });
+
+            cpuBoost.addItem(SchedBoostOnInput);
         }
 
         if (Misc.hasCpuTouchBoost()) {

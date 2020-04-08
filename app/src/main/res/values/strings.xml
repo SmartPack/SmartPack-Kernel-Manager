@@ -182,6 +182,7 @@
     <string name="sync_threshold_summary">When CPU loading crosses the preset threshold, the current CPU is raised to this frequency.</string>
     <string name="input_interval">Input Interval</string>
     <string name="input_interval_summary">Minimum interval a CPU is boosted when input is detected.</string>
+    <string name="sched_boost_Input">Sched Boost On Input</string>
     <string name="input_boost_freq">Input Boost Frequency</string>
     <string name="input_boost_freq_core">Input Boost Frequency Core %d</string>
     <string name="input_boost_freq_summary">CPU frequency to be boosted to this frequency upon input detection.</string>
