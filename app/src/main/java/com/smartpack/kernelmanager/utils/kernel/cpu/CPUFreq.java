@@ -718,9 +718,14 @@ public class CPUFreq {
     }
 
     private boolean is6Little2Big() {
-        String board = Device.getBoard();
-        return board.equalsIgnoreCase("sd670") || board.equalsIgnoreCase("universal7885")
-                || board.equalsIgnoreCase("universal7884");
+        List<Integer> cpu5Freqs = getFreqs(5);
+        List<Integer> cpu6Freqs = getFreqs(6);
+        if (cpu5Freqs != null && cpu6Freqs != null) {
+            int cpu5Max = cpu5Freqs.get(cpu5Freqs.size() - 1);
+            int cpu6Max = cpu6Freqs.get(cpu6Freqs.size() - 1);
+            return cpu5Max < cpu6Max;
+        }
+        return false;
     }
 
     public int getCpuCount() {
