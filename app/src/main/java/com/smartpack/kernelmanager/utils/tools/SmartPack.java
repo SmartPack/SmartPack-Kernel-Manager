@@ -64,11 +64,11 @@ public class SmartPack {
         return Utils.existFile("/system/bin/unzip") || Utils.existFile("/system/xbin/unzip");
     }
 
-    private static String busyboxUnzip() {
-        if (Utils.existFile("/sbin/.core/busybox/unzip")) {
-            return "/sbin/.core/busybox/unzip";
-        } else if (Utils.existFile("/sbin/.magisk/busybox/unzip")) {
-            return "/sbin/.magisk/busybox/unzip";
+    private static String BusyBoxPath() {
+        if (Utils.existFile("/sbin/.magisk/busybox")) {
+            return "/sbin/.magisk/busybox";
+        } else if (Utils.existFile("/sbin/.core/busybox")) {
+            return "/sbin/.core/busybox";
         } else {
             return null;
         }
@@ -179,12 +179,14 @@ public class SmartPack {
         prepareFlashFolder();
         mFlashingResult.append("** Checking for unzip binary! ");
         if (isUnzipAvailable()) {
-            mFlashingResult.append("Native binary available...\n");
-            RootUtils.runCommand("unzip " + file.toString() + " -d '" + FLASH_FOLDER + "'");
+            mFlashingResult.append("Available...\n");
+        } else if (BusyBoxPath() != null) {
+            mFlashingResult.append("Available...\n");
+            Utils.mount("-o --bind", BusyBoxPath(), "/system/xbin");
         } else {
-            mFlashingResult.append("BusyBox binary available...\n");
-            RootUtils.runCommand(busyboxUnzip() + " " + file.toString() + " -d '" + FLASH_FOLDER + "'");
+            mFlashingResult.append("Unavailable...\n** Suggestion: Please consider installing a standalone BusyBox on your device! *\n");
         }
+        RootUtils.runCommand("unzip " + file.toString() + " -d '" + FLASH_FOLDER + "'");
         if (Utils.existFile(ZIPFILE_EXTRACTED)) {
             mFlashingResult.append("\n** Extracting ").append(file.getName()).append(" into working folder: Done *\n\n");
             mFlashingResult.append("** Preparing a recovery-like environment for flashing...\n\n");
