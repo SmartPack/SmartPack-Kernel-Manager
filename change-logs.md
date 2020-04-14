@@ -1,5 +1,9 @@
 # Change-logs
 
+## 102. April 14, 2020
+*Release-tag: v10.5*<br>
+CPUFreq: Properly distinguish more 2 big/6 little devices. SmartPack: Another workaround to use Magisk BusyBox. Misc: Allow changing copyright text by long-clicking on it. Miscellaneous changes.
+
 ## 101. April 09, 2020
 *Release-tag: v10.4*<br>
 Added support to devices with Prime CPU cluster. Added Stune Boost On Input to CPU Boost. Added CPU Set support in Misc page. Moved Dynamic and Stune Boost settings into a new Card. Fixed crashing Settings menu on some devices. Added a bottom copyright text (mainly to  cover Ads). Updated gradle build tools. Miscellaneous changes.
