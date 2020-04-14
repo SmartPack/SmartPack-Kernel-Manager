@@ -35,6 +35,7 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -270,6 +271,19 @@ public class NavigationActivity extends BaseActivity
             if (hasFocus) {
                 v.clearFocus();
             }
+        });
+
+        // Allow changing Copyright Text
+        AppCompatTextView copyrightText = findViewById(R.id.copyright_text);
+        if (Utils.existFile(Utils.getInternalDataStorage() + "/copyright") &&
+                Utils.readFile(Utils.getInternalDataStorage() + "/copyright") != null) {
+            copyrightText.setText(Utils.readFile(Utils.getInternalDataStorage() + "/copyright"));
+        } else {
+            copyrightText.setText(R.string.copyright);
+        }
+        copyrightText.setOnLongClickListener(item -> {
+            Utils.setCopyRightText(this);
+            return false;
         });
 
         // Initialize Banner Ad

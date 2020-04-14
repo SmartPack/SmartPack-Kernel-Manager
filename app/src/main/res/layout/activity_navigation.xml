@@ -23,15 +23,16 @@
             layout="@layout/app_bar_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        
+
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/copyright_text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center_horizontal"
             android:layout_gravity="bottom|center_horizontal"
             android:textSize="18sp"
-            android:padding="10dp"
-            android:text="@string/copyright"
+            android:padding="12dp"
+            android:longClickable="true"
             android:textColor="?attr/colorSecondary"
             android:background="@color/colorPrimary" />
 

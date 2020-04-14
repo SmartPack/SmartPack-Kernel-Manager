@@ -673,4 +673,21 @@ public class Utils {
         return android.webkit.MimeTypeMap.getFileExtensionFromUrl(string);
     }
 
+    public static void setCopyRightText(Context context) {
+        ViewUtils.dialogEditText(existFile(getInternalDataStorage() + "/copyright") ?
+                        readFile(getInternalDataStorage() + "/copyright") : null,
+                (dialogInterface, i) -> {
+                }, text -> {
+                    if (text.equals(readFile(getInternalDataStorage() + "/copyright"))) return;
+                    if (text.isEmpty()) {
+                        delete(getInternalDataStorage() + "/copyright");
+                        toast(context.getString(R.string.copyright_default, context.getString(R.string.copyright)), context);
+                        return;
+                    }
+                    create(text, getInternalDataStorage() + "/copyright");
+                    toast(context.getString(R.string.copyright_message, text), context);
+                }, context).setOnDismissListener(dialogInterface -> {
+        }).show();
+    }
+
 }
