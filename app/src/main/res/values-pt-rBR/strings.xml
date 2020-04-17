@@ -1138,5 +1138,7 @@
     <string name="save_log">Salvar o Registro</string>
     <string name="file_name_error">O nome do arquivo ou o caminho que você selecionou possui caracteres como \'(\' ou \')\', o que provavelmente causa problemas com o seletor de arquivos!</string>
     <string name="flash_log_summary">O Registro do Flasher foi exportado como %s!</string>
-    <string name="apply">Aplicar</string>
+    <string name="flashing_title">Flasheando %s</string>
+    <string name="flashing_progress">Flash em progresso!</string>
+
 </resources>
