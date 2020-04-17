@@ -1139,4 +1139,8 @@
     <string name="file_name_error">O nome do arquivo ou o caminho que você selecionou possui caracteres como \'(\' ou \')\', o que provavelmente causa problemas com o seletor de arquivos!</string>
     <string name="flash_log_summary">O Registro do Flasher foi exportado como %s!</string>
     <string name="apply">Aplicar</string>
+    <string name="cpuset">Conjuntos de CPU</string>
+    <string name="sched_boost_Input">Sched Boost na Entrada</string>
+    <string name="copyright_message">O novo texto de direitos autorais, %s, será aplicado na próxima abertura do aplicativo!</string>
+    <string name="copyright_default">O texto padrão de direitos autorais, %s, será aplicado na próxima abertura do aplicativo!</string>
 </resources>
