@@ -33,7 +33,7 @@
             android:textSize="18sp"
             android:padding="12dp"
             android:longClickable="true"
-            android:textColor="?attr/colorSecondary"
+            android:textColor="?attr/colorAccent"
             android:background="@color/colorPrimary" />
 
         <com.google.android.gms.ads.AdView

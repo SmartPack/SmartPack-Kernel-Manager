@@ -48,7 +48,8 @@
         android:layout_below="@+id/viewpagerparent"
         android:layout_marginEnd="@dimen/recyclerview_fab_margin_right"
         android:layout_marginTop="@dimen/recyclerview_fab_margin_top"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:backgroundTint="?attr/colorAccent"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/bottom_fab"
@@ -58,7 +59,8 @@
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="@dimen/recyclerview_fab_margin_bottom"
         android:layout_marginEnd="@dimen/recyclerview_fab_margin_right"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:backgroundTint="?attr/colorAccent"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/foreground_parent"

@@ -18,7 +18,7 @@
         android:layout_marginRight="@dimen/nav_header_fab_margin_right"
         android:layout_marginStart="@dimen/nav_header_fab_margin_left"
         android:layout_marginTop="@dimen/nav_header_fab_margin_top"
-        android:tint="@color/colorOnPrimary"
+        app:backgroundTint="?attr/colorAccent"
         app:srcCompat="@drawable/ic_help" />
 
     <TextView

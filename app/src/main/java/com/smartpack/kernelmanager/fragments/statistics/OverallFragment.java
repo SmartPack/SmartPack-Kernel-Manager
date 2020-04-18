@@ -23,6 +23,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
 import android.os.SystemClock;
 import android.view.Menu;
@@ -38,6 +39,7 @@ import com.smartpack.kernelmanager.fragments.kernel.VMFragment;
 import com.smartpack.kernelmanager.utils.Device;
 
 import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.kernel.battery.Battery;
 import com.smartpack.kernelmanager.utils.kernel.gpu.GPUFreq;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
@@ -83,8 +85,12 @@ public class OverallFragment extends RecyclerViewFragment {
     }
 
     private void statsInit(List<RecyclerViewItem> items) {
+        // For some reason only this one refused to tint itself
+        Drawable chartDrawable = getResources().getDrawable(R.drawable.ic_chart);
+        chartDrawable.setTint(ViewUtils.getThemeAccentColor(requireContext()));
+
         CardView cardView = new CardView(getActivity());
-        cardView.setDrawable(getResources().getDrawable(R.drawable.ic_chart));
+        cardView.setDrawable(chartDrawable);
         cardView.setTitle(getString(R.string.overall) + " " + getString(R.string.statistics));
         cardView.setOnMenuListener((cardView1, popupMenu) -> {
             Menu menu = popupMenu.getMenu();
