@@ -12,4 +12,4 @@
     android:paddingTop="10dp"
     android:textIsSelectable="true"
     android:textSize="18sp"
-    android:textColor="?attr/colorSecondary" />
+    android:textColor="?attr/colorAccent" />

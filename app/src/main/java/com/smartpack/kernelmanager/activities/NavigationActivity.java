@@ -82,6 +82,7 @@ import com.smartpack.kernelmanager.fragments.tools.ProfileFragment;
 import com.smartpack.kernelmanager.utils.Device;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.kernel.battery.Battery;
 import com.smartpack.kernelmanager.utils.kernel.cpuhotplug.Hotplug;
 import com.smartpack.kernelmanager.utils.kernel.cpuvoltage.Voltage;
@@ -343,6 +344,8 @@ public class NavigationActivity extends BaseActivity
                     Prefs.getBoolean("section_icons", true, this)
                     && navigationFragment.mDrawable != 0 ? navigationFragment.mDrawable :
                     R.drawable.ic_blank);
+
+            drawable.setTint(ViewUtils.getThemeAccentColor(this));
 
             if (fragmentClass == null) {
                 lastSubMenu = menu.addSubMenu(id);
