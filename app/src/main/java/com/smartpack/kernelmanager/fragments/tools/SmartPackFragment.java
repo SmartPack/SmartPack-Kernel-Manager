@@ -354,6 +354,21 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     private void OtherOptionsInit(List<RecyclerViewItem> items) {
+        // Advertise Own App
+        TitleView bb = new TitleView();
+        bb.setText(getString(R.string.busybox_installer));
+
+        items.add(bb);
+
+        DescriptionView busybox = new DescriptionView();
+        busybox.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
+        busybox.setSummary(getString(R.string.busybox_installer_summary));
+        busybox.setFullSpan(true);
+        busybox.setOnItemClickListener(item -> {
+            Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.busyboxinstaller", getActivity());
+        });
+        items.add(busybox);
+
         TitleView others = new TitleView();
         others.setText(getString(R.string.other_options));
 
