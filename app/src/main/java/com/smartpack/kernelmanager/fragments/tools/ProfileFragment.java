@@ -244,7 +244,9 @@ public class ProfileFragment extends RecyclerViewFragment {
             final int position = i;
 
             final DescriptionView descriptionView = new DescriptionView();
-            descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_file));
+            Drawable drawable = getResources().getDrawable(R.drawable.ic_file);
+            drawable.setTint(ViewUtils.getThemeAccentColor(requireContext()));
+            descriptionView.setDrawable(drawable);
             descriptionView.setSummary(profileItems.get(i).getName());
             descriptionView.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
             descriptionView.setOnMenuListener((cardView1, popupMenu) -> {

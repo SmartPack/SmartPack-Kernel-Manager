@@ -24,6 +24,7 @@ package com.smartpack.kernelmanager.utils.tools;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 
 import androidx.fragment.app.FragmentManager;
@@ -124,8 +125,10 @@ public class UpdateChannel extends RecyclerViewFragment {
     }
 
     private void createInit(List<RecyclerViewItem> items) {
+        Drawable drawable = getResources().getDrawable(R.drawable.ic_info);
+        drawable.setTint(ViewUtils.getThemeAccentColor(requireContext()));
         DescriptionView info = new DescriptionView();
-        info.setDrawable(getResources().getDrawable(R.drawable.ic_info));
+        info.setDrawable(drawable);
         info.setTitle(getText(R.string.update_channel_instructions));
         info.setFullSpan(true);
 
