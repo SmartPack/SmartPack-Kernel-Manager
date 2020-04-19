@@ -76,6 +76,7 @@ If you like to appreciate my work, please consider donating to me (either via [P
 * [Andrey](https://github.com/andrey167), Russian
 * [Lennoard Silva](https://github.com/Lennoard), Portuguese (Brazilian)
 * [kiratt](http://4pda.ru/forum/index.php?showuser=5859577), Russian/Ukrainian
+* [Mikesew1320](https://github.com/Mikesew1320), Amharic
 
 ## Report a bug or request a feature
 
