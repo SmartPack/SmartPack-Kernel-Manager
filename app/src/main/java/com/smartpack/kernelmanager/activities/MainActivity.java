@@ -250,7 +250,7 @@ public class MainActivity extends BaseActivity {
                 intent.putExtra(TextActivity.MESSAGE_INTENT, activity.getString(mHasRoot ?
                         R.string.no_busybox : R.string.no_root));
                 intent.putExtra(TextActivity.SUMMARY_INTENT,
-                        mHasRoot ? "https://play.google.com/store/apps/details?id=stericson.busybox" :
+                        mHasRoot ? "https://play.google.com/store/apps/details?id=com.smartpack.busyboxinstaller" :
                                 "https://www.google.com/search?site=&source=hp&q=root+"
                                         + Device.getVendor() + "+" + Device.getModel());
                 activity.startActivity(intent);

@@ -224,6 +224,17 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 items.add(descriptionView);
             }
         }
+        if (items.size() == 0) {
+            // Advertise Own App
+            DescriptionView sm = new DescriptionView();
+            sm.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
+            sm.setSummary(getString(R.string.scripts_manager_message));
+            sm.setFullSpan(true);
+            sm.setOnItemClickListener(item -> {
+                Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.scriptmanager", getActivity());
+            });
+            items.add(sm);
+        }
     }
 
     @SuppressLint("StaticFieldLeak")
