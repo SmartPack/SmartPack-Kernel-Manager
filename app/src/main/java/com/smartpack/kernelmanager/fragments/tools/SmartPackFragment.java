@@ -43,6 +43,7 @@ import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -235,8 +236,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
         items.add(updateChannel);
 
         if (KernelUpdater.getLatestVersion().equals("Unavailable")) {
+            Drawable drawable = getResources().getDrawable(R.drawable.ic_info);
+            drawable.setTint(ViewUtils.getThemeAccentColor(requireContext()));
             DescriptionView info = new DescriptionView();
-            info.setDrawable(getResources().getDrawable(R.drawable.ic_info));
+            info.setDrawable(drawable);
             info.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
             info.setTitle(getString(R.string.update_channel_info, Utils.getInternalDataStorage()));
             info.setOnItemClickListener(item -> Utils.launchUrl("https://smartpack.github.io/kerneldownloads/", getActivity()));

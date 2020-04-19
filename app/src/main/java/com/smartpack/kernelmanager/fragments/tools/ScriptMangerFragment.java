@@ -170,7 +170,9 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
         for (final String script : ScriptManager.list()) {
             if (Utils.getExtension(script).equals("sh")) {
                 DescriptionView descriptionView = new DescriptionView();
-                descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_file));
+                Drawable drawable = getResources().getDrawable(R.drawable.ic_file);
+                drawable.setTint(ViewUtils.getThemeAccentColor(requireContext()));
+                descriptionView.setDrawable(drawable);
                 descriptionView.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
                 descriptionView.setTitle(script);
                 descriptionView.setSummary(ScriptManager.scriptFile() + "/" + script);
