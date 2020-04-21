@@ -1,7 +1,8 @@
 ![](banner.png)
 
 ## Introduction
-SmartPack-Kernel Manager is a heavily modified version of Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.
+Welcome to the <strong>stable</strong> development channel of SmartPack-Kernel Manager, a heavily modified version of Kernel Adiutor originally developed by Willi Ye aka Grarak. All the credits go to the original developer.<br>
+<br><strong>Please Note</strong>: The contributors are requested to send pull requests only to the [beta development](https://github.com/SmartPack/SmartPack-Kernel-Manager/tree/beta) branch (not to this stable branch).
 
 ## Download
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
