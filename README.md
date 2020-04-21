@@ -7,7 +7,7 @@ Welcome to the <br><strong>beta</strong> development channel of SmartPack-Kernel
 ## Download
 [<img src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
      alt=""
-     height="80">]()
+     height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v10.6/com.smartpack.kernelmanager-v10.6-release.apk)
 
 ## Features
 * Almost all the features available in Kernel Adiutor.

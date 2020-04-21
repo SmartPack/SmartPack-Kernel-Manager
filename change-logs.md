@@ -1,5 +1,9 @@
 # Change-logs
 
+## 103. April 21, 2020
+*Release-tag: v10.6*<br>
+App UI: Updated main headings, icons (overall page and FAB's) to use accent colors (Credits: @Lennoard). Fixed unnecessary spacing observed on the foreground page layout. Added Amharic translations (Credits: @Mikesew1320). Added links to other SmartPack apps on related pages. Updated Portuguese (Brazilian) translations (Credits: @Lennoard). Miscellaneous changes.
+
 ## 102. April 14, 2020
 *Release-tag: v10.5*<br>
 CPUFreq: Properly distinguish more 2 big/6 little devices. SmartPack: Another workaround to use Magisk BusyBox. Misc: Allow changing copyright text by long-clicking on it. Miscellaneous changes.
