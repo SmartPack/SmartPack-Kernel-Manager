@@ -1,5 +1,0 @@
-{
-  "releaseNotes": "Change-logs\n - Properly distinguish more 2 big/6 little devices.\n - Flasher: Another workaround to use Magisk BusyBox.\n - Allow changing copyright text by long-pressing.\n - Miscellaneous changes.",
-  "latestVersion": "10.5",
-  "latestVersionCode": 104
-}
