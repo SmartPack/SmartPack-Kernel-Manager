@@ -467,4 +467,8 @@ public class Device {
         return RootUtils.runCommand("getprop ro.treble.enabled");
     }
 
+    public static String getGPULibVersion() {
+        return RootUtils.runCommand("dumpsys SurfaceFlinger | grep GLES | head -n 1 | cut -f 3,4,5 -d ','");
+    }
+
 }
