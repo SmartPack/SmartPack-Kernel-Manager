@@ -1,5 +1,9 @@
 # Change-logs
 
+## 104. April 22, 2020
+*Release-tag: v10.7*<br>
+Added GPU System Lib version to Device page. Updated nav header background to follow app theme (Credits: @Lennoard). Updated SmartPack page layout (Credits: @Lennoard). VM: Added few more tunables. Fixed alignment issues on Screen page. Miscellaneous changes.
+
 ## 103. April 21, 2020
 *Release-tag: v10.6*<br>
 App UI: Updated main headings, icons (overall page and FAB's) to use accent colors (Credits: @Lennoard). Fixed unnecessary spacing observed on the foreground page layout. Added Amharic translations (Credits: @Mikesew1320). Added links to other SmartPack apps on related pages. Updated Portuguese (Brazilian) translations (Credits: @Lennoard). Miscellaneous changes.
