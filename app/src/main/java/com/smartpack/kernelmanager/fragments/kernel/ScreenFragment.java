@@ -112,7 +112,6 @@ public class ScreenFragment extends RecyclerViewFragment {
             DescriptionView scc = new DescriptionView();
             scc.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
             scc.setSummary(getString(R.string.scc_messgae));
-            scc.setFullSpan(true);
             scc.setOnItemClickListener(item -> {
                 Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.colorcontrol", getActivity());
             });
