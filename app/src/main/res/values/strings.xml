@@ -138,6 +138,7 @@
     <string name="hardware">Hardware</string>
     <string name="architecture">Architecture</string>
     <string name="treble_status">Project Treble Support</string>
+    <string name="gpu_lib">GPU System Library</string>
 
     <!-- Inputs -->
     <string name="bus">Bus</string>
