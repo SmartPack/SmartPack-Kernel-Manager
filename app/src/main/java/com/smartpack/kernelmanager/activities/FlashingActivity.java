@@ -41,6 +41,7 @@ public class FlashingActivity extends BaseActivity {
 
     private static AppCompatImageButton mSaveButton;
     private static AppCompatTextView mCancelButton;
+    private static AppCompatTextView mFlashingHeading;
     private static AppCompatTextView mFlashingResult;
     private static AppCompatTextView mRebootButton;
 
@@ -52,6 +53,7 @@ public class FlashingActivity extends BaseActivity {
 
         initToolBar();
         mCancelButton = findViewById(R.id.cancel_button);
+        mFlashingHeading = findViewById(R.id.flashing_title);
         mFlashingResult = findViewById(R.id.output_text);
         mSaveButton = findViewById(R.id.save_button);
         mRebootButton = findViewById(R.id.reboot_button);
@@ -81,6 +83,7 @@ public class FlashingActivity extends BaseActivity {
                             if (SmartPack.mFlashingResult != null) {
                                 mFlashingResult.setText(SmartPack.mFlashingResult.toString());
                                 if (!SmartPack.mFlashing) {
+                                    mFlashingHeading.setText(R.string.flashing_finished);
                                     mCancelButton.setVisibility(View.VISIBLE);
                                     mSaveButton.setVisibility(View.VISIBLE);
                                     mRebootButton.setVisibility(View.VISIBLE);

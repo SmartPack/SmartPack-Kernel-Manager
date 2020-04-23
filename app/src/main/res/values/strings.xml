@@ -1005,6 +1005,7 @@
     <string name="turn_off">Turn Off</string>
     <string name="backing_up">Backing up</string>
     <string name="flashing">Flashing</string>
+    <string name="flashing_finished">Flashing Finished</string>
     <string name="restoring">Restoring</string>
     <string name="reset_settings">Reset App</string>
     <string name="reset_settings_summary">Reset User Settings</string>
