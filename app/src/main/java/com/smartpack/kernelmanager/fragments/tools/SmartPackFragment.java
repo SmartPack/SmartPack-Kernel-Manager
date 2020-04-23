@@ -639,9 +639,9 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
     @SuppressLint("StaticFieldLeak")
     private void runCommand(final String value) {
-        new AsyncTask<Void, Void, String>() {
+        new AsyncTask<Void, Void, Void>() {
             private ProgressDialog mProgressDialog;
-
+            private String mResult;
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -650,23 +650,21 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 mProgressDialog.setCancelable(false);
                 mProgressDialog.show();
             }
-
             @Override
-            protected String doInBackground(Void... voids) {
-                Utils.sleep(1);
-                return RootUtils.runCommand(value);
+            protected Void doInBackground(Void... voids) {
+                mResult = RootUtils.runAndGetError(value);
+                return null;
             }
-
             @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
                 try {
                     mProgressDialog.dismiss();
                 } catch (IllegalArgumentException ignored) {
                 }
                 new Dialog(requireActivity())
                         .setTitle(value)
-                        .setMessage(s != null && !s.isEmpty()? s : "")
+                        .setMessage(mResult)
                         .setCancelable(false)
                         .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
                         })
