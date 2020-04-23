@@ -39,6 +39,7 @@ import android.view.Menu;
 import androidx.fragment.app.FragmentManager;
 
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.activities.FlashingActivity;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
@@ -311,7 +312,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     Utils.toast(R.string.permission_denied_write_storage, getActivity());
                     return;
                 }
-                KernelUpdater.downloadKernel(getActivity());
+                downloadKernel();
             });
 
             items.add(download);
@@ -559,6 +560,84 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     @SuppressLint("StaticFieldLeak")
+    private void flashingTask(File file) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                SmartPack.mFlashing = true;
+                if (SmartPack.mFlashingResult == null) {
+                    SmartPack.mFlashingResult = new StringBuilder();
+                } else {
+                    SmartPack.mFlashingResult.setLength(0);
+                }
+                Intent flashingIntent = new Intent(getActivity(), FlashingActivity.class);
+                startActivityForResult(flashingIntent, 1);
+            }
+            @Override
+            protected Void doInBackground(Void... voids) {
+                SmartPack.manualFlash(file);
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                SmartPack.mFlashing = false;
+            }
+        }.execute();
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void downloadKernel() {
+        new AsyncTask<Void, Void, Void>() {
+            private ProgressDialog mProgressDialog;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                mProgressDialog = new ProgressDialog(getActivity());
+                mProgressDialog.setMessage(getString(R.string.downloading_update, KernelUpdater.getKernelName() +
+                        "-" + KernelUpdater.getLatestVersion()) + "...");
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
+            }
+            @Override
+            protected Void doInBackground(Void... voids) {
+                Utils.prepareInternalDataStorage();
+                Utils.downloadFile(Utils.getInternalDataStorage() + "/Kernel.zip", KernelUpdater.getUrl(), getActivity());
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                try {
+                    mProgressDialog.dismiss();
+                } catch (IllegalArgumentException ignored) {
+                }
+                if (KernelUpdater.getChecksum().equals("Unavailable") || !KernelUpdater.getChecksum().equals("Unavailable") &&
+                        Utils.getChecksum(Utils.getInternalDataStorage() + "/Kernel.zip").contains(KernelUpdater.getChecksum())) {
+                    new Dialog(requireActivity())
+                            .setMessage(getString(R.string.download_completed,
+                                    KernelUpdater.getKernelName() + "-" + KernelUpdater.getLatestVersion()))
+                            .setCancelable(false)
+                            .setNegativeButton(getString(R.string.cancel), (dialog, id) -> {
+                            })
+                            .setPositiveButton(getString(R.string.flash), (dialog, id) -> {
+                                flashingTask(new File(Utils.getInternalDataStorage() + "/Kernel.zip"));
+                            })
+                            .show();
+                } else {
+                    new Dialog(requireActivity())
+                            .setMessage(getString(R.string.download_failed))
+                            .setCancelable(false)
+                            .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
+                            })
+                            .show();
+                }
+            }
+        }.execute();
+    }
+
+    @SuppressLint("StaticFieldLeak")
     private void runCommand(final String value) {
         new AsyncTask<Void, Void, String>() {
             private ProgressDialog mProgressDialog;
@@ -650,7 +729,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             manualFlash.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
             manualFlash.setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> {
-                SmartPack.getInstance().flashingTask(new File(mPath), getActivity());
+                flashingTask(new File(mPath));
             });
             manualFlash.show();
         }
