@@ -239,40 +239,35 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
 
     @SuppressLint("StaticFieldLeak")
     private void execute(final String script) {
-        new AsyncTask<Void, Void, String>() {
-
+        new AsyncTask<Void, Void, Void>() {
             private ProgressDialog mProgressDialog;
-
+            private String mResult;
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-
                 mProgressDialog = new ProgressDialog(getActivity());
                 mProgressDialog.setMessage(getString(R.string.executing) + " " + script + "...");
                 mProgressDialog.setCancelable(false);
                 mProgressDialog.show();
             }
-
             @Override
-            protected String doInBackground(Void... voids) {
-                return ScriptManager.execute(script);
+            protected Void doInBackground(Void... voids) {
+                mResult = ScriptManager.execute(script);
+                return null;
             }
-
             @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
                 try {
                     mProgressDialog.dismiss();
                 } catch (IllegalArgumentException ignored) {
                 }
-                if (s != null && !s.isEmpty()) {
-                    new Dialog(requireActivity())
-                            .setMessage(s)
-                            .setCancelable(false)
-                            .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
-                            })
-                            .show();
-                }
+                new Dialog(requireActivity())
+                        .setMessage(mResult)
+                        .setCancelable(false)
+                        .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
+                        })
+                        .show();
             }
         }.execute();
     }
