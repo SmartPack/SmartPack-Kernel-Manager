@@ -31,7 +31,7 @@ import com.smartpack.kernelmanager.services.boot.ApplyOnBoot;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
-import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.topjohnwu.superuser.Shell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,13 +58,12 @@ public class Tile extends BroadcastReceiver {
             String[] commands = intent.getStringArrayExtra(COMMANDS);
             if (commands != null) {
                 List<String> adjustedCommands = new ArrayList<>();
-                RootUtils.SU su = new RootUtils.SU(true, TAG);
                 for (String command : commands) {
                     synchronized (this) {
                         CPUFreq.ApplyCpu applyCpu;
                         if (command.startsWith("#") && command.contains("%d")
                                 && (applyCpu = new CPUFreq.ApplyCpu(command.substring(1))).toString() != null) {
-                            adjustedCommands.addAll(ApplyOnBoot.getApplyCpu(applyCpu, su));
+                            adjustedCommands.addAll(ApplyOnBoot.getApplyCpu(applyCpu));
                         } else {
                             adjustedCommands.add(command);
                         }
@@ -72,7 +71,7 @@ public class Tile extends BroadcastReceiver {
                 }
 
                 for (String command : adjustedCommands) {
-                    su.runCommand(command);
+                    Shell.su(command).submit();
                 }
             }
         }
