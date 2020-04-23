@@ -60,7 +60,7 @@ public class ScriptManager {
     }
 
     public static String execute(String file) {
-        return RootUtils.runCommand("sh " + SCRIPT + "/" + file);
+        return RootUtils.runAndGetError("sh " + SCRIPT + "/" + file);
     }
 
     public static String read(String file) {
