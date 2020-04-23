@@ -41,8 +41,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.FileProvider;
 import androidx.core.view.ViewCompat;
@@ -175,10 +175,8 @@ public class Utils {
     }
 
     public static boolean hideStartActivity() {
-        RootUtils.SU su = new RootUtils.SU(false, null);
-        String prop = su.runCommand("getprop ro.kerneladiutor.hide");
-        su.close();
-        return prop != null && prop.equals("true");
+        String prop = RootUtils.runCommand("getprop ro.kerneladiutor.hide");
+        return prop.equals("true");
     }
 
     public static boolean isServiceRunning(Class<?> serviceClass, Context context) {
@@ -432,24 +430,16 @@ public class Utils {
     }
 
     public static boolean isPropRunning(String key) {
-        return isPropRunning(key, RootUtils.getSU());
-    }
-
-    public static boolean isPropRunning(String key, RootUtils.SU su) {
         try {
-            return su.runCommand("getprop | grep " + key).split("]:")[1].contains("running");
+            return RootUtils.runCommand("getprop | grep " + key).split("]:")[1].contains("running");
         } catch (Exception ignored) {
             return false;
         }
     }
 
     public static boolean hasProp(String key) {
-        return hasProp(key, RootUtils.getSU());
-    }
-
-    public static boolean hasProp(String key, RootUtils.SU su) {
         try {
-            return !su.runCommand("getprop | grep " + key).isEmpty();
+            return !RootUtils.runCommand("getprop | grep " + key).isEmpty();
         } catch (Exception ignored) {
             return false;
         }
@@ -481,13 +471,10 @@ public class Utils {
         return readFile(file, true);
     }
 
-    public static String readFile(String file, boolean root) {
-        return readFile(file, root ? RootUtils.getSU() : null);
-    }
 
-    public static String readFile(String file, RootUtils.SU su) {
-        if (su != null) {
-            return new RootFile(file, su).readFile();
+    public static String readFile(String file, boolean root) {
+        if (root) {
+            return new RootFile(file).readFile();
         }
 
         BufferedReader buf = null;
@@ -517,11 +504,7 @@ public class Utils {
     }
 
     public static boolean existFile(String file, boolean root) {
-        return existFile(file, root ? RootUtils.getSU() : null);
-    }
-
-    public static boolean existFile(String file, RootUtils.SU su) {
-        return su == null ? new File(file).exists() : new RootFile(file, su).exists();
+        return !root ? new File(file).exists() : new RootFile(file).exists();
     }
 
     public static String create(String text, String path) {
@@ -690,4 +673,10 @@ public class Utils {
         }).show();
     }
 
+    public static String removeSuffix(@Nullable String s, @Nullable String suffix) {
+        if (s != null && suffix != null && s.endsWith(suffix)) {
+            return s.substring(0, s.length() - suffix.length());
+        }
+        return s;
+    }
 }

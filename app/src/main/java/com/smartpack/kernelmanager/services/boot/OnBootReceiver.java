@@ -34,12 +34,11 @@ public class OnBootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
-            RootUtils.SU su = new RootUtils.SU();
-            su.runCommand("echo /testRoot/");
-            if (!su.mDenied) {
+            if (RootUtils.rootAccess()) {
                 Utils.startService(context, new Intent(context, ApplyOnBootService.class));
+            } else {
+                RootUtils.closeSU();
             }
-            su.close();
         }
     }
 }
