@@ -1,5 +1,9 @@
 # Change-logs
 
+## 105. April 23, 2020
+*Release-tag: v10.8*<br>
+Main: Migrated to libsu (Credits: @Lennoard). SmartPack: Added brand new Flashing view. Run Shell Command & Script Manager: Also display stderr. Miscellaneous changes.
+
 ## 104. April 22, 2020
 *Release-tag: v10.7*<br>
 Added GPU System Lib version to Device page. Updated nav header background to follow app theme (Credits: @Lennoard). Updated SmartPack page layout (Credits: @Lennoard). VM: Added few more tunables. Fixed alignment issues on Screen page. Miscellaneous changes.
