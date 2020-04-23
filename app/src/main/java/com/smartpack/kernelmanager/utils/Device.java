@@ -168,7 +168,7 @@ public class Device {
         private ROMInfo() {
             for (String prop : sProps) {
                 mROMVersion = RootUtils.getProp(prop);
-                if (mROMVersion != null && !mROMVersion.isEmpty()) {
+                if (!mROMVersion.isEmpty()) {
                     break;
                 }
             }
@@ -464,7 +464,7 @@ public class Device {
     }
 
     public static String getTrebleStatus() {
-        return RootUtils.runCommand("getprop ro.treble.enabled");
+        return RootUtils.getProp("ro.treble.enabled");
     }
 
     public static String getGPULibVersion() {
