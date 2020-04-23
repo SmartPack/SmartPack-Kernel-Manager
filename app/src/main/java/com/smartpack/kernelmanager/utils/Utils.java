@@ -22,6 +22,7 @@ package com.smartpack.kernelmanager.utils;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.ProgressDialog;
 import android.app.UiModeManager;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -32,6 +33,7 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -542,6 +544,11 @@ public class Utils {
         return Utils.existFile("/system/bin/curl") || Utils.existFile("/system/bin/wget");
     }
 
+    public static boolean isUnzipAvailable() {
+        return !RootUtils.runAndGetError("unzip --help").contains(
+                "/system/bin/sh: unzip: inaccessible or not found");
+    }
+
     public static void downloadFile(String path, String url, Context context) {
         if (!isNetworkAvailable(context)) {
             toast(R.string.no_internet, context);
@@ -646,6 +653,33 @@ public class Utils {
                 " sleep 3 " + "&&" +
                 " reboot";
         return prepareReboot;
+    }
+
+    public static void rebootCommand(Context context) {
+        new AsyncTask<Void, Void, Void>() {
+            private ProgressDialog mProgressDialog;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                mProgressDialog = new ProgressDialog(context);
+                mProgressDialog.setMessage(context.getString(R.string.rebooting) + ("..."));
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
+            }
+            @Override
+            protected Void doInBackground(Void... voids) {
+                RootUtils.runCommand(prepareReboot());
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                try {
+                    mProgressDialog.dismiss();
+                } catch (IllegalArgumentException ignored) {
+                }
+            }
+        }.execute();
     }
 
     /**

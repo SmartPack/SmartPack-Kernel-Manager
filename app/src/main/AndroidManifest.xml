@@ -75,6 +75,7 @@
             android:name=".views.NavHeaderView$MainHeaderActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".activities.EditorActivity" />
+        <activity android:name=".activities.FlashingActivity" />
         <activity android:name=".activities.tools.profile.ProfileActivity" />
         <activity
             android:name=".activities.SecurityActivity"

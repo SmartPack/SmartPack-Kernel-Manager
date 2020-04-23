@@ -27,7 +27,6 @@ import android.os.AsyncTask;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
-import com.smartpack.kernelmanager.views.dialog.Dialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,7 +41,6 @@ public class KernelUpdater {
 
     private static final String UPDATE_CHANNEL = Utils.getInternalDataStorage() + "/updatechannel";
     private static final String UPDATE_INFO = Utils.getInternalDataStorage() + "/updateinfo";
-    private static final String LATEST_KERNEL = Utils.getInternalDataStorage() + "/Kernel.zip";
 
     private static void updateChannel(String value) {
         Utils.create(value, UPDATE_CHANNEL);
@@ -117,54 +115,6 @@ public class KernelUpdater {
         }.execute();
     }
 
-    public static void downloadKernel(Context context) {
-        new AsyncTask<Void, Void, Void>() {
-            private ProgressDialog mProgressDialog;
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                mProgressDialog = new ProgressDialog(context);
-                mProgressDialog.setMessage(context.getString(R.string.downloading_update, getKernelName() + "-" + getLatestVersion()) + "...");
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.show();
-            }
-            @Override
-            protected Void doInBackground(Void... voids) {
-                Utils.prepareInternalDataStorage();
-                Utils.downloadFile(LATEST_KERNEL, getUrl(), context);
-                return null;
-            }
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                try {
-                    mProgressDialog.dismiss();
-                } catch (IllegalArgumentException ignored) {
-                }
-                if (getChecksum().equals("Unavailable") || !getChecksum().equals("Unavailable") &&
-                        Utils.getChecksum(LATEST_KERNEL).contains(getChecksum())) {
-                    new Dialog(context)
-                            .setMessage(context.getString(R.string.download_completed,
-                                    getKernelName() + "-" + getLatestVersion()))
-                            .setCancelable(false)
-                            .setNegativeButton(context.getString(R.string.cancel), (dialog, id) -> {
-                            })
-                            .setPositiveButton(context.getString(R.string.flash), (dialog, id) -> {
-                                SmartPack.getInstance().flashingTask(new File(LATEST_KERNEL), context);
-                            })
-                            .show();
-                } else {
-                    new Dialog(context)
-                            .setMessage(context.getString(R.string.download_failed))
-                            .setCancelable(false)
-                            .setPositiveButton(context.getString(R.string.cancel), (dialog, id) -> {
-                            })
-                            .show();
-                }
-            }
-        }.execute();
-    }
-
     public static String getKernelName() {
         try {
             JSONObject obj = new JSONObject(getKernelInfo());
@@ -192,7 +142,7 @@ public class KernelUpdater {
         }
     }
 
-    private static String getChecksum() {
+    public static String getChecksum() {
         try {
             JSONObject obj = new JSONObject(getKernelInfo());
             return (obj.getString("sha1"));
