@@ -69,11 +69,11 @@ public class FlashingActivity extends BaseActivity {
             onBackPressed();
             Utils.rebootCommand(this);
         });
-        refreshText();
+        refreshStatus();
     }
 
-    public void refreshText() {
-        Thread t = new Thread() {
+    public void refreshStatus() {
+        new Thread() {
             @Override
             public void run() {
                 try {
@@ -91,10 +91,9 @@ public class FlashingActivity extends BaseActivity {
                             }
                         });
                     }
-                } catch (InterruptedException ignored) { }
+                } catch (InterruptedException ignored) {}
             }
-        };
-        t.start();
+        }.start();
     }
 
     @Override
