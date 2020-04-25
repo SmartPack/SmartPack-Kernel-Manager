@@ -170,9 +170,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
         for (final String script : ScriptManager.list()) {
             if (Utils.getExtension(script).equals("sh")) {
                 DescriptionView descriptionView = new DescriptionView();
-                Drawable drawable = getResources().getDrawable(R.drawable.ic_file);
-                drawable.setTint(ViewUtils.getThemeAccentColor(requireContext()));
-                descriptionView.setDrawable(drawable);
+                descriptionView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_file, requireContext()));
                 descriptionView.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
                 descriptionView.setTitle(script);
                 descriptionView.setSummary(ScriptManager.scriptFile() + "/" + script);
@@ -225,15 +223,17 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
             }
         }
         if (items.size() == 0) {
-            // Advertise Own App
-            DescriptionView sm = new DescriptionView();
-            sm.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
-            sm.setSummary(getString(R.string.scripts_manager_message));
-            sm.setFullSpan(true);
-            sm.setOnItemClickListener(item -> {
-                Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.scriptmanager", getActivity());
-            });
-            items.add(sm);
+            if (!Utils.isPackageInstalled("com.smartpack.scriptmanager", requireActivity())) {
+                // Advertise Own App
+                DescriptionView sm = new DescriptionView();
+                sm.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
+                sm.setSummary(getString(R.string.scripts_manager_message));
+                sm.setFullSpan(true);
+                sm.setOnItemClickListener(item -> {
+                    Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.scriptmanager", getActivity());
+                });
+                items.add(sm);
+            }
         }
     }
 

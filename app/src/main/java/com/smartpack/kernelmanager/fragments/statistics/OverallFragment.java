@@ -23,7 +23,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
 import android.os.SystemClock;
 import android.view.Menu;
@@ -37,17 +36,16 @@ import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.fragments.kernel.BatteryFragment;
 import com.smartpack.kernelmanager.fragments.kernel.VMFragment;
 import com.smartpack.kernelmanager.utils.Device;
-
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.kernel.battery.Battery;
+import com.smartpack.kernelmanager.utils.kernel.cpu.CPUTimes;
 import com.smartpack.kernelmanager.utils.kernel.gpu.GPUFreq;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
+import com.smartpack.kernelmanager.views.recyclerview.MultiStatsView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.StatsView;
 import com.smartpack.kernelmanager.views.recyclerview.overallstatistics.TemperatureView;
-import com.smartpack.kernelmanager.views.recyclerview.MultiStatsView;
-import com.smartpack.kernelmanager.utils.kernel.cpu.CPUTimes;
 
 import java.util.List;
 
@@ -85,12 +83,8 @@ public class OverallFragment extends RecyclerViewFragment {
     }
 
     private void statsInit(List<RecyclerViewItem> items) {
-        // For some reason only this one refused to tint itself
-        Drawable chartDrawable = getResources().getDrawable(R.drawable.ic_chart);
-        chartDrawable.setTint(ViewUtils.getThemeAccentColor(requireContext()));
-
         CardView cardView = new CardView(getActivity());
-        cardView.setDrawable(chartDrawable);
+        cardView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_chart, requireContext()));
         cardView.setTitle(getString(R.string.overall) + " " + getString(R.string.statistics));
         cardView.setOnMenuListener((cardView1, popupMenu) -> {
             Menu menu = popupMenu.getMenu();
