@@ -1,5 +1,9 @@
 # Change-logs
 
+## 106. April 25, 2020
+*Release-tag: v10.9*<br>
+Largely improved manual flashing (includes fix for syntax error). Added Korean translations (Credits: @SmgKhOaRn). Miscellaneous changes.
+
 ## 105. April 23, 2020
 *Release-tag: v10.8*<br>
 Main: Migrated to libsu (Credits: @Lennoard). SmartPack: Added brand new Flashing view. Run Shell Command & Script Manager: Also display stderr. Miscellaneous changes.

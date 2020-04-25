@@ -7,7 +7,7 @@ Welcome to the <strong>beta</strong> development channel of SmartPack-Kernel Man
 ## Download
 [<img src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
      alt=""
-     height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v10.8/com.smartpack.kernelmanager-v10.8-release.apk)
+     height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v10.9/com.smartpack.kernelmanager-v10.9-release.apk)
 
 ## Features
 * Almost all the features available in Kernel Adiutor.
@@ -58,6 +58,10 @@ If you like to appreciate my work, please consider donating to me (either via [P
 #### Willi Ye
 
 * [Kernel Adiutor](https://github.com/Grarak/KernelAdiutor)
+
+#### John Wu
+
+* [libsu](https://github.com/topjohnwu/libsu), libsu
 
 #### Chris Renshaw
 
