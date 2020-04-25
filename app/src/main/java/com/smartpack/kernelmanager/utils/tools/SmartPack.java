@@ -55,38 +55,36 @@ public class SmartPack {
         }
     }
 
-    public static void prepareLogFolder() {
-        File logPath = new File(Utils.getInternalDataStorage() + "/logs");
-        if (logPath.exists() && logPath.isFile()) {
-            logPath.delete();
+    public static void prepareFolder(String path) {
+        File file = new File(path);
+        if (file.exists() && file.isFile()) {
+            file.delete();
         }
-        logPath.mkdirs();
+        file.mkdirs();
     }
 
     public static long fileSize(File file) {
         return file.length();
     }
 
-    private static void prepareFlashFolder() {
-        if (Utils.existFile(FLASH_FOLDER)) {
-            RootUtils.runCommand(CLEANING_COMMAND);
-        } else {
-            RootUtils.runCommand("mkdir '" + FLASH_FOLDER + "'");
-        }
-    }
-
-    public static void manualFlash(File file) {
+    public static void manualFlash() {
         /*
          * Flashing recovery zip without rebooting to custom recovery
          * Credits to osm0sis @ xda-developers.com
          */
         FileDescriptor fd = new FileDescriptor();
         int RECOVERY_API = 3;
+        String path = "/data/local/tmp/flash.zip";
         String flashingCommand = "sh '" + ZIPFILE_EXTRACTED + "' '" + RECOVERY_API + "' '" +
-                fd + "' '" + file.toString() + "'";
-        mFlashingResult.append("** Preparing to flash ").append(file.getName().replace(".zip", " ...\n\n"));
-        mFlashingResult.append("** Path: '").append(file.toString()).append("'\n\n");
-        prepareFlashFolder();
+                fd + "' '" + path + "'";
+        if (Utils.existFile(FLASH_FOLDER)) {
+            RootUtils.runCommand(CLEANING_COMMAND);
+        }
+        if (Utils.existFile(FLASH_FOLDER)) {
+            RootUtils.runCommand(CLEANING_COMMAND);
+        } else {
+            prepareFolder(FLASH_FOLDER);
+        }
         mFlashingResult.append("** Checking for unzip binary: ");
         if (Utils.isUnzipAvailable()) {
             mFlashingResult.append("Available *\n\n");
@@ -94,26 +92,27 @@ public class SmartPack {
             mFlashingResult.append("Native Binary Unavailable *\nloop mounting BusyBox binaries to '/system/xbin' *\n\n");
             Utils.mount("-o --bind", BusyBoxPath(), "/system/xbin");
         } else {
-            mFlashingResult.append("Unavailable *\n** Suggestion: Please consider installing a standalone BusyBox on your device! *\n\n");
+            mFlashingResult.append("Unavailable *\n\n");
         }
-        mFlashingResult.append("** Extracting ").append(file.getName()).append(" into working folder: ");
-        RootUtils.runCommand("unzip " + file.toString() + " -d '" + FLASH_FOLDER + "'");
+        mFlashingResult.append("** Extracting zip file into working folder: ");
+        RootUtils.runAndGetError("unzip " + path + " -d '" + FLASH_FOLDER + "'");
         if (Utils.existFile(ZIPFILE_EXTRACTED)) {
-            mFlashingResult.append(" Done*\n\n");
+            mFlashingResult.append(" Done *\n\n");
             mFlashingResult.append("** Preparing a recovery-like environment for flashing...\n");
             RootUtils.runCommand("cd '" + FLASH_FOLDER + "'");
             mFlashingResult.append(RootUtils.runCommand(mountRootFS("rw"))).append(" \n");
             mFlashingResult.append(RootUtils.runAndGetError("mkdir /tmp")).append(" \n");
             mFlashingResult.append(RootUtils.runAndGetError("mke2fs -F tmp.ext4 500000")).append(" \n");
             mFlashingResult.append(RootUtils.runAndGetError("mount -o loop tmp.ext4 /tmp/")).append(" \n\n");
-            mFlashingResult.append("** Flashing ").append(file.getName().replace(".zip", " ...\n\n"));
+            mFlashingResult.append("** Flashing ...\n\n");
             mFlashingResult.append(RootUtils.runCommand(flashingCommand));
-            RootUtils.runCommand(CLEANING_COMMAND + " && " + mountRootFS("ro"));
         } else {
-            mFlashingResult.append(" Failed*\n\n");
-            mFlashingResult.append("** Flashing Failed! *\n** Reason: Necessary BusyBox binaries not available! *");
-            RootUtils.runCommand(CLEANING_COMMAND + " && " + mountRootFS("ro"));
+            mFlashingResult.append(" Failed *\n\n");
+            mFlashingResult.append("** Flashing Failed *");
         }
+        RootUtils.runCommand(CLEANING_COMMAND);
+        Utils.delete("/data/local/tmp/flash.zip");
+        RootUtils.runCommand(mountRootFS("ro"));
     }
 
 }
