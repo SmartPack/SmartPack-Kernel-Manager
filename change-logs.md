@@ -1,5 +1,8 @@
 # Change-logs
 
+*Release-tag: v11.0*<br>
+Added Brand New Flashing view. Migrated to libsu (Credits: @Lennoard). Largely improved manual flashing (includes fix for syntax error). Updated to display stderr for Run Shell Command & apply Script options. Updated main headings and vector graphics (overall page and FAB's) to use accent colors (Credits: @Lennoard). Added GPU System Lib version to Device page. Updated nav header background to follow app theme (Credits: @Lennoard). Added few more virtual memory tunables. Added Amharic translations (Credits: @Mikesew1320) and Korean translations (Credits: @SmgKhOaRn). Added links to other SmartPack apps (if not installed) on related pages. Updated Portuguese (Brazilian) translations (Credits: @Lennoard). Miscellaneous changes.
+
 ## 102. April 14, 2020
 *Release-tag: v10.5*<br>
 CPUFreq: Properly distinguish more 2 big/6 little devices. SmartPack: Another workaround to use Magisk BusyBox. Misc: Allow changing copyright text by long-clicking on it. Miscellaneous changes.
