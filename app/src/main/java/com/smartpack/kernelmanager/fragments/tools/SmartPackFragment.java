@@ -381,7 +381,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 Utils.toast(R.string.permission_denied_write_storage, getActivity());
                 return;
             }
-            SmartPack.prepareLogFolder();
+            SmartPack.prepareFolder(logFolder);
             new Execute().execute("logcat -d > " + logFolder + "/logcat");
             new Execute().execute("logcat  -b radio -v time -d > " + logFolder + "/radio");
             new Execute().execute("logcat -b events -v time -d > " + logFolder + "/events");
@@ -397,7 +397,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     Utils.toast(R.string.permission_denied_write_storage, getActivity());
                     return;
                 }
-                SmartPack.prepareLogFolder();
+                SmartPack.prepareFolder(logFolder);
                 new Execute().execute("cat /proc/last_kmsg > " + logFolder + "/last_kmsg");
             });
             items.add(lastkmsg);
@@ -411,7 +411,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 Utils.toast(R.string.permission_denied_write_storage, getActivity());
                 return;
             }
-            SmartPack.prepareLogFolder();
+            SmartPack.prepareFolder(logFolder);
             new Execute().execute("dmesg > " + logFolder + "/dmesg");
         });
         items.add(dmesg);
@@ -425,7 +425,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     Utils.toast(R.string.permission_denied_write_storage, getActivity());
                     return;
                 }
-                SmartPack.prepareLogFolder();
+                SmartPack.prepareFolder(logFolder);
                 new Execute().execute("cat /sys/fs/pstore/dmesg-ramoops* > " + logFolder + "/dmesg-ramoops");
             });
             items.add(dmesgRamoops);
@@ -440,7 +440,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     Utils.toast(R.string.permission_denied_write_storage, getActivity());
                     return;
                 }
-                SmartPack.prepareLogFolder();
+                SmartPack.prepareFolder(logFolder);
                 new Execute().execute("cat /sys/fs/pstore/console-ramoops* > " + logFolder + "/console-ramoops");
             });
             items.add(ramoops);
@@ -571,12 +571,18 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 } else {
                     SmartPack.mFlashingResult.setLength(0);
                 }
+                SmartPack.mFlashingResult.append("** Preparing to flash ").append(file.getName()).append("...\n\n");
+                SmartPack.mFlashingResult.append("** Path: '").append(file.toString()).append("'\n\n");
+                Utils.delete("/data/local/tmp/flash.zip");
+                SmartPack.mFlashingResult.append("** Copying '").append(file.getName()).append("' into temporary folder: ");
+                SmartPack.mFlashingResult.append(RootUtils.runAndGetError("cp '" + file.toString() + "' /data/local/tmp/flash.zip"));
+                SmartPack.mFlashingResult.append(Utils.existFile("/data/local/tmp/flash.zip") ? "Done *\n\n" : "\n\n");
                 Intent flashingIntent = new Intent(getActivity(), FlashingActivity.class);
                 startActivityForResult(flashingIntent, 1);
             }
             @Override
             protected Void doInBackground(Void... voids) {
-                SmartPack.manualFlash(file);
+                SmartPack.manualFlash();
                 return null;
             }
             @Override
