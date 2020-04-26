@@ -83,26 +83,22 @@ import java.util.concurrent.TimeUnit;
 public class Utils {
 
     private static final String TAG = Utils.class.getSimpleName();
-    private static final String KA_DONATION_PACKAGE = "com.grarak.kerneladiutordonate";
-    private static final String SP_DONATION_PACKAGE = "com.smartpack.donate";
-    private static final String PLAY_STORE = "com.android.vending";
 
-    private static boolean isKADonated(Context context) {
+    public static boolean isPackageInstalled(String id, Context context) {
         try {
-            context.getPackageManager().getApplicationInfo(KA_DONATION_PACKAGE, 0);
+            context.getPackageManager().getApplicationInfo(id, 0);
             return true;
         } catch (PackageManager.NameNotFoundException ignored) {
             return false;
         }
     }
 
+    private static boolean isKADonated(Context context) {
+        return isPackageInstalled("com.grarak.kerneladiutordonate", context);
+    }
+
     public static boolean isSPDonated(Context context) {
-        try {
-            context.getPackageManager().getApplicationInfo(SP_DONATION_PACKAGE, 0);
-            return true;
-        } catch (PackageManager.NameNotFoundException ignored) {
-            return false;
-        }
+        return isPackageInstalled("com.smartpack.donate", context);
     }
 
     public static boolean isDonated(Context context) {
@@ -110,12 +106,7 @@ public class Utils {
     }
 
     public static boolean isPlayStoreInstalled(Context context) {
-        try {
-            context.getPackageManager().getApplicationInfo(PLAY_STORE, 0);
-            return true;
-        } catch (PackageManager.NameNotFoundException ignored) {
-            return false;
-        }
+        return isPackageInstalled("com.android.vending", context);
     }
 
     public static void initializeAppTheme(Context context) {

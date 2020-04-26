@@ -62,6 +62,10 @@ If you like to appreciate my work, please consider donating to me (either via [P
 
 * [Kernel Adiutor](https://github.com/Grarak/KernelAdiutor)
 
+#### John Wu
+
+* [libsu](https://github.com/topjohnwu/libsu), libsu
+
 #### Chris Renshaw
 
 * [Auto-flash](https://github.com/osm0sis)

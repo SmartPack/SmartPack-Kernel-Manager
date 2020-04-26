@@ -52,6 +52,7 @@ public class AboutFragment extends RecyclerViewFragment {
     private static final LinkedHashMap<String, String> sTranslations = new LinkedHashMap<>();
 
     static {
+        sCredits.put("libsu,topjohnwu", "https://github.com/topjohnwu");
         sCredits.put("Spectrum,Joe Maples", "https://github.com/frap129/spectrum");
         sCredits.put("AndroidX,Google", "https://developer.android.com/jetpack/androidx");
         sCredits.put("NavigationView,Google", "https://developer.android.com/reference/com/google/android/material/navigation/NavigationView");
@@ -234,6 +235,9 @@ public class AboutFragment extends RecyclerViewFragment {
         for (final String lib : sCredits.keySet()) {
             DescriptionView descriptionView = new DescriptionView();
             switch (lib.split(",")[1]) {
+                case "topjohnwu":
+                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_topjohnwu));
+                    break;
                 case "Joe Maples":
                     descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_frap129));
                     break;

@@ -22,7 +22,6 @@ package com.smartpack.kernelmanager.activities;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -35,31 +34,30 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.navigation.NavigationView;
-
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.kernel.BatteryFragment;
 import com.smartpack.kernelmanager.fragments.kernel.CPUFragment;
 import com.smartpack.kernelmanager.fragments.kernel.CPUHotplugFragment;
 import com.smartpack.kernelmanager.fragments.kernel.CPUVoltageFragment;
+import com.smartpack.kernelmanager.fragments.kernel.DisplayLEDFragment;
 import com.smartpack.kernelmanager.fragments.kernel.EntropyFragment;
 import com.smartpack.kernelmanager.fragments.kernel.GPUFragment;
 import com.smartpack.kernelmanager.fragments.kernel.IOFragment;
+import com.smartpack.kernelmanager.fragments.kernel.KLapseFragment;
 import com.smartpack.kernelmanager.fragments.kernel.KSMFragment;
-import com.smartpack.kernelmanager.fragments.kernel.DisplayLEDFragment;
 import com.smartpack.kernelmanager.fragments.kernel.LMKFragment;
 import com.smartpack.kernelmanager.fragments.kernel.MiscFragment;
 import com.smartpack.kernelmanager.fragments.kernel.ScreenFragment;
@@ -67,6 +65,7 @@ import com.smartpack.kernelmanager.fragments.kernel.SoundFragment;
 import com.smartpack.kernelmanager.fragments.kernel.ThermalFragment;
 import com.smartpack.kernelmanager.fragments.kernel.VMFragment;
 import com.smartpack.kernelmanager.fragments.kernel.WakeFragment;
+import com.smartpack.kernelmanager.fragments.kernel.WakelockFragment;
 import com.smartpack.kernelmanager.fragments.other.AboutFragment;
 import com.smartpack.kernelmanager.fragments.other.ContributorsFragment;
 import com.smartpack.kernelmanager.fragments.other.FAQFragment;
@@ -77,8 +76,11 @@ import com.smartpack.kernelmanager.fragments.statistics.MemoryFragment;
 import com.smartpack.kernelmanager.fragments.statistics.OverallFragment;
 import com.smartpack.kernelmanager.fragments.tools.BackupFragment;
 import com.smartpack.kernelmanager.fragments.tools.BuildpropFragment;
+import com.smartpack.kernelmanager.fragments.tools.CustomControlsFragment;
 import com.smartpack.kernelmanager.fragments.tools.OnBootFragment;
 import com.smartpack.kernelmanager.fragments.tools.ProfileFragment;
+import com.smartpack.kernelmanager.fragments.tools.ScriptMangerFragment;
+import com.smartpack.kernelmanager.fragments.tools.SmartPackFragment;
 import com.smartpack.kernelmanager.utils.Device;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
@@ -92,23 +94,17 @@ import com.smartpack.kernelmanager.utils.kernel.io.IO;
 import com.smartpack.kernelmanager.utils.kernel.ksm.KSM;
 import com.smartpack.kernelmanager.utils.kernel.led.LED;
 import com.smartpack.kernelmanager.utils.kernel.lmk.LMK;
+import com.smartpack.kernelmanager.utils.kernel.screen.KLapse;
 import com.smartpack.kernelmanager.utils.kernel.screen.Screen;
 import com.smartpack.kernelmanager.utils.kernel.sound.Sound;
 import com.smartpack.kernelmanager.utils.kernel.thermal.Thermal;
 import com.smartpack.kernelmanager.utils.kernel.wake.Wake;
+import com.smartpack.kernelmanager.utils.kernel.wakelock.Wakelocks;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 import com.smartpack.kernelmanager.utils.tools.Backup;
 
-import org.frap129.spectrum.SpectrumFragment;
 import org.frap129.spectrum.Spectrum;
-
-import com.smartpack.kernelmanager.fragments.tools.CustomControlsFragment;
-import com.smartpack.kernelmanager.fragments.kernel.KLapseFragment;
-import com.smartpack.kernelmanager.fragments.tools.ScriptMangerFragment;
-import com.smartpack.kernelmanager.fragments.tools.SmartPackFragment;
-import com.smartpack.kernelmanager.fragments.kernel.WakelockFragment;
-import com.smartpack.kernelmanager.utils.kernel.screen.KLapse;
-import com.smartpack.kernelmanager.utils.kernel.wakelock.Wakelocks;
+import org.frap129.spectrum.SpectrumFragment;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -336,13 +332,6 @@ public class NavigationActivity extends BaseActivity
             Class<? extends Fragment> fragmentClass = navigationFragment.mFragmentClass;
             int id = navigationFragment.mId;
 
-            Drawable drawable = ContextCompat.getDrawable(this,
-                    Prefs.getBoolean("section_icons", true, this)
-                    && navigationFragment.mDrawable != 0 ? navigationFragment.mDrawable :
-                    R.drawable.ic_blank);
-
-            drawable.setTint(ViewUtils.getThemeAccentColor(this));
-
             if (fragmentClass == null) {
                 lastSubMenu = menu.addSubMenu(id);
                 mActualFragments.put(id, null);
@@ -350,7 +339,8 @@ public class NavigationActivity extends BaseActivity
                     true, this)) {
                 MenuItem menuItem = lastSubMenu == null ? menu.add(0, id, 0, id) :
                         lastSubMenu.add(0, id, 0, id);
-                menuItem.setIcon(drawable);
+                menuItem.setIcon(ViewUtils.getColoredIcon(Prefs.getBoolean("section_icons", true, this)
+                        && navigationFragment.mDrawable != 0 ? navigationFragment.mDrawable : R.drawable.ic_blank, this));
                 menuItem.setCheckable(true);
                 if (mSelection != 0) {
                     mNavigationView.setCheckedItem(mSelection);

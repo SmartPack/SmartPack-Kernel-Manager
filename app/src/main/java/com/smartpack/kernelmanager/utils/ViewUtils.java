@@ -101,6 +101,12 @@ public class ViewUtils {
         return value.data;
     }
 
+    public static Drawable getColoredIcon(int icon, Context context) {
+        Drawable drawable = context.getResources().getDrawable(icon);
+        drawable.setTint(getThemeAccentColor(context));
+        return drawable;
+    }
+
     public interface OnDialogEditTextListener {
         void onClick(String text);
     }

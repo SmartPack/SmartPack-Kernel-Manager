@@ -108,7 +108,8 @@ public class ScreenFragment extends RecyclerViewFragment {
         }
 
         // Advertise Own App
-        if (mCalibration.hasColors() || Misc.haskcalRed() || Misc.haskcalGreen() || Misc.haskcalBlue()) {
+        if (!Utils.isPackageInstalled("com.smartpack.scriptmanager", requireActivity()) && mCalibration.hasColors()
+                || Misc.haskcalRed() || Misc.haskcalGreen() || Misc.haskcalBlue()) {
             DescriptionView scc = new DescriptionView();
             scc.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
             scc.setSummary(getString(R.string.scc_messgae));
