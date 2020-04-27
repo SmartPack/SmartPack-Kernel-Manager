@@ -58,7 +58,7 @@ public class QcomBcl {
     public static boolean supported() {
         if (PARENT != null && !PARENT.isEmpty()) return true;
         if (Utils.existFile(PATH)) {
-            PARENT = RootUtils.runCommand("realpath " + PATH);
+            PARENT = RootUtils.runAndGetOutput("realpath " + PATH);
             if (Utils.existFile(PARENT + "/hotplug_mask")) {
                 DEFAULT_HOTPLUG_MASK = Utils.readFile(PARENT + "/hotplug_mask");
             }

@@ -39,9 +39,9 @@ public class Spectrum {
 
     public static String getProfile() {
 	if (spectrumVendor) {
-	    return RootUtils.runCommand("getprop persist.vendor.spectrum.profile");
+	    return RootUtils.runAndGetOutput("getprop persist.vendor.spectrum.profile");
 	} else {
-	    return RootUtils.runCommand("getprop persist.spectrum.profile");
+	    return RootUtils.runAndGetOutput("getprop persist.spectrum.profile");
 	}
     }
 

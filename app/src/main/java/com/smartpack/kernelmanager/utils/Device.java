@@ -326,7 +326,7 @@ public class Device {
 
             if (partition == null) return;
             String prefix = PARTITIONS.get(partition);
-            String raw = RootUtils.runCommand("strings " + partition + " | grep " + prefix);
+            String raw = RootUtils.runAndGetOutput("strings " + partition + " | grep " + prefix);
             for (String line : raw.split("\\r?\\n")) {
                 assert prefix != null;
                 if (line.startsWith(prefix)) {
@@ -346,11 +346,11 @@ public class Device {
     }
 
     private static String getKernelVersion(boolean extended, boolean root) {
-        return extended ? Utils.readFile("/proc/version", root) : RootUtils.runCommand("uname -r");
+        return extended ? Utils.readFile("/proc/version", root) : RootUtils.runAndGetOutput("uname -r");
     }
 
     public static String getArchitecture() {
-        return RootUtils.runCommand("uname -m");
+        return RootUtils.runAndGetOutput("uname -m");
     }
 
     public static String getHardware() {
@@ -468,7 +468,7 @@ public class Device {
     }
 
     public static String getGPULibVersion() {
-        return RootUtils.runCommand("dumpsys SurfaceFlinger | grep GLES | head -n 1 | cut -f 3,4,5 -d ','");
+        return RootUtils.runAndGetOutput("dumpsys SurfaceFlinger | grep GLES | head -n 1 | cut -f 3,4,5 -d ','");
     }
 
 }

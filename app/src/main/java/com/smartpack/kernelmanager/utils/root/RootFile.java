@@ -19,6 +19,8 @@
  */
 package com.smartpack.kernelmanager.utils.root;
 
+import androidx.annotation.NonNull;
+
 import com.smartpack.kernelmanager.utils.Utils;
 import com.topjohnwu.superuser.Shell;
 
@@ -65,12 +67,8 @@ public class RootFile {
         RootUtils.chmod(mFile, "755");
     }
 
-    public String execute(String... arguments) {
-        StringBuilder args = new StringBuilder();
-        for (String arg : arguments) {
-            args.append(" \"").append(arg).append("\"");
-        }
-        return RootUtils.runCommand(mFile + args.toString());
+    public void execute() {
+        RootUtils.runCommand("sh " + mFile);
     }
 
     public void delete() {
@@ -79,7 +77,7 @@ public class RootFile {
 
     public List<String> list() {
         List<String> list = new ArrayList<>();
-        String files = RootUtils.runCommand("ls '" + mFile + "/'");
+        String files = RootUtils.runAndGetOutput("ls '" + mFile + "/'");
         if (!files.isEmpty()) {
             // Make sure the files exists
             for (String file : files.split("\\r?\\n")) {
@@ -93,7 +91,7 @@ public class RootFile {
 
     public List<RootFile> listFiles() {
         List<RootFile> list = new ArrayList<>();
-        String files = RootUtils.runCommand("ls '" + mFile + "/'");
+        String files = RootUtils.runAndGetOutput("ls '" + mFile + "/'");
         if (!files.isEmpty()) {
             // Make sure the files exists
             for (String file : files.split("\\r?\\n")) {
@@ -106,18 +104,19 @@ public class RootFile {
     }
 
     public boolean isEmpty() {
-        return "false".equals(RootUtils.runCommand("find '" + mFile + "' -mindepth 1 | read || echo false"));
+        return "false".equals(RootUtils.runAndGetOutput("find '" + mFile + "' -mindepth 1 | read || echo false"));
     }
 
     public boolean exists() {
-        String output = RootUtils.runCommand("[ -e " + mFile + " ] && echo true");
+        String output = RootUtils.runAndGetOutput("[ -e " + mFile + " ] && echo true");
         return !output.isEmpty() && output.equals("true");
     }
 
     public String readFile() {
-        return RootUtils.runCommand("cat '" + mFile + "'");
+        return RootUtils.runAndGetOutput("cat '" + mFile + "'");
     }
 
+    @NonNull
     @Override
     public String toString() {
         return mFile;

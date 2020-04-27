@@ -75,7 +75,7 @@ public class RootUtils {
     }
 
     public static String getProp(String prop) {
-        return runCommand("getprop " + prop);
+        return runAndGetOutput("getprop " + prop);
     }
 
     public static void mount(boolean writeable, String mountpoint) {
@@ -97,8 +97,12 @@ public class RootUtils {
         }
     }
 
+    public static void runCommand(String command) {
+        Shell.su(command).exec();
+    }
+
     @NonNull
-    public static String runCommand(String command) {
+    public static String runAndGetOutput(String command) {
         StringBuilder sb = new StringBuilder();
         try {
             List<String> outputs = Shell.su(command).exec().getOut();
