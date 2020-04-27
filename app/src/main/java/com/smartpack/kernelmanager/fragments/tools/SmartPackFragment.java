@@ -566,6 +566,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             protected void onPreExecute() {
                 super.onPreExecute();
                 SmartPack.mFlashing = true;
+                SmartPack.mZipName = file.getName();
                 if (SmartPack.mFlashingResult == null) {
                     SmartPack.mFlashingResult = new StringBuilder();
                 } else {
