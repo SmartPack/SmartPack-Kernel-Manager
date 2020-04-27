@@ -67,6 +67,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
@@ -500,8 +501,18 @@ public class Utils {
         return !root ? new File(file).exists() : new RootFile(file).exists();
     }
 
-    public static String create(String text, String path) {
-        return RootUtils.runCommand("echo '" + text + "' > " + path);
+    public static void create(String text, String path) {
+        try {
+            File logFile = new File(path);
+            logFile.createNewFile();
+            FileOutputStream fOut = new FileOutputStream(logFile);
+            OutputStreamWriter myOutWriter =
+                    new OutputStreamWriter(fOut);
+            myOutWriter.append(text);
+            myOutWriter.close();
+            fOut.close();
+        } catch (Exception ignored) {
+        }
     }
 
     public static String append(String text, String path) {
