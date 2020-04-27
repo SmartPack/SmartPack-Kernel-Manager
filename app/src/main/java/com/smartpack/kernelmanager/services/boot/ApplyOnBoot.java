@@ -46,7 +46,6 @@ import com.smartpack.kernelmanager.utils.kernel.cpuhotplug.MPDecision;
 import com.smartpack.kernelmanager.utils.root.Control;
 import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
-import com.topjohnwu.superuser.Shell;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -209,8 +208,7 @@ public class ApplyOnBoot {
                     file.execute();
                 } else {
                     for (String command : commands) {
-                        // not submit(), already running inside a thread anyways
-                        Shell.su(command).exec();
+                        RootUtils.runCommand(command);
                     }
                 }
 
@@ -238,8 +236,7 @@ public class ApplyOnBoot {
                     file.execute();
                 } else {
                     for (String command : profileCommands) {
-                        // not submit(), already running inside a thread anyways
-                        Shell.su(command).exec();
+                        RootUtils.runCommand(command);
                     }
                 }
 

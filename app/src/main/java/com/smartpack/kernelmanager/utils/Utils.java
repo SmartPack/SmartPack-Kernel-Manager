@@ -169,7 +169,7 @@ public class Utils {
     }
 
     public static boolean hideStartActivity() {
-        String prop = RootUtils.runCommand("getprop ro.kerneladiutor.hide");
+        String prop = RootUtils.runAndGetOutput("getprop ro.kerneladiutor.hide");
         return prop.equals("true");
     }
 
@@ -425,7 +425,7 @@ public class Utils {
 
     public static boolean isPropRunning(String key) {
         try {
-            return RootUtils.runCommand("getprop | grep " + key).split("]:")[1].contains("running");
+            return RootUtils.runAndGetOutput("getprop | grep " + key).split("]:")[1].contains("running");
         } catch (Exception ignored) {
             return false;
         }
@@ -433,7 +433,7 @@ public class Utils {
 
     public static boolean hasProp(String key) {
         try {
-            return !RootUtils.runCommand("getprop | grep " + key).isEmpty();
+            return !RootUtils.runAndGetOutput("getprop | grep " + key).isEmpty();
         } catch (Exception ignored) {
             return false;
         }
@@ -515,23 +515,22 @@ public class Utils {
         }
     }
 
-    public static String append(String text, String path) {
-        return RootUtils.runCommand("echo '" + text + "' >> " + path);
+    public static void append(String text, String path) {
+        RootUtils.runCommand("echo '" + text + "' >> " + path);
     }
 
-    public static String delete(String path) {
+    public static void delete(String path) {
         if (Utils.existFile(path)) {
-            return RootUtils.runCommand("rm -r " + path);
+            RootUtils.runCommand("rm -r " + path);
         }
-        return null;
     }
 
-    public static String sleep(int sec) {
-        return RootUtils.runCommand("sleep " + sec);
+    public static void sleep(int sec) {
+        RootUtils.runCommand("sleep " + sec);
     }
 
-    public static String copy(String source, String dest) {
-        return RootUtils.runCommand("cp -r " + source + " " + dest);
+    public static void copy(String source, String dest) {
+        RootUtils.runCommand("cp -r " + source + " " + dest);
     }
 
     public static void mount(String command, String source, String dest) {
@@ -539,7 +538,7 @@ public class Utils {
     }
 
     public static String getChecksum(String path) {
-        return RootUtils.runCommand("sha1sum " + path);
+        return RootUtils.runAndGetOutput("sha1sum " + path);
     }
 
     public static boolean isDownloadBinaries() {
