@@ -30,11 +30,11 @@ import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
+import com.smartpack.kernelmanager.utils.tools.ScriptManager;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.TitleView;
-import com.smartpack.kernelmanager.utils.tools.ScriptManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,6 +49,8 @@ public class OnBootFragment extends RecyclerViewFragment {
     private Profiles mProfiles;
 
     private boolean mLoaded;
+
+    private StringBuilder mAllCommands;
 
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
 
@@ -122,6 +124,17 @@ public class OnBootFragment extends RecyclerViewFragment {
         TitleView applyOnBootTitle = new TitleView();
         applyOnBootTitle.setText(getString(R.string.apply_on_boot));
 
+        DescriptionView exportAll = new DescriptionView();
+        exportAll.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_export, requireActivity()));
+        exportAll.setSummary(getString(R.string.export_all));
+        exportAll.setOnItemClickListener(item -> {
+            if (mAllCommands.toString().isEmpty()) {
+                Utils.toast(R.string.export_all_warning, getActivity());
+                return;
+            }
+            exportDialog();
+        });
+
         List<Settings.SettingsItem> settings = mSettings.getAllSettings();
         HashMap<String, Boolean> applyOnBootEnabled = new HashMap<>();
         List<ApplyOnBootItem> applyOnBootItems = new ArrayList<>();
@@ -138,6 +151,7 @@ public class OnBootFragment extends RecyclerViewFragment {
 
         for (int i = 0; i < applyOnBootItems.size(); i++) {
             final ApplyOnBootItem applyOnBootItem = applyOnBootItems.get(i);
+            mAllCommands.append(applyOnBootItem.mCommand).append("\n\n");
             DescriptionView applyOnBootView = new DescriptionView();
             applyOnBootView.setSummary((i + 1) + ". " + applyOnBootItem.mCategory.replace("_onboot", "")
                     + ": " + applyOnBootItem.mCommand);
@@ -159,6 +173,7 @@ public class OnBootFragment extends RecyclerViewFragment {
 
         if (applyOnBoot.size() > 0) {
             items.add(applyOnBootTitle);
+            items.add(exportAll);
             items.addAll(applyOnBoot);
         }
 
@@ -216,6 +231,31 @@ public class OnBootFragment extends RecyclerViewFragment {
         }
     }
 
+    private void exportDialog() {
+        ViewUtils.dialogEditText("",
+                (dialogInterface, i) -> {
+                }, text -> {
+                    if (text.isEmpty()) {
+                        Utils.toast(R.string.name_empty, getActivity());
+                        return;
+                    }
+                    if (!text.endsWith(".sh")) {
+                        text += ".sh";
+                    }
+                    if (text.contains(" ")) {
+                        text = text.replace(" ", "_");
+                    }
+                    if (Utils.existFile(Utils.getInternalDataStorage() + "/" + text)) {
+                        Utils.toast(getString(R.string.script_exists, text), getActivity());
+                        return;
+                    }
+                    Utils.prepareInternalDataStorage();
+                    Utils.create("#!/system/bin/sh\n\n## Created by SmartPack-Kernel Manager\n\n" + mAllCommands.toString() + "## The END", Utils.getInternalDataStorage() + "/" + text);
+                    Utils.toast(getString(R.string.export_all_message, Utils.getInternalDataStorage()), getActivity());
+                }, getActivity()).setOnDismissListener(dialogInterface -> {
+        }).show();
+    }
+
     private static class ApplyOnBootItem {
         private final String mCommand;
         private final String mCategory;
@@ -225,6 +265,16 @@ public class OnBootFragment extends RecyclerViewFragment {
             mCommand = command;
             mCategory = category;
             mPosition = position;
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (mAllCommands == null) {
+            mAllCommands = new StringBuilder();
+        } else {
+            mAllCommands.setLength(0);
         }
     }
 

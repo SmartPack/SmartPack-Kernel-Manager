@@ -965,6 +965,9 @@
     <string name="on_boot_welcome_summary">This section shows you what things will happen when your device boots up. If it\'s blank, then nothing will happen after boot.</string>
     <string name="delete_question">Delete %s?</string>
     <string name="disable_question">Disable %s?</string>
+    <string name="export_all">Export the whole list of commands into a shell script!</string>
+    <string name="export_all_message">The entire command list is exported as a shell script into \'%s\'!</string>
+    <string name="export_all_warning">Some issues detected! Please try again after reloading this page!</string>
 
     <!-- SmartPack -->
     <string name="acquiring">Acquiring update info</string>
