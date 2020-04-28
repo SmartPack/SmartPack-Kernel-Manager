@@ -81,7 +81,11 @@ public class FlashingActivity extends BaseActivity {
                             if (SmartPack.mFlashingResult != null) {
                                 mFlashingResult.setText(SmartPack.mFlashingResult.toString());
                                 if (!SmartPack.mFlashing) {
-                                    mFlashingHeading.setText(R.string.flashing_finished);
+                                    if (SmartPack.mFlashingOutput.isEmpty()) {
+                                        mFlashingHeading.setText(R.string.flashing_failed);
+                                    } else {
+                                        mFlashingHeading.setText(R.string.flashing_finished);
+                                    }
                                     mCancelButton.setVisibility(View.VISIBLE);
                                     mSaveButton.setVisibility(View.VISIBLE);
                                     mRebootButton.setVisibility(View.VISIBLE);
