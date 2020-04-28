@@ -1,7 +1,20 @@
 # Change-logs
 
-*Release-tag: v11.0*<br>
-Added Brand New Flashing view. Migrated to libsu (Credits: @Lennoard). Largely improved manual flashing (includes fix for syntax error). Updated to display stderr for Run Shell Command & apply Script options. Updated main headings and vector graphics (overall page and FAB's) to use accent colors (Credits: @Lennoard). Added GPU System Lib version to Device page. Updated nav header background to follow app theme (Credits: @Lennoard). Added few more virtual memory tunables. Added Amharic translations (Credits: @Mikesew1320) and Korean translations (Credits: @SmgKhOaRn). Added links to other SmartPack apps (if not installed) on related pages. Updated Portuguese (Brazilian) translations (Credits: @Lennoard). Miscellaneous changes.
+## 106. April 25, 2020
+*Release-tag: v10.9*<br>
+Largely improved manual flashing (includes fix for syntax error). Added Korean translations (Credits: @SmgKhOaRn). Miscellaneous changes.
+
+## 105. April 23, 2020
+*Release-tag: v10.8*<br>
+Main: Migrated to libsu (Credits: @Lennoard). SmartPack: Added brand new Flashing view. Run Shell Command & Script Manager: Also display stderr. Miscellaneous changes.
+
+## 104. April 22, 2020
+*Release-tag: v10.7*<br>
+Added GPU System Lib version to Device page. Updated nav header background to follow app theme (Credits: @Lennoard). Updated SmartPack page layout (Credits: @Lennoard). VM: Added few more tunables. Fixed alignment issues on Screen page. Miscellaneous changes.
+
+## 103. April 21, 2020
+*Release-tag: v10.6*<br>
+App UI: Updated main headings, icons (overall page and FAB's) to use accent colors (Credits: @Lennoard). Fixed unnecessary spacing observed on the foreground page layout. Added Amharic translations (Credits: @Mikesew1320). Added links to other SmartPack apps on related pages. Updated Portuguese (Brazilian) translations (Credits: @Lennoard). Miscellaneous changes.
 
 ## 102. April 14, 2020
 *Release-tag: v10.5*<br>

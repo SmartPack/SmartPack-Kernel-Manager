@@ -51,7 +51,7 @@ public class FlashingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flashing);
 
-        //initToolBar();
+        initToolBar();
         mCancelButton = findViewById(R.id.cancel_button);
         mFlashingHeading = findViewById(R.id.flashing_title);
         mFlashingResult = findViewById(R.id.output_text);

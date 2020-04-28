@@ -101,7 +101,7 @@ public class AboutFragment extends RecyclerViewFragment {
         DescriptionView versioninfo = new DescriptionView();
         versioninfo.setDrawable(getResources().getDrawable(R.drawable.ic_on_boot_notification));
         versioninfo.setTitle(Utils.isSPDonated(requireActivity()) ? "Pro. " + getString(R.string.version) : getString(R.string.version));
-        versioninfo.setSummary("v" + BuildConfig.VERSION_NAME);
+        versioninfo.setSummary("beta_v" + BuildConfig.VERSION_NAME);
 
         DescriptionView support = new DescriptionView();
         support.setDrawable(getResources().getDrawable(R.drawable.ic_support));

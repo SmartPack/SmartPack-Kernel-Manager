@@ -102,8 +102,10 @@ public class ViewUtils {
     }
 
     public static Drawable getColoredIcon(int icon, Context context) {
+        TypedValue value = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorAccent, value, true);
         Drawable drawable = context.getResources().getDrawable(icon);
-        drawable.setTint(getThemeAccentColor(context));
+        drawable.setTint(value.data);
         return drawable;
     }
 
