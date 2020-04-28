@@ -218,7 +218,7 @@ public class Sound {
 
     public String getHeadphoneTpaGain() {
         try {
-            return String.valueOf(Integer.decode(RootUtils.runCommand("cat " + TPA6165_REGISTERS_LIST
+            return String.valueOf(Integer.decode(RootUtils.runAndGetOutput("cat " + TPA6165_REGISTERS_LIST
                     + " | awk \"/0x7/\" | cut -c9-13")) - 185);
         } catch (NumberFormatException ignored) {
             return "";

@@ -193,7 +193,7 @@ public class Backup {
     }
 
     private static String getBootSlot() {
-        return RootUtils.runCommand("getprop ro.boot.slot_suffix");
+        return RootUtils.runAndGetOutput("getprop ro.boot.slot_suffix");
     }
 
     public static boolean hasBackup() {

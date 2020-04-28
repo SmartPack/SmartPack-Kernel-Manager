@@ -21,7 +21,6 @@
 
 package com.smartpack.kernelmanager.activities;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 
@@ -45,13 +44,11 @@ public class FlashingActivity extends BaseActivity {
     private static AppCompatTextView mFlashingResult;
     private static AppCompatTextView mRebootButton;
 
-    @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flashing);
 
-        initToolBar();
         mCancelButton = findViewById(R.id.cancel_button);
         mFlashingHeading = findViewById(R.id.flashing_title);
         mFlashingResult = findViewById(R.id.output_text);
@@ -59,8 +56,9 @@ public class FlashingActivity extends BaseActivity {
         mRebootButton = findViewById(R.id.reboot_button);
         mSaveButton.setOnClickListener(v -> {
             Utils.create("## Flasher log created by SmartPack-Kernel Manager\n\n" + SmartPack.mFlashingResult.toString(),
-                    Utils.getInternalDataStorage() + "/flasher_log");
-            Utils.toast(getString(R.string.flash_log_summary, Utils.getInternalDataStorage() + "/flasher_log"), getApplicationContext());
+                    Utils.getInternalDataStorage() + "/flasher_log-" + SmartPack.mZipName.replace(".zip", ""));
+            Utils.toast(getString(R.string.flash_log_summary, Utils.getInternalDataStorage() + "/flasher_log-" +
+                    SmartPack.mZipName.replace(".zip", "")), this);
         });
         mCancelButton.setOnClickListener(v -> {
             onBackPressed();
@@ -83,7 +81,11 @@ public class FlashingActivity extends BaseActivity {
                             if (SmartPack.mFlashingResult != null) {
                                 mFlashingResult.setText(SmartPack.mFlashingResult.toString());
                                 if (!SmartPack.mFlashing) {
-                                    mFlashingHeading.setText(R.string.flashing_finished);
+                                    if (SmartPack.mFlashingOutput.isEmpty()) {
+                                        mFlashingHeading.setText(R.string.flashing_failed);
+                                    } else {
+                                        mFlashingHeading.setText(R.string.flashing_finished);
+                                    }
                                     mCancelButton.setVisibility(View.VISIBLE);
                                     mSaveButton.setVisibility(View.VISIBLE);
                                     mRebootButton.setVisibility(View.VISIBLE);

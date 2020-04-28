@@ -38,6 +38,7 @@ import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.NotificationId;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
 import com.smartpack.kernelmanager.utils.tools.ScriptManager;
@@ -96,7 +97,8 @@ public class ApplyOnBootService extends Service {
                     && !ScriptManager.list().isEmpty()) {
                 for (final String script : ScriptManager.list()) {
                     if (Utils.getExtension(script).equals("sh")) {
-                        ScriptManager.execute(script);
+                        RootFile file = new RootFile(script);
+                        file.execute();
                     }
                 }
             }

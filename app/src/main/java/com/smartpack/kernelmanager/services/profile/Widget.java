@@ -36,7 +36,6 @@ import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
-import com.topjohnwu.superuser.Shell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,7 +112,7 @@ public class Widget extends AppWidgetProvider {
                 }
 
                 for (String command : adjustedCommands) {
-                    Shell.su(command).exec();
+                    RootUtils.runCommand(command);
                 }
                 RootUtils.closeSU();
                 Utils.toast(context.getString(R.string.applied), context);

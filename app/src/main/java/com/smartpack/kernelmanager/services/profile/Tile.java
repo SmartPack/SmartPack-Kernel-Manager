@@ -31,7 +31,7 @@ import com.smartpack.kernelmanager.services.boot.ApplyOnBoot;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
-import com.topjohnwu.superuser.Shell;
+import com.smartpack.kernelmanager.utils.root.RootUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +71,7 @@ public class Tile extends BroadcastReceiver {
                 }
 
                 for (String command : adjustedCommands) {
-                    Shell.su(command).submit();
+                    RootUtils.runCommand(command);
                 }
             }
         }

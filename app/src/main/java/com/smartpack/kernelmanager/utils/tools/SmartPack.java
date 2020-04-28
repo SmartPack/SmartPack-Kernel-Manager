@@ -36,6 +36,8 @@ public class SmartPack {
     private static final String FLASH_FOLDER = Utils.getInternalDataStorage() + "/flash";
     private static final String CLEANING_COMMAND = "rm -r '" + FLASH_FOLDER + "'";
     private static final String ZIPFILE_EXTRACTED = Utils.getInternalDataStorage() + "/flash/META-INF/com/google/android/update-binary";
+    public static String mZipName;
+    public static String mFlashingOutput;
 
     public static StringBuilder mFlashingResult = null;
 
@@ -79,9 +81,6 @@ public class SmartPack {
                 fd + "' '" + path + "'";
         if (Utils.existFile(FLASH_FOLDER)) {
             RootUtils.runCommand(CLEANING_COMMAND);
-        }
-        if (Utils.existFile(FLASH_FOLDER)) {
-            RootUtils.runCommand(CLEANING_COMMAND);
         } else {
             prepareFolder(FLASH_FOLDER);
         }
@@ -94,18 +93,19 @@ public class SmartPack {
         } else {
             mFlashingResult.append("Unavailable *\n\n");
         }
-        mFlashingResult.append("** Extracting zip file into working folder: ");
+        mFlashingResult.append("** Extracting ").append(mZipName).append(" into working folder: ");
         RootUtils.runAndGetError("unzip " + path + " -d '" + FLASH_FOLDER + "'");
         if (Utils.existFile(ZIPFILE_EXTRACTED)) {
             mFlashingResult.append(" Done *\n\n");
             mFlashingResult.append("** Preparing a recovery-like environment for flashing...\n");
             RootUtils.runCommand("cd '" + FLASH_FOLDER + "'");
-            mFlashingResult.append(RootUtils.runCommand(mountRootFS("rw"))).append(" \n");
+            mFlashingResult.append(RootUtils.runAndGetOutput(mountRootFS("rw"))).append(" \n");
             mFlashingResult.append(RootUtils.runAndGetError("mkdir /tmp")).append(" \n");
             mFlashingResult.append(RootUtils.runAndGetError("mke2fs -F tmp.ext4 500000")).append(" \n");
             mFlashingResult.append(RootUtils.runAndGetError("mount -o loop tmp.ext4 /tmp/")).append(" \n\n");
-            mFlashingResult.append("** Flashing ...\n\n");
-            mFlashingResult.append(RootUtils.runCommand(flashingCommand));
+            mFlashingResult.append("** Flashing ").append(mZipName).append(" ...\n\n");
+            mFlashingOutput = RootUtils.runAndGetOutput(flashingCommand);
+            mFlashingResult.append(mFlashingOutput.isEmpty() ? "Unfortunately, flashing " + mZipName + " failed due to some unknown reasons!" : mFlashingOutput);
         } else {
             mFlashingResult.append(" Failed *\n\n");
             mFlashingResult.append("** Flashing Failed *");

@@ -165,7 +165,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
         DescriptionView kernelinfo = new DescriptionView();
         kernelinfo.setTitle(getString(R.string.kernel_current));
-        kernelinfo.setSummary(RootUtils.runCommand("uname -r"));
+        kernelinfo.setSummary(RootUtils.runAndGetOutput("uname -r"));
 
         items.add(kernelinfo);
 
@@ -566,6 +566,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             protected void onPreExecute() {
                 super.onPreExecute();
                 SmartPack.mFlashing = true;
+                SmartPack.mZipName = file.getName();
                 if (SmartPack.mFlashingResult == null) {
                     SmartPack.mFlashingResult = new StringBuilder();
                 } else {
