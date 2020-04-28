@@ -37,6 +37,7 @@ public class SmartPack {
     private static final String CLEANING_COMMAND = "rm -r '" + FLASH_FOLDER + "'";
     private static final String ZIPFILE_EXTRACTED = Utils.getInternalDataStorage() + "/flash/META-INF/com/google/android/update-binary";
     public static String mZipName;
+    public static String mFlashingOutput;
 
     public static StringBuilder mFlashingResult = null;
 
@@ -103,7 +104,8 @@ public class SmartPack {
             mFlashingResult.append(RootUtils.runAndGetError("mke2fs -F tmp.ext4 500000")).append(" \n");
             mFlashingResult.append(RootUtils.runAndGetError("mount -o loop tmp.ext4 /tmp/")).append(" \n\n");
             mFlashingResult.append("** Flashing ").append(mZipName).append(" ...\n\n");
-            mFlashingResult.append(RootUtils.runAndGetOutput(flashingCommand));
+            mFlashingOutput = RootUtils.runAndGetOutput(flashingCommand);
+            mFlashingResult.append(mFlashingOutput.isEmpty() ? "Unfortunately, flashing " + mZipName + " failed due to some unknown reasons!" : mFlashingOutput);
         } else {
             mFlashingResult.append(" Failed *\n\n");
             mFlashingResult.append("** Flashing Failed *");
