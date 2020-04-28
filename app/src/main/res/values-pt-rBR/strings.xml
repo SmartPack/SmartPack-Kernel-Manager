@@ -1143,4 +1143,14 @@
     <string name="sched_boost_Input">Sched Boost na Entrada</string>
     <string name="copyright_message">O novo texto de direitos autorais, %s, será aplicado na próxima abertura do aplicativo!</string>
     <string name="copyright_default">O texto padrão de direitos autorais, %s, será aplicado na próxima abertura do aplicativo!</string>
+    <string name="busybox_installer_summary">É altamente recomendável ter uma instalação BusyBox autônoma no seu dispositivo para funcionar corretamente com alguns recursos deste aplicativo (por exemplo, os binários \'unzip \' e \'mke2fs\' para flashear e os binários \'curl\' ou \'wget \' para atualizações OTA do kernel). Como uma tentativa de ajudar os usuários nessa questão, foi disponibilizado um aplicativo simples, que pode ser usado como um utilitário de instalação do BusyBox com um clique para dispositivos arm, arm64 e x86. Clique aqui para obtê-lo!</string>
+    <string name="busybox_installer">Intalador do Busybox</string>
+    <string name="flashing_finished">O flash terminou</string>
+    <string name="flashing_failed">O flash falhou</string>
+    <string name="export_all_warning">Alguns problemas detectados! Tente novamente depois de recarregar esta página!</string>
+    <string name="export_all_message">A lista de comandos inteira foi exportada como um shell script em \'%s\'!</string>
+    <string name="export_all">Exportra toda a lista de comandos para um shell script!</string>
+    <string name="scripts_manager_message">Gostaria de ter um aplicativo independente para gerenciar seus scripts? Clique aqui!</string>
+    <string name="scc_messgae">Gostaria de ter um aplicativo independente para controlar o KCAL / K-lapse? Clique aqui!</string>
+    <string name="gpu_lib">Biblioteca GPU do sistema</string>
 </resources>
