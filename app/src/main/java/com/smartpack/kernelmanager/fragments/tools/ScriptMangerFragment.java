@@ -170,7 +170,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
         for (final String script : ScriptManager.list()) {
             if (Utils.getExtension(script).equals("sh")) {
                 DescriptionView descriptionView = new DescriptionView();
-                descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_file));
+                descriptionView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_file, requireContext()));
                 descriptionView.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
                 descriptionView.setTitle(script);
                 descriptionView.setSummary(ScriptManager.scriptFile() + "/" + script);
@@ -222,44 +222,52 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 items.add(descriptionView);
             }
         }
+        if (items.size() == 0) {
+            if (!Utils.isPackageInstalled("com.smartpack.scriptmanager", requireActivity())) {
+                // Advertise Own App
+                DescriptionView sm = new DescriptionView();
+                sm.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
+                sm.setSummary(getString(R.string.scripts_manager_message));
+                sm.setFullSpan(true);
+                sm.setOnItemClickListener(item -> {
+                    Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.scriptmanager", getActivity());
+                });
+                items.add(sm);
+            }
+        }
     }
 
     @SuppressLint("StaticFieldLeak")
     private void execute(final String script) {
-        new AsyncTask<Void, Void, String>() {
-
+        new AsyncTask<Void, Void, Void>() {
             private ProgressDialog mProgressDialog;
-
+            private String mResult;
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-
                 mProgressDialog = new ProgressDialog(getActivity());
                 mProgressDialog.setMessage(getString(R.string.executing) + " " + script + "...");
                 mProgressDialog.setCancelable(false);
                 mProgressDialog.show();
             }
-
             @Override
-            protected String doInBackground(Void... voids) {
-                return ScriptManager.execute(script);
+            protected Void doInBackground(Void... voids) {
+                mResult = ScriptManager.execute(script);
+                return null;
             }
-
             @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
                 try {
                     mProgressDialog.dismiss();
                 } catch (IllegalArgumentException ignored) {
                 }
-                if (s != null && !s.isEmpty()) {
-                    new Dialog(requireActivity())
-                            .setMessage(s)
-                            .setCancelable(false)
-                            .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
-                            })
-                            .show();
-                }
+                new Dialog(requireActivity())
+                        .setMessage(mResult)
+                        .setCancelable(false)
+                        .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
+                        })
+                        .show();
             }
         }.execute();
     }

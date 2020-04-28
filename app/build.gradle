@@ -18,8 +18,8 @@ android {
         applicationId "com.smartpack.kernelmanager"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 104
-        versionName "10.5"
+        versionCode 110
+        versionName "11.0"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -58,11 +58,12 @@ dependencies {
     }
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.preference:preference:1.1.0'
+    implementation 'androidx.preference:preference:1.1.1'
     implementation 'com.github.cliftonlabs:json-simple:3.1.1'
+    implementation "com.github.topjohnwu.libsu:core:2.5.1"
     implementation 'com.google.android.apps.dashclock:dashclock-api:2.0.0'
-    implementation 'com.google.android.gms:play-services-ads:19.0.1'
-    implementation 'com.google.android.material:material:1.2.0-alpha05'
+    implementation 'com.google.android.gms:play-services-ads:19.1.0'
+    implementation 'com.google.android.material:material:1.2.0-alpha06'
     implementation 'com.mattprecious.swirl:swirl:1.2.0'
     implementation 'com.mikhaellopez:circularimageview:4.2.0'
     implementation 'com.squareup.picasso:picasso:2.71828'

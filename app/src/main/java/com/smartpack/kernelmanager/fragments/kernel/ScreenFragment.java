@@ -39,6 +39,7 @@ import com.smartpack.kernelmanager.utils.kernel.screen.GammaProfiles;
 import com.smartpack.kernelmanager.utils.kernel.screen.Misc;
 import com.smartpack.kernelmanager.views.ColorTable;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
+import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.DropDownView;
 import com.smartpack.kernelmanager.views.recyclerview.GenericSelectView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -99,10 +100,31 @@ public class ScreenFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-	if (Misc.haskcalRed() || Misc.haskcalGreen() || Misc.haskcalBlue()) {
+        if (Misc.haskcalRed() || Misc.haskcalGreen() || Misc.haskcalBlue()) {
             kcalColorInit(items);
-	}
-        screenColorInit(items);
+        }
+        if (mCalibration.hasColors()) {
+            screenColorInit(items);
+        }
+
+        // Advertise Own App
+        if (!Utils.isPackageInstalled("com.smartpack.scriptmanager", requireActivity()) && mCalibration.hasColors()
+                || Misc.haskcalRed() || Misc.haskcalGreen() || Misc.haskcalBlue()) {
+            DescriptionView scc = new DescriptionView();
+            scc.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
+            scc.setSummary(getString(R.string.scc_messgae));
+            scc.setOnItemClickListener(item -> {
+                Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.colorcontrol", getActivity());
+            });
+            items.add(scc);
+        }
+
+        if (mCalibration.hasSRGB() || mCalibration.hasScreenHBM() || mCalibration.hasScreenContrast()
+                || mCalibration.hasScreenValue() || mCalibration.hasScreenHue() || mCalibration.hasSaturationIntensity()
+                || mCalibration.hasInvertScreen() || mCalibration.hasMinColor()) {
+            miscColorInit(items);
+        }
+
         List<RecyclerViewItem> gammas = new ArrayList<>();
         if (Gamma.hasKGamma()) {
             kgammaInit(gammas);
@@ -191,15 +213,13 @@ public class ScreenFragment extends RecyclerViewFragment {
             kcalCard.addItem(kcal);
         }
 
-
-	if (kcalCard.size() > 0) {
+        if (kcalCard.size() > 0) {
             items.add(kcalCard);
-	}
+        }
     }
 
     private void screenColorInit(List<RecyclerViewItem> items) {
         if (mCalibration.hasColors()) {
-
             CardView screenColor = new CardView(getActivity());
             screenColor.setTitle(getString(R.string.screen_color));
 
@@ -242,41 +262,43 @@ public class ScreenFragment extends RecyclerViewFragment {
             if (screenColor.size() > 0) {
                 items.add(screenColor);
             }
+        }
+    }
 
-            if (mCalibration.hasMinColor()) {
-                mMinColor = new SeekBarView();
-                mMinColor.setTitle(getString(R.string.min_rgb));
-                mMinColor.setItems(mCalibration.getLimits());
-                mMinColor.setProgress(mCalibration.getLimits().indexOf(String.valueOf(mCalibration.getMinColor())));
-                mMinColor.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                    @Override
-                    public void onStop(SeekBarView seekBarView, int position, String value) {
-                        mCalibration.setMinColor(Utils.strToInt(value), getActivity());
+    private void miscColorInit(List<RecyclerViewItem> items) {
+        if (mCalibration.hasMinColor()) {
+            mMinColor = new SeekBarView();
+            mMinColor.setTitle(getString(R.string.min_rgb));
+            mMinColor.setItems(mCalibration.getLimits());
+            mMinColor.setProgress(mCalibration.getLimits().indexOf(String.valueOf(mCalibration.getMinColor())));
+            mMinColor.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mCalibration.setMinColor(Utils.strToInt(value), getActivity());
 
-                        StringBuilder colors = new StringBuilder();
-                        for (String color : mCalibration.getColors()) {
-                            if (Utils.strToInt(value) > Utils.strToInt(color)) {
-                                colors.append(value).append(" ");
-                            } else {
-                                colors.append(color).append(" ");
-                            }
-                        }
-                        colors.setLength(colors.length() - 1);
-                        mCalibration.setColors(colors.toString(), getActivity());
-                    }
-
-                    @Override
-                    public void onMove(SeekBarView seekBarView, int position, String value) {
-                        for (SeekBarView color : mColors) {
-                            if (position > color.getProgress()) {
-                                color.setProgress(position);
-                            }
+                    StringBuilder colors = new StringBuilder();
+                    for (String color : mCalibration.getColors()) {
+                        if (Utils.strToInt(value) > Utils.strToInt(color)) {
+                            colors.append(value).append(" ");
+                        } else {
+                            colors.append(color).append(" ");
                         }
                     }
-                });
+                    colors.setLength(colors.length() - 1);
+                    mCalibration.setColors(colors.toString(), getActivity());
+                }
 
-                items.add(mMinColor);
-            }
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                    for (SeekBarView color : mColors) {
+                        if (position > color.getProgress()) {
+                            color.setProgress(position);
+                        }
+                    }
+                }
+            });
+
+            items.add(mMinColor);
         }
 
         if (mCalibration.hasInvertScreen()) {

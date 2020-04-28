@@ -20,6 +20,7 @@
 package com.smartpack.kernelmanager.utils.root;
 
 import com.smartpack.kernelmanager.utils.Utils;
+import com.topjohnwu.superuser.Shell;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -28,19 +29,14 @@ import java.util.List;
 /**
  * Created by willi on 30.12.15.
  */
+
+// TODO: 22/04/20 Perhaps use com.github.topjohnwu.libsu:io
 public class RootFile {
 
     private final String mFile;
-    private RootUtils.SU mSU;
 
     public RootFile(String file) {
         mFile = file;
-        mSU = RootUtils.getSU();
-    }
-
-    public RootFile(String file, RootUtils.SU su) {
-        mFile = file;
-        mSU = su;
     }
 
     public String getName() {
@@ -48,25 +44,25 @@ public class RootFile {
     }
 
     public void mkdir() {
-        mSU.runCommand("mkdir -p '" + mFile + "'");
+        Shell.su("mkdir -p '" + mFile + "'").exec();
     }
 
     public RootFile mv(String newPath) {
-        mSU.runCommand("mv -f '" + mFile + "' '" + newPath + "'");
+        Shell.su("mv -f '" + mFile + "' '" + newPath + "'").exec();
         return new RootFile(newPath);
     }
 
     public void cp(String path) {
-        mSU.runCommand("cp -r '" + mFile + "' '" + path + "'");
+        Shell.su("cp -r '" + mFile + "' '" + path + "'").exec();
     }
 
     public void write(String text, boolean append) {
         String[] array = text.split("\\r?\\n");
         if (!append) delete();
         for (String line : array) {
-            mSU.runCommand("echo '" + line + "' >> " + mFile);
+            Shell.su("echo '" + line + "' >> " + mFile).exec();
         }
-        RootUtils.chmod(mFile, "755", mSU);
+        RootUtils.chmod(mFile, "755");
     }
 
     public String execute(String... arguments) {
@@ -74,17 +70,17 @@ public class RootFile {
         for (String arg : arguments) {
             args.append(" \"").append(arg).append("\"");
         }
-        return mSU.runCommand(mFile + args.toString());
+        return RootUtils.runCommand(mFile + args.toString());
     }
 
     public void delete() {
-        mSU.runCommand("rm -r '" + mFile + "'");
+        Shell.su("rm -r '" + mFile + "'").exec();
     }
 
     public List<String> list() {
         List<String> list = new ArrayList<>();
-        String files = mSU.runCommand("ls '" + mFile + "/'");
-        if (files != null) {
+        String files = RootUtils.runCommand("ls '" + mFile + "/'");
+        if (!files.isEmpty()) {
             // Make sure the files exists
             for (String file : files.split("\\r?\\n")) {
                 if (file != null && !file.isEmpty() && Utils.existFile(mFile + "/" + file)) {
@@ -97,12 +93,12 @@ public class RootFile {
 
     public List<RootFile> listFiles() {
         List<RootFile> list = new ArrayList<>();
-        String files = mSU.runCommand("ls '" + mFile + "/'");
-        if (files != null) {
+        String files = RootUtils.runCommand("ls '" + mFile + "/'");
+        if (!files.isEmpty()) {
             // Make sure the files exists
             for (String file : files.split("\\r?\\n")) {
                 if (file != null && !file.isEmpty() && Utils.existFile(mFile + "/" + file)) {
-                    list.add(new RootFile(mFile.equals("/") ? mFile + file : mFile + "/" + file, mSU));
+                    list.add(new RootFile(mFile.equals("/") ? mFile + file : mFile + "/" + file));
                 }
             }
         }
@@ -110,16 +106,16 @@ public class RootFile {
     }
 
     public boolean isEmpty() {
-        return "false".equals(mSU.runCommand("find '" + mFile + "' -mindepth 1 | read || echo false"));
+        return "false".equals(RootUtils.runCommand("find '" + mFile + "' -mindepth 1 | read || echo false"));
     }
 
     public boolean exists() {
-        String output = mSU.runCommand("[ -e " + mFile + " ] && echo true");
-        return output != null && output.equals("true");
+        String output = RootUtils.runCommand("[ -e " + mFile + " ] && echo true");
+        return !output.isEmpty() && output.equals("true");
     }
 
     public String readFile() {
-        return mSU.runCommand("cat '" + mFile + "'");
+        return RootUtils.runCommand("cat '" + mFile + "'");
     }
 
     @Override

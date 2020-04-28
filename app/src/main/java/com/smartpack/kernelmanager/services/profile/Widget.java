@@ -36,6 +36,7 @@ import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.topjohnwu.superuser.Shell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,20 +87,16 @@ public class Widget extends AppWidgetProvider {
                 Prefs.saveBoolean("profileclicked" + position, true, context);
                 Utils.toast(context.getString(R.string.press_again_to_apply, profileItem.getName()),
                         context);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(2000);
-                            Prefs.saveBoolean("profileclicked" + position, false, context);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                new Thread(() -> {
+                    try {
+                        Thread.sleep(2000);
+                        Prefs.saveBoolean("profileclicked" + position, false, context);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }).start();
             } else {
                 Prefs.saveBoolean("profileclicked" + position, false, context);
-                RootUtils.SU su = new RootUtils.SU(true, TAG);
 
                 List<String> adjustedCommands = new ArrayList<>();
                 for (Profiles.ProfileItem.CommandItem command : profileItem.getCommands()) {
@@ -108,7 +105,7 @@ public class Widget extends AppWidgetProvider {
                         if (command.getCommand().startsWith("#")
                                 && (applyCpu = new CPUFreq.ApplyCpu(command.getCommand()
                                 .substring(1))).toString() != null) {
-                            adjustedCommands.addAll(ApplyOnBoot.getApplyCpu(applyCpu, su));
+                            adjustedCommands.addAll(ApplyOnBoot.getApplyCpu(applyCpu));
                         } else {
                             adjustedCommands.add(command.getCommand());
                         }
@@ -116,9 +113,9 @@ public class Widget extends AppWidgetProvider {
                 }
 
                 for (String command : adjustedCommands) {
-                    su.runCommand(command);
+                    Shell.su(command).exec();
                 }
-                su.close();
+                RootUtils.closeSU();
                 Utils.toast(context.getString(R.string.applied), context);
             }
         }

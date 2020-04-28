@@ -41,9 +41,9 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.widget.SwitchCompat;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.NavigationActivity;
 import com.smartpack.kernelmanager.activities.tools.profile.ProfileActivity;
@@ -64,7 +64,6 @@ import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
 import com.smartpack.kernelmanager.utils.root.Control;
-import com.smartpack.kernelmanager.utils.root.RootUtils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -244,7 +243,7 @@ public class ProfileFragment extends RecyclerViewFragment {
             final int position = i;
 
             final DescriptionView descriptionView = new DescriptionView();
-            descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_file));
+            descriptionView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_file, requireContext()));
             descriptionView.setSummary(profileItems.get(i).getName());
             descriptionView.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
             descriptionView.setOnMenuListener((cardView1, popupMenu) -> {
@@ -278,8 +277,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                                         if (command.getCommand().startsWith("#") && ((applyCpu =
                                                 new CPUFreq.ApplyCpu(command.getCommand().substring(1)))
                                                 .toString() != null)) {
-                                            for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu,
-                                                    RootUtils.getSU())) {
+                                            for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu)) {
                                                 Control.runSetting(applyCpuCommand, null, null, null);
                                             }
                                         } else {
@@ -313,7 +311,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                                         if (command.getCommand().startsWith("#")
                                                 & ((applyCpu =
                                                 new CPUFreq.ApplyCpu(command.getCommand().substring(1))).toString() != null)) {
-                                            for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu, RootUtils.getSU())) {
+                                            for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu)) {
                                                 mCommandsText.append(applyCpuCommand).append("\n");
                                             }
                                         } else {

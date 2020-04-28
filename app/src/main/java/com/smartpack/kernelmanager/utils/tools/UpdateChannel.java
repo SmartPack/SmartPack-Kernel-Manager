@@ -30,17 +30,16 @@ import androidx.fragment.app.FragmentManager;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
-
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
+import com.smartpack.kernelmanager.fragments.tools.SmartPackFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
-import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
-import com.smartpack.kernelmanager.fragments.tools.SmartPackFragment;
 import com.smartpack.kernelmanager.views.recyclerview.GenericInputView;
+import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -125,7 +124,7 @@ public class UpdateChannel extends RecyclerViewFragment {
 
     private void createInit(List<RecyclerViewItem> items) {
         DescriptionView info = new DescriptionView();
-        info.setDrawable(getResources().getDrawable(R.drawable.ic_info));
+        info.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_info, requireContext()));
         info.setTitle(getText(R.string.update_channel_instructions));
         info.setFullSpan(true);
 

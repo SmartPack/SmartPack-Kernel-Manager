@@ -46,6 +46,7 @@ import com.smartpack.kernelmanager.utils.kernel.cpuhotplug.MPDecision;
 import com.smartpack.kernelmanager.utils.root.Control;
 import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.topjohnwu.superuser.Shell;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -175,7 +176,6 @@ public class ApplyOnBoot {
                         return;
                     }
                 }
-                RootUtils.SU su = new RootUtils.SU(true, TAG);
 
                 List<String> commands = new ArrayList<>();
                 for (Settings.SettingsItem item : settings.getAllSettings()) {
@@ -190,7 +190,7 @@ public class ApplyOnBoot {
                                 && ((applyCpu =
                                 new CPUFreq.ApplyCpu(setting.substring(1))).toString() != null)) {
                             synchronized (this) {
-                                commands.addAll(getApplyCpu(applyCpu, su, context));
+                                commands.addAll(getApplyCpu(applyCpu, context));
                             }
                         } else {
                             commands.add(setting);
@@ -203,15 +203,14 @@ public class ApplyOnBoot {
                     for (String command : commands) {
                         s.append(command).append("\n");
                     }
-                    RootFile file = new RootFile("/data/local/tmp/kerneladiutortmp.sh", su);
+                    RootFile file = new RootFile("/data/local/tmp/kerneladiutortmp.sh");
                     file.mkdir();
                     file.write(s.toString(), false);
                     file.execute();
                 } else {
                     for (String command : commands) {
-                        synchronized (this) {
-                            su.runCommand(command);
-                        }
+                        // not submit(), already running inside a thread anyways
+                        Shell.su(command).exec();
                     }
                 }
 
@@ -222,7 +221,7 @@ public class ApplyOnBoot {
                             && ((applyCpu =
                             new CPUFreq.ApplyCpu(command.substring(1))).toString() != null)) {
                         synchronized (this) {
-                            profileCommands.addAll(getApplyCpu(applyCpu, su, context));
+                            profileCommands.addAll(getApplyCpu(applyCpu, context));
                         }
                     }
                     profileCommands.add(command);
@@ -233,27 +232,21 @@ public class ApplyOnBoot {
                     for (String command : profileCommands) {
                         s.append(command).append("\n");
                     }
-                    RootFile file = new RootFile("/data/local/tmp/kerneladiutortmp.sh", su);
+                    RootFile file = new RootFile("/data/local/tmp/kerneladiutortmp.sh");
                     file.mkdir();
                     file.write(s.toString(), false);
                     file.execute();
                 } else {
                     for (String command : profileCommands) {
-                        synchronized (this) {
-                            su.runCommand(command);
-                        }
+                        // not submit(), already running inside a thread anyways
+                        Shell.su(command).exec();
                     }
                 }
 
-                su.close();
+                RootUtils.closeSU();
 
                 if (toast) {
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Utils.toast(R.string.apply_on_boot_complete, context);
-                        }
-                    });
+                    handler.post(() -> Utils.toast(R.string.apply_on_boot_complete, context));
                 }
 
                 listener.onFinish();
@@ -262,23 +255,23 @@ public class ApplyOnBoot {
         return true;
     }
 
-    public static List<String> getApplyCpu(CPUFreq.ApplyCpu applyCpu, RootUtils.SU su) {
-        return getApplyCpu(applyCpu, su, null);
+    public static List<String> getApplyCpu(CPUFreq.ApplyCpu applyCpu) {
+        return getApplyCpu(applyCpu, null);
     }
 
-    private static List<String> getApplyCpu(CPUFreq.ApplyCpu applyCpu, RootUtils.SU su, Context context) {
+    private static List<String> getApplyCpu(CPUFreq.ApplyCpu applyCpu, Context context) {
         List<String> commands = new ArrayList<>();
-        boolean cpulock = Utils.existFile(CPUFreq.CPU_LOCK_FREQ, su);
+        boolean cpulock = Utils.existFile(CPUFreq.CPU_LOCK_FREQ);
         if (cpulock) {
             commands.add(Control.write("0", CPUFreq.CPU_LOCK_FREQ));
         }
-        boolean mpdecision = Utils.hasProp(MPDecision.HOTPLUG_MPDEC, su)
-                && Utils.isPropRunning(MPDecision.HOTPLUG_MPDEC, su);
+        boolean mpdecision = Utils.hasProp(MPDecision.HOTPLUG_MPDEC)
+                && Utils.isPropRunning(MPDecision.HOTPLUG_MPDEC);
         if (mpdecision) {
             commands.add(Control.stopService(MPDecision.HOTPLUG_MPDEC));
         }
         for (int i = applyCpu.getMin(); i <= applyCpu.getMax(); i++) {
-            boolean offline = !Utils.existFile(Utils.strFormat(applyCpu.getPath(), i), su);
+            boolean offline = !Utils.existFile(Utils.strFormat(applyCpu.getPath(), i));
 
             List<Integer> bigCpuRange = applyCpu.getBigCpuRange();
             List<Integer> LITTLECpuRange = applyCpu.getLITTLECpuRange();
@@ -287,12 +280,12 @@ public class ApplyOnBoot {
             if (offline) {
 
                 if (applyCpu.isBigLITTLE()) {
-                    if (Utils.existFile(Utils.strFormat(CoreCtl.CORE_CTL, i), su)) {
+                    if (Utils.existFile(Utils.strFormat(CoreCtl.CORE_CTL, i))) {
                         coreCtlMinPath = Utils.strFormat(CoreCtl.CORE_CTL + CoreCtl.MIN_CPUS, i);
                         commands.add(Control.write(String.valueOf(bigCpuRange.size()), coreCtlMinPath));
                     }
 
-                    if (Utils.existFile(MSMPerformance.MAX_CPUS, su)) {
+                    if (Utils.existFile(MSMPerformance.MAX_CPUS)) {
                         msmPerformanceMinPath = MSMPerformance.MAX_CPUS;
                         commands.add(Control.write(LITTLECpuRange.size() + ":" + bigCpuRange.size(),
                                 msmPerformanceMinPath));

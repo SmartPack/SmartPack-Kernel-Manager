@@ -22,6 +22,7 @@ package com.smartpack.kernelmanager.utils;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.ProgressDialog;
 import android.app.UiModeManager;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -32,6 +33,7 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -41,8 +43,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.FileProvider;
 import androidx.core.view.ViewCompat;
@@ -81,26 +83,22 @@ import java.util.concurrent.TimeUnit;
 public class Utils {
 
     private static final String TAG = Utils.class.getSimpleName();
-    private static final String KA_DONATION_PACKAGE = "com.grarak.kerneladiutordonate";
-    private static final String SP_DONATION_PACKAGE = "com.smartpack.donate";
-    private static final String PLAY_STORE = "com.android.vending";
 
-    private static boolean isKADonated(Context context) {
+    public static boolean isPackageInstalled(String id, Context context) {
         try {
-            context.getPackageManager().getApplicationInfo(KA_DONATION_PACKAGE, 0);
+            context.getPackageManager().getApplicationInfo(id, 0);
             return true;
         } catch (PackageManager.NameNotFoundException ignored) {
             return false;
         }
     }
 
+    private static boolean isKADonated(Context context) {
+        return isPackageInstalled("com.grarak.kerneladiutordonate", context);
+    }
+
     public static boolean isSPDonated(Context context) {
-        try {
-            context.getPackageManager().getApplicationInfo(SP_DONATION_PACKAGE, 0);
-            return true;
-        } catch (PackageManager.NameNotFoundException ignored) {
-            return false;
-        }
+        return isPackageInstalled("com.smartpack.donate", context);
     }
 
     public static boolean isDonated(Context context) {
@@ -108,12 +106,7 @@ public class Utils {
     }
 
     public static boolean isPlayStoreInstalled(Context context) {
-        try {
-            context.getPackageManager().getApplicationInfo(PLAY_STORE, 0);
-            return true;
-        } catch (PackageManager.NameNotFoundException ignored) {
-            return false;
-        }
+        return isPackageInstalled("com.android.vending", context);
     }
 
     public static void initializeAppTheme(Context context) {
@@ -175,10 +168,8 @@ public class Utils {
     }
 
     public static boolean hideStartActivity() {
-        RootUtils.SU su = new RootUtils.SU(false, null);
-        String prop = su.runCommand("getprop ro.kerneladiutor.hide");
-        su.close();
-        return prop != null && prop.equals("true");
+        String prop = RootUtils.runCommand("getprop ro.kerneladiutor.hide");
+        return prop.equals("true");
     }
 
     public static boolean isServiceRunning(Class<?> serviceClass, Context context) {
@@ -432,24 +423,16 @@ public class Utils {
     }
 
     public static boolean isPropRunning(String key) {
-        return isPropRunning(key, RootUtils.getSU());
-    }
-
-    public static boolean isPropRunning(String key, RootUtils.SU su) {
         try {
-            return su.runCommand("getprop | grep " + key).split("]:")[1].contains("running");
+            return RootUtils.runCommand("getprop | grep " + key).split("]:")[1].contains("running");
         } catch (Exception ignored) {
             return false;
         }
     }
 
     public static boolean hasProp(String key) {
-        return hasProp(key, RootUtils.getSU());
-    }
-
-    public static boolean hasProp(String key, RootUtils.SU su) {
         try {
-            return !su.runCommand("getprop | grep " + key).isEmpty();
+            return !RootUtils.runCommand("getprop | grep " + key).isEmpty();
         } catch (Exception ignored) {
             return false;
         }
@@ -481,13 +464,10 @@ public class Utils {
         return readFile(file, true);
     }
 
-    public static String readFile(String file, boolean root) {
-        return readFile(file, root ? RootUtils.getSU() : null);
-    }
 
-    public static String readFile(String file, RootUtils.SU su) {
-        if (su != null) {
-            return new RootFile(file, su).readFile();
+    public static String readFile(String file, boolean root) {
+        if (root) {
+            return new RootFile(file).readFile();
         }
 
         BufferedReader buf = null;
@@ -517,11 +497,7 @@ public class Utils {
     }
 
     public static boolean existFile(String file, boolean root) {
-        return existFile(file, root ? RootUtils.getSU() : null);
-    }
-
-    public static boolean existFile(String file, RootUtils.SU su) {
-        return su == null ? new File(file).exists() : new RootFile(file, su).exists();
+        return !root ? new File(file).exists() : new RootFile(file).exists();
     }
 
     public static String create(String text, String path) {
@@ -557,6 +533,11 @@ public class Utils {
 
     public static boolean isDownloadBinaries() {
         return Utils.existFile("/system/bin/curl") || Utils.existFile("/system/bin/wget");
+    }
+
+    public static boolean isUnzipAvailable() {
+        return !RootUtils.runAndGetError("unzip --help").contains(
+                "/system/bin/sh: unzip: inaccessible or not found");
     }
 
     public static void downloadFile(String path, String url, Context context) {
@@ -665,6 +646,33 @@ public class Utils {
         return prepareReboot;
     }
 
+    public static void rebootCommand(Context context) {
+        new AsyncTask<Void, Void, Void>() {
+            private ProgressDialog mProgressDialog;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                mProgressDialog = new ProgressDialog(context);
+                mProgressDialog.setMessage(context.getString(R.string.rebooting) + ("..."));
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
+            }
+            @Override
+            protected Void doInBackground(Void... voids) {
+                RootUtils.runCommand(prepareReboot());
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                try {
+                    mProgressDialog.dismiss();
+                } catch (IllegalArgumentException ignored) {
+                }
+            }
+        }.execute();
+    }
+
     /**
      * Taken and used almost as such from the following stackoverflow discussion
      * https://stackoverflow.com/questions/3571223/how-do-i-get-the-file-extension-of-a-file-in-java
@@ -690,4 +698,10 @@ public class Utils {
         }).show();
     }
 
+    public static String removeSuffix(@Nullable String s, @Nullable String suffix) {
+        if (s != null && suffix != null && s.endsWith(suffix)) {
+            return s.substring(0, s.length() - suffix.length());
+        }
+        return s;
+    }
 }

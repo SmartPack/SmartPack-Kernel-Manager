@@ -32,6 +32,7 @@ import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.topjohnwu.superuser.Shell;
 
 /**
  * Created by willi on 21.07.16.
@@ -64,7 +65,6 @@ public class Tasker extends BroadcastReceiver {
                 }
 
                 if (cs.length > 1) {
-                    RootUtils.SU su = new RootUtils.SU();
                     for (int i = 1; i < cs.length; i++) {
                         if (cs[i].isEmpty()) {
                             continue;
@@ -73,17 +73,17 @@ public class Tasker extends BroadcastReceiver {
                             CPUFreq.ApplyCpu applyCpu;
                             if (cs[i].startsWith("#") && (applyCpu =
                                     new CPUFreq.ApplyCpu(cs[i].substring(1))).toString() != null) {
-                                for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu, su)) {
+                                for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu)) {
                                     Log.i(TAG + ": " + getClass().getSimpleName(), "Run: " + applyCpuCommand);
-                                    su.runCommand(applyCpuCommand);
+                                    Shell.su(applyCpuCommand).submit();
                                 }
                             } else {
                                 Log.i(TAG + ": " + getClass().getSimpleName(), "Run: " + cs[i]);
-                                su.runCommand(cs[i]);
+                                Shell.su(cs[i]).submit();
                             }
                         }
                     }
-                    su.close();
+                    RootUtils.closeSU();
                 }
             }
         }
