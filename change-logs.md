@@ -1,5 +1,9 @@
 # Change-logs
 
+## 107. April 29, 2020
+*Release-tag: v11.1*<br>
+Largely improved root handling. Added option to export (as script) the entire command list from On-Boot page. Show flashing failed message if flashing output is empty. Show zip file name in flashing view. Updated Portuguese (Brazilian) translations (Credits: @Lennoard). Miscellaneous changes.
+
 ## 106. April 25, 2020
 *Release-tag: v10.9*<br>
 Largely improved manual flashing (includes fix for syntax error). Added Korean translations (Credits: @SmgKhOaRn). Miscellaneous changes.
