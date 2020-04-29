@@ -64,25 +64,26 @@ public class Tasker extends BroadcastReceiver {
                 }
 
                 if (cs.length > 1) {
-                    for (int i = 1; i < cs.length; i++) {
-                        if (cs[i].isEmpty()) {
-                            continue;
-                        }
-                        synchronized (this) {
-                            CPUFreq.ApplyCpu applyCpu;
-                            if (cs[i].startsWith("#") && (applyCpu =
-                                    new CPUFreq.ApplyCpu(cs[i].substring(1))).toString() != null) {
-                                for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu)) {
-                                    Log.i(TAG + ": " + getClass().getSimpleName(), "Run: " + applyCpuCommand);
-                                    RootUtils.runCommand(applyCpuCommand);
+                    new Thread(() -> {
+                        for (int i = 1; i < cs.length; i++) {
+                            if (cs[i].isEmpty()) {
+                                continue;
+                            }
+                            synchronized (this) {
+                                CPUFreq.ApplyCpu applyCpu = new CPUFreq.ApplyCpu(cs[i].substring(1));
+                                if (cs[i].startsWith("#") && !applyCpu.toString().isEmpty()) {
+                                    for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu)) {
+                                        Log.i(TAG + ": " + getClass().getSimpleName(), "Run: " + applyCpuCommand);
+                                        RootUtils.runCommand(applyCpuCommand);
+                                    }
+                                } else {
+                                    Log.i(TAG + ": " + getClass().getSimpleName(), "Run: " + cs[i]);
+                                    RootUtils.runCommand(cs[i]);
                                 }
-                            } else {
-                                Log.i(TAG + ": " + getClass().getSimpleName(), "Run: " + cs[i]);
-                                RootUtils.runCommand(cs[i]);
                             }
                         }
-                    }
-                    RootUtils.closeSU();
+                        RootUtils.closeSU();
+                    }).start();
                 }
             }
         }
