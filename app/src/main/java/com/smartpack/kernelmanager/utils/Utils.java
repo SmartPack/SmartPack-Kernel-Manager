@@ -75,6 +75,8 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -644,6 +646,11 @@ public class Utils {
         sb.append(String.format("%02d", seconds));
         sb.append(" s");
         return sb.toString();
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public static String getTimeStamp() {
+        return new SimpleDateFormat("yyyyMMdd_HH-mm").format(new Date());
     }
 
     public static String prepareReboot() {
