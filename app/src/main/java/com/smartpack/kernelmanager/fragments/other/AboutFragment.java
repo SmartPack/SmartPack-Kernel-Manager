@@ -113,13 +113,13 @@ public class AboutFragment extends RecyclerViewFragment {
         sourcecode.setDrawable(getResources().getDrawable(R.drawable.ic_source));
         sourcecode.setTitle(getString(R.string.source_code));
         sourcecode.setSummary(getString(R.string.source_code_summary));
-        sourcecode.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager", requireActivity()));
+        sourcecode.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager/tree/beta", requireActivity()));
 
         DescriptionView changelogs = new DescriptionView();
         changelogs.setDrawable(getResources().getDrawable(R.drawable.ic_changelog));
         changelogs.setTitle(getString(R.string.change_logs));
         changelogs.setSummary(getString(R.string.change_logs_summary));
-        changelogs.setOnItemClickListener(item -> Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/change-logs.md", getActivity()));
+        changelogs.setOnItemClickListener(item -> Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/beta/change-logs.md", getActivity()));
 
         DescriptionView playstore = new DescriptionView();
         playstore.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));

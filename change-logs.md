@@ -1,24 +1,32 @@
 # Change-logs
 
+## 108. May 01, 2020
+*Release-tag: beta_v11.2*<br>
+Fixed script on-boot not working. Fixed Tasker related issues (Credits: @Lennoard). Added time stamp to exported log (logcat, dmesg, etc.) files. Miscellaneous changes.
+
 ## 107. April 29, 2020
 *Release-tag: v11.1*<br>
 Largely improved root handling. Added option to export (as script) the entire command list from On-Boot page. Show flashing failed message if flashing output is empty. Show zip file name in flashing view. Updated Portuguese (Brazilian) translations (Credits: @Lennoard). Miscellaneous changes.
 
 ## 106. April 25, 2020
-*Release-tag: v10.9*<br>
+*Release-tag: beta_v10.9*<br>
 Largely improved manual flashing (includes fix for syntax error). Added Korean translations (Credits: @SmgKhOaRn). Miscellaneous changes.
 
 ## 105. April 23, 2020
-*Release-tag: v10.8*<br>
+*Release-tag: beta_v10.8*<br>
 Main: Migrated to libsu (Credits: @Lennoard). SmartPack: Added brand new Flashing view. Run Shell Command & Script Manager: Also display stderr. Miscellaneous changes.
 
 ## 104. April 22, 2020
-*Release-tag: v10.7*<br>
+*Release-tag: beta_v10.7*<br>
 Added GPU System Lib version to Device page. Updated nav header background to follow app theme (Credits: @Lennoard). Updated SmartPack page layout (Credits: @Lennoard). VM: Added few more tunables. Fixed alignment issues on Screen page. Miscellaneous changes.
 
 ## 103. April 21, 2020
-*Release-tag: v10.6*<br>
+*Release-tag: beta_v10.6*<br>
 App UI: Updated main headings, icons (overall page and FAB's) to use accent colors (Credits: @Lennoard). Fixed unnecessary spacing observed on the foreground page layout. Added Amharic translations (Credits: @Mikesew1320). Added links to other SmartPack apps on related pages. Updated Portuguese (Brazilian) translations (Credits: @Lennoard). Miscellaneous changes.
+
+*** @ *** @ *** @ *** @ *** @ *** @ *** @ ***
+ *Beginning of the beta development channel*
+*** @ *** @ *** @ *** @ *** @ *** @ *** @ ***
 
 ## 102. April 14, 2020
 *Release-tag: v10.5*<br>

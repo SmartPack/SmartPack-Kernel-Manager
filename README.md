@@ -1,5 +1,8 @@
 ![](banner.png)
 
+![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/total)
+![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/v11.2/total)
+
 ## Introduction
 Welcome to the <strong>beta</strong> development channel of SmartPack-Kernel Manager, a heavily modified version of Kernel Adiutor originally developed by Willi Ye aka Grarak. All the credits go to the original developer. This branch holds the latest changes added to SmartPack-Kernel Manager. The beta builds are exclusively published on the GitHub release page (not on PlayStore). The contributors are requested to send pull requests only to this channel.<br>
 <br><strong>Warning</strong>: Be aware that the beta builds contains experimental features. Please expect some bugs.
@@ -7,7 +10,7 @@ Welcome to the <strong>beta</strong> development channel of SmartPack-Kernel Man
 ## Download
 [<img src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
      alt=""
-     height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v11.1/com.smartpack.kernelmanager-v11.1-release.apk)
+     height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v11.2/com.smartpack.kernelmanager-v11.2-release.apk)
 
 ## Features
 * Almost all the features available in Kernel Adiutor.
