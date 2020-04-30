@@ -97,7 +97,7 @@ public class ApplyOnBootService extends Service {
                     && !ScriptManager.list().isEmpty()) {
                 for (final String script : ScriptManager.list()) {
                     if (Utils.getExtension(script).equals("sh")) {
-                        RootFile file = new RootFile(script);
+                        RootFile file = new RootFile(ScriptManager.scriptFile() + "/" + script);
                         file.execute();
                     }
                 }
