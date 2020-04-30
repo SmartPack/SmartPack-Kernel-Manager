@@ -1,5 +1,10 @@
 ![](banner.png)
 
+![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/total)
+![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/v11.0/total)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/SmartPack/SmartPack-Kernel-Manager)
+![GitHub issues](https://img.shields.io/github/issues/SmartPack/SmartPack-Kernel-Manager)
+
 ## Introduction
 Welcome to the <strong>stable</strong> development channel of SmartPack-Kernel Manager, a heavily modified version of Kernel Adiutor originally developed by Willi Ye aka Grarak. All the credits go to the original developer.<br>
 <br><strong>Please Note</strong>: The contributors are requested to send pull requests only to the [beta development](https://github.com/SmartPack/SmartPack-Kernel-Manager/tree/beta) branch (not to this stable branch).
