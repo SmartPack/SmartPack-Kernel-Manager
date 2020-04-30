@@ -44,6 +44,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.FileProvider;
@@ -68,6 +69,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.lang.ref.WeakReference;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
@@ -698,7 +700,14 @@ public class Utils {
         return android.webkit.MimeTypeMap.getFileExtensionFromUrl(string);
     }
 
-    public static void setCopyRightText(Context context) {
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static void setCopyRightText(WeakReference<Activity> activityRef) {
+        if (activityRef.get().checkCallingOrSelfPermission(android.Manifest.permission
+                .WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            activityRef.get().requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            Utils.toast(R.string.permission_denied_write_storage, activityRef.get());
+            return;
+        }
         ViewUtils.dialogEditText(existFile(getInternalDataStorage() + "/copyright") ?
                         readFile(getInternalDataStorage() + "/copyright") : null,
                 (dialogInterface, i) -> {
@@ -706,12 +715,12 @@ public class Utils {
                     if (text.equals(readFile(getInternalDataStorage() + "/copyright"))) return;
                     if (text.isEmpty()) {
                         delete(getInternalDataStorage() + "/copyright");
-                        toast(context.getString(R.string.copyright_default, context.getString(R.string.copyright)), context);
+                        toast(activityRef.get().getString(R.string.copyright_default, activityRef.get().getString(R.string.copyright)), activityRef.get());
                         return;
                     }
                     create(text, getInternalDataStorage() + "/copyright");
-                    toast(context.getString(R.string.copyright_message, text), context);
-                }, context).setOnDismissListener(dialogInterface -> {
+                    toast(activityRef.get().getString(R.string.copyright_message, text), activityRef.get());
+                }, activityRef.get()).setOnDismissListener(dialogInterface -> {
         }).show();
     }
 

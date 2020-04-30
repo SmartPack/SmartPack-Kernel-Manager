@@ -275,7 +275,9 @@ public class NavigationActivity extends BaseActivity
             copyrightText.setText(R.string.copyright);
         }
         copyrightText.setOnLongClickListener(item -> {
-            Utils.setCopyRightText(this);
+            if (Build.VERSION.SDK_INT >= 23) {
+                Utils.setCopyRightText(new WeakReference<>(this));
+            }
             return false;
         });
 
