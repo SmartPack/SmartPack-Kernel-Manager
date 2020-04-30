@@ -382,9 +382,9 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 return;
             }
             SmartPack.prepareFolder(logFolder);
-            new Execute().execute("logcat -d > " + logFolder + "/logcat");
-            new Execute().execute("logcat  -b radio -v time -d > " + logFolder + "/radio");
-            new Execute().execute("logcat -b events -v time -d > " + logFolder + "/events");
+            new Execute().execute("logcat -d > " + logFolder + "/logcat-" + Utils.getTimeStamp());
+            new Execute().execute("logcat  -b radio -v time -d > " + logFolder + "/radio-" + Utils.getTimeStamp());
+            new Execute().execute("logcat -b events -v time -d > " + logFolder + "/events-" + Utils.getTimeStamp());
         });
         items.add(logcat);
 
@@ -398,7 +398,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     return;
                 }
                 SmartPack.prepareFolder(logFolder);
-                new Execute().execute("cat /proc/last_kmsg > " + logFolder + "/last_kmsg");
+                new Execute().execute("cat /proc/last_kmsg > " + logFolder + "/last_kmsg-" + Utils.getTimeStamp());
             });
             items.add(lastkmsg);
         }
@@ -412,7 +412,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 return;
             }
             SmartPack.prepareFolder(logFolder);
-            new Execute().execute("dmesg > " + logFolder + "/dmesg");
+            new Execute().execute("dmesg > " + logFolder + "/dmesg-" + Utils.getTimeStamp());
         });
         items.add(dmesg);
 
@@ -426,7 +426,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     return;
                 }
                 SmartPack.prepareFolder(logFolder);
-                new Execute().execute("cat /sys/fs/pstore/dmesg-ramoops* > " + logFolder + "/dmesg-ramoops");
+                new Execute().execute("cat /sys/fs/pstore/dmesg-ramoops* > " + logFolder + "/dmesg-ramoops-" + Utils.getTimeStamp());
             });
             items.add(dmesgRamoops);
         }
@@ -441,7 +441,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     return;
                 }
                 SmartPack.prepareFolder(logFolder);
-                new Execute().execute("cat /sys/fs/pstore/console-ramoops* > " + logFolder + "/console-ramoops");
+                new Execute().execute("cat /sys/fs/pstore/console-ramoops* > " + logFolder + "/console-ramoops-" + Utils.getTimeStamp());
             });
             items.add(ramoops);
         }
