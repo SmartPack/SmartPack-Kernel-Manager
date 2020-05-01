@@ -190,7 +190,8 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                     menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.execute));
                     menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.edit));
                     menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.details));
-                    menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.apply_on_boot));
+                    menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.apply_on_boot))
+                            .setCheckable(true).setChecked(onBootScripts.contains(script));
                     menu.add(Menu.NONE, 4, Menu.NONE, getString(R.string.share));
                     menu.add(Menu.NONE, 5, Menu.NONE, getString(R.string.delete));
                     popupMenu.setOnMenuItemClickListener(item -> {
