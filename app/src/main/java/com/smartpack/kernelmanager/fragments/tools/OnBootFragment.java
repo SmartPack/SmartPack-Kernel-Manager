@@ -38,7 +38,9 @@ import com.smartpack.kernelmanager.views.recyclerview.TitleView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by willi on 04.08.16.
@@ -206,10 +208,11 @@ public class OnBootFragment extends RecyclerViewFragment {
             items.addAll(profiles);
         }
 
-        if (Prefs.getBoolean("scripts_onboot", false, getActivity())
-                && !ScriptManager.list().isEmpty()) {
+        if (!ScriptManager.list().isEmpty()) {
+            boolean script_onboot = Prefs.getBoolean("scripts_onboot", false, getActivity());
+            final Set<String> onBootScripts = Prefs.getStringSet("on_boot_scripts", new HashSet<>(), getActivity());
             for (final String script : ScriptManager.list()) {
-                if (Utils.getExtension(script).equals("sh")) {
+                if (script_onboot && Utils.getExtension(script).equals("sh")) {
                     DescriptionView scriptItems = new DescriptionView();
                     scriptItems.setSummary(getString(R.string.script_manger) + ": " + script);
                     scriptItems.setOnItemClickListener(item -> {
@@ -220,6 +223,21 @@ public class OnBootFragment extends RecyclerViewFragment {
                                     if (ScriptManager.list().isEmpty()) {
                                         Prefs.saveBoolean("scripts_onboot", false, getActivity());
                                     }
+                                    reload();
+                                }, dialogInterface -> mDeleteDialog = null, getActivity());
+                        mDeleteDialog.show();
+                    });
+
+                    items.add(scriptItems);
+                } else if (Prefs.getStringSet("on_boot_scripts", new HashSet<>(), getActivity()).contains(script)
+                        && Utils.getExtension(script).equals("sh")) {
+                    DescriptionView scriptItems = new DescriptionView();
+                    scriptItems.setSummary(getString(R.string.script_manger) + ": " + script);
+                    scriptItems.setOnItemClickListener(item -> {
+                        mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.delete_question, script),
+                                (dialogInterface, i) -> {
+                                }, (dialogInterface, i) -> {
+                                    onBootScripts.remove(script);
                                     reload();
                                 }, dialogInterface -> mDeleteDialog = null, getActivity());
                         mDeleteDialog.show();
