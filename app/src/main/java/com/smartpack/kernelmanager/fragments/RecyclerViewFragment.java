@@ -592,6 +592,8 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     }
 
     protected void hideProgress() {
+        if (!isAdded()) return;
+
         mProgress.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
         mViewPagerParent.setVisibility(View.VISIBLE);

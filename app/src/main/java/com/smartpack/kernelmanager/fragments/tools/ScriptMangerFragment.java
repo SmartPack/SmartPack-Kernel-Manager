@@ -49,8 +49,10 @@ import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 18, 2019
@@ -153,11 +155,14 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                         @Override
                         protected void onPostExecute(List<RecyclerViewItem> recyclerViewItems) {
                             super.onPostExecute(recyclerViewItems);
-                            for (RecyclerViewItem item : recyclerViewItems) {
-                                addItem(item);
+                            if (isAdded()) {
+                                clearItems();
+                                for (RecyclerViewItem item : recyclerViewItems) {
+                                    addItem(item);
+                                }
+                                hideProgress();
+                                mLoader = null;
                             }
-                            hideProgress();
-                            mLoader = null;
                         }
                     };
                     mLoader.execute();
@@ -167,6 +172,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     }
 
     private void load(List<RecyclerViewItem> items) {
+        final Set<String> onBootScripts = Prefs.getStringSet("on_boot_scripts", new HashSet<>(), requireContext());
         for (final String script : ScriptManager.list()) {
             if (Utils.getExtension(script).equals("sh")) {
                 DescriptionView descriptionView = new DescriptionView();
@@ -174,13 +180,19 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 descriptionView.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
                 descriptionView.setTitle(script);
                 descriptionView.setSummary(ScriptManager.scriptFile() + "/" + script);
+
+                if (onBootScripts.contains(script)) {
+                    descriptionView.setIndicator(getResources().getDrawable(R.drawable.ic_flash));
+                }
+
                 descriptionView.setOnMenuListener((descriptionView1, popupMenu) -> {
                     Menu menu = popupMenu.getMenu();
                     menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.execute));
                     menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.edit));
                     menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.details));
-                    menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.share));
-                    menu.add(Menu.NONE, 4, Menu.NONE, getString(R.string.delete));
+                    menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.apply_on_boot));
+                    menu.add(Menu.NONE, 4, Menu.NONE, getString(R.string.share));
+                    menu.add(Menu.NONE, 5, Menu.NONE, getString(R.string.delete));
                     popupMenu.setOnMenuItemClickListener(item -> {
                         switch (item.getItemId()) {
                             case 0:
@@ -202,10 +214,19 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                                 showForeground();
                                 break;
                             case 3:
+                                if (onBootScripts.contains(script)) {
+                                    onBootScripts.remove(script);
+                                } else {
+                                    onBootScripts.add(script);
+                                }
+                                Prefs.saveStringSet("on_boot_scripts", onBootScripts, requireContext());
+                                reload();
+                                break;
+                            case 4:
                                 Utils.shareItem(getActivity(), script, ScriptManager.scriptFile() + "/" + script, getString(R.string.share_script) + "\n\n" +
                                         getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME));
                                 break;
-                            case 4:
+                            case 5:
                                 mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
                                         (dialogInterface, i) -> {
                                         }, (dialogInterface, i) -> {

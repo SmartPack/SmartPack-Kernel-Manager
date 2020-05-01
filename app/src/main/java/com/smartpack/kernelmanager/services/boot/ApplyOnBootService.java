@@ -46,6 +46,8 @@ import com.smartpack.kernelmanager.utils.kernel.wakelock.Wakelocks;
 
 import org.frap129.spectrum.Spectrum;
 
+import java.util.HashSet;
+
 /**
  * Created by willi on 03.05.16.
  */
@@ -93,12 +95,23 @@ public class ApplyOnBootService extends Service {
             if (Wakelocks.boefflawlsupported()) {
                 Wakelocks.CopyWakelockBlockerDefault();
             }
+
+            // Apply everything regardless
             if (Prefs.getBoolean("scripts_onboot", false, this)
                     && !ScriptManager.list().isEmpty()) {
                 for (final String script : ScriptManager.list()) {
                     if (Utils.getExtension(script).equals("sh")) {
                         RootFile file = new RootFile(ScriptManager.scriptFile() + "/" + script);
                         file.execute();
+                    }
+                }
+            } else {
+                for (final String script : ScriptManager.list()) {
+                    if (Utils.getExtension(script).equals("sh")) {
+                        if (Prefs.getStringSet("on_boot_scripts", new HashSet<>(), this).contains(script)) {
+                            RootFile file = new RootFile(ScriptManager.scriptFile() + "/" + script);
+                            file.execute();
+                        }
                     }
                 }
             }
