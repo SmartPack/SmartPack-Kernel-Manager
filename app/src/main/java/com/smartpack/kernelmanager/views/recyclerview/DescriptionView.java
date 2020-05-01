@@ -43,10 +43,12 @@ public class DescriptionView extends RecyclerViewItem {
     private View mRootView;
     private AppCompatImageButton mMenuIconView;
     private AppCompatImageView mImageView;
+    private AppCompatImageView mIndicatorView;
     private AppCompatTextView mTitleView;
     private AppCompatTextView mSummaryView;
 
     private Drawable mImage;
+    private Drawable mIndicator;
     private Drawable mMenuIcon;
     private CharSequence mTitle;
     private CharSequence mSummary;
@@ -66,6 +68,7 @@ public class DescriptionView extends RecyclerViewItem {
     public void onCreateView(View view) {
         mRootView = view;
         mImageView = view.findViewById(R.id.image);
+        mIndicatorView = view.findViewById(R.id.indicator);
 
         mTitleView = view.findViewById(R.id.title);
         if (mTitleView != null) {
@@ -99,6 +102,11 @@ public class DescriptionView extends RecyclerViewItem {
 
     public void setDrawable(Drawable drawable) {
         mImage = drawable;
+        refresh();
+    }
+
+    public void setIndicator(Drawable indicatorDrawable) {
+        mIndicator = indicatorDrawable;
         refresh();
     }
 
@@ -153,6 +161,10 @@ public class DescriptionView extends RecyclerViewItem {
         if (mImageView != null && mImage != null) {
             mImageView.setImageDrawable(mImage);
             mImageView.setVisibility(View.VISIBLE);
+        }
+        if (mIndicatorView != null && mIndicator != null) {
+            mIndicatorView.setImageDrawable(mIndicator);
+            mIndicatorView.setVisibility(View.VISIBLE);
         }
         if (mTitleView != null) {
             if (mTitle != null) {

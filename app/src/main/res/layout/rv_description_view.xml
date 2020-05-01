@@ -8,7 +8,8 @@
     android:foreground="?attr/selectableItemBackground"
     android:background="?attr/selectableItemBackground"
     android:padding="10dp"
-    android:focusable="true">
+    android:focusable="true"
+    android:animateLayoutChanges="true">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image"

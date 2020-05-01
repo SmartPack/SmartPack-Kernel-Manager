@@ -22,6 +22,8 @@ package com.smartpack.kernelmanager.utils;
 import android.content.Context;
 import android.preference.PreferenceManager;
 
+import java.util.Set;
+
 /**
  * Created by willi on 01.01.16.
  */
@@ -55,4 +57,11 @@ public class Prefs {
         PreferenceManager.getDefaultSharedPreferences(context).edit().putString(name, value).apply();
     }
 
+    public static void saveStringSet(String name, Set<String> value, Context context) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(name, value).apply();
+    }
+
+    public static Set<String> getStringSet(String name, Set<String> defaults, Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getStringSet(name, defaults);
+    }
 }
