@@ -1,5 +1,9 @@
 # Change-logs
 
+## 109. May 02, 2020
+*Release-tag: beta_v11.3*<br>
+Added option to set individual scripts on boot (Credits: @Lennoard). Miscellaneous changes.
+
 ## 108. May 01, 2020
 *Release-tag: beta_v11.2*<br>
 Fixed script on-boot not working. Fixed Tasker related issues (Credits: @Lennoard). Added time stamp to exported log (logcat, dmesg, etc.) files. Miscellaneous changes.
