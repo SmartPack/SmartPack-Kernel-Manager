@@ -91,6 +91,14 @@
 
     <PreferenceCategory
         android:key="sections"
-        android:title="@string/sections" />
+        android:title="@string/sections">
+
+        <ListPreference
+            android:key="default_section"
+            android:summary="@string/default_section_summary"
+            android:title="@string/default_section"
+            android:defaultValue="OverallFragment"/>
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

@@ -42,6 +42,7 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.core.content.ContextCompat;
 import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 import androidx.fragment.app.Fragment;
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragmentCompat;
@@ -88,6 +89,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private static final String KEY_DELETE_PASSWORD = "delete_password";
     private static final String KEY_FINGERPRINT = "fingerprint";
     private static final String KEY_SECTIONS = "sections";
+    private static final String KEY_DEFAULT_SECTIONS = "default_section";
 
     private Preference mFingerprint;
 
@@ -172,6 +174,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
 
         NavigationActivity activity = (NavigationActivity) requireActivity();
         PreferenceCategory sectionsCategory = (PreferenceCategory) findPreference(KEY_SECTIONS);
+
+        ListPreference defaultSection = findPreference(KEY_DEFAULT_SECTIONS);
+        List<CharSequence> defaultSections = new ArrayList<>();
+        List<CharSequence> defaultSectionsValues = new ArrayList<>();
+
         for (NavigationActivity.NavigationFragment navigationFragment : activity.getFragments()) {
             Class<? extends Fragment> fragmentClass = navigationFragment.mFragmentClass;
             int id = navigationFragment.mId;
@@ -187,8 +194,14 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 switchPreference.setPersistent(false);
                 assert sectionsCategory != null;
                 sectionsCategory.addPreference(switchPreference);
+
+                defaultSections.add(getString(id));
+                defaultSectionsValues.add(fragmentClass.getSimpleName());
             }
         }
+
+        defaultSection.setEntries(defaultSections.toArray(new CharSequence[defaultSections.size()]));
+        defaultSection.setEntryValues(defaultSectionsValues.toArray(new CharSequence[defaultSectionsValues.size()]));
     }
 
     @Override
