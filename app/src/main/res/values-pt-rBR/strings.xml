@@ -980,6 +980,8 @@
     <string name="set_password_first">Defina uma senha primeiro</string>
     <string name="fingerprint_summary">Usar impressão digital para passar na verificação de segurança. Isso funcionará desde que você tenha impressões digitais registradas.</string>
     <string name="sections">Seções</string>
+    <string name="default_section">Seção padrão</string>
+    <string name="default_section_summary">A tela padrão a ser exibida ao abrir o aplicativo</string>
 
     <!-- About -->
     <string name="source_code">Código Fonte</string>
