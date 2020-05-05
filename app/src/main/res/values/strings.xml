@@ -1063,11 +1063,11 @@
     <string name="fahrenheit_summary">Use fahrenheit to measure temperature</string>
     <string name="force_english">Force displaying english language</string>
     <string name="user_interface">User interface</string>
-    <string name="dark_theme">Dark theme</string>
-    <string name="material_icon">Material icon</string>
-    <string name="banner_resizer">Banner resizer</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="material_icon">Material Icon</string>
+    <string name="banner_resizer">Banner Resizer</string>
     <string name="banner_resizer_message">Phone screen orientation should be \'Portrait\'!</string>
-    <string name="hide_banner">Hide banner</string>
+    <string name="hide_banner">Hide Banner</string>
     <string name="force_cards_summary">Use cards for items if possible</string>
     <string name="accent_color">Accent Color</string>
     <string name="section_icons">Section Icons</string>
@@ -1113,8 +1113,8 @@
     <string name="set_password_first">Set a password first</string>
     <string name="fingerprint_summary">Use fingerprint to pass security check. This will work as long you have fingerprints registered.</string>
     <string name="sections">Sections</string>
-    <string name="default_section">Default section</string>
-    <string name="default_section_summary">The default tab to be displayed when opening the app</string>
+    <string name="default_section">Default Section</string>
+    <string name="default_section_summary">The default tab to be displayed when opening the app!</string>
 
     <!-- About -->
     <string name="about_me" translatable="false">SmartPack-Kernel Manager is a heavily modified version of \'Kernel Adiutor\', which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.</string>

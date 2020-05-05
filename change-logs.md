@@ -1,5 +1,9 @@
 # Change-logs
 
+## 110. May 05, 2020
+*Release-tag: beta_v11.4*<br>
+Added option to select default app page (Credits: @Lennoard). Updated icon colors on Hide Banner mode. Miscellaneous changes.
+
 ## 109. May 02, 2020
 *Release-tag: beta_v11.3*<br>
 Added option to set individual scripts on boot (Credits: @Lennoard). Miscellaneous changes.
