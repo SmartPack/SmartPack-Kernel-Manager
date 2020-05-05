@@ -1116,6 +1116,8 @@
     <string name="set_password_first">Set a password first</string>
     <string name="fingerprint_summary">Use fingerprint to pass security check. This will work as long you have fingerprints registered.</string>
     <string name="sections">Sections</string>
+    <string name="default_section">Default section</string>
+    <string name="default_section_summary">The default tab to be displayed when opening the app</string>
 
     <!-- About -->
     <string name="about_me" translatable="false">SmartPack-Kernel Manager is a heavily modified version of \'Kernel Adiutor\', which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.</string>
