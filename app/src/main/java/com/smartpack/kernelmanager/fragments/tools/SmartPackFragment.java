@@ -85,7 +85,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
     @Override
     protected Drawable getTopFabDrawable() {
-        return getResources().getDrawable(R.drawable.ic_flash);
+        return ViewUtils.getWhiteColoredIcon(R.drawable.ic_flash, requireActivity());
     }
 
     @Override
