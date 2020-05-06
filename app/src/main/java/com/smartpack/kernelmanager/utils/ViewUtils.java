@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -104,6 +105,12 @@ public class ViewUtils {
     public static Drawable getColoredIcon(int icon, Context context) {
         Drawable drawable = context.getResources().getDrawable(icon);
         drawable.setTint(getThemeAccentColor(context));
+        return drawable;
+    }
+
+    public static Drawable getWhiteColoredIcon(int icon, Context context) {
+        Drawable drawable = context.getResources().getDrawable(icon);
+        drawable.setTint(Color.WHITE);
         return drawable;
     }
 

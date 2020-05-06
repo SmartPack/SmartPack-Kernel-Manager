@@ -25,13 +25,10 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.text.InputType;
 import android.widget.TimePicker;
-
-import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
@@ -39,16 +36,15 @@ import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
+import com.smartpack.kernelmanager.utils.kernel.screen.KLapse;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.GenericSelectView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
-import com.smartpack.kernelmanager.views.recyclerview.SelectView;
 import com.smartpack.kernelmanager.views.recyclerview.SeekBarView;
+import com.smartpack.kernelmanager.views.recyclerview.SelectView;
 import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
-
-import com.smartpack.kernelmanager.utils.kernel.screen.KLapse;
 
 import java.util.List;
 
@@ -74,9 +70,7 @@ public class KLapseFragment extends RecyclerViewFragment {
 
     @Override
     protected Drawable getTopFabDrawable() {
-        Drawable drawable = getResources().getDrawable(R.drawable.ic_add);
-        DrawableCompat.setTint(drawable, Color.WHITE);
-        return drawable;
+        return ViewUtils.getWhiteColoredIcon(R.drawable.ic_add, requireActivity());
     }
 
     @Override
