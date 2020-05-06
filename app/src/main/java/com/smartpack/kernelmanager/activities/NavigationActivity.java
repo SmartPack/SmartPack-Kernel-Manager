@@ -303,7 +303,7 @@ public class NavigationActivity extends BaseActivity
                 }
             }
             getIntent().removeExtra("selection");
-        } else {
+        } else if (savedInstanceState == null) {
             String defaultFragmentName = Prefs.getString("default_section", "OverallFragment", this);
             for (Map.Entry<Integer, Class<? extends Fragment>> entry : mActualFragments.entrySet()) {
                 Class<? extends Fragment> fragmentClass = entry.getValue();

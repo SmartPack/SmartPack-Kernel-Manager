@@ -200,8 +200,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             }
         }
 
-        defaultSection.setEntries(defaultSections.toArray(new CharSequence[defaultSections.size()]));
-        defaultSection.setEntryValues(defaultSectionsValues.toArray(new CharSequence[defaultSectionsValues.size()]));
+        assert defaultSection != null;
+        defaultSection.setEntries(defaultSections.toArray(new CharSequence[0]));
+        defaultSection.setEntryValues(defaultSectionsValues.toArray(new CharSequence[0]));
     }
 
     @Override
