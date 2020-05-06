@@ -51,7 +51,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-7791710838910455~4931988555" />
+            android:value="ca-app-pub-2781194772510522~3971047091" />
 
         <activity
             android:name=".activities.StartActivityMaterial" android:label="@string/smartpack"

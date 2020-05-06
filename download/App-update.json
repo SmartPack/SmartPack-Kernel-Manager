@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - Added Brand New Flashing view.\n - Migrated to libsu (Credits: @Lennoard).\n - Largely improved manual flashing (includes fix for syntax error).\n - Updated to display stderr for Run Shell Command & apply Script options.\n - Updated main headings and vector graphics (overall page and FAB's) to use accent colors (Credits: @Lennoard).\n - Added GPU System Lib version to Device page.\n - Updated nav header background to follow app theme (Credits: @Lennoard).\n - Added few more virtual memory tunables.\n - Added Amharic translations (Credits: @Mikesew1320) and Korean translations (Credits: @SmgKhOaRn).\n - Added links to other SmartPack apps (if not installed) on related pages.\n - Updated Portuguese (Brazilian) translations (Credits: @Lennoard).\n - Miscellaneous changes.",
-  "latestVersion": "11.0",
-  "latestVersionCode": 110
+  "releaseNotes": "Change-logs\n - Largely improved root handling.\n - Added option to select default app page (Credits: @Lennoard).\n - Updated icon colors on Hide Banner mode.\n - Added option to set individual scripts on boot (Credits: @Lennoard).\n - Added time stamp to exported log (logcat, dmesg, etc.) files.\n - Show flashing failed message if flashing output is empty.\n - Updated Portuguese (Credits: @Lennoard) and Korean translations (Credits: @SmgKhOaRn).",
+  "latestVersion": "11.5",
+  "latestVersionCode": 115
 }

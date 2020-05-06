@@ -1149,9 +1149,6 @@
     <string name="busybox_installer">Intalador do Busybox</string>
     <string name="flashing_finished">O flash terminou</string>
     <string name="flashing_failed">O flash falhou</string>
-    <string name="export_all_warning">Alguns problemas detectados! Tente novamente depois de recarregar esta página!</string>
-    <string name="export_all_message">A lista de comandos inteira foi exportada como um shell script em \'%s\'!</string>
-    <string name="export_all">Exportra toda a lista de comandos para um shell script!</string>
     <string name="scripts_manager_message">Gostaria de ter um aplicativo independente para gerenciar seus scripts? Clique aqui!</string>
     <string name="scc_messgae">Gostaria de ter um aplicativo independente para controlar o KCAL / K-lapse? Clique aqui!</string>
     <string name="gpu_lib">Biblioteca GPU do sistema</string>

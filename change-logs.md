@@ -1,5 +1,9 @@
 # Change-logs
 
+## 104. May 06, 2020
+*Release-tag: v11.5*<br>
+Largely improved Root handling. Added option to select default app page (Credits: @Lennoard). Updated icon colors on Hide Banner mode. Added option to set individual scripts on boot (Credits: @Lennoard). Added time stamp to exported log (logcat, dmesg, etc.) files. Show flashing failed message if flashing output is empty. Updated Portuguese (Credits: @Lennoard) and Korean translations (Credits: @SmgKhOaRn).
+
 ## 103. April 26, 2020
 *Release-tag: v11.0*<br>
 Added Brand New Flashing view. Migrated to libsu (Credits: @Lennoard). Largely improved manual flashing (includes fix for syntax error). Updated to display stderr for Run Shell Command & apply Script options. Updated main headings and vector graphics (overall page and FAB's) to use accent colors (Credits: @Lennoard). Added GPU System Lib version to Device page. Updated nav header background to follow app theme (Credits: @Lennoard). Added few more virtual memory tunables. Added Amharic translations (Credits: @Mikesew1320) and Korean translations (Credits: @SmgKhOaRn). Added links to other SmartPack apps (if not installed) on related pages. Updated Portuguese (Brazilian) translations (Credits: @Lennoard). Miscellaneous changes.
