@@ -130,7 +130,8 @@ public class GPUFragment extends RecyclerViewFragment {
             minFreq.setSummary(getString(R.string.gpu_min_freq_summary));
             minFreq.setItems(mGPUFreq.getAdjustedFreqs(getActivity()));
             minFreq.setItem((mGPUFreq.getMinFreq() / mGPUFreq.getMinFreqOffset()) + getString(R.string.mhz));
-            minFreq.setOnItemSelected((selectView, position, item) -> mGPUFreq.setMinFreq(mGPUFreq.getAvailableFreqs().get(position), getActivity()));
+            minFreq.setOnItemSelected((selectView, position, item) -> mGPUFreq.setMinFreq(mGPUFreq.hasGPUMinClockMHZ() ?
+                    mGPUFreq.getAvailableFreqs().get(position)/1000000 : mGPUFreq.getAvailableFreqs().get(position), getActivity()));
 
             gpuCard.addItem(minFreq);
         }
