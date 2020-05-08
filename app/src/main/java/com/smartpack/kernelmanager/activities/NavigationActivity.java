@@ -32,6 +32,7 @@ import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -43,8 +44,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
 import com.google.android.material.navigation.NavigationView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
@@ -283,9 +284,10 @@ public class NavigationActivity extends BaseActivity
 
         // Initialize Banner Ad
         if (Prefs.getBoolean("allow_ads", true, this)) {
-            AdView mAdView = findViewById(R.id.adView);
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
+            AdView mAdView = new AdView(this, "2929734570452699_2929887100437446", AdSize.BANNER_HEIGHT_50);
+            LinearLayout adContainer = findViewById(R.id.banner_container);
+            adContainer.addView(mAdView);
+            mAdView.loadAd();
         }
 
         if (savedInstanceState != null) {

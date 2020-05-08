@@ -29,7 +29,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.ads.MobileAds;
+import com.facebook.ads.AudienceNetworkAds;
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.database.tools.profiles.Profiles;
@@ -53,9 +53,8 @@ import com.smartpack.kernelmanager.utils.kernel.screen.Screen;
 import com.smartpack.kernelmanager.utils.kernel.sound.Sound;
 import com.smartpack.kernelmanager.utils.kernel.thermal.Thermal;
 import com.smartpack.kernelmanager.utils.kernel.wake.Wake;
-import com.smartpack.kernelmanager.utils.root.RootUtils;
-
 import com.smartpack.kernelmanager.utils.kernel.wakelock.Wakelocks;
+import com.smartpack.kernelmanager.utils.root.RootUtils;
 import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
 
 import org.frap129.spectrum.Spectrum;
@@ -74,6 +73,11 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Initialize FaceBook Ads
+        if (Prefs.getBoolean("allow_ads", true, this)) {
+            AudienceNetworkAds.initialize(this);
+        }
 
         /*
          * Initialize Spectrum Profiles & Wakelock Blocker
@@ -257,11 +261,6 @@ public class MainActivity extends BaseActivity {
                 activity.finish();
 
                 return;
-            }
-
-            // Initialize Google Ads
-            if (Prefs.getBoolean("allow_ads", true, activity)) {
-                MobileAds.initialize(activity, "ca-app-pub-2781194772510522~3971047091");
             }
 
             activity.launch();
