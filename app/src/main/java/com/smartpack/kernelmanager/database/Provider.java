@@ -86,6 +86,20 @@ public abstract class Provider {
         mDatabaseItems.put(items);
     }
 
+    public void swap(int i, int j) {
+        try {
+            JSONObject iObject = mDatabaseItems.getJSONObject(i);
+            JSONObject jObject = mDatabaseItems.getJSONObject(j);
+
+            mDatabaseItems.put(i, jObject);
+            mDatabaseItems.put(j, iObject);
+        } catch (JSONException e) {
+            // F's in the chat bois
+            //TODO: maybe delegate to caller
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Read all sets
      *

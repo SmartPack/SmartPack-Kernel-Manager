@@ -38,21 +38,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.ViewCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-import androidx.viewpager.widget.ViewPager;
-
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.smartpack.kernelmanager.R;
@@ -73,6 +58,20 @@ import java.util.List;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.viewpager.widget.ViewPager;
 import io.codetail.animation.SupportAnimator;
 import io.codetail.animation.ViewAnimationUtils;
 
@@ -788,19 +787,16 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         }
     }
 
-    private Runnable mScheduler = new Runnable() {
-        @Override
-        public void run() {
-            refreshThread();
+    private Runnable mScheduler = () -> {
+        refreshThread();
 
-            Activity activity = getActivity();
-            if (activity == null) return;
-            activity.runOnUiThread(() -> {
-                if (getActivity() != null) {
-                    refresh();
-                }
-            });
-        }
+        Activity activity = getActivity();
+        if (activity == null) return;
+        activity.runOnUiThread(() -> {
+            if (getActivity() != null) {
+                refresh();
+            }
+        });
     };
 
     protected void refreshThread() {
@@ -832,11 +828,11 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         return mHandler;
     }
 
-    public void setDragAndDropEnabled(boolean enableDragAndDrop) {
-        mItemCallback.setDragEnabled(enableDragAndDrop);
+    protected void enableDragAndDrop() {
+        mItemCallback.setDragEnabled(true);
     }
 
-    public void setSwipeToDismissEnabled(boolean enableSwipeToDismiss) {
-        mItemCallback.setSwipeEnabled(enableSwipeToDismiss);
+    protected void enableSwipeToDismiss() {
+        mItemCallback.setSwipeEnabled(true);
     }
 }

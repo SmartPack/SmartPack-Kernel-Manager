@@ -23,8 +23,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Prefs;
 
@@ -34,6 +32,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by willi on 17.04.16.
@@ -108,23 +108,37 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return new RecyclerView.ViewHolder(view) {};
     }
 
+    /**
+     * Not quite sure why but returning 1 prevents
+     * "halting" the drag event
+     * @see <a href="https://stackoverflow.com/questions/38666255/itemtouchhelper-the-drop-is-forced-after-the-first-jumped-line">here</a>
+     *
+     * "Not returning {@param position}". I stand corrected.
+     * So this is pretty much a TODO
+     */
     @Override
     public int getItemViewType(int position) {
-        /*
-        not quite sure why but returning 1 prevents
-        "halting" the drag event
-        @see https://stackoverflow.com/questions/38666255/itemtouchhelper-the-drop-is-forced-after-the-first-jumped-line
-        */
-        return 1;
+        if (containsDraggableView()) {
+            return 1;
+        }
+        return position;
     }
 
     @Override
     public void onItemDismiss(int position) {
         try {
-            mViews.remove(mItems.get(position));
+            RecyclerViewItem item = mItems.get(position);
+
+            mViews.remove(item);
             mItems.remove(position);
             notifyItemRemoved(position);
+
+            if (item instanceof SwipeableDescriptionView) {
+                ((SwipeableDescriptionView) item).getOnItemSwipedListener()
+                        .onItemSwiped(item, position);
+            }
         } catch (Exception e) {
+            e.printStackTrace();
             notifyDataSetChanged();
         }
     }
@@ -141,11 +155,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
         }
         notifyItemMoved(fromPosition, toPosition);
+
+        RecyclerViewItem item = mItems.get(toPosition);
+
+        if (item instanceof SwipeableDescriptionView) {
+            ((SwipeableDescriptionView) item).getOnItemDragListener()
+                    .onItemDrag(item, fromPosition, toPosition);
+        }
         return true;
     }
 
     public View getFirstItem() {
         return mFirstItem;
+    }
+
+    private boolean containsDraggableView() {
+        for (RecyclerViewItem item : mItems) {
+            if (item instanceof SwipeableDescriptionView) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

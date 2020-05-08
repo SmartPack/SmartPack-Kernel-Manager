@@ -30,11 +30,11 @@ import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
+import com.smartpack.kernelmanager.utils.tools.ScriptManager;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
-import com.smartpack.kernelmanager.views.recyclerview.TitleView;
-import com.smartpack.kernelmanager.utils.tools.ScriptManager;
+import com.smartpack.kernelmanager.views.recyclerview.SwipeableDescriptionView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,6 +59,9 @@ public class OnBootFragment extends RecyclerViewFragment {
     @Override
     protected void init() {
         super.init();
+
+        enableSwipeToDismiss();
+        enableDragAndDrop();
 
         addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.welcome),
                 getString(R.string.on_boot_welcome_summary)));
@@ -121,8 +124,6 @@ public class OnBootFragment extends RecyclerViewFragment {
 
     private void load(List<RecyclerViewItem> items) {
         List<RecyclerViewItem> applyOnBoot = new ArrayList<>();
-        TitleView applyOnBootTitle = new TitleView();
-        applyOnBootTitle.setText(getString(R.string.apply_on_boot));
 
         List<Settings.SettingsItem> settings = mSettings.getAllSettings();
         HashMap<String, Boolean> applyOnBootEnabled = new HashMap<>();
@@ -140,10 +141,25 @@ public class OnBootFragment extends RecyclerViewFragment {
 
         for (int i = 0; i < applyOnBootItems.size(); i++) {
             final ApplyOnBootItem applyOnBootItem = applyOnBootItems.get(i);
-            DescriptionView applyOnBootView = new DescriptionView();
-            applyOnBootView.setSummary((i + 1) + ". " + applyOnBootItem.mCategory.replace("_onboot", "")
+            SwipeableDescriptionView applyOnBootView = new SwipeableDescriptionView();
+            applyOnBootView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_drag_handle, requireContext()));
+            applyOnBootView.setSummary(applyOnBootItem.mCategory.replace("_onboot", "")
                     + ": " + applyOnBootItem.mCommand);
 
+
+            applyOnBootView.setOnItemSwipedListener((item, position) -> {
+                mSettings.delete(position);
+                mSettings.commit();
+                //reload();
+            });
+
+            applyOnBootView.setOnItemDragListener((item, fromPosition, toPosition) -> {
+                mSettings.swap(fromPosition, toPosition);
+                mSettings.commit();
+                //reload();
+            });
+
+            // Maybe comment this out
             applyOnBootView.setOnItemClickListener(item -> {
                 mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.delete_question,
                         applyOnBootItem.mCommand),
@@ -160,17 +176,14 @@ public class OnBootFragment extends RecyclerViewFragment {
         }
 
         if (applyOnBoot.size() > 0) {
-            items.add(applyOnBootTitle);
             items.addAll(applyOnBoot);
         }
 
         List<RecyclerViewItem> profiles = new ArrayList<>();
-        TitleView profileTitle = new TitleView();
-        profileTitle.setText(getString(R.string.profile));
-
         for (final Profiles.ProfileItem profileItem : mProfiles.getAllProfiles()) {
             if (profileItem.isOnBootEnabled()) {
                 DescriptionView profileView = new DescriptionView();
+                profileView.setTitle("[" + getString(R.string.profile) + "]");
                 profileView.setSummary(profileItem.getName());
                 profileView.setOnItemClickListener(item -> {
                     mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.disable_question,
@@ -189,7 +202,6 @@ public class OnBootFragment extends RecyclerViewFragment {
         }
 
         if (profiles.size() > 0) {
-            items.add(profileTitle);
             items.addAll(profiles);
         }
 
@@ -198,9 +210,10 @@ public class OnBootFragment extends RecyclerViewFragment {
             final Set<String> onBootScripts = Prefs.getStringSet("on_boot_scripts", new HashSet<>(), getActivity());
             for (final String script : ScriptManager.list()) {
                 if (script_onboot && Utils.getExtension(script).equals("sh")) {
-                    DescriptionView scriptItems = new DescriptionView();
-                    scriptItems.setSummary(getString(R.string.script_manger) + ": " + script);
-                    scriptItems.setOnItemClickListener(item -> {
+                    DescriptionView scriptItem = new DescriptionView();
+                    scriptItem.setTitle("[Script]");
+                    scriptItem.setSummary(getString(R.string.script_manger) + ": " + script);
+                    scriptItem.setOnItemClickListener(item -> {
                         mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.remove_script_question, script),
                                 (dialogInterface, i) -> {
                                 }, (dialogInterface, i) -> {
@@ -213,12 +226,13 @@ public class OnBootFragment extends RecyclerViewFragment {
                         mDeleteDialog.show();
                     });
 
-                    items.add(scriptItems);
+                    items.add(scriptItem);
                 } else if (Prefs.getStringSet("on_boot_scripts", new HashSet<>(), getActivity()).contains(script)
                         && Utils.getExtension(script).equals("sh")) {
-                    DescriptionView scriptItems = new DescriptionView();
-                    scriptItems.setSummary(getString(R.string.script_manger) + ": " + script);
-                    scriptItems.setOnItemClickListener(item -> {
+                    DescriptionView scriptItem = new DescriptionView();
+                    scriptItem.setTitle("[Script]");
+                    scriptItem.setSummary(getString(R.string.script_manger) + ": " + script);
+                    scriptItem.setOnItemClickListener(item -> {
                         mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.delete_question, script),
                                 (dialogInterface, i) -> {
                                 }, (dialogInterface, i) -> {
@@ -228,7 +242,7 @@ public class OnBootFragment extends RecyclerViewFragment {
                         mDeleteDialog.show();
                     });
 
-                    items.add(scriptItems);
+                    items.add(scriptItem);
                 }
             }
         }

@@ -24,6 +24,7 @@ import android.graphics.drawable.Drawable;
 import android.text.method.MovementMethod;
 import android.view.View;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
