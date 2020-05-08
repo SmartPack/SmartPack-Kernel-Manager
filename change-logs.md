@@ -1,5 +1,9 @@
 # Change-logs
 
+## 111. May 08, 2020
+*Release-tag: beta_v11.6*<br>
+Make item list on OnBoot page swipe and draggable (Credits: @Lennoard). Updated GPU Min Freq path and offset for some Xiaomi devices (Credits: @elpaablo). Increased zRAM max limit to 4GB. Miscellaneous changes.
+
 ## 110. May 05, 2020
 *Release-tag: beta_v11.4*<br>
 Added option to select default app page (Credits: @Lennoard). Updated icon colors on Hide Banner mode. Miscellaneous changes.
