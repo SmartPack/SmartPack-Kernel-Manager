@@ -36,16 +36,13 @@
             android:textColor="?attr/colorAccent"
             android:background="@color/colorPrimary" />
 
-        <com.google.android.gms.ads.AdView
-            xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/banner_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:gravity="center_horizontal"
-            android:layout_gravity="bottom|center_horizontal"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-2781194772510522/3173325964">
-        </com.google.android.gms.ads.AdView>
+            android:layout_gravity="bottom|center_horizontal" />
     </FrameLayout>
 
     <com.google.android.material.navigation.NavigationView
