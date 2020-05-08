@@ -28,6 +28,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Prefs;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +38,7 @@ import java.util.Map;
 /**
  * Created by willi on 17.04.16.
  */
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ItemTouchHelperAdapter {
 
     public interface OnViewChangedListener {
         void viewChanged();
@@ -52,9 +55,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NotNull RecyclerView.ViewHolder holder, int position) {
         RecyclerViewItem item = mItems.get(position);
-        item.onCreateView(holder.itemView);
+        if (item != null) {
+            item.onCreateView(holder.itemView);
+        }
     }
 
     @Override
@@ -62,8 +67,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return mItems.size();
     }
 
+    @NotNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
 
         RecyclerViewItem item = mItems.get(viewType);
         View view;
@@ -99,13 +105,43 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         item.setOnViewChangeListener(mOnViewChangedListener);
         item.onCreateHolder(parent, view);
 
-        return new RecyclerView.ViewHolder(view) {
-        };
+        return new RecyclerView.ViewHolder(view) {};
     }
 
     @Override
     public int getItemViewType(int position) {
-        return position;
+        /*
+        not quite sure why but returning 1 prevents
+        "halting" the drag event
+        @see https://stackoverflow.com/questions/38666255/itemtouchhelper-the-drop-is-forced-after-the-first-jumped-line
+        */
+        return 1;
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+        try {
+            mViews.remove(mItems.get(position));
+            mItems.remove(position);
+            notifyItemRemoved(position);
+        } catch (Exception e) {
+            notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(mItems, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(mItems, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+        return true;
     }
 
     public View getFirstItem() {
