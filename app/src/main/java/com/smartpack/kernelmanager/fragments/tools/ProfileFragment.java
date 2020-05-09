@@ -245,6 +245,9 @@ public class ProfileFragment extends RecyclerViewFragment {
             final DescriptionView descriptionView = new DescriptionView();
             descriptionView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_file, requireContext()));
             descriptionView.setSummary(profileItems.get(i).getName());
+            if (mProfiles.getAllProfiles().get(position).isOnBootEnabled()) {
+                descriptionView.setIndicator(getResources().getDrawable(R.drawable.ic_flash));
+            }
             descriptionView.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
             descriptionView.setOnMenuListener((cardView1, popupMenu) -> {
                 Menu menu = popupMenu.getMenu();
@@ -263,7 +266,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                             if (mTaskerMode) {
                                 mSelectDialog = ViewUtils.dialogBuilder(getString(R.string.select_question,
                                         descriptionView.getSummary()), (dialogInterface, i12) -> {
-                                }, (dialogInterface, i12) -> ((ProfileTaskerActivity) Objects.requireNonNull(getActivity())).finish(
+                                }, (dialogInterface, i12) -> ((ProfileTaskerActivity) requireActivity()).finish(
                                         descriptionView.getSummary().toString(),
                                         mProfiles.getAllProfiles().get(position).getCommands()), dialogInterface -> mSelectDialog = null, getActivity());
                                 mSelectDialog.show();
@@ -331,6 +334,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                             onBoot.setChecked(!onBoot.isChecked());
                             items1.get(position).enableOnBoot(onBoot.isChecked());
                             mProfiles.commit();
+                            reload();
                             break;
                         case 5:
                             mExportProfile = items1.get(position);
