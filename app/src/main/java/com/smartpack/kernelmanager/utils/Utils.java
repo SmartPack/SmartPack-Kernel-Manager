@@ -50,6 +50,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.FileProvider;
 import androidx.core.view.ViewCompat;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.StartActivity;
@@ -394,6 +395,12 @@ public class Utils {
 
     public static void toast(String message, Context context, int duration) {
         Toast.makeText(context, message, duration).show();
+    }
+
+    public static void snackbar(View view, String message) {
+        Snackbar snackbar;
+        snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 
     public static void launchUrl(String url, Context context) {
