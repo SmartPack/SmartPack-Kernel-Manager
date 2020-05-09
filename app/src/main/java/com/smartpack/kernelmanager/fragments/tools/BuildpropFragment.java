@@ -30,12 +30,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.fragment.app.Fragment;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
@@ -228,7 +227,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
                 (dialogInterface, i) -> {
                 }, (text, text2) -> {
                     if (text.isEmpty()) {
-                        Utils.toast(R.string.key_empty, getActivity());
+                        Utils.snackbar(getRootView(), getString(R.string.key_empty));
                         return;
                     }
 
@@ -270,8 +269,8 @@ public class BuildpropFragment extends RecyclerViewFragment {
                             break;
                         case 1:
                             Buildprop.backup();
-                            Utils.toast(getString(R.string.backup_item, Buildprop.BUILD_PROP,
-                                    Utils.getInternalDataStorage()), getActivity(), Toast.LENGTH_LONG);
+                            Utils.snackbar(getRootView(), getString(R.string.backup_item, Buildprop.BUILD_PROP,
+                                    Utils.getInternalDataStorage()));
                             break;
                     }
                 }).setOnDismissListener(dialog -> mAddDialog = null);

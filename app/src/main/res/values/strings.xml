@@ -1002,6 +1002,7 @@
     <string name="reboot_normal">Normal Reboot</string>
     <string name="reboot_recovery">Reboot Recovery</string>
     <string name="reboot_bootloader">Reboot Bootloader</string>
+    <string name="rebooting_message">Rebooting in 5s</string>
     <string name="turn_off">Turn Off</string>
     <string name="backing_up">Backing up</string>
     <string name="flashing">Flashing</string>

@@ -91,6 +91,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private static final String KEY_SECTIONS = "sections";
     private static final String KEY_DEFAULT_SECTIONS = "default_section";
 
+    private View mRootView;
     private Preference mFingerprint;
 
     private String mOldPassword;
@@ -110,12 +111,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        assert rootView != null;
-        rootView.setPadding(rootView.getPaddingLeft(),
+        mRootView = super.onCreateView(inflater, container, savedInstanceState);
+        assert mRootView != null;
+        mRootView.setPadding(mRootView.getPaddingLeft(),
                 Math.round(ViewUtils.getActionBarSize(requireActivity())),
-                rootView.getPaddingRight(), rootView.getPaddingBottom());
-        return rootView;
+                mRootView.getPaddingRight(), mRootView.getPaddingBottom());
+        return mRootView;
     }
 
     @Override
@@ -213,7 +214,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             case KEY_ALLOW_ADS:
                 Prefs.saveBoolean("allow_ads", checked, getActivity());
                 if (Prefs.getBoolean("allow_ads", true, getActivity())) {
-                    Utils.toast(R.string.allow_ads_message, getActivity());
+                    Utils.snackbar(mRootView, getString(R.string.allow_ads_message));
                 } else {
                     new Dialog(requireActivity())
                             .setMessage(getString(R.string.disable_ads_message))
@@ -274,7 +275,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     } else {
-                        Utils.toast(R.string.banner_resizer_message, getActivity());
+                        Utils.snackbar(mRootView, getString(R.string.banner_resizer_message));
                     }
                 } else {
                     ViewUtils.dialogDonate(getActivity()).show();
@@ -296,7 +297,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 return true;
             case KEY_APPLY_ON_BOOT_TEST:
                 if (Utils.isServiceRunning(ApplyOnBootService.class, requireActivity())) {
-                    Utils.toast(R.string.apply_on_boot_running, getActivity());
+                    Utils.snackbar(mRootView, getString(R.string.apply_on_boot_running));
                 } else {
                     Intent intent = new Intent(getActivity(), ApplyOnBootService.class);
                     intent.putExtra("messenger", new Messenger(new MessengerHandler(getActivity())));
@@ -347,23 +348,23 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 .setPositiveButton(getString(R.string.ok), (dialogInterface, i) -> {
                     if (!oldPass.isEmpty() && !Objects.requireNonNull(oldPassword.getText()).toString().equals(Utils
                             .decodeString(oldPass))) {
-                        Utils.toast(getString(R.string.old_password_wrong), getActivity());
+                        Utils.snackbar(mRootView, getString(R.string.old_password_wrong));
                         return;
                     }
 
                     if (Objects.requireNonNull(newPassword.getText()).toString().isEmpty()) {
-                        Utils.toast(getString(R.string.password_empty), getActivity());
+                        Utils.snackbar(mRootView, getString(R.string.password_empty));
                         return;
                     }
 
                     if (!newPassword.getText().toString().equals(Objects.requireNonNull(confirmNewPassword.getText())
                             .toString())) {
-                        Utils.toast(getString(R.string.password_not_match), getActivity());
+                        Utils.snackbar(mRootView, getString(R.string.password_not_match));
                         return;
                     }
 
                     if (newPassword.getText().toString().length() > 32) {
-                        Utils.toast(getString(R.string.password_too_long), getActivity());
+                        Utils.snackbar(mRootView, getString(R.string.password_too_long));
                         return;
                     }
 
@@ -377,7 +378,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
 
     private void deletePasswordDialog(final String password) {
         if (password.isEmpty()) {
-            Utils.toast(getString(R.string.set_password_first), getActivity());
+            Utils.snackbar(mRootView, getString(R.string.set_password_first));
             return;
         }
 
@@ -397,7 +398,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         new Dialog(requireActivity()).setView(linearLayout)
                 .setPositiveButton(getString(R.string.ok), (dialogInterface, i) -> {
                     if (!Objects.requireNonNull(mPassword.getText()).toString().equals(Utils.decodeString(password))) {
-                        Utils.toast(getString(R.string.password_wrong), getActivity());
+                        Utils.snackbar(mRootView, getString(R.string.password_wrong));
                         return;
                     }
 

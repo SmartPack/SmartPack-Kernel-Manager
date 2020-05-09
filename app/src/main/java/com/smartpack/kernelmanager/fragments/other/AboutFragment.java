@@ -127,7 +127,7 @@ public class AboutFragment extends RecyclerViewFragment {
         playstore.setSummary(getString(R.string.playstore_summary));
         playstore.setOnItemClickListener(item -> {
             if (!Utils.isNetworkAvailable(requireActivity())) {
-                Utils.toast(R.string.no_internet, getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.no_internet));
                 return;
             }
             Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager", requireActivity());
@@ -139,7 +139,7 @@ public class AboutFragment extends RecyclerViewFragment {
         updatecheck.setSummary(getString(R.string.check_update_summary));
         updatecheck.setOnItemClickListener(item -> {
             if (!Utils.isNetworkAvailable(requireActivity())) {
-                Utils.toast(R.string.no_internet, getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.no_internet));
                 return;
             }
             UpdateCheck.manualUpdateCheck(getActivity());
