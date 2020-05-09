@@ -1,5 +1,9 @@
 # Change-logs
 
+## 105. May 09, 2020
+*Release-tag: v11.7*<br>
+Updated GPU Min Freq path and offset for some Xiaomi devices (Credits: @elpaablo). Enabled on boot indicator for profiles. Increased zRAM max limit to 4GB. Replaced most toast messages with a snackbar. Miscellaneous changes.
+
 ## 104. May 06, 2020
 *Release-tag: v11.5*<br>
 Largely improved Root handling. Added option to select default app page (Credits: @Lennoard). Updated icon colors on Hide Banner mode. Added option to set individual scripts on boot (Credits: @Lennoard). Added time stamp to exported log (logcat, dmesg, etc.) files. Show flashing failed message if flashing output is empty. Updated Portuguese (Credits: @Lennoard) and Korean translations (Credits: @SmgKhOaRn).

@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - Largely improved root handling.\n - Added option to select default app page (Credits: @Lennoard).\n - Updated icon colors on Hide Banner mode.\n - Added option to set individual scripts on boot (Credits: @Lennoard).\n - Added time stamp to exported log (logcat, dmesg, etc.) files.\n - Show flashing failed message if flashing output is empty.\n - Updated Portuguese (Credits: @Lennoard) and Korean translations (Credits: @SmgKhOaRn).",
-  "latestVersion": "11.5",
-  "latestVersionCode": 115
+  "releaseNotes": "Change-logs\n - Updated GPU Min Freq path and offset for some Xiaomi devices (Credits: @elpaablo).\n - Enabled on boot indicator for profiles.\n - Increased zRAM max limit to 4GB.\n - Replaced most toast messages with a snackbar.\n - Miscellaneous changes.",
+  "latestVersion": "11.7",
+  "latestVersionCode": 117
 }
