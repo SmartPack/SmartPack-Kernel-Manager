@@ -252,7 +252,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
     protected void onTopFabClick() {
         super.onTopFabClick();
         if (mPermissionDenied) {
-            Utils.toast(R.string.permission_denied_write_storage, getActivity());
+            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
             return;
         }
 
@@ -305,7 +305,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
         super.onPermissionDenied(request);
         if (request == 0) {
             mPermissionDenied = true;
-            Utils.toast(R.string.permission_denied_write_storage, getActivity());
+            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
         }
     }
 
@@ -318,6 +318,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
         }
     }
 
+    @SuppressLint("StringFormatInvalid")
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -336,27 +337,27 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                 mPath = Utils.getFilePath(file);
             }
             if (mPath.contains("(") || mPath.contains(")")) {
-                Utils.toast(getString(R.string.file_name_error), getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.file_name_error));
             }
             if (requestCode == 0 || requestCode == 1) {
                 if (!Utils.getExtension(file.getName()).isEmpty() || mPath.startsWith("/storage/")) {
-                    Utils.toast(getString(R.string.invalid_path, mPath), getActivity());
+                    Utils.snackbar(getRootView(), getString(R.string.invalid_path, mPath));
                     return;
                 }
             } else {
                 if (!Utils.getExtension(mPath).isEmpty()) {
-                    Utils.toast(getString(R.string.invalid_controller, mPath), getActivity());
+                    Utils.snackbar(getRootView(), getString(R.string.invalid_controller, mPath));
                     return;
                 }
             }
             if ((requestCode == 2 || requestCode == 3) && !Utils.existFile(Utils.readFile(mPath))) {
-                Utils.toast(getString(R.string.unsupported_controller, Utils.readFile(mPath)), getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.unsupported_controller, Utils.readFile(mPath)));
                 return;
             }
             File controls = (requestCode == 0 || requestCode == 2 ? CustomControls.switchFile() : CustomControls.genericFile());
             if (Utils.existFile(controls + "/" + mPath.replaceFirst("/", "").
                     replace("/", "-")) || Utils.existFile(controls + "/" + file.getName())) {
-                Utils.toast(getString(R.string.already_added, mPath), getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.already_added, mPath));
                 return;
             }
             Dialog selectControl = new Dialog(requireActivity());

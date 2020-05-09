@@ -308,7 +308,8 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
         super.onPermissionDenied(request);
         if (request == 0) {
             mPermissionDenied = true;
-            Utils.toast(R.string.permission_denied_write_storage, getActivity());
+
+            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
         }
     }
 
@@ -338,15 +339,15 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 mPath = Utils.getFilePath(file);
             }
             if (!Utils.getExtension(mPath).equals("sh")) {
-                Utils.toast(getString(R.string.wrong_extension, ".sh"), getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".sh"));
                 return;
             }
             if (Utils.existFile(ScriptManager.scriptExistsCheck(file.getName()))) {
-                Utils.toast(getString(R.string.script_exists, file.getName()), getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.script_exists, file.getName()));
                 return;
             }
             if (mPath.contains("(") || mPath.contains(")")) {
-                Utils.toast(getString(R.string.file_name_error), getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.file_name_error));
             }
             Dialog selectQuestion = new Dialog(requireActivity());
             selectQuestion.setMessage(getString(R.string.select_question, new File(mPath).getName()));
@@ -365,7 +366,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
         super.onTopFabClick();
 
         if (mPermissionDenied) {
-            Utils.toast(R.string.permission_denied_write_storage, getActivity());
+            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
             return;
         }
 
@@ -390,7 +391,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
         ViewUtils.dialogEditText(null, (dialogInterface, i) -> {
         }, text -> {
             if (text.isEmpty()) {
-                Utils.toast(R.string.name_empty, getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.name_empty));
                 return;
             }
 
@@ -403,7 +404,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
             }
 
             if (ScriptManager.list().indexOf(text) > -1) {
-                Utils.toast(getString(R.string.already_exists, text), getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
                 return;
             }
 

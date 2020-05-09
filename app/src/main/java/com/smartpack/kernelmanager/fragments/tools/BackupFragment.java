@@ -245,7 +245,7 @@ public class BackupFragment extends RecyclerViewFragment {
     protected void onTopFabClick() {
         super.onTopFabClick();
         if (mPermissionDenied) {
-            Utils.toast(R.string.permission_denied_write_storage, getActivity());
+            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
             return;
         }
 
@@ -321,6 +321,7 @@ public class BackupFragment extends RecyclerViewFragment {
                         dialog.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
                         });
                         dialog.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
+                            Utils.snackbar(getRootView(), getString(R.string.rebooting_message));
                             new AsyncTask<Void, Void, Void>() {
                                 private ProgressDialog mProgressDialog;
                                 @Override
@@ -369,7 +370,7 @@ public class BackupFragment extends RecyclerViewFragment {
         super.onPermissionDenied(request);
         if (request == 0) {
             mPermissionDenied = true;
-            Utils.toast(R.string.permission_denied_write_storage, getActivity());
+            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
         }
     }
 
@@ -391,7 +392,7 @@ public class BackupFragment extends RecyclerViewFragment {
                     @Override
                     public void onClick(String text) {
                         if (text.isEmpty()) {
-                            Utils.toast(R.string.name_empty, getActivity());
+                            Utils.snackbar(getRootView(), getString(R.string.name_empty));
                             return;
                         }
 
@@ -404,7 +405,7 @@ public class BackupFragment extends RecyclerViewFragment {
                         }
 
                         if (Utils.existFile(Backup.getPath(partition) + "/" + text)) {
-                            Utils.toast(getString(R.string.already_exists, text), getActivity());
+                            Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
                             return;
                         }
 
@@ -475,11 +476,11 @@ public class BackupFragment extends RecyclerViewFragment {
                 mPath = Utils.getFilePath(file);
             }
             if (!Utils.getExtension(mPath).equals("img")) {
-                Utils.toast(getString(R.string.wrong_extension, ".img"), getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".img"));
                 return;
             }
             if (mPath.contains("(") || mPath.contains(")")) {
-                Utils.toast(getString(R.string.file_name_error), getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.file_name_error));
             }
             showBackupFlashingDialog(new File(mPath));
         }

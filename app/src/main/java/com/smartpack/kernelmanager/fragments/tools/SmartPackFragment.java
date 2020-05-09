@@ -176,16 +176,16 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 ? KernelUpdater.getUpdateChannel() : getString(R.string.update_channel_summary));
         updateChannel.setOnGenericValueListener((genericSelectView, value) -> {
             if (mPermissionDenied) {
-                Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                 return;
             }
             if (!Utils.isNetworkAvailable(requireActivity())) {
-                Utils.toast(R.string.no_internet, getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.no_internet));
                 return;
             }
             if (value.isEmpty()) {
                 KernelUpdater.clearUpdateInfo();
-                Utils.toast(R.string.update_channel_empty, getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.update_channel_empty));
                 reload();
                 return;
             }
@@ -223,7 +223,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                 Intent shareIntent = Intent.createChooser(shareChannel, null);
                                 startActivity(shareIntent);
                             } else {
-                                Utils.toast(R.string.no_internet, getActivity());
+                                Utils.snackbar(getRootView(), getString(R.string.no_internet));
                             }
                             break;
                     }
@@ -294,7 +294,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                         KernelUpdater.getSupport().contains("http://")) {
                     Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
                 } else {
-                    Utils.toast(R.string.unknown_link, getActivity());
+                    Utils.snackbar(getRootView(), getString(R.string.unknown_link));
                 }
             });
 
@@ -307,7 +307,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             download.setSummary(getString(R.string.get_it_summary));
             download.setOnItemClickListener(item -> {
                 if (mPermissionDenied) {
-                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                    Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                     return;
                 }
                 downloadKernel();
@@ -326,7 +326,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
                     Utils.launchUrl(KernelUpdater.getDonationLink(), getActivity());
                 } else {
-                    Utils.toast(getString(R.string.unknown_link), getActivity());
+                    Utils.snackbar(getRootView(), getString(R.string.unknown_link));
                 }
 
             });
@@ -341,8 +341,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
             update_check.addOnSwitchListener((switchview, isChecked) -> {
                 Prefs.saveBoolean("update_check", isChecked, getActivity());
                 if (Prefs.getBoolean("update_check", true, getActivity())) {
-                    Utils.toast(getString(R.string.update_check_message, !KernelUpdater.getKernelName().
-                            equals("Unavailable") ? KernelUpdater.getKernelName() : "this"), getActivity());
+                    Utils.snackbar(getRootView(), getString(R.string.update_check_message, !KernelUpdater.getKernelName().
+                            equals("Unavailable") ? KernelUpdater.getKernelName() : "this"));
                 }
             });
 
@@ -378,7 +378,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
         logcat.setSummary(getString(R.string.logcat_summary));
         logcat.setOnItemClickListener(item -> {
             if (mPermissionDenied) {
-                Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                 return;
             }
             SmartPack.prepareFolder(logFolder);
@@ -394,7 +394,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             lastkmsg.setSummary(getString(R.string.last_kmsg_summary));
             lastkmsg.setOnItemClickListener(item -> {
                 if (mPermissionDenied) {
-                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                    Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                     return;
                 }
                 SmartPack.prepareFolder(logFolder);
@@ -408,7 +408,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
         dmesg.setSummary(getString(R.string.driver_message_summary));
         dmesg.setOnItemClickListener(item -> {
             if (mPermissionDenied) {
-                Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                 return;
             }
             SmartPack.prepareFolder(logFolder);
@@ -422,7 +422,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             dmesgRamoops.setSummary(getString(R.string.driver_ramoops_summary));
             dmesgRamoops.setOnItemClickListener(item -> {
                 if (mPermissionDenied) {
-                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                    Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                     return;
                 }
                 SmartPack.prepareFolder(logFolder);
@@ -437,7 +437,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             ramoops.setSummary(getString(R.string.console_ramoops_summary));
             ramoops.setOnItemClickListener(item -> {
                 if (mPermissionDenied) {
-                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                    Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                     return;
                 }
                 SmartPack.prepareFolder(logFolder);
@@ -477,6 +477,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
                                         })
                                         .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
+                                            Utils.snackbar(getRootView(), getString(R.string.rebooting_message));
                                             new Execute().execute(Utils.prepareReboot());
                                         })
                                         .show();
@@ -487,6 +488,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
                                         })
                                         .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
+                                            Utils.snackbar(getRootView(), getString(R.string.rebooting_message));
                                             new Execute().execute(Utils.prepareReboot() + " recovery");
                                         })
                                         .show();
@@ -497,6 +499,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
                                         })
                                         .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
+                                            Utils.snackbar(getRootView(), getString(R.string.rebooting_message));
                                             new Execute().execute(Utils.prepareReboot() + " bootloader");
                                         })
                                         .show();
@@ -525,6 +528,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                             })
                             .setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
                                 new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
+                                Utils.snackbar(getRootView(), getString(R.string.rebooting_message));
                                 new Execute().execute(Utils.prepareReboot());
                             })
                             .show();
@@ -684,7 +688,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
     protected void onTopFabClick() {
         super.onTopFabClick();
         if (mPermissionDenied) {
-            Utils.toast(R.string.permission_denied_write_storage, getActivity());
+            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
             return;
         }
 
@@ -698,7 +702,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
         super.onPermissionDenied(request);
         if (request == 0) {
             mPermissionDenied = true;
-            Utils.toast(R.string.permission_denied_write_storage, getActivity());
+            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
         }
     }
 
@@ -721,10 +725,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 mPath = Utils.getFilePath(file);
             }
             if (mPath.contains("(") || mPath.contains(")")) {
-                Utils.toast(getString(R.string.file_name_error), getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.file_name_error));
             }
             if (SmartPack.fileSize(new File(mPath)) >= 100000000) {
-                Utils.toast(getString(R.string.file_size_limit, (SmartPack.fileSize(new File(mPath)) / 1000000)), getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.file_size_limit, (SmartPack.fileSize(new File(mPath)) / 1000000)));
             }
             Dialog manualFlash = new Dialog(requireActivity());
             manualFlash.setIcon(R.mipmap.ic_launcher);

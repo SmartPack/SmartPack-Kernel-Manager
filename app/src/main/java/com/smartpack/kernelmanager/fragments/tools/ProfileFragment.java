@@ -326,7 +326,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                                     mDetailsFragment.setText(mCommandsText.toString());
                                     showForeground();
                                 } else {
-                                    Utils.toast(R.string.profile_empty, getActivity());
+                                    Utils.snackbar(getRootView(), getString(R.string.profile_empty));
                                 }
                             }
                             break;
@@ -459,11 +459,11 @@ public class ProfileFragment extends RecyclerViewFragment {
                 mPath = Utils.getFilePath(file);
             }
             if (!Utils.getExtension(mPath).equals("json")) {
-                Utils.toast(getString(R.string.wrong_extension, ".json"), getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".json"));
                 return;
             }
             if (mPath.contains("(") || mPath.contains(")")) {
-                Utils.toast(getString(R.string.file_name_error), getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.file_name_error));
             }
             Dialog selectProfile = new Dialog(requireActivity());
             selectProfile.setMessage(getString(R.string.select_question, new File(mPath).getName()));
@@ -472,11 +472,11 @@ public class ProfileFragment extends RecyclerViewFragment {
             selectProfile.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
                 ImportProfile importProfile = new ImportProfile(mPath);
                 if (!importProfile.readable()) {
-                    Utils.toast(R.string.import_malformed, getActivity());
+                    Utils.snackbar(getRootView(), getString(R.string.import_malformed));
                     return;
                 }
                 if (!importProfile.matchesVersion()) {
-                    Utils.toast(R.string.import_wrong_version, getActivity());
+                    Utils.snackbar(getRootView(), getString(R.string.import_wrong_version));
                     return;
                 }
                 showImportDialog(importProfile);
@@ -492,13 +492,13 @@ public class ProfileFragment extends RecyclerViewFragment {
         ViewUtils.dialogEditText(null, (dialogInterface, i) -> {
         }, text -> {
             if (text.isEmpty()) {
-                Utils.toast(R.string.name_empty, getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.name_empty));
                 return;
             }
 
             for (Profiles.ProfileItem profileItem : mProfiles.getAllProfiles()) {
                 if (text.equals(profileItem.getName())) {
-                    Utils.toast(getString(R.string.already_exists, text), getActivity());
+                    Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
                     return;
                 }
             }
@@ -515,13 +515,13 @@ public class ProfileFragment extends RecyclerViewFragment {
         ViewUtils.dialogEditText(null, (dialogInterface, i) -> {
         }, text -> {
             if (text.isEmpty()) {
-                Utils.toast(R.string.name_empty, getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.name_empty));
                 return;
             }
 
             for (Profiles.ProfileItem profileItem : mProfiles.getAllProfiles()) {
                 if (text.equals(profileItem.getName())) {
-                    Utils.toast(getString(R.string.already_exists, text), getActivity());
+                    Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
                     return;
                 }
             }
@@ -537,7 +537,7 @@ public class ProfileFragment extends RecyclerViewFragment {
         super.onPermissionDenied(request);
 
         if (request == 0) {
-            Utils.toast(R.string.permission_denied_write_storage, getActivity());
+            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
         }
     }
 
@@ -554,15 +554,15 @@ public class ProfileFragment extends RecyclerViewFragment {
         ViewUtils.dialogEditText(null, (dialogInterface, i) -> {
         }, text -> {
             if (text.isEmpty()) {
-                Utils.toast(R.string.name_empty, getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.name_empty));
                 return;
             }
 
             if (new ExportProfile(mExportProfile, mProfiles.getVersion()).export(text)) {
-                Utils.toast(getString(R.string.exported_item, text, Utils.getInternalDataStorage()
-                        + "/profiles"), getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.exported_item, text,
+                        Utils.getInternalDataStorage() + "/profiles"));
             } else {
-                Utils.toast(getString(R.string.already_exists, text), getActivity());
+                Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
             }
         }, getActivity()).setOnDismissListener(dialogInterface -> mExportProfile = null).setTitle(getString(R.string.name)).show();
     }
