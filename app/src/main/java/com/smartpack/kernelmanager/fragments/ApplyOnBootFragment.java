@@ -48,10 +48,9 @@ import com.smartpack.kernelmanager.fragments.kernel.WakelockFragment;
 import com.smartpack.kernelmanager.fragments.tools.CustomControlsFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.HashMap;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 
@@ -97,7 +96,7 @@ public class ApplyOnBootFragment extends BaseFragment {
         sAssignments.put(IOFragment.class, IO);
         sAssignments.put(KSMFragment.class, KSM);
         sAssignments.put(LMKFragment.class, LMK);
-        sAssignments.put(WakelockFragment.class, MISC);
+        sAssignments.put(WakelockFragment.class, WAKELOCKS);
         sAssignments.put(VMFragment.class, VM);
         sAssignments.put(EntropyFragment.class, ENTROPY);
         sAssignments.put(MiscFragment.class, MISC);
@@ -121,12 +120,12 @@ public class ApplyOnBootFragment extends BaseFragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NotNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (getActivity() instanceof ProfileActivity) {
             View rootView = inflater.inflate(R.layout.fragment_description, container, false);
 
-            TextView title = (TextView) rootView.findViewById(R.id.title);
-            TextView summary = (TextView) rootView.findViewById(R.id.summary);
+            TextView title = rootView.findViewById(R.id.title);
+            TextView summary = rootView.findViewById(R.id.summary);
 
             title.setText(getString(R.string.apply_on_boot));
             summary.setText(getString(R.string.apply_on_boot_not_available));
@@ -137,7 +136,7 @@ public class ApplyOnBootFragment extends BaseFragment {
 
             assert getArguments() != null;
             final String category = getArguments().getString("category");
-            SwitchCompat switcher = (SwitchCompat) rootView.findViewById(R.id.switcher);
+            SwitchCompat switcher = rootView.findViewById(R.id.switcher);
             switcher.setChecked(Prefs.getBoolean(category, false, getActivity()));
             switcher.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 Prefs.saveBoolean(category, isChecked, getActivity());

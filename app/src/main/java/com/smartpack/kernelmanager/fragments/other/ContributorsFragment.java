@@ -108,4 +108,5 @@ public class ContributorsFragment extends RecyclerViewFragment {
             mErrorBar = null;
         }
     }
+
 }

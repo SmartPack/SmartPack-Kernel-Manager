@@ -59,7 +59,6 @@ public class AboutFragment extends RecyclerViewFragment {
         sCredits.put("CircularReveal,Ozodrukh", "https://github.com/ozodrukh/CircularReveal");
         sCredits.put("DashClock,Roman Nurik", "https://github.com/romannurik/dashclock");
         sCredits.put("Swirl,Matthew Precious", "https://github.com/mattprecious/swirl");
-        sCredits.put("CircularImageView,Lopez Mikhael", "https://github.com/lopspower/CircularImageView");
         sCredits.put("Picasso,Square", "https://github.com/square/picasso");
         sCredits.put("Platform SDK,CyanogenMod", "https://github.com/CyanogenMod/cm_platform_sdk");
         sCredits.put("Round Corner Progress Bar,Akexorcist", "https://github.com/akexorcist/Android-RoundCornerProgressBar");
@@ -252,9 +251,6 @@ public class AboutFragment extends RecyclerViewFragment {
                     break;
                 case "Matthew Precious":
                     descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_mattprecious));
-                    break;
-                case "Lopez Mikhael":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_lopspower));
                     break;
                 case "Square":
                     descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_square));

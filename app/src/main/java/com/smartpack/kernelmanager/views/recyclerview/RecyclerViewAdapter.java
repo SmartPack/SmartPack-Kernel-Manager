@@ -23,17 +23,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Prefs;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by willi on 17.04.16.
@@ -55,7 +54,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     @Override
-    public void onBindViewHolder(@NotNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         RecyclerViewItem item = mItems.get(position);
         if (item != null) {
             item.onCreateView(holder.itemView);
@@ -67,9 +66,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return mItems.size();
     }
 
-    @NotNull
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         RecyclerViewItem item = mItems.get(viewType);
         View view;
