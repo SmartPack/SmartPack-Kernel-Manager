@@ -285,7 +285,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 } catch (IllegalArgumentException ignored) {
                 }
                 new Dialog(requireActivity())
-                        .setMessage(mResult)
+                        .setMessage(mResult != null && !mResult.isEmpty() ? mResult : getString(R.string.script_executed, script))
                         .setCancelable(false)
                         .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
                         })
