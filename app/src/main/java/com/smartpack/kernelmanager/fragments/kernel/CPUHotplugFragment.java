@@ -35,6 +35,7 @@ import com.smartpack.kernelmanager.utils.kernel.cpuhotplug.LazyPlug;
 import com.smartpack.kernelmanager.utils.kernel.cpuhotplug.MPDecision;
 import com.smartpack.kernelmanager.utils.kernel.cpuhotplug.MakoHotplug;
 import com.smartpack.kernelmanager.utils.kernel.cpuhotplug.MSMHotplug;
+import com.smartpack.kernelmanager.utils.kernel.cpuhotplug.ThunderPlug;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.GenericSelectView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -115,6 +116,9 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 		if (mCoreCtl.supported()) {
 			coreCtlInit(items);
 		}
+		if (ThunderPlug.supported()) {
+			thunderPlugInit(items);
+		}
 
 		for (SwitchView view : mEnableViews) {
 			view.addOnSwitchListener((switchView, isChecked) -> {
@@ -125,7 +129,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 						continue;
 					}
 					if (enabled && view1.isChecked()) {
-						Utils.toast(R.string.hotplug_warning, getActivity());
+						Utils.snackbar(getRootView(), getString(R.string.hotplug_warning));
 						break;
 					}
 				}
@@ -3756,6 +3760,159 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
 		if (coreCtl.size() > 0) {
 			items.add(coreCtl);
+		}
+	}
+
+	private void thunderPlugInit(List<RecyclerViewItem> items) {
+		CardView thunderPlugCard = new CardView(getActivity());
+		thunderPlugCard.setTitle(getString(R.string.thunder_plug));
+
+		SwitchView enable = new SwitchView();
+		SwitchView touchBoost = new SwitchView();
+		SelectView enduranceLevel = new SelectView();
+		SeekBarView samplingRate = new SeekBarView();
+		SeekBarView loadThreshold = new SeekBarView();
+		SeekBarView suspendedCPUs = new SeekBarView();
+
+		if (ThunderPlug.hasEnable()) {
+			enable.setSummary(getString(R.string.thunder_plug_summary));
+			enable.setChecked(ThunderPlug.isEnabled());
+			enable.addOnSwitchListener((switchView, isChecked) -> {
+				ThunderPlug.enable(isChecked, getActivity());
+				getHandler().postDelayed(() -> {
+					// Show or hide other options on the basis of the main driver status
+					if (ThunderPlug.isEnabled()) {
+						if (ThunderPlug.hasEnduranceLevel()) {
+							enduranceLevel.setItem(ThunderPlug.getEnduranceLevel());
+							thunderPlugCard.addItem(enduranceLevel);
+						}
+						if (ThunderPlug.hasSamplingRate()) {
+							samplingRate.setProgress(ThunderPlug.getSamplingRate());
+							thunderPlugCard.addItem(samplingRate);
+						}
+						if (ThunderPlug.hasLoadThreshold()) {
+							loadThreshold.setProgress(ThunderPlug.getLoadThreshold() - 10);
+							thunderPlugCard.addItem(loadThreshold);
+						}
+						if (ThunderPlug.hasSuspendCPUs()) {
+							suspendedCPUs.setProgress(ThunderPlug.getSuspendCPUs());
+							thunderPlugCard.addItem(suspendedCPUs);
+						}
+						if (ThunderPlug.hasTouchBoost()) {
+							touchBoost.setChecked(ThunderPlug.isTouchBoostEnabled());
+							thunderPlugCard.addItem(touchBoost);
+						}
+					} else {
+						thunderPlugCard.removeItem(enduranceLevel);
+						thunderPlugCard.removeItem(loadThreshold);
+						thunderPlugCard.removeItem(suspendedCPUs);
+						thunderPlugCard.removeItem(touchBoost);
+						thunderPlugCard.removeItem(samplingRate);
+					}
+				}, 100);
+
+			});
+
+			thunderPlugCard.addItem(enable);
+			mEnableViews.add(enable);
+		}
+
+		if (ThunderPlug.hasEnduranceLevel()) {
+			enduranceLevel.setSummary(getString(R.string.endurance_level));
+			enduranceLevel.setItems(ThunderPlug.enduranceLevel(requireActivity()));
+			enduranceLevel.setItem(ThunderPlug.getEnduranceLevel());
+			enduranceLevel.setOnItemSelected((selectView, position, item) ->
+					ThunderPlug.setEnduranceLevel(position, getActivity()));
+
+			if (ThunderPlug.isEnabled()) {
+				thunderPlugCard.addItem(enduranceLevel);
+			} else {
+				thunderPlugCard.removeItem(enduranceLevel);
+			}
+		}
+
+		if (ThunderPlug.hasSamplingRate()) {
+			samplingRate.setSummary(getString(R.string.sampling_rate));
+			samplingRate.setMax(2500);
+			samplingRate.setProgress(ThunderPlug.getSamplingRate());
+			samplingRate.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+				@Override
+				public void onMove(SeekBarView seekBarView, int position, String value) {
+				}
+
+				@Override
+				public void onStop(SeekBarView seekBarView, int position, String value) {
+					ThunderPlug.setSamplingRate(position, getActivity());
+				}
+			});
+
+			if (ThunderPlug.isEnabled()) {
+				thunderPlugCard.addItem(samplingRate);
+			} else {
+				thunderPlugCard.removeItem(samplingRate);
+			}
+		}
+
+		if (ThunderPlug.hasLoadThreshold()) {
+			loadThreshold.setSummary(getString(R.string.load_threshold));
+			loadThreshold.setMin(10);
+			loadThreshold.setProgress(ThunderPlug.getLoadThreshold() - 10);
+			loadThreshold.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+				@Override
+				public void onMove(SeekBarView seekBarView, int position, String value) {
+				}
+
+				@Override
+				public void onStop(SeekBarView seekBarView, int position, String value) {
+					ThunderPlug.setLoadThreshold(position + 10, getActivity());
+				}
+			});
+
+			if (ThunderPlug.isEnabled()) {
+				thunderPlugCard.addItem(loadThreshold);
+			} else {
+				thunderPlugCard.removeItem(loadThreshold);
+			}
+		}
+
+		if (ThunderPlug.hasSuspendCPUs()) {
+			suspendedCPUs.setSummary(getString(R.string.suspend_cpus));
+			suspendedCPUs.setMax(mCPUFreq.getCpuCount());
+			suspendedCPUs.setMin(1);
+			suspendedCPUs.setProgress(ThunderPlug.getSuspendCPUs() - 1);
+			suspendedCPUs.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+				@Override
+				public void onMove(SeekBarView seekBarView, int position, String value) {
+				}
+
+				@Override
+				public void onStop(SeekBarView seekBarView, int position, String value) {
+					ThunderPlug.setSuspendCPUs(position + 1, getActivity());
+				}
+			});
+
+			if (ThunderPlug.isEnabled()) {
+				thunderPlugCard.addItem(suspendedCPUs);
+			} else {
+				thunderPlugCard.removeItem(suspendedCPUs);
+			}
+		}
+
+		if (ThunderPlug.hasTouchBoost()) {
+			touchBoost.setSummary(getString(R.string.touch_boost));
+			touchBoost.setChecked(ThunderPlug.isTouchBoostEnabled());
+			touchBoost.addOnSwitchListener((switchView, isChecked)
+					-> ThunderPlug.enableTouchBoost(isChecked, getActivity()));
+
+			if (ThunderPlug.isEnabled()) {
+				thunderPlugCard.addItem(touchBoost);
+			} else {
+				thunderPlugCard.removeItem(touchBoost);
+			}
+		}
+
+		if (thunderPlugCard.size() > 0) {
+			items.add(thunderPlugCard);
 		}
 	}
 
