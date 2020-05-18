@@ -359,6 +359,12 @@
     <string name="nr_max_cpu">Maximum Online CPUs</string>
     <string name="nr_min_cpu">Minimum Online CPUs</string>
     <string name="adv_sett">Advanced Settings</string>
+    <string name="thunder_plug">ThunderPlug</string>
+    <string name="thunder_plug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by varun.chitre15</string>
+    <string name="dual_core_mode">Dual-Core Mode</string>
+    <string name="quad_core_mode">Quad-Core Mode</string>
+    <string name="endurance_level">Endurance Level</string>
+    <string name="suspend_cpus">Suspend CPUs</string>
 
     <!-- CPU Voltage -->
     <string name="global_offset">Global Offset</string>
