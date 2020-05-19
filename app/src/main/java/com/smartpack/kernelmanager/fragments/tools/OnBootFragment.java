@@ -32,7 +32,6 @@ import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.tools.ScriptManager;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
-import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.SwipeableDescriptionView;
 
@@ -145,31 +144,14 @@ public class OnBootFragment extends RecyclerViewFragment {
             applyOnBootView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_drag_handle, requireContext()));
             applyOnBootView.setSummary(applyOnBootItem.mCategory.replace("_onboot", "")
                     + ": " + applyOnBootItem.mCommand);
-
-
             applyOnBootView.setOnItemSwipedListener((item, position) -> {
                 mSettings.delete(position);
                 mSettings.commit();
-                //reload();
             });
 
             applyOnBootView.setOnItemDragListener((item, fromPosition, toPosition) -> {
                 mSettings.swap(fromPosition, toPosition);
                 mSettings.commit();
-                //reload();
-            });
-
-            // Maybe comment this out
-            applyOnBootView.setOnItemClickListener(item -> {
-                mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.delete_question,
-                        applyOnBootItem.mCommand),
-                        (dialogInterface, i1) -> {
-                        }, (dialogInterface, i1) -> {
-                            mSettings.delete(applyOnBootItem.mPosition);
-                            mSettings.commit();
-                            reload();
-                        }, dialogInterface -> mDeleteDialog = null, getActivity());
-                mDeleteDialog.show();
             });
 
             applyOnBoot.add(applyOnBootView);
@@ -182,9 +164,9 @@ public class OnBootFragment extends RecyclerViewFragment {
         List<RecyclerViewItem> profiles = new ArrayList<>();
         for (final Profiles.ProfileItem profileItem : mProfiles.getAllProfiles()) {
             if (profileItem.isOnBootEnabled()) {
-                DescriptionView profileView = new DescriptionView();
-                profileView.setTitle("[" + getString(R.string.profile) + "]");
-                profileView.setSummary(profileItem.getName());
+                SwipeableDescriptionView profileView = new SwipeableDescriptionView();
+                profileView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_drag_handle, requireContext()));
+                profileView.setSummary(getString(R.string.profile) + ": " + profileItem.getName());
                 profileView.setOnItemClickListener(item -> {
                     mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.disable_question,
                             profileItem.getName()),
@@ -195,6 +177,14 @@ public class OnBootFragment extends RecyclerViewFragment {
                                 reload();
                             }, dialogInterface -> mDeleteDialog = null, getActivity());
                     mDeleteDialog.show();
+                });
+                profileView.setOnItemSwipedListener((item, position) -> {
+                    Utils.snackbar(getRootView(), getString(R.string.swipe_message, getString(R.string.profile)));
+                    reload();
+                });
+                profileView.setOnItemDragListener((item, fromPosition, toPosition) -> {
+                    Utils.snackbar(getRootView(), getString(R.string.drag_message, getString(R.string.profile)));
+                    reload();
                 });
 
                 profiles.add(profileView);
@@ -210,8 +200,8 @@ public class OnBootFragment extends RecyclerViewFragment {
             final Set<String> onBootScripts = Prefs.getStringSet("on_boot_scripts", new HashSet<>(), getActivity());
             for (final String script : ScriptManager.list()) {
                 if (script_onboot && Utils.getExtension(script).equals("sh")) {
-                    DescriptionView scriptItem = new DescriptionView();
-                    scriptItem.setTitle("[Script]");
+                    SwipeableDescriptionView scriptItem = new SwipeableDescriptionView();
+                    scriptItem.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_drag_handle, requireContext()));
                     scriptItem.setSummary(getString(R.string.script_manger) + ": " + script);
                     scriptItem.setOnItemClickListener(item -> {
                         mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.remove_script_question, script),
@@ -225,12 +215,20 @@ public class OnBootFragment extends RecyclerViewFragment {
                                 }, dialogInterface -> mDeleteDialog = null, getActivity());
                         mDeleteDialog.show();
                     });
+                    scriptItem.setOnItemSwipedListener((item, position) -> {
+                        Utils.snackbar(getRootView(), getString(R.string.swipe_message, getString(R.string.script)));
+                        reload();
+                    });
+                    scriptItem.setOnItemDragListener((item, fromPosition, toPosition) -> {
+                        Utils.snackbar(getRootView(), getString(R.string.drag_message, getString(R.string.script)));
+                        reload();
+                    });
 
                     items.add(scriptItem);
                 } else if (Prefs.getStringSet("on_boot_scripts", new HashSet<>(), getActivity()).contains(script)
                         && Utils.getExtension(script).equals("sh")) {
-                    DescriptionView scriptItem = new DescriptionView();
-                    scriptItem.setTitle("[Script]");
+                    SwipeableDescriptionView scriptItem = new SwipeableDescriptionView();
+                    scriptItem.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_drag_handle, requireContext()));
                     scriptItem.setSummary(getString(R.string.script_manger) + ": " + script);
                     scriptItem.setOnItemClickListener(item -> {
                         mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.delete_question, script),
@@ -240,6 +238,14 @@ public class OnBootFragment extends RecyclerViewFragment {
                                     reload();
                                 }, dialogInterface -> mDeleteDialog = null, getActivity());
                         mDeleteDialog.show();
+                    });
+                    scriptItem.setOnItemSwipedListener((item, position) -> {
+                        Utils.snackbar(getRootView(), getString(R.string.swipe_message, getString(R.string.script)));
+                        reload();
+                    });
+                    scriptItem.setOnItemDragListener((item, fromPosition, toPosition) -> {
+                        Utils.snackbar(getRootView(), getString(R.string.drag_message, getString(R.string.script)));
+                        reload();
                     });
 
                     items.add(scriptItem);
