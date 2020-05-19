@@ -177,7 +177,15 @@
     <string name="cpu_quiet">CPUQuiet</string>
     <string name="cpu_quiet_summary">CPUQuiet implements pluggable policies for forcing cpu cores into quiescent state. Appropriate policies will save power without hurting performance.</string>
     <string name="cpu_quiet_governor">CPUQuiet Governor</string>
+    <string name="msm_limiter">MSM Limiter</string>
+    <string name="msm_limiter_summary">Enable MSM Limiter by neobuddy89.</string>
+    <string name="freq_control">Frequency Control</string>
+    <string name="freq_control_summary">Allow MSM Limiter to Control the Frequencies of your CPUs.</string>
+
+    <!-- CPU Boost -->
     <string name="cpu_boost">CPU Boost</string>
+    <string name="stune_boost">Stune Boost</string>
+    <string name="cpu_boost_settings">CPU Boost Settings</string>
     <string name="debug_mask">Debug Mask</string>
     <string name="debug_mask_summary">Allows you to activate debug mask for operations.</string>
     <string name="interval">Interval</string>
@@ -196,23 +204,18 @@
     <string name="hotplug_boost_summary">Hotplug Boost is similar to input boost but it occurs when CPUs go online.</string>
     <string name="touch_boost">Touch Boost</string>
     <string name="touch_boost_summary">This will boost your minimum CPU speed if you touch the screen or press a button.</string>
-    <string name="msm_limiter">MSM Limiter</string>
-    <string name="msm_limiter_summary">Enable MSM Limiter by neobuddy89.</string>
-    <string name="freq_control">Frequency Control</string>
-    <string name="freq_control_summary">Allow MSM Limiter to Control the Frequencies of your CPUs.</string>
-    <string name="dyn_stune_boost">Dynamic Stune Boost</string>
-    <string name="stune_boost_ms">Stune Boost Duration</string>
-    <string name="stune_boost_sett">Stune Boost Settings</string>
-    <string name="stune_boost_sett_summary">Show advanced stune boost settings</string>
-    <string name="powerhal_tunables">Power HAL Tunables</string>
-
-    <!-- CPU Input Boost -->
     <string name="cpu_input_boost">CPU Input Boost</string>
     <string name="cpu_input_boost_summary">Enable CPU Input Boost, an event-based CPU boosting driver by Sultanxda.</string>
     <string name="cpuiboost_duration">Input Boost Duration</string>
     <string name="cpuiboost_duration_summary">Set CPU Input Boost duration</string>
     <string name="wake_boost_duration">Wake Boost Duration</string>
     <string name="cluster_return_freq">Cluster Return Frequency</string>
+    <string name="dyn_stune_boost">Dynamic Stune Boost</string>
+    <string name="stune_boost_ms">Stune Boost Duration</string>
+    <string name="stune_boost_sett">Stune Boost Settings</string>
+    <string name="stune_boost_sett_summary">Show advanced stune boost settings</string>
+    <string name="powerhal">Power HAL</string>
+    <string name="powerhal_tunables">Power HAL Tunables</string>
 
     <!-- CPU Hotplug -->
     <string name="hotplug_warning">More than one hotplugging system is enabled!\nPlease only use one.</string>

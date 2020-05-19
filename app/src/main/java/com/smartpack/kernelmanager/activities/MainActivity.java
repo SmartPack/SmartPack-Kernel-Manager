@@ -38,7 +38,7 @@ import com.smartpack.kernelmanager.utils.Device;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.battery.Battery;
-import com.smartpack.kernelmanager.utils.kernel.cpu.CPUBoost;
+import com.smartpack.kernelmanager.utils.kernel.cpu.boost.CPUBoost;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
 import com.smartpack.kernelmanager.utils.kernel.cpu.MSMPerformance;
 import com.smartpack.kernelmanager.utils.kernel.cpu.Temperature;
