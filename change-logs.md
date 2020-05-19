@@ -1,5 +1,9 @@
 # Change-logs
 
+## 112. May 19, 2020
+*Release-tag: beta_v11.8*<br>
+Added support to ThunderPlug CPU hotplug driver. Moved all CPU Boost settings into a new page (link in CPU). Updated Script Manager to show success dialog even if the output is empty. Blocked swipe/drage option for profiles and scripts. Removed circular image view from app (reduced app size). Miscellaneous changes.
+
 ## 111. May 08, 2020
 *Release-tag: beta_v11.6*<br>
 Make item list on OnBoot page swipe and draggable (Credits: @Lennoard). Updated GPU Min Freq path and offset for some Xiaomi devices (Credits: @elpaablo). Increased zRAM max limit to 4GB. Miscellaneous changes.
