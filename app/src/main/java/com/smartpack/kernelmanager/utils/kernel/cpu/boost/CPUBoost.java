@@ -17,12 +17,13 @@
  * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package com.smartpack.kernelmanager.utils.kernel.cpu;
+package com.smartpack.kernelmanager.utils.kernel.cpu.boost;
 
 import android.content.Context;
 
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
 import com.smartpack.kernelmanager.utils.root.Control;
 
 import java.util.ArrayList;
@@ -60,6 +61,8 @@ public class CPUBoost {
     private static final String CPU_BOOST_WAKEUP = CPU_BOOST + "/wakeup_boost";
     private static final String CPU_BOOST_HOTPLUG = CPU_BOOST + "/hotplug_boost";
     private static final String SCHED_BOOST_ON_INPUT = CPU_BOOST + "/sched_boost_on_input";
+
+    private static final String CPU_TOUCH_BOOST = "/sys/module/msm_performance/parameters/touchboost";
 
     private String ENABLE;
 
@@ -206,13 +209,26 @@ public class CPUBoost {
         return ENABLE != null;
     }
 
+    public void enableCpuTouchBoost(boolean enabled, Context context) {
+        run(Control.write(enabled ? "1" : "0", CPU_TOUCH_BOOST), CPU_TOUCH_BOOST, context);
+    }
+
+    public static boolean isCpuTouchBoostEnabled() {
+        return Utils.readFile(CPU_TOUCH_BOOST).equals("1");
+    }
+
+    public static boolean hasCpuTouchBoost() {
+        return Utils.existFile(CPU_TOUCH_BOOST);
+    }
+
     public boolean supported() {
         return hasEnable() || hasCpuBoostDebugMask() || hasCpuBoostMs() || hasCpuBoostSyncThreshold()
-                || hasCpuBoostInputFreq() || hasCpuBoostInputMs() || hasCpuBoostHotplug() || hasCpuBoostWakeup();
+                || hasCpuBoostInputFreq() || hasCpuBoostInputMs() || hasCpuBoostHotplug()
+                || hasCpuBoostWakeup() || hasCpuTouchBoost();
     }
 
     private void run(String command, String id, Context context) {
-        Control.runSetting(command, ApplyOnBootFragment.CPU, id, context);
+        Control.runSetting(command, ApplyOnBootFragment.CPU_BOOST, id, context);
     }
 
 }

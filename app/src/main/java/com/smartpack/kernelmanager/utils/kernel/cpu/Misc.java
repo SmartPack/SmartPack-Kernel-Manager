@@ -47,97 +47,8 @@ public class Misc {
     private static final String CPU_QUIET_NR_MIN_CPUS = CPU_QUIET + "/nr_min_cpus";
     private static final String CPU_QUIET_NR_MAX_CPUS = CPU_QUIET + "/nr_max_cpus";
 
-    private static final String CPU_TOUCH_BOOST = "/sys/module/msm_performance/parameters/touchboost";
-
-    private static final String DYN_STUNE_BOOST = "/sys/module/cpu_boost/parameters/dynamic_stune_boost";
-    private static final String DYN_STUNE_BOOST_MS = "/sys/module/cpu_boost/parameters/dynamic_stune_boost_ms";
-
-    private static final String ADVANCED = "/dev/stune";
-    private static final String SCHED_BOOST = ADVANCED + "/schedtune.sched_boost";
-    private static final String SCHED_BOOST_ENABLED = ADVANCED + "/schedtune.sched_boost_enabled";
-    private static final String SCHED_BOOST_NO_OVERRIDE = ADVANCED + "/schedtune.sched_boost_no_override";
-
-    private static final String[] STUNE = {"schedtune.boost", "schedtune.sched_boost", "schedtune.sched_boost_enabled",
-            "schedtune.sched_boost_no_override", "schedtune.prefer_idle", "schedtune.colocate", "cgroup.clone_children",
-            "cgroup.sane_behavior", "top-app/schedtune.boost", "top-app/schedtune.sched_boost", "top-app/schedtune.sched_boost_enabled",
-            "top-app/schedtune.sched_boost_no_override", "top-app/schedtune.prefer_idle", "top-app/cgroup.clone_children",
-            "top-app/cgroup.sane_behavior", "rt/schedtune.boost", "rt/schedtune.sched_boost", "rt/schedtune.sched_boost_enabled",
-            "rt/schedtune.sched_boost_no_override", "rt/schedtune.prefer_idle", "rt/cgroup.clone_children", "rt/cgroup.sane_behavior",
-            "foreground/schedtune.boost", "foreground/schedtune.sched_boost", "foreground/schedtune.sched_boost_enabled",
-            "foreground/schedtune.sched_boost_no_override", "foreground/schedtune.prefer_idle", "foreground/cgroup.clone_children",
-            "foreground/cgroup.sane_behavior", "background/schedtune.boost", "background/schedtune.sched_boost",
-            "background/schedtune.sched_boost_enabled", "background/schedtune.sched_boost_no_override",
-            "background/schedtune.prefer_idle", "background/cgroup.clone_children", "background/cgroup.sane_behavior"};
-
-    private static final String VOXPOPULI = "/dev/voxpopuli";
-
-    private static final String[] TUNABLES = {"enable_interaction_boost", "fling_min_boost_duration",
-            "fling_max_boost_duration", "fling_boost_topapp", "fling_min_freq_big", "fling_min_freq_little",
-            "touch_boost_duration", "touch_boost_topapp", "touch_min_freq_big", "touch_min_freq_little"};
-
     private static String[] sAvailableCFSSchedulers;
     private static String[] sCpuQuietAvailableGovernors;
-
-    public static void enableCpuTouchBoost(boolean enabled, Context context) {
-        run(Control.write(enabled ? "1" : "0", CPU_TOUCH_BOOST), CPU_TOUCH_BOOST, context);
-    }
-
-    public static boolean isCpuTouchBoostEnabled() {
-        return Utils.readFile(CPU_TOUCH_BOOST).equals("1");
-    }
-
-    public static boolean hasCpuTouchBoost() {
-        return Utils.existFile(CPU_TOUCH_BOOST);
-    }
-
-    public static void setDynStuneBoost(int value, Context context) {
-        run(Control.write(String.valueOf(value), DYN_STUNE_BOOST), DYN_STUNE_BOOST, context);
-    }
-
-    public static int getDynStuneBoost() {
-        return Utils.strToInt(Utils.readFile(DYN_STUNE_BOOST));
-    }
-
-    public static boolean hasDynStuneBoost() {
-        return Utils.existFile(DYN_STUNE_BOOST);
-    }
-
-    public static void setDynStuneBoostDuration(String value, Context context) {
-        run(Control.write(String.valueOf(value), DYN_STUNE_BOOST_MS), DYN_STUNE_BOOST_MS, context);
-    }
-
-    public static String getDynStuneBoostDuration() {
-        return Utils.readFile(DYN_STUNE_BOOST_MS);
-    }
-
-    public static boolean hasDynStuneBoostDuration() {
-        return Utils.existFile(DYN_STUNE_BOOST_MS);
-    }
-
-    public static void setValue(String value, int position, Context context) {
-        run(Control.write(value, ADVANCED + "/" + STUNE[position]), ADVANCED + "/" +
-                STUNE[position], context);
-    }
-
-    public static String getValue(int position) {
-        return Utils.readFile(ADVANCED + "/" + STUNE[position]);
-    }
-
-    public static String getName(int position) {
-        return STUNE[position].replace("_", " ").replace(".", " ");
-    }
-
-    public static boolean exists(int position) {
-        return Utils.existFile(ADVANCED + "/" + STUNE[position]);
-    }
-
-    public static int size() {
-        return STUNE.length;
-    }
-
-    public static boolean hasSchedBoostSettings() {
-        return Utils.existFile(SCHED_BOOST) || Utils.existFile(SCHED_BOOST_ENABLED) || Utils.existFile(SCHED_BOOST_NO_OVERRIDE);
-    }
 
     public static void setCpuQuietGovernor(String value, Context context) {
         run(Control.write(value, CPU_QUIET_CURRENT_GOVERNOR), CPU_QUIET_CURRENT_GOVERNOR, context);
@@ -246,31 +157,6 @@ public class Misc {
 
     public static boolean hasMcPowerSaving() {
         return Utils.existFile(CPU_MC_POWER_SAVING);
-    }
-
-    public static void setVoxpopuliTunableValue(String value, int position, Context context) {
-        run(Control.write(value, VOXPOPULI + "/" + TUNABLES[position]), VOXPOPULI + "/" +
-                TUNABLES[position], context);
-    }
-
-    public static String getVoxpopuliTunableValue(int position) {
-        return Utils.readFile(VOXPOPULI + "/" + TUNABLES[position]);
-    }
-
-    public static String getVoxpopuliTunableName(int position) {
-        return Utils.upperCaseEachWord(TUNABLES[position]).replace("_", " ");
-    }
-
-    public static boolean VoxpopuliTunableexists(int position) {
-        return Utils.existFile(VOXPOPULI + "/" + TUNABLES[position]);
-    }
-
-    public static int VoxpopuliTunablesize() {
-        return TUNABLES.length;
-    }
-
-    public static boolean hasVoxpopuliTunable() {
-        return Utils.existFile(VOXPOPULI);
     }
 
     private static void run(String command, String id, Context context) {

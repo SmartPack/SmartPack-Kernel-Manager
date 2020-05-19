@@ -33,6 +33,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.tools.profile.ProfileActivity;
 import com.smartpack.kernelmanager.fragments.kernel.BatteryFragment;
+import com.smartpack.kernelmanager.fragments.kernel.boost.CPUBoostFragment;
 import com.smartpack.kernelmanager.fragments.kernel.CPUFragment;
 import com.smartpack.kernelmanager.fragments.kernel.CPUHotplugFragment;
 import com.smartpack.kernelmanager.fragments.kernel.CPUVoltageFragment;
@@ -43,8 +44,10 @@ import com.smartpack.kernelmanager.fragments.kernel.KSMFragment;
 import com.smartpack.kernelmanager.fragments.kernel.DisplayLEDFragment;
 import com.smartpack.kernelmanager.fragments.kernel.LMKFragment;
 import com.smartpack.kernelmanager.fragments.kernel.MiscFragment;
+import com.smartpack.kernelmanager.fragments.kernel.boost.PowerHalFragment;
 import com.smartpack.kernelmanager.fragments.kernel.ScreenFragment;
 import com.smartpack.kernelmanager.fragments.kernel.SoundFragment;
+import com.smartpack.kernelmanager.fragments.kernel.boost.StuneBoostFragment;
 import com.smartpack.kernelmanager.fragments.kernel.ThermalFragment;
 import com.smartpack.kernelmanager.fragments.kernel.VMFragment;
 import com.smartpack.kernelmanager.fragments.kernel.WakeFragment;
@@ -62,6 +65,9 @@ import java.util.HashMap;
 public class ApplyOnBootFragment extends BaseFragment {
 
     public static final String CPU = "cpu_onboot";
+    public static final String CPU_BOOST = "cpuboost_onboot";
+    public static final String POWERHAL_BOOST = "powerhal_onboot";
+    public static final String STUNE_BOOST = "stuneboost_onboot";
     public static final String CPU_VOLTAGE = "cpuvoltage_onboot";
     public static final String CPU_HOTPLUG = "cpuhotplug_onboot";
     public static final String THERMAL = "thermal_onboot";
@@ -85,6 +91,9 @@ public class ApplyOnBootFragment extends BaseFragment {
 
     static {
         sAssignments.put(CPUFragment.class, CPU);
+        sAssignments.put(CPUBoostFragment.class, CPU_BOOST);
+        sAssignments.put(PowerHalFragment.class, POWERHAL_BOOST);
+        sAssignments.put(StuneBoostFragment.class, STUNE_BOOST);
         sAssignments.put(CPUVoltageFragment.class, CPU_VOLTAGE);
         sAssignments.put(CPUHotplugFragment.class, CPU_HOTPLUG);
         sAssignments.put(ThermalFragment.class, THERMAL);
