@@ -1028,6 +1028,8 @@
     <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub:</string>
     <string name="busybox_installer">BusyBox Installer</string>
     <string name="busybox_installer_summary">It is highly recommended to have a standalone BusyBox installation on your device to work some features of this app properly (e.g., \'unzip\' &amp; \'mke2fs\' binaries for flashing &amp; \'curl\' or \'wget\' binary for kernel OTA updates). As an attempt to help users on this issue, a simple app is made available, which can be used as a one-click BusyBox installation utility for arm, arm64 and x86 device. Click here to Get It!</string>
+    <string name="debug_mode">Debug Mode</string>
+    <string name="debug_mode_summary">Debug Mode is enabled! A more detailed flashing log (useful for debugging issues) will be displayed.</string>
 
     <!-- Update Channel -->
     <string name="update_channel_message">(<i>for developers only</i>)\nApp will create an update channel (json) for your kernel, as long as the information\'s provided in this page are accurate.</string>

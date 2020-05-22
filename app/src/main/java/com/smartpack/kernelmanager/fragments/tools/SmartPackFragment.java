@@ -35,6 +35,8 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.OpenableColumns;
 import android.view.Menu;
+import android.view.View;
+import android.widget.CheckBox;
 
 import androidx.fragment.app.FragmentManager;
 
@@ -594,6 +596,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
                 SmartPack.mFlashing = false;
+                if (SmartPack.mDebugMode) SmartPack.mDebugMode = false;
             }
         }.execute();
     }
@@ -730,11 +733,22 @@ public class SmartPackFragment extends RecyclerViewFragment {
             if (SmartPack.fileSize(new File(mPath)) >= 100000000) {
                 Utils.snackbar(getRootView(), getString(R.string.file_size_limit, (SmartPack.fileSize(new File(mPath)) / 1000000)));
             }
+            View checkBoxView = View.inflate(getActivity(), R.layout.rv_checkbox, null);
+            CheckBox checkBox = checkBoxView.findViewById(R.id.checkbox);
+            checkBox.setChecked(SmartPack.mDebugMode);
+            checkBox.setText(getString(R.string.debug_mode));
+            checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                SmartPack.mDebugMode = isChecked;
+                if (isChecked) {
+                    Utils.snackbar(getRootView(), getString(R.string.debug_mode_summary));
+                }
+            });
             Dialog manualFlash = new Dialog(requireActivity());
             manualFlash.setIcon(R.mipmap.ic_launcher);
             manualFlash.setTitle(getString(R.string.flasher));
             manualFlash.setMessage(getString(R.string.sure_message, new File(mPath).getName()) + ("\n\n") +
                     getString(R.string.warning) + (" ") + getString(R.string.flasher_warning));
+            manualFlash.setView(checkBoxView);
             manualFlash.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
             manualFlash.setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> {

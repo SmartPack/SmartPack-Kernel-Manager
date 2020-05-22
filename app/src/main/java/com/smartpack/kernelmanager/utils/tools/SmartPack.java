@@ -41,7 +41,8 @@ public class SmartPack {
 
     public static StringBuilder mFlashingResult = null;
 
-    public static boolean mFlashing;
+    public static boolean mFlashing = false;
+    public static boolean mDebugMode = false;
 
     private static String mountRootFS(String command) {
         return "mount -o remount," + command + " /";
@@ -104,7 +105,7 @@ public class SmartPack {
             mFlashingResult.append(RootUtils.runAndGetError("mke2fs -F tmp.ext4 500000")).append(" \n");
             mFlashingResult.append(RootUtils.runAndGetError("mount -o loop tmp.ext4 /tmp/")).append(" \n\n");
             mFlashingResult.append("** Flashing ").append(mZipName).append(" ...\n\n");
-            mFlashingOutput = RootUtils.runAndGetOutput(flashingCommand);
+            mFlashingOutput = mDebugMode ? RootUtils.runAndGetError(flashingCommand) : RootUtils.runAndGetOutput(flashingCommand);
             mFlashingResult.append(mFlashingOutput.isEmpty() ? "Unfortunately, flashing " + mZipName + " failed due to some unknown reasons!" : mFlashingOutput);
         } else {
             mFlashingResult.append(" Failed *\n\n");
