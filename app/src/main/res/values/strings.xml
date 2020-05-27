@@ -737,6 +737,7 @@
     <string name="foreground_app">Foreground Applications</string>
     <string name="lmk_adaptive">Adaptive Low Memory Killer</string>
     <string name="lmk_adaptive_summary">Make LMK more aggressive dynamically when a thrashing scenario is detected.</string>
+    <string name="lmk_fast_run">Enable Fast Run</string>
     <string name="visible_app">Visible Applications</string>
     <string name="secondary_server">Secondary Server</string>
     <string name="hidden_app">Hidden Applications</string>
