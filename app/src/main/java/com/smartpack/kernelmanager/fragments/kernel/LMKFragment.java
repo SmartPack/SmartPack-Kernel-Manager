@@ -81,7 +81,7 @@ public class LMKFragment extends RecyclerViewFragment {
         CardView lmkCard = new CardView(getActivity());
         lmkCard.setTitle(getString(R.string.lmk));
 
-	if (LMK.hasAdaptive()) {
+        if (LMK.hasAdaptive()) {
             SwitchView adaptive = new SwitchView();
             adaptive.setTitle(getString(R.string.lmk_adaptive));
             adaptive.setSummary(getString(R.string.lmk_adaptive_summary));
@@ -89,7 +89,16 @@ public class LMKFragment extends RecyclerViewFragment {
             adaptive.addOnSwitchListener((switchView, isChecked) -> LMK.enableAdaptive(isChecked, getActivity()));
 
             lmkCard.addItem(adaptive);
-	}
+        }
+
+        if (LMK.hasFastRun()) {
+            SwitchView fastRun = new SwitchView();
+            fastRun.setSummary(getString(R.string.lmk_fast_run));
+            fastRun.setChecked(LMK.isFastRunEnabled());
+            fastRun.addOnSwitchListener((switchView, isChecked) -> LMK.enableFastRun(isChecked, getActivity()));
+
+            lmkCard.addItem(fastRun);
+        }
 
         mMinFrees.clear();
         List<String> minfrees = LMK.getMinFrees();
@@ -184,7 +193,7 @@ public class LMKFragment extends RecyclerViewFragment {
             profileCard.addItem(profile);
         }
 
-	if (profileCard.size() > 0) {
+        if (profileCard.size() > 0) {
             items.add(profileCard);
         }
     }
