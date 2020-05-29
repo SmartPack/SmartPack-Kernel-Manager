@@ -1,5 +1,9 @@
 # Change-logs
 
+## 113. May 29, 2020
+*Release-tag: beta_v11.9*<br>
+Flasher: Added debug mode (capture full log if enabled). LMK: Added fast run control switch.
+
 ## 112. May 19, 2020
 *Release-tag: beta_v11.8*<br>
 Added support to ThunderPlug CPU hotplug driver. Moved all CPU Boost settings into a new page (link in CPU). Updated Script Manager to show success dialog even if the output is empty. Blocked swipe/drage option for profiles and scripts. Removed circular image view from app (reduced app size). Miscellaneous changes.
