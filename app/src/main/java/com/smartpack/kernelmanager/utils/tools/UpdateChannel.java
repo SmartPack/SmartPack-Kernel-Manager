@@ -26,14 +26,9 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
-import androidx.fragment.app.FragmentManager;
-
-import com.github.cliftonlabs.json_simple.JsonObject;
-import com.github.cliftonlabs.json_simple.Jsoner;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
-import com.smartpack.kernelmanager.fragments.tools.SmartPackFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
@@ -41,9 +36,10 @@ import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.GenericInputView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -374,22 +370,20 @@ public class UpdateChannel extends RecyclerViewFragment {
                                         Utils.readFile(UPDATE_CHANNEL + "/donation_link") : "";
                                 Utils.sleep(3);
                                 try {
-                                    FileWriter writer = new FileWriter(json);
-                                    JsonObject obj = new JsonObject();
-                                    JsonObject kernel = new JsonObject();
+                                    JSONObject obj = new JSONObject();
+                                    JSONObject kernel = new JSONObject();
                                     kernel.put("name", Utils.readFile(UPDATE_CHANNEL + "/kernel_name"));
                                     kernel.put("version", Utils.readFile(UPDATE_CHANNEL + "/kernel_version"));
                                     kernel.put("link", Utils.readFile(UPDATE_CHANNEL + "/download_link"));
                                     kernel.put("changelog_url", changelog);
                                     kernel.put("sha1", sha1);
                                     obj.put("kernel", kernel);
-                                    JsonObject support = new JsonObject();
+                                    JSONObject support = new JSONObject();
                                     support.put("link", support_group);
                                     support.put("donation", donation_link);
                                     obj.put("support", support);
-                                    Jsoner.serialize(obj, writer);
-                                    writer.close();
-                                } catch (IOException ignored) {
+                                    Utils.create(obj.toString(), json);
+                                } catch (JSONException ignored) {
                                 }
                                 return null;
                             }
@@ -405,10 +399,6 @@ public class UpdateChannel extends RecyclerViewFragment {
                                             .setMessage(getString(R.string.json_created, json))
                                             .setCancelable(false)
                                             .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
-                                                FragmentManager fragmentManager = getFragmentManager();
-                                                assert fragmentManager != null;
-                                                fragmentManager.beginTransaction()
-                                                        .replace(R.id.content_frame, new SmartPackFragment()).commit();
                                             })
                                             .show();
                                 } else {
