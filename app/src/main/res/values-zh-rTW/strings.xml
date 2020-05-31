@@ -169,7 +169,6 @@
     <string name="dyn_stune_boost">動態 Stune Boost</string>
     <string name="stune_boost_ms">Stune Boost 時長</string>
     <string name="stune_boost_sett">Stune Boost 設定</string>
-    <string name="stune_boost_sett_summary">點選以瀏覽 Stune Boost 進階設定。</string>
 
     <!-- CPU Input Boost -->
     <string name="cpu_input_boost">CPU 輸入加速</string>
@@ -856,7 +855,6 @@
     <!-- SmartPack -->
     <string name="support">支援</string>
     <string name="support_summary">造訪 xda-developers.com 的支援頁面</string>
-    <string name="flash_log">刷入器日誌</string>
     <string name="reboot">重啟</string>
     <string name="reboot_now">立即重新啟動</string>
     <string name="reboot_later">稍後重新開機</string>

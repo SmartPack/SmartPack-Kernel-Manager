@@ -184,7 +184,6 @@
     <string name="dyn_stune_boost">Impulso de stune dinâmico</string>
     <string name="stune_boost_ms">Duração do impulso de stune</string>
     <string name="stune_boost_sett">Configurações do impulso stune</string>
-    <string name="stune_boost_sett_summary">Ative para obter acesso a configurações avançadas do impulso stune.</string>
     <string name="powerhal_tunables">Ajustáveis do Power HAL</string>
 
     <!-- CPU Input Boost -->
@@ -908,7 +907,6 @@
     <!-- SmartPack -->
     <string name="support">Suporte</string>
     <string name="support_summary">Visite a página de suporte no xda-developers.com</string>
-    <string name="flash_log">Registro do Flasher</string>
     <string name="reboot">Reiniciar</string>
     <string name="reboot_now">Reiniciar Agora</string>
     <string name="reboot_later">Reiniciar Depois</string>
@@ -1074,9 +1072,6 @@
     <string name="always_show">Sempre mostrar</string>
     <string name="clear">Limpar tudo</string>
     <string name="clear_message">Todos os campos estão vazios! Abortando.</string>
-    <string name="clear_summary">Limpar esta página</string>
-    <string name="clearing">Limpando tudo</string>
-    <string name="creating">Criando %s</string>
     <string name="credits">Créditos</string>
     <string name="donation_link">Link de doação</string>
     <string name="donation_link_summary">link_de_doação</string>
@@ -1086,9 +1081,7 @@
     <string name="grarak">Willi Ye</string>
     <string name="invalid_controller">%s não é um controlador personalizado válido! Abortando.</string>
     <string name="invalid_path">%s não é um caminho sysfs válido! Abortando.</string>
-    <string name="item_empty">%s não deve estar vazio</string>
     <string name="json_created">Parabéns! O canal de atualização foi criado com sucesso em %s. Hospede-o em algum lugar e compartilhe um link de download direto com seus usuários.</string>
-    <string name="json_not_created">Falha na criação do canal de atualização.</string>
     <string name="licence">Licença</string>
     <string name="osm0sis">Chris Renshaw</string>
     <string name="osm0sis_summary">O desenvolvedor do famoso projeto \'AnyKernel3\'. Sem seu apoio e orientação, o recurso de flashear automaticamente neste aplicativo não aconteceria.</string>
@@ -1127,7 +1120,6 @@
     <string name="overall_summary">Bem-vindo à página inicial do SmartPack-Kernel Manager. Esta página fornece informações muito básicas do seu dispositivo. Opções avançadas de ajustes do kernel podem ser encontradas nas suas respectivas páginas.</string>
     <string name="share_app_message">Obtenha o SmartPack-Kernel Manager %s em\n\nGoogle Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
     <string name="share_channel_message">Para configurar esse canal, basta colocar \'%s\' em SmartPack-Kernel Manager -> SmartPack -> URL do canal de atualizações.\n\n\Obtenha o SmartPack-Kernel Manager em\nGoogle Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub:</string>
-    <string name="submit_summary">Criar canal de atualização com as informações atuais</string>
     <string name="update_available">Nova atualização disponível!\nv%s</string>
     <string name="update_available_summary">%s\n\n**Importante: Por favor, faça o download e atualize manualmente o aplicativo!**</string>
     <string name="update_channel_empty">Limpando informações do canal de atualização!</string>
@@ -1137,7 +1129,6 @@
     <string name="disable_ads_message">Parabéns! Os anúncios estão desativados!\n\nNo entanto, note que as receitas obtidas com esses anúncios são realmente úteis para o desenvolvedor continuar seus projetos de desenvolvimento do Android mais ativos. Se isso não o prejudicar, considere permitir que os anúncios ofereçam suporte ao desenvolvimento.</string>
     <string name="low">Baixo</string>
     <string name="high">Alto</string>
-    <string name="save_log">Salvar o Registro</string>
     <string name="file_name_error">O nome do arquivo ou o caminho que você selecionou possui caracteres como \'(\' ou \')\', o que provavelmente causa problemas com o seletor de arquivos!</string>
     <string name="flash_log_summary">O Registro do Flasher foi exportado como %s!</string>
     <string name="apply">Aplicar</string>

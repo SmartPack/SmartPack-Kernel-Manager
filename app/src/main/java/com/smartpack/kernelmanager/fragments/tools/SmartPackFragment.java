@@ -243,8 +243,12 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 Menu menu = popupMenu.getMenu();
                 menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.update_channel_create));
                 popupMenu.setOnMenuItemClickListener(item -> {
-                    Intent createUpdateChannel = new Intent(getActivity(), UpdateChannelActivity.class);
-                    startActivity(createUpdateChannel);
+                    if (mPermissionDenied) {
+                        Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
+                    } else {
+                        Intent createUpdateChannel = new Intent(getActivity(), UpdateChannelActivity.class);
+                        startActivity(createUpdateChannel);
+                    }
                     return false;
                 });
             });

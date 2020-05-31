@@ -168,9 +168,8 @@
      <string name="dyn_stune_boost">动态 Stune Boost</string>
      <string name="stune_boost_ms">Stune Boost 时长</string>
      <string name="stune_boost_sett">Stune Boost 设置</string>
-     <string name="stune_boost_sett_summary">点击以浏览 Stune Boost 高级设定。  </string>
 
-      <!-- CPU Input Boost -->
+    <!-- CPU Input Boost -->
      <string name="cpu_input_boost">CPU 输入加速</string>
      <string name="cpu_input_boost_summary">启用 sultanxda 开发的 CPU 输入加速。  </string>
      <string name="cpuiboost_duration">输入加速持续时间</string>

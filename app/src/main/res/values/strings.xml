@@ -213,7 +213,6 @@
     <string name="dyn_stune_boost">Dynamic Stune Boost</string>
     <string name="stune_boost_ms">Stune Boost Duration</string>
     <string name="stune_boost_sett">Stune Boost Settings</string>
-    <string name="stune_boost_sett_summary">Show advanced stune boost settings</string>
     <string name="powerhal">Power HAL</string>
     <string name="powerhal_tunables">Power HAL Tunables</string>
 
@@ -925,7 +924,6 @@
     <string name="sure_message">Are you sure to flash %s?</string>
     <string name="select_question">Select %s?</string>
     <string name="wrong_extension">Please select a file with %s extension.</string>
-    <string name="save_log">Save Log</string>
 
     <!-- Build prop Editor -->
     <string name="add">Add</string>
@@ -1003,7 +1001,6 @@
     <string name="support">Support</string>
     <string name="support_summary">Visit support page</string>
     <string name="file_name_error">The file name or path you selected has characters such as \'(\' or \')\', which likely makes issues with the file picker!</string>
-    <string name="flash_log">Flasher Log</string>
     <string name="flash_log_summary">Flasher Log is exported as %s!</string>
     <string name="reboot">Reboot</string>
     <string name="rebooting">Rebooting</string>
@@ -1038,7 +1035,7 @@
     <string name="update_channel_message">(<i>for developers only</i>)\nApp will create an update channel (json) for your kernel, as long as the information\'s provided in this page are accurate.</string>
     <string name="update_channel_instructions"><b>Kernel Name</b>, <b>Kernel Version</b> &amp; <b>Download Link</b> are the mandatory fields to be filled before clicking the create button.\n\n<b>Change-logs</b> could be provided, either as a well formatted text, or as a link to an online page.\n\nSecure Hash Algorithm (<b>sha1</b>) is optional, but highly recommended to ensure the authenticity of the downloaded kernel.</string>
     <string name="kernel_name">Kernel Name</string>
-    <string name="kernel_name_summary">Kernel_Name</string>
+    <string name="kernel_name_summary">Kernel_name</string>
     <string name="kernel_version">Kernel Version</string>
     <string name="kernel_version_summary">Kernel_version</string>
     <string name="download_link">Download Link</string>
@@ -1050,16 +1047,12 @@
     <string name="support_group_summary">support_link</string>
     <string name="donation_link">Donation Link</string>
     <string name="donation_link_summary">donation_link</string>
-    <string name="submit_summary">Create Update Channel with the current information\'s</string>
     <string name="submit_failed">Some of the necessary fields are empty! Aborting.</string>
     <string name="json_created">Congrats! Update Channel is successfully created at %s. Please host it somewhere and share a direct download link with your users.</string>
-    <string name="json_not_created">Creation of Update Channel is failed.</string>
-    <string name="item_empty">%s shouldn\'t be empty</string>
+    <string name="update_channel_create_warning">The changes you made will be lost!</string>
     <string name="clear">Clear All</string>
     <string name="clear_message">All the fields are empty! Aborting.</string>
-    <string name="clear_summary">Clear this page</string>
-    <string name="clearing">Clearing all</string>
-    <string name="creating">Creating %s</string>
+    <string name="clear_all_summary">Everything you added to this page will be cleared!</string>
 
     <!-- App Updater -->
     <string name="update_available">New update available!\nv%s</string>
