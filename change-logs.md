@@ -1,5 +1,9 @@
 # Change-logs
 
+## 106. May 31, 2020
+*Release-tag: beta_v12.0*<br>
+Added support to ThunderPlug CPU hotplug driver. Moved all CPU Boost settings into a new page (link in CPU). Moved Create Update Channel option into a new activity (improved & simplified). Updated build tools to latest. Updated Script Manager to show success dialog even if the output is empty. Removed circular image view from app (reduced app size). Added a debug mode in Flasher (capture full log if enabled). Added LMK fast run control switch. Miscellaneous changes.
+
 ## 105. May 09, 2020
 *Release-tag: v11.7*<br>
 Updated GPU Min Freq path and offset for some Xiaomi devices (Credits: @elpaablo). Enabled on boot indicator for profiles. Increased zRAM max limit to 4GB. Replaced most toast messages with a snackbar. Miscellaneous changes.

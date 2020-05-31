@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - Updated GPU Min Freq path and offset for some Xiaomi devices (Credits: @elpaablo).\n - Enabled on boot indicator for profiles.\n - Increased zRAM max limit to 4GB.\n - Replaced most toast messages with a snackbar.\n - Miscellaneous changes.",
-  "latestVersion": "11.7",
-  "latestVersionCode": 117
+  "releaseNotes": "Change-logs\n - Added support to ThunderPlug CPU hotplug driver.\n - Moved all CPU Boost settings into a new page (link in CPU).\n - Moved Create Update Channel option into a new activity (improved & simplified).\n - Updated build tools to latest.\n - Updated Script Manager to show success dialog even if the output is empty.\n - Removed circular image view from app (reduced app size).\n - Added a debug mode in Flasher (capture full log if enabled).\n - Added LMK fast run control switch.\n - Miscellaneous changes.",
+  "latestVersion": "12.0",
+  "latestVersionCode": 120
 }
