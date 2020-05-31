@@ -349,7 +349,7 @@ public class Wakelocks {
     }
 
     private static void run(String command, String id, Context context) {
-        Control.runSetting(command, ApplyOnBootFragment.MISC, id, context);
+        Control.runSetting(command, ApplyOnBootFragment.WAKELOCKS, id, context);
     }
 
 }

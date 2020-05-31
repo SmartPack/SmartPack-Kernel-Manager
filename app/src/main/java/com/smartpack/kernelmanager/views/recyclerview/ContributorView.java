@@ -22,11 +22,12 @@ package com.smartpack.kernelmanager.views.recyclerview;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.other.Contributors;
-import com.mikhaellopez.circularimageview.CircularImageView;
 
 /**
  * Created by willi on 23.07.16.
@@ -48,7 +49,7 @@ public class ContributorView extends RecyclerViewItem {
     public void onCreateView(View view) {
         super.onCreateView(view);
 
-        CircularImageView image = view.findViewById(R.id.image);
+        AppCompatImageView image = view.findViewById(R.id.image);
         TextView name = view.findViewById(R.id.name);
         TextView contributions = view.findViewById(R.id.contributions);
 
