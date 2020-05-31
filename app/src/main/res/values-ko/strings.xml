@@ -174,7 +174,6 @@
     <string name="dyn_stune_boost">다이내믹 Stune 부스트</string>
     <string name="stune_boost_ms">Stune 부스트 지속시간</string>
     <string name="stune_boost_sett">Stune 부스트 설정</string>
-    <string name="stune_boost_sett_summary">추가적인 stune 부스트 설정에 접근하는 것을 가능하게 합니다.</string>
     <string name="powerhal_tunables">전원 HAL 설정</string>
 
     <!-- CPU Input Boost -->
@@ -838,7 +837,6 @@
     <string name="sure_message">%s을(를) 설치합니다. 계속하시겠어요?</string>
     <string name="select_question">%s을 선택하시겠어요?</string>
     <string name="wrong_extension">%s 확장자를 가진 파일을 선택해주세요.</string>
-    <string name="save_log">로그 저장하기</string>
 
     <!-- Build prop Editor -->
     <string name="add">추가</string>
@@ -912,7 +910,6 @@
     <string name="support">지원 받기</string>
     <string name="support_summary">지원 그룹을 방문하세요.</string>
     <string name="file_name_error">선택한 파일 이름이나 위치에 파일 선택기가 문제를 발생시킬 수 있는 \'(\' 아니면 \')\'와 같은 문자가 들어있습니다!</string>
-    <string name="flash_log">설치 로그</string>
     <string name="flash_log_summary">설치 로그가 %s에 추출되었습니다!</string>
     <string name="reboot">다시 시작</string>
     <string name="rebooting">다시 시작하는 중</string>
@@ -952,17 +949,10 @@
     <string name="support_group_summary">지원_url</string>
     <string name="donation_link">기부 URL</string>
     <string name="donation_link_summary">기부_url</string>
-    <string name="submit_summary">현제의 정보로 업데이트 채널을 생성합니다.</string>
     <string name="submit_failed">필수 필드 중 몇몇이 비었습니다!</string>
     <string name="json_created">축하합니다! 업데이트 채널이 %s에 성공적으로 생성되었습니다. 어딘가에 호스트하고 다운로드 링크를 여러분의 유저들과 공유하세요.</string>
-    <string name="json_not_created">업데이트 채널 생성에 실패했습니다.</string>
-    <string name="item_empty">%s은(는) 비어있으면 안됩니다!</string>
     <string name="clear">모두 지우기</string>
     <string name="clear_message">모든 필드가 비었습니다!</string>
-    <string name="clear_summary">이 페이지를 지웁니다
-</string>
-    <string name="clearing">모든 것을 지우는 중</string>
-    <string name="creating">%s을 생성하는 중</string>
 
     <!-- App Updater -->
     <string name="update_available">새 업데이트가 가능합니다!\nv%s</string>

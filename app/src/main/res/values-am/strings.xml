@@ -192,7 +192,6 @@
     <string name="dyn_stune_boost">ተለዋዋጭ የስታቲስቲክ እድገት</string>
     <string name="stune_boost_ms">የስታቲስቲክ ቡት ቆይታ</string>
     <string name="stune_boost_sett">የስታስቲን ቡት ቅንጅቶች</string>
-    <string name="stune_boost_sett_summary">ወደ የላቁ የተጠናከረ ማበልጸጊያ ቅንብሮች መዳረሻን ያንቁ።</string>
     <string name="powerhal_tunables">የኃይል HAL ተለዋዋጮች</string>
 
     <!-- CPU Input Boost -->
@@ -902,7 +901,6 @@
     <string name="sure_message">እርግጠኛ ነዎት%s ብልጭ ድርግም ይላሉ?</string>
     <string name="select_question">%s ን ይምረጡ?</string>
     <string name="wrong_extension">እባክዎ ከ%s ቅጥያ ጋር ፋይል ይምረጡ።</string>
-    <string name="save_log">ምዝግብ ማስታወሻ ያስቀምጡ</string>
 
     <!-- Build prop Editor -->
     <string name="add">ያክሉ</string>
@@ -975,7 +973,6 @@
     <string name="support">ድጋፍ</string>
     <string name="support_summary">የድጋፍ ገጽን ይጎብኙ</string>
     <string name="file_name_error">የመረጡት የፋይል ስም ወይም መንገድ እንደ \'(\' or \')\' ያሉ ቁምፊዎች አሉት ፣ ይህም በፋይሉ መራጭ ላይ ችግር ሊፈጥር ይችላል!</string>
-    <string name="flash_log">የፍላሸር ምዝግብ ማስታወሻ</string>
     <string name="flash_log_summary">Flasher log እንደ%s ወደ ውጭ ተልኳል!</string>
     <string name="reboot">ድጋሚ አስነሳ</string>
     <string name="rebooting">እንደገና ማደስ</string>
@@ -1015,16 +1012,10 @@
     <string name="support_group_summary">ድጋፍ ሰጪ አገናኝ</string>
     <string name="donation_link">የልገሳ አገናኝ</string>
     <string name="donation_link_summary">ልገሳን_አገናኝ</string>
-    <string name="submit_summary">ወቅታዊ መረጃ \'s ማዘመኛ ጣቢያ ፍጠር</string>
     <string name="submit_failed">የተወሰኑት አስፈላጊ መስኮች ባዶ ናቸው! ውርጃ</string>
     <string name="json_created">እንኳን ደስ አለዎት! የዝማኔ ጣቢያ በተሳካ ሁኔታ በ %s ተፈጠረ። እባክዎ የሆነ ቦታ ያስተናግዱት እና ለተጠቃሚዎችዎ ቀጥተኛ የማውረድ አገናኝ ያጋሩ።</string>
-    <string name="json_not_created">የዝማኔ ጣቢያ መፍጠር አልተሳካም።</string>
-    <string name="item_empty">%s ባዶ መሆን የለበትም</string>
     <string name="clear">ሁሉንም ያፅዱ</string>
     <string name="clear_message">ሁሉም መስኮች ባዶ ናቸው! ውርጃ</string>
-    <string name="clear_summary">ይህን ገጽ አጥራ</string>
-    <string name="clearing">ሁሉንም ማጽዳት</string>
-    <string name="creating">%s በመፍጠር ላይ</string>
 
     <!-- App Updater -->
     <string name="update_available">አዲስ ዝመና ይገኛል! \nv%s</string>

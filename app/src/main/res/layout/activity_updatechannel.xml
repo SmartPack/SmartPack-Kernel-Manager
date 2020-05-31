@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:id="@+id/updatechannel_card"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:padding="16dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimaryVariant"
+            android:gravity="end|center_vertical">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/back_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:layout_gravity="start"
+                android:src="@drawable/ic_back"
+                android:background="@color/colorPrimaryVariant"
+                android:tint="?android:attr/colorAccent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:gravity="center_vertical"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:text="@string/update_channel_create"
+                android:textSize="18sp"
+                android:padding="10dp"
+                android:textColor="?android:attr/colorAccent" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/save_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_save"
+                android:background="@color/colorPrimaryVariant"
+                android:tint="?android:attr/colorAccent"/>
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:paddingBottom="10dp"
+            android:gravity="center"
+            android:text="@string/update_channel_message"
+            android:background="@color/colorPrimaryVariant"
+            android:lineSpacingExtra="5dp"
+            android:textColor="@color/colorOnPrimary" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:layout_marginBottom="50dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="start|center"
+                        android:src="@drawable/ic_info"
+                        android:background="@null"
+                        android:tint="?android:attr/colorAccent"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:padding="10dp"
+                        android:gravity="start"
+                        android:text="@string/update_channel_instructions"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kernel_name"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="18sp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/kernel_name_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:hint="@string/kernel_name_summary"
+                    android:gravity="center"
+                    android:textColor="?android:attr/colorAccent"
+                    android:textColorHint="?android:attr/colorAccent"
+                    android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kernel_version"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="18sp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/kernel_version_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:hint="@string/kernel_version_summary"
+                    android:gravity="center"
+                    android:textColor="?android:attr/colorAccent"
+                    android:textColorHint="?android:attr/colorAccent"
+                    android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/download_link"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="18sp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/download_link_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:hint="@string/download_link_summary"
+                    android:gravity="center"
+                    android:textColor="?android:attr/colorAccent"
+                    android:textColorHint="?android:attr/colorAccent"
+                    android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/change_logs"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="18sp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/changelog_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:hint="@string/changelog_summary"
+                    android:gravity="center"
+                    android:textColor="?android:attr/colorAccent"
+                    android:textColorHint="?android:attr/colorAccent"
+                    android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sha1"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="18sp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/sha1_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:hint="@string/sha1_summary"
+                    android:gravity="center"
+                    android:textColor="?android:attr/colorAccent"
+                    android:textColorHint="?android:attr/colorAccent"
+                    android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/support_group"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="18sp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/support_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/support_group_summary"
+                    android:gravity="center"
+                    android:textColor="?android:attr/colorAccent"
+                    android:textColorHint="?android:attr/colorAccent"
+                    android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/donation_link"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="18sp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/donation_link_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:hint="@string/donation_link_summary"
+                    android:gravity="center"
+                    android:textColor="?android:attr/colorAccent"
+                    android:textColorHint="?android:attr/colorAccent"
+                    android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/clear_all"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_gravity="bottom|center"
+        android:textStyle="bold"
+        android:background="@color/colorPrimaryVariant"
+        android:text="@string/clear"
+        android:textColor="?android:attr/colorAccent"
+        android:textSize="18sp" />
+</androidx.cardview.widget.CardView>

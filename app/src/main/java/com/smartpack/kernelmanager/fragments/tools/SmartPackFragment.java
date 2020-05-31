@@ -21,15 +21,14 @@
 
 package com.smartpack.kernelmanager.fragments.tools;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
-
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
-import android.Manifest;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -38,26 +37,23 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.CheckBox;
 
-import androidx.fragment.app.FragmentManager;
-
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.FlashingActivity;
+import com.smartpack.kernelmanager.activities.UpdateChannelActivity;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
-import com.smartpack.kernelmanager.views.dialog.Dialog;
-import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
-import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
-
-import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
-import com.smartpack.kernelmanager.views.recyclerview.TitleView;
-import com.smartpack.kernelmanager.views.recyclerview.GenericInputView;
 import com.smartpack.kernelmanager.utils.tools.KernelUpdater;
 import com.smartpack.kernelmanager.utils.tools.SmartPack;
-import com.smartpack.kernelmanager.utils.tools.UpdateChannel;
+import com.smartpack.kernelmanager.views.dialog.Dialog;
+import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
+import com.smartpack.kernelmanager.views.recyclerview.GenericInputView;
+import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
+import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
+import com.smartpack.kernelmanager.views.recyclerview.TitleView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -247,10 +243,12 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 Menu menu = popupMenu.getMenu();
                 menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.update_channel_create));
                 popupMenu.setOnMenuItemClickListener(item -> {
-                    FragmentManager fragmentManager = getFragmentManager();
-                    assert fragmentManager != null;
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.content_frame, new UpdateChannel()).commit();
+                    if (mPermissionDenied) {
+                        Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
+                    } else {
+                        Intent createUpdateChannel = new Intent(getActivity(), UpdateChannelActivity.class);
+                        startActivity(createUpdateChannel);
+                    }
                     return false;
                 });
             });

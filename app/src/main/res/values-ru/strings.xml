@@ -146,8 +146,6 @@
     <string name="checking_root">Проверка рут-доступа</string>
     <string name="clear">Очистить Всё</string>
     <string name="clear_message">Все поля пусты! Прерывание.</string>
-    <string name="clear_summary">Очистить эту страницу</string>
-    <string name="clearing">Clearing all</string>
     <string name="cluster_return_freq">Частота возврата кластера</string>
     <string name="collecting_info">Сбор информации</string>
     <string name="commits">Изменения: %d</string>
@@ -210,7 +208,6 @@
     <string name="crc">Управление CRC программ</string>
     <string name="crc_summary">CRC - механизм, включаемый для предотвращения повреждения данных. Блоки данных могут потерять до 30% своей производительности.</string>
     <string name="create">Создать</string>
-    <string name="creating">Creating %s</string>
     <string name="credits">Credits</string>
     <string name="current_settings">Текущие настройки</string>
     <string name="custom_charge">Пользовательский режим</string>
@@ -345,7 +342,6 @@
     <string name="five_sec">5 секунд</string>
     <string name="flash">Прошить</string>
     <string name="flash_led">Интенсивность вспышки</string>
-    <string name="flash_log">Лог прошивальшика</string>
     <string name="flasher">Прошивальшикr</string>
     <string name="flasher_summary">Нажмите кнопку прошивки, чтобы выбрать и прошить файл восстановления ZIP без перезагрузки в пользовательское восстановление. Изменения вступят в силу после перезагрузки.</string>
     <string name="flasher_warning">"Эта функция все еще очень новая и находится в стадии разработки. Он может не иметь полной совместимости со многими флеш-архивами. Если вы считаете, что процесс перепрошивки в любом случае не удался из-за вышеупомянутых несовместимостей, пожалуйста, перезапустите приложение, прежде чем что-либо делать.\nКроме того, я не рекомендую пробовать перепрошивать что-либо более 500 МБ.\n\*** ИСПОЛЬЗУЙТЕ НА СВОЙ СТРАХ И РИСК ***\n"</string>
@@ -480,10 +476,8 @@
     <string name="ipa_wakelock">Ipa Wakelock</string>
     <string name="ipa_wakelock_summary">Предотвратить Ipa wakelock.</string>
     <string name="item_count">%s элемент</string>
-    <string name="item_empty">%s не должно быть пустым</string>
     <string name="items_count">Элементы: %s</string>
     <string name="json_created">"Поздравляю! Канал обновления успешно создан в %s. Пожалуйста, разместить его где-нибудь и поделиться прямой ссылкой  с пользователями."</string>
-    <string name="json_not_created">Creation of Update Channel is failed.</string>
     <string name="kb">кБ</string>
     <string name="kernel_current">Текущая версия</string>
     <string name="kernel_information">Ядро</string>
@@ -872,9 +866,7 @@
     <string name="strict">Строгий</string>
     <string name="stune_boost_ms">Продолжительность Stune Boost</string>
     <string name="stune_boost_sett">Настройки Stune Boost</string>
-    <string name="stune_boost_sett_summary">Включите, чтобы получить доступ к расширенным настройкам ускорения оглушения.</string>
     <string name="submit_failed">Некоторые необходимые поля пусты! Прерывание.</string>
-    <string name="submit_summary">Создайте канал обновления с текущей информацией.</string>
     <string name="support">Поддержка</string>
     <string name="support_group">"Группа Поддержки "</string>
     <string name="support_group_summary">support_link</string>
