@@ -280,7 +280,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        RootUtils.mount(false, "/system");
+        RootUtils.mount("ro", RootUtils.isWritableSystem() ? "/system" : "/");
         if (mLoader != null) {
             mLoader.cancel(true);
         }

@@ -47,13 +47,13 @@ public class Buildprop {
     }
 
     public static void overwrite(String oldKey, String oldValue, String newKey, String newValue) {
-        RootUtils.mount(true, "/system");
+        if (!RootUtils.isWritableSystem()) RootUtils.mount("rw", "/");
         RootUtils.runCommand("sed 's|" + oldKey + "=" + oldValue + "|" + newKey + "=" + newValue
                 + "|g' -i /system/build.prop");
     }
 
     public static void addKey(String key, String value) {
-        RootUtils.mount(true, "/system");
+        if (!RootUtils.isWritableSystem()) RootUtils.mount("rw", "/");
         RootUtils.runCommand("echo " + key + "=" + value + " >> " + BUILD_PROP);
     }
 
