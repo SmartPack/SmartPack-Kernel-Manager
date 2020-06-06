@@ -926,6 +926,7 @@
     <string name="wrong_extension">Please select a file with %s extension.</string>
 
     <!-- Build prop Editor -->
+    <string name="build_prop_uneditable">Unfortunately, \'build.prop\' in your device is not writable!</string>
     <string name="add">Add</string>
     <string name="backup_item">%1$s has been backed up to %2$s</string>
     <string name="item_count">%s item</string>

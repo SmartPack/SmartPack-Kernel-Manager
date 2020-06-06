@@ -195,6 +195,10 @@ public class BuildpropFragment extends RecyclerViewFragment {
                         (dialogInterface, i1) -> {
                             switch (i1) {
                                 case 0:
+                                    if (!Buildprop.mWritableSystem && !Buildprop.mWritableRoot) {
+                                        Utils.snackbar(getRootView(), getString(R.string.build_prop_uneditable));
+                                        return;
+                                    }
                                     modify(title, value);
                                     break;
                                 case 1:
@@ -265,6 +269,10 @@ public class BuildpropFragment extends RecyclerViewFragment {
                 R.array.build_prop_add_options), (dialog, which) -> {
                     switch (which) {
                         case 0:
+                            if (!Buildprop.mWritableSystem && !Buildprop.mWritableRoot) {
+                                Utils.snackbar(getRootView(), getString(R.string.build_prop_uneditable));
+                                return;
+                            }
                             modify(null, null);
                             break;
                         case 1:
@@ -278,9 +286,23 @@ public class BuildpropFragment extends RecyclerViewFragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        if (!RootUtils.isWritableSystem()) {
+            Buildprop.mWritableSystem = false;
+        } else if (!RootUtils.isWritableRoot()) {
+            Buildprop.mWritableRoot = false;
+        }
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
-        RootUtils.mount("ro", RootUtils.isWritableSystem() ? "/system" : "/");
+        if (Buildprop.mWritableSystem) {
+            RootUtils.mount("ro", "/system");
+        } else if (Buildprop.mWritableRoot) {
+            RootUtils.mount("ro", "/");
+        }
         if (mLoader != null) {
             mLoader.cancel(true);
         }
