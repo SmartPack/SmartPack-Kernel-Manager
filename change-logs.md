@@ -1,5 +1,9 @@
 # Change-logs
 
+## 114. June 06, 2020
+*Release-tag: beta_v12.1*<br>
+Fixed Build Prop Editor on SAR devices. Miscellaneous changes.
+
 ## 113. May 29, 2020
 *Release-tag: beta_v11.9*<br>
 Flasher: Added debug mode (capture full log if enabled). LMK: Added fast run control switch.
