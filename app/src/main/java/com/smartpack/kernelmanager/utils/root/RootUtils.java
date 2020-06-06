@@ -86,7 +86,7 @@ public class RootUtils {
         return !mount("rw", "/system").equals("mount: '/system' not in /proc/mounts");
     }
 
-    private static boolean isWritableRoot() {
+    public static boolean isWritableRoot() {
         return !mount("rw", "/").contains("' is read-only");
     }
 
