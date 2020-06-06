@@ -81,7 +81,15 @@ public class RootUtils {
     public static String mount(String command, String mountPoint) {
         return runAndGetError("mount -o remount," + command + " " + mountPoint);
     }
-    
+
+    public static boolean isWritableSystem() {
+        return !mount("rw", "/system").equals("mount: '/system' not in /proc/mounts");
+    }
+
+    private static boolean isWritableRoot() {
+        return !mount("rw", "/").contains("' is read-only");
+    }
+
     public static void closeSU() {
         try {
             Objects.requireNonNull(Shell.getCachedShell()).close();
