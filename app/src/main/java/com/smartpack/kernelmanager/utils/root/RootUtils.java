@@ -78,17 +78,10 @@ public class RootUtils {
         return runAndGetOutput("getprop " + prop);
     }
 
-    public static void mount(boolean writeable, String mountpoint) {
-        Shell.su(
-                String.format("mount -o remount,%s %s %s", writeable ?
-                        "rw" : "ro", mountpoint, mountpoint),
-                String.format("mount -o remount,%s %s", writeable ?
-                        "rw" : "ro", mountpoint),
-                String.format("mount -o %s,remount %s", writeable ?
-                        "rw" : "ro", mountpoint)
-        );
+    public static String mount(String command, String mountPoint) {
+        return runAndGetError("mount -o remount," + command + " " + mountPoint);
     }
-
+    
     public static void closeSU() {
         try {
             Objects.requireNonNull(Shell.getCachedShell()).close();
