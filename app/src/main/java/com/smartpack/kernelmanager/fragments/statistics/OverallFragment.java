@@ -27,19 +27,15 @@ import android.os.BatteryManager;
 import android.os.SystemClock;
 import android.view.Menu;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.activities.TabLayoutActivity;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
-import com.smartpack.kernelmanager.fragments.kernel.BatteryFragment;
-import com.smartpack.kernelmanager.fragments.kernel.VMFragment;
 import com.smartpack.kernelmanager.utils.Device;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.kernel.battery.Battery;
-import com.smartpack.kernelmanager.utils.kernel.cpu.CPUTimes;
+import com.smartpack.kernelmanager.utils.kernel.gpu.GPU;
 import com.smartpack.kernelmanager.utils.kernel.gpu.GPUFreq;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.MultiStatsView;
@@ -88,10 +84,26 @@ public class OverallFragment extends RecyclerViewFragment {
         cardView.setTitle(getString(R.string.overall) + " " + getString(R.string.statistics));
         cardView.setOnMenuListener((cardView1, popupMenu) -> {
             Menu menu = popupMenu.getMenu();
-            menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.cpu_times));
-
+            menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.cpu));
+            menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.cpu_times));
+            if (GPU.supported()) {
+                menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.gpu));
+            }
             popupMenu.setOnMenuItemClickListener(item -> {
-                switchFragment(new CPUTimes());
+                switch (item.getItemId()) {
+                    case 0:
+                        Utils.mCPU = true;
+                        switchFragment();
+                        break;
+                    case 1:
+                        Utils.mCPUTimes = true;
+                        switchFragment();
+                        break;
+                    case 2:
+                        Utils.mGPU = true;
+                        switchFragment();
+                        break;
+                }
                 return false;
             });
         });
@@ -114,7 +126,8 @@ public class OverallFragment extends RecyclerViewFragment {
             menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
 
             popupMenu.setOnMenuItemClickListener(item -> {
-                switchFragment(new DeviceFragment());
+                Utils.mDevice = true;
+                switchFragment();
                 return false;
             });
         });
@@ -132,7 +145,8 @@ public class OverallFragment extends RecyclerViewFragment {
                 menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
 
                 popupMenu.setOnMenuItemClickListener(item -> {
-                    switchFragment(new BatteryFragment());
+                    Utils.mBattery = true;
+                    switchFragment();
                     return false;
                 });
             });
@@ -153,7 +167,8 @@ public class OverallFragment extends RecyclerViewFragment {
                 menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
 
                 popupMenu.setOnMenuItemClickListener(item -> {
-                    switchFragment(new VMFragment());
+                    Utils.mMemory = true;
+                    switchFragment();
                     return false;
                 });
             });
@@ -163,11 +178,9 @@ public class OverallFragment extends RecyclerViewFragment {
         }
     }
 
-    private void switchFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getFragmentManager();
-        assert fragmentManager != null;
-        fragmentManager.beginTransaction()
-                .replace(R.id.content_frame, fragment).commit();
+    private void switchFragment() {
+        Intent intent = new Intent(getActivity(), TabLayoutActivity.class);
+        startActivityForResult(intent, 0);
     }
 
     private Integer mGPUCurFreq;
