@@ -1,5 +1,9 @@
 # Change-logs
 
+## 115. June 17, 2020
+*Release-tag: beta_v12.2*<br>
+CPU and GPU pages are now linked to the OverAll statistics. Improved page switching from overall page (It won't fall back to overall page on screen rotation anymore). Slightly improved Build Prop Editor. Miscellaneous changes.
+
 ## 114. June 06, 2020
 *Release-tag: beta_v12.1*<br>
 Fixed Build Prop Editor on SAR devices. Miscellaneous changes.
