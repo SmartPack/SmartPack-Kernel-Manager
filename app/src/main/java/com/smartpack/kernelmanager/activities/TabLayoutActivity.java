@@ -22,57 +22,58 @@
 package com.smartpack.kernelmanager.activities;
 
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.tabs.TabLayout;
 import com.smartpack.kernelmanager.R;
-import com.smartpack.kernelmanager.fragments.kernel.boost.CPUBoostFragment;
-import com.smartpack.kernelmanager.fragments.kernel.boost.PowerHalFragment;
-import com.smartpack.kernelmanager.fragments.kernel.boost.StuneBoostFragment;
-import com.smartpack.kernelmanager.utils.kernel.cpu.boost.CPUBoost;
-import com.smartpack.kernelmanager.utils.kernel.cpu.boost.CPUInputBoost;
-import com.smartpack.kernelmanager.utils.kernel.cpu.boost.StuneBoost;
-import com.smartpack.kernelmanager.utils.kernel.cpu.boost.VoxPopuli;
+import com.smartpack.kernelmanager.fragments.kernel.BatteryFragment;
+import com.smartpack.kernelmanager.fragments.kernel.CPUFragment;
+import com.smartpack.kernelmanager.fragments.kernel.GPUFragment;
+import com.smartpack.kernelmanager.fragments.kernel.VMFragment;
+import com.smartpack.kernelmanager.fragments.statistics.DeviceFragment;
+import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.kernel.cpu.CPUTimes;
 import com.smartpack.kernelmanager.views.recyclerview.PagerAdapter;
 
 /**
- * Created by sunilpaulmathew <sunil.kde@gmail.com> on May 19, 2020
+ * Created by sunilpaulmathew <sunil.kde@gmail.com> on June 17, 2020
  */
 
-public class CPUBoostActivity extends BaseActivity {
+public class TabLayoutActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tablayout);
 
-        TabLayout tabLayout = findViewById(R.id.tabLayoutID);
         ViewPager viewPager = findViewById(R.id.viewPagerID);
 
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
-        if (CPUBoost.getInstance().supported() || CPUInputBoost.getInstance().supported()) {
-            adapter.AddFragment(new CPUBoostFragment(), getString(R.string.cpu_boost));
+        if (Utils.mBattery) {
+            adapter.AddFragment(new BatteryFragment(), getString(R.string.battery));
+        } else if (Utils.mCPU) {
+            adapter.AddFragment(new CPUFragment(), getString(R.string.cpu));
+        } else if (Utils.mCPUTimes) {
+            adapter.AddFragment(new CPUTimes(), getString(R.string.cpu_times));
+        } else if (Utils.mDevice) {
+            adapter.AddFragment(new DeviceFragment(), getString(R.string.device));
+        } else if (Utils.mGPU) {
+            adapter.AddFragment(new GPUFragment(), getString(R.string.gpu));
+        } else if (Utils.mMemory) {
+            adapter.AddFragment(new VMFragment(), getString(R.string.virtual_memory));
         }
-        if (VoxPopuli.hasVoxpopuliTunable()) {
-            adapter.AddFragment(new PowerHalFragment(), getString(R.string.powerhal));
-        }
-        if (StuneBoost.supported()) {
-            adapter.AddFragment(new StuneBoostFragment(), getString(R.string.stune_boost));
-        }
-
         viewPager.setAdapter(adapter);
-        tabLayout.setVisibility(View.VISIBLE);
-        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) viewPager.getLayoutParams();
-        lp.bottomMargin += 150;
-        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
     public void onBackPressed() {
+        if (Utils.mBattery) Utils.mBattery = false;
+        if (Utils.mCPU) Utils.mCPU = false;
+        if (Utils.mCPUTimes) Utils.mCPUTimes = false;
+        if (Utils.mDevice) Utils.mDevice = false;
+        if (Utils.mGPU) Utils.mGPU = false;
+        if (Utils.mMemory) Utils.mMemory = false;
         super.onBackPressed();
     }
 

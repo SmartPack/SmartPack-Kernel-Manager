@@ -74,6 +74,7 @@
         <activity android:name=".activities.EditorActivity" />
         <activity android:name=".activities.FlashingActivity" />
         <activity android:name=".activities.tools.profile.ProfileActivity" />
+        <activity android:name=".activities.TabLayoutActivity" />
         <activity android:name=".activities.UpdateChannelActivity" />
         <activity
             android:name=".activities.SecurityActivity"
