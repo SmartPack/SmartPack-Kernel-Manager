@@ -1143,4 +1143,20 @@
     <string name="scripts_manager_message">Gostaria de ter um aplicativo independente para gerenciar seus scripts? Clique aqui!</string>
     <string name="scc_messgae">Gostaria de ter um aplicativo independente para controlar o KCAL / K-lapse? Clique aqui!</string>
     <string name="gpu_lib">Biblioteca GPU do sistema</string>
+    <string name="stune_boost">Booste Stune</string>
+    <string name="cpu_boost_settings">Configurações do Impulso da CPU</string>
+    <string name="powerhal">Power HAL</string>
+    <string name="thunder_plug">ThunderPlug</string>
+    <string name="thunder_plug_summary">Uma substituição no kernel para o MPDecision da Qualcomm. Desenvolvido por varun.chitre15</string>
+    <string name="dual_core_mode">Modo dual-core</string>
+    <string name="quad_core_mode">Modo quad-core</string>
+    <string name="endurance_level">Nível de Resistência</string>
+    <string name="suspend_cpus">Suspender CPUs</string>
+    <string name="lmk_fast_run">Ativar Execução Rápida</string>
+    <string name="script_executed">%s executado com sucesso!</string>
+    <string name="rebooting_message">Reiniciando em 5s</string>
+    <string name="debug_mode">Modo Depuração</string>
+    <string name="debug_mode_summary">O modo de depuração está ativado! Um registro mais detalhado de flash (útil para problemas de depuração) será exibido.</string>
+    <string name="update_channel_create_warning">As alterações que você fez serão perdidas!</string>
+    <string name="clear_all_summary">Tudo o que você adicionou a esta página será limpo!</string>
 </resources>

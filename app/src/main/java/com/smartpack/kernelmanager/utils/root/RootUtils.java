@@ -78,15 +78,16 @@ public class RootUtils {
         return runAndGetOutput("getprop " + prop);
     }
 
-    public static void mount(boolean writeable, String mountpoint) {
-        Shell.su(
-                String.format("mount -o remount,%s %s %s", writeable ?
-                        "rw" : "ro", mountpoint, mountpoint),
-                String.format("mount -o remount,%s %s", writeable ?
-                        "rw" : "ro", mountpoint),
-                String.format("mount -o %s,remount %s", writeable ?
-                        "rw" : "ro", mountpoint)
-        );
+    public static String mount(String command, String mountPoint) {
+        return runAndGetError("mount -o remount," + command + " " + mountPoint);
+    }
+
+    public static boolean isWritableSystem() {
+        return !mount("rw", "/system").equals("mount: '/system' not in /proc/mounts");
+    }
+
+    public static boolean isWritableRoot() {
+        return !mount("rw", "/").contains("' is read-only");
     }
 
     public static void closeSU() {

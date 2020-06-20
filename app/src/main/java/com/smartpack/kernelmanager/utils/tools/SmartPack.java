@@ -43,10 +43,7 @@ public class SmartPack {
 
     public static boolean mFlashing = false;
     public static boolean mDebugMode = false;
-
-    private static String mountRootFS(String command) {
-        return "mount -o remount," + command + " /";
-    }
+    private static boolean mWritableRoot = true;
 
     private static String BusyBoxPath() {
         if (Utils.existFile("/sbin/.magisk/busybox")) {
@@ -98,12 +95,18 @@ public class SmartPack {
         RootUtils.runAndGetError("unzip " + path + " -d '" + FLASH_FOLDER + "'");
         if (Utils.existFile(ZIPFILE_EXTRACTED)) {
             mFlashingResult.append(" Done *\n\n");
-            mFlashingResult.append("** Preparing a recovery-like environment for flashing...\n");
+            mFlashingResult.append("** Preparing a recovery-like environment for flashing...\n\n");
             RootUtils.runCommand("cd '" + FLASH_FOLDER + "'");
-            mFlashingResult.append(RootUtils.runAndGetOutput(mountRootFS("rw"))).append(" \n");
-            mFlashingResult.append(RootUtils.runAndGetError("mkdir /tmp")).append(" \n");
-            mFlashingResult.append(RootUtils.runAndGetError("mke2fs -F tmp.ext4 500000")).append(" \n");
-            mFlashingResult.append(RootUtils.runAndGetError("mount -o loop tmp.ext4 /tmp/")).append(" \n\n");
+            mFlashingResult.append("** Mounting Root filesystem: ");
+            if (!RootUtils.isWritableRoot()) {
+                mWritableRoot = false;
+                mFlashingResult.append("Failed *\nPlease Note: Flashing may not work properly on this device!\n\n");
+            } else {
+                mFlashingResult.append("Done *\n\n");
+                mFlashingResult.append(RootUtils.runAndGetError("mkdir /tmp")).append(" \n");
+                mFlashingResult.append(RootUtils.runAndGetError("mke2fs -F tmp.ext4 500000")).append(" \n");
+                mFlashingResult.append(RootUtils.runAndGetError("mount -o loop tmp.ext4 /tmp/")).append(" \n\n");
+            }
             mFlashingResult.append("** Flashing ").append(mZipName).append(" ...\n\n");
             mFlashingOutput = mDebugMode ? RootUtils.runAndGetError(flashingCommand) : RootUtils.runAndGetOutput(flashingCommand);
             mFlashingResult.append(mFlashingOutput.isEmpty() ? "Unfortunately, flashing " + mZipName + " failed due to some unknown reasons!" : mFlashingOutput);
@@ -113,7 +116,7 @@ public class SmartPack {
         }
         RootUtils.runCommand(CLEANING_COMMAND);
         Utils.delete("/data/local/tmp/flash.zip");
-        RootUtils.runCommand(mountRootFS("ro"));
+        if (mWritableRoot) RootUtils.mount("ro", "/");
     }
 
 }

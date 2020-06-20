@@ -88,6 +88,13 @@ import java.util.concurrent.TimeUnit;
  */
 public class Utils {
 
+    public static boolean mBattery = false;
+    public static boolean mCPU = false;
+    public static boolean mCPUTimes = false;
+    public static boolean mDevice = false;
+    public static boolean mGPU = false;
+    public static boolean mMemory = false;
+
     private static final String TAG = Utils.class.getSimpleName();
 
     public static boolean isPackageInstalled(String id, Context context) {
