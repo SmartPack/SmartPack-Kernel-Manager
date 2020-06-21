@@ -36,6 +36,9 @@ public class Buildprop {
 
     public static final String BUILD_PROP = "/system/build.prop";
 
+    public static boolean mWritableSystem = true;
+    public static boolean mWritableRoot = true;
+
     @SuppressLint("SdCardPath")
     public static void backup() {
         File data = new File(Utils.getInternalDataStorage());
@@ -47,13 +50,13 @@ public class Buildprop {
     }
 
     public static void overwrite(String oldKey, String oldValue, String newKey, String newValue) {
-        RootUtils.mount(true, "/system");
+        if (!mWritableSystem) RootUtils.mount("rw", "/");
         RootUtils.runCommand("sed 's|" + oldKey + "=" + oldValue + "|" + newKey + "=" + newValue
                 + "|g' -i /system/build.prop");
     }
 
     public static void addKey(String key, String value) {
-        RootUtils.mount(true, "/system");
+        if (!mWritableSystem) RootUtils.mount("rw", "/");
         RootUtils.runCommand("echo " + key + "=" + value + " >> " + BUILD_PROP);
     }
 
