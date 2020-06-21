@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - Added support to ThunderPlug CPU hotplug driver.\n - Moved all CPU Boost settings into a new page (link in CPU).\n - Moved Create Update Channel option into a new activity (improved & simplified).\n - Updated build tools to latest.\n - Updated Script Manager to show success dialog even if the output is empty.\n - Removed circular image view from app (reduced app size).\n - Added a debug mode in Flasher (capture full log if enabled).\n - Added LMK fast run control switch.\n - Miscellaneous changes.",
-  "latestVersion": "12.0",
-  "latestVersionCode": 120
+  "releaseNotes": "Change-logs\n - Fixed Build Prop Editor on SAR devices.\n - CPU and GPU pages are now linked to the OverAll statistics.\n - Improved page switching from overall page (It won't fall back to overall page on screen rotation anymore).\n - Added german translation (Credits: free-bots).\n - Update Portuguese (Brazilian) translation (Credits: Lennoard).\n - Miscellaneous changes.",
+  "latestVersion": "12.4",
+  "latestVersionCode": 124
 }

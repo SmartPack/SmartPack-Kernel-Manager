@@ -1,7 +1,11 @@
 # Change-logs
 
+## 107. June 21, 2020
+*Release-tag: v12.4*<br>
+Fixed Build Prop Editor on SAR devices. CPU and GPU pages are now linked to the OverAll statistics. Improved page switching from overall page (It won't fall back to overall page on screen rotation anymore). Added german translation (Credits: @free-bots). Update Portuguese (Brazilian) translation (Credits: @Lennoard). Miscellaneous changes.
+
 ## 106. May 31, 2020
-*Release-tag: beta_v12.0*<br>
+*Release-tag: v12.0*<br>
 Added support to ThunderPlug CPU hotplug driver. Moved all CPU Boost settings into a new page (link in CPU). Moved Create Update Channel option into a new activity (improved & simplified). Updated build tools to latest. Updated Script Manager to show success dialog even if the output is empty. Removed circular image view from app (reduced app size). Added a debug mode in Flasher (capture full log if enabled). Added LMK fast run control switch. Miscellaneous changes.
 
 ## 105. May 09, 2020

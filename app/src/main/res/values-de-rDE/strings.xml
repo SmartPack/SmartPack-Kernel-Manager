@@ -961,8 +961,6 @@
     <string name="on_boot_welcome_summary">Dieser Bersch zeigt dir was beim Systemstart passieren wird. Wenn hier nichts angezeigt wird passiert auch nichts. Du kann nach links oder rechts wischen um einen Befehl zu löschen (kein Profil oder Skript)!</string>
     <string name="delete_question">%s löschen?</string>
     <string name="disable_question">%s deaktivieren?</string>
-    <string name="swipe_message">Entschuldigung! Du kannst nicht %s weg wischen.</string>
-    <string name="drag_message">Entschuldigung! Du kannst nicht %s an eine andere Position schieben.</string>
 
     <!-- SmartPack -->
     <string name="acquiring">Vordere Updateinformationen an</string>
