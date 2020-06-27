@@ -714,7 +714,8 @@ public class CPUFreq {
 
     private boolean is8996() {
         String board = Device.getBoard();
-        return board.equalsIgnoreCase("msm8996") || board.equalsIgnoreCase("msm8996pro");
+        return board.equalsIgnoreCase("msm8996") || board.equalsIgnoreCase("msm8996pro")
+                || board.equalsIgnoreCase("marlin") || board.equalsIgnoreCase("sailfish");
     }
 
     private boolean is6Little2Big() {
