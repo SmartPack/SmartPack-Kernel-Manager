@@ -1,5 +1,9 @@
 # Change-logs
 
+## 117. June 28, 2020
+*Release-tag: beta_v12.5*<br>
+Updated CPU control for Sailfish (Pixel) & Marlin (Pixel XL). Added Spanish translation (Credits: Alejandro YT)
+
 ## 116. June 20, 2020
 *Release-tag: beta_v12.3*<br>
 Added german translation (Credits: @free-bots).
