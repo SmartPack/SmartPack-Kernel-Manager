@@ -187,6 +187,9 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 reload();
                 return;
             }
+            if (value.contains("/blob/")) {
+                value = value.replace("/blob/", "/raw/");
+            }
             KernelUpdater.acquireUpdateInfo(value, getActivity());
             reload();
 
