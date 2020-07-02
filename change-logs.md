@@ -1,5 +1,9 @@
 # Change-logs
 
+## 118. July 02, 2020
+*Release-tag: beta_v12.6*<br>
+Added an in-built Translator to help users to translate this app (About --> Translators). Updated file picker to fix issues with some file manager apps. Improved flexibility of Update Channel Url. Updated Portuguese (Brazilian) translations(Credits: @Lennoard). Miscellaneous changes.
+
 ## 117. June 28, 2020
 *Release-tag: beta_v12.5*<br>
 Updated CPU control for Sailfish (Pixel) & Marlin (Pixel XL). Added Spanish translation (Credits: Alejandro YT)
