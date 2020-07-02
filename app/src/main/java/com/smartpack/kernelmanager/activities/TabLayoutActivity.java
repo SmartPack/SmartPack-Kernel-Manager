@@ -32,6 +32,7 @@ import com.smartpack.kernelmanager.fragments.kernel.CPUFragment;
 import com.smartpack.kernelmanager.fragments.kernel.GPUFragment;
 import com.smartpack.kernelmanager.fragments.kernel.VMFragment;
 import com.smartpack.kernelmanager.fragments.statistics.DeviceFragment;
+import com.smartpack.kernelmanager.fragments.tools.TranslatorFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUTimes;
 import com.smartpack.kernelmanager.views.recyclerview.PagerAdapter;
@@ -62,6 +63,8 @@ public class TabLayoutActivity extends BaseActivity {
             adapter.AddFragment(new GPUFragment(), getString(R.string.gpu));
         } else if (Utils.mMemory) {
             adapter.AddFragment(new VMFragment(), getString(R.string.virtual_memory));
+        } else if (Utils.mTranslator) {
+            adapter.AddFragment(new TranslatorFragment(), getString(R.string.translator));
         }
         viewPager.setAdapter(adapter);
     }
@@ -74,6 +77,7 @@ public class TabLayoutActivity extends BaseActivity {
         if (Utils.mDevice) Utils.mDevice = false;
         if (Utils.mGPU) Utils.mGPU = false;
         if (Utils.mMemory) Utils.mMemory = false;
+        if (Utils.mTranslator) Utils.mTranslator = false;
         super.onBackPressed();
     }
 

@@ -55,6 +55,7 @@ import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.StartActivity;
 import com.smartpack.kernelmanager.activities.StartActivityMaterial;
+import com.smartpack.kernelmanager.activities.TabLayoutActivity;
 import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
@@ -94,6 +95,7 @@ public class Utils {
     public static boolean mDevice = false;
     public static boolean mGPU = false;
     public static boolean mMemory = false;
+    public static boolean mTranslator = false;
 
     private static final String TAG = Utils.class.getSimpleName();
 
@@ -483,7 +485,6 @@ public class Utils {
         return readFile(file, true);
     }
 
-
     public static String readFile(String file, boolean root) {
         if (root) {
             return new RootFile(file).readFile();
@@ -566,6 +567,39 @@ public class Utils {
     public static boolean isUnzipAvailable() {
         return !RootUtils.runAndGetError("unzip --help").contains(
                 "/system/bin/sh: unzip: inaccessible or not found");
+    }
+
+    public static void importTranslation(Activity activity) {
+        new AsyncTask<Void, Void, Void>() {
+            private ProgressDialog mProgressDialog;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                mProgressDialog = new ProgressDialog(activity);
+                mProgressDialog.setMessage(activity.getString(R.string.importing_string) + ("..."));
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
+            }
+            @Override
+            protected Void doInBackground(Void... voids) {
+                if (!existFile(Utils.getInternalDataStorage() + "/strings.xml") && isNetworkAvailable(activity)) {
+                    downloadFile(Utils.getInternalDataStorage() + "/strings.xml",
+                            "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/beta/app/src/main/res/values/strings.xml", activity);
+                }
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                try {
+                    mProgressDialog.dismiss();
+                } catch (IllegalArgumentException ignored) {
+                }
+                mTranslator = true;
+                Intent intent = new Intent(activity, TabLayoutActivity.class);
+                activity.startActivity(intent);
+            }
+        }.execute();
     }
 
     public static void downloadFile(String path, String url, Context context) {
