@@ -33,12 +33,13 @@ import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.ViewUtils;
+import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
 import com.smartpack.kernelmanager.views.recyclerview.TitleView;
-import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -279,6 +280,16 @@ public class AboutFragment extends RecyclerViewFragment {
         TitleView translators = new TitleView();
         translators.setText(getString(R.string.translators));
         items.add(translators);
+
+        DescriptionView translator = new DescriptionView();
+        translator.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_language, requireActivity()));
+        translator.setSummary(getString(R.string.translators_message));
+        translator.setFullSpan(true);
+        translator.setOnItemClickListener(item -> {
+            Utils.importTranslation(getActivity());
+        });
+
+        items.add(translator);
 
         for (final String lib : sTranslations.keySet()) {
             DescriptionView descriptionView = new DescriptionView();

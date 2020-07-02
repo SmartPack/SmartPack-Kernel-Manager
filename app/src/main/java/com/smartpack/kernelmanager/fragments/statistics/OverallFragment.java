@@ -180,7 +180,7 @@ public class OverallFragment extends RecyclerViewFragment {
 
     private void switchFragment() {
         Intent intent = new Intent(getActivity(), TabLayoutActivity.class);
-        startActivityForResult(intent, 0);
+        startActivity(intent);
     }
 
     private Integer mGPUCurFreq;

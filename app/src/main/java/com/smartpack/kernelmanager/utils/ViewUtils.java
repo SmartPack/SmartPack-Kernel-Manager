@@ -197,13 +197,12 @@ public class ViewUtils {
         layout.setPadding(padding, padding, padding, padding);
 
         final AppCompatEditText editText = new AppCompatEditText(context);
-        editText.setGravity(Gravity.CENTER);
+        editText.setGravity(Gravity.START);
         editText.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         if (text != null) {
             editText.append(text);
         }
-        editText.setSingleLine(true);
         if (inputType >= 0) {
             editText.setInputType(inputType);
         }
