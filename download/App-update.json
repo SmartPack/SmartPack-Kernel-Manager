@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - Fixed Build Prop Editor on SAR devices.\n - CPU and GPU pages are now linked to the OverAll statistics.\n - Improved page switching from overall page (It won't fall back to overall page on screen rotation anymore).\n - Added german translation (Credits: free-bots).\n - Update Portuguese (Brazilian) translation (Credits: Lennoard).\n - Miscellaneous changes.",
-  "latestVersion": "12.4",
-  "latestVersionCode": 124
+  "releaseNotes": "Change-logs\n - Added an in-built Translator to help users to translate this app (About --> Translators).\n - Updated file picker to fix issues with some file manager apps.\n - Improved Update Channel for custom kernels.\n - Updated CPU control for Sailfish (Pixel) and Marlin (Pixel XL).\n - Added Spanish translation (Credits: Alejandro YT).\n - Miscellaneous changes.",
+  "latestVersion": "12.7",
+  "latestVersionCode": 127
 }

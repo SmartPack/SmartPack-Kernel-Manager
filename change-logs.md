@@ -1,5 +1,9 @@
 # Change-logs
 
+## 108. July 04, 2020
+*Release-tag: v12.7*<br>
+Added an in-built Translator to help users to translate this app (About --> Translators). Updated file picker to fix issues with some file manager apps. Improved flexibility of Update Channel Url. Updated CPU control for Sailfish (Pixel) & Marlin (Pixel XL). Added Spanish translation (Credits: Alejandro YT). Miscellaneous changes.
+
 ## 107. June 21, 2020
 *Release-tag: v12.4*<br>
 Fixed Build Prop Editor on SAR devices. CPU and GPU pages are now linked to the OverAll statistics. Improved page switching from overall page (It won't fall back to overall page on screen rotation anymore). Added german translation (Credits: @free-bots). Update Portuguese (Brazilian) translation (Credits: @Lennoard). Miscellaneous changes.

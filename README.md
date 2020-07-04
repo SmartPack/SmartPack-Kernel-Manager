@@ -1,8 +1,8 @@
 ![](banner.png)
 
-[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v12.4-green)](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v12.4/com.smartpack.kernelmanager-v12.4-release.apk)
+[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v12.7-green)](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v12.7/com.smartpack.kernelmanager-v12.7-release.apk)
 ![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/total)
-![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/v12.4/total)
+![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/v12.7/total)
 ![](https://img.shields.io/github/contributors/smartpack/SmartPack-Kernel-Manager)
 ![](https://img.shields.io/github/license/smartpack/SmartPack-Kernel-Manager)
 
@@ -16,7 +16,7 @@ Welcome to the <strong>stable</strong> development channel of SmartPack-Kernel M
      height="80">](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager)
 [<img src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
      alt=""
-     height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v12.4/com.smartpack.kernelmanager-v12.4-release.apk)
+     height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v12.7/com.smartpack.kernelmanager-v12.7-release.apk)
 
 ## Features
 * Almost all the features available in Kernel Adiutor.

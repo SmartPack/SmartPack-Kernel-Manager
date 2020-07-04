@@ -1159,4 +1159,5 @@
     <string name="debug_mode_summary">O modo de depuração está ativado! Um registro mais detalhado de flash (útil para problemas de depuração) será exibido.</string>
     <string name="update_channel_create_warning">As alterações que você fez serão perdidas!</string>
     <string name="clear_all_summary">Tudo o que você adicionou a esta página será limpo!</string>
+    <string name="build_prop_uneditable">Infelizmente, o arquivo \'build.prop\' no seu dispositivo não está gravável!</string>
 </resources>
