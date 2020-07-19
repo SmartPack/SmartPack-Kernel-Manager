@@ -73,6 +73,7 @@ public class AboutFragment extends RecyclerViewFragment {
         sTranslations.put("Portuguese (rBr),Lennoard Silva", "https://github.com/Lennoard");
         sTranslations.put("Russian/Ukrainian,kiratt", "http://4pda.ru/forum/index.php?showuser=5859577");
         sTranslations.put("Amharic,Mikesew1320", "https://github.com/Mikesew1320");
+        sTranslations.put("Korean,SmgKhOaRn", "https://github.com/SmgKhOaRn");
         sTranslations.put("German (rDE),free-bots", "https://github.com/free-bots");
         sTranslations.put("Spanish,Alejandro YT", "");
         sTranslations.put("Chinese (rCN),YFdyh000", "https://github.com/yfdyh000");
@@ -312,6 +313,9 @@ public class AboutFragment extends RecyclerViewFragment {
                     break;
                 case "Mikesew1320":
                     descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_mikesew));
+                    break;
+                case "SmgKhOaRn":
+                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_smg));
                     break;
                 case "free-bots":
                     descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_freebots));
