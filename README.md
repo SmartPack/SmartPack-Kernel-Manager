@@ -83,6 +83,7 @@ If you like to appreciate my work, please consider donating to me (either via [P
 #### Translations
 * [jason5545](https://github.com/jason5545), Chinese (Traditional)
 * [Roiyaru](https://github.com/Roiyaru), Chinese (simplified)
+* [YFdyh000](https://github.com/yfdyh000), Chinese (simplified)
 * [Andrey](https://github.com/andrey167), Russian
 * [Lennoard Silva](https://github.com/Lennoard), Portuguese (Brazilian)
 * [kiratt](http://4pda.ru/forum/index.php?showuser=5859577), Russian/Ukrainian
