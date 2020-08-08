@@ -1162,4 +1162,18 @@
     <string name="build_prop_uneditable">Infelizmente, o arquivo \'build.prop\' no seu dispositivo não está gravável!</string>
     <string name="swipe_message">Desculpe! Você não pode deslizar um %s.</string>
     <string name="drag_message">Desculpe! Você não pode mover um %s para uma posição diferente.</string>
+    <string name="translators_message">Deseja usar este aplicativo no seu idioma? Então, clique aqui para começar a traduzir usando o tradutor integrado!</string>
+    <string name="edit_string_warning">Esta string contém alguns caracteres especiais! Por favor, seja cuidadoso.</string>
+    <string name="delete_string">Deletar string</string>
+    <string name="import_string">Importar string personalizada</string>
+    <string name="import_string_hint">Insira-a-url-da-string-personalizada-aqui</string>
+    <string name="import_string_message">Por favor, remova a string atual desta página antes de importar uma nova!</string>
+    <string name="importing_string">Importando string da web</string>
+    <string name="delete_string_message">Tem certeza de que deseja excluir o atual string.xml do cartão SD?</string>
+    <string name="reload_message">O download do \\string.xml falhou ou você o removeu! Por favor recarregue esta página!</string>
+    <string name="save_string_error">Você ainda não adicionou uma string! Abortando.</string>
+    <string name="save_string_message">A nova string de tradução foi gerada como \'%s\'!</string>
+    <string name="search_hint">Digite o termo de pesquisa aqui!</string>
+    <string name="translator">Tradutor</string>
+    <string name="translator_message">Ajude-me a traduzir este aplicativo para o seu idioma! Quando terminar, transfira a nova string para mim pelo Telegram ou no GitHub.</string>
 </resources>
