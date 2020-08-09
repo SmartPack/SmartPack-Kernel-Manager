@@ -135,6 +135,9 @@ public class Utils {
     }
 
     public static void startService(Context context, Intent intent) {
+        if (!Prefs.getBoolean("enable_onboot", true, context)) {
+            return;
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             context.startForegroundService(intent);
         } else {

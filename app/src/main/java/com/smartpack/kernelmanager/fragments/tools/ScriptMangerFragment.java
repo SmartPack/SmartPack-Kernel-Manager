@@ -104,8 +104,15 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
         addViewPagerFragment(SwitcherFragment.newInstance(
                 getString(R.string.apply_on_boot),
                 getString(R.string.scripts_onboot_summary),
-                Prefs.getBoolean("scripts_onboot", false, getActivity()),
-                (compoundButton, b) -> Prefs.saveBoolean("scripts_onboot", b, getActivity()))
+                Prefs.getBoolean("enable_onboot", true, getActivity()) &&
+                        Prefs.getBoolean("scripts_onboot", false, getActivity()),
+                (compoundButton, b) -> {
+                    if (Prefs.getBoolean("enable_onboot", true, getActivity())) {
+                        Prefs.saveBoolean("scripts_onboot", b, getActivity());
+                    } else {
+                        Utils.snackbar(getRootView(), getString(R.string.enable_onboot_message));
+                    }
+                })
         );
 
         if (mExecuteDialog != null) {
@@ -181,7 +188,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 descriptionView.setTitle(script);
                 descriptionView.setSummary(ScriptManager.scriptFile() + "/" + script);
 
-                if (onBootScripts.contains(script)) {
+                if (Prefs.getBoolean("enable_onboot", true, getActivity()) && onBootScripts.contains(script)) {
                     descriptionView.setIndicator(getResources().getDrawable(R.drawable.ic_flash));
                 }
 
@@ -190,8 +197,10 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                     menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.execute));
                     menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.edit));
                     menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.details));
-                    menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.apply_on_boot))
-                            .setCheckable(true).setChecked(onBootScripts.contains(script));
+                    if (Prefs.getBoolean("enable_onboot", true, getActivity())) {
+                        menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.on_boot))
+                                .setCheckable(true).setChecked(onBootScripts.contains(script));
+                    }
                     menu.add(Menu.NONE, 4, Menu.NONE, getString(R.string.share));
                     menu.add(Menu.NONE, 5, Menu.NONE, getString(R.string.delete));
                     popupMenu.setOnMenuItemClickListener(item -> {

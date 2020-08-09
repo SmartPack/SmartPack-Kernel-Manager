@@ -1086,6 +1086,9 @@
     <string name="ten_sec">10 seconds</string>
     <string name="twenty_sec">20 seconds</string>
     <string name="fifty_sec">50 seconds</string>
+    <string name="enable_onboot">Enable On Boot</string>
+    <string name="enable_onboot_message">On boot settings are disabled! App won\'t do anything when device boot!</string>
+    <string name="enable_onboot_summary">Allow SmartPack-Kernel Manager to run On Boot settings!</string>
     <string name="apply_on_boot_test_summary">Test apply on boot. This includes all kind of things which are getting applied during booting, such as custom controls, profiles, init.d, etc.</string>
     <string name="apply_on_boot_running">Apply on boot service is already running. Please wait until it finishes.</string>
     <string name="test">Test</string>

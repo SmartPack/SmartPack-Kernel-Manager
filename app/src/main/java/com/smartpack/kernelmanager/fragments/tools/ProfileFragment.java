@@ -245,7 +245,7 @@ public class ProfileFragment extends RecyclerViewFragment {
             final DescriptionView descriptionView = new DescriptionView();
             descriptionView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_file, requireContext()));
             descriptionView.setSummary(profileItems.get(i).getName());
-            if (mProfiles.getAllProfiles().get(position).isOnBootEnabled()) {
+            if (Prefs.getBoolean("enable_onboot", true, getActivity()) && mProfiles.getAllProfiles().get(position).isOnBootEnabled()) {
                 descriptionView.setIndicator(getResources().getDrawable(R.drawable.ic_flash));
             }
             descriptionView.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
@@ -256,7 +256,8 @@ public class ProfileFragment extends RecyclerViewFragment {
                 menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.edit));
                 menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.details));
                 final MenuItem onBoot = menu.add(Menu.NONE, 4, Menu.NONE, getString(R.string.on_boot)).setCheckable(true);
-                onBoot.setChecked(mProfiles.getAllProfiles().get(position).isOnBootEnabled());
+                onBoot.setChecked(Prefs.getBoolean("enable_onboot", true, getActivity()) &&
+                        mProfiles.getAllProfiles().get(position).isOnBootEnabled());
                 menu.add(Menu.NONE, 5, Menu.NONE, getString(R.string.export));
                 menu.add(Menu.NONE, 6, Menu.NONE, getString(R.string.delete));
                 popupMenu.setOnMenuItemClickListener(item -> {
@@ -331,9 +332,13 @@ public class ProfileFragment extends RecyclerViewFragment {
                             }
                             break;
                         case 4:
-                            onBoot.setChecked(!onBoot.isChecked());
-                            items1.get(position).enableOnBoot(onBoot.isChecked());
-                            mProfiles.commit();
+                            if (Prefs.getBoolean("enable_onboot", true, getActivity())) {
+                                onBoot.setChecked(!onBoot.isChecked());
+                                items1.get(position).enableOnBoot(onBoot.isChecked());
+                                mProfiles.commit();
+                            } else {
+                                Utils.snackbar(getRootView(), getString(R.string.enable_onboot_message));
+                            }
                             reload();
                             break;
                         case 5:
