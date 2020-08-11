@@ -153,7 +153,7 @@ public class BatteryFragment extends RecyclerViewFragment {
             USBLevelCard.setOnItemSelected((selectView, position, item) -> {
                 mBattery.setFastChargeControlUSB(item, getActivity());
                 getHandler().postDelayed(() -> {
-                            USBLevelCard.setItem(mBattery.getFastChargeCustomUSB());
+                            USBLevelCard.setItem(Battery.getFastChargeCustomUSB());
                         },
                         500);
             });

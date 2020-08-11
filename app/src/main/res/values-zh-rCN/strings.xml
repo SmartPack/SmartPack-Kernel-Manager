@@ -27,7 +27,7 @@
     <string name="warning">警告</string>
 
     <string name="apply_on_boot">开机时自动应用</string>
-    <string name="apply_on_boot_text">开机启动设置将于 %d 秒后应用...</string>
+    <string name="apply_on_boot_text">开机启动设置将于 %d 秒后应用…</string>
     <string name="apply_on_boot_complete">已完成开机时应用的设置</string>
     <string name="apply_on_boot_canceled">已取消开机时应用的设置</string>
 
@@ -433,7 +433,7 @@
     <!-- Battery -->
     <string name="capacity">容量</string>
     <string name="blx">Battery Life eXtender</string>
-    <string name="blx_summary">设定电池充电上限，0-100。</string>
+    <string name="blx_summary">设定电池充电上限，0–100。</string>
     <string name="charging_enable">启用充电</string>
     <string name="charging_enable_summary">警告！如果停用，充电将立即停止。</string>
 
@@ -1125,7 +1125,6 @@
     <string name="update_channel_instructions">只要此页面中提供的信息准确无误，App就会为您的内核创建一个更新通道（json）。</string>
     <string name="debug_mode_summary">调试模式已启用！将显示更详细的刷写日志以用于调试问题。</string>
     <string name="custom_controls_message">基本上您可以为任何现有的 sysfs 路径创建一个自定义控制器，只需已安装一个支持的 Root 的文件管理器。但请注意，此功能十分强大，或将弄乱您的设备。</string>
-    <string name="documentation">文档</string>
     <string name="scripts_manager_message">想要一个独立的应用程序来管理脚本？点击这里！</string>
     <string name="scripts_onboot_summary">如果启用此开关，此页面中列出的所有脚本将在系统启动时执行。</string>
     <string name="aio_hotplug_summary">高通设备的一站式 HotPlug。由 Shoaib0597 开发。</string>
