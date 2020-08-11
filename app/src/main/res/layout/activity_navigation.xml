@@ -32,6 +32,7 @@
             android:layout_gravity="bottom|center_horizontal"
             android:textSize="18sp"
             android:padding="12dp"
+            android:visibility="gone"
             android:longClickable="true"
             android:textColor="?attr/colorAccent"
             android:background="@color/colorPrimary" />
