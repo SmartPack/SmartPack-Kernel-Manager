@@ -32,6 +32,7 @@ import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -288,6 +289,7 @@ public class NavigationActivity extends BaseActivity
             LinearLayout adContainer = findViewById(R.id.banner_container);
             adContainer.addView(mAdView);
             mAdView.loadAd();
+            copyrightText.setVisibility(View.VISIBLE);
         }
 
         if (savedInstanceState != null) {

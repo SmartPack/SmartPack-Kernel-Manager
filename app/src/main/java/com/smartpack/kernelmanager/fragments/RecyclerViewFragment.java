@@ -37,6 +37,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -88,6 +89,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerViewAdapter mRecyclerViewAdapter;
+    private RelativeLayout mRecyclerViewLayout;
     private Scroller mScroller;
 
     private View mProgress;
@@ -127,6 +129,14 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         mRootView = inflater.inflate(R.layout.fragment_recyclerview, container, false);
         mHandler = new Handler();
 
+        mRecyclerViewLayout = mRootView.findViewById(R.id.recyclerview_parent);
+        if (!Prefs.getBoolean("allow_ads", true, getActivity())) {
+            mRecyclerViewLayout.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+                    RelativeLayout.LayoutParams.MATCH_PARENT));
+            RelativeLayout.LayoutParams relativeParams = (RelativeLayout.LayoutParams) mRecyclerViewLayout.getLayoutParams();
+            relativeParams.setMargins(0,0,0,0);
+            mRecyclerViewLayout.setLayoutParams(relativeParams);
+        }
         mRecyclerView = mRootView.findViewById(R.id.recyclerview);
 
         if (mViewPagerFragments != null) {
