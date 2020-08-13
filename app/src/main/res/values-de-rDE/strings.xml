@@ -7,8 +7,6 @@
     <string name="no_root">Kein root</string>
     <string name="no_busybox">Kein busybox</string>
     <string name="open">Öffne %s</string>
-    <string name="copyright_default">Standard Copyright-Text, %s, wird beim nächsten Appstart angewendet!</string>
-    <string name="copyright_message">Neuer Copyright-Text, %s, wird beim nächsten Appstart angewendet!</string>
 
     <!-- Security -->
     <string name="password">Passwort</string>

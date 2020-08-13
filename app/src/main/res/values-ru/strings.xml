@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">SmartPack-Kernel Manager</string>
     <string name="checking_info">Проверка информации…</string>
     <string name="checking_root">Проверка рут-доступа</string>
     <string name="searching_busybox">Поиск busybox</string>
@@ -8,10 +7,6 @@
     <string name="no_root">Рут отсутствует</string>
     <string name="no_busybox">Busybox отсутствует</string>
     <string name="open">Открыть %s</string>
-    <string name="copyright" translatable="false">&#169;SmartPack Projects</string>
-    <string name="copyright_default">
-Текст авторских прав по умолчанию, %s, будет применен при следующем запуске приложения!</string>
-    <string name="copyright_message">Новый авторский текст, %s, будет применен при следующем запуске приложения!</string>
     <string name="password">Пароль</string>
     <string name="password_wrong">Неверный пароль</string>
     <string name="select_picture">Выберите картинку</string>
@@ -47,10 +42,7 @@
     <string name="ma">мА</string>
     <string name="kb">кБ</string>
     <string name="px">пкс</string>
-    <string name="minus" translatable="false">-</string>
-    <string name="plus" translatable="false">+</string>
     <string name="statistics">Статистика</string>
-    <string name="kernel" translatable="false">Ядро</string>
     <string name="tools">Инструменты</string>
     <string name="other">Другое</string>
     <string name="overall">Общее</string>
@@ -84,7 +76,6 @@
     <string name="smartpack">SmartPack</string>
     <string name="about">О приложении</string>
     <string name="contributors">Имена разработчиков</string>
-    <string name="help" translatable="false">FAQ</string>
     <string name="overall_summary">"Добро пожаловать на главную страницу SmartPack-Kernel Manager.\nЭта страница содержит самую основную информацию о вашем устройстве. Дополнительные параметры настройки ядра можно найти на соответствующих страницах."</string>
     <string name="cpu_times">Процессорное время</string>
     <string name="offline">Оффлайн</string>
@@ -93,10 +84,7 @@
     <string name="refresh">Обновить</string>
     <string name="reset">Сброс</string>
     <string name="restore">Восстановить</string>
-    <string name="restore_sure_message">Вы уверены, что восстановили %s ?</string>
-    <string name="cluster_prime" translatable="false">Prime</string>
-    <string name="cluster_big" translatable="false">big</string>
-    <string name="cluster_little" translatable="false">LITTLE</string>
+    <string name="restore_sure_message">Вы уверены, что восстановили %s?</string>
     <string name="deep_sleep">Глубокий сон</string>
     <string name="uptime">Время работы</string>
     <string name="error_frequencies">Не удалось загрузить частоты</string>
@@ -113,7 +101,6 @@
     <string name="baseband">Модем</string>
     <string name="rom">Прошивка</string>
     <string name="bootloader">Загрузчик</string>
-    <string name="trustzone" translatable="false">TrustZone</string>
     <string name="hardware">Оборудование</string>
     <string name="architecture">Архитектура</string>
     <string name="treble_status">Поддержка Project Treble</string>
@@ -121,7 +108,6 @@
     <string name="bus">Шина</string>
     <string name="product">Изделие</string>
     <string name="version">Версия</string>
-    <string name="sysfs" translatable="false">Sysfs</string>
     <string name="handlers">Обработчики</string>
     <string name="cores_singular">Ядро %d</string>
     <string name="cores">Ядра: %d</string>
@@ -1038,7 +1024,6 @@
     <string name="sections">Разделы</string>
     <string name="default_section">Вкладка по умолчанию</string>
     <string name="default_section_summary">Вкладка по умолчанию, которая будет отображаться при открытии приложения!</string>
-    <string name="about_me" translatable="false">SmartPack-Kernel Manager - это сильно модифицированная версия "Kernel Adiutor", которая первоначально была разработана Вилли Йе ака Грараком. Все кредиты достаются первоначальному разработчику.</string>
     <string name="credits">Credits</string>
     <string name="special_mentions">Особого Упоминания</string>
     <string name="source_code">Исходный код</string>
@@ -1055,7 +1040,6 @@
     <string name="paypal_donation">PayPal</string>
     <string name="auto_update_check">Автоматическая проверка обновлений</string>
     <string name="licence">Лицензии</string>
-    <string name="licence_message" translatable="false">SmartPack-Kernel Manager-это свободное программное обеспечение: вы можете распространять его и/или изменять в соответствии с условиями GNU General Public License, опубликованной Фондом свободного программного обеспечения, либо версией 3 Лицензии, либо (по вашему выбору) любой более поздней версией.\n\nSmartPack-Kernel Manager распространяется в надежде, что он будет полезен, но без какой-либо гарантии; даже без подразумеваемой гарантии товарной пригодности или пригодности для определенной цели. Смотрите стандартную общественную лицензию GNU для получения дополнительной информации.вы должны были получить копию GNU General Public License вместе с SmartPack-Kernel Manager. Если нет, посетите http://www.gnu.org/licenses/.</string>
     <string name="share_app">Поделиться приложением</string>
     <string name="share_app_summary">Поделитесь этим приложением с друзьями</string>
     <string name="share_app_message">"Получить SmartPack-Kernel Manager %s из\n"</string>

@@ -119,7 +119,7 @@ public class OverallFragment extends RecyclerViewFragment {
         items.add(cardView);
 
         CardView device = new CardView(getActivity());
-        device.setDrawable(getResources().getDrawable(R.drawable.ic_device));
+        device.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_device, requireContext()));
         device.setTitle(Device.getModel());
         device.setOnMenuListener((device1, popupMenu) -> {
             Menu menu = popupMenu.getMenu();
@@ -138,7 +138,7 @@ public class OverallFragment extends RecyclerViewFragment {
 
         if (Battery.haschargingstatus() || Battery.hasBatteryVoltage()) {
             CardView battery = new CardView(getActivity());
-            battery.setDrawable(getResources().getDrawable(R.drawable.ic_battery));
+            battery.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_battery, requireContext()));
             battery.setTitle(getString(R.string.battery));
             battery.setOnMenuListener((battery1, popupMenu) -> {
                 Menu menu = popupMenu.getMenu();
@@ -160,7 +160,7 @@ public class OverallFragment extends RecyclerViewFragment {
         if (mMemInfo.getItemMb("MemTotal") != 0 || Device.MemInfo.getInstance().
                 getItemMb("SwapTotal") != 0) {
             CardView memmory = new CardView(getActivity());
-            memmory.setDrawable(getResources().getDrawable(R.drawable.ic_cpu));
+            memmory.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_cpu, requireContext()));
             memmory.setTitle(getString(R.string.memory));
             memmory.setOnMenuListener((memmory1, popupMenu) -> {
                 Menu menu = popupMenu.getMenu();

@@ -7,8 +7,6 @@
     <string name="no_root">No hay acceso root</string>
     <string name="no_busybox">No busybox</string>
     <string name="open">Abriendo %s</string>
-    <string name="copyright_default">Default copyright text, %s, will be applied on next app launch!</string>
-    <string name="copyright_message">New copyright text, %s, will be applied on next app launch!</string>
 
     <!-- Security -->
     <string name="password">Contraseña</string>

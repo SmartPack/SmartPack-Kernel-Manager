@@ -8,8 +8,6 @@
     <string name="no_root">루트 권한이 확인되지 않았습니다!</string>
     <string name="no_busybox">비지박스가 확인되지 않았습니다!</string>
     <string name="open">%s 열기</string>
-    <string name="copyright_default">기본 저작권 표시 글인 %s이 다음에 앱을 실행할 때 적용될 것입니다!</string>
-    <string name="copyright_message">새 저작권 표시 글인 %s이 다음에 앱을 실행할 떄 적용될 것입니다!</string>
 
     <!-- Security -->
     <string name="password">비밀번호</string>

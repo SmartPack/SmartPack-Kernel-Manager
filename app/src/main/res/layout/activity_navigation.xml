@@ -25,17 +25,16 @@
             android:layout_height="wrap_content" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/copyright_text"
+            android:id="@+id/ad_status_text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center_horizontal"
             android:layout_gravity="bottom|center_horizontal"
-            android:textSize="18sp"
+            android:textSize="12sp"
             android:padding="12dp"
             android:visibility="gone"
-            android:longClickable="true"
-            android:textColor="?attr/colorAccent"
-            android:background="@color/colorPrimary" />
+            android:hint="@string/loading"
+            android:textColorHint="?attr/colorAccent" />
 
         <LinearLayout
             android:id="@+id/banner_container"
