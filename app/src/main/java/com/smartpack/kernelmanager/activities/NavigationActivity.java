@@ -268,28 +268,14 @@ public class NavigationActivity extends BaseActivity
             }
         });
 
-        // Allow changing Copyright Text
-        AppCompatTextView copyrightText = findViewById(R.id.copyright_text);
-        if (Utils.existFile(Utils.getInternalDataStorage() + "/copyright") &&
-                Utils.readFile(Utils.getInternalDataStorage() + "/copyright") != null) {
-            copyrightText.setText(Utils.readFile(Utils.getInternalDataStorage() + "/copyright"));
-        } else {
-            copyrightText.setText(R.string.copyright);
-        }
-        copyrightText.setOnLongClickListener(item -> {
-            if (Build.VERSION.SDK_INT >= 23) {
-                Utils.setCopyRightText(new WeakReference<>(this));
-            }
-            return false;
-        });
-
         // Initialize Banner Ad
         if (Prefs.getBoolean("allow_ads", true, this)) {
-            AdView mAdView = new AdView(this, "2929734570452699_2929887100437446", AdSize.BANNER_HEIGHT_50);
+            AppCompatTextView statusText = findViewById(R.id.ad_status_text);
+            AdView mAdView = new AdView(this, "1189034858133626_1189035694800209", AdSize.BANNER_HEIGHT_50);
             LinearLayout adContainer = findViewById(R.id.banner_container);
             adContainer.addView(mAdView);
             mAdView.loadAd();
-            copyrightText.setVisibility(View.VISIBLE);
+            statusText.setVisibility(View.VISIBLE);
         }
 
         if (savedInstanceState != null) {
