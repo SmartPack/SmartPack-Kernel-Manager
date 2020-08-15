@@ -1,5 +1,9 @@
 # Change-logs
 
+## 119. August 15, 2020
+*Release-tag: beta_v12.8*<br>
+Added a switch to disable on-boot service in Settings page. Removed copyright text. Updated Portuguese (Brazilian), Russian and Chinese (Simplified) translations translations. Updated build tools and dependencies. Miscellaneous changes.
+
 ## 118. July 02, 2020
 *Release-tag: beta_v12.6*<br>
 Added an in-built Translator to help users to translate this app (About --> Translators). Updated file picker to fix issues with some file manager apps. Improved flexibility of Update Channel Url. Updated Portuguese (Brazilian) translations(Credits: @Lennoard). Miscellaneous changes.
