@@ -92,7 +92,7 @@
     <string name="smartpack">SmartPack</string>
     <string name="about">关于</string>
     <string name="contributors">贡献者</string>
-    <string name="help">常见问题</string>
+    <string name="faq">常见问题</string>
 
     <!-- Overall -->
     <string name="overall_summary">欢迎使用 SmartPack-Kernel Manager。此页面提供您的设备的基本信息。内核高级选项见相应页面。</string>

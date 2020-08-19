@@ -63,7 +63,7 @@
 
     <!-- Headers -->
     <string name="statistics">Statistics</string>
-    <string name="kernel" translatable="false">Kernel</string>
+    <string name="kernel">Kernel</string>
     <string name="tools">Tools</string>
     <string name="other">Other</string>
 
@@ -99,7 +99,7 @@
     <string name="smartpack">SmartPack</string>
     <string name="about">About</string>
     <string name="contributors">Contributors</string>
-    <string name="help" translatable="false">FAQ</string>
+    <string name="faq">FAQ</string>
 
     <!-- Overall -->
     <string name="overall_summary">Welcome to the home page of SmartPack-Kernel Manager. This page provides very basic information of your device. Advanced kernel tweaking options can be found on respective pages.</string>
