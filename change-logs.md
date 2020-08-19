@@ -1,5 +1,9 @@
 # Change-logs
 
+## 120. August 19, 2020
+*Release-tag: beta_v12.9*<br>
+Added an initial version of Polish translations (credits: @Fruity-0). Miscellaneous changes.
+
 ## 119. August 15, 2020
 *Release-tag: beta_v12.8*<br>
 Added a switch to disable on-boot service in Settings page. Removed copyright text. Updated Portuguese (Brazilian), Russian and Chinese (Simplified) translations translations. Updated build tools and dependencies. Miscellaneous changes.
