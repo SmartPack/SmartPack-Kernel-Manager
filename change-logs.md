@@ -1,5 +1,9 @@
 # Change-logs
 
+## 109. August 21, 2020
+*Release-tag: v13.0*<br>
+Added a switch to disable on-boot service in Settings page. Removed copyright text. Added an initial version of Polish translations (credits: @Fruity-0). Updated Portuguese (Brazilian), Russian and Chinese (Simplified) translations translations. Updated libsu to v3.0.2. Updated build tools and dependencies. Miscellaneous changes.
+
 ## 108. July 04, 2020
 *Release-tag: v12.7*<br>
 Added an in-built Translator to help users to translate this app (About --> Translators). Updated file picker to fix issues with some file manager apps. Improved flexibility of Update Channel Url. Updated CPU control for Sailfish (Pixel) & Marlin (Pixel XL). Added Spanish translation (Credits: Alejandro YT). Miscellaneous changes.

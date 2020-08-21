@@ -961,8 +961,6 @@
     <string name="on_boot_welcome_summary">This section shows you what things will happen when your device boots up. If it\'s blank, then nothing will happen after boot. You can swipe left or right to remove a command (not a profile or script)!</string>
     <string name="delete_question">Delete %s?</string>
     <string name="disable_question">Disable %s?</string>
-    <string name="swipe_message">Sorry! You can\'t swipe out a %s.</string>
-    <string name="drag_message">Sorry! You can\'t drag a %s into different position.</string>
 
     <!-- SmartPack -->
     <string name="acquiring">Acquiring update info</string>
