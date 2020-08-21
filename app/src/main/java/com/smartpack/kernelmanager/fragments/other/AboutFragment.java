@@ -77,6 +77,7 @@ public class AboutFragment extends RecyclerViewFragment {
         sTranslations.put("German (rDE),free-bots", "https://github.com/free-bots");
         sTranslations.put("Spanish,Alejandro YT", "");
         sTranslations.put("Chinese (rCN),YFdyh000", "https://github.com/yfdyh000");
+        sTranslations.put("Polish,Fruity-0", "https://github.com/Fruity-0");
     }
 
     @Override
@@ -325,6 +326,9 @@ public class AboutFragment extends RecyclerViewFragment {
                     break;
                 case "YFdyh000":
                     descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_yfdyh000));
+                    break;
+                case "Fruity-0":
+                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_fruity0));
                     break;
             }
             descriptionView.setTitle(lib.split(",")[1]);

@@ -91,6 +91,7 @@ If you like to appreciate my work, please consider donating to me (either via [P
 * [Mikesew1320](https://github.com/Mikesew1320), Amharic
 * [free-bots](https://github.com/free-bots), German
 * Alejandro YT, Spanish
+* [Fruity-0](https://github.com/Fruity-0), Polish
 
 ## Report a bug or request a feature
 
