@@ -43,6 +43,11 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/apply_on_boot">
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="enable_onboot"
+            android:title="@string/enable_onboot"
+            android:summary="@string/enable_onboot_summary" />
         <ListPreference
             android:defaultValue="10"
             android:entries="@array/apply_on_boot_delay_entries"

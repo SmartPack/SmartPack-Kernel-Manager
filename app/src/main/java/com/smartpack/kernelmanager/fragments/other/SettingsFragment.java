@@ -83,6 +83,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private static final String KEY_HIDE_BANNER = "hide_banner";
     private static final String KEY_ACCENT_COLOR = "accent_color";
     private static final String KEY_SECTIONS_ICON = "section_icons";
+    private static final String KEY_ENABLE_ON_BOOT = "enable_onboot";
     private static final String KEY_APPLY_ON_BOOT_TEST = "applyonboottest";
     private static final String KEY_SECURITY_CATEGORY = "security_category";
     private static final String KEY_SET_PASSWORD = "set_password";
@@ -159,6 +160,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         findPreference(KEY_HIDE_BANNER).setOnPreferenceChangeListener(this);
         findPreference(KEY_ACCENT_COLOR).setOnPreferenceClickListener(this);
         findPreference(KEY_SECTIONS_ICON).setOnPreferenceChangeListener(this);
+        findPreference(KEY_ENABLE_ON_BOOT).setOnPreferenceChangeListener(this);
         findPreference(KEY_APPLY_ON_BOOT_TEST).setOnPreferenceClickListener(this);
         findPreference(KEY_SET_PASSWORD).setOnPreferenceClickListener(this);
         findPreference(KEY_DELETE_PASSWORD).setOnPreferenceClickListener(this);
@@ -234,6 +236,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 if (!Utils.isDonated(requireActivity())) {
                     ViewUtils.dialogDonate(getActivity()).show();
                     return false;
+                }
+                return true;
+            case KEY_ENABLE_ON_BOOT:
+                Prefs.saveBoolean("enable_onboot", checked, getActivity());
+                if (!Prefs.getBoolean("enable_onboot", true, getActivity())) {
+                    Utils.snackbar(mRootView, getString(R.string.enable_onboot_message));
                 }
                 return true;
             default:

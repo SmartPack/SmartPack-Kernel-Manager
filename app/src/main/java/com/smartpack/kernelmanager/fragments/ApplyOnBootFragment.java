@@ -23,7 +23,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,29 +32,29 @@ import androidx.appcompat.widget.SwitchCompat;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.tools.profile.ProfileActivity;
 import com.smartpack.kernelmanager.fragments.kernel.BatteryFragment;
-import com.smartpack.kernelmanager.fragments.kernel.boost.CPUBoostFragment;
 import com.smartpack.kernelmanager.fragments.kernel.CPUFragment;
 import com.smartpack.kernelmanager.fragments.kernel.CPUHotplugFragment;
 import com.smartpack.kernelmanager.fragments.kernel.CPUVoltageFragment;
+import com.smartpack.kernelmanager.fragments.kernel.DisplayLEDFragment;
 import com.smartpack.kernelmanager.fragments.kernel.EntropyFragment;
 import com.smartpack.kernelmanager.fragments.kernel.GPUFragment;
 import com.smartpack.kernelmanager.fragments.kernel.IOFragment;
+import com.smartpack.kernelmanager.fragments.kernel.KLapseFragment;
 import com.smartpack.kernelmanager.fragments.kernel.KSMFragment;
-import com.smartpack.kernelmanager.fragments.kernel.DisplayLEDFragment;
 import com.smartpack.kernelmanager.fragments.kernel.LMKFragment;
 import com.smartpack.kernelmanager.fragments.kernel.MiscFragment;
-import com.smartpack.kernelmanager.fragments.kernel.boost.PowerHalFragment;
 import com.smartpack.kernelmanager.fragments.kernel.ScreenFragment;
 import com.smartpack.kernelmanager.fragments.kernel.SoundFragment;
-import com.smartpack.kernelmanager.fragments.kernel.boost.StuneBoostFragment;
 import com.smartpack.kernelmanager.fragments.kernel.ThermalFragment;
 import com.smartpack.kernelmanager.fragments.kernel.VMFragment;
 import com.smartpack.kernelmanager.fragments.kernel.WakeFragment;
-import com.smartpack.kernelmanager.utils.Prefs;
-
-import com.smartpack.kernelmanager.fragments.tools.CustomControlsFragment;
-import com.smartpack.kernelmanager.fragments.kernel.KLapseFragment;
 import com.smartpack.kernelmanager.fragments.kernel.WakelockFragment;
+import com.smartpack.kernelmanager.fragments.kernel.boost.CPUBoostFragment;
+import com.smartpack.kernelmanager.fragments.kernel.boost.PowerHalFragment;
+import com.smartpack.kernelmanager.fragments.kernel.boost.StuneBoostFragment;
+import com.smartpack.kernelmanager.fragments.tools.CustomControlsFragment;
+import com.smartpack.kernelmanager.utils.Prefs;
+import com.smartpack.kernelmanager.utils.Utils;
 
 import java.util.HashMap;
 
@@ -148,8 +147,15 @@ public class ApplyOnBootFragment extends BaseFragment {
             assert getArguments() != null;
             final String category = getArguments().getString("category");
             SwitchCompat switcher = rootView.findViewById(R.id.switcher);
-            switcher.setChecked(Prefs.getBoolean(category, false, getActivity()));
-            switcher.setOnCheckedChangeListener((buttonView, isChecked) -> Prefs.saveBoolean(category, isChecked, getActivity()));
+            switcher.setChecked(Prefs.getBoolean("enable_onboot", true, getActivity()) &&
+                    Prefs.getBoolean(category, false, getActivity()));
+            switcher.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (Prefs.getBoolean("enable_onboot", true, getActivity())) {
+                    Prefs.saveBoolean(category, isChecked, getActivity());
+                } else {
+                    Utils.snackbar(rootView, getString(R.string.enable_onboot_message));
+                }
+            });
             return rootView;
         }
     }
