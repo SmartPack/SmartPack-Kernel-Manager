@@ -184,12 +184,43 @@ public class OverallFragment extends RecyclerViewFragment {
     }
 
     private Integer mGPUCurFreq;
+    private Integer mCurFreqoffset;
+    private String mDeviceToatlTime;
+    private String mDeviceAwakeTime;
+    private String mDeviceDeepsleepTime;
+    private String mBatteryVolt;
+    private String mBatteryInfoTile;
+    private String mBatteryChargingStatus;
+    private long mDeviceMemTotalCheck;
+    private String mDeviceRamInfoOne;
+    private long mDeviceSwapTotalCheck;
+    private String mDeviceRamInfoTwo;
 
     @Override
     protected void refreshThread() {
         super.refreshThread();
 
         mGPUCurFreq = mGPUFreq.getCurFreq();
+        mCurFreqoffset = mGPUFreq.getCurFreqOffset();
+
+        mDeviceToatlTime = Utils.getDurationBreakdown(SystemClock.elapsedRealtime());
+        mDeviceAwakeTime = Utils.getDurationBreakdown(SystemClock.uptimeMillis());
+        mDeviceDeepsleepTime = Utils.getDurationBreakdown(SystemClock.elapsedRealtime() - SystemClock.uptimeMillis());
+
+        mBatteryVolt = Battery.BatteryVoltage();
+        mBatteryInfoTile = Battery.ChargingInfoTitle();
+        mBatteryChargingStatus = Battery.getchargingstatus();
+
+        mDeviceMemTotalCheck = mMemInfo.getItemMb("MemTotal");
+        if (mDeviceMemTotalCheck != 0) {
+            mDeviceRamInfoOne = "RAM - Total: " + mMemInfo.getItemMb("MemTotal") + " MB, Used: " + (mMemInfo.getItemMb("MemTotal")
+                    - (mMemInfo.getItemMb("Cached") + mMemInfo.getItemMb("MemFree"))) + " MB";
+        }
+        mDeviceSwapTotalCheck = Device.MemInfo.getInstance().getItemMb("SwapTotal");
+        if (mDeviceSwapTotalCheck != 0) {
+            mDeviceRamInfoTwo = "Swap - Total: " + Device.MemInfo.getInstance().getItemMb("SwapTotal") + " MB, Used: "
+                    + (Device.MemInfo.getInstance().getItemMb("SwapTotal") - mMemInfo.getItemMb("SwapFree")) + " MB";
+        }
     }
 
     @Override
@@ -197,28 +228,26 @@ public class OverallFragment extends RecyclerViewFragment {
         super.refresh();
 
         if (mGPUFreqStatsView != null && mGPUCurFreq != null) {
-            mGPUFreqStatsView.setStat(mGPUCurFreq / mGPUFreq.getCurFreqOffset() + getString(R.string.mhz));
+            mGPUFreqStatsView.setStat(mGPUCurFreq / mCurFreqoffset + getString(R.string.mhz));
         }
         if (mTemperature != null) {
             mTemperature.setBattery(mBatteryRaw);
         }
         if (mUpTime != null) {
-            mUpTime.setStatsOne(("Total: ") + Utils.getDurationBreakdown(SystemClock.elapsedRealtime()));
-            mUpTime.setStatsTwo(("Awake: ") + Utils.getDurationBreakdown(SystemClock.uptimeMillis()));
-            mUpTime.setStatsThree(("Deep Sleep: ") + Utils.getDurationBreakdown(SystemClock.elapsedRealtime() - SystemClock.uptimeMillis()));
+            mUpTime.setStatsOne(("Total: ") + mDeviceToatlTime);
+            mUpTime.setStatsTwo(("Awake: ") + mDeviceAwakeTime);
+            mUpTime.setStatsThree(("Deep Sleep: ") +mDeviceDeepsleepTime);
         }
         if (mBatteryInfo != null) {
-            mBatteryInfo.setStatsOne(("Voltage: ") + Battery.BatteryVoltage() + (" mV"));
-            mBatteryInfo.setStatsTwo(Battery.ChargingInfoTitle() + (": ") + Battery.getchargingstatus() + (" mA"));
+            mBatteryInfo.setStatsOne(("Voltage: ") + mBatteryVolt + (" mV"));
+            mBatteryInfo.setStatsTwo(mBatteryInfoTile + (": ") + mBatteryChargingStatus + (" mA"));
         }
         if (mVM != null) {
-            if (mMemInfo.getItemMb("MemTotal") != 0) {
-                mVM.setStatsOne("RAM - Total: " + mMemInfo.getItemMb("MemTotal") + " MB, Used: " + (mMemInfo.getItemMb("MemTotal")
-                        - (mMemInfo.getItemMb("Cached") + mMemInfo.getItemMb("MemFree"))) + " MB");
+            if (mDeviceMemTotalCheck != 0) {
+                mVM.setStatsOne(mDeviceRamInfoOne);
             }
-            if (Device.MemInfo.getInstance().getItemMb("SwapTotal") != 0) {
-                mVM.setStatsTwo("Swap - Total: " + Device.MemInfo.getInstance().getItemMb("SwapTotal") + " MB, Used: "
-                        + (Device.MemInfo.getInstance().getItemMb("SwapTotal") - mMemInfo.getItemMb("SwapFree")) + " MB");
+            if (mDeviceSwapTotalCheck != 0) {
+                mVM.setStatsTwo(mDeviceRamInfoTwo);
             } else {
                 mVM.setStatsTwo("Swap: N/A");
             }
