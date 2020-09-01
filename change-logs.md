@@ -1,5 +1,9 @@
 # Change-logs
 
+## 121. September 01, 2020
+*Release-tag: beta_v13.1*<br>
+Improved Navigation Bar response on Overall page (credits: @mpschahal16). Updated polish translation (credits: @Fruity-0). Miscellaneous changes.
+
 ## 120. August 19, 2020
 *Release-tag: beta_v12.9*<br>
 Added an initial version of Polish translations (credits: @Fruity-0). Miscellaneous changes.
