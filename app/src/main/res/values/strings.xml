@@ -8,7 +8,6 @@
     <string name="no_root">No root</string>
     <string name="no_busybox">No busybox</string>
     <string name="open">Open %s</string>
-    <string name="loading">Loading…</string>
 
     <!-- Security -->
     <string name="password">Password</string>

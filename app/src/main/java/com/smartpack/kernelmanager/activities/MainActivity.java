@@ -29,7 +29,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.facebook.ads.AudienceNetworkAds;
+import com.google.android.gms.ads.MobileAds;
+
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.database.tools.profiles.Profiles;
@@ -38,10 +39,10 @@ import com.smartpack.kernelmanager.utils.Device;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.battery.Battery;
-import com.smartpack.kernelmanager.utils.kernel.cpu.boost.CPUBoost;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
 import com.smartpack.kernelmanager.utils.kernel.cpu.MSMPerformance;
 import com.smartpack.kernelmanager.utils.kernel.cpu.Temperature;
+import com.smartpack.kernelmanager.utils.kernel.cpu.boost.CPUBoost;
 import com.smartpack.kernelmanager.utils.kernel.cpuhotplug.Hotplug;
 import com.smartpack.kernelmanager.utils.kernel.cpuhotplug.QcomBcl;
 import com.smartpack.kernelmanager.utils.kernel.cpuvoltage.Voltage;
@@ -74,9 +75,9 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Initialize FaceBook Ads
+        // Initialize Google Ads
         if (Prefs.getBoolean("allow_ads", true, this)) {
-            AudienceNetworkAds.initialize(this);
+            MobileAds.initialize(this, "ca-app-pub-7791710838910455~4931988555");
         }
 
         /*

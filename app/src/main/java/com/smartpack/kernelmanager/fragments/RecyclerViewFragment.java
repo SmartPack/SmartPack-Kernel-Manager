@@ -133,7 +133,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         mHandler = new Handler();
 
         mRecyclerViewLayout = mRootView.findViewById(R.id.recyclerview_parent);
-        if (!Prefs.getBoolean("allow_ads", true, getActivity())) {
+        if (!Prefs.getBoolean("allow_ads", true, getActivity()) || !Utils.mAdLoaded) {
             mRecyclerViewLayout.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
                     RelativeLayout.LayoutParams.MATCH_PARENT));
             RelativeLayout.LayoutParams relativeParams = (RelativeLayout.LayoutParams) mRecyclerViewLayout.getLayoutParams();
