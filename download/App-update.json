@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - Added a switch to disable on-boot service in Settings page.\n - Removed copyright text.\n - Added an initial version of Polish translations (credits: @Fruity-0).\n - Updated Portuguese (Brazilian), Russian and Chinese (Simplified) translations translations.\n - Updated libsu to v3.0.2.\n - Updated build tools and dependencies.\n - Miscellaneous changes.",
-  "latestVersion": "13.0",
-  "latestVersionCode": 130
+  "releaseNotes": "Change-logs\n - Updated Polish translations (credits: @Fruity-0).\n - Removed bottom loading message.\n - Improved Navigation Bar response on Overall page (credits: @mpschahal16).\n - Miscellaneous changes.",
+  "latestVersion": "13.2",
+  "latestVersionCode": 132
 }

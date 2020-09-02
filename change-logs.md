@@ -1,5 +1,9 @@
 # Change-logs
 
+## 110. September 02, 2020
+*Release-tag: v13.2*<br>
+Updated Polish translations (credits: @Fruity-0). Removed bottom loading message. Improved Navigation Bar response on Overall page (credits: @mpschahal16). Miscellaneous changes.
+
 ## 109. August 21, 2020
 *Release-tag: v13.0*<br>
 Added a switch to disable on-boot service in Settings page. Removed copyright text. Added an initial version of Polish translations (credits: @Fruity-0). Updated Portuguese (Brazilian), Russian and Chinese (Simplified) translations translations. Updated libsu to v3.0.2. Updated build tools and dependencies. Miscellaneous changes.
