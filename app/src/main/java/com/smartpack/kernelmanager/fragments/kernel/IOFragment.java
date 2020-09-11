@@ -108,16 +108,14 @@ public class IOFragment extends RecyclerViewFragment {
             readahead.setSummary(getString(R.string.read_ahead_summary));
             readahead.setUnit(getString(R.string.kb));
             readahead.setMax(8192);
-            readahead.setMin(128);
-            readahead.setOffset(128);
-            readahead.setProgress(mIO.getReadahead(storage) / 128 - 1);
+            readahead.setMin(64);
+            readahead.setOffset(64);
+            readahead.setProgress(mIO.getReadahead(storage) / 64 - 1);
             readahead.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    mIO.setReadahead(storage, (position + 1) * 128, getActivity());
-                    getHandler().postDelayed(() -> {
-                                readahead.setProgress(mIO.getReadahead(storage) / 128 - 1);
-                            },
+                    mIO.setReadahead(storage, (position + 1) * 64, getActivity());
+                    getHandler().postDelayed(() -> readahead.setProgress(mIO.getReadahead(storage) / 64 - 1),
                             500);
                 }
 
