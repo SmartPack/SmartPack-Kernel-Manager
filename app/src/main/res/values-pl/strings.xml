@@ -62,33 +62,33 @@
     <string name="other">Inny</string>
 
     <!-- Menus -->
-    <string name="overall">Ogólny</string>
+    <string name="overall">Ogólne</string>
     <string name="device">Urządzenie</string>
     <string name="memory">Pamieć</string>
     <string name="inputs">Wejścia</string>
-    <string name="cpu">CPU</string>
-    <string name="cpu_hotplug">CPU Hotplug</string>
-    <string name="cpu_voltage">CPU Napięcie</string>
-    <string name="gpu">GPU</string>
-    <string name="thermal">Termika</string>
+    <string name="cpu">Procesor</string>
+    <string name="cpu_hotplug">Hotplug Procesora</string>
+    <string name="cpu_voltage">Napięcie Procesora</string>
+    <string name="gpu">Grafika</string>
+    <string name="thermal">Termiczne</string>
     <string name="battery">Bateria</string>
     <string name="sound">Dzwięk</string>
     <string name="screen">Ekran</string>
     <string name="wake">Budzenie Gestami</string>
     <string name="led">Wyświetlacz i dioda LED</string>
-    <string name="io_scheduler">I/O Scheduler</string>
+    <string name="io_scheduler">I/O Zarządca Pamieci</string>
     <string name="ksm">KSM</string>
     <string name="uksm">UKSM</string>
-    <string name="lmk">Killer małej ilości pamięci</string>
+    <string name="lmk">Killer pamięci podręcznej</string>
     <string name="virtual_memory">Pamieć wirtualna</string>
-    <string name="entropy">Entropy</string>
+    <string name="entropy">Entropia</string>
     <string name="misc">Różne</string>
-    <string name="custom_controls">Własne controls</string>
+    <string name="custom_controls">Własne Opcje</string>
     <string name="backup">Kopia Zapasowa</string>
-    <string name="build_prop_editor">Build prop Edytor</string>
+    <string name="build_prop_editor">Edytor zmiennych (Build.prop)</string>
     <string name="profile">Profile</string>
     <string name="script_manger">Menedżer skryptów</string>
-    <string name="on_boot">Podczas rozruchu</string>
+    <string name="on_boot">Przy Starcie</string>
     <string name="settings">Ustawienia</string>
     <string name="smartpack">SmartPack</string>
     <string name="about">O nas</string>
@@ -118,7 +118,7 @@
     <string name="android_api_level">Wersja Android SDK</string>
     <string name="android_codename">Kryptonim Android</string>
     <string name="fingerprint">Odcisk palca</string>
-    <string name="build_display_id">Utwórz identyfikator wyświetlania</string>
+    <string name="build_display_id">Identyfikator oprogramowania</string>
     <string name="baseband">Pasmo podstawowe</string>
     <string name="rom">ROM</string>
     <string name="bootloader">Bootloader</string>
@@ -131,18 +131,18 @@
     <string name="bus">Bus</string>
     <string name="product">Produkt</string>
     <string name="version">Wersja</string>
-    <string name="handlers">Handlers</string>
+    <string name="handlers">Obsługa</string>
 
     <!-- CPU -->
     <string name="cores_singular">%d rdzeń</string>
-    <string name="cores">%d rdzenie</string>
+    <string name="cores">%d rdzeni</string>
     <string name="cpu_usage">Użycie CPU</string>
     <string name="cpu_usage_string">%s Użycie CPU</string>
     <string name="no_offline_core">Możesz\'t offline tego rdzenia!</string>
     <string name="cpu_max_freq">CPU Maxymalna częstotliwość</string>
-    <string name="cpu_max_freq_summary">Ustaw maksymalną częstotliwość, do której skaluje procesor.</string>
+    <string name="cpu_max_freq_summary">Ustaw maksymalną częstotliwość, do której skaluje rdzeń.</string>
     <string name="cpu_min_freq">CPU Minimalna częstotliwość</string>
-    <string name="cpu_min_freq_summary">Ustaw minimalną częstotliwość, do której skaluje procesor.</string>
+    <string name="cpu_min_freq_summary">Ustaw minimalną częstotliwość, do której skaluje rdzeń.</string>
     <string name="cpu_max_screen_off_freq">Maksymalna częstotliwość wyłączania ekranu procesora</string>
     <string name="cpu_max_screen_off_freq_summary">Ustaw maksymalną częstotliwość, z jaką procesor się skaluje, gdy ekran jest wyłączony.</string>
     <string name="cpu_governor">CPU Zarządca</string>
@@ -183,7 +183,7 @@
     <string name="sched_boost_Input">Zaplanuj wzmocnienie na wejściu</string>
     <string name="input_boost_freq">Częstotliwość wzmocnienia wejściowego</string>
     <string name="input_boost_freq_core">Rdzeń częstotliwości wzmocnienia wejściowego %d</string>
-    <string name="input_boost_freq_summary">Częstotliwość procesora, która ma zostać zwiększona do tej częstotliwości po wykryciu wejścia.</string>
+    <string name="input_boost_freq_summary">Częstotliwość procesora, która ma zostać zwiększona do tej częstotliwości po wykryciu dotyku.</string>
     <string name="wakeup_boost">Wakeup Boost</string>
     <string name="wakeup_boost_summary">Wake Up Boost jest podobny do wzmocnienia wejściowego, ale występuje, gdy ekran jest włączony.</string>
     <string name="hotplug_boost">Hotplug Boost</string>
@@ -318,11 +318,11 @@
     <string name="hcube">H-Cube</string>
     <string name="hcube_summary">OnePlus\' zmodyfikowana kontrola rdzenia.</string>
     <string name="min_cpus_big">Minimum CPUs big</string>
-    <string name="min_cpus_big_summary">Minimalna liczba dużych procesorów, które powinny być online.</string>
+    <string name="min_cpus_big_summary">Minimalna liczba mocnych rdzeni, które powinny być online.</string>
     <string name="busy_down_threshold">Busy Down Threshold</string>
-    <string name="busy_down_threshold_summary">Próg, przy którym duże procesory powinny być wyłączone.</string>
+    <string name="busy_down_threshold_summary">Próg, przy którym mocne rdzenie powinne być wyłączone.</string>
     <string name="busy_up_threshold">Busy Up Threshold</string>
-    <string name="busy_up_threshold_summary">Próg, w którym należy włączyć duże procesory.</string>
+    <string name="busy_up_threshold_summary">Próg, w którym należy włączyć mocne rdzenie.</string>
     <string name="task_threshold">Task Threshold</string>
     <string name="task_threshold_summary">Próg przy równoważeniu zadań do dużych jednostek CPU.</string>
     <string name="offline_delay">Offline Delay</string>
@@ -691,7 +691,7 @@
     <string name="read_ahead_summary">Wartość odczytu z wyprzedzeniem w pamięci telefonu.</string>
     <string name="rotational">Rotational Storage</string>
     <string name="rotational_summary">Traktuj urządzenie jako magazyn rotacyjny.</string>
-    <string name="iostats">I/O Stats</string>
+    <string name="iostats">I/O Statystyki</string>
     <string name="iostats_summary">Utrzymuj statystyki we / wy dla tego urządzenia pamięci masowej. Wyłączenie spowoduje uszkodzenie aplikacji monitorujących wejścia / wyjścia.</string>
     <string name="add_random">Add Random</string>
     <string name="add_random_summary">Narysuj entropię z wirującej (rotacyjnej) pamięci.</string>
@@ -798,10 +798,10 @@
 
     <!-- Virtual Memory -->
     <string name="zram">Z-RAM</string>
-    <string name="zram_algo">Z-RAM Algorithm</string>
+    <string name="zram_algo">Z-RAM Algorytm</string>
     <string name="zram_algo_summary">Ustaw domyślny algorytm kompresji Z-RAM.</string>
     <string name="zram_algo_warning">Rozmiar dysku Z-RAM zostanie tymczasowo zmniejszony do \'0\'. Ten proces może mieć poważny wpływ na niektóre urządzenia.</string>
-    <string name="disksize">Disksize</string>
+    <string name="disksize">Rozmiar Dysku</string>
     <string name="disksize_summary">Próbuje zwiększyć wydajność, unikając stronicowania w fizycznym magazynie, zamiast tego używając skompresowanego urządzenia wirtualnego w pamięci RAM. Stronicowanie odbywa się w pamięci RAM, dopóki nie będzie konieczne użycie przestrzeni wymiany w pamięci fizycznej.</string>
     <string name="zswap">ZSWAP</string>
     <string name="zswap_summary">ZSwap to lekka skompresowana pamięć podręczna dla stron wymiany. Pobiera strony, które są w trakcie wymiany i próbuje skompresować je do dynamicznie przydzielanej puli pamięci opartej na pamięci RAM. Zswap zasadniczo zamienia cykle procesora na potencjalnie zmniejszoną wymianę I/O.</string>
@@ -809,7 +809,7 @@
     <string name="memory_pool_summary">Pula pamięci procent pamięci głównej, która może być używana jako skompresowana pamięć podręczna stron.</string>
     <string name="maximum_compression_ratio">Maximum compression ratio</string>
     <string name="maximum_compression_ratio_summary">Maksymalny współczynnik kompresji w procentach dla akceptowalnej skompresowanej strony. Każda strona, która nie zostanie skompresowana przynajmniej o ten współczynnik, zostanie odrzucona.</string>
-    <string name="virtual_memory_tunables">Przestrajalna pamięć wirtualna\'s</string>
+    <string name="virtual_memory_tunables">Przestrajalna pamięć wirtualna</string>
 
     <!-- Entropy -->
     <string name="available">Dostępny</string>
@@ -841,7 +841,7 @@
     <string name="hybrid">Hybrid</string>
     <string name="power_suspend_state">Stan zawieszenia zasilania</string>
     <string name="power_suspend_state_summary">Sterownik zarządzania energią jądra, gdy ekran jest wyłączony. Lepsza oszczędność baterii, jeśli jest włączona. Uwaga: Możesz zmienić to ustawienie tylko wtedy, gdy tryb wstrzymania zasilania jest w trybie użytkownika.</string>
-    <string name="network">Network</string>
+    <string name="network">Sieć</string>
     <string name="tcp">Algorytm przeciążenia TCP</string>
     <string name="tcp_summary">Protokół kontroli transmisji jest jednym z podstawowych protokołów zestawu protokołów internetowych (IP) i jest tak powszechny, że cały zestaw jest często nazywany TCP / IP.</string>
     <string name="hostname">Nazwa hosta</string>
@@ -875,7 +875,7 @@
     <string name="create">utwórz</string>
     <string name="import_item">Import</string>
     <string name="control_switch">Przełącznik</string>
-    <string name="control_generic">Ogólny</string>
+    <string name="control_generic">Ogólne</string>
     <string name="documentation">Dokumentacja</string>
     <string name="invalid_path">%s nie jest prawidłową ścieżką do systemu sysfs! Przerwanie.</string>
     <string name="invalid_controller">%s nie jest prawidłowym kontrolerem niestandardowym! Przerwanie.</string>
@@ -898,13 +898,13 @@
     <string name="got_it">Rozumiem</string>
 
     <!-- Backup -->
-    <string name="boot_partition">Partycja rozruchowa</string>
-    <string name="recovery_partition">Recovery Partycja</string>
+    <string name="boot_partition">Partycja (boot/kernel)</string>
+    <string name="recovery_partition">Partycja (recovery/odzyskiwanie)</string>
     <string name="fota_partition">Fota partycja</string>
-    <string name="flash">Flash</string>
+    <string name="flash">Flash (Wgraj)</string>
     <string name="flasher">Flasher</string>
     <string name="flasher_warning">Ta funkcja jest wciąż bardzo nowa i w fazie rozwoju. Może nie mieć pełnej zgodności z wieloma plikami zip z możliwością flashowania. Jeśli uważasz, że proces flashowania w jakimkolwiek przypadku nie powiódł się z powodu wyżej wymienionych niezgodności, uruchom ponownie aplikację bezpośrednio przed podjęciem jakichkolwiek czynności.\n\nAlso, Nie polecam próbować flashowania czegokolwiek powyżej 500 MB.\n\n***UŻYWAJ NA WŁASNE RYZYKO***\n</string>
-    <string name="flasher_summary">Kliknij przycisk flash, aby wybrać i zapisać plik ZIP odzyskiwania bez ponownego uruchamiania w trybie odzyskiwania niestandardowego. Zmiany zostaną zastosowane po ponownym uruchomieniu.</string>
+    <string name="flasher_summary">Kliknij przycisk flash, aby wybrać i wgrać plik ZIP za pomocą odzyskiwania(recovery) bez ponownego uruchamiania w trybie nieoficjalnego odzyskiwania(recovery). Zmiany zostaną zastosowane po ponownym uruchomieniu.</string>
     <string name="file_size_limit">Ostrzeżenie! Wybrano plik ~%s MB do flashowania. Flashowanie większych plików, takich jak ROM, za pomocą tej aplikacji może być niebezpieczne dla twojego urządzenia.</string>
     <string name="execute">Wykonać</string>
     <string name="sure_message">Czy na pewno flashujesz %s?</string>
@@ -1056,16 +1056,16 @@
     <string name="disable_ads_message">gratulacje! Reklamy są wyłączone! \ N \ nJednak należy zauważyć, że przychody uzyskane z tych reklam są bardzo pomocne dla dewelopera w kontynuowaniu bardziej aktywnych projektów programistycznych dla Androida. Jeśli to ci nie zaszkodzi, rozważ zezwolenie reklamom na wspieranie rozwoju.</string>
     <string name="allow_ads_message">Bardzo dziękujemy za wsparcie programisty, zezwalając na reklamy!</string>
     <string name="open_settings">Otwórz ustawienia</string>
-    <string name="fahrenheit_summary">Do pomiaru temperatury użyj stopni Fahrenheita</string>
-    <string name="force_english">Wymuś wyświetlanie języka angielskiego</string>
+    <string name="fahrenheit_summary">Do pomiaru użyj stopni Fahrenheita</string>
+    <string name="force_english">Włącz język angielski</string>
     <string name="user_interface">Interfejs użytkownika</string>
-    <string name="dark_theme">Ciemny schemat</string>
-    <string name="material_icon">Ikona materiału</string>
-    <string name="banner_resizer">Banner Resizer</string>
+    <string name="dark_theme">Ciemny motyw</string>
+    <string name="material_icon">Włącz ikone (material)</string>
+    <string name="banner_resizer">Zmień rozmiar banneru</string>
     <string name="banner_resizer_message">Orientacja ekranu telefonu powinna być \'Portrait\'!</string>
     <string name="hide_banner">Ukryj baner</string>
     <string name="force_cards_summary">Jeśli to możliwe, używaj kart do przedmiotów</string>
-    <string name="accent_color">Kolor akcentu</string>
+    <string name="accent_color">Kolor motywu</string>
     <string name="section_icons">Ikony sekcji</string>
     <string name="instant">Natychmiastowy</string>
     <string name="five_sec">5 seconds</string>
@@ -1073,17 +1073,17 @@
     <string name="twenty_sec">20 seconds</string>
     <string name="fifty_sec">50 seconds</string>
     <string name="apply_on_boot_test_summary">Test zastosuj podczas rozruchu. Obejmuje to wszelkiego rodzaju rzeczy, które są stosowane podczas uruchamiania, takie jak niestandardowe elementy sterujące, profile, init.d itp.</string>
-    <string name="apply_on_boot_running">Usługa Apply on boot jest już uruchomiona. Poczekaj, aż się skończy.</string>
+    <string name="apply_on_boot_running">Usługa "Zastosuj przy starcie" jest już uruchomiona. Poczekaj, aż się skończy.</string>
     <string name="test">Test</string>
     <string name="nothing_apply">Nie znaleziono nic do zastosowania!</string>
     <string name="hide">Ukryj</string>
     <string name="always_show">Zawsze pokazuj</string>
     <string name="apply_on_boot_hide_summary">Ukryj powiadomienie o zastosowaniu podczas rozruchu. Opóźnienie nadal pozostanie!</string>
-    <string name="toast">Toast</string>
-    <string name="apply_on_boot_toast_summary">Pokaż toast po zastosowaniu ustawień!</string>
+    <string name="toast">Dymek</string>
+    <string name="apply_on_boot_toast_summary">Pokaż dymek po zastosowaniu ustawień!</string>
     <string name="confirmation_notification">Powiadomienie o potwierdzeniu</string>
     <string name="apply_on_boot_confirmation_notification_summary">Po zastosowaniu przy rozruchu z widocznym powiadomieniem, pokaż następnie powiadomienie z potwierdzeniem, że zastosowanie podczas rozruchu zakończyło się pomyślnie.</string>
-    <string name="script">Script</string>
+    <string name="script">Skrypt</string>
     <string name="apply_on_boot_script_summary">Użyj skryptu powłoki, aby zastosować ustawienia. Włącz tę opcję tylko wtedy, gdy masz problemy z aplikacją podczas rozruchu. Jeśli problem nadal występuje po włączeniu tej opcji, upewnij się, że żadna inna aplikacja nie jest w konflikcie z programem SmartPack-Kernel Manager.</string>
     <string name="logcat">Logcat(s)</string>
     <string name="logcat_summary">Zapisz wszystkie logcats, w tym radio i zdarzenia, w \'sdcard\'</string>
@@ -1119,8 +1119,8 @@
     <string name="source_code_summary">Wyświetl kod źródłowy na GitHub</string>
     <string name="change_logs">Dzienniki zmian</string>
     <string name="change_logs_summary">Wyświetl dzienniki zmian</string>
-    <string name="playstore">PlayStore</string>
-    <string name="playstore_summary">Odwiedź stronę PlayStore</string>
+    <string name="playstore">Sklep Play</string>
+    <string name="playstore_summary">Odwiedź stronę SklepuPlay</string>
     <string name="donate_me">Darowizna dla mnie</string>
     <string name="donate_me_summary">Chcesz docenić moją pracę darowizną? Kliknij tutaj</string>
     <string name="donate_me_message">\nJeśli lubisz docenić moją pracę, rozważ przekazanie mi darowizn, ponieważ pomocne jest kontynuowanie moich projektów bardziej aktywnie, chociaż wcale nie jest to konieczne.\n</string>
@@ -1133,9 +1133,9 @@
     <string name="share_app_summary">Udostępnij tę aplikację znajomym</string>
     <string name="share_app_message">pobierz SmartPack-Kernel Manager %s from\n\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
     <string name="grarak">Willi Ye</string>
-    <string name="grarak_summary">The man behind \'Kernel Adiutor\', the ancestor of SmartPack-Kernel Manager. This project won\'t be true without him. Huge \u2665 &amp; respect to him, not only for his hard work on Kernel Adiutor, but also for being open to open-source.</string>
+    <string name="grarak_summary">Człowiek stojący za „Kernel Adiutor”, przodek SmartPack-Kernel Manager..Bez niego ten projekt nie będzie prawdziwy. Olbrzymi szacunek dla niego, nie tylko za jego ciężką pracę nad Kernel Adiutor, ale także za otwartość na oprogramowanie typu open source</string>
     <string name="osm0sis">Chris Renshaw</string>
-    <string name="osm0sis_summary">The developer of the famous \'AnyKernel3\' project. Without his timely support and guidance, the auto-flashing feature on this app won\'t be happen.</string>
+    <string name="osm0sis_summary">Twórca słynnego projektu "AnyKernel3". Bez jego szybkiego wsparcia i wskazówek funkcja automatycznego flashowania w tej aplikacji nie będzie działać.</string>
 
     <!-- Contributors -->
     <string name="commits">%d zatwierdza</string>
@@ -1160,21 +1160,21 @@
 
     <!-- FAQ -->
     <string name="how_different">Q1. Czym różni się ta aplikacja od oficjalnego Kernel Adiutora firmy Grarak?</string>
-    <string name="how_different_summary">Ans. Ta aplikacja jest mocno zmodyfikowana, aby sprostać potrzebom różnych programistów jądra. Niektóre z dodatkowych funkcji tej aplikacji obejmują między innymi,\n - Możliwość flashowania plików ZIP odzyskiwania podczas korzystania z systemu operacyjnego Android.\n - Prosty i przyjazny dla użytkownika kontroler niestandardowy.\n - Menedżer skryptów do łatwego tworzenia, importowania, edytowania i wykonywania dowolnych odpowiednio sformatowanych skryptów powłoki.\n - Kontrola nad funkcjami, takimi jak CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Wakelock blocker, etc.\n - Boeffla i Flar\'s kontrola dźwięku z obsługą każdego kanału.\n - i dużo więcej.</string>
+    <string name="how_different_summary">Odp. Ta aplikacja jest mocno zmodyfikowana, aby sprostać potrzebom różnych programistów jądra. Niektóre z dodatkowych funkcji tej aplikacji obejmują między innymi,\n - Możliwość flashowania plików ZIP odzyskiwania podczas korzystania z systemu operacyjnego Android.\n - Prosty i przyjazny dla użytkownika kontroler niestandardowy.\n - Menedżer skryptów do łatwego tworzenia, importowania, edytowania i wykonywania dowolnych odpowiednio sformatowanych skryptów powłoki.\n - Kontrola nad funkcjami, takimi jak CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Wakelock blocker, etc.\n - Boeffla i Flar\'s kontrola dźwięku z obsługą każdego kanału.\n - i dużo więcej.</string>
     <string name="can_i_use">Q2.  Czy mogę używać tej aplikacji do sterowania dowolnym niestandardowym jądrem?</string>
-    <string name="can_i_use_summary">Ans. Dlaczego nie? Ta aplikacja będzie działać jak zwykle z każdym jądrem, o ile przyznany zostanie dostęp root.</string>
+    <string name="can_i_use_summary">Odp. Dlaczego nie? Ta aplikacja będzie działać jak zwykle z każdym jądrem, o ile przyznany zostanie dostęp root.</string>
     <string name="cpu_freq_not_sticking">Q3. Dlaczego mój określony stan częstotliwości procesora nie jest?</string>
-    <string name="cpu_freq_not_sticking_summary">Ans. Może to mieć wiele przyczyn. Wiele jąder ma obecnie własny system podłączania na gorąco, który kontroluje częstotliwość procesora, a CyanogenMod ma własną implementację CPU Boost, która reguluje częstotliwość. Sugerowałbym, abyś nie dotykał częstotliwości procesora i pozwolił jądru wykonać swoją pracę. Dotyczy to również innych funkcji! Jeśli się nie trzymają, to dlatego, że jądro / system nie chce pozwolić ci go zmienić.</string>
+    <string name="cpu_freq_not_sticking_summary">Odp. Może to mieć wiele przyczyn. Wiele jąder ma obecnie własny system podłączania na gorąco, który kontroluje częstotliwość procesora, a CyanogenMod ma własną implementację CPU Boost, która reguluje częstotliwość. Sugerowałbym, abyś nie dotykał częstotliwości procesora i pozwolił jądru wykonać swoją pracę. Dotyczy to również innych funkcji! Jeśli się nie trzymają, to dlatego, że jądro / system nie chce pozwolić ci go zmienić.</string>
     <string name="feature_not_appearing">Q4. Dlaczego nie pojawiają się cechy x i y?</string>
-    <string name="feature_not_appearing_summary">Ans. Wyświetlane są tylko funkcje zaimplementowane w Twoim jądrze.</string>
+    <string name="feature_not_appearing_summary">Odp. Wyświetlane są tylko funkcje zaimplementowane w Twoim jądrze.</string>
     <string name="add_new_features">Q5. Czy możesz dodać funkcję X i Y do swojej aplikacji?</string>
-    <string name="add_new_features_summary">Ans. Chętnie sprawdzę i dodam, jeśli to możliwe, przydatne funkcje (chyba że jest to zbyt eksperymentalne lub niebezpieczne) do mojej aplikacji. Podaj swoje sugestie na stronie xda-developers.</string>
+    <string name="add_new_features_summary">Odp. Chętnie sprawdzę i dodam, jeśli to możliwe, przydatne funkcje (chyba że jest to zbyt eksperymentalne lub niebezpieczne) do mojej aplikacji. Podaj swoje sugestie na stronie xda-developers.</string>
     <string name="what_best">Q6. Czy możesz mi powiedzieć najlepsze ustawienia wydajności / SOT?</string>
-    <string name="what_best_summary">Ans. Zależy to od kilku czynników. Mogę udostępniać tylko moje ulubione ustawienia, które dają najlepsze wyniki w mojej ulubionej pamięci ROM.</string>
+    <string name="what_best_summary">Odp. Zależy to od kilku czynników. Mogę udostępniać tylko moje ulubione ustawienia, które dają najlepsze wyniki w mojej ulubionej pamięci ROM.</string>
     <string name="cache_dalvik">Q7. Czy muszę wyczyścić pamięć podręczną / pamięć podręczną dalvik przed / po flashowaniu jądra?</string>
-    <string name="cache_dalvik_summary">Ans. NIE. Ponieważ jądro nawet nie „widzi” pamięci podręcznej / pamięci podręcznej dalvik.</string>
+    <string name="cache_dalvik_summary">Odp. NIE. Ponieważ jądro nawet nie „widzi” pamięci podręcznej / pamięci podręcznej dalvik.</string>
     <string name="found_bugs">Q8. Znalazłem błąd w Twojej aplikacji, co mam zrobić?</string>
-    <string name="found_bugs_summary">Ans. Podaj jak najwięcej informacji (takich jak jaka funkcja, co nie działa, zrzuty ekranu lub logcat, jeśli to możliwe) i opublikuj na stronie xda-developers. Alternatywnie możesz również zgłosić problem na stronie GitHub.</string>
+    <string name="found_bugs_summary">Odp. Podaj jak najwięcej informacji (takich jak jaka funkcja, co nie działa, zrzuty ekranu lub logcat, jeśli to możliwe) i opublikuj na stronie xda-developers. Alternatywnie możesz również zgłosić problem na stronie GitHub.</string>
     <string name="can_i_contribute">Q9. Czy mogę wnieść swój wkład do twoich projektów? Jeśli tak to jak?</string>
-    <string name="can_i_contribute_summary">Ans. Absolutnie. Wszelkiego rodzaju darowizny (darowizny, kod itp.) Są mile widziane i wysoko cenione. Więcej informacji można znaleźć w sekcji „Informacje”.</string>
+    <string name="can_i_contribute_summary">Odp. Absolutnie. Wszelkiego rodzaju darowizny (darowizny, kod itp.) Są mile widziane i wysoko cenione. Więcej informacji można znaleźć w sekcji „Informacje”.</string>
 </resources>
