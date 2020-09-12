@@ -1,5 +1,9 @@
 # Change-logs
 
+## 122. September 12, 2020
+*Release-tag: beta_v13.3*<br>
+Updated IO Readahead minimum & offset values. Updated polish translation (credits: @Fruity-0). Improved AdLayout to avoid overlapping with other items. Miscellaneous changes.
+
 ## 121. September 01, 2020
 *Release-tag: beta_v13.1*<br>
 Improved Navigation Bar response on Overall page (credits: @mpschahal16). Updated polish translation (credits: @Fruity-0). Miscellaneous changes.
