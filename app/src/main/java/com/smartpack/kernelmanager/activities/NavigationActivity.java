@@ -42,9 +42,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.material.navigation.NavigationView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
@@ -265,20 +262,6 @@ public class NavigationActivity extends BaseActivity
                 v.clearFocus();
             }
         });
-
-        // Initialize Banner Ad
-        if (Prefs.getBoolean("allow_ads", true, this)) {
-            AdView mAdView = findViewById(R.id.adView);
-            mAdView.setAdListener(new AdListener() {
-                @Override
-                public void onAdLoaded() {
-                    Utils.mAdLoaded = true;
-                }
-            });
-            AdRequest adRequest = new AdRequest.Builder()
-                    .build();
-            mAdView.loadAd(adRequest);
-        }
 
         if (savedInstanceState != null) {
             mSelection = savedInstanceState.getInt("selection");

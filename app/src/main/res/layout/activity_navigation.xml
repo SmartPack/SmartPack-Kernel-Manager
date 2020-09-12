@@ -23,17 +23,6 @@
             layout="@layout/app_bar_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-        <com.google.android.gms.ads.AdView
-            xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_gravity="bottom|center_horizontal"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-7791710838910455/9992743545">
-        </com.google.android.gms.ads.AdView>
     </FrameLayout>
 
     <com.google.android.material.navigation.NavigationView

@@ -87,7 +87,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class Utils {
 
-    public static boolean mAdLoaded = false;
     public static boolean mBattery = false;
     public static boolean mCPU = false;
     public static boolean mCPUTimes = false;
