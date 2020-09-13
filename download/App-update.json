@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - Updated Polish translations (credits: @Fruity-0).\n - Removed bottom loading message.\n - Improved Navigation Bar response on Overall page (credits: @mpschahal16).\n - Miscellaneous changes.",
-  "latestVersion": "13.2",
-  "latestVersionCode": 132
+  "releaseNotes": "Change-logs\n - Updated IO Readahead minimum & offset values.\n - Updated polish translation (credits: @Fruity-0).\n - Improved AdLayout to avoid overlapping with other items.\n - Miscellaneous changes.",
+  "latestVersion": "13.4",
+  "latestVersionCode": 134
 }

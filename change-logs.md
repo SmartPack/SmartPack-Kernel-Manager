@@ -1,5 +1,9 @@
 # Change-logs
 
+## 111. September 13, 2020
+*Release-tag: v13.4*<br>
+Updated IO Readahead minimum & offset values. Updated polish translation (credits: @Fruity-0). Improved AdLayout to avoid overlapping with other items. Miscellaneous changes.
+
 ## 110. September 02, 2020
 *Release-tag: v13.2*<br>
 Updated Polish translations (credits: @Fruity-0). Removed bottom loading message. Improved Navigation Bar response on Overall page (credits: @mpschahal16). Miscellaneous changes.
