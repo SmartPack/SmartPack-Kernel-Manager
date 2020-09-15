@@ -92,6 +92,8 @@ public class Utils {
     public static boolean mCPUTimes = false;
     public static boolean mDevice = false;
     public static boolean mGPU = false;
+    public static boolean mHasBusybox;
+    public static boolean mHasRoot;
     public static boolean mMemory = false;
     public static boolean mTranslator = false;
 
