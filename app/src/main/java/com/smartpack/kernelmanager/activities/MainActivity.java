@@ -149,23 +149,20 @@ public class MainActivity extends BaseActivity {
 
         private WeakReference<MainActivity> mRefActivity;
 
-        private boolean mHasRoot;
-        private boolean mHasBusybox;
-
         private CheckingTask(MainActivity activity) {
             mRefActivity = new WeakReference<>(activity);
         }
 
         @Override
         protected Void doInBackground(Void... params) {
-            mHasRoot = RootUtils.rootAccess();
+            Utils.mHasRoot = RootUtils.rootAccess();
             publishProgress(0);
 
-            if (mHasRoot) {
-                mHasBusybox = RootUtils.busyboxInstalled();
+            if (Utils.mHasRoot) {
+                Utils.mHasBusybox = RootUtils.busyboxInstalled();
                 publishProgress(1);
 
-                if (mHasBusybox) {
+                if (Utils.mHasBusybox) {
                     collectData();
                     publishProgress(2);
                 }
@@ -226,10 +223,10 @@ public class MainActivity extends BaseActivity {
             int green = ContextCompat.getColor(activity, R.color.green);
             switch (values[0]) {
                 case 0:
-                    activity.mRootAccess.setTextColor(mHasRoot ? green : red);
+                    activity.mRootAccess.setTextColor(Utils.mHasRoot ? green : red);
                     break;
                 case 1:
-                    activity.mBusybox.setTextColor(mHasBusybox ? green : red);
+                    activity.mBusybox.setTextColor(Utils.mHasBusybox ? green : red);
                     break;
                 case 2:
                     activity.mCollectInfo.setTextColor(green);
@@ -248,17 +245,10 @@ public class MainActivity extends BaseActivity {
              * launch text activity which let the user know
              * what the problem is.
              */
-            if (!mHasRoot || !mHasBusybox) {
-                Intent intent = new Intent(activity, TextActivity.class);
-                intent.putExtra(TextActivity.MESSAGE_INTENT, activity.getString(mHasRoot ?
-                        R.string.no_busybox : R.string.no_root));
-                intent.putExtra(TextActivity.SUMMARY_INTENT,
-                        mHasRoot ? "https://play.google.com/store/apps/details?id=com.smartpack.busyboxinstaller" :
-                                "https://www.google.com/search?site=&source=hp&q=root+"
-                                        + Device.getVendor() + "+" + Device.getModel());
-                activity.startActivity(intent);
+            if (!Utils.mHasRoot || !Utils.mHasBusybox) {
+                Intent noRoot = new Intent(activity, NoRootActivity.class);
+                activity.startActivity(noRoot);
                 activity.finish();
-
                 return;
             }
 
