@@ -1,0 +1,7 @@
+{
+  "releaseNotes": "Change-logs\n - Updated IO Readahead minimum & offset values.\n - Updated polish translation (credits: @Fruity-0).\n - Improved AdLayout to avoid overlapping with other items.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v13.3/com.smartpack.kernelmanager-v13.3-release.apk",
+  "sha1": "4f75663fcb09cf04714b2f1f508f768d4e297cc0",
+  "latestVersion": "13.3",
+  "latestVersionCode": 133
+}

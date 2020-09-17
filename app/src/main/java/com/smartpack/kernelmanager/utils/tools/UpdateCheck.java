@@ -21,7 +21,13 @@
 
 package com.smartpack.kernelmanager.utils.tools;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
+
+import androidx.core.content.FileProvider;
 
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
@@ -39,7 +45,8 @@ import java.io.File;
 
 public class UpdateCheck {
 
-    private static final String LATEST_VERSION_URL = "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json";
+    private static final String LATEST_VERSION_URL = "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/app/src/main/assets/release.json";
+    private static final String LATEST_VERSION_APK = Utils.getInternalDataStorage() + "/" + BuildConfig.APPLICATION_ID + ".apk";
     private static final String UPDATE_INFO = Utils.getInternalDataStorage() + "/update_info.json";
     private static final String UPDATE_INFO_STRING = Utils.readFile(UPDATE_INFO);
 
@@ -54,6 +61,15 @@ public class UpdateCheck {
             return (obj.getInt("latestVersionCode"));
         } catch (JSONException e) {
             return BuildConfig.VERSION_CODE;
+        }
+    }
+
+    private static String getUrl() {
+        try {
+            JSONObject obj = new JSONObject(UPDATE_INFO_STRING);
+            return (obj.getString("releaseUrl"));
+        } catch (JSONException e) {
+            return BuildConfig.VERSION_NAME;
         }
     }
 
@@ -75,6 +91,20 @@ public class UpdateCheck {
         }
     }
 
+    public static String getChecksum() {
+        try {
+            JSONObject obj = new JSONObject(UPDATE_INFO_STRING);
+            return (obj.getString("sha1"));
+        } catch (JSONException e) {
+            return "Unavailable";
+        }
+    }
+
+    private static void getLatestApp(Context context) {
+        Utils.prepareInternalDataStorage();
+        Utils.downloadFile(LATEST_VERSION_APK, getUrl(), context);
+    }
+
     public static boolean hasVersionInfo() {
         return Utils.existFile(UPDATE_INFO);
     }
@@ -86,14 +116,51 @@ public class UpdateCheck {
     public static void updateAvailableDialog(Context context) {
         new Dialog(context)
                 .setTitle(context.getString(R.string.update_available, UpdateCheck.versionName()))
-                .setMessage(context.getString(R.string.update_available_summary, changelogs()))
+                .setMessage(changelogs())
                 .setCancelable(false)
                 .setNegativeButton(context.getString(R.string.cancel), (dialog, id) -> {
                 })
                 .setPositiveButton(context.getString(R.string.get_it), (dialog, id) -> {
-                    Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest", context);
+                    updaterTask(context);
                 })
                 .show();
+    }
+
+    private static void updaterTask(Context context) {
+        new AsyncTask<Void, Void, Void>() {
+            private ProgressDialog mProgressDialog;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                mProgressDialog = new ProgressDialog(context);
+                mProgressDialog.setMessage(context.getString(R.string.downloading_update, context.
+                        getString(R.string.app_name) + " v" + versionName() + " ..."));
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
+            }
+            @Override
+            protected Void doInBackground(Void... voids) {
+                getLatestApp(context);
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                try {
+                    mProgressDialog.dismiss();
+                } catch (IllegalArgumentException ignored) {
+                }
+                if (Utils.existFile(LATEST_VERSION_APK) && Utils.getChecksum(LATEST_VERSION_APK).contains(getChecksum())) {
+                    installUpdate(context);
+                } else {
+                    new Dialog(context)
+                            .setMessage(context.getString(R.string.download_failed))
+                            .setNegativeButton(context.getString(R.string.cancel), (dialog, id) -> {
+                            })
+                            .show();
+                }
+            }
+        }.execute();
     }
 
     public static void manualUpdateCheck(Context context) {
@@ -107,6 +174,16 @@ public class UpdateCheck {
                     })
                     .show();
         }
+    }
+
+    private static void installUpdate(Context context) {
+        Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        Uri uriFile;
+        uriFile = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider",
+                new File(LATEST_VERSION_APK));
+        intent.setDataAndType(uriFile, "application/vnd.android.package-archive");
+        context.startActivity(Intent.createChooser(intent, ""));
     }
 
 }

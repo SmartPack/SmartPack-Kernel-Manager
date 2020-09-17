@@ -30,8 +30,6 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.ads.MobileAds;
-
-import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.database.tools.profiles.Profiles;
 import com.smartpack.kernelmanager.services.profile.Tile;
@@ -273,18 +271,12 @@ public class MainActivity extends BaseActivity {
         super.onStart();
 
         // Initialize auto app update check
-        if (Utils.isPlayStoreInstalled(this)) {
-            return;
-        }
         if (!Utils.isDownloadBinaries()) {
             return;
         }
         if (Utils.isNetworkAvailable(this) && Prefs.getBoolean("auto_update", true, this)) {
             if (!UpdateCheck.hasVersionInfo() || (UpdateCheck.lastModified() + 3720000L < System.currentTimeMillis())) {
                 UpdateCheck.getVersionInfo(this);
-            }
-            if (UpdateCheck.hasVersionInfo() && BuildConfig.VERSION_CODE < UpdateCheck.versionCode()) {
-                UpdateCheck.updateAvailableDialog(this);
             }
         }
     }

@@ -20,6 +20,7 @@
 package com.smartpack.kernelmanager.fragments.other;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -126,18 +127,6 @@ public class AboutFragment extends RecyclerViewFragment {
         changelogs.setSummary(getString(R.string.change_logs_summary));
         changelogs.setOnItemClickListener(item -> Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/beta/change-logs.md", getActivity()));
 
-        DescriptionView playstore = new DescriptionView();
-        playstore.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
-        playstore.setTitle(getString(R.string.playstore));
-        playstore.setSummary(getString(R.string.playstore_summary));
-        playstore.setOnItemClickListener(item -> {
-            if (!Utils.isNetworkAvailable(requireActivity())) {
-                Utils.snackbar(getRootView(), getString(R.string.no_internet));
-                return;
-            }
-            Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager", requireActivity());
-        });
-
         DescriptionView updatecheck = new DescriptionView();
         updatecheck.setDrawable(getResources().getDrawable(R.drawable.ic_update));
         updatecheck.setTitle(getString(R.string.check_update));
@@ -146,6 +135,9 @@ public class AboutFragment extends RecyclerViewFragment {
             if (!Utils.isNetworkAvailable(requireActivity())) {
                 Utils.snackbar(getRootView(), getString(R.string.no_internet));
                 return;
+            }
+            if (Build.VERSION.SDK_INT >= 23) {
+                requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
             UpdateCheck.manualUpdateCheck(getActivity());
         });
@@ -164,17 +156,10 @@ public class AboutFragment extends RecyclerViewFragment {
             Dialog donate_to_me = new Dialog(requireActivity());
             donate_to_me.setIcon(R.mipmap.ic_launcher);
             donate_to_me.setTitle(getString(R.string.donate_me));
-            if (Utils.isSPDonated(requireActivity())) {
-                donate_to_me.setMessage(getString(R.string.donate_me_message));
-                donate_to_me.setNeutralButton(getString(R.string.donate_nope), (dialogInterface, i) -> {
-                });
-            } else {
-                donate_to_me.setMessage(getString(R.string.donate_me_message) + getString(R.string.donate_me_playstore));
-                donate_to_me.setNeutralButton(getString(R.string.purchase_app), (dialogInterface, i) -> {
-                    Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.donate", getActivity());
-                });
-            }
-            donate_to_me.setPositiveButton(getString(R.string.paypal_donation), (dialog1, id1) -> {
+            donate_to_me.setMessage(getString(R.string.donate_me_message));
+            donate_to_me.setNeutralButton(getString(R.string.donate_nope), (dialogInterface, i) -> {
+            });
+            donate_to_me.setPositiveButton(getString(R.string.donate_yes), (dialog1, id1) -> {
                 Utils.launchUrl("https://www.paypal.me/menacherry", getActivity());
             });
             donate_to_me.show();
@@ -199,12 +184,9 @@ public class AboutFragment extends RecyclerViewFragment {
         items.add(sourcecode);
         items.add(support);
         items.add(changelogs);
-        items.add(playstore);
-        if (!Utils.isPlayStoreInstalled(requireActivity())) {
-            items.add(updatecheck);
-            if (Utils.isDownloadBinaries()) {
-                items.add(autoUpdateCheck);
-            }
+        items.add(updatecheck);
+        if (Utils.isDownloadBinaries()) {
+            items.add(autoUpdateCheck);
         }
         items.add(donatetome);
         items.add(share);
