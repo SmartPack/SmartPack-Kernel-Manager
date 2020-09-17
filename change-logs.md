@@ -1,5 +1,9 @@
 # Change-logs
 
+## 112. September 17, 2020
+*Release-tag: v13.5*<br>
+Various updates to avoid issues with google play policies. Miscellaneous changes.
+
 ## 111. September 13, 2020
 *Release-tag: v13.4*<br>
 Updated IO Readahead minimum & offset values. Updated polish translation (credits: @Fruity-0). Improved AdLayout to avoid overlapping with other items. Miscellaneous changes.
