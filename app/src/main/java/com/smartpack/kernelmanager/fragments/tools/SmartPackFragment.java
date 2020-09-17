@@ -218,8 +218,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                 shareChannel.setAction(Intent.ACTION_SEND);
                                 shareChannel.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
                                 shareChannel.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_channel_message,
-                                        Utils.readFile(Utils.getInternalDataStorage() + "/updatechannel")) +
-                                        " https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true");
+                                        Utils.readFile(Utils.getInternalDataStorage() + "/updatechannel")));
                                 shareChannel.setType("text/plain");
                                 Intent shareIntent = Intent.createChooser(shareChannel, null);
                                 startActivity(shareIntent);

@@ -931,7 +931,7 @@
     <string name="reboot_message">Чтобы избежать сбоев конфигурации, настоятельно рекомендуется перезагрузить систему.\n\nПерезагрузить?\n</string>
     <string name="unknown_link">Разработчик не предусмотрел еще!</string>
     <string name="remove">Удалить</string>
-    <string name="share_channel_message">"Чтобы настроить этот канал обновление, просто введите '%s' в SmartPack-Kernel Manager -> SmartPack -> Канал обновления ядра\n\nВам SmartPack-ядра диспетчер\nОшибка: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nГитхаб:"</string>
+    <string name="share_channel_message">"Чтобы настроить этот канал обновление, просто введите '%s' в SmartPack-Kernel Manager -> SmartPack -> Канал обновления ядра\n\nВам SmartPack-ядра диспетчер\nОшибка: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release"</string>
     <string name="busybox_installer">Установшик BusyBox </string>
     <string name="busybox_installer_summary">Настоятельно рекомендуется иметь установку BusyBox на вашем устройстве, чтобы правильно работать с некоторыми функциями этого приложения (например, \'unzip\' &amp; \'mke2fs\' binaries for flashing &amp; \'curl\' или \'wget\' binary for kernel OTA updates). В качестве попытки помочь пользователям в этом вопросе доступно простое приложение, которое можно использовать в качестве утилиты установки BusyBox в один клик для устройств arm, arm64 и x86. Нажмите здесь, чтобы получить его!</string>
     <string name="debug_mode">Режим отладки</string>
@@ -957,13 +957,8 @@
     <string name="clear">Очистить Всё</string>
     <string name="clear_message">Все поля пусты! Прерывание.</string>
     <string name="clear_all_summary">Все, что вы добавили на эту страницу, будет очищено!</string>
-    <string name="update_available">"Новое обновление доступно!\nv%s"</string>
-    <string name="update_available_summary">"%s\n\n**Важно: Пожалуйста, скачайте и вручную обновить приложение!**"</string>
-    <string name="get_it">Получить</string>
     <string name="download_failed">Похоже, скачать не удалось, или скачали поврежденный файл!</string>
-    <string name="updated_dialog">Поздравляю! Вы уже получили актуальную версию SmartPack-Kernel Manager!</string>
     <string name="check_update">Проверить на наличие обновлений</string>
-    <string name="check_update_summary">Проверьте наличие новых версий SmartPack-Kernel Manager.</string>
     <string name="allow_ads">Разрешить Рекламу</string>
     <string name="allow_ads_summary">Поддержите разработчика, разрешив рекламу в этом приложении!</string>
     <string name="disable_ads_message">Поздравляю! Реклама отключена!однако, пожалуйста, обратите внимание, что доход, полученный от этих объявлений, действительно полезен для разработчика, чтобы продолжать свои проекты разработки android более активными. Если вам это не очень больно, пожалуйста, подумайте о том, чтобы разрешить рекламе поддерживать разработку.</string>
@@ -1035,10 +1030,7 @@
     <string name="donate_me">Пожертвовать мне</string>
     <string name="donate_me_summary">Хотите оценить мою работу с пожертвованием? кликните сюда</string>
     <string name="donate_me_message">\nЕсли вам нравится моя работа, рассмотрите возможность пожертвования мне, поскольку полезно продолжать мои проекты более активно, хотя в этом нет необходимости.\n</string>
-    <string name="donate_me_playstore">\nОбратите внимание: я могу принимать пожертвования либо через PayPal, либо через пакет пожертвований SmartPack в PlayStore. Кроме того, покупка пакета пожертвований откроет некоторые скрытые функции в этом приложении.\n</string>
     <string name="purchase_app">Приложение для пожертвований</string>
-    <string name="paypal_donation">PayPal</string>
-    <string name="auto_update_check">Автоматическая проверка обновлений</string>
     <string name="licence">Лицензии</string>
     <string name="share_app">Поделиться приложением</string>
     <string name="share_app_summary">Поделитесь этим приложением с друзьями</string>

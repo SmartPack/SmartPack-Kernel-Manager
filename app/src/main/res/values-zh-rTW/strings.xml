@@ -871,10 +871,7 @@
     <string name="reset_settings_message">\n應用程式設定將被完全刪除。\n你確定嗎？\n\n</string>
     <string name="reboot_message">為避免配置失敗, 強烈建議重新開機。\n\n是否要重新開機？\n</string>
     <string name="turn_off">關機</string>
-
-    <!-- App Updater -->
     <string name="check_update">檢查更新</string>
-    <string name="check_update_summary">檢查 SmartPack-Kernel Manager 的新版本</string>
 
     <!-- Settings-->
     <string name="open_settings">開啟設定</string>
@@ -936,10 +933,7 @@
     <string name="donate_me">捐贈給我</string>
     <string name="donate_me_summary">想透過捐款來感謝我的工作嗎？請點選這裡</string>
     <string name="donate_me_message"> \n如果你喜歡我的工作，請考慮給我捐款，因為有助於我的項目更加活躍，儘管不是強制性的。\n</string>
-    <string name="donate_me_playstore">\n請注意: 我除了可以透過 PayPal 接受捐款, 您也可以購買 Play Store 中的 SmartPack Donation Package 來表示支持。此外, 購買 SmartPack Donation Package 將解鎖在這個應用程式中的一些隱藏的功能。\n</string>
     <string name="purchase_app">購買應用程式</string>
-    <string name="paypal_donation">PayPal</string>
-    <string name="auto_update_check">檢查自動更新</string>
     <string name="licence">授權協議</string>
 
     <!-- Contributors -->

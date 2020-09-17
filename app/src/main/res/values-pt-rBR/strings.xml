@@ -920,10 +920,7 @@
     <string name="reset_settings_summary">Redefinir configurações do usuário</string>
     <string name="reset_settings_message">\nAs configurações do aplicativo serão completamente apagadas.\n\nTem certeza?\n</string>
     <string name="reboot_message">Para evitar falhas na configuração, é altamente recomendável reiniciar o sistema.\n\nDeseja reiniciar?\n</string>
-
-    <!-- App Updater -->
     <string name="check_update">Verificar atualizações</string>
-    <string name="check_update_summary">Verificar se há novas versões do SmartPack-Kernel Manager</string>
 
     <!-- Settings-->
     <string name="open_settings">Abrir configurações</string>
@@ -989,10 +986,7 @@
     <string name="donate_me">Doar para mim</string>
     <string name="donate_me_summary">Deseja apreciar meu trabalho com uma doação? Clique aqui</string>
     <string name="donate_me_message">\nSe você gosta do meu trabalho, considere fazer uma doação para mim, pois é útil para continuar meus projetos mais ativos, embora não seja de todo necessário.\n</string>
-    <string name="donate_me_playstore">\nNota: eu posso aceitar doações via PayPal ou através do pacote de doações SmartPack na PlayStore. Além disso, a compra do pacote de doações desbloqueará alguns recursos ocultos deste aplicativo.\n</string>
     <string name="purchase_app">App de doação</string>
-    <string name="paypal_donation">PayPal</string>
-    <string name="auto_update_check">Verificação de Atualização Automática</string>
 
     <!-- Contributors -->
     <string name="commits">%d commits</string>
@@ -1065,7 +1059,6 @@
     <string name="support_group">Grupo de suporte</string>
     <string name="allow_ads">Permitir anúncios</string>
     <string name="allow_ads_summary">Apoiar o desenvolvedor permitindo anúncios neste app!</string>
-    <string name="updated_dialog">Parabéns! Você já possui uma versão atualizada do SmartPack-Kernel Manager!</string>
     <string name="update_check_message">O SmartPack-Kernel Manager verificará por uma nova versão do %s uma vez por dia!</string>
     <string name="update_channel_summary">insira-a-url-do-canal-de-atualizaçãol-aqui</string>
     <string name="update_channel_invalid">Você inseriu uma URL inválida! Abortando.</string>
@@ -1077,7 +1070,6 @@
     <string name="donation_link_summary">link_de_doação</string>
     <string name="download_completed">%s foi baixado com sucesso. Você quer flasheá-lo?</string>
     <string name="download_failed">Parece que o download falhou ou um arquivo corrompido foi baixado!</string>
-    <string name="get_it">Obter</string>
     <string name="grarak">Willi Ye</string>
     <string name="invalid_controller">%s não é um controlador personalizado válido! Abortando.</string>
     <string name="invalid_path">%s não é um caminho sysfs válido! Abortando.</string>
@@ -1118,10 +1110,8 @@
     <string name="flasher_warning">Este recurso ainda é muito novo e está em desenvolvimento. Pode não ter compatibilidade total com muitos arquivos zip flasheáveis. Se você acha que o processo de flash falhou devido às incompatibilidades mencionadas acima, reinicie o aplicativo imediatamente antes de fazer qualquer coisa.\n\nTambém não recomendo tentar flashear qualquer coisa com mais de 500 MB.\n\n***USE POR SUA CONTA E RISCO***\n</string>
     <string name="grarak_summary">O homem por trás do \'Kernel Adiutor\', o ancestral do SmartPack-Kernel Manager. Este projeto não existiria sem ele. Um enorme respeito por ele, não apenas por seu trabalho duro no Kernel Adiutor, mas também por ser aberto ao open-source.</string>
     <string name="overall_summary">Bem-vindo à página inicial do SmartPack-Kernel Manager. Esta página fornece informações muito básicas do seu dispositivo. Opções avançadas de ajustes do kernel podem ser encontradas nas suas respectivas páginas.</string>
-    <string name="share_app_message">Obtenha o SmartPack-Kernel Manager %s em\n\nGoogle Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
-    <string name="share_channel_message">Para configurar esse canal, basta colocar \'%s\' em SmartPack-Kernel Manager -> SmartPack -> URL do canal de atualizações.\n\n\Obtenha o SmartPack-Kernel Manager em\nGoogle Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub:</string>
-    <string name="update_available">Nova atualização disponível!\nv%s</string>
-    <string name="update_available_summary">%s\n\n**Importante: Por favor, faça o download e atualize manualmente o aplicativo!**</string>
+    <string name="share_app_message">Obtenha o SmartPack-Kernel Manager %s em Google Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
+    <string name="share_channel_message">Para configurar esse canal, basta colocar \'%s\' em SmartPack-Kernel Manager -> SmartPack -> URL do canal de atualizações.\n\n\Obtenha o SmartPack-Kernel Manager em Google Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
     <string name="update_channel_empty">Limpando informações do canal de atualização!</string>
     <string name="update_channel_info">Ao vincular o canal de atualização acima a um arquivo JSON apropriado para o seu dispositivo, você pode adicionar basicamente suporte a download de kernels e auto-flash (não para todos os dipositivos) a qualquer Kernel disponível para seu dispositivo. Por favor, peça ao seu desenvolvedor de kernel favorito para adicionar suporte a esse recurso. O kernel baixado estará disponível em \'%s\'.\n\nDicas! Você pode importar um arquivo json criado para o \'FK-Kernel Manager\' do franciscofranco (grande \u2665 &amp; rerspeito para ele) e simplesmente funcionará.\n\nPrecisa de ajuda? Clique aqui!</string>
     <string name="update_channel_instructions"><b>Nome do Kernel</b>, <b>Versão do Kernel</b> &amp; <b>Link de Download</b> são os campos obrigatórios a serem preenchidos antes de clicar no botão criar.\n\n<b>Change-logs</b> podem ser fornecidos como um texto bem formatado ou como um link para uma página on-line.\n\nSecure Hash Algorithm (<b>sha1</b>) é opcional, mas altamente recomendado para garantir a autenticidade do kernel baixado.</string>

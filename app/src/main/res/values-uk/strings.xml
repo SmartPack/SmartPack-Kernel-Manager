@@ -57,7 +57,6 @@
     <string name="auto_dimming">Авто-яскравість</string>
     <string name="auto_dimming_schedule">Графік автояркості</string>
     <string name="auto_dimming_summary">Автоматично встановити коефіцієнт яскравості в заданому діапазоні часу.</string>
-    <string name="auto_update_check">Автоматична перевірка оновлень</string>
     <string name="autosleep">Автосон</string>
     <string name="autosmp">AutoSMP</string>
     <string name="autosmp_summary">«Заміна ядра Qualcomm MPDecision. Розроблено mrg666».</string>
@@ -140,8 +139,7 @@
     <string name="charging_mode_summary">Управління пробудженням буде активним лише при зарядці пристрою.</string>
     <string name="check_interval">Інтервал перевірки</string>
     <string name="check_update">Перевірити наявність оновлень</string>
-    <string name="check_update_summary">Перевірте наявність нових версій SmartPack-Kernel Manager.</string>
-    <string name="checking_info">Перевірка інформації...</string>
+    <string name="checking_info">Перевірка інформації…</string>
     <string name="checking_root">Перевірка рут-доступу</string>
     <string name="clear">Очистити Все</string>
     <string name="clear_message">Всі поля порожні! Переривання.</string>
@@ -248,7 +246,6 @@
     <string name="donate">Пожертвувати</string>
     <string name="donate_me">Пожертвувати мені</string>
     <string name="donate_me_message">\nЯкщо вам подобається моя робота, розгляньте можливість пожертвування мені, оскільки корисно продовжувати мої проекти більш активно, хоча в цьому немає необхідності.\n</string>
-    <string name="donate_me_playstore">\nЗверніть увагу: я можу приймати пожертвування через PayPal, або через пакет пожертвувань SmartPack в PlayStore. Крім того, покупка пакета пожертвувань відкриє деякі приховані функції в цьому додатку.\n</string>
     <string name="donate_me_summary">Хочете оцінити мою роботу  пожертвуванням? клікніть сюди</string>
     <string name="donate_nope">Я не попадуся на цю аферу!</string>
     <string name="donate_summary">Ця функція доступна лише коли встановлено додаток-пожертва! Тим не менш, не хвилюйтеся. Так як у цього додатка відкритий вихідний код, ви без праці можете зібрати його самостійно і прибрати цю перевірку. Але я сподіваюся, що ви в будь-якому випадку підтримайте розробників. Спасибі за використання SmartPack-Kernel Manager!</string>
@@ -376,7 +373,6 @@
     <string name="gamma_profiles_summary">Після вибору профілю, будь ласка, включіть і вимкніть екран.</string>
     <string name="gentlefairsleepers">Ввічливе звернення зі сплячими</string>
     <string name="gentlefairsleepers_summary">Надання сплячим службам тільки 50% їх функціоналу. Відключення цієї функції може сприяти невеликій економії батареї.</string>
-    <string name="get_it">Отримати</string>
     <string name="get_it_summary">Отримати останні ядра</string>
     <string name="global_offset">Глобальний зсув</string>
     <string name="glove_mode">Режим рукавичок</string>
@@ -671,7 +667,6 @@ SmartPack-Kernel Manager.
     <string name="password_wrong">Невірний пароль</string>
     <string name="pause">Пауза</string>
     <string name="pause_summary">Якщо ще щось включається в процесор, засипайте на це багато мілісекунд часу.</string>
-    <string name="paypal_donation">PayPal</string>
     <string name="per_channel_controls">Управління по каналам</string>
     <string name="performance">Продуктивність</string>
     <string name="permission_denied_write_storage">Відмовлено в дозволі на запис в пам\'ять пристрою!</string>
@@ -820,7 +815,7 @@ SmartPack-Kernel Manager.
     <string name="share_app">Поділитися додатком</string>
     <string name="share_app_summary">Поділіться цим додатком з друзями</string>
     <string name="share_by">\'%s\' | поділитися SmartPack-Kernel Manager</string>
-    <string name="share_channel_message">Щоб налаштувати цей канал оновлення, просто введіть \'%s\' в SmartPack-Kernel Manager -> SmartPack -> Канал оновлення ядра\n\nВам SmartPack-ядра диспетчер\nПомилка: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nГитхаб:</string>
+    <string name="share_channel_message">Щоб налаштувати цей канал оновлення, просто введіть \'%s\' в SmartPack-Kernel Manager -> SmartPack -> Канал оновлення ядра\n\nВам SmartPack-ядра диспетчер\nПомилка: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
     <string name="share_controller">Щоб застосувати цей контролер, просто імпортувати цей файл \'SmartPack-Kernel Manager -> Custom Controls</string>
     <string name="share_script">Для встановлення цього скрипта, просто імпортувати цей файл \'SmartPack-Kernel Manager -> Script Manager -> Import\'.</string>
     <string name="share_with">Поділитися з</string>
@@ -938,8 +933,6 @@ SmartPack-Kernel Manager.
     <string name="up_threshold_summary">При перевищенні цього порогу завантаження, драйвер включить ще одне ядро.</string>
     <string name="up_timer_cnt">До елемента керування Timer</string>
     <string name="up_timer_cnt_summary">Управління таймером процесорів.</string>
-    <string name="update_available">Нове оновлення доступно!\nv%s</string>
-    <string name="update_available_summary">%s\n\n**Важливо: будь ласка, скачайте і вручну оновіть додаток!**</string>
     <string name="update_channel">Канал оновлення ядра</string>
     <string name="update_channel_create">Створити Канал Оновлення</string>
     <string name="update_channel_empty">Очищення оновлення інформації про канал!</string>
@@ -952,7 +945,6 @@ SmartPack-Kernel Manager.
     <string name="update_check_message">SmartPack-Kernel Manager перевірить наявність нової версії %s разів в день!</string>
     <string name="update_rate">Частота оновлення</string>
     <string name="update_rate_summary">Періодичність відбору проб навантаження між процесорами. </string>
-    <string name="updated_dialog">Вітаю! Ви вже отримали актуальну версію SmartPack-Kernel Manager!</string>
     <string name="uprate_limits">Uprate Limits</string>
     <string name="uptime">Час роботи</string>
     <string name="usb_fast_charge_summary">Пристрій буде заряджатися швидше, коли він підключений по USB. Переподключите пристрій після зміни цієї опції.</string>

@@ -120,10 +120,6 @@ public class Utils {
         return BuildConfig.DEBUG || isKADonated(context) || isSPDonated(context);
     }
 
-    public static boolean isPlayStoreInstalled(Context context) {
-        return isPackageInstalled("com.android.vending", context);
-    }
-
     public static void initializeAppTheme(Context context) {
         if (Prefs.getBoolean("darktheme", true, context)) {
             AppCompatDelegate.setDefaultNightMode(

@@ -51,7 +51,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-7791710838910455~4931988555" />
+            android:value="ca-app-pub-7791710838910455~2621755378" />
 
         <activity
             android:name=".activities.StartActivityMaterial" android:label="@string/smartpack"
@@ -174,7 +174,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.smartpack.kernelmanager.provider"
+            android:authorities="com.smartpack.kernelmanager.release.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

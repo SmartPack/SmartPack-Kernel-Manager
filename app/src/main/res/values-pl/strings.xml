@@ -1010,11 +1010,13 @@
     <string name="reboot_message">Aby uniknąć błędów konfiguracji, zdecydowanie zaleca się ponowne uruchomienie urządzenia. Czy chcesz teraz ponownie uruchomić komputer?</string>
     <string name="unknown_link">Nie zostały jeszcze dostarczone przez dewelopera!</string>
     <string name="remove">Usunąć</string>
-    <string name="share_channel_message">Aby skonfigurować ten kanał aktualizacji, po prostu wprowadź \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub:</string>
+    <string name="share_channel_message">Aby skonfigurować ten kanał aktualizacji, po prostu wprowadź \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
     <string name="busybox_installer">BusyBox Instalator</string>
     <string name="busybox_installer_summary">Zdecydowanie zaleca się posiadanie samodzielnej instalacji BusyBox na urządzeniu, aby niektóre funkcje tej aplikacji działały poprawnie (e.g., \'unzip\' &amp; \'mke2fs\' binaries for flashing &amp; \'curl\' or \'wget\' binary for kernel OTA updates). Aby pomóc użytkownikom w tym problemie, udostępniono prostą aplikację, której można użyć jako narzędzia instalacyjnego BusyBox jednym kliknięciem dla urządzeń arm, arm64 i x86. Kliknij tutaj, aby to zdobyć!</string>
     <string name="debug_mode">Tryb Debugowania</string>
     <string name="debug_mode_summary">Tryb debugowania jest włączony! Zostanie wyświetlony bardziej szczegółowy dziennik flashowania (przydatny w przypadku problemów z debugowaniem).</string>
+    <string name="download_failed">Wygląda na to, że pobieranie nie powiodło się lub został pobrany uszkodzony plik!</string>
+    <string name="check_update">Sprawdź aktualizacje</string>
 
     <!-- Update Channel -->
     <string name="update_channel_message">(<i>for developers only</i>)\nApp utworzy kanał aktualizacji (json) dla twojego jądra, o ile informacje podane na tej stronie są dokładne.</string>
@@ -1038,15 +1040,6 @@
     <string name="clear">Wyczyść wszystko</string>
     <string name="clear_message">Wszystkie pola są puste! Przerwanie.</string>
     <string name="clear_all_summary">Wszystko, co dodałeś do tej strony, zostanie wyczyszczone!</string>
-
-    <!-- App Updater -->
-    <string name="update_available">Dostępna jest nowa aktualizacja!\nv%s</string>
-    <string name="update_available_summary">%s\n\n**Important: Pobierz i ręcznie zaktualizuj aplikację!**</string>
-    <string name="get_it">Zdobyć</string>
-    <string name="download_failed">Wygląda na to, że pobieranie nie powiodło się lub został pobrany uszkodzony plik!</string>
-    <string name="updated_dialog">gratulacje! Masz już aktualną wersję SmartPack-Kernel Manager!</string>
-    <string name="check_update">Sprawdź aktualizacje</string>
-    <string name="check_update_summary">Sprawdź nowe wersje SmartPack-Kernel Manager</string>
 
     <!-- Settings-->
     <string name="allow_ads">Zezwalaj na reklamy</string>
@@ -1122,14 +1115,11 @@
     <string name="donate_me">Darowizna dla mnie</string>
     <string name="donate_me_summary">Chcesz docenić moją pracę darowizną? Kliknij tutaj</string>
     <string name="donate_me_message">\nJeśli lubisz docenić moją pracę, rozważ przekazanie mi darowizn, ponieważ pomocne jest kontynuowanie moich projektów bardziej aktywnie, chociaż wcale nie jest to konieczne.\n</string>
-    <string name="donate_me_playstore">\nUwaga: mogę przyjmować darowizny za pośrednictwem systemu PayPal lub pakietu darowizn SmartPack w PlayStore. Co więcej, zakup pakietu darowizn odblokuje kilka ukrytych funkcji w tej aplikacji.\n</string>
     <string name="purchase_app">Aplikacja darowizny</string>
-    <string name="paypal_donation">PayPal</string>
-    <string name="auto_update_check">Sprawdzanie automatycznej aktualizacji</string>
     <string name="licence">License</string>
     <string name="share_app">Udostępnij aplikacje</string>
     <string name="share_app_summary">Udostępnij tę aplikację znajomym</string>
-    <string name="share_app_message">pobierz SmartPack-Kernel Manager %s from\n\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
+    <string name="share_app_message">pobierz SmartPack-Kernel Manager %s from PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
     <string name="grarak">Willi Ye</string>
     <string name="grarak_summary">Człowiek stojący za „Kernel Adiutor”, przodek SmartPack-Kernel Manager..Bez niego ten projekt nie będzie prawdziwy. Olbrzymi szacunek dla niego, nie tylko za jego ciężką pracę nad Kernel Adiutor, ale także za otwartość na oprogramowanie typu open source</string>
     <string name="osm0sis">Chris Renshaw</string>

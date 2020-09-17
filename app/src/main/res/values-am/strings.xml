@@ -994,7 +994,8 @@
     <string name="reboot_message">የውቅር አለመሳካቶችን ለማስወገድ መሣሪያዎን ዳግም ለማስጀመር በጣም ይመከራል። አሁን ድጋሚ ማስነሳት ይፈልጋሉ?</string>
     <string name="unknown_link">ገና በገንቢው አልተሰጠም!</string>
     <string name="remove">ያስወግዱ</string>
-    <string name="share_channel_message">ይህንን የዘመነ ቻናል ለማዋቀር በቀላሉ በ ‹SmartPack-Kernel Manager› ላይ ‹%s \'ን ያስገቡ -> ስማርትፎን -> የሰርጥ ዩአርኤል ያዘምኑ። ማከማቻ / መተግበሪያዎች / ዝርዝሮች? id = com.smartpack.kernelmanager \nGitHub:</string>
+    <string name="download_failed">ማውረዱ የተሳካ ይመስላል ፣ ወይም የተበላሸ ፋይል የወረደ ይመስላል!</string>
+    <string name="check_update">ዝማኔዎችን ይመልከቱ</string>
 
     <!-- Update Channel -->
     <string name="update_channel_message">(<i> ለገንቢዎች ብቻ </i>) \n በዚህ ገጽ ላይ የቀረቡት መረጃዎች ትክክለኛ እስከሆኑ ድረስ \n ትግበራ ለኪነልዎ የዝማኔ ጣቢያ (ጃሰን) ይፈጥራል።</string>
@@ -1016,15 +1017,6 @@
     <string name="json_created">እንኳን ደስ አለዎት! የዝማኔ ጣቢያ በተሳካ ሁኔታ በ %s ተፈጠረ። እባክዎ የሆነ ቦታ ያስተናግዱት እና ለተጠቃሚዎችዎ ቀጥተኛ የማውረድ አገናኝ ያጋሩ።</string>
     <string name="clear">ሁሉንም ያፅዱ</string>
     <string name="clear_message">ሁሉም መስኮች ባዶ ናቸው! ውርጃ</string>
-
-    <!-- App Updater -->
-    <string name="update_available">አዲስ ዝመና ይገኛል! \nv%s</string>
-    <string name="update_available_summary">%s \n\n ** አስፈላጊ-እባክዎ መተግበሪያውን ያውርዱ እና እራስዎ ያዘምኑ! **</string>
-    <string name="get_it">ገባህ</string>
-    <string name="download_failed">ማውረዱ የተሳካ ይመስላል ፣ ወይም የተበላሸ ፋይል የወረደ ይመስላል!</string>
-    <string name="updated_dialog">እንኳን ደስ አለዎት! ቀድሞውኑ የ SmartPack-Kernel አቀናባሪን ወቅታዊ ስሪት አግኝተዋል!</string>
-    <string name="check_update">ዝማኔዎችን ይመልከቱ</string>
-    <string name="check_update_summary">ለአዲስ ስማርትኬክ-ካርል አቀናባሪ አዲስ ስሪቶችን ይመልከቱ</string>
 
     <!-- Settings-->
     <string name="allow_ads">ማስታወቂያዎችን ፍቀድ</string>
@@ -1099,14 +1091,11 @@
     <string name="donate_me">ለእኔ ልገሳው</string>
     <string name="donate_me_summary">በስጦታ ስራዬን ማድነቅ ይፈልጋሉ? እዚህ ጠቅ ያድርጉ</string>
     <string name="donate_me_message">\n ስራዬን ማድነቅ ከፈለግክ እባክዎን ለእኔ መዋጮን አስቡባቸው ፕሮጀክቶቼን ይበልጥ ንቁ ማድረጉ ጠቃሚ ቢሆንም ምንም እንኳን አስፈላጊ ባይሆንም \n</string>
-    <string name="donate_me_playstore">\n እባክዎን ማስታወሻ-ልገሳዎችን በ PayPal ወይም በ PlayStore ውስጥ በ SmartPack ልገሳ ጥቅል በኩል መቀበል እችላለሁ ፡፡ በተጨማሪም የልገሳ ጥቅልን መግዛቱ በዚህ መተግበሪያ ውስጥ የተወሰኑ የተደበቁ ባህሪያትን ይከፍታል። \n</string>
     <string name="purchase_app">የልገሳ መተግበሪያ</string>
-    <string name="paypal_donation">PayPal</string>
-    <string name="auto_update_check">ራስ-አዘምን ፍተሻ</string>
     <string name="licence">ፈቃድ</string>
     <string name="share_app">መተግበሪያን ያጋሩ</string>
     <string name="share_app_summary">ይህንን መተግበሪያ ለጓደኞችዎ ያጋሩ</string>
-    <string name="share_app_message">SmartPack -ernern Manager %s ን ከ \n\nPlayStore ያግኙ: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
+    <string name="share_app_message">SmartPack -ernern Manager %s ን ከ PlayStore ያግኙ: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
     <string name="grarak">ቪዮ Ye</string>
     <string name="grarak_summary">ከ ‹‹Kernel Adiutor \'በስተጀርባ ያለው ሰው ፣ የስማርትፓክ-ካርል አስተዳዳሪ ቅድመ አያት። ይህ ፕሮጀክት ያለ እርሱ እውነተኛ አይሆንም። ግዙፍ \u2665 &amp; አክብሮት ፣ በከነል አዴፓ ላይ ላደረገው ጠንካራ ስራ ብቻ ሳይሆን ለክፉ ምንጭ ክፍት መሆንም።</string>
     <string name="osm0sis">ክሪስ ሬንሻሃ</string>

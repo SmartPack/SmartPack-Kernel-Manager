@@ -929,7 +929,9 @@
     <string name="reboot_message">구성 실패를 피하기 위해, 기기를 다시 시작하는 것은 매우 권장됩니다. 계속하시겟어요?</string>
     <string name="unknown_link">개발자에 의해 제공되지 않았습니다!</string>
     <string name="remove">제거</string>
-    <string name="share_channel_message">이 업데이트 채널을 구성하려면, \'%s\' 을(를)  SmartPack-Kernel Manager -> SmartPack -> 업데이트 채널에 입력하여 URL을 업데이트하세요.\n\nSmartPack-Kernel Manager을 아래에서 다운받으세요\n플래이 스토어: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\n깃허브:</string>
+    <string name="download_failed">다운로드가 실패했거나, 손상된 파일이 받아진 것 같습니다!</string>
+    <string name="check_update">업데이트 확인</string>
+    <string name="share_channel_message">이 업데이트 채널을 구성하려면, \'%s\' 을(를)  SmartPack-Kernel Manager -> SmartPack -> 업데이트 채널에 입력하여 URL을 업데이트하세요.\n\nSmartPack-Kernel Manager을 아래에서 다운받으세요\n플래이 스토어: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
 
     <!-- Update Channel -->
     <string name="update_channel_message">(<i>개발자 모드</i>)\n앱은 이 페이지에 제공된 정보가 일치하다면 여러분의 커널을 위한 업데이트 채널 (json) 을 생성할 것입니다.</string>
@@ -951,15 +953,6 @@
     <string name="json_created">축하합니다! 업데이트 채널이 %s에 성공적으로 생성되었습니다. 어딘가에 호스트하고 다운로드 링크를 여러분의 유저들과 공유하세요.</string>
     <string name="clear">모두 지우기</string>
     <string name="clear_message">모든 필드가 비었습니다!</string>
-
-    <!-- App Updater -->
-    <string name="update_available">새 업데이트가 가능합니다!\nv%s</string>
-    <string name="update_available_summary">%s\n\n** 반드시 알아두기: 다운받고 수동으로 앱을 업데이트해주세요! **</string>
-    <string name="get_it">알겠습니다</string>
-    <string name="download_failed">다운로드가 실패했거나, 손상된 파일이 받아진 것 같습니다!</string>
-    <string name="updated_dialog">축하합니다! SmartPack-Kernel Manager의 최신 버전을 이미 사용 중입니다!</string>
-    <string name="check_update">업데이트 확인</string>
-    <string name="check_update_summary">SmartPack-Kernel Manager의 업데이트를 확인합니다.</string>
 
     <!-- Settings-->
     <string name="allow_ads">광고 활성화</string>
@@ -1033,14 +1026,11 @@
     <string name="donate_me">저에게 기부하기</string>
     <string name="donate_me_summary">제 프로젝트를 기부로 감사를 표하고 싶나요? 여기를 누르세요.</string>
     <string name="donate_me_message">\n만약 여러분이 제 작업을 좋아하신다면, 기부해주시는 건 어떤가요? 프로젝트 개발에 큰 도움이 됩니다. 물론 필수는 아니에요.\n</string>
-    <string name="donate_me_playstore">\n알아두기: PayPal, 혹은 플레이 스토어에 있는 SmartPack Donation 앱을 통해 기부할 수 있습니다. 게다가, 기부 패키지를 구매하는 것은 이 앱의 숨겨진 기능들을 해제합니다.\n</string>
     <string name="purchase_app">기부 앱</string>
-    <string name="paypal_donation">PayPal</string>
-    <string name="auto_update_check">자동 업데이트 확인</string>
     <string name="licence">라이선스</string>
     <string name="share_app">공유하기</string>
     <string name="share_app_summary">이 앱을 여러분의 친구들과 공유하세요</string>
-    <string name="share_app_message">SmartPack-Kernel Manager %s를 아래에서 다운받으세요\n\n플래이 스토어: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\n깃허브: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
+    <string name="share_app_message">SmartPack-Kernel Manager %s를 아래에서 다운받으세요\n\n플래이 스토어: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
     <string name="grarak">Willi Ye</string>
     <string name="grarak_summary">SmartPack-Kernel Manager의 기원인 \'Kernel Adiutor\'의 개발자입니다. 이 프로젝트는 그 없이는 존재하지 않았을 것입니다. 그의 Kernel Adiutor에 대한 노고 뿐만 아니라, 앱을 오픈 소스로 열어둔 것에 대해 큰 \u2665를 보냅니다.</string>
     <string name="osm0sis">Chris Renshaw</string>

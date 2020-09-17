@@ -1008,11 +1008,13 @@
     <string name="reboot_message">Um Konfigurationsfehlschläge zu ermeiden wird das Neustarten des Gerätes empfohlen. Möchtest du jetzt Neustarten?</string>
     <string name="unknown_link">Noch nicht vom Entwickler zu Verfügung gestellt!</string>
     <string name="remove">Entfernen</string>
-    <string name="share_channel_message">Um den Update Kanal zu konfigurieren, einfach \'%s\' eingeben bei SmartPack-Kernel Manager -> SmartPack -> Update Kanal Url.\n\nHole SmartPack-Kernel Manager vom\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub:</string>
+    <string name="share_channel_message">Um den Update Kanal zu konfigurieren, einfach \'%s\' eingeben bei SmartPack-Kernel Manager -> SmartPack -> Update Kanal Url.\n\nHole SmartPack-Kernel Manager vom PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
     <string name="busybox_installer">BusyBox Installer</string>
     <string name="busybox_installer_summary">Es wird empfohlen eine eingenständige Installation von BusyBox zu haben für Funktionen wie (z.B.: \'unzip\' &amp; \'mke2fs\' zum flashen &amp; \'curl\' oder \'wget\' für Kernel OTA Updates). Um Nutzer bei dem Problem zu helfen gibt es eine App die BusyBox mit einem Klick istalliert für arm, arm64 und x86 Geräte. Klicke hier um sie zu bekommen!</string>
     <string name="debug_mode">Debug Modus</string>
     <string name="debug_mode_summary">Debug Modus ist aktiviert! Ein detaillierter Flash-Log wird jetzt angezeit (nützlich um Probleme nachzuvollziehen).</string>
+    <string name="download_failed">Es scheint das der Download fehlgeschlagen ist oder die Datei beschädigt!</string>
+    <string name="check_update">Auf Aktualisierungen Prüfen</string>
 
     <!-- Update Channel -->
     <string name="update_channel_message">(<i>nur für Entwickler</i>)\nDie erstellt einen Update Kanel (JSON) für deinen Kernel, solange die hier zur Verfügung gestellten Information stimmen.</string>
@@ -1036,15 +1038,6 @@
     <string name="clear">Alles löschen</string>
     <string name="clear_message">Alle Felder sind leer! Breche ab.</string>
     <string name="clear_all_summary">Alles was auf dieser Seite hinzugefügt wurde wird gelöscht!</string>
-
-    <!-- App Updater -->
-    <string name="update_available">Neue Aktualisierung verfügbar!\nv%s</string>
-    <string name="update_available_summary">%s\n\n**Wichtig: Bitte lade die App selbst runter und installiere sie!**</string>
-    <string name="get_it">Hole es</string>
-    <string name="download_failed">Es scheint das der Download fehlgeschlagen ist oder die Datei beschädigt!</string>
-    <string name="updated_dialog">Gratulation! Du hast bereist die neuste Version von SmartPack-Kernel Manager!</string>
-    <string name="check_update">Auf Aktualisierungen Prüfen</string>
-    <string name="check_update_summary">Überprüfe auf neue Version von SmartPack-Kernel Manager</string>
 
     <!-- Settings-->
     <string name="allow_ads">Werbung erlauben</string>
@@ -1120,16 +1113,13 @@
     <string name="donate_me">Mir spenden</string>
     <string name="donate_me_summary">Meine Arbeit mit einer Spende unterstützten? Klicke hier</string>
     <string name="donate_me_message">\nWenn du meine Arbeit anerkennen möchten, ziehe bitte in Betracht, mir eine Spende zu geben, da sie ist hilfreich, um meine Projekte aktiver fortzusetzen, obwohl es gar nicht notwendig ist.\n</string>
-    <string name="donate_me_playstore">\nBeachte: Ich akzeptiere Spenden über PayPal oder dem SmartPack Donation Package im PlayStore. Die Spenden App wird aber ein paar geheime Features freischalten.\n</string>
     <string name="purchase_app">Spenden App</string>
-    <string name="paypal_donation">PayPal</string>
-    <string name="auto_update_check">Automatisch auf Updates prüfen</string>
     <string name="licence">Lizenz</string>
 
 
     <string name="share_app">App teilen</string>
     <string name="share_app_summary">Diese App mit Freunden teilen</string>
-    <string name="share_app_message">Hol SmartPack-Kernel Manager %s vom\n\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
+    <string name="share_app_message">Hol SmartPack-Kernel Manager %s vom PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
     <string name="grarak">Willi Ye</string>
     <string name="grarak_summary">Die Person hinter \'Kernel Adiutor\', der Vorgänger von SmartPack-Kernel Manager. Ohne ihn wäre dieses Projekt nicht entstanden. Großen \u2665 &amp; Respect an ihn, nicht nur für die harte Arbeit an Kernel Adiutor, aber auch das es open-source gestellt wurde.</string>
     <string name="osm0sis">Chris Renshaw</string>

@@ -31,14 +31,11 @@ import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
-import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
-import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
-import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
 import com.smartpack.kernelmanager.views.recyclerview.TitleView;
 
 import java.util.LinkedHashMap;
@@ -135,26 +132,8 @@ public class AboutFragment extends RecyclerViewFragment {
                 Utils.snackbar(getRootView(), getString(R.string.no_internet));
                 return;
             }
-            Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager", requireActivity());
+            Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release", requireActivity());
         });
-
-        DescriptionView updatecheck = new DescriptionView();
-        updatecheck.setDrawable(getResources().getDrawable(R.drawable.ic_update));
-        updatecheck.setTitle(getString(R.string.check_update));
-        updatecheck.setSummary(getString(R.string.check_update_summary));
-        updatecheck.setOnItemClickListener(item -> {
-            if (!Utils.isNetworkAvailable(requireActivity())) {
-                Utils.snackbar(getRootView(), getString(R.string.no_internet));
-                return;
-            }
-            UpdateCheck.manualUpdateCheck(getActivity());
-        });
-
-        SwitchView autoUpdateCheck = new SwitchView();
-        autoUpdateCheck.setDrawable(getResources().getDrawable(R.drawable.ic_update));
-        autoUpdateCheck.setSummary(getString(R.string.auto_update_check));
-        autoUpdateCheck.setChecked(Prefs.getBoolean("auto_update", true, getActivity()));
-        autoUpdateCheck.addOnSwitchListener((switchview, isChecked) -> Prefs.saveBoolean("auto_update", isChecked, getActivity()));
 
         DescriptionView donatetome = new DescriptionView();
         donatetome.setDrawable(getResources().getDrawable(R.drawable.ic_donate));
@@ -164,18 +143,11 @@ public class AboutFragment extends RecyclerViewFragment {
             Dialog donate_to_me = new Dialog(requireActivity());
             donate_to_me.setIcon(R.mipmap.ic_launcher);
             donate_to_me.setTitle(getString(R.string.donate_me));
-            if (Utils.isSPDonated(requireActivity())) {
-                donate_to_me.setMessage(getString(R.string.donate_me_message));
-                donate_to_me.setNeutralButton(getString(R.string.donate_nope), (dialogInterface, i) -> {
-                });
-            } else {
-                donate_to_me.setMessage(getString(R.string.donate_me_message) + getString(R.string.donate_me_playstore));
-                donate_to_me.setNeutralButton(getString(R.string.purchase_app), (dialogInterface, i) -> {
-                    Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.donate", getActivity());
-                });
-            }
-            donate_to_me.setPositiveButton(getString(R.string.paypal_donation), (dialog1, id1) -> {
-                Utils.launchUrl("https://www.paypal.me/menacherry", getActivity());
+            donate_to_me.setMessage(getString(R.string.donate_me_message));
+            donate_to_me.setNeutralButton(getString(R.string.donate_nope), (dialogInterface, i) -> {
+            });
+            donate_to_me.setPositiveButton(getString(R.string.purchase_app), (dialog1, id1) -> {
+                Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.donate", getActivity());
             });
             donate_to_me.show();
         });
@@ -199,15 +171,11 @@ public class AboutFragment extends RecyclerViewFragment {
         items.add(sourcecode);
         items.add(support);
         items.add(changelogs);
-        items.add(playstore);
-        if (!Utils.isPlayStoreInstalled(requireActivity())) {
-            items.add(updatecheck);
-            if (Utils.isDownloadBinaries()) {
-                items.add(autoUpdateCheck);
-            }
+        if (!Utils.isSPDonated(requireActivity())) {
+            items.add(donatetome);
         }
-        items.add(donatetome);
         items.add(share);
+        items.add(playstore);
     }
 
     private void librariesInit(List<RecyclerViewItem> items) {
