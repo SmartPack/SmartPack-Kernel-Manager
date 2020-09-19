@@ -1,5 +1,9 @@
 # Change-logs
 
+## 123. September 19, 2020
+*Release-tag: beta_v13.6*<br>
+Updated no-root and no-busybox status. Removed Ads (only from beta build). Added auto and manual app update check. Miscellaneous changes.
+
 ## 122. September 12, 2020
 *Release-tag: beta_v13.3*<br>
 Updated IO Readahead minimum & offset values. Updated polish translation (credits: @Fruity-0). Improved AdLayout to avoid overlapping with other items. Miscellaneous changes.
