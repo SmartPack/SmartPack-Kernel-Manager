@@ -937,8 +937,6 @@
     <string name="donate_me">捐赠</string>
     <string name="donate_me_summary">通过捐赠来致谢我的成果请点这里</string>
     <string name="donate_me_message"> \n如果你喜欢我的工作，请考虑给我捐款，因为有助于我的项目更加活跃，虽然这并不是强制性的。  \n</string>
-    <string name="donate_me_playstore">\n请注意: 我除了可以通过PayPal 接受捐款, 您也可以购买 Play Store 中的 SmartPack Donation Package 来支持。 此外, 购买 SmartPack Donation Package 将解锁在这个应用程序中的一些隐藏的功能。  \n</string>
-    <string name="purchase_app">购买应用</string>
 
     <!-- Contributors -->
     <string name="commits">%d 提交</string>
@@ -1009,7 +1007,6 @@
     <string name="reload_message">下载 string.xml 失败，或者它已移除！请重新载入此页。</string>
     <string name="save_string_message">新的翻译字符串已生成为 \'%s\'。</string>
     <string name="translator_message">帮我翻译此软件到你说的语言。完成后请在 Telegram 或 GitHub 中将新字符串发给我。</string>
-    <string name="paypal_donation">PayPal</string>
     <string name="auto_update_check">自动检查更新</string>
     <string name="licence">许可证</string>
     <string name="share_app">分享应用</string>
@@ -1021,18 +1018,11 @@
     <string name="credits">鸣谢</string>
     <string name="default_section">默认板块</string>
     <string name="default_section_summary">打开此应用后默认打开的板块</string>
-    <string name="playstore">Play 商店</string>
-    <string name="playstore_summary">Play 商店页面</string>
     <string name="logcat">Logcat</string>
     <string name="always_show">始终显示</string>
     <string name="section_icons">板块图标</string>
-    <string name="allow_ads">允许广告</string>
-    <string name="allow_ads_summary">允许应用内广告以支持开发者。</string>
-    <string name="disable_ads_message">好的，广告已经禁用！  但请注意，从广告中获得收入有助开发人员更积极地开发项目。如果您不太建议，建议您允许广告以支持开发者。</string>
-    <string name="allow_ads_message">非常感谢您允许广告来支持开发者！</string>
     <string name="updated_dialog">已在使用 SmartPack-Kernel Manager 的最新版本。</string>
     <string name="download_failed">**重要：请下载并手动更新本应用！**</string>
-    <string name="update_available_summary">%s</string>
     <string name="get_it">获取</string>
     <string name="update_available">有新版本可用！v%s</string>
     <string name="clear">全部清除</string>

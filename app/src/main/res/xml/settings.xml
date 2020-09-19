@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-
-    <SwitchPreferenceCompat
-        android:defaultValue="true"
-        android:key="allow_ads"
-        android:title="@string/allow_ads"
-        android:summary="@string/allow_ads_summary" />
-
     <PreferenceCategory
         android:key="user_interface"
         android:title="@string/user_interface">

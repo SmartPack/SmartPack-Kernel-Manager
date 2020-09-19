@@ -74,7 +74,6 @@ import java.util.Objects;
 public class SettingsFragment extends PreferenceFragmentCompat implements
         Preference.OnPreferenceChangeListener, Preference.OnPreferenceClickListener {
 
-    private static final String KEY_ALLOW_ADS = "allow_ads";
     private static final String KEY_FORCE_ENGLISH = "forceenglish";
     private static final String KEY_USER_INTERFACE = "user_interface";
     private static final String KEY_DARK_THEME = "darktheme";
@@ -138,7 +137,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     public void onCreatePreferences(Bundle bundle, String s) {
         addPreferencesFromResource(R.xml.settings);
 
-        findPreference(KEY_ALLOW_ADS).setOnPreferenceChangeListener(this);
         SwitchPreferenceCompat forceEnglish = findPreference(KEY_FORCE_ENGLISH);
         if (Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en")) {
             assert forceEnglish != null;
@@ -213,18 +211,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         boolean checked = (boolean) o;
         String key = preference.getKey();
         switch (key) {
-            case KEY_ALLOW_ADS:
-                Prefs.saveBoolean("allow_ads", checked, getActivity());
-                if (Prefs.getBoolean("allow_ads", true, getActivity())) {
-                    Utils.snackbar(mRootView, getString(R.string.allow_ads_message));
-                } else {
-                    new Dialog(requireActivity())
-                            .setMessage(getString(R.string.disable_ads_message))
-                            .setPositiveButton(getString(R.string.ok), (dialogInterface, i) -> {
-                            })
-                            .show();
-                }
-                return true;
             case KEY_FORCE_ENGLISH:
             case KEY_DARK_THEME:
                 relaunchActivity();

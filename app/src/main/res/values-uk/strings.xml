@@ -248,7 +248,6 @@
     <string name="donate">Пожертвувати</string>
     <string name="donate_me">Пожертвувати мені</string>
     <string name="donate_me_message">\nЯкщо вам подобається моя робота, розгляньте можливість пожертвування мені, оскільки корисно продовжувати мої проекти більш активно, хоча в цьому немає необхідності.\n</string>
-    <string name="donate_me_playstore">\nЗверніть увагу: я можу приймати пожертвування через PayPal, або через пакет пожертвувань SmartPack в PlayStore. Крім того, покупка пакета пожертвувань відкриє деякі приховані функції в цьому додатку.\n</string>
     <string name="donate_me_summary">Хочете оцінити мою роботу  пожертвуванням? клікніть сюди</string>
     <string name="donate_nope">Я не попадуся на цю аферу!</string>
     <string name="donate_summary">Ця функція доступна лише коли встановлено додаток-пожертва! Тим не менш, не хвилюйтеся. Так як у цього додатка відкритий вихідний код, ви без праці можете зібрати його самостійно і прибрати цю перевірку. Але я сподіваюся, що ви в будь-якому випадку підтримайте розробників. Спасибі за використання SmartPack-Kernel Manager!</string>
@@ -671,12 +670,9 @@ SmartPack-Kernel Manager.
     <string name="password_wrong">Невірний пароль</string>
     <string name="pause">Пауза</string>
     <string name="pause_summary">Якщо ще щось включається в процесор, засипайте на це багато мілісекунд часу.</string>
-    <string name="paypal_donation">PayPal</string>
     <string name="per_channel_controls">Управління по каналам</string>
     <string name="performance">Продуктивність</string>
     <string name="permission_denied_write_storage">Відмовлено в дозволі на запис в пам\'ять пристрою!</string>
-    <string name="playstore">PlayStore</string>
-    <string name="playstore_summary">Visit PlayStore page</string>
     <string name="plus">+</string>
     <string name="pocket_mode">Режим В кишені</string>
     <string name="pocket_mode_summary">Активація цієї функції відключить управління пробудженням при знаходженні пристрою в кишені.</string>
@@ -715,7 +711,6 @@ SmartPack-Kernel Manager.
     <string name="profile_warning">Все, що Ви зміните тут, буде збережено в профілі. Увага! Ваші налаштування також будуть застосовані, але не збережуться для застосування при завантаженні.</string>
     <string name="pulse_freq">Частота імпульсів</string>
     <string name="pulse_freq_summary">Кількість мілісекунд, після яких викликається klapse_pulse.</string>
-    <string name="purchase_app">Додаток для пожертвувань</string>
     <string name="px">пкс</string>
     <string name="qcom_rx_wakelock">Qcom rx Wakelock</string>
     <string name="qcom_rx_wakelock_summary">Запобігти Qcom rx wakelock.</string>
@@ -939,7 +934,6 @@ SmartPack-Kernel Manager.
     <string name="up_timer_cnt">До елемента керування Timer</string>
     <string name="up_timer_cnt_summary">Управління таймером процесорів.</string>
     <string name="update_available">Нове оновлення доступно!\nv%s</string>
-    <string name="update_available_summary">%s\n\n**Важливо: будь ласка, скачайте і вручну оновіть додаток!**</string>
     <string name="update_channel">Канал оновлення ядра</string>
     <string name="update_channel_create">Створити Канал Оновлення</string>
     <string name="update_channel_empty">Очищення оновлення інформації про канал!</string>

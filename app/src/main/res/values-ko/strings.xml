@@ -954,7 +954,6 @@
 
     <!-- App Updater -->
     <string name="update_available">새 업데이트가 가능합니다!\nv%s</string>
-    <string name="update_available_summary">%s\n\n** 반드시 알아두기: 다운받고 수동으로 앱을 업데이트해주세요! **</string>
     <string name="get_it">알겠습니다</string>
     <string name="download_failed">다운로드가 실패했거나, 손상된 파일이 받아진 것 같습니다!</string>
     <string name="updated_dialog">축하합니다! SmartPack-Kernel Manager의 최신 버전을 이미 사용 중입니다!</string>
@@ -962,10 +961,6 @@
     <string name="check_update_summary">SmartPack-Kernel Manager의 업데이트를 확인합니다.</string>
 
     <!-- Settings-->
-    <string name="allow_ads">광고 활성화</string>
-    <string name="allow_ads_summary">이 앱에서 광고를 활성화함으로써 개발자를 지원해주세요!</string>
-    <string name="disable_ads_message">축하합니다! 광고는 곧 비활성화될 것입니다!\n\n그러나, 광고에서 나오는 수익은 개발자에게 있어 더 활발하게 프로젝트를 이어나갈 수 있게 합니다. 만약 크게 거슬리지 않는다면, 프로젝트를 지원하기 위해 광고를 활성화하는 것을 고려해보세요.</string>
-    <string name="allow_ads_message">개발자를 지원해주셔서 매우 감사합니다!</string>
     <string name="open_settings">설정 열기</string>
     <string name="fahrenheit_summary">온도를 측정하기 위해 ��씨를 사용</string>
     <string name="force_english">언어로 영어를 사용하도록 고정</string>
@@ -1028,14 +1023,9 @@
     <string name="source_code_summary">깃허브에서 소스 코드를 확인합니다.</string>
     <string name="change_logs">변경 사항</string>
     <string name="change_logs_summary">변경 사항을 확인합니다.</string>
-    <string name="playstore">플레이 스토어</string>
-    <string name="playstore_summary">플레이 스토어 페이지를 방문하세요.</string>
     <string name="donate_me">저에게 기부하기</string>
     <string name="donate_me_summary">제 프로젝트를 기부로 감사를 표하고 싶나요? 여기를 누르세요.</string>
     <string name="donate_me_message">\n만약 여러분이 제 작업을 좋아하신다면, 기부해주시는 건 어떤가요? 프로젝트 개발에 큰 도움이 됩니다. 물론 필수는 아니에요.\n</string>
-    <string name="donate_me_playstore">\n알아두기: PayPal, 혹은 플레이 스토어에 있는 SmartPack Donation 앱을 통해 기부할 수 있습니다. 게다가, 기부 패키지를 구매하는 것은 이 앱의 숨겨진 기능들을 해제합니다.\n</string>
-    <string name="purchase_app">기부 앱</string>
-    <string name="paypal_donation">PayPal</string>
     <string name="auto_update_check">자동 업데이트 확인</string>
     <string name="licence">라이선스</string>
     <string name="share_app">공유하기</string>

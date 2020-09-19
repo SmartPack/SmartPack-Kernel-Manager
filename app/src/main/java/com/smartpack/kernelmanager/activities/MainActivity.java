@@ -29,7 +29,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.ads.MobileAds;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.database.tools.profiles.Profiles;
 import com.smartpack.kernelmanager.services.profile.Tile;
@@ -72,11 +71,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Initialize Google Ads
-        if (Prefs.getBoolean("allow_ads", true, this)) {
-            MobileAds.initialize(this, "ca-app-pub-7791710838910455~4931988555");
-        }
 
         /*
          * Initialize Spectrum Profiles & Wakelock Blocker

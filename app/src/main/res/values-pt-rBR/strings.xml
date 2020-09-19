@@ -989,9 +989,6 @@
     <string name="donate_me">Doar para mim</string>
     <string name="donate_me_summary">Deseja apreciar meu trabalho com uma doação? Clique aqui</string>
     <string name="donate_me_message">\nSe você gosta do meu trabalho, considere fazer uma doação para mim, pois é útil para continuar meus projetos mais ativos, embora não seja de todo necessário.\n</string>
-    <string name="donate_me_playstore">\nNota: eu posso aceitar doações via PayPal ou através do pacote de doações SmartPack na PlayStore. Além disso, a compra do pacote de doações desbloqueará alguns recursos ocultos deste aplicativo.\n</string>
-    <string name="purchase_app">App de doação</string>
-    <string name="paypal_donation">PayPal</string>
     <string name="auto_update_check">Verificação de Atualização Automática</string>
 
     <!-- Contributors -->
@@ -1063,8 +1060,6 @@
     <string name="sha1">Algoritmo de hash seguro</string>
     <string name="sha1_summary">sha1</string>
     <string name="support_group">Grupo de suporte</string>
-    <string name="allow_ads">Permitir anúncios</string>
-    <string name="allow_ads_summary">Apoiar o desenvolvedor permitindo anúncios neste app!</string>
     <string name="updated_dialog">Parabéns! Você já possui uma versão atualizada do SmartPack-Kernel Manager!</string>
     <string name="update_check_message">O SmartPack-Kernel Manager verificará por uma nova versão do %s uma vez por dia!</string>
     <string name="update_channel_summary">insira-a-url-do-canal-de-atualizaçãol-aqui</string>
@@ -1086,8 +1081,6 @@
     <string name="osm0sis">Chris Renshaw</string>
     <string name="osm0sis_summary">O desenvolvedor do famoso projeto \'AnyKernel3\'. Sem seu apoio e orientação, o recurso de flashear automaticamente neste aplicativo não aconteceria.</string>
     <string name="other_options">Outras opções</string>
-    <string name="playstore">Play Store</string>
-    <string name="playstore_summary">Visitar a página na Play Store</string>
     <string name="reboot_dialog">É altamente recomendável reiniciar o seu dispositivo após %s.</string>
     <string name="reboot_normal">Reinício normal</string>
     <string name="reboot_options">Opções de reinício</string>
@@ -1113,7 +1106,6 @@
     <string name="support_group_summary">link_de_suporte</string>
     <string name="unknown_link">Ainda não foi fornecido pelo desenvolvedor!</string>
     <string name="unsupported_controller">\'%s\' não existe neste dispositivo! Abortando.</string>
-    <string name="allow_ads_message">Muito obrigado por apoiar o desenvolvedor ao permitir anúncios!</string>
     <string name="custom_controls_message">Basicamente, você pode criar um controlador personalizado para qualquer caminho sysfs existente, desde que você tenha um Gerenciador de Arquivos root instalado. No entanto, observe que esse recurso é muito poderoso para bagunçar o seu dispositivo.\n\n***USE POR SUA CONTA E RISCO***</string>
     <string name="flasher_warning">Este recurso ainda é muito novo e está em desenvolvimento. Pode não ter compatibilidade total com muitos arquivos zip flasheáveis. Se você acha que o processo de flash falhou devido às incompatibilidades mencionadas acima, reinicie o aplicativo imediatamente antes de fazer qualquer coisa.\n\nTambém não recomendo tentar flashear qualquer coisa com mais de 500 MB.\n\n***USE POR SUA CONTA E RISCO***\n</string>
     <string name="grarak_summary">O homem por trás do \'Kernel Adiutor\', o ancestral do SmartPack-Kernel Manager. Este projeto não existiria sem ele. Um enorme respeito por ele, não apenas por seu trabalho duro no Kernel Adiutor, mas também por ser aberto ao open-source.</string>
@@ -1121,12 +1113,10 @@
     <string name="share_app_message">Obtenha o SmartPack-Kernel Manager %s em\n\nGoogle Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
     <string name="share_channel_message">Para configurar esse canal, basta colocar \'%s\' em SmartPack-Kernel Manager -> SmartPack -> URL do canal de atualizações.\n\n\Obtenha o SmartPack-Kernel Manager em\nGoogle Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub:</string>
     <string name="update_available">Nova atualização disponível!\nv%s</string>
-    <string name="update_available_summary">%s\n\n**Importante: Por favor, faça o download e atualize manualmente o aplicativo!**</string>
     <string name="update_channel_empty">Limpando informações do canal de atualização!</string>
     <string name="update_channel_info">Ao vincular o canal de atualização acima a um arquivo JSON apropriado para o seu dispositivo, você pode adicionar basicamente suporte a download de kernels e auto-flash (não para todos os dipositivos) a qualquer Kernel disponível para seu dispositivo. Por favor, peça ao seu desenvolvedor de kernel favorito para adicionar suporte a esse recurso. O kernel baixado estará disponível em \'%s\'.\n\nDicas! Você pode importar um arquivo json criado para o \'FK-Kernel Manager\' do franciscofranco (grande \u2665 &amp; rerspeito para ele) e simplesmente funcionará.\n\nPrecisa de ajuda? Clique aqui!</string>
     <string name="update_channel_instructions"><b>Nome do Kernel</b>, <b>Versão do Kernel</b> &amp; <b>Link de Download</b> são os campos obrigatórios a serem preenchidos antes de clicar no botão criar.\n\n<b>Change-logs</b> podem ser fornecidos como um texto bem formatado ou como um link para uma página on-line.\n\nSecure Hash Algorithm (<b>sha1</b>) é opcional, mas altamente recomendado para garantir a autenticidade do kernel baixado.</string>
     <string name="update_channel_message">(<i>somente para desenvolvedores</i>)\nO aplicativo criará um canal de atualização (json) para o seu kernel, desde que as informações fornecidas nesta página sejam precisas.</string>
-    <string name="disable_ads_message">Parabéns! Os anúncios estão desativados!\n\nNo entanto, note que as receitas obtidas com esses anúncios são realmente úteis para o desenvolvedor continuar seus projetos de desenvolvimento do Android mais ativos. Se isso não o prejudicar, considere permitir que os anúncios ofereçam suporte ao desenvolvimento.</string>
     <string name="low">Baixo</string>
     <string name="high">Alto</string>
     <string name="file_name_error">O nome do arquivo ou o caminho que você selecionou possui caracteres como \'(\' ou \')\', o que provavelmente causa problemas com o seletor de arquivos!</string>
