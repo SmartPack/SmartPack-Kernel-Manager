@@ -45,7 +45,7 @@ import java.io.File;
 
 public class UpdateCheck {
 
-    private static final String LATEST_VERSION_URL = "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/app/src/main/assets/release.json";
+    private static final String LATEST_VERSION_URL = "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/beta/app/src/main/assets/release.json";
     private static final String LATEST_VERSION_APK = Utils.getInternalDataStorage() + "/" + BuildConfig.APPLICATION_ID + ".apk";
     private static final String UPDATE_INFO = Utils.getInternalDataStorage() + "/update_info.json";
     private static final String UPDATE_INFO_STRING = Utils.readFile(UPDATE_INFO);
