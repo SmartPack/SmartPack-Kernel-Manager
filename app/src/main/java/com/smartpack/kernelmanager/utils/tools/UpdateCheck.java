@@ -21,11 +21,14 @@
 
 package com.smartpack.kernelmanager.utils.tools;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 
 import androidx.core.content.FileProvider;
 
@@ -163,16 +166,20 @@ public class UpdateCheck {
         }.execute();
     }
 
-    public static void manualUpdateCheck(Context context) {
-        getVersionInfo(context);
-        if (UpdateCheck.hasVersionInfo() && BuildConfig.VERSION_CODE < UpdateCheck.versionCode()) {
-            updateAvailableDialog(context);
-        } else {
-            new Dialog(context)
-                    .setMessage(context.getString(R.string.updated_dialog))
-                    .setNegativeButton(context.getString(R.string.ok), (dialog, id) -> {
-                    })
-                    .show();
+    public static void manualUpdateCheck(Activity activity) {
+        if (activity.checkCallingOrSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            getVersionInfo(activity);
+            if (UpdateCheck.hasVersionInfo() && BuildConfig.VERSION_CODE < UpdateCheck.versionCode()) {
+                updateAvailableDialog(activity);
+            } else {
+                new Dialog(activity)
+                        .setMessage(activity.getString(R.string.updated_dialog))
+                        .setNegativeButton(activity.getString(R.string.ok), (dialog, id) -> {
+                        })
+                        .show();
+            }
+        } else if (Build.VERSION.SDK_INT >= 23) {
+            activity.requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         }
     }
 

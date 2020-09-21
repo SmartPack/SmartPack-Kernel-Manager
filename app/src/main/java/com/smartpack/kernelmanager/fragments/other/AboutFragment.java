@@ -20,7 +20,6 @@
 package com.smartpack.kernelmanager.fragments.other;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,14 +31,11 @@ import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
-import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
-import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
-import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
 import com.smartpack.kernelmanager.views.recyclerview.TitleView;
 
 import java.util.LinkedHashMap;
@@ -127,27 +123,6 @@ public class AboutFragment extends RecyclerViewFragment {
         changelogs.setSummary(getString(R.string.change_logs_summary));
         changelogs.setOnItemClickListener(item -> Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/beta/change-logs.md", getActivity()));
 
-        DescriptionView updatecheck = new DescriptionView();
-        updatecheck.setDrawable(getResources().getDrawable(R.drawable.ic_update));
-        updatecheck.setTitle(getString(R.string.check_update));
-        updatecheck.setSummary(getString(R.string.check_update_summary));
-        updatecheck.setOnItemClickListener(item -> {
-            if (!Utils.isNetworkAvailable(requireActivity())) {
-                Utils.snackbar(getRootView(), getString(R.string.no_internet));
-                return;
-            }
-            if (Build.VERSION.SDK_INT >= 23) {
-                requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-            }
-            UpdateCheck.manualUpdateCheck(getActivity());
-        });
-
-        SwitchView autoUpdateCheck = new SwitchView();
-        autoUpdateCheck.setDrawable(getResources().getDrawable(R.drawable.ic_update));
-        autoUpdateCheck.setSummary(getString(R.string.auto_update_check));
-        autoUpdateCheck.setChecked(Prefs.getBoolean("auto_update", true, getActivity()));
-        autoUpdateCheck.addOnSwitchListener((switchview, isChecked) -> Prefs.saveBoolean("auto_update", isChecked, getActivity()));
-
         DescriptionView donatetome = new DescriptionView();
         donatetome.setDrawable(getResources().getDrawable(R.drawable.ic_donate));
         donatetome.setTitle(getString(R.string.donate_me));
@@ -184,10 +159,6 @@ public class AboutFragment extends RecyclerViewFragment {
         items.add(sourcecode);
         items.add(support);
         items.add(changelogs);
-        items.add(updatecheck);
-        if (Utils.isDownloadBinaries()) {
-            items.add(autoUpdateCheck);
-        }
         items.add(donatetome);
         items.add(share);
     }
