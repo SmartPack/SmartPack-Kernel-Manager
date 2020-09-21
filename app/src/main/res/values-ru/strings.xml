@@ -931,7 +931,7 @@
     <string name="reboot_message">Чтобы избежать сбоев конфигурации, настоятельно рекомендуется перезагрузить систему.\n\nПерезагрузить?\n</string>
     <string name="unknown_link">Разработчик не предусмотрел еще!</string>
     <string name="remove">Удалить</string>
-    <string name="share_channel_message">"Чтобы настроить этот канал обновление, просто введите '%s' в SmartPack-Kernel Manager -> SmartPack -> Канал обновления ядра\n\nВам SmartPack-ядра диспетчер\nОшибка: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nГитхаб:"</string>
+    <string name="share_channel_message">"Чтобы настроить этот канал обновление, просто введите '%s' в SmartPack-Kernel Manager -> SmartPack -> Канал обновления ядра\n\nВам SmartPack-ядра диспетчер Гитхаб:"</string>
     <string name="busybox_installer">Установшик BusyBox </string>
     <string name="busybox_installer_summary">Настоятельно рекомендуется иметь установку BusyBox на вашем устройстве, чтобы правильно работать с некоторыми функциями этого приложения (например, \'unzip\' &amp; \'mke2fs\' binaries for flashing &amp; \'curl\' или \'wget\' binary for kernel OTA updates). В качестве попытки помочь пользователям в этом вопросе доступно простое приложение, которое можно использовать в качестве утилиты установки BusyBox в один клик для устройств arm, arm64 и x86. Нажмите здесь, чтобы получить его!</string>
     <string name="debug_mode">Режим отладки</string>

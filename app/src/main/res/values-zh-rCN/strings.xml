@@ -1011,7 +1011,7 @@
     <string name="licence">许可证</string>
     <string name="share_app">分享应用</string>
     <string name="share_app_summary">与你的朋友分享此应用</string>
-    <string name="share_app_message">下载 SmartPack-Kernel Manager %s  PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager GitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
+    <string name="share_app_message">下载 SmartPack-Kernel Manager %s GitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest</string>
     <string name="grarak">Willi Ye</string>
     <string name="osm0sis">Chris Renshaw</string>
     <string name="special_mentions">特别感谢</string>

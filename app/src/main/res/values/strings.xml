@@ -1028,7 +1028,7 @@
     <string name="reboot_message">To avoid configuration failures, it is highly recommended to reboot your device. Do you want to reboot Now?</string>
     <string name="unknown_link">Not provided by the developer yet!</string>
     <string name="remove">Remove</string>
-    <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub:</string>
+    <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from GitHub:</string>
     <string name="busybox_installer">BusyBox Installer</string>
     <string name="busybox_installer_summary">It is highly recommended to have a standalone BusyBox installation on your device to work some features of this app properly (e.g., \'unzip\' &amp; \'mke2fs\' binaries for flashing &amp; \'curl\' or \'wget\' binary for kernel OTA updates). As an attempt to help users on this issue, a simple app is made available, which can be used as a one-click BusyBox installation utility for arm, arm64 and x86 device. Click here to Get It!</string>
     <string name="debug_mode">Debug Mode</string>
@@ -1142,7 +1142,7 @@
     <string name="licence_message" translatable="false">SmartPack-Kernel Manager is a free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nSmartPack-Kernel Manager is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with SmartPack-Kernel Manager. If not, visit http://www.gnu.org/licenses/.</string>
     <string name="share_app">Share App</string>
     <string name="share_app_summary">Share this app with your friends</string>
-    <string name="share_app_message">Get SmartPack-Kernel Manager %s from\n\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
+    <string name="share_app_message">Get SmartPack-Kernel Manager %s from GitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest</string>
     <string name="grarak">Willi Ye</string>
     <string name="grarak_summary">The man behind \'Kernel Adiutor\', the ancestor of SmartPack-Kernel Manager. This project won\'t be true without him. Huge \u2665 &amp; respect to him, not only for his hard work on Kernel Adiutor, but also for being open to open-source.</string>
     <string name="osm0sis">Chris Renshaw</string>
