@@ -39,6 +39,7 @@ import android.widget.CheckBox;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.FlashingActivity;
+import com.smartpack.kernelmanager.activities.TerminalActivity;
 import com.smartpack.kernelmanager.activities.UpdateChannelActivity;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
@@ -449,11 +450,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
             items.add(ramoops);
         }
 
-        GenericInputView shell = new GenericInputView();
+        DescriptionView shell = new DescriptionView();
         shell.setTitle(getString(R.string.shell));
-        shell.setValue(getString(R.string.shell_summary));
-        shell.setFullSpan(true);
-        shell.setOnGenericValueListener((genericSelectView, value) -> runCommand(value));
+        shell.setSummary(getString(R.string.shell_summary));
+        shell.setOnItemClickListener(item -> {
+            Intent terminal = new Intent(getActivity(), TerminalActivity.class);
+            startActivity(terminal);
+        });
 
         items.add(shell);
 
