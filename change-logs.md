@@ -1,5 +1,9 @@
 # Change-logs
 
+## 124. September 25, 2020
+*Release-tag: beta_v13.7*<br>
+Replaced shell command option with a full Terminal page. Moved update check options from About to Settings. Updated change-log view. Miscellaneous changes.
+
 ## 123. September 19, 2020
 *Release-tag: beta_v13.6*<br>
 Updated no-root and no-busybox status. Removed Ads (only from beta build). Added auto and manual app update check. Miscellaneous changes.
