@@ -58,6 +58,9 @@ import com.smartpack.kernelmanager.activities.TabLayoutActivity;
 import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -328,6 +331,15 @@ public class Utils {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        return null;
+    }
+
+    public static String getChangelog(Context context) {
+        try {
+            return new JSONObject(Objects.requireNonNull(readAssetFile(context,
+                    "release.json"))).getString("releaseNotes");
+        } catch (JSONException ignored) {
         }
         return null;
     }

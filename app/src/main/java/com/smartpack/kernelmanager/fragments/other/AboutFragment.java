@@ -121,7 +121,15 @@ public class AboutFragment extends RecyclerViewFragment {
         changelogs.setDrawable(getResources().getDrawable(R.drawable.ic_changelog));
         changelogs.setTitle(getString(R.string.change_logs));
         changelogs.setSummary(getString(R.string.change_logs_summary));
-        changelogs.setOnItemClickListener(item -> Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/beta/change-logs.md", getActivity()));
+        changelogs.setOnItemClickListener(item -> {
+            new Dialog(requireActivity())
+                    .setIcon(R.mipmap.ic_launcher)
+                    .setTitle(getString(R.string.app_name) + "\nbeta_v" + BuildConfig.VERSION_NAME)
+                    .setMessage(Utils.getChangelog(getActivity()))
+                    .setPositiveButton(getString(R.string.cancel), (dialog1, id1) -> {
+                    })
+                    .show();
+        });
 
         DescriptionView donatetome = new DescriptionView();
         donatetome.setDrawable(getResources().getDrawable(R.drawable.ic_donate));
