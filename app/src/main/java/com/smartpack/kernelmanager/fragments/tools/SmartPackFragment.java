@@ -655,42 +655,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
         }.execute();
     }
 
-    @SuppressLint("StaticFieldLeak")
-    private void runCommand(final String value) {
-        new AsyncTask<Void, Void, Void>() {
-            private ProgressDialog mProgressDialog;
-            private String mResult;
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                mProgressDialog = new ProgressDialog(getActivity());
-                mProgressDialog.setMessage(getString(R.string.executing) + ("..."));
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.show();
-            }
-            @Override
-            protected Void doInBackground(Void... voids) {
-                mResult = RootUtils.runAndGetError(value);
-                return null;
-            }
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                try {
-                    mProgressDialog.dismiss();
-                } catch (IllegalArgumentException ignored) {
-                }
-                new Dialog(requireActivity())
-                        .setTitle(value)
-                        .setMessage(mResult)
-                        .setCancelable(false)
-                        .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
-                        })
-                        .show();
-            }
-        }.execute();
-    }
-
     @Override
     protected void onTopFabClick() {
         super.onTopFabClick();
