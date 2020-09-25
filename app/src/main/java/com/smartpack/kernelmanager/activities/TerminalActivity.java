@@ -23,6 +23,8 @@ package com.smartpack.kernelmanager.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -55,6 +57,20 @@ public class TerminalActivity extends BaseActivity {
         AppCompatTextView mShellCommandTitle = findViewById(R.id.shell_command_title);
         mShellOutput = findViewById(R.id.shell_output);
         mShellCommandTitle.setText("<Root> ");
+        mShellCommand.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().endsWith("\n")) {
+                    runCommand();
+                }
+            }
+        });
         mSave.setOnClickListener(v -> runCommand());
         AppCompatTextView mClearAll = findViewById(R.id.clear_all);
         mClearAll.setOnClickListener(v -> {
@@ -65,17 +81,21 @@ public class TerminalActivity extends BaseActivity {
     @SuppressLint("SetTextI18n")
     private void runCommand() {
         if (mShellCommand.getText() != null) {
-            if (mShellCommand.getText() != null && !mShellCommand.getText().toString().isEmpty()) {
-                if (mShellCommand.getText().toString().equals("clear")) {
+            String mCommand = mShellCommand.getText().toString();
+            if (mCommand.endsWith("\n")) {
+                mCommand = mCommand.replace("\n","");
+            }
+            if (mShellCommand.getText() != null && !mCommand.isEmpty()) {
+                if (mCommand.equals("clear")) {
                     clearAll();
-                } else if (mShellCommand.getText().toString().equals("exit")) {
+                } else if (mCommand.equals("exit")) {
                     onBackPressed();
-                } else if (mShellCommand.getText().toString().equals("su") || mShellCommand.getText().toString().contains("su ")) {
+                } else if (mCommand.equals("su") || mCommand.contains("su ")) {
                     mShellCommand.setText(null);
                 } else {
-                    String mResult = "<Root> " + mShellCommand.getText().toString() + "\n" + RootUtils.runAndGetError(mShellCommand.getText().toString());
-                    if (mResult.equals("<Root> " + mShellCommand.getText().toString() + "\n")) {
-                        mResult = "<Root> " + mShellCommand.getText().toString() + "\n" + mShellCommand.getText().toString();
+                    String mResult = "<Root> " + mCommand + "\n" + RootUtils.runAndGetError(mCommand);
+                    if (mResult.equals("<Root> " + mCommand + "\n")) {
+                        mResult = "<Root> " + mCommand + "\n" + mCommand;
                     }
                     mShellCommand.setText(null);
                     mShellOutput.setText(mShellOutput.getText() + "\n\n" + mResult);
