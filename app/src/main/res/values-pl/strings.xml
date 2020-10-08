@@ -502,12 +502,12 @@
 
     <!-- Screen -->
     <string name="screen_color">Screen Color</string>
-    <string name="red">Red</string>
-    <string name="green">Green</string>
-    <string name="blue">Blue</string>
-    <string name="white">White</string>
-    <string name="flash_led">Flash LED intensity</string>
-    <string name="yellow">Yellow</string>
+    <string name="red">Czerwony</string>
+    <string name="green">Zielony</string>
+    <string name="blue">Niebieski</string>
+    <string name="white">Biały</string>
+    <string name="flash_led">Intensywność diody LED</string>
+    <string name="yellow">Żółty</string>
     <string name="min_rgb">Minimalna wartość RGB</string>
     <string name="invert_screen">Odwróć ekran</string>
     <string name="saturation_intensity">Intensywność nasycenia</string>
@@ -531,8 +531,8 @@
     <string name="blue_mids">Blue Mids</string>
     <string name="blue_blacks">Blue Blacks</string>
     <string name="blue_whites">Blue Whites</string>
-    <string name="contrast">Contrast</string>
-    <string name="brightness">Brightness</string>
+    <string name="contrast">Kontrast</string>
+    <string name="brightness">Jasność</string>
     <string name="red_positive">Red Positive</string>
     <string name="red_negative">Red Negative</string>
     <string name="green_positive">Green Positive</string>
@@ -540,7 +540,7 @@
     <string name="blue_positive">Blue Positive</string>
     <string name="blue_negative">Blue Negative</string>
     <string name="white_point">White Point</string>
-    <string name="lcd_backlight">LCD Backlight</string>
+    <string name="lcd_backlight">Tylne podświetlenie LCD</string>
     <string name="gamma_profiles_summary">Po wybraniu profilu wyłącz i włącz ekran.</string>
     <string name="brightness_mode">Użyj wykładniczego trybu podświetlenia zamiast trybu liniowego.</string>
     <string name="min_brightness">Minimalna jasność</string>
@@ -1012,7 +1012,7 @@
     <string name="reboot_message">Aby uniknąć błędów konfiguracji, zdecydowanie zaleca się ponowne uruchomienie urządzenia. Czy chcesz teraz ponownie uruchomić komputer?</string>
     <string name="unknown_link">Nie zostały jeszcze dostarczone przez dewelopera!</string>
     <string name="remove">Usunąć</string>
-    <string name="share_channel_message">Aby skonfigurować ten kanał aktualizacji, po prostu wprowadź \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from GitHub:</string>
+    <string name="share_channel_message">Aby skonfigurować ten kanał aktualizacji, po prostu wprowadź \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub:</string>
     <string name="busybox_installer">BusyBox Instalator</string>
     <string name="busybox_installer_summary">Zdecydowanie zaleca się posiadanie samodzielnej instalacji BusyBox na urządzeniu, aby niektóre funkcje tej aplikacji działały poprawnie (e.g., \'unzip\' &amp; \'mke2fs\' binaries for flashing &amp; \'curl\' or \'wget\' binary for kernel OTA updates). Aby pomóc użytkownikom w tym problemie, udostępniono prostą aplikację, której można użyć jako narzędzia instalacyjnego BusyBox jednym kliknięciem dla urządzeń arm, arm64 i x86. Kliknij tutaj, aby to zdobyć!</string>
     <string name="debug_mode">Tryb Debugowania</string>
@@ -1107,8 +1107,7 @@
     <string name="default_section">Sekcja domyślna</string>
     <string name="default_section_summary">Domyślna karta wyświetlana podczas otwierania aplikacji!</string>
 
-    <!-- About -->
-    <string name="credits">Kredyty</string>
+    <!-- About --><string name="credits">Kredyty</string>
     <string name="special_mentions">Specjalne wyróżnienia</string>
     <string name="source_code">Kod źródłowy</string>
     <string name="source_code_summary">Wyświetl kod źródłowy na GitHub</string>
@@ -1121,7 +1120,7 @@
     <string name="licence">License</string>
     <string name="share_app">Udostępnij aplikacje</string>
     <string name="share_app_summary">Udostępnij tę aplikację znajomym</string>
-    <string name="share_app_message">pobierz SmartPack-Kernel Manager %s from GitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest</string>
+    <string name="share_app_message">pobierz SmartPack-Kernel Manager %s from\n\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
     <string name="grarak">Willi Ye</string>
     <string name="grarak_summary">Człowiek stojący za „Kernel Adiutor”, przodek SmartPack-Kernel Manager..Bez niego ten projekt nie będzie prawdziwy. Olbrzymi szacunek dla niego, nie tylko za jego ciężką pracę nad Kernel Adiutor, ale także za otwartość na oprogramowanie typu open source</string>
     <string name="osm0sis">Chris Renshaw</string>
