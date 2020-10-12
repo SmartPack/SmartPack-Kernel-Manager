@@ -22,18 +22,24 @@
 package com.smartpack.kernelmanager.activities;
 
 import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.PopupMenu;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+
+import java.util.Objects;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on September 23, 2020
@@ -41,8 +47,13 @@ import com.smartpack.kernelmanager.utils.root.RootUtils;
 
 public class TerminalActivity extends BaseActivity {
 
-    private static AppCompatEditText mShellCommand;
-    private static AppCompatEditText mShellOutput;
+    private AppCompatEditText mShellCommand;
+    private AppCompatEditText mShellOutput;
+    private AppCompatTextView mProgressMessage;
+    private int i;
+    private LinearLayout mProgressLayout;
+    private static String whoAmI = RootUtils.runAndGetOutput("whoami");
+    private StringBuilder mLastCommand = new StringBuilder();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -50,13 +61,16 @@ public class TerminalActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terminal);
 
+        mProgressLayout = findViewById(R.id.progress_layout);
+        mProgressMessage = findViewById(R.id.progress_message);
         AppCompatImageButton mBack = findViewById(R.id.back_button);
+        AppCompatImageButton mRecent = findViewById(R.id.recent_button);
         AppCompatImageButton mSave = findViewById(R.id.enter_button);
         mBack.setOnClickListener(v -> onBackPressed());
         mShellCommand = findViewById(R.id.shell_command);
         AppCompatTextView mShellCommandTitle = findViewById(R.id.shell_command_title);
         mShellOutput = findViewById(R.id.shell_output);
-        mShellCommandTitle.setText("<Root> ");
+        mShellCommandTitle.setText(whoAmI);
         mShellCommand.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -71,6 +85,26 @@ public class TerminalActivity extends BaseActivity {
                 }
             }
         });
+        mRecent.setOnClickListener(v -> {
+            String[] lines = mLastCommand.toString().split(",");
+            PopupMenu popupMenu = new PopupMenu(this, mShellCommand);
+            Menu menu = popupMenu.getMenu();
+            if (mLastCommand.toString().isEmpty()) {
+                return;
+            }
+            for (i = 0; i < lines.length; i++) {
+                menu.add(Menu.NONE, i, Menu.NONE, lines[i]);
+            }
+            popupMenu.setOnMenuItemClickListener(item -> {
+                for (i = 0; i < lines.length; i++) {
+                    if (item.getItemId() == i) {
+                        mShellCommand.setText(lines[i]);
+                    }
+                }
+                return false;
+            });
+            popupMenu.show();
+        });
         mSave.setOnClickListener(v -> runCommand());
         AppCompatTextView mClearAll = findViewById(R.id.clear_all);
         mClearAll.setOnClickListener(v -> {
@@ -78,34 +112,64 @@ public class TerminalActivity extends BaseActivity {
         });
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "StaticFieldLeak"})
     private void runCommand() {
         if (mShellCommand.getText() != null) {
-            String mCommand = mShellCommand.getText().toString();
-            if (mCommand.endsWith("\n")) {
-                mCommand = mCommand.replace("\n","");
+            String[] array = Objects.requireNonNull(mShellCommand.getText()).toString().trim().split("\\s+");
+            StringBuilder sb = new StringBuilder();
+            for (String s : array) {
+                if (s != null && !s.isEmpty())
+                    sb.append(" ").append(s);
             }
-            if (mShellCommand.getText() != null && !mCommand.isEmpty()) {
-                if (mCommand.equals("clear")) {
+            final String[] mCommand = {sb.toString().replaceFirst(" ","")};
+            mLastCommand.append(mCommand[0]).append(",");
+            if (mCommand[0].endsWith("\n")) {
+                mCommand[0] = mCommand[0].replace("\n","");
+            }
+            if (mShellCommand.getText() != null && !mCommand[0].isEmpty()) {
+                if (mCommand[0].equals("clear")) {
                     clearAll();
-                } else if (mCommand.equals("exit")) {
+                } else if (mCommand[0].equals("exit")) {
                     onBackPressed();
-                } else if (mCommand.equals("su") || mCommand.contains("su ")) {
+                } else if (mCommand[0].equals("su") || mCommand[0].contains("su ")) {
                     mShellCommand.setText(null);
                 } else {
-                    String mResult = "<Root> " + mCommand + "\n" + RootUtils.runAndGetError(mCommand);
-                    if (mResult.equals("<Root> " + mCommand + "\n")) {
-                        mResult = "<Root> " + mCommand + "\n" + mCommand;
-                    }
-                    mShellCommand.setText(null);
-                    mShellOutput.setText(mShellOutput.getText() + "\n\n" + mResult);
-                    mShellOutput.setVisibility(View.VISIBLE);
+                    new AsyncTask<Void, Void, Void>() {
+                        private String mResult;
+                        @Override
+                        protected void onPreExecute() {
+                            super.onPreExecute();
+                            mProgressMessage.setText(getString(R.string.executing) + "...");
+                            mProgressMessage.setVisibility(View.VISIBLE);
+                            mProgressLayout.setVisibility(View.VISIBLE);
+                        }
+                        @SuppressLint("WrongThread")
+                        @Override
+                        protected Void doInBackground(Void... voids) {
+                            if (mShellCommand.getText() != null && !mCommand[0].isEmpty()) {
+                                mResult = whoAmI + ": " + mCommand[0] + "\n" + RootUtils.runAndGetError(mCommand[0]);
+                                if (mResult.equals(whoAmI + ": " + mCommand[0] + "\n")) {
+                                    mResult = whoAmI + ": " + mCommand[0] + "\n" + mCommand[0];
+                                }
+                            }
+                            return null;
+                        }
+                        @Override
+                        protected void onPostExecute(Void aVoid) {
+                            super.onPostExecute(aVoid);
+                            mProgressMessage.setVisibility(View.GONE);
+                            mProgressLayout.setVisibility(View.GONE);
+                            mShellCommand.setText(null);
+                            mShellOutput.setText(mResult + "\n\n" + mShellOutput.getText());
+                            mShellOutput.setVisibility(View.VISIBLE);
+                        }
+                    }.execute();
                 }
             }
         }
     }
 
-    private static void clearAll() {
+    private void clearAll() {
         mShellOutput.setText(null);
         mShellOutput.setVisibility(View.GONE);
         mShellCommand.setText(null);

@@ -1000,7 +1000,7 @@
     <string name="update_check_message">SmartPack-Kernel Manager will check for a new version of %s once in a day!</string>
     <string name="other_options">Other Options</string>
     <string name="shell">Run Shell Command</string>
-    <string name="shell_summary">Input-command-here</string>
+    <string name="shell_summary">Execute shell commands and get output</string>
     <string name="support">Support</string>
     <string name="support_summary">Visit support page</string>
     <string name="file_name_error">The file name or path you selected has characters such as \'(\' or \')\', which likely makes issues with the file picker!</string>
