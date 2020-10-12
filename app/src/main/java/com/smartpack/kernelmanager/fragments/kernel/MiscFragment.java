@@ -487,7 +487,13 @@ public class MiscFragment extends RecyclerViewFragment {
 		hostname.setSummary(getString(R.string.hostname));
 		hostname.setValue(mMisc.getHostname());
 		hostname.setValueRaw(hostname.getValue());
-		hostname.setOnGenericValueListener((genericSelectView, value) -> mMisc.setHostname(value, getActivity()));
+		hostname.setOnGenericValueListener((genericSelectView, value) -> {
+			mMisc.setHostname(value, getActivity());
+			getHandler().postDelayed(() -> {
+						hostname.setValue(mMisc.getHostname());
+					},
+					500);
+		});
 
 		networkCard.addItem(hostname);
 
