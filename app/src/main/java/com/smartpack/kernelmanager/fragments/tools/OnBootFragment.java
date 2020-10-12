@@ -134,7 +134,7 @@ public class OnBootFragment extends RecyclerViewFragment {
             }
             if (applyOnBootEnabled.get(settings.get(i).getCategory())) {
                 applyOnBootItems.add(new ApplyOnBootItem(settings.get(i).getSetting(),
-                        settings.get(i).getCategory(), i));
+                        settings.get(i).getCategory()));
             }
         }
 
@@ -157,7 +157,7 @@ public class OnBootFragment extends RecyclerViewFragment {
             applyOnBoot.add(applyOnBootView);
         }
 
-        if (applyOnBoot.size() > 0) {
+        if (applyOnBoot.size() > 1) {
             items.addAll(applyOnBoot);
         }
 
@@ -257,12 +257,10 @@ public class OnBootFragment extends RecyclerViewFragment {
     private static class ApplyOnBootItem {
         private final String mCommand;
         private final String mCategory;
-        private final int mPosition;
 
-        private ApplyOnBootItem(String command, String category, int position) {
+        private ApplyOnBootItem(String command, String category) {
             mCommand = command;
             mCategory = category;
-            mPosition = position;
         }
     }
 
