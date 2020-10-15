@@ -23,7 +23,6 @@ package com.smartpack.kernelmanager.fragments.tools;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -82,7 +81,7 @@ public class TranslatorFragment extends RecyclerViewFragment {
 
     @Override
     protected Drawable getBottomFabDrawable() {
-        return getResources().getDrawable(R.drawable.ic_save);
+        return ViewUtils.getColoredIcon(R.drawable.ic_save, requireActivity());
     }
 
     @Override
@@ -251,7 +250,7 @@ public class TranslatorFragment extends RecyclerViewFragment {
             mRootViewView = inflater.inflate(R.layout.fragment_strings_search, container, false);
 
             AppCompatImageButton settings = mRootViewView.findViewById(R.id.settings_icon);
-            settings.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings));
+            settings.setImageDrawable(ViewUtils.getWhiteColoredIcon(R.drawable.ic_settings, requireActivity()));
             settings.setOnClickListener(v -> {
                 PopupMenu popupMenu = new PopupMenu(requireActivity(), settings);
                 Menu menu = popupMenu.getMenu();
@@ -284,15 +283,11 @@ public class TranslatorFragment extends RecyclerViewFragment {
                                             return;
                                         }
                                         new AsyncTask<Void, Void, Void>() {
-                                            private ProgressDialog mProgressDialog;
-
                                             @Override
                                             protected void onPreExecute() {
                                                 super.onPreExecute();
-                                                mProgressDialog = new ProgressDialog(getActivity());
-                                                mProgressDialog.setMessage(getString(R.string.importing_string) + ("..."));
-                                                mProgressDialog.setCancelable(false);
-                                                mProgressDialog.show();
+                                                assert translatorFragment != null;
+                                                translatorFragment.showProgressMessage(getString(R.string.importing_string) + ("..."));
                                             }
 
                                             @Override
@@ -305,11 +300,8 @@ public class TranslatorFragment extends RecyclerViewFragment {
                                             @Override
                                             protected void onPostExecute(Void aVoid) {
                                                 super.onPostExecute(aVoid);
-                                                try {
-                                                    mProgressDialog.dismiss();
-                                                } catch (IllegalArgumentException ignored) {
-                                                }
                                                 assert translatorFragment != null;
+                                                translatorFragment.hideProgressMessage();
                                                 translatorFragment.reload();
                                             }
                                         }.execute();

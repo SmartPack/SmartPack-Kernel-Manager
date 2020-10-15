@@ -22,7 +22,6 @@ package com.smartpack.kernelmanager.fragments.tools;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -78,7 +77,7 @@ public class BackupFragment extends RecyclerViewFragment {
 
     @Override
     protected Drawable getTopFabDrawable() {
-        return ViewUtils.getWhiteColoredIcon(R.drawable.ic_add, requireActivity());
+        return ViewUtils.getColoredIcon(R.drawable.ic_add, requireActivity());
     }
 
     @Override
@@ -287,16 +286,10 @@ public class BackupFragment extends RecyclerViewFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 new AsyncTask<Void, Void, Void>() {
-
-                    private ProgressDialog mProgressDialog;
-
                     @Override
                     protected void onPreExecute() {
                         super.onPreExecute();
-                        mProgressDialog = new ProgressDialog(getActivity());
-                        mProgressDialog.setMessage(getString(flashing ? R.string.flashing : R.string.restoring));
-                        mProgressDialog.setCancelable(false);
-                        mProgressDialog.show();
+                        showProgressMessage(getString(flashing ? R.string.flashing : R.string.restoring));
                     }
 
                     @Override
@@ -308,10 +301,7 @@ public class BackupFragment extends RecyclerViewFragment {
                     @Override
                     protected void onPostExecute(Void aVoid) {
                         super.onPostExecute(aVoid);
-                        try {
-                            mProgressDialog.dismiss();
-                        } catch (IllegalArgumentException ignored) {
-                        }
+                        hideProgressMessage();
                         // Show an option to reboot after flashing/restoring
                         Dialog dialog = new Dialog(requireActivity());
                         dialog.setIcon(R.mipmap.ic_launcher);
@@ -323,14 +313,10 @@ public class BackupFragment extends RecyclerViewFragment {
                         dialog.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
                             Utils.snackbar(getRootView(), getString(R.string.rebooting_message));
                             new AsyncTask<Void, Void, Void>() {
-                                private ProgressDialog mProgressDialog;
                                 @Override
                                 protected void onPreExecute() {
                                     super.onPreExecute();
-                                    mProgressDialog = new ProgressDialog(getActivity());
-                                    mProgressDialog.setMessage(getString(R.string.executing) + ("..."));
-                                    mProgressDialog.setCancelable(false);
-                                    mProgressDialog.show();
+                                    showProgressMessage(getString(R.string.executing) + ("..."));
                                 }
                                 @Override
                                 protected Void doInBackground(Void... voids) {
@@ -340,10 +326,7 @@ public class BackupFragment extends RecyclerViewFragment {
                                 @Override
                                 protected void onPostExecute(Void aVoid) {
                                     super.onPostExecute(aVoid);
-                                    try {
-                                        mProgressDialog.dismiss();
-                                    } catch (IllegalArgumentException ignored) {
-                                    }
+                                    hideProgressMessage();
                                 }
                             }.execute();
                         });
@@ -411,17 +394,10 @@ public class BackupFragment extends RecyclerViewFragment {
 
                         final String path = text;
                         new AsyncTask<Void, Void, Void>() {
-
-                            private ProgressDialog mProgressDialog;
-
                             @Override
                             protected void onPreExecute() {
                                 super.onPreExecute();
-                                mProgressDialog = new ProgressDialog(getActivity());
-                                mProgressDialog.setMessage(getString(R.string.backing_up));
-                                mProgressDialog.setCancelable(false);
-                                mProgressDialog.setOwnerActivity(requireActivity());
-                                mProgressDialog.show();
+                                showProgressMessage(getString(R.string.backing_up));
                             }
 
                             @Override
@@ -433,10 +409,7 @@ public class BackupFragment extends RecyclerViewFragment {
                             @Override
                             protected void onPostExecute(Void aVoid) {
                                 super.onPostExecute(aVoid);
-                                try {
-                                    mProgressDialog.dismiss();
-                                } catch (IllegalArgumentException ignored) {
-                                }
+                                hideProgressMessage();
                                 reload();
                             }
                         }.execute();

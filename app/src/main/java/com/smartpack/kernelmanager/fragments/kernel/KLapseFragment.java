@@ -23,7 +23,6 @@ package com.smartpack.kernelmanager.fragments.kernel;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -70,7 +69,7 @@ public class KLapseFragment extends RecyclerViewFragment {
 
     @Override
     protected Drawable getTopFabDrawable() {
-        return ViewUtils.getWhiteColoredIcon(R.drawable.ic_add, requireActivity());
+        return ViewUtils.getColoredIcon(R.drawable.ic_add, requireActivity());
     }
 
     @Override
@@ -501,14 +500,10 @@ public class KLapseFragment extends RecyclerViewFragment {
                         }
                         final String path = text;
                         new AsyncTask<Void, Void, Void>() {
-                            private ProgressDialog mProgressDialog;
                             @Override
                             protected void onPreExecute() {
                                 super.onPreExecute();
-                                mProgressDialog = new ProgressDialog(getActivity());
-                                mProgressDialog.setMessage(getString(R.string.exporting_settings, getString(R.string.klapse)) + "...");
-                                mProgressDialog.setCancelable(false);
-                                mProgressDialog.show();
+                                showProgressMessage(getString(R.string.exporting_settings, getString(R.string.klapse)) + "...");
                             }
                             @Override
                             protected Void doInBackground(Void... voids) {
@@ -526,10 +521,7 @@ public class KLapseFragment extends RecyclerViewFragment {
                             @Override
                             protected void onPostExecute(Void aVoid) {
                                 super.onPostExecute(aVoid);
-                                try {
-                                    mProgressDialog.dismiss();
-                                } catch (IllegalArgumentException ignored) {
-                                }
+                                hideProgressMessage();
                                 new Dialog(requireActivity())
                                         .setMessage(getString(R.string.profile_created, KLapse.profileFolder().toString() + "/" + path))
                                         .setCancelable(false)

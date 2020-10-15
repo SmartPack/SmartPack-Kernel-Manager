@@ -24,7 +24,6 @@ package com.smartpack.kernelmanager.fragments.tools;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -84,7 +83,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
     @Override
     protected Drawable getTopFabDrawable() {
-        return ViewUtils.getWhiteColoredIcon(R.drawable.ic_flash, requireActivity());
+        return ViewUtils.getColoredIcon(R.drawable.ic_flash, requireActivity());
     }
 
     @Override
@@ -169,7 +168,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
         items.add(kernelinfo);
 
         GenericInputView updateChannel = new GenericInputView();
-        updateChannel.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
+        updateChannel.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
         updateChannel.setTitle(getString(R.string.update_channel));
         updateChannel.setValue((!KernelUpdater.getKernelName().equals("Unavailable"))
                 ? KernelUpdater.getUpdateChannel() : getString(R.string.update_channel_summary));
@@ -238,7 +237,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
         if (KernelUpdater.getLatestVersion().equals("Unavailable")) {
             DescriptionView info = new DescriptionView();
             info.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_info, requireContext()));
-            info.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
+            info.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
             info.setTitle(getString(R.string.update_channel_info, Utils.getInternalDataStorage()));
             info.setOnItemClickListener(item -> Utils.launchUrl("https://smartpack.github.io/kerneldownloads/", getActivity()));
             info.setFullSpan(true);
@@ -353,6 +352,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
         }
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void OtherOptionsInit(List<RecyclerViewItem> items) {
         if (!Utils.isPackageInstalled("com.smartpack.busyboxinstaller", requireActivity())) {
             // Advertise Own App
@@ -544,14 +544,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
     @SuppressLint("StaticFieldLeak")
     private class Execute extends AsyncTask<String, Void, Void> {
-        private ProgressDialog mExecuteDialog;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            mExecuteDialog = new ProgressDialog(getActivity());
-            mExecuteDialog.setMessage(getString(R.string.executing) + ("..."));
-            mExecuteDialog.setCancelable(false);
-            mExecuteDialog.show();
+            showProgressMessage(getString(R.string.executing) + ("..."));
         }
 
         @Override
@@ -564,7 +560,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            mExecuteDialog.dismiss();
+            hideProgressMessage();
         }
     }
 
@@ -607,15 +603,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
     @SuppressLint("StaticFieldLeak")
     private void downloadKernel() {
         new AsyncTask<Void, Void, Void>() {
-            private ProgressDialog mProgressDialog;
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                mProgressDialog = new ProgressDialog(getActivity());
-                mProgressDialog.setMessage(getString(R.string.downloading_update, KernelUpdater.getKernelName() +
+                showProgressMessage(getString(R.string.downloading_update, KernelUpdater.getKernelName() +
                         "-" + KernelUpdater.getLatestVersion()) + "...");
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.show();
             }
             @Override
             protected Void doInBackground(Void... voids) {
@@ -626,10 +618,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                try {
-                    mProgressDialog.dismiss();
-                } catch (IllegalArgumentException ignored) {
-                }
+                hideProgressMessage();
                 if (KernelUpdater.getChecksum().equals("Unavailable") || !KernelUpdater.getChecksum().equals("Unavailable") &&
                         Utils.getChecksum(Utils.getInternalDataStorage() + "/Kernel.zip").contains(KernelUpdater.getChecksum())) {
                     new Dialog(requireActivity())
