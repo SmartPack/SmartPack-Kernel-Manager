@@ -80,7 +80,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
 
     @Override
     protected Drawable getTopFabDrawable() {
-        return ViewUtils.getWhiteColoredIcon(R.drawable.ic_add, requireActivity());
+        return ViewUtils.getColoredIcon(R.drawable.ic_add, requireActivity());
     }
 
     @Override
@@ -145,7 +145,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
             if (CustomControls.switchFile().length() > 0 && Utils.existFile(Utils.readFile(
                     CustomControls.switchFile().toString() + "/" + switchItems))) {
                 SwitchView itemslist = new SwitchView();
-                itemslist.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
+                itemslist.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
                 itemslist.setSummary(Utils.readFile(CustomControls.switchFile().toString()+ "/" + switchItems));
                 itemslist.setChecked(CustomControls.isSwitchEnabled(Utils.readFile(
                         CustomControls.switchFile().toString() + "/" + switchItems)));
@@ -197,7 +197,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
             if (CustomControls.switchFile().length() > 0 && Utils.existFile(Utils.readFile(
                     CustomControls.genericFile().toString() + "/" + genericItems))) {
                 GenericInputView itemslist = new GenericInputView();
-                itemslist.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
+                itemslist.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
                 itemslist.setTitle(Utils.readFile(CustomControls.genericFile().toString()+ "/" + genericItems));
                 itemslist.setValue(CustomControls.getGenericValue(Utils.readFile(
                         CustomControls.genericFile().toString() + "/" + genericItems)));

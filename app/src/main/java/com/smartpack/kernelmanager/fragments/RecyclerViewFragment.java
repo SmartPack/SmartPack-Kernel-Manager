@@ -37,6 +37,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -92,7 +93,8 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     private RecyclerViewAdapter mRecyclerViewAdapter;
     private Scroller mScroller;
 
-    private View mProgress;
+    private LinearLayout mProgress;
+    private AppCompatTextView mProgressMessage;
 
     private List<Fragment> mViewPagerFragments;
     private ViewPagerAdapter mViewPagerAdapter;
@@ -153,7 +155,8 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         mViewPagerParent.setVisibility(View.INVISIBLE);
         ViewUtils.dismissDialog(getChildFragmentManager());
 
-        mProgress = mRootView.findViewById(R.id.progress);
+        mProgress = mRootView.findViewById(R.id.progress_layout);
+        mProgressMessage = mRootView.findViewById(R.id.progress_message);
 
         mAppBarLayout = ((BaseActivity) requireActivity()).getAppBarLayout();
         mToolBar = ((BaseActivity) requireActivity()).getToolBar();
@@ -594,6 +597,17 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                 }
             });
         }
+    }
+
+    protected void showProgressMessage(String message) {
+        mProgressMessage.setText(message);
+        mProgressMessage.setVisibility(View.VISIBLE);
+        mProgress.setVisibility(View.VISIBLE);
+    }
+
+    protected void hideProgressMessage() {
+        mProgress.setVisibility(View.GONE);
+        mProgressMessage.setVisibility(View.GONE);
     }
 
     protected void hideProgress() {

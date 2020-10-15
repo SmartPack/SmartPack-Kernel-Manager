@@ -120,7 +120,7 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     @Override
     protected Drawable getTopFabDrawable() {
-        return ViewUtils.getWhiteColoredIcon(R.drawable.ic_add, requireActivity());
+        return ViewUtils.getColoredIcon(R.drawable.ic_add, requireActivity());
     }
 
     @Override
@@ -246,9 +246,9 @@ public class ProfileFragment extends RecyclerViewFragment {
             descriptionView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_file, requireContext()));
             descriptionView.setSummary(profileItems.get(i).getName());
             if (Prefs.getBoolean("enable_onboot", true, getActivity()) && mProfiles.getAllProfiles().get(position).isOnBootEnabled()) {
-                descriptionView.setIndicator(getResources().getDrawable(R.drawable.ic_flash));
+                descriptionView.setIndicator(ViewUtils.getColoredIcon(R.drawable.ic_flash, requireActivity()));
             }
-            descriptionView.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
+            descriptionView.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
             descriptionView.setOnMenuListener((cardView1, popupMenu) -> {
                 Menu menu = popupMenu.getMenu();
                 menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.apply));

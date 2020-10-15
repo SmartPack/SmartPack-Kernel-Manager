@@ -72,7 +72,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
 
     @Override
     protected Drawable getBottomFabDrawable() {
-        return ViewUtils.getWhiteColoredIcon(R.drawable.ic_add, requireActivity());
+        return ViewUtils.getColoredIcon(R.drawable.ic_add, requireActivity());
     }
 
     @Override

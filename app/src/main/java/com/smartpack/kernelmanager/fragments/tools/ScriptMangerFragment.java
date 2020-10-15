@@ -22,7 +22,6 @@ package com.smartpack.kernelmanager.fragments.tools;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
@@ -81,7 +80,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
 
     @Override
     protected Drawable getTopFabDrawable() {
-        return ViewUtils.getWhiteColoredIcon(R.drawable.ic_add, requireActivity());
+        return ViewUtils.getColoredIcon(R.drawable.ic_add, requireActivity());
     }
 
     @Override
@@ -178,18 +177,19 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
         }
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void load(List<RecyclerViewItem> items) {
         final Set<String> onBootScripts = Prefs.getStringSet("on_boot_scripts", new HashSet<>(), requireContext());
         for (final String script : ScriptManager.list()) {
             if (Utils.getExtension(script).equals("sh")) {
                 DescriptionView descriptionView = new DescriptionView();
                 descriptionView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_file, requireContext()));
-                descriptionView.setMenuIcon(getResources().getDrawable(R.drawable.ic_dots));
+                descriptionView.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
                 descriptionView.setTitle(script);
                 descriptionView.setSummary(ScriptManager.scriptFile() + "/" + script);
 
                 if (Prefs.getBoolean("enable_onboot", true, getActivity()) && onBootScripts.contains(script)) {
-                    descriptionView.setIndicator(getResources().getDrawable(R.drawable.ic_flash));
+                    descriptionView.setIndicator(ViewUtils.getColoredIcon(R.drawable.ic_flash, requireActivity()));
                 }
 
                 descriptionView.setOnMenuListener((descriptionView1, popupMenu) -> {
@@ -271,15 +271,11 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     @SuppressLint("StaticFieldLeak")
     private void execute(final String script) {
         new AsyncTask<Void, Void, Void>() {
-            private ProgressDialog mProgressDialog;
             private String mResult;
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                mProgressDialog = new ProgressDialog(getActivity());
-                mProgressDialog.setMessage(getString(R.string.executing) + " " + script + "...");
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.show();
+                showProgressMessage(getString(R.string.executing) + " " + script + "...");
             }
             @Override
             protected Void doInBackground(Void... voids) {
@@ -289,10 +285,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                try {
-                    mProgressDialog.dismiss();
-                } catch (IllegalArgumentException ignored) {
-                }
+                hideProgressMessage();
                 new Dialog(requireActivity())
                         .setMessage(mResult != null && !mResult.isEmpty() ? mResult : getString(R.string.script_executed, script))
                         .setCancelable(false)
