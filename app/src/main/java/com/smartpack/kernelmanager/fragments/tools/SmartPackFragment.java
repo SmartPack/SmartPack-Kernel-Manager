@@ -39,6 +39,7 @@ import android.widget.CheckBox;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.FlashingActivity;
+import com.smartpack.kernelmanager.activities.TerminalActivity;
 import com.smartpack.kernelmanager.activities.UpdateChannelActivity;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
@@ -448,11 +449,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
             items.add(ramoops);
         }
 
-        GenericInputView shell = new GenericInputView();
+        DescriptionView shell = new DescriptionView();
         shell.setTitle(getString(R.string.shell));
-        shell.setValue(getString(R.string.shell_summary));
-        shell.setFullSpan(true);
-        shell.setOnGenericValueListener((genericSelectView, value) -> runCommand(value));
+        shell.setSummary(getString(R.string.shell_summary));
+        shell.setOnItemClickListener(item -> {
+            Intent terminal = new Intent(getActivity(), TerminalActivity.class);
+            startActivity(terminal);
+        });
 
         items.add(shell);
 
@@ -647,42 +650,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
                             })
                             .show();
                 }
-            }
-        }.execute();
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private void runCommand(final String value) {
-        new AsyncTask<Void, Void, Void>() {
-            private ProgressDialog mProgressDialog;
-            private String mResult;
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                mProgressDialog = new ProgressDialog(getActivity());
-                mProgressDialog.setMessage(getString(R.string.executing) + ("..."));
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.show();
-            }
-            @Override
-            protected Void doInBackground(Void... voids) {
-                mResult = RootUtils.runAndGetError(value);
-                return null;
-            }
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                try {
-                    mProgressDialog.dismiss();
-                } catch (IllegalArgumentException ignored) {
-                }
-                new Dialog(requireActivity())
-                        .setTitle(value)
-                        .setMessage(mResult)
-                        .setCancelable(false)
-                        .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
-                        })
-                        .show();
             }
         }.execute();
     }
