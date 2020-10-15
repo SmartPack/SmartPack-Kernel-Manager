@@ -1,19 +1,19 @@
 ![](banner.png)
 
-[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v13.7-green)](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v13.7/com.smartpack.kernelmanager-v13.7-release.apk)
+[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v13.8-green)](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v13.8/com.smartpack.kernelmanager-v13.8-release.apk)
 ![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/total)
-![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/v13.7/total)
+![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/v13.8/total)
 ![](https://img.shields.io/github/contributors/smartpack/SmartPack-Kernel-Manager)
 ![](https://img.shields.io/github/license/smartpack/SmartPack-Kernel-Manager)
 
-## Introduction
+# Introduction
 Welcome to the <strong>beta</strong> development channel of SmartPack-Kernel Manager, a heavily modified version of Kernel Adiutor originally developed by Willi Ye aka Grarak. All the credits go to the original developer. This branch holds the latest changes added to SmartPack-Kernel Manager. The beta builds are exclusively published on the GitHub release page (not on PlayStore). The contributors are requested to send pull requests only to this channel.<br>
 <br><strong>Warning</strong>: Be aware that the beta builds contains experimental features. Please expect some bugs.
 
 ## Download
 [<img src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
      alt=""
-     height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v13.7/com.smartpack.kernelmanager-v13.7-release.apk)
+     height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v13.8/com.smartpack.kernelmanager-v13.8-release.apk)
 
 ## Features
 * Almost all the features available in Kernel Adiutor.
@@ -126,7 +126,7 @@ You can report a bug or request a feature by [opening an issue](https://github.c
 
 ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****
 
-# About Kernel Adiutor
+## About Kernel Adiutor
 
 [![Build Status](https://travis-ci.org/Grarak/KernelAdiutor.svg?branch=master)](https://travis-ci.org/Grarak/KernelAdiutor)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/kernel-adiutor/localized.png)](https://crowdin.com/project/kernel-adiutor)

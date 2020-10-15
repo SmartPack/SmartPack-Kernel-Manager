@@ -1012,7 +1012,7 @@
     <string name="reboot_message">Aby uniknąć błędów konfiguracji, zdecydowanie zaleca się ponowne uruchomienie urządzenia. Czy chcesz teraz ponownie uruchomić komputer?</string>
     <string name="unknown_link">Nie zostały jeszcze dostarczone przez dewelopera!</string>
     <string name="remove">Usunąć</string>
-    <string name="share_channel_message">Aby skonfigurować ten kanał aktualizacji, po prostu wprowadź \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub:</string>
+    <string name="share_channel_message">Aby skonfigurować ten kanał aktualizacji, po prostu wprowadź \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from GitHub:</string>
     <string name="busybox_installer">BusyBox Instalator</string>
     <string name="busybox_installer_summary">Zdecydowanie zaleca się posiadanie samodzielnej instalacji BusyBox na urządzeniu, aby niektóre funkcje tej aplikacji działały poprawnie (e.g., \'unzip\' &amp; \'mke2fs\' binaries for flashing &amp; \'curl\' or \'wget\' binary for kernel OTA updates). Aby pomóc użytkownikom w tym problemie, udostępniono prostą aplikację, której można użyć jako narzędzia instalacyjnego BusyBox jednym kliknięciem dla urządzeń arm, arm64 i x86. Kliknij tutaj, aby to zdobyć!</string>
     <string name="debug_mode">Tryb Debugowania</string>
@@ -1120,7 +1120,7 @@
     <string name="licence">License</string>
     <string name="share_app">Udostępnij aplikacje</string>
     <string name="share_app_summary">Udostępnij tę aplikację znajomym</string>
-    <string name="share_app_message">pobierz SmartPack-Kernel Manager %s from\n\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
+    <string name="share_app_message">pobierz SmartPack-Kernel Manager %s from GitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest</string>
     <string name="grarak">Willi Ye</string>
     <string name="grarak_summary">Człowiek stojący za „Kernel Adiutor”, przodek SmartPack-Kernel Manager..Bez niego ten projekt nie będzie prawdziwy. Olbrzymi szacunek dla niego, nie tylko za jego ciężką pracę nad Kernel Adiutor, ale także za otwartość na oprogramowanie typu open source</string>
     <string name="osm0sis">Chris Renshaw</string>

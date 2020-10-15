@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Replaced shell command option with a full Terminal page.\n - Moved update check options from About to Settings page.\n - Updated change-log view.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v13.7/com.smartpack.kernelmanager-v13.7-release.apk",
-  "sha1": "6b6ca5fab7ea83e8d5b5fde6bb517f503c372b42",
-  "latestVersion": "13.7",
-  "latestVersionCode": 137
+  "releaseNotes": "Change-logs\n - Improved Terminal page.\n - Temporarily fixed on boot crashing (with some compromises).\n - Updated progress message everywhere on app.\n - Updated polish translation (credits: @Fruity-0).\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v13.8/com.smartpack.kernelmanager-v13.8-release.apk",
+  "sha1": "2c1f0768c70b3cfc64bf1d2f90a68bae1daab059",
+  "latestVersion": "13.8",
+  "latestVersionCode": 138
 }

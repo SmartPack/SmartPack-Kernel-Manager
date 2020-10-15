@@ -1,5 +1,9 @@
 # Change-logs
 
+## 125. October 15, 2020
+*Release-tag: beta_v13.8*<br>
+Improved Terminal page. Temporarily fixed on boot crashing (with some compromises). Updated progress message everywhere on app. Updated polish translation (credits: @Fruity-0). Miscellaneous changes.
+
 ## 124. September 25, 2020
 *Release-tag: beta_v13.7*<br>
 Replaced shell command option with a full Terminal page. Moved update check options from About to Settings. Updated change-log view. Miscellaneous changes.
