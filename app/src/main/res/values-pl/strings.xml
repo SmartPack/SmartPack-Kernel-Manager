@@ -502,12 +502,12 @@
 
     <!-- Screen -->
     <string name="screen_color">Screen Color</string>
-    <string name="red">Red</string>
-    <string name="green">Green</string>
-    <string name="blue">Blue</string>
-    <string name="white">White</string>
-    <string name="flash_led">Flash LED intensity</string>
-    <string name="yellow">Yellow</string>
+    <string name="red">Czerwony</string>
+    <string name="green">Zielony</string>
+    <string name="blue">Niebieski</string>
+    <string name="white">Biały</string>
+    <string name="flash_led">Intensywność diody LED</string>
+    <string name="yellow">Żółty</string>
     <string name="min_rgb">Minimalna wartość RGB</string>
     <string name="invert_screen">Odwróć ekran</string>
     <string name="saturation_intensity">Intensywność nasycenia</string>
@@ -531,8 +531,8 @@
     <string name="blue_mids">Blue Mids</string>
     <string name="blue_blacks">Blue Blacks</string>
     <string name="blue_whites">Blue Whites</string>
-    <string name="contrast">Contrast</string>
-    <string name="brightness">Brightness</string>
+    <string name="contrast">Kontrast</string>
+    <string name="brightness">Jasność</string>
     <string name="red_positive">Red Positive</string>
     <string name="red_negative">Red Negative</string>
     <string name="green_positive">Green Positive</string>
@@ -540,7 +540,7 @@
     <string name="blue_positive">Blue Positive</string>
     <string name="blue_negative">Blue Negative</string>
     <string name="white_point">White Point</string>
-    <string name="lcd_backlight">LCD Backlight</string>
+    <string name="lcd_backlight">Tylne podświetlenie LCD</string>
     <string name="gamma_profiles_summary">Po wybraniu profilu wyłącz i włącz ekran.</string>
     <string name="brightness_mode">Użyj wykładniczego trybu podświetlenia zamiast trybu liniowego.</string>
     <string name="min_brightness">Minimalna jasność</string>
@@ -1015,8 +1015,6 @@
     <string name="busybox_installer_summary">Zdecydowanie zaleca się posiadanie samodzielnej instalacji BusyBox na urządzeniu, aby niektóre funkcje tej aplikacji działały poprawnie (e.g., \'unzip\' &amp; \'mke2fs\' binaries for flashing &amp; \'curl\' or \'wget\' binary for kernel OTA updates). Aby pomóc użytkownikom w tym problemie, udostępniono prostą aplikację, której można użyć jako narzędzia instalacyjnego BusyBox jednym kliknięciem dla urządzeń arm, arm64 i x86. Kliknij tutaj, aby to zdobyć!</string>
     <string name="debug_mode">Tryb Debugowania</string>
     <string name="debug_mode_summary">Tryb debugowania jest włączony! Zostanie wyświetlony bardziej szczegółowy dziennik flashowania (przydatny w przypadku problemów z debugowaniem).</string>
-    <string name="download_failed">Wygląda na to, że pobieranie nie powiodło się lub został pobrany uszkodzony plik!</string>
-    <string name="check_update">Sprawdź aktualizacje</string>
 
     <!-- Update Channel -->
     <string name="update_channel_message">(<i>for developers only</i>)\nApp utworzy kanał aktualizacji (json) dla twojego jądra, o ile informacje podane na tej stronie są dokładne.</string>
@@ -1040,6 +1038,8 @@
     <string name="clear">Wyczyść wszystko</string>
     <string name="clear_message">Wszystkie pola są puste! Przerwanie.</string>
     <string name="clear_all_summary">Wszystko, co dodałeś do tej strony, zostanie wyczyszczone!</string>
+    <string name="download_failed">Wygląda na to, że pobieranie nie powiodło się lub został pobrany uszkodzony plik!</string>
+    <string name="check_update">Sprawdź aktualizacje</string>
 
     <!-- Settings-->
     <string name="allow_ads">Zezwalaj na reklamy</string>
