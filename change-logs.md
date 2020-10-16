@@ -1,5 +1,9 @@
 # Change-logs
 
+## 113. October 16, 2020
+*Release-tag: v13.9*<br>
+Replaced shell command option with a full Terminal page. Updated progress message everywhere (almost) on app. Updated polish translation (credits: @Fruity-0). Miscellaneous changes.
+
 ## 112. September 17, 2020
 *Release-tag: v13.5*<br>
 Various updates to avoid issues with google play policies. Miscellaneous changes.

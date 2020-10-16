@@ -1,10 +1,10 @@
 ![](banner.png)
 
-[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v13.5-green)](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release)
+[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v13.9-green)](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release)
 ![](https://img.shields.io/github/contributors/smartpack/SmartPack-Kernel-Manager)
 ![](https://img.shields.io/github/license/smartpack/SmartPack-Kernel-Manager)
 
-## Introduction
+# Introduction
 Welcome to the <strong>stable</strong> development channel of SmartPack-Kernel Manager, a heavily modified version of Kernel Adiutor originally developed by Willi Ye aka Grarak. All the credits go to the original developer.<br>
 <br><strong>Please Note</strong>: The contributors are requested to send pull requests only to the [beta development](https://github.com/SmartPack/SmartPack-Kernel-Manager/tree/beta) branch (not to this stable branch).
 
@@ -124,7 +124,7 @@ You can report a bug or request a feature by [opening an issue](https://github.c
 
 ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****
 
-# About Kernel Adiutor
+## About Kernel Adiutor
 
 [![Build Status](https://travis-ci.org/Grarak/KernelAdiutor.svg?branch=master)](https://travis-ci.org/Grarak/KernelAdiutor)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/kernel-adiutor/localized.png)](https://crowdin.com/project/kernel-adiutor)
