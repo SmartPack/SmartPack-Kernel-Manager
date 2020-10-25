@@ -435,9 +435,9 @@ public class Utils {
     }
 
     public static void snackbar(View view, String message) {
-        Snackbar snackbar;
-        snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
-        snackbar.show();
+        Snackbar snackBar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
+        snackBar.setAction(R.string.dismiss, v -> snackBar.dismiss());
+        snackBar.show();
     }
 
     public static void launchUrl(String url, Context context) {
