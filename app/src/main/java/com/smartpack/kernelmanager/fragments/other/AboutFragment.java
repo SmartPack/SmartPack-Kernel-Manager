@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.fragments.other;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -56,7 +57,6 @@ public class AboutFragment extends RecyclerViewFragment {
         sCredits.put("NavigationView,Google", "https://developer.android.com/reference/com/google/android/material/navigation/NavigationView");
         sCredits.put("CircularReveal,Ozodrukh", "https://github.com/ozodrukh/CircularReveal");
         sCredits.put("DashClock,Roman Nurik", "https://github.com/romannurik/dashclock");
-        sCredits.put("Swirl,Matthew Precious", "https://github.com/mattprecious/swirl");
         sCredits.put("Picasso,Square", "https://github.com/square/picasso");
         sCredits.put("Platform SDK,CyanogenMod", "https://github.com/CyanogenMod/cm_platform_sdk");
         sCredits.put("Round Corner Progress Bar,Akexorcist", "https://github.com/akexorcist/Android-RoundCornerProgressBar");
@@ -96,6 +96,7 @@ public class AboutFragment extends RecyclerViewFragment {
         translationsInit(items);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void aboutInit(List<RecyclerViewItem> items) {
         TitleView about = new TitleView();
         about.setText(getString(R.string.app_name));
@@ -178,6 +179,7 @@ public class AboutFragment extends RecyclerViewFragment {
         items.add(playstore);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void librariesInit(List<RecyclerViewItem> items) {
         TitleView special_mentions = new TitleView();
         special_mentions.setText(getString(R.string.special_mentions));
@@ -223,9 +225,6 @@ public class AboutFragment extends RecyclerViewFragment {
                 case "Roman Nurik":
                     descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_romannurik));
                     break;
-                case "Matthew Precious":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_mattprecious));
-                    break;
                 case "Square":
                     descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_square));
                     break;
@@ -247,6 +246,7 @@ public class AboutFragment extends RecyclerViewFragment {
         }
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void translationsInit(List<RecyclerViewItem> items) {
         TitleView translators = new TitleView();
         translators.setText(getString(R.string.translators));
