@@ -48,6 +48,7 @@ import androidx.preference.PreferenceViewHolder;
 import androidx.preference.SwitchPreferenceCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.BannerResizerActivity;
 import com.smartpack.kernelmanager.activities.MainActivity;
@@ -56,6 +57,7 @@ import com.smartpack.kernelmanager.services.boot.ApplyOnBootService;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
+import com.smartpack.kernelmanager.utils.root.RootUtils;
 import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
 import com.smartpack.kernelmanager.views.BorderCircleView;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
@@ -73,6 +75,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
 
     private static final String KEY_UPDATE_CHECK_AUTO = "auto_update";
     private static final String KEY_UPDATE_CHECK = "update_check";
+    private static final String KEY_RESET_SETTINGS = "reset_settings";
     private static final String KEY_FORCE_ENGLISH = "forceenglish";
     private static final String KEY_USER_INTERFACE = "user_interface";
     private static final String KEY_DARK_THEME = "darktheme";
@@ -127,6 +130,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
 
         findPreference(KEY_UPDATE_CHECK_AUTO).setOnPreferenceChangeListener(this);
         findPreference(KEY_UPDATE_CHECK).setOnPreferenceClickListener(this);
+        findPreference(KEY_RESET_SETTINGS).setOnPreferenceClickListener(this);
         SwitchPreferenceCompat forceEnglish = findPreference(KEY_FORCE_ENGLISH);
         if (Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en")) {
             assert forceEnglish != null;
@@ -259,6 +263,16 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                     UpdateCheck.manualUpdateCheck(requireActivity());
                 }
                 return true;
+            case KEY_RESET_SETTINGS:
+                new Dialog(requireActivity())
+                        .setMessage(getString(R.string.reset_settings_message))
+                        .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                        })
+                        .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
+                            resetSettings();
+                        })
+                        .show();
+                return true;
             case KEY_BANNER_RESIZER:
                 if (Utils.isDonated(requireActivity())) {
                     if (Utils.getOrientation(requireActivity()) == Configuration.ORIENTATION_PORTRAIT) {
@@ -383,6 +397,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             setZeroPaddingToLayoutChildren(viewGroup.getChildAt(i));
             viewGroup.setPaddingRelative(0, viewGroup.getPaddingTop(), viewGroup.getPaddingEnd(), viewGroup.getPaddingBottom());
         }
+    }
+
+    public void resetSettings() {
+        RootUtils.runCommand("rm -rf /data/data/" + BuildConfig.APPLICATION_ID);
+        RootUtils.runCommand("pm clear " + BuildConfig.APPLICATION_ID + " && am start -n " + BuildConfig.APPLICATION_ID + "/com.smartpack.kernelmanager.activities.MainActivity");
     }
 
     private void relaunchActivity() {

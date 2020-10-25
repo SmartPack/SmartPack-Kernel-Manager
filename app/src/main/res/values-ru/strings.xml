@@ -911,8 +911,6 @@
     <string name="reboot_options">Перезагрузка</string>
     <string name="reboot_options_summary">Выключите или перезагрузите устройство</string>
     <string name="reboot_dialog">Настоятельно рекомендуется перезагрузить устройство после %s.</string>
-    <string name="reboot_now">Перезагрузить сейчас</string>
-    <string name="reboot_later">Перезагрузить позже</string>
     <string name="reboot_normal">Перезапустить</string>
     <string name="reboot_recovery">Перезагрузить в рекавери</string>
     <string name="reboot_bootloader">Перезагрузить в загрузчик</string>
@@ -926,7 +924,6 @@
     <string name="reset_settings">Сбросить приложение</string>
     <string name="reset_settings_summary">Сбросить пользовательские настройки</string>
     <string name="reset_settings_message">\nНастройки приложения будут полностью удалены.\n\nВы уверены?\n</string>
-    <string name="reboot_message">Чтобы избежать сбоев конфигурации, настоятельно рекомендуется перезагрузить систему.\n\nПерезагрузить?\n</string>
     <string name="unknown_link">Разработчик не предусмотрел еще!</string>
     <string name="remove">Удалить</string>
     <string name="share_channel_message">"Чтобы настроить этот канал обновление, просто введите '%s' в SmartPack-Kernel Manager -> SmartPack -> Канал обновления ядра\n\nВам SmartPack-ядра диспетчер Гитхаб:"</string>

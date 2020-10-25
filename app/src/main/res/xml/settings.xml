@@ -8,6 +8,10 @@
         android:defaultValue="true"
         android:key="auto_update"
         android:summary="@string/auto_update_check" />
+    <Preference
+        android:key="reset_settings"
+        android:summary="@string/reset_settings_summary"
+        android:title="@string/reset_settings" />
     <PreferenceCategory
         android:key="user_interface"
         android:title="@string/user_interface">
@@ -42,7 +46,6 @@
             android:key="section_icons"
             android:summary="@string/section_icons" />
     </PreferenceCategory>
-
     <PreferenceCategory android:title="@string/apply_on_boot">
         <SwitchPreferenceCompat
             android:defaultValue="true"
@@ -78,7 +81,6 @@
             android:summary="@string/apply_on_boot_script_summary"
             android:title="@string/script" />
     </PreferenceCategory>
-
     <PreferenceCategory
         android:key="security_category"
         android:title="@string/security">
@@ -88,17 +90,13 @@
             android:summary="@string/biometric_summary"
             android:title="@string/biometric" />
     </PreferenceCategory>
-
     <PreferenceCategory
         android:key="sections"
         android:title="@string/sections">
-
         <ListPreference
             android:key="default_section"
             android:summary="@string/default_section_summary"
             android:title="@string/default_section"
             android:defaultValue="OverallFragment"/>
-
     </PreferenceCategory>
-
 </PreferenceScreen>

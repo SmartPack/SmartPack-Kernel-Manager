@@ -990,8 +990,6 @@
     <string name="reboot_options">Neustart Optionen</string>
     <string name="reboot_options_summary">Starte dein Gerät neu oder schalte es aus</string>
     <string name="reboot_dialog">Es wird empföhlen dein gerät nach %s neuzustarten.</string>
-    <string name="reboot_now">Starte jetzt neu</string>
-    <string name="reboot_later">Starte später neu</string>
     <string name="reboot_normal">Normaler Neustart</string>
     <string name="reboot_recovery">Ins Recovery neustarten</string>
     <string name="reboot_bootloader">In den Bootloader neustarten</string>
@@ -1005,7 +1003,6 @@
     <string name="reset_settings">Setzt App zurück</string>
     <string name="reset_settings_summary">Setzte Nutzereinstellungen zurück</string>
     <string name="reset_settings_message">Appeinstellungen werden gelöscht. Bist du sicher?</string>
-    <string name="reboot_message">Um Konfigurationsfehlschläge zu ermeiden wird das Neustarten des Gerätes empfohlen. Möchtest du jetzt Neustarten?</string>
     <string name="unknown_link">Noch nicht vom Entwickler zu Verfügung gestellt!</string>
     <string name="remove">Entfernen</string>
     <string name="share_channel_message">Um den Update Kanal zu konfigurieren, einfach \'%s\' eingeben bei SmartPack-Kernel Manager -> SmartPack -> Update Kanal Url.\n\nHole SmartPack-Kernel Manager vom GitHub:</string>
