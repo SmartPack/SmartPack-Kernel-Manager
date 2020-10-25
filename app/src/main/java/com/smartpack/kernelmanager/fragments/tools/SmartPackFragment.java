@@ -467,47 +467,19 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     R.array.reboot_options), (dialog, i) -> {
                         switch (i) {
                             case 0:
-                                new Dialog(requireActivity())
-                                        .setMessage(getString(R.string.sure_question))
-                                        .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
-                                        })
-                                        .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                                            new Execute().execute(Utils.prepareReboot() + " -p");
-                                        })
-                                        .show();
+                                new Execute().execute(Utils.prepareReboot() + " -p");
                                 break;
                             case 1:
-                                new Dialog(requireActivity())
-                                        .setMessage(getString(R.string.sure_question))
-                                        .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
-                                        })
-                                        .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                                            Utils.snackbar(getRootView(), getString(R.string.rebooting_message));
-                                            new Execute().execute(Utils.prepareReboot());
-                                        })
-                                        .show();
+                                Utils.snackbar(getRootView(), getString(R.string.rebooting_message));
+                                new Execute().execute(Utils.prepareReboot());
                                 break;
                             case 2:
-                                new Dialog(requireActivity())
-                                        .setMessage(getString(R.string.sure_question))
-                                        .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
-                                        })
-                                        .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                                            Utils.snackbar(getRootView(), getString(R.string.rebooting_message));
-                                            new Execute().execute(Utils.prepareReboot() + " recovery");
-                                        })
-                                        .show();
+                                Utils.snackbar(getRootView(), getString(R.string.rebooting_message));
+                                new Execute().execute(Utils.prepareReboot() + " recovery");
                                 break;
                             case 3:
-                                new Dialog(requireActivity())
-                                        .setMessage(getString(R.string.sure_question))
-                                        .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
-                                        })
-                                        .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                                            Utils.snackbar(getRootView(), getString(R.string.rebooting_message));
-                                            new Execute().execute(Utils.prepareReboot() + " bootloader");
-                                        })
-                                        .show();
+                                Utils.snackbar(getRootView(), getString(R.string.rebooting_message));
+                                new Execute().execute(Utils.prepareReboot() + " bootloader");
                                 break;
                         }
                     }).setOnDismissListener(dialog -> mOptionsDialog = null);
