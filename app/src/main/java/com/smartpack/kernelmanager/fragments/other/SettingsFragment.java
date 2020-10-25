@@ -29,8 +29,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
-import android.text.InputType;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,9 +36,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.ContextThemeWrapper;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.core.content.ContextCompat;
-import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -86,17 +82,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private static final String KEY_ENABLE_ON_BOOT = "enable_onboot";
     private static final String KEY_APPLY_ON_BOOT_TEST = "applyonboottest";
     private static final String KEY_SECURITY_CATEGORY = "security_category";
-    private static final String KEY_SET_PASSWORD = "set_password";
-    private static final String KEY_DELETE_PASSWORD = "delete_password";
-    private static final String KEY_FINGERPRINT = "fingerprint";
+    private static final String KEY_BIOMETRIC = "biometric";
     private static final String KEY_SECTIONS = "sections";
     private static final String KEY_DEFAULT_SECTIONS = "default_section";
 
     private View mRootView;
-    private Preference mFingerprint;
 
-    private String mOldPassword;
-    private String mDeletePassword;
     private int mColorSelection = -1;
 
     @Override
@@ -123,12 +114,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     @Override
     public void onResume() {
         super.onResume();
-        if (mOldPassword != null) {
-            editPasswordDialog(mOldPassword);
-        }
-        if (mDeletePassword != null) {
-            deletePasswordDialog(mDeletePassword);
-        }
         if (mColorSelection >= 0) {
             colorDialog(mColorSelection);
         }
@@ -162,21 +147,15 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         findPreference(KEY_SECTIONS_ICON).setOnPreferenceChangeListener(this);
         findPreference(KEY_ENABLE_ON_BOOT).setOnPreferenceChangeListener(this);
         findPreference(KEY_APPLY_ON_BOOT_TEST).setOnPreferenceClickListener(this);
-        findPreference(KEY_SET_PASSWORD).setOnPreferenceClickListener(this);
-        findPreference(KEY_DELETE_PASSWORD).setOnPreferenceClickListener(this);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M
-                || !FingerprintManagerCompat.from(requireActivity()).isHardwareDetected()) {
-            ((PreferenceCategory) Objects.requireNonNull(findPreference(KEY_SECURITY_CATEGORY))).removePreference(
-                    Objects.requireNonNull(findPreference(KEY_FINGERPRINT)));
-        } else {
-            mFingerprint = findPreference(KEY_FINGERPRINT);
-            assert mFingerprint != null;
-            mFingerprint.setEnabled(!Prefs.getString("password", "", getActivity()).isEmpty());
+        if (!Utils.isFingerprintAvailable(getActivity())) {
+            PreferenceCategory sectionSecurity = findPreference(KEY_SECURITY_CATEGORY);
+            assert sectionSecurity != null;
+            getPreferenceScreen().removePreference(sectionSecurity);
         }
 
         NavigationActivity activity = (NavigationActivity) requireActivity();
-        PreferenceCategory sectionsCategory = (PreferenceCategory) findPreference(KEY_SECTIONS);
+        PreferenceCategory sectionsCategory = findPreference(KEY_SECTIONS);
 
         ListPreference defaultSection = findPreference(KEY_DEFAULT_SECTIONS);
         List<CharSequence> defaultSections = new ArrayList<>();
@@ -243,6 +222,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 if (!Prefs.getBoolean("enable_onboot", true, getActivity())) {
                     Utils.snackbar(mRootView, getString(R.string.enable_onboot_message));
                 }
+                return true;
+            case KEY_BIOMETRIC:
+                Prefs.saveBoolean("use_biometric", checked, getActivity());
                 return true;
             default:
                 if (key.equals(KEY_SECTIONS_ICON) || key.endsWith("_enabled")) {
@@ -312,109 +294,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                     Utils.startService(getActivity(), intent);
                 }
                 return true;
-            case KEY_SET_PASSWORD:
-                editPasswordDialog(Prefs.getString("password", "", getActivity()));
-                return true;
-            case KEY_DELETE_PASSWORD:
-                deletePasswordDialog(Prefs.getString("password", "", getActivity()));
-                return true;
         }
         return false;
-    }
-
-    private void editPasswordDialog(final String oldPass) {
-        mOldPassword = oldPass;
-
-        LinearLayout linearLayout = new LinearLayout(getActivity());
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.setGravity(Gravity.CENTER);
-        int padding = Math.round(getResources().getDimension(R.dimen.dialog_padding));
-        linearLayout.setPadding(padding, padding, padding, padding);
-
-        final AppCompatEditText oldPassword = new AppCompatEditText(requireActivity());
-        if (!oldPass.isEmpty()) {
-            oldPassword.setInputType(InputType.TYPE_CLASS_TEXT
-                    | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            oldPassword.setHint(getString(R.string.old_password));
-            linearLayout.addView(oldPassword);
-        }
-
-        final AppCompatEditText newPassword = new AppCompatEditText(requireActivity());
-        newPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        newPassword.setHint(getString(R.string.new_password));
-        linearLayout.addView(newPassword);
-
-        final AppCompatEditText confirmNewPassword = new AppCompatEditText(requireActivity());
-        confirmNewPassword.setInputType(InputType.TYPE_CLASS_TEXT
-                | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        confirmNewPassword.setHint(getString(R.string.confirm_new_password));
-        linearLayout.addView(confirmNewPassword);
-
-        new Dialog(requireActivity()).setView(linearLayout)
-                .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                })
-                .setPositiveButton(getString(R.string.ok), (dialogInterface, i) -> {
-                    if (!oldPass.isEmpty() && !Objects.requireNonNull(oldPassword.getText()).toString().equals(Utils
-                            .decodeString(oldPass))) {
-                        Utils.snackbar(mRootView, getString(R.string.old_password_wrong));
-                        return;
-                    }
-
-                    if (Objects.requireNonNull(newPassword.getText()).toString().isEmpty()) {
-                        Utils.snackbar(mRootView, getString(R.string.password_empty));
-                        return;
-                    }
-
-                    if (!newPassword.getText().toString().equals(Objects.requireNonNull(confirmNewPassword.getText())
-                            .toString())) {
-                        Utils.snackbar(mRootView, getString(R.string.password_not_match));
-                        return;
-                    }
-
-                    if (newPassword.getText().toString().length() > 32) {
-                        Utils.snackbar(mRootView, getString(R.string.password_too_long));
-                        return;
-                    }
-
-                    Prefs.saveString("password", Utils.encodeString(newPassword.getText()
-                            .toString()), getActivity());
-                    if (mFingerprint != null) {
-                        mFingerprint.setEnabled(true);
-                    }
-                }).setOnDismissListener(dialogInterface -> mOldPassword = null).show();
-    }
-
-    private void deletePasswordDialog(final String password) {
-        if (password.isEmpty()) {
-            Utils.snackbar(mRootView, getString(R.string.set_password_first));
-            return;
-        }
-
-        mDeletePassword = password;
-
-        LinearLayout linearLayout = new LinearLayout(getActivity());
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.setGravity(Gravity.CENTER);
-        int padding = Math.round(getResources().getDimension(R.dimen.dialog_padding));
-        linearLayout.setPadding(padding, padding, padding, padding);
-
-        final AppCompatEditText mPassword = new AppCompatEditText(requireActivity());
-        mPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        mPassword.setHint(getString(R.string.password));
-        linearLayout.addView(mPassword);
-
-        new Dialog(requireActivity()).setView(linearLayout)
-                .setPositiveButton(getString(R.string.ok), (dialogInterface, i) -> {
-                    if (!Objects.requireNonNull(mPassword.getText()).toString().equals(Utils.decodeString(password))) {
-                        Utils.snackbar(mRootView, getString(R.string.password_wrong));
-                        return;
-                    }
-
-                    Prefs.saveString("password", "", getActivity());
-                    if (mFingerprint != null) {
-                        mFingerprint.setEnabled(false);
-                    }
-                }).setOnDismissListener(dialogInterface -> mDeletePassword = null).show();
     }
 
     private void colorDialog(int selection) {

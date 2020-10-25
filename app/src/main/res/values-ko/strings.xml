@@ -10,8 +10,6 @@
     <string name="open">%s 열기</string>
 
     <!-- Security -->
-    <string name="password">비밀번호</string>
-    <string name="password_wrong">비밀번호가 불일치합니다!</string>
 
     <string name="select_picture">사진 선택</string>
     <string name="no_picture">사진이 없습니다!</string>
@@ -1000,18 +998,6 @@
     <string name="driver_ramoops">드라이버 Ramoops</string>
     <string name="driver_ramoops_summary">/sys/fs/pstore/dmesg-ramoops*을 \'sdcard\'에 저장합니다.</string>
     <string name="security">보안</string>
-    <string name="set_password">비밀번호 설정</string>
-    <string name="set_password_summary">비밀번호를 설정함으로써 SmartPack-Kernel Manager을 보호할 수 있습니다. 매번 이 앱을 켤 때마다 비밀번호를 풀어야 합니다. 비밀번호를 잃어버렀다면 이 앱의 데이터를 기기의 설정에서 지우세요. 걱정마세요, 저는 여러분의 비밀번호를 공유하지 않습니다.</string>
-    <string name="delete_password">비밀번호 지우기</string>
-    <string name="old_password">이전 비밀번호</string>
-    <string name="new_password">새 비밀번호</string>
-    <string name="confirm_new_password">새 비밀번호 확인</string>
-    <string name="old_password_wrong">이전 비밀번호가 다릅니다!</string>
-    <string name="password_empty">비밀번호가 비었습니다!</string>
-    <string name="password_not_match">새 비밀번호가 서로 다릅니다!</string>
-    <string name="password_too_long">비밀번호가 너무 깁니다! (최대 32개의 글자)</string>
-    <string name="set_password_first">비밀번호를 먼저 설정하세요!</string>
-    <string name="fingerprint_summary">보안 방식으로 지문을 사용합니다. 이것은 지문이 등록되어 있다면 작동할 것입니다.</string>
     <string name="sections">페이지</string>
 
     <!-- About -->

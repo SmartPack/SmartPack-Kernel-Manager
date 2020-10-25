@@ -11,8 +11,4 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="Swirl">
-        <item name="swirl_errorColor">?attr/colorAccent</item>
-        <item name="swirl_ridgeColor">?android:attr/textColorSecondary</item>
-    </style>
 </resources>

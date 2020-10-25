@@ -9,8 +9,6 @@
     <string name="open">Abriendo %s</string>
 
     <!-- Security -->
-    <string name="password">Contraseña</string>
-    <string name="password_wrong">La contraseña es incorrecta</string>
 
     <string name="select_picture">Seleccionar Imagen</string>
     <string name="no_picture">No hay imagen</string>
@@ -1086,18 +1084,6 @@
     <string name="driver_ramoops">Driver Ramoops</string>
     <string name="driver_ramoops_summary">Save /sys/fs/pstore/dmesg-ramoops* into \'sdcard\'</string>
     <string name="security">Security</string>
-    <string name="set_password">Set Password</string>
-    <string name="set_password_summary">You can protect SmartPack-Kernel Manager by setting up a password. Every time you open this application, you have to enter it. If you forget it, simply wipe the data of this application in settings of your device. Don\'t worry I won\'t share your password.</string>
-    <string name="delete_password">Delete Password</string>
-    <string name="old_password">Old password</string>
-    <string name="new_password">New password</string>
-    <string name="confirm_new_password">Confirm new password</string>
-    <string name="old_password_wrong">Old password is wrong</string>
-    <string name="password_empty">Password is empty</string>
-    <string name="password_not_match">New password doesn\'t match confirmation</string>
-    <string name="password_too_long">Password is too long (max. 32 characters)</string>
-    <string name="set_password_first">Set a password first</string>
-    <string name="fingerprint_summary">Use fingerprint to pass security check. This will work as long you have fingerprints registered.</string>
     <string name="sections">Sections</string>
     <string name="default_section">Default Section</string>
     <string name="default_section_summary">The default tab to be displayed when opening the app!</string>

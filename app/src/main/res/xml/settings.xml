@@ -81,17 +81,11 @@
     <PreferenceCategory
         android:key="security_category"
         android:title="@string/security">
-        <Preference
-            android:key="set_password"
-            android:summary="@string/set_password_summary"
-            android:title="@string/set_password" />
-        <Preference
-            android:key="delete_password"
-            android:summary="@string/delete_password" />
+
         <SwitchPreferenceCompat
-            android:key="fingerprint"
-            android:summary="@string/fingerprint_summary"
-            android:title="@string/fingerprint" />
+            android:key="use_biometric"
+            android:summary="@string/biometric_summary"
+            android:title="@string/biometric" />
     </PreferenceCategory>
 
     <PreferenceCategory

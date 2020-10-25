@@ -146,7 +146,6 @@
     <string name="cluster_return_freq">Частота повернення кластера</string>
     <string name="collecting_info">Збір інформації</string>
     <string name="commits">Зміни: %d</string>
-    <string name="confirm_new_password">Підтвердіть новий пароль</string>
     <string name="confirmation_notification">Повідомлення підтвердження</string>
     <string name="conservative">Консервативний</string>
     <string name="console_ramoops">Console Ramoops</string>
@@ -226,7 +225,6 @@
     <string name="delay">Затримка</string>
     <string name="delay_summary">Час між перевірками.</string>
     <string name="delete">Видалити</string>
-    <string name="delete_password">Видалити пароль</string>
     <string name="delete_question">Видалити %s ?</string>
     <string name="details">Деталі</string>
     <string name="devfreq_boost">Devfreq Boost</string>
@@ -332,7 +330,6 @@
     <string name="fifty_sec">50 секунд</string>
     <string name="file_size_limit">Зверніть увагу: з міркувань безпеки файли відновлення розміром більше 100 МБ не можуть бути прошиті</string>
     <string name="fingerprint">Відбиток</string>
-    <string name="fingerprint_summary">Використовувати відбиток пальця для проходження перевірки безпеки. Це буде працювати до тих пір, поки у вас є зареєстровані відбитки.</string>
     <string name="first_level">Перший рівень</string>
     <string name="first_level_summary">Поріг завантаження для включення всіх CPU.</string>
     <string name="five_sec">5 секунд</string>
@@ -603,7 +600,6 @@
     <string name="netlink_wakelock_summary">Запобігти NetLink wakelock.</string>
     <string name="network">Мережа</string>
     <string name="new_mode">Новий</string>
-    <string name="new_password">Новий пароль</string>
     <string name="night_mode_schedule">Розклад нічного режиму</string>
     <string name="nightmode_rgb">Кольору нічного режиму</string>
     <string name="no_busybox">Busybox відсутній</string>
@@ -631,8 +627,6 @@
     <string name="offline_load_summary">Не автономному режимі процесор, якщо він падає під більш низького рівня до порога навантаження.</string>
     <string name="offset">Зміщення</string>
     <string name="ok">Ок</string>
-    <string name="old_password">Старий пароль</string>
-    <string name="old_password_wrong">Старий пароль невірний</string>
     <string name="on">Вкл</string>
     <string name="on_boot">При завантаженні</string>
     <string name="on_boot_welcome_summary">Цей розділ показує вам, що станеться, коли ваш пристрій завантажиться. Якщо він порожній, то нічого не станеться після завантаження.</string>
@@ -660,11 +654,6 @@ SmartPack-Kernel Manager.
     <string name="pages_to_scan">Сторінки для сканування</string>
     <string name="pages_unshared">Необ\'єднаних сторінок</string>
     <string name="pages_volatile">Необ\'єднаних сторінок</string>
-    <string name="password">Пароль</string>
-    <string name="password_empty">Пароль порожній</string>
-    <string name="password_not_match">Новий пароль не співпадає з підтвердженням</string>
-    <string name="password_too_long">Пароль задовгий (макс. 32 символів)</string>
-    <string name="password_wrong">Невірний пароль</string>
     <string name="pause">Пауза</string>
     <string name="pause_summary">Якщо ще щось включається в процесор, засипайте на це багато мілісекунд часу.</string>
     <string name="per_channel_controls">Управління по каналам</string>
@@ -805,9 +794,6 @@ SmartPack-Kernel Manager.
     <string name="select_question">Вибрати %s ?</string>
     <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>
     <string name="sensor_ind_wakelock_summary">Запобігти wakelock при відключенні функції Ambient Display.</string>
-    <string name="set_password">Встановити пароль</string>
-    <string name="set_password_first">Спочатку встановіть пароль</string>
-    <string name="set_password_summary">Ви можете захистити SmartPack-Kernel Manager, встановивши пароль. Кожен раз, коли ви відкриєте цей додаток, ви повинні ввести його. Якщо ви його забудете, просто зітріть дані цього додатку в налаштуваннях вашого пристрою. Не хвилюйтеся, я не поділюся вашим паролем.</string>
     <string name="settings">Налаштування</string>
     <string name="sha1">Secure Hash Algorithm</string>
     <string name="sha1_summary">sha1</string>

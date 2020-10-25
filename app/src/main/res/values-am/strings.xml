@@ -10,8 +10,6 @@
     <string name="open">%s ክፈት</string>
 
     <!-- Security -->
-    <string name="password">የይለፍ ቃል</string>
-    <string name="password_wrong">የይለፍ ቃል የተሳሳተ ነው</string>
 
     <string name="select_picture">ስዕል ይምረጡ</string>
     <string name="no_picture">ስዕል የለም</string>
@@ -1064,18 +1062,6 @@
     <string name="driver_ramoops">ሾፌር ራምፖስ</string>
     <string name="driver_ramoops_summary">አስቀምጥ /sys/fs/pstore/dmesg-ramoops* ን ወደ \'sdcard\'</string>
     <string name="security">ደህንነት</string>
-    <string name="set_password">የይለፍ ቃል ያዘጋጁ</string>
-    <string name="set_password_summary">የይለፍ ቃል በማዘጋጀት የስማርትፎን-ኪነል አስተዳዳሪን መጠበቅ ይችላሉ። ይህንን መተግበሪያ በከፈቱ ቁጥር እሱን ማስገባት አለብዎት ፡፡ ከረሱት በቀላሉ በመሣሪያዎ ቅንብሮች ውስጥ የዚህን መተግበሪያ ውሂብ በቀላሉ ያጽዱ። አይጨነቁ። የይለፍ ቃልዎን አላጋራም ብለው አይጨነቁ።</string>
-    <string name="delete_password">የይለፍ ቃል ሰርዝ</string>
-    <string name="old_password">የድሮ ይለፍ ቃል</string>
-    <string name="new_password">አዲስ የይለፍ ቃል</string>
-    <string name="confirm_new_password">አዲሱን የይለፍ ቃል አረጋግጥ</string>
-    <string name="old_password_wrong">የድሮ ይለፍ ቃል የተሳሳተ ነው</string>
-    <string name="password_empty">የይለፍ ቃል ባዶ ነው</string>
-    <string name="password_not_match">"አዲስ የይለፍ ቃል ማረጋገጫ ተዛማጅ አይደለም ፡፡"</string>
-    <string name="password_too_long">የይለፍ ቃል በጣም ረጅም ነው (ከፍተኛ 32 ቁምፊዎች)</string>
-    <string name="set_password_first">መጀመሪያ የይለፍ ቃል ያዘጋጁ</string>
-    <string name="fingerprint_summary">የደህንነት ፍተሻውን ለማለፍ የጣት አሻራ ይጠቀሙ። የጣት አሻራዎች እስከተመዘገቡ ድረስ ይህ ይሠራል ፡፡</string>
     <string name="sections">ክፍሎች</string>
 
     <!-- About -->
