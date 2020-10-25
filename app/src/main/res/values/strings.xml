@@ -15,12 +15,12 @@
     <string name="no_root_message"><b>Why this issue happened?</b>\n\nYour device is either not rooted, or the root permission is declined for SmartPack-Kernel Manager by you!\n\n\n<b>Why root permission needed?</b>\n\nIn order to control kernel parameters, SmartPack-Kernel Manager need to modify some system files, that are not accessible without root!\n\n\n<b>How can I root my device?</b>\n\nA simple google search will help to find many guides to achieve root on your device. Please have a look at it!\n\n\n<b>Is rooting a device safe?</b>\n\nRooting poses some security risk, but it\'s generally safe to do!</string>
 
     <!-- Security -->
-
     <string name="select_picture">Select Picture</string>
     <string name="no_picture">No Picture</string>
     <string name="went_wrong">Something went wrong!</string>
     <string name="press_back_again_exit">Press back again to exit</string>
     <string name="cancel">Cancel</string>
+    <string name="dismiss">Dismiss</string>
     <string name="ok">OK</string>
     <string name="yes">YES</string>
     <string name="unknown">Unknown</string>
