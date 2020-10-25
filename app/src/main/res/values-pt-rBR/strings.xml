@@ -8,8 +8,6 @@
     <string name="open">Abrir %s</string>
 
     <!-- Security -->
-    <string name="password">Senha</string>
-    <string name="password_wrong">A senha está errada</string>
 
     <string name="select_picture">Selecionar imagem</string>
     <string name="no_picture">Nenhuma imagem</string>
@@ -965,18 +963,6 @@
     <string name="driver_ramoops">Driver ramoops</string>
     <string name="driver_ramoops_summary">Salvar /sys/fs/pstore/dmesg-ramoops* no \'sdcard\'</string>
     <string name="security">Segurança</string>
-    <string name="set_password">Definir senha</string>
-    <string name="set_password_summary">Você pode proteger o SmartPack-Kernel Manager configurando uma senha. Toda vez que você abrir esse aplicativo, sera necessário inseri-la. Caso esqueça, limpe os dados deste aplicativo nas configurações do seu dispositivo. Não se preocupe, não vou compartilhar sua senha.</string>
-    <string name="delete_password">Deletar senha</string>
-    <string name="old_password">Senha antiga</string>
-    <string name="new_password">Senha nova</string>
-    <string name="confirm_new_password">Confirmar senha nova</string>
-    <string name="old_password_wrong">Senha antiga incorreta</string>
-    <string name="password_empty">A senha está vazia</string>
-    <string name="password_not_match">A nova senha não corresponde à confirmação</string>
-    <string name="password_too_long">A senha é muito longa (máx. 32 caracteres)</string>
-    <string name="set_password_first">Defina uma senha primeiro</string>
-    <string name="fingerprint_summary">Usar impressão digital para passar na verificação de segurança. Isso funcionará desde que você tenha impressões digitais registradas.</string>
     <string name="sections">Seções</string>
     <string name="default_section">Seção padrão</string>
     <string name="default_section_summary">A tela padrão a ser exibida ao abrir o aplicativo</string>

@@ -9,8 +9,6 @@
     <string name="open">Öffne %s</string>
 
     <!-- Security -->
-    <string name="password">Passwort</string>
-    <string name="password_wrong">Passwort ist falsch</string>
 
     <string name="select_picture">Bild auswählen</string>
     <string name="no_picture">Kein Bild</string>
@@ -1089,18 +1087,6 @@
     <string name="driver_ramoops">Treiber Ramoops</string>
     <string name="driver_ramoops_summary">Speichere /sys/fs/pstore/dmesg-ramoops* in \'sdcard\'</string>
     <string name="security">Sicherheit</string>
-    <string name="set_password">Passwort setzten</string>
-    <string name="set_password_summary">Du kannst SmartPack-Kernel Manager mit einem Passwort absichern. Es wird bei jedem Start der App benötigt. Wenn du es vergessen hast setzte die App in den Systemeinstellungen zurück. Keine Sorge das Passwort wird nicht verbreitet.</string>
-    <string name="delete_password">Passwort löschen</string>
-    <string name="old_password">Altes Passwort</string>
-    <string name="new_password">Neues Passwort</string>
-    <string name="confirm_new_password">Neues Passwort bestätigen</string>
-    <string name="old_password_wrong">Altes Passwort ist falsch</string>
-    <string name="password_empty">Passwort ist leer</string>
-    <string name="password_not_match">Das neue Passwort stimmt nicht mit der Bestätigung überein!</string>
-    <string name="password_too_long">Passwort ist zu lang (max. 32 Zeichen)</string>
-    <string name="set_password_first">Wähle zuerst ein Passwort aus</string>
-    <string name="fingerprint_summary">Fingerabdruck für den Sicherheitscheck verwenden. Dies funktioniert nur sollange Fingerabdrücke hinterlegt wurden.</string>
     <string name="sections">Auswahl</string>
     <string name="default_section">Standard Auswahl</string>
     <string name="default_section_summary">Der standert Tab der beim öffnen der App angezeigt wird!</string>

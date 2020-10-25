@@ -46,7 +46,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.biometric.BiometricPrompt;
 import androidx.core.content.FileProvider;
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 import androidx.core.view.ViewCompat;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -89,6 +91,8 @@ import java.util.concurrent.TimeUnit;
  * Created by willi on 14.04.16.
  */
 public class Utils {
+
+    public static BiometricPrompt.PromptInfo mPromptInfo;
 
     public static boolean mBattery = false;
     public static boolean mCPU = false;
@@ -161,6 +165,18 @@ public class Utils {
     public static boolean isTv(Context context) {
         return ((UiModeManager) Objects.requireNonNull(context.getSystemService(Context.UI_MODE_SERVICE)))
                 .getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION;
+    }
+
+    public static boolean isFingerprintAvailable(Context context) {
+        FingerprintManagerCompat fingerprintManager = FingerprintManagerCompat.from(context);
+        return fingerprintManager.hasEnrolledFingerprints();
+    }
+
+    public static void showBiometricPrompt(Context context) {
+        mPromptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle(context.getString(R.string.authenticate))
+                .setNegativeButtonText(context.getString(R.string.cancel))
+                .build();
     }
 
     public static void setupStartActivity(Context context) {

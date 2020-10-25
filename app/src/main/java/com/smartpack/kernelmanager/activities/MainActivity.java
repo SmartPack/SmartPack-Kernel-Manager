@@ -103,13 +103,11 @@ public class MainActivity extends BaseActivity {
 
         if (savedInstanceState == null) {
             /*
-             * Launch password activity when one is set,
+             * Launch biometric authentication dialogue if enabled by user,
              * otherwise run {@link CheckingTask}
              */
-            String password;
-            if (!(password = Prefs.getString("password", "", this)).isEmpty()) {
+            if (Prefs.getBoolean("use_biometric", false, this)) {
                 Intent intent = new Intent(this, SecurityActivity.class);
-                intent.putExtra(SecurityActivity.PASSWORD_INTENT, password);
                 startActivityForResult(intent, 0);
             } else {
                 new CheckingTask(this).execute();

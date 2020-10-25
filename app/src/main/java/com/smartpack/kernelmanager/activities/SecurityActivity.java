@@ -19,175 +19,52 @@
  */
 package com.smartpack.kernelmanager.activities;
 
-import android.app.KeyguardManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.security.keystore.KeyGenParameterSpec;
-import android.security.keystore.KeyProperties;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
-import androidx.appcompat.view.ContextThemeWrapper;
-import androidx.appcompat.widget.AppCompatEditText;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 
 import com.smartpack.kernelmanager.R;
-import com.smartpack.kernelmanager.utils.FingerprintUiHelper;
-import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
-import com.mattprecious.swirl.SwirlView;
 
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
-import java.util.Objects;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
+import java.util.concurrent.Executor;
 
 /**
  * Created by willi on 27.07.16.
  */
 public class SecurityActivity extends BaseActivity {
 
-    public static final String PASSWORD_INTENT = "password";
-    private static final String KEY_NAME = "fp_key";
-    private static final String SECRET_MESSAGE = "secret_message";
-
-    private View mPasswordWrong;
-    private FingerprintManagerCompat mFingerprintManagerCompat;
-    private Cipher mCipher;
-    private FingerprintUiHelper mFingerprintUiHelper;
-    private FingerprintManagerCompat.CryptoObject mCryptoObject;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_security);
 
-        final String password = Utils.decodeString(getIntent().getStringExtra(PASSWORD_INTENT));
-        AppCompatEditText editText = findViewById(R.id.edittext);
-        mPasswordWrong = findViewById(R.id.password_wrong);
-        editText.addTextChangedListener(new TextWatcher() {
+        Executor executor = ContextCompat.getMainExecutor(this);
+        BiometricPrompt mBiometricPrompt = new BiometricPrompt(this, executor, new BiometricPrompt.AuthenticationCallback() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+                finish();
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                setResult(1);
+                finish();
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-                if (editable.toString().equals(password)) {
-                    mPasswordWrong.setVisibility(View.GONE);
-                    setResult(1);
-                    finish();
-                } else {
-                    mPasswordWrong.setVisibility(editable.toString().isEmpty() ? View.GONE : View.VISIBLE);
-                }
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+                finish();
             }
         });
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && Prefs.getBoolean("fingerprint", false, this)) {
-            mFingerprintManagerCompat = FingerprintManagerCompat.from(this);
-            if (mFingerprintManagerCompat.isHardwareDetected()
-                    && mFingerprintManagerCompat.hasEnrolledFingerprints()
-                    && Objects.requireNonNull(getSystemService(KeyguardManager.class)).isDeviceSecure()) {
-                loadFingerprint();
-            }
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void loadFingerprint() {
-        try {
-            KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
-            KeyGenerator keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
-            mCipher = Cipher.getInstance(KeyProperties.KEY_ALGORITHM_AES + "/"
-                    + KeyProperties.BLOCK_MODE_CBC + "/"
-                    + KeyProperties.ENCRYPTION_PADDING_PKCS7);
-
-            keyStore.load(null);
-            keyGenerator.init(new KeyGenParameterSpec.Builder(KEY_NAME,
-                    KeyProperties.PURPOSE_ENCRYPT |
-                            KeyProperties.PURPOSE_DECRYPT)
-                    .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
-                    .setUserAuthenticationRequired(true)
-                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7)
-                    .build());
-            keyGenerator.generateKey();
-
-            SecretKey key = (SecretKey) keyStore.getKey(KEY_NAME, null);
-            mCipher.init(Cipher.ENCRYPT_MODE, key);
-        } catch (KeyStoreException | NoSuchProviderException | NoSuchAlgorithmException
-                | NoSuchPaddingException | UnrecoverableKeyException | InvalidKeyException
-                | CertificateException | InvalidAlgorithmParameterException | IOException e) {
-            return;
-        }
-
-        mCryptoObject = new FingerprintManagerCompat.CryptoObject(mCipher);
-        FrameLayout fingerprintParent = findViewById(R.id.fingerprint_parent);
-        final SwirlView swirlView = new SwirlView(new ContextThemeWrapper(this, R.style.Swirl));
-        swirlView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT));
-        fingerprintParent.addView(swirlView);
-        fingerprintParent.setVisibility(View.VISIBLE);
-
-        mFingerprintUiHelper = new FingerprintUiHelper.FingerprintUiHelperBuilder(
-                mFingerprintManagerCompat).build(swirlView,
-                new FingerprintUiHelper.Callback() {
-                    @Override
-                    public void onAuthenticated() {
-                        try {
-                            mCipher.doFinal(SECRET_MESSAGE.getBytes());
-                            mPasswordWrong.setVisibility(View.GONE);
-                            setResult(1);
-                            finish();
-                        } catch (IllegalBlockSizeException | BadPaddingException e) {
-                            e.printStackTrace();
-                            swirlView.setState(SwirlView.State.ERROR);
-                        }
-                    }
-
-                    @Override
-                    public void onError() {
-                    }
-                });
-        mFingerprintUiHelper.startListening(mCryptoObject);
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (mFingerprintUiHelper != null) {
-            mFingerprintUiHelper.startListening(mCryptoObject);
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (mFingerprintUiHelper != null) {
-            mFingerprintUiHelper.stopListening();
-        }
+        Utils.showBiometricPrompt(this);
+        mBiometricPrompt.authenticate(Utils.mPromptInfo);
     }
 
 }

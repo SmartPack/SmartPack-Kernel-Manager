@@ -11,8 +11,6 @@
     <string name="open">開啟 %s</string>
 
     <!-- Security -->
-    <string name="password">密碼</string>
-    <string name="password_wrong">密碼錯誤</string>
     <string name="select_picture">選擇圖片</string>
     <string name="no_picture">沒有圖片</string>
     <string name="went_wrong">出現錯誤！</string>
@@ -914,18 +912,6 @@
     <string name="driver_message_summary">將驅動程式訊息 (dmesg） 複製到 /sdcard/dmesg.txt</string>
     <string name="driver_ramoops_summary">儲存 /sys/fs/pstore/dmesg-ramoops* 到 \'sdcard\'</string>
     <string name="security">安全</string>
-    <string name="set_password">設定密碼</string>
-    <string name="set_password_summary">您可以透過設定密碼來保護 SmartPack 核心管理器。每次打開此應用程式，您必須輸入它。如果您忘記了，只需在裝置的設定中刪除此應用程式的資料即可。別擔心，我不會共享您的密碼。</string>
-    <string name="delete_password">刪除密碼</string>
-    <string name="old_password">舊密碼</string>
-    <string name="new_password">新密碼</string>
-    <string name="confirm_new_password">確認新密碼</string>
-    <string name="old_password_wrong">舊密碼錯誤</string>
-    <string name="password_empty">密碼為空</string>
-    <string name="password_not_match">新密碼不相符</string>
-    <string name="password_too_long">密碼太長（最多32個字元）</string>
-    <string name="set_password_first">首先設定密碼</string>
-    <string name="fingerprint_summary">使用指紋傳遞安全檢查。這將運作，只要你有指紋註冊。</string>
     <string name="sections">部分</string>
 
     <!-- About -->

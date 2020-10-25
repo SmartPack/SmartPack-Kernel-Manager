@@ -57,6 +57,7 @@ dependencies {
         transitive = true
     }
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.biometric:biometric:1.0.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.preference:preference:1.1.1'
     implementation "com.github.topjohnwu.libsu:core:3.0.2"

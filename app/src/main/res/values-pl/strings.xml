@@ -10,8 +10,6 @@
     <string name="open">Otwórz %s</string>
 
     <!-- Security -->
-    <string name="password">Hasło</string>
-    <string name="password_wrong">Hasło jest nieprawidłowe</string>
 
     <string name="select_picture">Wybierz Obraz</string>
     <string name="no_picture">Brak obrazka</string>
@@ -1091,18 +1089,6 @@
     <string name="driver_ramoops">Kierowca Ramoops</string>
     <string name="driver_ramoops_summary">Save /sys/fs/pstore/dmesg-ramoops* into \'sdcard\'</string>
     <string name="security">Bezpieczeństwo</string>
-    <string name="set_password">Ustaw hasło</string>
-    <string name="set_password_summary">Możesz chronić SmartPack-Kernel Manager poprzez ustawienie hasła. Za każdym razem, gdy otwierasz tę aplikację, musisz ją wprowadzić. Jeśli go zapomnisz, po prostu wyczyść dane tej aplikacji w ustawieniach swojego urządzenia. Nie martw się, nie udostępnię Twojego hasła.</string>
-    <string name="delete_password">Usuń hasło</string>
-    <string name="old_password">Stare hasło</string>
-    <string name="new_password">Nowe hasło</string>
-    <string name="confirm_new_password">Potwierdź nowe hasło</string>
-    <string name="old_password_wrong">Stare hasło jest nieprawidłowe</string>
-    <string name="password_empty">Hasło jest puste</string>
-    <string name="password_not_match">Nowe hasło nie pasuje do potwierdzenia</string>
-    <string name="password_too_long">Hasło jest za długie (maks. 32 znaki)</string>
-    <string name="set_password_first">Najpierw ustaw hasło</string>
-    <string name="fingerprint_summary">Użyj odcisku palca, aby przejść kontrolę bezpieczeństwa. Działa to tak długo, jak masz zarejestrowane odciski palców.</string>
     <string name="sections">Sekcje</string>
     <string name="default_section">Sekcja domyślna</string>
     <string name="default_section_summary">Domyślna karta wyświetlana podczas otwierania aplikacji!</string>

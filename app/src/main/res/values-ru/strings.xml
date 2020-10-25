@@ -7,8 +7,6 @@
     <string name="no_root">Рут отсутствует</string>
     <string name="no_busybox">Busybox отсутствует</string>
     <string name="open">Открыть %s</string>
-    <string name="password">Пароль</string>
-    <string name="password_wrong">Неверный пароль</string>
     <string name="select_picture">Выберите картинку</string>
     <string name="no_picture">Нет картинки</string>
     <string name="went_wrong">Что-то пошло не так!</string>
@@ -1004,18 +1002,6 @@
     <string name="driver_ramoops">Driver Ramoops</string>
     <string name="driver_ramoops_summary">"Сохранить /sys/fs/pstore/dmesg-ramoops* на  'sdcard'"</string>
     <string name="security">Безопасность</string>
-    <string name="set_password">Установить пароль</string>
-    <string name="set_password_summary">Вы можете защитить Kernel Adiutor, установив пароль. Каждый раз, когда вы откроете это приложение, вы должны ввести его. Если вы его забудете, просто сотрите данные этого приложения в настройках вашего устройства. Не волнуйтесь, я не поделюсь вашим паролем.</string>
-    <string name="delete_password">Удалить пароль</string>
-    <string name="old_password">Старый пароль</string>
-    <string name="new_password">Новый пароль</string>
-    <string name="confirm_new_password">Подтвердите новый пароль</string>
-    <string name="old_password_wrong">Старый пароль неверный</string>
-    <string name="password_empty">Пароль пуст</string>
-    <string name="password_not_match">Новый пароль не совпадает с подтверждением</string>
-    <string name="password_too_long">Пароль слишком длинный (макс. 32 символа)</string>
-    <string name="set_password_first">Сначала установите пароль</string>
-    <string name="fingerprint_summary">Использовать отпечаток пальца для прохождения проверки безопасности. Это будет работать до тех пор, пока у вас есть зарегистрированные отпечатки.</string>
     <string name="sections">Разделы</string>
     <string name="default_section">Вкладка по умолчанию</string>
     <string name="default_section_summary">Вкладка по умолчанию, которая будет отображаться при открытии приложения!</string>

@@ -15,8 +15,6 @@
     <string name="no_root_message"><b>Why this issue happened?</b>\n\nYour device is either not rooted, or the root permission is declined for SmartPack-Kernel Manager by you!\n\n\n<b>Why root permission needed?</b>\n\nIn order to control kernel parameters, SmartPack-Kernel Manager need to modify some system files, that are not accessible without root!\n\n\n<b>How can I root my device?</b>\n\nA simple google search will help to find many guides to achieve root on your device. Please have a look at it!\n\n\n<b>Is rooting a device safe?</b>\n\nRooting poses some security risk, but it\'s generally safe to do!</string>
 
     <!-- Security -->
-    <string name="password">Password</string>
-    <string name="password_wrong">Password is wrong</string>
 
     <string name="select_picture">Select Picture</string>
     <string name="no_picture">No Picture</string>
@@ -1110,18 +1108,9 @@
     <string name="driver_ramoops">Driver Ramoops</string>
     <string name="driver_ramoops_summary">Save /sys/fs/pstore/dmesg-ramoops* into \'sdcard\'</string>
     <string name="security">Security</string>
-    <string name="set_password">Set Password</string>
-    <string name="set_password_summary">You can protect SmartPack-Kernel Manager by setting up a password. Every time you open this application, you have to enter it. If you forget it, simply wipe the data of this application in settings of your device. Don\'t worry I won\'t share your password.</string>
-    <string name="delete_password">Delete Password</string>
-    <string name="old_password">Old password</string>
-    <string name="new_password">New password</string>
-    <string name="confirm_new_password">Confirm new password</string>
-    <string name="old_password_wrong">Old password is wrong</string>
-    <string name="password_empty">Password is empty</string>
-    <string name="password_not_match">New password doesn\'t match confirmation</string>
-    <string name="password_too_long">Password is too long (max. 32 characters)</string>
-    <string name="set_password_first">Set a password first</string>
-    <string name="fingerprint_summary">Use fingerprint to pass security check. This will work as long you have fingerprints registered.</string>
+    <string name="biometric">Biometric Authentication</string>
+    <string name="biometric_summary">Use biometric authentication to protect SmartPack-Kernel Manager.</string>
+    <string name="authenticate">Authenticate</string>
     <string name="sections">Sections</string>
     <string name="default_section">Default Section</string>
     <string name="default_section_summary">The default tab to be displayed when opening the app!</string>
