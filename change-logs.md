@@ -1,5 +1,9 @@
 # Change-logs
 
+## 126. October 26, 2020
+*Release-tag: beta_v14.0*<br>
+Replace password protection with Biometric authentication. Simplify & move reset app to Settings menu. Replaced toast messages with snackbar as much as possible. Miscellaneous changes.
+
 ## 125. October 15, 2020
 *Release-tag: beta_v13.8*<br>
 Improved Terminal page. Temporarily fixed on boot crashing (with some compromises). Updated progress message everywhere on app. Updated polish translation (credits: @Fruity-0). Miscellaneous changes.

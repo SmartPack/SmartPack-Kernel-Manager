@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Improved Terminal page.\n - Temporarily fixed on boot crashing (with some compromises).\n - Updated progress message everywhere on app.\n - Updated polish translation (credits: @Fruity-0).\n - Miscellaneous changes.",
+  "releaseNotes": "Change-logs\n - Replace password protection with Biometric authentication.\n - Simplify & move reset app to Settings menu.\n - Replaced toast messages with snackbar as much as possible.\n - Miscellaneous changes.",
   "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v13.8/com.smartpack.kernelmanager-v13.8-release.apk",
-  "sha1": "2c1f0768c70b3cfc64bf1d2f90a68bae1daab059",
-  "latestVersion": "13.8",
-  "latestVersionCode": 138
+  "sha1": "2f36e9ae72d0bd43f704c280a86ffb2737b06385",
+  "latestVersion": "14.0",
+  "latestVersionCode": 140
 }
