@@ -46,7 +46,7 @@ public class NoRootActivity extends BaseActivity {
         LinearLayout bbi = findViewById(R.id.bbi);
         AppCompatTextView mainTitle = findViewById(R.id.title_main);
         AppCompatTextView mainMessage = findViewById(R.id.message_main);
-        bbi.setOnClickListener(v -> launchBBI());
+        bbi.setOnClickListener(v -> Utils.launchUrl(bbi, "https://play.google.com/store/apps/details?id=com.smartpack.busyboxinstaller", this));
         if (Utils.mHasRoot && !Utils.mHasBusybox) {
             bbi.setVisibility(View.VISIBLE);
             mainTitle.setText(getString(R.string.no_busybox));
@@ -59,9 +59,5 @@ public class NoRootActivity extends BaseActivity {
         mBack.setOnClickListener(v -> onBackPressed());
         AppCompatTextView mCancel = findViewById(R.id.cancel_button);
         mCancel.setOnClickListener(v -> super.onBackPressed());
-    }
-
-    private void launchBBI() {
-        Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.busyboxinstaller", this);
     }
 }

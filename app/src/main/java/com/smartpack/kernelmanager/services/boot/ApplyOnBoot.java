@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.services.boot;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -64,6 +65,7 @@ public class ApplyOnBoot {
         void onFinish();
     }
 
+    @SuppressLint("StringFormatMatches")
     static boolean apply(final Context context, final ApplyOnBootListener listener) {
         if (!Prefs.getBoolean(ApplyOnBootFragment.getAssignment(CPUHotplugFragment.class), false, context)) {
             Prefs.remove("core_ctl_min_cpus_big", context);

@@ -57,8 +57,8 @@ public class FlashingActivity extends BaseActivity {
         mSaveButton.setOnClickListener(v -> {
             Utils.create("## Flasher log created by SmartPack-Kernel Manager\n\n" + SmartPack.mFlashingResult.toString(),
                     Utils.getInternalDataStorage() + "/flasher_log-" + SmartPack.mZipName.replace(".zip", ""));
-            Utils.toast(getString(R.string.flash_log_summary, Utils.getInternalDataStorage() + "/flasher_log-" +
-                    SmartPack.mZipName.replace(".zip", "")), this);
+            Utils.snackbar(mFlashingHeading, getString(R.string.flash_log_summary, Utils.getInternalDataStorage() + "/flasher_log-" +
+                    SmartPack.mZipName.replace(".zip", "")));
         });
         mCancelButton.setOnClickListener(v -> {
             onBackPressed();

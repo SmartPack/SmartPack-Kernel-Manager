@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
@@ -27,6 +28,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -103,13 +105,13 @@ public class ViewUtils {
     }
 
     public static Drawable getColoredIcon(int icon, Context context) {
-        Drawable drawable = context.getResources().getDrawable(icon);
+        @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable = context.getResources().getDrawable(icon);
         drawable.setTint(getThemeAccentColor(context));
         return drawable;
     }
 
     public static Drawable getWhiteColoredIcon(int icon, Context context) {
-        Drawable drawable = context.getResources().getDrawable(icon);
+        @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable = context.getResources().getDrawable(icon);
         drawable.setTint(Color.WHITE);
         return drawable;
     }
@@ -122,13 +124,13 @@ public class ViewUtils {
         void onClick(String text, String text2);
     }
 
-    public static Dialog dialogDonate(final Context context) {
+    public static Dialog dialogDonate(View view, Context context) {
         return new Dialog(context).setTitle(context.getString(R.string.donate))
                 .setMessage(context.getString(R.string.donate_summary))
                 .setNegativeButton(context.getString(R.string.donate_nope), (dialog, which) -> {
                 })
                 .setPositiveButton(context.getString(R.string.donate_yes), (dialog, which)
-                        -> Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.donate", context));
+                        -> Utils.launchUrl(view,"https://play.google.com/store/apps/details?id=com.smartpack.donate", context));
     }
 
     public static Dialog dialogEditTexts(String text, String text2, String hint, String hint2,

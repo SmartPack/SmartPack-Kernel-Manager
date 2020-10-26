@@ -211,7 +211,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 return true;
             case KEY_HIDE_BANNER:
                 if (!Utils.isDonated(requireActivity())) {
-                    ViewUtils.dialogDonate(getActivity()).show();
+                    ViewUtils.dialogDonate(mRootView, getActivity()).show();
                     return false;
                 }
                 return true;
@@ -283,7 +283,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                         Utils.snackbar(mRootView, getString(R.string.banner_resizer_message));
                     }
                 } else {
-                    ViewUtils.dialogDonate(getActivity()).show();
+                    ViewUtils.dialogDonate(mRootView, getActivity()).show();
                 }
                 return true;
             case KEY_ACCENT_COLOR:
@@ -297,7 +297,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                     }
                     colorDialog(sColors.indexOf(ViewUtils.getThemeAccentColor(requireActivity())));
                 } else {
-                    ViewUtils.dialogDonate(getActivity()).show();
+                    ViewUtils.dialogDonate(mRootView, getActivity()).show();
                 }
                 return true;
             case KEY_APPLY_ON_BOOT_TEST:

@@ -240,7 +240,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             info.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_info, requireContext()));
             info.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
             info.setTitle(getString(R.string.update_channel_info, Utils.getInternalDataStorage()));
-            info.setOnItemClickListener(item -> Utils.launchUrl("https://smartpack.github.io/kerneldownloads/", getActivity()));
+            info.setOnItemClickListener(item -> Utils.launchUrl(getRootView(), "https://smartpack.github.io/kerneldownloads/", getActivity()));
             info.setFullSpan(true);
             info.setOnMenuListener((info1, popupMenu) -> {
                 Menu menu = popupMenu.getMenu();
@@ -274,7 +274,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             changelogs.setOnItemClickListener(item -> {
                 if (KernelUpdater.getChangeLog().contains("https://") ||
                         KernelUpdater.getChangeLog().contains("http://")) {
-                    Utils.launchUrl(KernelUpdater.getChangeLog(), getActivity());
+                    Utils.launchUrl(getRootView(), KernelUpdater.getChangeLog(), getActivity());
                 } else {
                     new Dialog(requireActivity())
                             .setTitle(KernelUpdater.getKernelName() + " " + KernelUpdater.getLatestVersion())
@@ -295,7 +295,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             support.setOnItemClickListener(item -> {
                 if (KernelUpdater.getSupport().contains("https://") ||
                         KernelUpdater.getSupport().contains("http://")) {
-                    Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
+                    Utils.launchUrl(getRootView(), KernelUpdater.getSupport(), getActivity());
                 } else {
                     Utils.snackbar(getRootView(), getString(R.string.unknown_link));
                 }
@@ -326,8 +326,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
             donations.setOnItemClickListener(item -> {
                 if (KernelUpdater.getDonationLink().contains("https://") ||
                             KernelUpdater.getDonationLink().contains("http://")) {
-                    Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
-                    Utils.launchUrl(KernelUpdater.getDonationLink(), getActivity());
+                    Utils.launchUrl(getRootView(), KernelUpdater.getSupport(), getActivity());
+                    Utils.launchUrl(getRootView(), KernelUpdater.getDonationLink(), getActivity());
                 } else {
                     Utils.snackbar(getRootView(), getString(R.string.unknown_link));
                 }
@@ -367,7 +367,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             busybox.setSummary(getString(R.string.busybox_installer_summary));
             busybox.setFullSpan(true);
             busybox.setOnItemClickListener(item -> {
-                Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.busyboxinstaller", getActivity());
+                Utils.launchUrl(getRootView(), "https://play.google.com/store/apps/details?id=com.smartpack.busyboxinstaller", getActivity());
             });
             items.add(busybox);
         }

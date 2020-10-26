@@ -468,7 +468,7 @@ public class KLapseFragment extends RecyclerViewFragment {
     protected void onTopFabClick() {
         super.onTopFabClick();
         if (mPermissionDenied) {
-            Utils.toast(R.string.permission_denied_write_storage, getActivity());
+            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
             return;
         }
 
@@ -485,7 +485,7 @@ public class KLapseFragment extends RecyclerViewFragment {
                     @Override
                     public void onClick(String text) {
                         if (text.isEmpty()) {
-                            Utils.toast(R.string.name_empty, getActivity());
+                            Utils.snackbar(getRootView(), getString(R.string.name_empty));
                             return;
                         }
                         if (!text.endsWith(".sh")) {
@@ -495,7 +495,7 @@ public class KLapseFragment extends RecyclerViewFragment {
                             text = text.replace(" ", "_");
                         }
                         if (Utils.existFile(KLapse.profileFolder().toString() + "/" + text)) {
-                            Utils.toast(getString(R.string.profile_exists, text), getActivity());
+                            Utils.snackbar(getRootView(), getString(R.string.profile_exists, text));
                             return;
                         }
                         final String path = text;
@@ -545,7 +545,7 @@ public class KLapseFragment extends RecyclerViewFragment {
         super.onPermissionDenied(request);
         if (request == 0) {
             mPermissionDenied = true;
-            Utils.toast(R.string.permission_denied_write_storage, getActivity());
+            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
         }
     }
 

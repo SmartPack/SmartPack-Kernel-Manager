@@ -399,7 +399,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                 .setCancelable(false)
                 .setView(checkBoxView)
                 .setNeutralButton(getString(R.string.documentation), (dialog, id)
-                        -> Utils.launchUrl("https://smartpack.github.io/spkm/customcontrols/", getActivity()))
+                        -> Utils.launchUrl(getRootView(), "https://smartpack.github.io/spkm/customcontrols/", getActivity()))
                 .setPositiveButton(getString(R.string.got_it), (dialog, id)
                         -> Prefs.saveBoolean("custom_control_warning", mAlertDialogue, getActivity()))
 

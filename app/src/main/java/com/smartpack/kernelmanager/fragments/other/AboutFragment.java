@@ -110,13 +110,13 @@ public class AboutFragment extends RecyclerViewFragment {
         support.setDrawable(getResources().getDrawable(R.drawable.ic_support));
         support.setTitle(getString(R.string.support));
         support.setSummary(getString(R.string.support_summary));
-        support.setOnItemClickListener(item -> Utils.launchUrl("https://t.me/smartpack_kmanager", getActivity()));
+        support.setOnItemClickListener(item -> Utils.launchUrl(getRootView(),"https://t.me/smartpack_kmanager", getActivity()));
 
         DescriptionView sourcecode = new DescriptionView();
         sourcecode.setDrawable(getResources().getDrawable(R.drawable.ic_source));
         sourcecode.setTitle(getString(R.string.source_code));
         sourcecode.setSummary(getString(R.string.source_code_summary));
-        sourcecode.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager/tree/beta", requireActivity()));
+        sourcecode.setOnItemClickListener(item -> Utils.launchUrl(getRootView(),"https://github.com/SmartPack/SmartPack-Kernel-Manager/tree/beta", requireActivity()));
 
         DescriptionView changelogs = new DescriptionView();
         changelogs.setDrawable(getResources().getDrawable(R.drawable.ic_changelog));
@@ -144,7 +144,7 @@ public class AboutFragment extends RecyclerViewFragment {
             donate_to_me.setNeutralButton(getString(R.string.donate_nope), (dialogInterface, i) -> {
             });
             donate_to_me.setPositiveButton(getString(R.string.donate_yes), (dialog1, id1) -> {
-                Utils.launchUrl("https://www.paypal.me/menacherry", getActivity());
+                Utils.launchUrl(getRootView(),"https://www.paypal.me/menacherry", getActivity());
             });
             donate_to_me.show();
         });
@@ -183,7 +183,7 @@ public class AboutFragment extends RecyclerViewFragment {
         Grarak.setTitle(getString(R.string.grarak));
         Grarak.setSummary(getString(R.string.grarak_summary));
         Grarak.setFullSpan(true);
-        Grarak.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/Grarak", getActivity()));
+        Grarak.setOnItemClickListener(item -> Utils.launchUrl(getRootView(),"https://github.com/Grarak", getActivity()));
 
         items.add(Grarak);
 
@@ -192,7 +192,7 @@ public class AboutFragment extends RecyclerViewFragment {
         osm0sis.setTitle(getString(R.string.osm0sis));
         osm0sis.setSummary(getString(R.string.osm0sis_summary));
         osm0sis.setFullSpan(true);
-        osm0sis.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/osm0sis", getActivity()));
+        osm0sis.setOnItemClickListener(item -> Utils.launchUrl(getRootView(),"https://github.com/osm0sis", getActivity()));
 
         items.add(osm0sis);
 
@@ -233,7 +233,7 @@ public class AboutFragment extends RecyclerViewFragment {
             }
             descriptionView.setTitle(lib.split(",")[1]);
             descriptionView.setSummary(lib.split(",")[0]);
-            descriptionView.setOnItemClickListener(item -> Utils.launchUrl(sCredits.get(lib), getActivity()));
+            descriptionView.setOnItemClickListener(item -> Utils.launchUrl(getRootView(), sCredits.get(lib), getActivity()));
 
             items.add(descriptionView);
         }
@@ -294,7 +294,7 @@ public class AboutFragment extends RecyclerViewFragment {
             }
             descriptionView.setTitle(lib.split(",")[1]);
             descriptionView.setSummary(lib.split(",")[0]);
-            descriptionView.setOnItemClickListener(item -> Utils.launchUrl(sTranslations.get(lib), getActivity()));
+            descriptionView.setOnItemClickListener(item -> Utils.launchUrl(getRootView(), sTranslations.get(lib), getActivity()));
 
             items.add(descriptionView);
         }

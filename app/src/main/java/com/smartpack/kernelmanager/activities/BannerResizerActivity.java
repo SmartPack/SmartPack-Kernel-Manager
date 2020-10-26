@@ -48,7 +48,7 @@ public class BannerResizerActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (!Utils.isDonated(this)) {
-            Utils.toast("nice try", this);
+            Utils.snackbar(findViewById(android.R.id.content), "nice try");
             return;
         }
         setContentView(R.layout.activity_fragments);

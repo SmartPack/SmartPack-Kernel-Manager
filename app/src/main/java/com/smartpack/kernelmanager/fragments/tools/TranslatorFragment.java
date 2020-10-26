@@ -234,7 +234,7 @@ public class TranslatorFragment extends RecyclerViewFragment {
 
     public static class SearchFragment extends BaseFragment {
 
-        private View mRootViewView;
+        private View mRootView;
 
         @SuppressLint("StaticFieldLeak")
         @Override
@@ -247,9 +247,9 @@ public class TranslatorFragment extends RecyclerViewFragment {
             }
             final TranslatorFragment translatorFragment = (TranslatorFragment) fragment;
 
-            mRootViewView = inflater.inflate(R.layout.fragment_strings_search, container, false);
+            mRootView = inflater.inflate(R.layout.fragment_strings_search, container, false);
 
-            AppCompatImageButton settings = mRootViewView.findViewById(R.id.settings_icon);
+            AppCompatImageButton settings = mRootView.findViewById(R.id.settings_icon);
             settings.setImageDrawable(ViewUtils.getWhiteColoredIcon(R.drawable.ic_settings, requireActivity()));
             settings.setOnClickListener(v -> {
                 PopupMenu popupMenu = new PopupMenu(requireActivity(), settings);
@@ -272,9 +272,9 @@ public class TranslatorFragment extends RecyclerViewFragment {
                                 .show();
                     } else if (item.getItemId() == 1) {
                         if (Utils.existFile(Utils.getInternalDataStorage() + "/strings.xml")) {
-                            Utils.snackbar(mRootViewView, getString(R.string.import_string_message));
+                            Utils.snackbar(mRootView, getString(R.string.import_string_message));
                         } else if (!Utils.isNetworkAvailable(requireActivity())) {
-                            Utils.snackbar(mRootViewView, getString(R.string.no_internet));
+                            Utils.snackbar(mRootView, getString(R.string.no_internet));
                         } else {
                             ViewUtils.dialogEditText(getString(R.string.import_string_hint),
                                     (dialogInterface, i) -> {
@@ -314,7 +314,7 @@ public class TranslatorFragment extends RecyclerViewFragment {
                 popupMenu.show();
             });
 
-            AppCompatEditText keyEdit = mRootViewView.findViewById(R.id.searchText);
+            AppCompatEditText keyEdit = mRootView.findViewById(R.id.searchText);
             keyEdit.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -337,7 +337,7 @@ public class TranslatorFragment extends RecyclerViewFragment {
                 keyEdit.append(translatorFragment.mKeyText);
             }
 
-            return mRootViewView;
+            return mRootView;
         }
     }
 
