@@ -86,6 +86,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private static final String KEY_SECTIONS_ICON = "section_icons";
     private static final String KEY_ENABLE_ON_BOOT = "enable_onboot";
     private static final String KEY_APPLY_ON_BOOT_TEST = "applyonboottest";
+    private static final String KEY_TASKER_TOAST = "applyonboottoast";
     private static final String KEY_SECURITY_CATEGORY = "security_category";
     private static final String KEY_BIOMETRIC = "biometric";
     private static final String KEY_SECTIONS = "sections";
@@ -154,6 +155,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         findPreference(KEY_SECTIONS_ICON).setOnPreferenceChangeListener(this);
         findPreference(KEY_ENABLE_ON_BOOT).setOnPreferenceChangeListener(this);
         findPreference(KEY_APPLY_ON_BOOT_TEST).setOnPreferenceClickListener(this);
+        findPreference(KEY_TASKER_TOAST).setOnPreferenceClickListener(this);
 
         if (!Utils.isFingerprintAvailable(getActivity())) {
             PreferenceCategory sectionSecurity = findPreference(KEY_SECURITY_CATEGORY);
@@ -223,6 +225,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 return true;
             case KEY_BIOMETRIC:
                 Prefs.saveBoolean("use_biometric", checked, getActivity());
+                return true;
+            case KEY_TASKER_TOAST:
+                Prefs.saveBoolean("showtaskertoast", checked, getActivity());
                 return true;
             default:
                 if (key.equals(KEY_SECTIONS_ICON) || key.endsWith("_enabled")) {
