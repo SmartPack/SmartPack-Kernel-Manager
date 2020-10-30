@@ -86,7 +86,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private static final String KEY_SECTIONS_ICON = "section_icons";
     private static final String KEY_ENABLE_ON_BOOT = "enable_onboot";
     private static final String KEY_APPLY_ON_BOOT_TEST = "applyonboottest";
-    private static final String KEY_TASKER_TOAST = "applyonboottoast";
+    private static final String KEY_TASKER_TOAST = "showtaskertoast";
     private static final String KEY_SECURITY_CATEGORY = "security_category";
     private static final String KEY_BIOMETRIC = "biometric";
     private static final String KEY_SECTIONS = "sections";
