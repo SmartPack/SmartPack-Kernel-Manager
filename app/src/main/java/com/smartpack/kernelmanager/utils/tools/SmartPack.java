@@ -37,7 +37,7 @@ public class SmartPack {
     private static final String CLEANING_COMMAND = "rm -r '" + FLASH_FOLDER + "'";
     private static final String ZIPFILE_EXTRACTED = Utils.getInternalDataStorage() + "/flash/META-INF/com/google/android/update-binary";
     public static String mZipName;
-    public static String mFlashingOutput;
+    public static String mFlashingOutput = null;
 
     public static StringBuilder mFlashingResult = null;
 
