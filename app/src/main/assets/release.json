@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Replace password protection with Biometric authentication.\n - Simplify & move reset app to Settings menu.\n - Replaced toast messages with snackbar as much as possible.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v13.8/com.smartpack.kernelmanager-v13.8-release.apk",
-  "sha1": "2f36e9ae72d0bd43f704c280a86ffb2737b06385",
-  "latestVersion": "14.0",
-  "latestVersionCode": 140
+  "releaseNotes": "Change-logs\n - Fixed and moved tasker toast switch to a new category.\n - Fixed crashing flasher page.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.1/com.smartpack.kernelmanager-v14.1-release.apk",
+  "sha1": "c12b66e3ba217c5dbb68500c08cb7addecc275c7",
+  "latestVersion": "14.1",
+  "latestVersionCode": 141
 }

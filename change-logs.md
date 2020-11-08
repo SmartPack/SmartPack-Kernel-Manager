@@ -1,5 +1,9 @@
 # Change-logs
 
+## 127. November 08, 2020
+*Release-tag: beta_v14.1*<br>
+Fixed and moved tasker toast switch to a new category. Fixed crashing flasher page.
+
 ## 126. October 26, 2020
 *Release-tag: beta_v14.0*<br>
 Replace password protection with Biometric authentication. Simplify & move reset app to Settings menu. Replaced toast messages with snackbar as much as possible. Miscellaneous changes.
