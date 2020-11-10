@@ -954,10 +954,6 @@
     <string name="clear_all_summary">Все, что вы добавили на эту страницу, будет очищено!</string>
     <string name="download_failed">Похоже, скачать не удалось, или скачали поврежденный файл!</string>
     <string name="check_update">Проверить на наличие обновлений</string>
-    <string name="allow_ads">Разрешить Рекламу</string>
-    <string name="allow_ads_summary">Поддержите разработчика, разрешив рекламу в этом приложении!</string>
-    <string name="disable_ads_message">Поздравляю! Реклама отключена!однако, пожалуйста, обратите внимание, что доход, полученный от этих объявлений, действительно полезен для разработчика, чтобы продолжать свои проекты разработки android более активными. Если вам это не очень больно, пожалуйста, подумайте о том, чтобы разрешить рекламе поддерживать разработку.</string>
-    <string name="allow_ads_message">Большое вам спасибо за поддержку разработчика, разрешив рекламу!</string>
     <string name="open_settings">Открыть настройки</string>
     <string name="fahrenheit_summary">Использовать измерение температуры по Фаренгейту.</string>
     <string name="force_english">Принудительно использовать английский язык</string>
@@ -983,7 +979,6 @@
     <string name="always_show">Показывайте всегда</string>
     <string name="apply_on_boot_hide_summary">Скрыть уведомления при применении настроек при загрузке. При этом задержка останется.</string>
     <string name="toast">Всплывающее оповещение</string>
-    <string name="apply_on_boot_toast_summary">Показывать всплывающее уведомление, когда настройки были применены.</string>
     <string name="confirmation_notification">Уведомление подтверждения</string>
     <string name="apply_on_boot_confirmation_notification_summary">После выбора Применять при загрузке, выводится уведомление об удачном применении.</string>
     <string name="script">Скрипт</string>

@@ -1035,10 +1035,6 @@
     <string name="clear_all_summary">Alles was auf dieser Seite hinzugefügt wurde wird gelöscht!</string>
 
     <!-- Settings-->
-    <string name="allow_ads">Werbung erlauben</string>
-    <string name="allow_ads_summary">Entwickler unterstützen indem Werbung angezeigt wird!</string>
-    <string name="disable_ads_message">Gratulation! Werbung ist deaktiviert!\n\nBitte beachte das die Einnahmen durch die Werbung für den Entwicker wichtig sind damit auf den Android-Projekten eher weiterentwickelt werden kann. Wenn es dir michts ausmachts, aktiviere bitte der Werbung um die Entwicklung zu unterstützen.</string>
-    <string name="allow_ads_message">Vielen dank das du den Entwickler unterstützt indem du Werbung zuläst!</string>
     <string name="open_settings">Einstellungen öffnen</string>
     <string name="fahrenheit_summary">Temperatur in Fahrenheit messen</string>
     <string name="force_english">Englisch als Sprache erzwingen</string>
@@ -1064,7 +1060,6 @@
     <string name="always_show">Immer anzeigen</string>
     <string name="apply_on_boot_hide_summary">Benachrichtung beim Systemstart deaktiviern. Die Verzögerung bleibt erhalten!</string>
     <string name="toast">Toast</string>
-    <string name="apply_on_boot_toast_summary">Zeige einen Toast wenn Einstellungen nicht angewendet wurden!</string>
     <string name="confirmation_notification">Bestätigungsnachricht</string>
     <string name="apply_on_boot_confirmation_notification_summary">Wenn das Awenden beim Systemstart einen Benachrichtung anzeigt wird nach Abschluss eine Bestätigungsnachricht angezeigt, dass die Einstellungen übernommen wurden.</string>
     <string name="script">Skript</string>

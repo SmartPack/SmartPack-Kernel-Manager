@@ -950,10 +950,6 @@
     <string name="clear_message">모든 필드가 비었습니다!</string>
 
     <!-- Settings-->
-    <string name="allow_ads">광고 활성화</string>
-    <string name="allow_ads_summary">이 앱에서 광고를 활성화함으로써 개발자를 지원해주세요!</string>
-    <string name="disable_ads_message">축하합니다! 광고는 곧 비활성화될 것입니다!\n\n그러나, 광고에서 나오는 수익은 개발자에게 있어 더 활발하게 프로젝트를 이어나갈 수 있게 합니다. 만약 크게 거슬리지 않는다면, 프로젝트를 지원하기 위해 광고를 활성화하는 것을 고려해보세요.</string>
-    <string name="allow_ads_message">개발자를 지원해주셔서 매우 감사합니다!</string>
     <string name="open_settings">설정 열기</string>
     <string name="fahrenheit_summary">온도를 측정하기 위해 ��씨를 사용</string>
     <string name="force_english">언어로 영어를 사용하도록 고정</string>
@@ -979,7 +975,6 @@
     <string name="always_show">항상 보이기</string>
     <string name="apply_on_boot_hide_summary">부팅시 적용의 알림을 비활성합니다. 대기 시간은 여전히 적용됩니다!</string>
     <string name="toast">팝업</string>
-    <string name="apply_on_boot_toast_summary">설정이 적용되었을 때 팝업을 띄웁니다!</string>
     <string name="confirmation_notification">확인 알림</string>
     <string name="apply_on_boot_confirmation_notification_summary">부팅시 적용 후, 부팅시 적용이 성공했다는 알림을 보내는 것을 활성화합니다.</string>
     <string name="script">스크립트</string>

@@ -1014,10 +1014,6 @@
     <string name="clear_message">ሁሉም መስኮች ባዶ ናቸው! ውርጃ</string>
 
     <!-- Settings-->
-    <string name="allow_ads">ማስታወቂያዎችን ፍቀድ</string>
-    <string name="allow_ads_summary">በዚህ መተግበሪያ ላይ ማስታወቂያዎችን በመፍቀድ ገንቢን ይደግፉ!</string>
-    <string name="disable_ads_message">እንኳን ደስ አለዎት! ማስታወቂያዎች ተሰናክለዋል! \n\n ሆኖም ግን ፣ ከነዚህ ማስታወቂያዎች የሚገኘው ገቢ ለገንቢው በእውነቱ የ android የልማት ፕሮጄክቶችን የበለጠ ለመቀጠል በእርግጥ ጠቃሚ መሆኑን ልብ ይበሉ ፡፡ ብዙ የማይጎዳዎት ከሆነ ፣ እባክዎ ማስታወቂያዎች እድገቱን እንዲደግፉ መፍቀዱን ያስቡበት።</string>
-    <string name="allow_ads_message">ማስታወቂያዎችን በመፍቀድ ገንቢውን ስለደገፉ በጣም እናመሰግናለን!</string>
     <string name="open_settings">ቅንብሮችን ይክፈቱ</string>
     <string name="fahrenheit_summary">ሙቀትን ለመለካት fahrenheit ይጠቀሙ</string>
     <string name="force_english">የእንግሊዝኛ ቋንቋ ለማሳየት አስገድድ</string>
@@ -1043,7 +1039,6 @@
     <string name="always_show">ሁልጊዜ አሳይ</string>
     <string name="apply_on_boot_hide_summary">በመጫኛ ላይ የማመልከት ማስታወቂያ ደብቅ። መዘግየት አሁንም ይቀራል!</string>
     <string name="toast">ቶስት</string>
-    <string name="apply_on_boot_toast_summary">ቅንብሮች ሲተገበሩ ቶስት አሳይ!</string>
     <string name="confirmation_notification">ማረጋገጫ ማስታወቂያ</string>
     <string name="apply_on_boot_confirmation_notification_summary">በሚታይ የማሳወቂያ ማስነሻ ላይ ከተጫነ በኋላ ፣ በማስነሻ ላይ የተተገበረው የተሳካለት ማረጋገጫ ጋር በመቀጠል ማሳወቂያ ያሳዩ።</string>
     <string name="script">ስክሪፕት</string>

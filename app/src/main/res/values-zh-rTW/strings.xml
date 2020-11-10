@@ -892,7 +892,6 @@
     <string name="hide">隱藏</string>
     <string name="apply_on_boot_hide_summary">隱藏啟動時套用的通知。延遲仍將保持！</string>
     <string name="toast">彈出訊息（Toast）</string>
-    <string name="apply_on_boot_toast_summary">套用設定時顯示提示訊息。</string>
     <string name="confirmation_notification">確認通知</string>
     <string name="apply_on_boot_confirmation_notification_summary">使用可見通知套用啟動後，隨後顯示一條通知，確認啟動成功。</string>
     <string name="script">指令碼</string>

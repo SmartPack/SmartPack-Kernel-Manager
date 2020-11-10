@@ -1037,10 +1037,6 @@
     <string name="check_update">Sprawdź aktualizacje</string>
 
     <!-- Settings-->
-    <string name="allow_ads">Zezwalaj na reklamy</string>
-    <string name="allow_ads_summary">Wspieraj programistę, zezwalając na reklamy w tej aplikacji!</string>
-    <string name="disable_ads_message">gratulacje! Reklamy są wyłączone! \ N \ nJednak należy zauważyć, że przychody uzyskane z tych reklam są bardzo pomocne dla dewelopera w kontynuowaniu bardziej aktywnych projektów programistycznych dla Androida. Jeśli to ci nie zaszkodzi, rozważ zezwolenie reklamom na wspieranie rozwoju.</string>
-    <string name="allow_ads_message">Bardzo dziękujemy za wsparcie programisty, zezwalając na reklamy!</string>
     <string name="open_settings">Otwórz ustawienia</string>
     <string name="fahrenheit_summary">Do pomiaru użyj stopni Fahrenheita</string>
     <string name="force_english">Włącz język angielski</string>
@@ -1066,7 +1062,6 @@
     <string name="always_show">Zawsze pokazuj</string>
     <string name="apply_on_boot_hide_summary">Ukryj powiadomienie o zastosowaniu podczas rozruchu. Opóźnienie nadal pozostanie!</string>
     <string name="toast">Dymek</string>
-    <string name="apply_on_boot_toast_summary">Pokaż dymek po zastosowaniu ustawień!</string>
     <string name="confirmation_notification">Powiadomienie o potwierdzeniu</string>
     <string name="apply_on_boot_confirmation_notification_summary">Po zastosowaniu przy rozruchu z widocznym powiadomieniem, pokaż następnie powiadomienie z potwierdzeniem, że zastosowanie podczas rozruchu zakończyło się pomyślnie.</string>
     <string name="script">Skrypt</string>

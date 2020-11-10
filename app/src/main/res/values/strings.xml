@@ -1053,10 +1053,6 @@
     <string name="clear_all_summary">Everything you added to this page will be cleared!</string>
 
     <!-- Settings-->
-    <string name="allow_ads">Allow Ads</string>
-    <string name="allow_ads_summary">Support developer by allowing Ads on this app!</string>
-    <string name="disable_ads_message">Congrats! Ads are disabled!\n\nHowever, please be noted that the revenue obtained from these Ads are really helpful for the developer to continue his android development projects more active. If it doesn\'t hurt you much, please consider allowing the Ads to support the development.</string>
-    <string name="allow_ads_message">Thank you very much for supporting the developer by allowing Ads!</string>
     <string name="open_settings">Open Settings</string>
     <string name="fahrenheit_summary">Use fahrenheit to measure temperature</string>
     <string name="force_english">Force displaying english language</string>
@@ -1085,7 +1081,6 @@
     <string name="always_show">Always Show</string>
     <string name="apply_on_boot_hide_summary">Hide the notification of apply on boot. Delay will still remain!</string>
     <string name="toast">Toast</string>
-    <string name="apply_on_boot_toast_summary">Show toast when settings got applied!</string>
     <string name="confirmation_notification">Confirmation Notification</string>
     <string name="apply_on_boot_confirmation_notification_summary">After apply on boot with visible notification, show a notification afterwards with the confirmation that apply on boot was successful.</string>
     <string name="script">Script</string>

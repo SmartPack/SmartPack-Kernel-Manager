@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <SwitchPreferenceCompat
-        android:defaultValue="true"
-        android:key="allow_ads"
-        android:title="@string/allow_ads"
-        android:summary="@string/allow_ads_summary" />
     <Preference
         android:key="reset_settings"
         android:summary="@string/reset_settings_summary"

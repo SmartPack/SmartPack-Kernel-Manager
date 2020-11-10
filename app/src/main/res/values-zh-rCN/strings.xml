@@ -893,7 +893,6 @@
     <string name="hide">隐藏</string>
     <string name="apply_on_boot_hide_summary">隐藏启动时应用设置的通知。延迟仍然生效。</string>
     <string name="toast">弹出消息（Toast）</string>
-    <string name="apply_on_boot_toast_summary">应用设置时显示 Toast 消息。</string>
     <string name="confirmation_notification">确认通知</string>
     <string name="apply_on_boot_confirmation_notification_summary">使用一个可见通知显示启动时应用设置，以确认启动成功。</string>
     <string name="script">脚本</string>
@@ -1003,10 +1002,6 @@
     <string name="logcat">Logcat</string>
     <string name="always_show">始终显示</string>
     <string name="section_icons">板块图标</string>
-    <string name="allow_ads">允许广告</string>
-    <string name="allow_ads_summary">允许应用内广告以支持开发者。</string>
-    <string name="disable_ads_message">好的，广告已经禁用！  但请注意，从广告中获得收入有助开发人员更积极地开发项目。如果您不太建议，建议您允许广告以支持开发者。</string>
-    <string name="allow_ads_message">非常感谢您允许广告来支持开发者！</string>
     <string name="download_failed">**重要：请下载并手动更新本应用！**</string>
     <string name="clear">全部清除</string>
     <string name="update_channel_create_warning">您做的更改将丢失！</string>

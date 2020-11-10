@@ -9,19 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="@dimen/banner_default_height"
-        android:layout_marginBottom="90dp"
         android:clipToPadding="false"
-        android:visibility="gone" />
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        ads:adUnitId="ca-app-pub-7791710838910455/8804020343"
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        ads:adSize="SMART_BANNER"
         android:visibility="gone" />
 
     <LinearLayout
