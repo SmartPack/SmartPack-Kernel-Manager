@@ -6,6 +6,10 @@
         android:key="allow_ads"
         android:title="@string/allow_ads"
         android:summary="@string/allow_ads_summary" />
+    <Preference
+        android:key="reset_settings"
+        android:summary="@string/reset_settings_summary"
+        android:title="@string/reset_settings" />
 
     <PreferenceCategory
         android:key="user_interface"

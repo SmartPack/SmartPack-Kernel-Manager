@@ -990,8 +990,6 @@
     <string name="reboot_options">Opcje ponownego uruchamiania</string>
     <string name="reboot_options_summary">Wyłącz lub uruchom ponownie urządzenie</string>
     <string name="reboot_dialog">Zdecydowanie zaleca się ponowne uruchomienie urządzenia po %s.</string>
-    <string name="reboot_now">Zrestartuj teraz</string>
-    <string name="reboot_later">Uruchomić ponownie</string>
     <string name="reboot_normal">Normalny restart</string>
     <string name="reboot_recovery">Restart do Recovery</string>
     <string name="reboot_bootloader">Restart do Bootloader</string>
@@ -1005,7 +1003,6 @@
     <string name="reset_settings">Zresetuj aplikację</string>
     <string name="reset_settings_summary">Zresetuj ustawienia użytkownika</string>
     <string name="reset_settings_message">Ustawienia aplikacji zostaną całkowicie usunięte. Jesteś pewny?</string>
-    <string name="reboot_message">Aby uniknąć błędów konfiguracji, zdecydowanie zaleca się ponowne uruchomienie urządzenia. Czy chcesz teraz ponownie uruchomić komputer?</string>
     <string name="unknown_link">Nie zostały jeszcze dostarczone przez dewelopera!</string>
     <string name="remove">Usunąć</string>
     <string name="share_channel_message">Aby skonfigurować ten kanał aktualizacji, po prostu wprowadź \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>

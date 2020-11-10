@@ -856,8 +856,6 @@
     <string name="support">支持信息</string>
     <string name="support_summary">造访 xda-developers.com 的支持页面</string>
     <string name="reboot">重启</string>
-    <string name="reboot_now">立即重启</string>
-    <string name="reboot_later">稍后重启</string>
     <string name="reboot_recovery">重启至 Recovery</string>
     <string name="reboot_bootloader">重启至 Bootloader</string>
     <string name="flasher">刷写器</string>
@@ -869,7 +867,6 @@
     <string name="reset_settings">重置应用</string>
     <string name="reset_settings_summary">重置用户设置</string>
     <string name="reset_settings_message">\n应用程式设定将被完全删除。  \n你确定吗？  \n\n</string>
-    <string name="reboot_message">为避免配置失败，强烈建议重启设备。\n是否立即重启设备？</string>
     <string name="check_update">检查更新</string>
 
     <!-- Settings-->

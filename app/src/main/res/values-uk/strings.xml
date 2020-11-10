@@ -712,10 +712,7 @@ SmartPack-Kernel Manager.
     <string name="reboot">Перезавантажити</string>
     <string name="reboot_bootloader">Перезавантажити в завантажувач</string>
     <string name="reboot_dialog">Настійно рекомендується перезавантажити пристрій %s.</string>
-    <string name="reboot_later">Перезавантажити пізніше</string>
-    <string name="reboot_message">Щоб уникнути збоїв конфігурації, настійно рекомендується перезавантажити систему. Перезавантажити?</string>
     <string name="reboot_normal">Перезапустити</string>
-    <string name="reboot_now">Перезавантажити зараз</string>
     <string name="reboot_options">Перезавантаження</string>
     <string name="reboot_options_summary">Вимкніть або перезавантажте пристрій</string>
     <string name="reboot_recovery">Перезавантажити в рекавері</string>

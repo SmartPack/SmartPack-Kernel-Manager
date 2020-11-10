@@ -515,31 +515,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
         });
 
         items.add(reboot_options);
-
-        DescriptionView reset = new DescriptionView();
-        reset.setTitle(getString(R.string.reset_settings));
-        reset.setSummary(getString(R.string.reset_settings_summary));
-        reset.setOnItemClickListener(item -> new Dialog(requireActivity())
-                .setMessage(getString(R.string.reset_settings_message))
-                .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                })
-                .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                    new Dialog(requireActivity())
-                            .setMessage(getString(R.string.reboot_message))
-                            .setNegativeButton(getString(R.string.reboot_later), (dialogInterface, i) -> {
-                                new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
-                                new Execute().execute("pm clear com.smartpack.kernelmanager && " +
-                                        "am start -n com.smartpack.kernelmanager/com.smartpack.kernelmanager.activities.MainActivity");
-                            })
-                            .setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
-                                new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
-                                Utils.snackbar(getRootView(), getString(R.string.rebooting_message));
-                                new Execute().execute(Utils.prepareReboot());
-                            })
-                            .show();
-                })
-                .show());
-        items.add(reset);
     }
 
     @SuppressLint("StaticFieldLeak")

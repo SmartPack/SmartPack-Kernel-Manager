@@ -1006,8 +1006,6 @@
     <string name="reboot_options">Reboot Options</string>
     <string name="reboot_options_summary">Turn off or reboot your device</string>
     <string name="reboot_dialog">It is highly recommended to reboot your device after %s.</string>
-    <string name="reboot_now">Reboot Now</string>
-    <string name="reboot_later">Reboot Later</string>
     <string name="reboot_normal">Normal Reboot</string>
     <string name="reboot_recovery">Reboot Recovery</string>
     <string name="reboot_bootloader">Reboot Bootloader</string>
@@ -1021,7 +1019,6 @@
     <string name="reset_settings">Reset App</string>
     <string name="reset_settings_summary">Reset User Settings</string>
     <string name="reset_settings_message">App settings will be completely erased. Are you sure?</string>
-    <string name="reboot_message">To avoid configuration failures, it is highly recommended to reboot your device. Do you want to reboot Now?</string>
     <string name="unknown_link">Not provided by the developer yet!</string>
     <string name="remove">Remove</string>
     <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>

@@ -906,8 +906,6 @@
     <string name="support">Suporte</string>
     <string name="support_summary">Visite a página de suporte no xda-developers.com</string>
     <string name="reboot">Reiniciar</string>
-    <string name="reboot_now">Reiniciar agora</string>
-    <string name="reboot_later">Reiniciar depois</string>
     <string name="reboot_recovery">Reiniciar para o recovery</string>
     <string name="reboot_bootloader">Reiniciar para o bootloader</string>
     <string name="turn_off">Desligar</string>
@@ -917,7 +915,6 @@
     <string name="reset_settings">Redefinir o app</string>
     <string name="reset_settings_summary">Redefinir configurações do usuário</string>
     <string name="reset_settings_message">\nAs configurações do aplicativo serão completamente apagadas.\n\nTem certeza?\n</string>
-    <string name="reboot_message">Para evitar falhas na configuração, é altamente recomendável reiniciar o sistema.\n\nDeseja reiniciar?\n</string>
     <string name="check_update">Verificar atualizações</string>
 
     <!-- Settings-->

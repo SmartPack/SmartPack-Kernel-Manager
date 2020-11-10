@@ -977,8 +977,6 @@
     <string name="reboot_options">አማራጮች ዳግም አስነሳ</string>
     <string name="reboot_options_summary">መሣሪያዎን ያጥፉ ወይም እንደገና ያስነሱ</string>
     <string name="reboot_dialog">ከ%s በኋላ መሣሪያዎን እንደገና ለማስነሳት በጣም ይመከራል።</string>
-    <string name="reboot_now">አሁን እንደገና አስጀምር</string>
-    <string name="reboot_later">በኋላ እንደገና ያስነሱ</string>
     <string name="reboot_normal">መደበኛ ዳግም ማስጀመር</string>
     <string name="reboot_recovery">መልሶ ማግኛን እንደገና ያስነሱ</string>
     <string name="reboot_bootloader">ቡት ጫን ዳግም አስነሳ</string>
@@ -989,7 +987,6 @@
     <string name="reset_settings">መተግበሪያን ዳግም ያስጀምሩ</string>
     <string name="reset_settings_summary">የተጠቃሚ ቅንብሮችን ዳግም ያስጀምሩ</string>
     <string name="reset_settings_message">የመተግበሪያ ቅንጅቶች ሙሉ በሙሉ ይደመሰሳሉ። እርግጠኛ ነህ?</string>
-    <string name="reboot_message">የውቅር አለመሳካቶችን ለማስወገድ መሣሪያዎን ዳግም ለማስጀመር በጣም ይመከራል። አሁን ድጋሚ ማስነሳት ይፈልጋሉ?</string>
     <string name="unknown_link">ገና በገንቢው አልተሰጠም!</string>
     <string name="remove">ያስወግዱ</string>
     <string name="download_failed">ማውረዱ የተሳካ ይመስላል ፣ ወይም የተበላሸ ፋይል የወረደ ይመስላል!</string>
