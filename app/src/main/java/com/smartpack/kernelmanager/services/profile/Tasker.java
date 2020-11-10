@@ -59,7 +59,7 @@ public class Tasker extends BroadcastReceiver {
             if (commands != null) {
                 String[] cs = commands.split(DIVIDER);
                 Log.i(TAG + ": " + getClass().getSimpleName(), "Applying " + cs[0]);
-                if (Prefs.getBoolean("showtaskertoast", true, context)) {
+                if (Prefs.getBoolean("showtaskertoast", false, context)) {
                     Utils.toast(context.getString(R.string.applying_profile, cs[0]), context, Toast.LENGTH_LONG);
                 }
 

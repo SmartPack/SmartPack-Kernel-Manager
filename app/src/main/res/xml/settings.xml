@@ -73,13 +73,17 @@
             android:summary="@string/apply_on_boot_confirmation_notification_summary"
             android:title="@string/confirmation_notification" />
         <SwitchPreferenceCompat
-            android:key="applyonboottoast"
-            android:summary="@string/apply_on_boot_toast_summary"
-            android:title="@string/toast" />
-        <SwitchPreferenceCompat
             android:key="applyonbootscript"
             android:summary="@string/apply_on_boot_script_summary"
             android:title="@string/script" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/profile_tasker">
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="showtaskertoast"
+            android:summary="@string/profile_tasker_toast"
+            android:title="@string/toast" />
     </PreferenceCategory>
 
     <PreferenceCategory
