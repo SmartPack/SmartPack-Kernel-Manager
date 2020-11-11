@@ -116,7 +116,7 @@ public class ScreenFragment extends RecyclerViewFragment {
             scc.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
             scc.setSummary(getString(R.string.scc_messgae));
             scc.setOnItemClickListener(item -> {
-                Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.colorcontrol", getActivity());
+                Utils.launchUrl(getRootView(), "https://play.google.com/store/apps/details?id=com.smartpack.colorcontrol", getActivity());
             });
             items.add(scc);
         }

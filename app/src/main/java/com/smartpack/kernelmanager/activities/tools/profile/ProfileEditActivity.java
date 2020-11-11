@@ -122,7 +122,7 @@ public class ProfileEditActivity extends BaseActivity {
                 mItem = mProfiles.getAllProfiles().get(getArguments()
                         .getInt(POSITION_INTENT));
                 if (mItem.getCommands().size() < 1) {
-                    Utils.toast(R.string.profile_empty, getActivity());
+                    Utils.snackbar(getRootView(), getString(R.string.profile_empty));
                     requireActivity().finish();
                 }
             }

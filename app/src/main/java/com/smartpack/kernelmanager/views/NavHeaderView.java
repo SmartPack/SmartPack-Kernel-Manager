@@ -152,7 +152,7 @@ public class NavHeaderView extends LinearLayout {
                     sCallback.animate();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Utils.toast(R.string.went_wrong, MainHeaderActivity.this);
+                    Utils.snackbar(findViewById(android.R.id.content), getString(R.string.went_wrong));
                 }
             finish();
         }

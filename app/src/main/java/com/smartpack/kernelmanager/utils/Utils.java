@@ -419,9 +419,9 @@ public class Utils {
         snackBar.show();
     }
 
-    public static void launchUrl(String url, Context context) {
+    public static void launchUrl(View view, String url, Context context) {
         if (!isNetworkAvailable(context)) {
-            toast(R.string.no_internet, context);
+            snackbar(view, context.getString(R.string.no_internet));
             return;
         }
         try {

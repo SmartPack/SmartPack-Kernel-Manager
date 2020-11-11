@@ -697,7 +697,7 @@ public class CPUFragment extends RecyclerViewFragment {
                     switchView.setSummary(getString(R.string.core, core + 1) + " - " + freqText);
                     switchView.addOnSwitchListener((switchView1, isChecked) -> {
                         if (core == 0) {
-                            Utils.toast(R.string.no_offline_core, getActivity());
+                            Utils.snackbar(getRootView(), getString(R.string.no_offline_core));
                         } else {
                             mCPUFreq.onlineCpu(core, isChecked, true, getActivity());
                         }

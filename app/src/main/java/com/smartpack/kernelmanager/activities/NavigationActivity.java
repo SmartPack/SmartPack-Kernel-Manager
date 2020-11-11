@@ -413,7 +413,7 @@ public class NavigationActivity extends BaseActivity
                     mExit = false;
                     super.onBackPressed();
                 } else {
-                    Utils.toast(R.string.press_back_again_exit, this);
+                    Utils.snackbar(findViewById(android.R.id.content), getString(R.string.press_back_again_exit));
                     mExit = true;
                     mHandler.postDelayed(() -> mExit = false, 2000);
                 }

@@ -91,7 +91,7 @@ public class ProfileActivity extends BaseActivity {
         mItems.remove("Performance Tweaks");
 
         if (mItems.size() < 1) {
-            Utils.toast(R.string.sections_disabled, this);
+            Utils.snackbar(findViewById(android.R.id.content), getString(R.string.sections_disabled));
             finish();
             return;
         }
@@ -189,7 +189,7 @@ public class ProfileActivity extends BaseActivity {
             setResult(0, intent);
             finish();
         } else {
-            Utils.toast(R.string.no_changes, ProfileActivity.this);
+            Utils.snackbar(findViewById(android.R.id.content), getString(R.string.no_changes));
         }
     }
 
@@ -295,7 +295,7 @@ public class ProfileActivity extends BaseActivity {
                     }
                 }
                 if (categories.size() < 1) {
-                    Utils.toast(R.string.nothing_selected, getActivity());
+                    Utils.snackbar(getView(), getString(R.string.nothing_selected));
                     return;
                 }
 
