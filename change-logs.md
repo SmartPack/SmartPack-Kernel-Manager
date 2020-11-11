@@ -1,5 +1,9 @@
 # Change-logs
 
+## 114. November 11, 2020
+*Release-tag: v14.2*<br>
+All the premium features are now free. Removed Ads from app. Replace password with Biometric authentication. Simplified & moved Reset App to Settings menu. Replaced most Toast messages with SnackBar. Allowed disabling tasker toast message. Miscellaneous changes.
+
 ## 113. October 16, 2020
 *Release-tag: v13.9*<br>
 Replaced shell command option with a full Terminal page. Updated progress message everywhere (almost) on app. Updated polish translation (credits: @Fruity-0). Miscellaneous changes.
