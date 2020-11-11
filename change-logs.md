@@ -1,5 +1,9 @@
 # Change-logs
 
+## 128. November 11, 2020
+*Release-tag: beta_v14.3*<br>
+All the premium features are now free.
+
 ## 127. November 08, 2020
 *Release-tag: beta_v14.1*<br>
 Fixed and moved tasker toast switch to a new category. Fixed crashing flasher page.

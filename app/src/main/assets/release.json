@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Fixed and moved tasker toast switch to a new category.\n - Fixed crashing flasher page.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.1/com.smartpack.kernelmanager-v14.1-release.apk",
-  "sha1": "c12b66e3ba217c5dbb68500c08cb7addecc275c7",
-  "latestVersion": "14.1",
-  "latestVersionCode": 141
+  "releaseNotes": "Change-logs\n - All the premium features are now free.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.3/com.smartpack.kernelmanager-v14.3-release.apk",
+  "sha1": "93c962c13b99ad0576d1e3b7088d90221dc04dbf",
+  "latestVersion": "14.3",
+  "latestVersionCode": 143
 }
