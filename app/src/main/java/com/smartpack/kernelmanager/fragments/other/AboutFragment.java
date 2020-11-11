@@ -21,7 +21,9 @@ package com.smartpack.kernelmanager.fragments.other;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -106,6 +108,13 @@ public class AboutFragment extends RecyclerViewFragment {
         versioninfo.setDrawable(getResources().getDrawable(R.drawable.ic_on_boot_notification));
         versioninfo.setTitle(getString(R.string.version));
         versioninfo.setSummary("v" + BuildConfig.VERSION_NAME);
+        versioninfo.setOnItemClickListener(item -> {
+            Intent settings = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            settings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            Uri uri = Uri.fromParts("package", BuildConfig.APPLICATION_ID, null);
+            settings.setData(uri);
+            startActivity(settings);
+        });
 
         DescriptionView support = new DescriptionView();
         support.setDrawable(getResources().getDrawable(R.drawable.ic_support));
