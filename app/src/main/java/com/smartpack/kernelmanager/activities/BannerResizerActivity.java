@@ -47,10 +47,6 @@ public class BannerResizerActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!Utils.isDonated(this)) {
-            Utils.snackbar(findViewById(android.R.id.content), "nice try");
-            return;
-        }
         setContentView(R.layout.activity_fragments);
 
         initToolBar();

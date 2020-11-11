@@ -116,18 +116,6 @@ public class Utils {
         }
     }
 
-    private static boolean isKADonated(Context context) {
-        return isPackageInstalled("com.grarak.kerneladiutordonate", context);
-    }
-
-    public static boolean isSPDonated(Context context) {
-        return isPackageInstalled("com.smartpack.donate", context);
-    }
-
-    public static boolean isDonated(Context context) {
-        return BuildConfig.DEBUG || isKADonated(context) || isSPDonated(context);
-    }
-
     public static void initializeAppTheme(Context context) {
         if (Prefs.getBoolean("darktheme", true, context)) {
             AppCompatDelegate.setDefaultNightMode(
