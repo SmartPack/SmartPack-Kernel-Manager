@@ -30,6 +30,7 @@ import androidx.annotation.Nullable;
 
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.activities.BillingActivity;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
@@ -103,7 +104,7 @@ public class AboutFragment extends RecyclerViewFragment {
 
         DescriptionView versioninfo = new DescriptionView();
         versioninfo.setDrawable(getResources().getDrawable(R.drawable.ic_on_boot_notification));
-        versioninfo.setTitle(Utils.isSPDonated(requireActivity()) ? "Pro. " + getString(R.string.version) : getString(R.string.version));
+        versioninfo.setTitle(getString(R.string.version));
         versioninfo.setSummary("v" + BuildConfig.VERSION_NAME);
 
         DescriptionView support = new DescriptionView();
@@ -138,19 +139,11 @@ public class AboutFragment extends RecyclerViewFragment {
 
         DescriptionView donatetome = new DescriptionView();
         donatetome.setDrawable(getResources().getDrawable(R.drawable.ic_donate));
-        donatetome.setTitle(getString(R.string.donate_me));
+        donatetome.setTitle(getString(R.string.donations));
         donatetome.setSummary(getString(R.string.donate_me_summary));
         donatetome.setOnItemClickListener(item -> {
-            Dialog donate_to_me = new Dialog(requireActivity());
-            donate_to_me.setIcon(R.mipmap.ic_launcher);
-            donate_to_me.setTitle(getString(R.string.donate_me));
-            donate_to_me.setMessage(getString(R.string.donate_me_message));
-            donate_to_me.setNeutralButton(getString(R.string.donate_nope), (dialogInterface, i) -> {
-            });
-            donate_to_me.setPositiveButton(getString(R.string.purchase_app), (dialog1, id1) -> {
-                Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.donate", getActivity());
-            });
-            donate_to_me.show();
+            Intent intent = new Intent(requireActivity(), BillingActivity.class);
+            startActivity(intent);
         });
 
         DescriptionView share = new DescriptionView();
@@ -172,9 +165,7 @@ public class AboutFragment extends RecyclerViewFragment {
         items.add(sourcecode);
         items.add(support);
         items.add(changelogs);
-        if (!Utils.isSPDonated(requireActivity())) {
-            items.add(donatetome);
-        }
+        items.add(donatetome);
         items.add(share);
         items.add(playstore);
     }

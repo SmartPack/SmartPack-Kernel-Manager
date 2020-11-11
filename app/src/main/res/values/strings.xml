@@ -25,10 +25,6 @@
     <string name="yes">YES</string>
     <string name="unknown">Unknown</string>
 
-    <string name="donate">Donate</string>
-    <string name="donate_summary">This feature is only available when the donation app is installed! Don\'t worry though. Because this app is open source you can easily build it yourself and remove this check. But I hope you support the developers anyway. Thanks for using SmartPack-Kernel Manager!</string>
-    <string name="donate_nope">Not now!</string>
-    <string name="donate_yes">Donate!</string>
     <string name="warning">Warning!</string>
 
     <string name="apply_on_boot">Apply on boot</string>
@@ -1113,10 +1109,18 @@
     <string name="change_logs_summary">View Change-logs</string>
     <string name="playstore">PlayStore</string>
     <string name="playstore_summary">Visit PlayStore page</string>
-    <string name="donate_me">Donate to Me</string>
-    <string name="donate_me_summary">Want to appreciate my work with a Donation? Click here</string>
-    <string name="donate_me_message">\nIf you like to appreciate my work, please consider purchasing SmartPack Donation Package from PlayStore as it is helpful to continue my projects more active, although it is not at all necessary.\n</string>
-    <string name="purchase_app">Donation App</string>
+    <string name="donate_me_summary">Support development of this project</string>
+    <string name="purchase_app">Buy Donation App</string>
+    <string name="billing_client_disconnected">Failed to connect with Google Play Billing client!</string>
+    <string name="support_acknowledged">Donation Acknowledged \u2665</string>
+    <string name="support_development">Support Development</string>
+    <string name="support_development_summary">If you like to appreciate the efforts of the developer to provide this tool entirely free, please consider sending a small donation by clicking one among the below-provided options!</string>
+    <string name="support_dinner">Buy me a Dinner</string>
+    <string name="support_meal">Buy me a Meal</string>
+    <string name="support_coffee">Buy me a Coffee</string>
+    <string name="support_already_received_message">You\'re already supported the development with this item before!</string>
+    <string name="support_received_message">Thank you very much for your support \u2665\nIt will motivate me a lot to continue my projects more active!</string>
+    <string name="support_retry_message">Please try purchasing again!</string>
     <string name="licence">License</string>
     <string name="licence_message" translatable="false">SmartPack-Kernel Manager is a free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nSmartPack-Kernel Manager is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with SmartPack-Kernel Manager. If not, visit http://www.gnu.org/licenses/.</string>
     <string name="share_app">Share App</string>

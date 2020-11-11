@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.fragments.kernel;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -98,6 +99,7 @@ public class ScreenFragment extends RecyclerViewFragment {
         addViewPagerFragment(new ColorTableFragment());
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
         if (Misc.haskcalRed() || Misc.haskcalGreen() || Misc.haskcalBlue()) {

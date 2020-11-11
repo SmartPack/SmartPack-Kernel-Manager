@@ -20,10 +20,6 @@
     <string name="yes">አዎ</string>
     <string name="unknown">ያልታወቀ</string>
 
-    <string name="donate">ልገሳ</string>
-    <string name="donate_summary">ይህ ባህሪ የሚገኘው የልገሳ ማጫዎቻ መተግበሪያ ሲጫን ብቻ ነው! አይጨነቁ። ይህ መተግበሪያ ክፍት ምንጭ ስለሆነ በቀላሉ እራስዎ መገንባት እና ይህን ቼክ ማስወገድ ይችላሉ። ግን በምንም መንገድ ገንቢዎቹን እንደረዳችሁ ተስፋ አደርጋለሁ ፡፡ ስማርትኬክ-ካርል አስተዳዳሪን ስለተጠቀሙ እናመሰግናለን!</string>
-    <string name="donate_nope">አሁን አይሆንም!</string>
-    <string name="donate_yes">ልገሳ!</string>
     <string name="warning">ማስጠንቀቂያ!</string>
 
     <string name="apply_on_boot">በማስነሻ ላይ ያመልክቱ</string>
@@ -1066,9 +1062,7 @@
     <string name="change_logs_summary">የለውጥ-ምዝግብ ማስታወሻዎችን ይመልከቱ</string>
     <string name="playstore">PlayStore</string>
     <string name="playstore_summary">የ PlayStore ገጽን ይጎብኙ</string>
-    <string name="donate_me">ለእኔ ልገሳው</string>
     <string name="donate_me_summary">በስጦታ ስራዬን ማድነቅ ይፈልጋሉ? እዚህ ጠቅ ያድርጉ</string>
-    <string name="donate_me_message">\n ስራዬን ማድነቅ ከፈለግክ እባክዎን ለእኔ መዋጮን አስቡባቸው ፕሮጀክቶቼን ይበልጥ ንቁ ማድረጉ ጠቃሚ ቢሆንም ምንም እንኳን አስፈላጊ ባይሆንም \n</string>
     <string name="purchase_app">የልገሳ መተግበሪያ</string>
     <string name="licence">ፈቃድ</string>
     <string name="share_app">መተግበሪያን ያጋሩ</string>

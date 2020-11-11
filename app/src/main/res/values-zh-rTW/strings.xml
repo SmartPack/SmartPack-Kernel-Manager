@@ -19,10 +19,6 @@
     <string name="ok">確定</string>
     <string name="yes">是的</string>
     <string name="unknown">未知</string>
-    <string name="donate">捐贈</string>
-    <string name="donate_summary">此功能僅在安裝了捐贈應用程式時可以使用！不要擔心。因為這個程式是開放原始碼的，你可以很容易地自己建立，並刪除這個檢查。但我希望你支持開發人員。感謝您使用 SmartPack-Kernel Manager！</string>
-    <string name="donate_nope">我不會愛上這種騙局！</string>
-    <string name="donate_yes">我喜歡這個應用程式，捐是應該的！</string>
     <string name="warning">警告</string>
     <string name="apply_on_boot">開機後自動套用</string>
     <string name="apply_on_boot_text">設定值將於 %d 秒後套用...</string>
@@ -912,9 +908,7 @@
     <string name="source_code_summary">在 GitHub 上檢視原始碼</string>
     <string name="change_logs">更新日誌</string>
     <string name="change_logs_summary">檢視變更</string>
-    <string name="donate_me">捐贈給我</string>
     <string name="donate_me_summary">想透過捐款來感謝我的工作嗎？請點選這裡</string>
-    <string name="donate_me_message"> \n如果你喜歡我的工作，請考慮給我捐款，因為有助於我的項目更加活躍，儘管不是強制性的。\n</string>
     <string name="purchase_app">購買應用程式</string>
     <string name="licence">授權協議</string>
 

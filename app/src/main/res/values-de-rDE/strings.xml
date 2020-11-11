@@ -19,10 +19,6 @@
     <string name="yes">JA</string>
     <string name="unknown">Unbekannt</string>
 
-    <string name="donate">Spenden</string>
-    <string name="donate_summary">Diese Funktion ist nur in Kombination mit der Spenden App verfügbar! Keine Sorge. Weil die App open source ist kannst du selbst eine Version ohne diesen Check bauen. Aber ich hoffe das du die Entwickler trotzdem unterstützt. Danke fürs benutzen von SmartPack-Kernel Manager!</string>
-    <string name="donate_nope">Nicht jetzt!</string>
-    <string name="donate_yes">Spenden!</string>
     <string name="warning">Warnung!</string>
 
     <string name="apply_on_boot">Beim Systemstart anwenden</string>
@@ -1088,9 +1084,7 @@
     <string name="change_logs_summary">Änderungen ansehen</string>
     <string name="playstore">PlayStore</string>
     <string name="playstore_summary">PlayStore Seite ansehen</string>
-    <string name="donate_me">Mir spenden</string>
     <string name="donate_me_summary">Meine Arbeit mit einer Spende unterstützten? Klicke hier</string>
-    <string name="donate_me_message">\nWenn du meine Arbeit anerkennen möchten, ziehe bitte in Betracht, mir eine Spende zu geben, da sie ist hilfreich, um meine Projekte aktiver fortzusetzen, obwohl es gar nicht notwendig ist.\n</string>
     <string name="purchase_app">Spenden App</string>
     <string name="licence">Lizenz</string>
 

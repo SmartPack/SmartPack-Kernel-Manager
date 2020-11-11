@@ -18,10 +18,6 @@
     <string name="yes">SIM</string>
     <string name="unknown">Desconhecido</string>
 
-    <string name="donate">Doar</string>
-    <string name="donate_summary">Esse recurso está disponível apenas quando o aplicativo de doação está instalado! Não se preocupe. Como este aplicativo é de código aberto, você pode facilmente compilá-lo e remover essa verificação. Mas espero que você apoie os desenvolvedores de qualquer maneira. Obrigado por usar o SmartPack-Kernel Manager!</string>
-    <string name="donate_nope">Agora não!</string>
-    <string name="donate_yes">Doar!</string>
     <string name="warning">Aviso!</string>
 
     <string name="apply_on_boot">Aplicar na inicialização</string>
@@ -965,9 +961,7 @@
     <string name="source_code_summary">Ver código fonte no GitHub</string>
     <string name="change_logs">Listas de mudanças</string>
     <string name="change_logs_summary">Ver as listas de mudanças</string>
-    <string name="donate_me">Doar para mim</string>
     <string name="donate_me_summary">Deseja apreciar meu trabalho com uma doação? Clique aqui</string>
-    <string name="donate_me_message">\nSe você gosta do meu trabalho, considere fazer uma doação para mim, pois é útil para continuar meus projetos mais ativos, embora não seja de todo necessário.\n</string>
     <string name="purchase_app">App de doação</string>
 
     <!-- Contributors -->

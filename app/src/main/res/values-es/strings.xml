@@ -19,10 +19,6 @@
     <string name="yes">Si</string>
     <string name="unknown">Desconocido</string>
 
-    <string name="donate">Donar</string>
-    <string name="donate_summary">¡Esta función solo está disponible cuando la aplicación de donación está instalada! Sin embargo, no te preocupes. Debido a que esta aplicación es de código abierto, puede crearla fácilmente usted mismo y eliminar esta verificación. Pero de todos modos espero que apoyen a los desarrolladores. ¡Gracias por usar SmartPack-Kernel Manager!</string>
-    <string name="donate_nope">Ahora no!</string>
-    <string name="donate_yes">Donar!</string>
     <string name="warning">Advertencia!</string>
 
     <string name="apply_on_boot">Aplicar al inicio</string>
@@ -1089,9 +1085,7 @@
     <string name="change_logs_summary">View Change-logs</string>
     <string name="playstore">PlayStore</string>
     <string name="playstore_summary">Visit PlayStore page</string>
-    <string name="donate_me">Donate to Me</string>
     <string name="donate_me_summary">Want to appreciate my work with a Donation? Click here</string>
-    <string name="donate_me_message">\nIf you like to appreciate my work, please consider donating to me as it is helpful to continue my projects more active, although it is not at all necessary.\n</string>
     <string name="purchase_app">Donation App</string>
     <string name="licence">License</string>
     <string name="share_app">Share App</string>

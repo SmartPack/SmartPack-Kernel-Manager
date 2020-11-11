@@ -95,11 +95,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!Utils.isDonated(requireActivity())) {
-            Prefs.remove(KEY_HIDE_BANNER, getActivity());
-            Prefs.remove(KEY_ACCENT_COLOR, getActivity());
-            Prefs.remove(KEY_SECTIONS_ICON, getActivity());
-        }
         setRetainInstance(true);
     }
 
@@ -203,10 +198,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 Utils.setStartActivity(checked, requireActivity());
                 return true;
             case KEY_HIDE_BANNER:
-                if (!Utils.isDonated(requireActivity())) {
-                    ViewUtils.dialogDonate(getActivity()).show();
-                    return false;
-                }
                 return true;
             case KEY_ENABLE_ON_BOOT:
                 Prefs.saveBoolean("enable_onboot", checked, getActivity());
@@ -263,31 +254,23 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                         .show();
                 return true;
             case KEY_BANNER_RESIZER:
-                if (Utils.isDonated(requireActivity())) {
-                    if (Utils.getOrientation(requireActivity()) == Configuration.ORIENTATION_PORTRAIT) {
-                        Intent intent = new Intent(getActivity(), BannerResizerActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    } else {
-                        Utils.snackbar(mRootView, getString(R.string.banner_resizer_message));
-                    }
+                if (Utils.getOrientation(requireActivity()) == Configuration.ORIENTATION_PORTRAIT) {
+                    Intent intent = new Intent(getActivity(), BannerResizerActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                 } else {
-                    ViewUtils.dialogDonate(getActivity()).show();
+                    Utils.snackbar(mRootView, getString(R.string.banner_resizer_message));
                 }
                 return true;
             case KEY_ACCENT_COLOR:
-                if (Utils.isDonated(requireActivity())) {
-                    List<Integer> sColors = new ArrayList<>();
-                    for (int i = 0; i < BorderCircleView.sAccentColors.size(); i++) {
-                        sColors.add(BorderCircleView.sAccentColors.keyAt(i));
-                    }
-                    for (int i = 0; i < sColors.size(); i++) {
-                        sColors.set(i, ContextCompat.getColor(requireActivity(), sColors.get(i)));
-                    }
-                    colorDialog(sColors.indexOf(ViewUtils.getThemeAccentColor(requireActivity())));
-                } else {
-                    ViewUtils.dialogDonate(getActivity()).show();
+                List<Integer> sColors = new ArrayList<>();
+                for (int i = 0; i < BorderCircleView.sAccentColors.size(); i++) {
+                    sColors.add(BorderCircleView.sAccentColors.keyAt(i));
                 }
+                for (int i = 0; i < sColors.size(); i++) {
+                    sColors.set(i, ContextCompat.getColor(requireActivity(), sColors.get(i)));
+                }
+                colorDialog(sColors.indexOf(ViewUtils.getThemeAccentColor(requireActivity())));
                 return true;
             case KEY_APPLY_ON_BOOT_TEST:
                 if (Utils.isServiceRunning(ApplyOnBootService.class, requireActivity())) {

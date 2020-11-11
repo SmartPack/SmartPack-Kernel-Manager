@@ -390,7 +390,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     }
 
     private void resizeBanner() {
-        if (showViewPager() && !hideBanner() && Utils.isDonated(requireActivity())) {
+        if (showViewPager() && !hideBanner()) {
             ViewGroup.LayoutParams layoutParams = mViewPagerParent.getLayoutParams();
             layoutParams.height = getBannerHeight();
             mRecyclerView.setPadding(mRecyclerView.getPaddingLeft(), layoutParams.height,
@@ -714,8 +714,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
     private boolean hideBanner() {
         return Prefs.getBoolean("hide_banner", false, getActivity())
-                && getActivity() instanceof NavigationActivity
-                && Utils.isDonated(requireActivity());
+                && getActivity() instanceof NavigationActivity;
     }
 
     protected boolean showViewPager() {

@@ -122,15 +122,6 @@ public class ViewUtils {
         void onClick(String text, String text2);
     }
 
-    public static Dialog dialogDonate(final Context context) {
-        return new Dialog(context).setTitle(context.getString(R.string.donate))
-                .setMessage(context.getString(R.string.donate_summary))
-                .setNegativeButton(context.getString(R.string.donate_nope), (dialog, which) -> {
-                })
-                .setPositiveButton(context.getString(R.string.donate_yes), (dialog, which)
-                        -> Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.donate", context));
-    }
-
     public static Dialog dialogEditTexts(String text, String text2, String hint, String hint2,
                                          final DialogInterface.OnClickListener negativeListener,
                                          final onDialogEditTextsListener onDialogEditTextListener,
