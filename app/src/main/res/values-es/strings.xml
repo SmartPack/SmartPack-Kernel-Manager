@@ -19,8 +19,6 @@
     <string name="yes">Si</string>
     <string name="unknown">Desconocido</string>
 
-    <string name="donate">Donar</string>
-    <string name="donate_summary">¡Esta función solo está disponible cuando la aplicación de donación está instalada! Sin embargo, no te preocupes. Debido a que esta aplicación es de código abierto, puede crearla fácilmente usted mismo y eliminar esta verificación. Pero de todos modos espero que apoyen a los desarrolladores. ¡Gracias por usar SmartPack-Kernel Manager!</string>
     <string name="donate_nope">Ahora no!</string>
     <string name="donate_yes">Donar!</string>
     <string name="warning">Advertencia!</string>
@@ -1067,7 +1065,6 @@
     <string name="always_show">Always Show</string>
     <string name="apply_on_boot_hide_summary">Hide the notification of apply on boot. Delay will still remain!</string>
     <string name="toast">Toast</string>
-    <string name="apply_on_boot_toast_summary">Show toast when settings got applied!</string>
     <string name="confirmation_notification">Confirmation Notification</string>
     <string name="apply_on_boot_confirmation_notification_summary">After apply on boot with visible notification, show a notification afterwards with the confirmation that apply on boot was successful.</string>
     <string name="script">Script</string>

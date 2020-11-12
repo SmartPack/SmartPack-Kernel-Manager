@@ -18,8 +18,6 @@
     <string name="yes">SIM</string>
     <string name="unknown">Desconhecido</string>
 
-    <string name="donate">Doar</string>
-    <string name="donate_summary">Esse recurso está disponível apenas quando o aplicativo de doação está instalado! Não se preocupe. Como este aplicativo é de código aberto, você pode facilmente compilá-lo e remover essa verificação. Mas espero que você apoie os desenvolvedores de qualquer maneira. Obrigado por usar o SmartPack-Kernel Manager!</string>
     <string name="donate_nope">Agora não!</string>
     <string name="donate_yes">Doar!</string>
     <string name="warning">Aviso!</string>
@@ -944,7 +942,6 @@
     <string name="hide">Esconder</string>
     <string name="apply_on_boot_hide_summary">Ocultar a notificação de aplicar na inicialização. O atraso ainda permanecerá!</string>
     <string name="toast">Toast</string>
-    <string name="apply_on_boot_toast_summary">Mostrar uma mensagem na tela quando as configurações forem aplicadas.</string>
     <string name="confirmation_notification">Notificação de confirmação</string>
     <string name="apply_on_boot_confirmation_notification_summary">Depois de aplicar na inicialização, com a notificação visível, mostrar uma notificação posteriormente com a confirmação de que a aplicação na inicialização foi bem-sucedida.</string>
     <string name="script">Script</string>

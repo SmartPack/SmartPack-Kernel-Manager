@@ -20,8 +20,6 @@
     <string name="yes">TAK</string>
     <string name="unknown">Nieznany</string>
 
-    <string name="donate">Dotacja</string>
-    <string name="donate_summary">Ta funkcja jest dostępna tylko wtedy, gdy zainstalowana jest aplikacja do darowizn! Nie martw się jednak. Ponieważ ta aplikacja jest open source, możesz łatwo ją samodzielnie zbudować i usunąć tę kontrolę. Ale mam nadzieję, że i tak wspierasz programistów. Dziękujemy za używanie SmartPack-Kernel Manager!</string>
     <string name="donate_nope">Nie teraz!</string>
     <string name="donate_yes">Dotacja!</string>
     <string name="warning">Ostrzeżenie!</string>
@@ -1070,7 +1068,6 @@
     <string name="always_show">Zawsze pokazuj</string>
     <string name="apply_on_boot_hide_summary">Ukryj powiadomienie o zastosowaniu podczas rozruchu. Opóźnienie nadal pozostanie!</string>
     <string name="toast">Dymek</string>
-    <string name="apply_on_boot_toast_summary">Pokaż dymek po zastosowaniu ustawień!</string>
     <string name="confirmation_notification">Powiadomienie o potwierdzeniu</string>
     <string name="apply_on_boot_confirmation_notification_summary">Po zastosowaniu przy rozruchu z widocznym powiadomieniem, pokaż następnie powiadomienie z potwierdzeniem, że zastosowanie podczas rozruchu zakończyło się pomyślnie.</string>
     <string name="script">Skrypt</string>

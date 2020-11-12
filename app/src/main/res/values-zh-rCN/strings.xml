@@ -18,8 +18,6 @@
     <string name="yes">是</string>
     <string name="unknown">未知</string>
 
-    <string name="donate">捐赠</string>
-    <string name="donate_summary">此功能仅在安装了捐赠的应用程序时可以使用！但别担心，这是一款开源软件，你可以很容易地去除该检查并重新构建。总之我希望您能支持开发者，谢谢使用 SmartPack-Kernel Manager！</string>
     <string name="donate_nope">白嫖党永不为奴！</string>
     <string name="donate_yes">我喜欢这个应用，立刻氪金！</string>
     <string name="warning">警告</string>
@@ -896,7 +894,6 @@
     <string name="hide">隐藏</string>
     <string name="apply_on_boot_hide_summary">隐藏启动时应用设置的通知。延迟仍然生效。</string>
     <string name="toast">弹出消息（Toast）</string>
-    <string name="apply_on_boot_toast_summary">应用设置时显示 Toast 消息。</string>
     <string name="confirmation_notification">确认通知</string>
     <string name="apply_on_boot_confirmation_notification_summary">使用一个可见通知显示启动时应用设置，以确认启动成功。</string>
     <string name="script">脚本</string>

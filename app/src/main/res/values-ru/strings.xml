@@ -15,8 +15,6 @@
     <string name="ok">Ок</string>
     <string name="yes">Да</string>
     <string name="unknown">Неизвестно</string>
-    <string name="donate">Пожертвовать</string>
-    <string name="donate_summary">Эта функция доступна только когда установлено приложение-пожертвование! Тем не менее, не волнуйтесь. Так как у этого приложения открытый исходный код, вы без труда можете собрать его самостоятельно и убрать эту проверку. Но я надеюсь, что вы в любом случае поддержите разработчиков. Спасибо за использование SmartPack-Kernel Manager!</string>
     <string name="donate_nope">Я не попадусь на эту аферу!</string>
     <string name="donate_yes">Я люблю это приложение. Должен пожертвовать!</string>
     <string name="warning">Внимание</string>
@@ -983,7 +981,6 @@
     <string name="always_show">Показывайте всегда</string>
     <string name="apply_on_boot_hide_summary">Скрыть уведомления при применении настроек при загрузке. При этом задержка останется.</string>
     <string name="toast">Всплывающее оповещение</string>
-    <string name="apply_on_boot_toast_summary">Показывать всплывающее уведомление, когда настройки были применены.</string>
     <string name="confirmation_notification">Уведомление подтверждения</string>
     <string name="apply_on_boot_confirmation_notification_summary">После выбора Применять при загрузке, выводится уведомление об удачном применении.</string>
     <string name="script">Скрипт</string>

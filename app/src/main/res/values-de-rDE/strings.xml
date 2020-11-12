@@ -19,8 +19,6 @@
     <string name="yes">JA</string>
     <string name="unknown">Unbekannt</string>
 
-    <string name="donate">Spenden</string>
-    <string name="donate_summary">Diese Funktion ist nur in Kombination mit der Spenden App verfügbar! Keine Sorge. Weil die App open source ist kannst du selbst eine Version ohne diesen Check bauen. Aber ich hoffe das du die Entwickler trotzdem unterstützt. Danke fürs benutzen von SmartPack-Kernel Manager!</string>
     <string name="donate_nope">Nicht jetzt!</string>
     <string name="donate_yes">Spenden!</string>
     <string name="warning">Warnung!</string>
@@ -1068,7 +1066,6 @@
     <string name="always_show">Immer anzeigen</string>
     <string name="apply_on_boot_hide_summary">Benachrichtung beim Systemstart deaktiviern. Die Verzögerung bleibt erhalten!</string>
     <string name="toast">Toast</string>
-    <string name="apply_on_boot_toast_summary">Zeige einen Toast wenn Einstellungen nicht angewendet wurden!</string>
     <string name="confirmation_notification">Bestätigungsnachricht</string>
     <string name="apply_on_boot_confirmation_notification_summary">Wenn das Awenden beim Systemstart einen Benachrichtung anzeigt wird nach Abschluss eine Bestätigungsnachricht angezeigt, dass die Einstellungen übernommen wurden.</string>
     <string name="script">Skript</string>

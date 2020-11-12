@@ -20,8 +20,6 @@
     <string name="yes">አዎ</string>
     <string name="unknown">ያልታወቀ</string>
 
-    <string name="donate">ልገሳ</string>
-    <string name="donate_summary">ይህ ባህሪ የሚገኘው የልገሳ ማጫዎቻ መተግበሪያ ሲጫን ብቻ ነው! አይጨነቁ። ይህ መተግበሪያ ክፍት ምንጭ ስለሆነ በቀላሉ እራስዎ መገንባት እና ይህን ቼክ ማስወገድ ይችላሉ። ግን በምንም መንገድ ገንቢዎቹን እንደረዳችሁ ተስፋ አደርጋለሁ ፡፡ ስማርትኬክ-ካርል አስተዳዳሪን ስለተጠቀሙ እናመሰግናለን!</string>
     <string name="donate_nope">አሁን አይሆንም!</string>
     <string name="donate_yes">ልገሳ!</string>
     <string name="warning">ማስጠንቀቂያ!</string>
@@ -1045,7 +1043,6 @@
     <string name="always_show">ሁልጊዜ አሳይ</string>
     <string name="apply_on_boot_hide_summary">በመጫኛ ላይ የማመልከት ማስታወቂያ ደብቅ። መዘግየት አሁንም ይቀራል!</string>
     <string name="toast">ቶስት</string>
-    <string name="apply_on_boot_toast_summary">ቅንብሮች ሲተገበሩ ቶስት አሳይ!</string>
     <string name="confirmation_notification">ማረጋገጫ ማስታወቂያ</string>
     <string name="apply_on_boot_confirmation_notification_summary">በሚታይ የማሳወቂያ ማስነሻ ላይ ከተጫነ በኋላ ፣ በማስነሻ ላይ የተተገበረው የተሳካለት ማረጋገጫ ጋር በመቀጠል ማሳወቂያ ያሳዩ።</string>
     <string name="script">ስክሪፕት</string>

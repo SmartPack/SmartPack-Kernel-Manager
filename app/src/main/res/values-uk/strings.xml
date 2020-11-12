@@ -48,7 +48,6 @@
     <string name="apply_on_boot_script_summary">Використовувати консольний скрипт для застосування налаштувань. Будь ласка, включайте це тільки якщо у вас є проблеми із застосуванням при завантаженні. Якщо ж проблема все ще залишиться після включення цієї опції, будь ласка, перевірте, чи немає інших додатків, які конфліктують з Kernel Adiutor.</string>
     <string name="apply_on_boot_test_summary">Тест застосування при завантаженні. Це включає в себе перевірку всього, що застосовується під час завантаження, наприклад користувальницькі елементи управління, профілі, init.d, і т. д.</string>
     <string name="apply_on_boot_text">Застосування налаштувань через %d секунд.</string>
-    <string name="apply_on_boot_toast_summary">Показувати спливаюче повідомлення, коли налаштування були застосовані.</string>
     <string name="apply_question">Застосувати %s ?</string>
     <string name="applying_profile">Застосування %s !</string>
     <string name="arch_power">Arch Power</string>
@@ -243,12 +242,10 @@
     <string name="disksize_summary">Покращує продуктивність методом стиснення даних в RAM замість постійної пам\'яті. Використовує RAM до тих пір, поки не стане необхідним записати дані в постійну пам\'ять.</string>
     <string name="display_backlight">Підсвічування дисплея</string>
     <string name="documentation">Документація</string>
-    <string name="donate">Пожертвувати</string>
     <string name="donate_me">Пожертвувати мені</string>
     <string name="donate_me_message">\nЯкщо вам подобається моя робота, розгляньте можливість пожертвування мені, оскільки корисно продовжувати мої проекти більш активно, хоча в цьому немає необхідності.\n</string>
     <string name="donate_me_summary">Хочете оцінити мою роботу  пожертвуванням? клікніть сюди</string>
     <string name="donate_nope">Я не попадуся на цю аферу!</string>
-    <string name="donate_summary">Ця функція доступна лише коли встановлено додаток-пожертва! Тим не менш, не хвилюйтеся. Так як у цього додатка відкритий вихідний код, ви без праці можете зібрати його самостійно і прибрати цю перевірку. Але я сподіваюся, що ви в будь-якому випадку підтримайте розробників. Спасибі за використання SmartPack-Kernel Manager!</string>
     <string name="donate_yes">Я люблю це додаток. Повинен пожертвувати!</string>
     <string name="donation_link">Donation Link</string>
     <string name="donation_link_summary">donation_link</string>
