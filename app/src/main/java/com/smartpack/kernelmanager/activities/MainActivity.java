@@ -269,7 +269,7 @@ public class MainActivity extends BaseActivity {
             return;
         }
         if (Utils.isNetworkAvailable(this) && Prefs.getBoolean("auto_update", true, this)) {
-            if (!UpdateCheck.hasVersionInfo() || (UpdateCheck.lastModified() + 3720000L < System.currentTimeMillis())) {
+            if (!UpdateCheck.hasVersionInfo(this) || (UpdateCheck.lastModified(this) + 3720000L < System.currentTimeMillis())) {
                 UpdateCheck.getVersionInfo(this);
                 Utils.mUpdateCheck = true;
                 mUpdateInfo.setVisibility(View.VISIBLE);

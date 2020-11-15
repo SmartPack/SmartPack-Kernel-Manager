@@ -539,7 +539,7 @@ public class NavigationActivity extends BaseActivity
         if (Build.VERSION.SDK_INT >= 23) {
             requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         }
-        if (UpdateCheck.hasVersionInfo() && BuildConfig.VERSION_CODE < UpdateCheck.versionCode()) {
+        if (UpdateCheck.hasVersionInfo(this) && BuildConfig.VERSION_CODE < UpdateCheck.versionCode(this)) {
             UpdateCheck.updateAvailableDialog(this);
         }
     }

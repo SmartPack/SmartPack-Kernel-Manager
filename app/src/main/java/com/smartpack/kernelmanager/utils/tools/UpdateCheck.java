@@ -50,53 +50,51 @@ public class UpdateCheck {
 
     private static final String LATEST_VERSION_URL = "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/beta/app/src/main/assets/release.json";
     private static final String LATEST_VERSION_APK = Utils.getInternalDataStorage() + "/" + BuildConfig.APPLICATION_ID + ".apk";
-    private static final String UPDATE_INFO = Utils.getInternalDataStorage() + "/update_info.json";
-    private static final String UPDATE_INFO_STRING = Utils.readFile(UPDATE_INFO);
 
     public static void getVersionInfo(Context context) {
         Utils.prepareInternalDataStorage();
-        Utils.downloadFile(UPDATE_INFO, LATEST_VERSION_URL, context);
+        Utils.downloadFile(releaseInfo(context), LATEST_VERSION_URL, context);
     }
 
-    public static int versionCode() {
+    public static int versionCode(Context context) {
         try {
-            JSONObject obj = new JSONObject(UPDATE_INFO_STRING);
+            JSONObject obj = new JSONObject(getReleaseInfo(context));
             return (obj.getInt("latestVersionCode"));
         } catch (JSONException e) {
             return BuildConfig.VERSION_CODE;
         }
     }
 
-    private static String getUrl() {
+    private static String getUrl(Context context) {
         try {
-            JSONObject obj = new JSONObject(UPDATE_INFO_STRING);
+            JSONObject obj = new JSONObject(getReleaseInfo(context));
             return (obj.getString("releaseUrl"));
         } catch (JSONException e) {
             return BuildConfig.VERSION_NAME;
         }
     }
 
-    private static String versionName() {
+    private static String versionName(Context context) {
         try {
-            JSONObject obj = new JSONObject(UPDATE_INFO_STRING);
+            JSONObject obj = new JSONObject(getReleaseInfo(context));
             return (obj.getString("latestVersion"));
         } catch (JSONException e) {
             return BuildConfig.VERSION_NAME;
         }
     }
 
-    private static String changelogs() {
+    private static String getChangeLogs(Context context) {
         try {
-            JSONObject obj = new JSONObject(UPDATE_INFO_STRING);
+            JSONObject obj = new JSONObject(getReleaseInfo(context));
             return (obj.getString("releaseNotes"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static String getChecksum() {
+    public static String getChecksum(Context context) {
         try {
-            JSONObject obj = new JSONObject(UPDATE_INFO_STRING);
+            JSONObject obj = new JSONObject(getReleaseInfo(context));
             return (obj.getString("sha1"));
         } catch (JSONException e) {
             return "Unavailable";
@@ -105,21 +103,29 @@ public class UpdateCheck {
 
     private static void getLatestApp(Context context) {
         Utils.prepareInternalDataStorage();
-        Utils.downloadFile(LATEST_VERSION_APK, getUrl(), context);
+        Utils.downloadFile(LATEST_VERSION_APK, getUrl(context), context);
     }
 
-    public static boolean hasVersionInfo() {
-        return Utils.existFile(UPDATE_INFO);
+    public static boolean hasVersionInfo(Context context) {
+        return Utils.existFile(releaseInfo(context));
     }
 
-    public static long lastModified() {
-        return new File(UPDATE_INFO).lastModified();
+    public static long lastModified(Context context) {
+        return new File(releaseInfo(context)).lastModified();
+    }
+
+    private static String releaseInfo(Context context) {
+        return context.getFilesDir().getPath() + "/release";
+    }
+
+    private static String getReleaseInfo(Context context) {
+        return Utils.readFile(releaseInfo(context));
     }
 
     public static void updateAvailableDialog(Context context) {
         new Dialog(context)
-                .setTitle(context.getString(R.string.update_available, UpdateCheck.versionName()))
-                .setMessage(changelogs())
+                .setTitle(context.getString(R.string.update_available, UpdateCheck.versionName(context)))
+                .setMessage(getChangeLogs(context))
                 .setCancelable(false)
                 .setNegativeButton(context.getString(R.string.cancel), (dialog, id) -> {
                 })
@@ -137,7 +143,7 @@ public class UpdateCheck {
                 super.onPreExecute();
                 mProgressDialog = new ProgressDialog(context);
                 mProgressDialog.setMessage(context.getString(R.string.downloading_update, context.
-                        getString(R.string.app_name) + " v" + versionName() + " ..."));
+                        getString(R.string.app_name) + " v" + versionName(context) + " ..."));
                 mProgressDialog.setCancelable(false);
                 mProgressDialog.show();
             }
@@ -153,7 +159,7 @@ public class UpdateCheck {
                     mProgressDialog.dismiss();
                 } catch (IllegalArgumentException ignored) {
                 }
-                if (Utils.existFile(LATEST_VERSION_APK) && Utils.getChecksum(LATEST_VERSION_APK).contains(getChecksum())) {
+                if (Utils.existFile(LATEST_VERSION_APK) && Utils.getChecksum(LATEST_VERSION_APK).contains(getChecksum(context))) {
                     installUpdate(context);
                 } else {
                     new Dialog(context)
@@ -169,7 +175,7 @@ public class UpdateCheck {
     public static void manualUpdateCheck(Activity activity) {
         if (activity.checkCallingOrSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             getVersionInfo(activity);
-            if (UpdateCheck.hasVersionInfo() && BuildConfig.VERSION_CODE < UpdateCheck.versionCode()) {
+            if (UpdateCheck.hasVersionInfo(activity) && BuildConfig.VERSION_CODE < UpdateCheck.versionCode(activity)) {
                 updateAvailableDialog(activity);
             } else {
                 new Dialog(activity)
