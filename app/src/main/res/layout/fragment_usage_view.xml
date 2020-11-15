@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:focusable="false"
         android:padding="3dp"
-        android:textColor="@color/textcolor_dark"
+        android:textColor="@color/colorOnPrimary"
         android:textSize="12sp" />
 
     <TextView
@@ -39,7 +39,7 @@
         android:layout_gravity="center_horizontal"
         android:focusable="false"
         android:padding="3dp"
-        android:textColor="@color/textcolor_dark"
+        android:textColor="@color/colorOnPrimary"
         android:textSize="12sp" />
 
     <TextView
@@ -49,6 +49,6 @@
         android:layout_gravity="end"
         android:focusable="false"
         android:padding="3dp"
-        android:textColor="@color/textcolor_dark"
+        android:textColor="@color/colorOnPrimary"
         android:textSize="12sp" />
 </FrameLayout>
