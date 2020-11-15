@@ -23,6 +23,7 @@ package com.smartpack.kernelmanager.activities;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -38,11 +39,12 @@ import com.smartpack.kernelmanager.utils.tools.SmartPack;
 
 public class FlashingActivity extends BaseActivity {
 
-    private static AppCompatImageButton mSaveButton;
-    private static AppCompatTextView mCancelButton;
-    private static AppCompatTextView mFlashingHeading;
-    private static AppCompatTextView mFlashingResult;
-    private static AppCompatTextView mRebootButton;
+    private AppCompatImageButton mSaveButton;
+    private AppCompatTextView mCancelButton;
+    private AppCompatTextView mFlashingHeading;
+    private AppCompatTextView mFlashingResult;
+    private AppCompatTextView mRebootButton;
+    private LinearLayout mProgressLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,8 +54,12 @@ public class FlashingActivity extends BaseActivity {
         mCancelButton = findViewById(R.id.cancel_button);
         mFlashingHeading = findViewById(R.id.flashing_title);
         mFlashingResult = findViewById(R.id.output_text);
+        AppCompatTextView mProgressMessage = findViewById(R.id.progress_message);
         mSaveButton = findViewById(R.id.save_button);
         mRebootButton = findViewById(R.id.reboot_button);
+        mProgressLayout = findViewById(R.id.progress_layout);
+        mProgressMessage.setText(getString(R.string.flashing));
+        mProgressMessage.setVisibility(View.VISIBLE);
         mSaveButton.setOnClickListener(v -> {
             Utils.create("## Flasher log created by SmartPack-Kernel Manager\n\n" + SmartPack.mFlashingResult.toString(),
                     Utils.getInternalDataStorage() + "/flasher_log-" + SmartPack.mZipName.replace(".zip", ""));
@@ -78,8 +84,9 @@ public class FlashingActivity extends BaseActivity {
                     while (!isInterrupted()) {
                         Thread.sleep(100);
                         runOnUiThread(() -> {
-                            if (SmartPack.mFlashingResult != null) {
-                                mFlashingResult.setText(SmartPack.mFlashingResult.toString());
+                            mProgressLayout.setVisibility(SmartPack.mFlashing ? View.VISIBLE : View.GONE);
+                            if (SmartPack.mFlashingOutput != null) {
+                                mFlashingResult.setText(SmartPack.mFlashing ? "" : SmartPack.mFlashingOutput);
                                 if (!SmartPack.mFlashing) {
                                     if (SmartPack.mFlashingOutput != null && !SmartPack.mFlashingOutput.isEmpty()) {
                                         mFlashingHeading.setText(R.string.flashing_finished);

@@ -629,7 +629,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             } else {
                 mPath = Utils.getFilePath(file);
             }
-            if (!Utils.getExtension(mPath).equals("zip")) {
+            if (!mPath.endsWith(".zip")) {
                 Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".zip"));
                 return;
             }
