@@ -674,7 +674,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
         if (Utils.isNetworkAvailable(requireActivity()) && Prefs.getBoolean("update_check", true, getActivity())
                 && !KernelUpdater.getUpdateChannel(requireActivity()).equals("Unavailable") && Utils.isDownloadBinaries() &&
                 KernelUpdater.lastModified(requireActivity()) + 89280000L < System.currentTimeMillis()) {
-            KernelUpdater.updateInfo(Utils.readFile(Utils.getInternalDataStorage() + "/updatechannel"), getActivity());
+            KernelUpdater.updateInfo(Utils.readFile(KernelUpdater.updateChannelInfo(requireActivity())), getActivity());
         }
     }
 

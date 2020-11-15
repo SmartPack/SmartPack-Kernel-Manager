@@ -179,7 +179,7 @@ public class KernelUpdater {
         return context.getFilesDir().getPath() + "/release";
     }
 
-    private static String updateChannelInfo(Context context) {
+    public static String updateChannelInfo(Context context) {
         return context.getFilesDir().getPath() + "/updatechannel";
     }
 
