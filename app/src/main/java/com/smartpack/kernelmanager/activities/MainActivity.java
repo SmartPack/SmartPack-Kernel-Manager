@@ -21,6 +21,7 @@ package com.smartpack.kernelmanager.activities;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,7 @@ import com.smartpack.kernelmanager.services.profile.Tile;
 import com.smartpack.kernelmanager.utils.Device;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.kernel.battery.Battery;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
 import com.smartpack.kernelmanager.utils.kernel.cpu.MSMPerformance;
@@ -219,20 +221,20 @@ public class MainActivity extends BaseActivity {
             MainActivity activity = mRefActivity.get();
             if (activity == null) return;
 
-            int red = ContextCompat.getColor(activity, R.color.red);
-            int green = ContextCompat.getColor(activity, R.color.green);
+            int red = Color.RED;
+            int accent = ViewUtils.getThemeAccentColor(activity);
             switch (values[0]) {
                 case 0:
-                    activity.mRootAccess.setTextColor(Utils.mHasRoot ? green : red);
+                    activity.mRootAccess.setTextColor(Utils.mHasRoot ? accent : red);
                     break;
                 case 1:
-                    activity.mBusybox.setTextColor(Utils.mHasBusybox ? green : red);
+                    activity.mBusybox.setTextColor(Utils.mHasBusybox ? accent : red);
                     break;
                 case 2:
-                    activity.mCollectInfo.setTextColor(green);
+                    activity.mCollectInfo.setTextColor(accent);
                     break;
                 case 3:
-                    activity.mUpdateInfo.setTextColor(green);
+                    activity.mUpdateInfo.setTextColor(accent);
                     break;
             }
         }
