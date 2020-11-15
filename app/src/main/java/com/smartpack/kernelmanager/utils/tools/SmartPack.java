@@ -34,7 +34,7 @@ import java.io.FileDescriptor;
 public class SmartPack {
 
     private static final String FLASH_FOLDER = Utils.getInternalDataStorage() + "/flash";
-    private static final String CLEANING_COMMAND = "rm -r '" + FLASH_FOLDER + "'";
+    private static final String CLEANING_COMMAND = (Utils.isMagiskBinaryExist("rm") ? Utils.magiskBusyBox() + " rm -r '" : "rm -r '") + FLASH_FOLDER + "'";
     private static final String ZIPFILE_EXTRACTED = Utils.getInternalDataStorage() + "/flash/META-INF/com/google/android/update-binary";
     public static String mZipName;
     public static String mFlashingOutput = null;
@@ -44,16 +44,6 @@ public class SmartPack {
     public static boolean mFlashing = false;
     public static boolean mDebugMode = false;
     private static boolean mWritableRoot = true;
-
-    private static String BusyBoxPath() {
-        if (Utils.existFile("/sbin/.magisk/busybox")) {
-            return "/sbin/.magisk/busybox";
-        } else if (Utils.existFile("/sbin/.core/busybox")) {
-            return "/sbin/.core/busybox";
-        } else {
-            return null;
-        }
-    }
 
     public static void prepareFolder(String path) {
         File file = new File(path);
@@ -75,24 +65,14 @@ public class SmartPack {
         FileDescriptor fd = new FileDescriptor();
         int RECOVERY_API = 3;
         String path = "/data/local/tmp/flash.zip";
-        String flashingCommand = "sh '" + ZIPFILE_EXTRACTED + "' '" + RECOVERY_API + "' '" +
-                fd + "' '" + path + "'";
+        String flashingCommand = "sh '" + ZIPFILE_EXTRACTED + "' '" + RECOVERY_API + "' '" + fd + "' '" + path + "'";
         if (Utils.existFile(FLASH_FOLDER)) {
             RootUtils.runCommand(CLEANING_COMMAND);
         } else {
             prepareFolder(FLASH_FOLDER);
         }
-        mFlashingResult.append("** Checking for unzip binary: ");
-        if (Utils.isUnzipAvailable()) {
-            mFlashingResult.append("Available *\n\n");
-        } else if (BusyBoxPath() != null) {
-            mFlashingResult.append("Native Binary Unavailable *\nloop mounting BusyBox binaries to '/system/xbin' *\n\n");
-            Utils.mount("-o --bind", BusyBoxPath(), "/system/xbin");
-        } else {
-            mFlashingResult.append("Unavailable *\n\n");
-        }
         mFlashingResult.append("** Extracting ").append(mZipName).append(" into working folder: ");
-        RootUtils.runAndGetError("unzip " + path + " -d '" + FLASH_FOLDER + "'");
+        RootUtils.runAndGetError((Utils.isMagiskBinaryExist("unzip") ? Utils.magiskBusyBox() + " unzip " : "unzip ") + path + " -d '" + FLASH_FOLDER + "'");
         if (Utils.existFile(ZIPFILE_EXTRACTED)) {
             mFlashingResult.append(" Done *\n\n");
             mFlashingResult.append("** Preparing a recovery-like environment for flashing...\n\n");
@@ -103,9 +83,9 @@ public class SmartPack {
                 mFlashingResult.append("Failed *\nPlease Note: Flashing may not work properly on this device!\n\n");
             } else {
                 mFlashingResult.append("Done *\n\n");
-                mFlashingResult.append(RootUtils.runAndGetError("mkdir /tmp")).append(" \n");
-                mFlashingResult.append(RootUtils.runAndGetError("mke2fs -F tmp.ext4 500000")).append(" \n");
-                mFlashingResult.append(RootUtils.runAndGetError("mount -o loop tmp.ext4 /tmp/")).append(" \n\n");
+                mFlashingResult.append(RootUtils.runAndGetError(Utils.isMagiskBinaryExist("mkdir") ? Utils.magiskBusyBox() + " mkdir /tmp" : "mkdir /tmp")).append(" \n");
+                mFlashingResult.append(RootUtils.runAndGetError(Utils.isMagiskBinaryExist("mke2fs") ? Utils.magiskBusyBox() + " mke2fs -F tmp.ext4 500000" : "mke2fs -F tmp.ext4 500000")).append(" \n");
+                mFlashingResult.append(RootUtils.runAndGetError(Utils.isMagiskBinaryExist("mount") ? Utils.magiskBusyBox() + " mount -o loop tmp.ext4 /tmp/" : "mount -o loop tmp.ext4 /tmp/")).append(" \n\n");
             }
             mFlashingResult.append("** Flashing ").append(mZipName).append(" ...\n\n");
             mFlashingOutput = mDebugMode ? RootUtils.runAndGetError(flashingCommand) : RootUtils.runAndGetOutput(flashingCommand);

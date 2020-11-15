@@ -555,9 +555,7 @@ public class Utils {
     }
 
     public static void delete(String path) {
-        if (Utils.existFile(path)) {
-            RootUtils.runCommand("rm -r " + path);
-        }
+        RootUtils.runCommand(Utils.isMagiskBinaryExist("rm") ? Utils.magiskBusyBox() + " rm -r " : "rm -r " + path);
     }
 
     public static void sleep(int sec) {
@@ -568,21 +566,21 @@ public class Utils {
         RootUtils.runCommand("cp -r " + source + " " + dest);
     }
 
-    public static void mount(String command, String source, String dest) {
-        RootUtils.runCommand("mount " + command + " " + source + " " + dest);
-    }
-
     public static String getChecksum(String path) {
         return RootUtils.runAndGetOutput("sha1sum " + path);
     }
 
     public static boolean isDownloadBinaries() {
-        return Utils.existFile("/system/bin/curl") || Utils.existFile("/system/bin/wget");
+        return isMagiskBinaryExist("wget") || isMagiskBinaryExist("curl") ||
+                Utils.existFile("/system/bin/curl") || Utils.existFile("/system/bin/wget");
     }
 
-    public static boolean isUnzipAvailable() {
-        return !RootUtils.runAndGetError("unzip --help").contains(
-                "/system/bin/sh: unzip: inaccessible or not found");
+    public static boolean isMagiskBinaryExist(String command) {
+        return !RootUtils.runAndGetError("/data/adb/magisk/busybox " + command).contains("applet not found");
+    }
+
+    public static String magiskBusyBox() {
+        return "/data/adb/magisk/busybox";
     }
 
     public static void importTranslation(Activity activity) {
@@ -623,7 +621,11 @@ public class Utils {
             toast(R.string.no_internet, context);
             return;
         }
-        if (isDownloadBinaries()) {
+        if (isMagiskBinaryExist("wget")) {
+            RootUtils.runCommand(magiskBusyBox() + " wget -O " + path + " " + url);
+        } else if (isMagiskBinaryExist("curl")) {
+            RootUtils.runCommand(magiskBusyBox() + " curl -L -o " + path + " " + url);
+        } else if (isDownloadBinaries()) {
             RootUtils.runCommand((Utils.existFile("/system/bin/curl") ?
                     "curl -L -o " : "wget -O ") + path + " " + url);
         } else {
