@@ -671,6 +671,9 @@ public class Utils {
         if (path.contains("file%3A%2F%2F%2F")) {
             path = path.replace("file%3A%2F%2F%2F", "").replace("%2F", "/");
         }
+        if (path.contains("%2520")) {
+            path = path.replace("%2520", " ");
+        }
         return path;
     }
 

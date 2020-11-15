@@ -1012,7 +1012,7 @@
     <string name="rebooting_message">Rebooting in 5s</string>
     <string name="turn_off">Turn Off</string>
     <string name="backing_up">Backing up</string>
-    <string name="flashing">Flashing</string>
+    <string name="flashing">Flashing…</string>
     <string name="flashing_failed">Flashing Failed</string>
     <string name="flashing_finished">Flashing Finished</string>
     <string name="restoring">Restoring</string>
