@@ -28,7 +28,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.database.tools.profiles.Profiles;
