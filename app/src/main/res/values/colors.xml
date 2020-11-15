@@ -4,11 +4,6 @@
     <color name="colorPrimaryVariant">#000000</color>
     <color name="colorOnPrimary">#FFFFFF</color>
 
-    <color name="textcolor_dark">#b3ffffff</color>
-
-    <color name="green">#5fb962</color>
-    <color name="red">#f66055</color>
-
     <color name="red_accent">#ef5350</color>
     <color name="pink_accent">#ff80aa</color>
     <color name="purple_accent">#ab47Bc</color>
