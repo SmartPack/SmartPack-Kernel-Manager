@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - All the premium features are now free.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.3/com.smartpack.kernelmanager-v14.3-release.apk",
-  "sha1": "93c962c13b99ad0576d1e3b7088d90221dc04dbf",
-  "latestVersion": "14.3",
-  "latestVersionCode": 143
+  "releaseNotes": "Change-logs\n - Updated to use Magisk BusyBox binaries (if available) as much as possible (hopefully improve flashing).\n - Simplified and update flashing view.\n - Updated to use accent color (for texts) on many places.\n - Moved internal update (app update and kernel update) files into internal data storage folder.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.4/com.smartpack.kernelmanager-v14.4-release.apk",
+  "sha1": "237a7f0598ad6ce77d7ff398307bf5f81a8dea1f",
+  "latestVersion": "14.4",
+  "latestVersionCode": 144
 }

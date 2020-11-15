@@ -1,5 +1,9 @@
 # Change-logs
 
+## 129. November 15, 2020
+*Release-tag: beta_v14.4*<br>
+Updated to use Magisk BusyBox binaries (if available) as much as possible (hopefully improve flashing). Simplified and update flashing view. Updated to use accent color (for texts) on many places. Moved internal update (app update and kernel update) files into internal data storage folder. Miscellaneous changes.
+
 ## 128. November 11, 2020
 *Release-tag: beta_v14.3*<br>
 All the premium features are now free.
