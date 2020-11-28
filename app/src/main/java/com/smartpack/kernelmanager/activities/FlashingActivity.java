@@ -22,12 +22,15 @@
 package com.smartpack.kernelmanager.activities;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.cardview.widget.CardView;
+import androidx.core.widget.NestedScrollView;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
@@ -40,11 +43,12 @@ import com.smartpack.kernelmanager.utils.tools.SmartPack;
 public class FlashingActivity extends BaseActivity {
 
     private AppCompatImageButton mSaveButton;
-    private AppCompatTextView mCancelButton;
     private AppCompatTextView mFlashingHeading;
     private AppCompatTextView mFlashingResult;
-    private AppCompatTextView mRebootButton;
+    private CardView mCancelButton;
+    private CardView mRebootButton;
     private LinearLayout mProgressLayout;
+    private NestedScrollView mScrollView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +62,7 @@ public class FlashingActivity extends BaseActivity {
         mSaveButton = findViewById(R.id.save_button);
         mRebootButton = findViewById(R.id.reboot_button);
         mProgressLayout = findViewById(R.id.progress_layout);
+        mScrollView = findViewById(R.id.scroll_view);
         mProgressMessage.setText(getString(R.string.flashing));
         mProgressMessage.setVisibility(View.VISIBLE);
         mSaveButton.setOnClickListener(v -> {
@@ -84,25 +89,28 @@ public class FlashingActivity extends BaseActivity {
                     while (!isInterrupted()) {
                         Thread.sleep(100);
                         runOnUiThread(() -> {
-                            mProgressLayout.setVisibility(SmartPack.mFlashing ? View.VISIBLE : View.GONE);
-                            if (SmartPack.mFlashingOutput != null) {
-                                mFlashingResult.setText(SmartPack.mFlashing ? "" : SmartPack.mFlashingOutput);
-                                if (!SmartPack.mFlashing) {
-                                    if (SmartPack.mFlashingOutput != null && !SmartPack.mFlashingOutput.isEmpty()) {
-                                        mFlashingHeading.setText(R.string.flashing_finished);
-                                    } else {
-                                        mFlashingHeading.setText(R.string.flashing_failed);
-                                    }
-                                    mCancelButton.setVisibility(View.VISIBLE);
-                                    mSaveButton.setVisibility(View.VISIBLE);
-                                    mRebootButton.setVisibility(View.VISIBLE);
-                                }
+                            if (SmartPack.mFlashing) {
+                                mScrollView.fullScroll(NestedScrollView.FOCUS_DOWN);
+                            } else {
+                                mProgressLayout.setVisibility(View.GONE);
+                                mSaveButton.setVisibility(Utils.getOutput(SmartPack.mFlashingOutput).endsWith("\nsuccess") ? View.VISIBLE : View.GONE);
+                                mRebootButton.setVisibility(Utils.getOutput(SmartPack.mFlashingOutput).endsWith("\nsuccess") ? View.VISIBLE : View.GONE);
+                                mCancelButton.setVisibility(View.VISIBLE);
                             }
+                            mFlashingHeading.setText(SmartPack.mFlashing ? getString(R.string.flashing) : Utils.getOutput(SmartPack.mFlashingOutput).endsWith("\nsuccess") ?
+                                    getString(R.string.flashing_finished) : getString(R.string.flashing_failed));
+                            mFlashingResult.setText(!Utils.getOutput(SmartPack.mFlashingOutput).isEmpty() ? Utils.getOutput(SmartPack.mFlashingOutput)
+                                    .replace("\nsuccess","") : SmartPack.mFlashing ? "" : SmartPack.mFlashingResult.toString());
                         });
                     }
                 } catch (InterruptedException ignored) {}
             }
         }.start();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return true;
     }
 
     @Override

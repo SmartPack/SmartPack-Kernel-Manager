@@ -520,30 +520,26 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 super.onPreExecute();
                 SmartPack.mFlashing = true;
                 SmartPack.mZipName = file.getName();
-                if (SmartPack.mFlashingResult == null) {
-                    SmartPack.mFlashingResult = new StringBuilder();
-                } else {
-                    SmartPack.mFlashingResult.setLength(0);
-                }
-                SmartPack.mFlashingResult.append("** Preparing to flash ").append(file.getName()).append("...\n\n");
-                SmartPack.mFlashingResult.append("** Path: '").append(file.toString()).append("'\n\n");
-                Utils.delete("/data/local/tmp/flash.zip");
-                SmartPack.mFlashingResult.append("** Copying '").append(file.getName()).append("' into temporary folder: ");
-                SmartPack.mFlashingResult.append(RootUtils.runAndGetError("cp '" + file.toString() + "' /data/local/tmp/flash.zip"));
-                SmartPack.mFlashingResult.append(Utils.existFile("/data/local/tmp/flash.zip") ? "Done *\n\n" : "\n\n");
+                SmartPack.mFlashingResult = new StringBuilder();
+                SmartPack.mFlashingOutput = new ArrayList<>();
                 Intent flashingIntent = new Intent(getActivity(), FlashingActivity.class);
                 startActivity(flashingIntent);
             }
             @Override
             protected Void doInBackground(Void... voids) {
-                SmartPack.manualFlash();
+                SmartPack.mFlashingResult.append("** Preparing to flash ").append(file.getName()).append("...\n\n");
+                SmartPack.mFlashingResult.append("** Path: '").append(file.toString()).append("'\n\n");
+                Utils.delete(requireActivity().getCacheDir() + "/flash.zip");
+                SmartPack.mFlashingResult.append("** Copying '").append(file.getName()).append("' into temporary folder: ");
+                SmartPack.mFlashingResult.append(RootUtils.runAndGetError("cp '" + file.toString() + "' " + requireActivity().getCacheDir() + "/flash.zip"));
+                SmartPack.mFlashingResult.append(Utils.existFile(requireActivity().getCacheDir() + "/flash.zip") ? "Done *\n\n" : "\n\n");
+                SmartPack.manualFlash(requireActivity());
                 return null;
             }
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
                 SmartPack.mFlashing = false;
-                if (SmartPack.mDebugMode) SmartPack.mDebugMode = false;
             }
         }.execute();
     }
@@ -641,22 +637,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
             if (SmartPack.fileSize(new File(mPath)) >= 100000000) {
                 Utils.snackbar(getRootView(), getString(R.string.file_size_limit, (SmartPack.fileSize(new File(mPath)) / 1000000)));
             }
-            View checkBoxView = View.inflate(getActivity(), R.layout.rv_checkbox, null);
-            CheckBox checkBox = checkBoxView.findViewById(R.id.checkbox);
-            checkBox.setChecked(SmartPack.mDebugMode);
-            checkBox.setText(getString(R.string.debug_mode));
-            checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                SmartPack.mDebugMode = isChecked;
-                if (isChecked) {
-                    Utils.snackbar(getRootView(), getString(R.string.debug_mode_summary));
-                }
-            });
             Dialog manualFlash = new Dialog(requireActivity());
             manualFlash.setIcon(R.mipmap.ic_launcher);
             manualFlash.setTitle(getString(R.string.flasher));
             manualFlash.setMessage(getString(R.string.sure_message, new File(mPath).getName()) + ("\n\n") +
                     getString(R.string.warning) + (" ") + getString(R.string.flasher_warning));
-            manualFlash.setView(checkBoxView);
             manualFlash.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
             manualFlash.setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> {
