@@ -83,7 +83,9 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -775,4 +777,17 @@ public class Utils {
         }
         return s;
     }
+
+    public static String getOutput(List<String> output) {
+        List<String> mData = new ArrayList<>();
+        for (String line : output.toString().substring(1, output.toString().length() - 1).replace(
+                ", ","\n").replace("ui_print","").split("\\r?\\n")) {
+            if (!line.startsWith("progress")) {
+                mData.add(line);
+            }
+        }
+        return mData.toString().substring(1, mData.toString().length() - 1).replace(", ","\n")
+                .replaceAll("(?m)^[ \t]*\r?\n", "");
+    }
+
 }
