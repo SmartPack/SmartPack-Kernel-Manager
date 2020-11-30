@@ -42,8 +42,6 @@ public class IO {
         return sIOInstance;
     }
 
-    private static final String UFS = "/sys/block/sda/queue";
-
     private static final String SCHEDULER = "scheduler";
     private static final String IOSCHED = "iosched";
     private static final String READ_AHEAD = "read_ahead_kb";
@@ -53,6 +51,12 @@ public class IO {
     private static final String RQ_AFFINITY = "rq_affinity";
     private static final String NOMERGES = "nomerges";
     private static final String NR_REQUESTS = "nr_requests";
+
+    private static final List<String> mUSF = new ArrayList<>();
+    {
+        mUSF.add("/sys/block/sda/queue");
+        mUSF.add("/sys/block/vda/queue");
+    }
 
     public enum Storage {
         Internal,
@@ -66,7 +70,11 @@ public class IO {
 
     private IO() {
         List<String> sInternal = new ArrayList<>();
-        sInternal.add(UFS);
+        for (String file : mUSF) {
+            if (Utils.existFile(file)) {
+                sInternal.add(file);
+            }
+        }
         sInternal.add("/sys/block/mmcblk0/queue");
 
         INTERNAL = exists(sInternal);
@@ -211,7 +219,10 @@ public class IO {
     }
 
     private boolean isUFS() {
-        return Utils.existFile(UFS);
+        for (String file : mUSF) {
+            return Utils.existFile(file);
+        }
+        return false;
     }
 
     private String getPath(Storage storage, String file) {
