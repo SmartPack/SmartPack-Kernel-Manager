@@ -1,5 +1,9 @@
 # Change-logs
 
+## 130. November 30, 2020
+*Release-tag: beta_v14.5*<br>
+Largely improved flasher (now show real-time output + correct flashing status). Scripts and Terminal now onwards display outputs in real-time. Fixed bug on sharing custom controller. App now uses Material Alert Dialogs. Miscellaneous changes.
+
 ## 129. November 15, 2020
 *Release-tag: beta_v14.4*<br>
 Updated to use Magisk BusyBox binaries (if available) as much as possible (hopefully improve flashing). Simplified and update flashing view. Updated to use accent color (for texts) on many places. Moved internal update (app update and kernel update) files into internal data storage folder. Miscellaneous changes.

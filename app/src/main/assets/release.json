@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Updated to use Magisk BusyBox binaries (if available) as much as possible (hopefully improve flashing).\n - Simplified and update flashing view.\n - Updated to use accent color (for texts) on many places.\n - Moved internal update (app update and kernel update) files into internal data storage folder.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.4/com.smartpack.kernelmanager-v14.4-release.apk",
-  "sha1": "237a7f0598ad6ce77d7ff398307bf5f81a8dea1f",
-  "latestVersion": "14.4",
-  "latestVersionCode": 144
+  "releaseNotes": "Change-logs\n - Largely improved flasher (now show real-time output + correct flashing status).\n - Scripts and Terminal now onwards display outputs in real-time.\n - Fixed bug on sharing custom controller.\n - App now uses Material Alert Dialogs.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.5/com.smartpack.kernelmanager-v14.5-release.apk",
+  "sha1": "e1faec92fa1ddd83f2749912f4ff97d2de242681",
+  "latestVersion": "14.5",
+  "latestVersionCode": 145
 }
