@@ -36,6 +36,11 @@ import java.util.List;
 public class ScriptManager {
 
     private static final String SCRIPT = Utils.getInternalDataStorage() + "/scripts";
+    public static String mScriptName = null;
+
+    public static List<String> mOutput = null;
+
+    public static boolean mApplying;
 
     public static File scriptFile() {
         return new File(SCRIPT);
@@ -59,8 +64,8 @@ public class ScriptManager {
         f.delete();
     }
 
-    public static String execute(String file) {
-        return RootUtils.runAndGetError("sh " + SCRIPT + "/" + file);
+    public static void execute(String file) {
+        RootUtils.runAndGetLiveOutput("sh " + SCRIPT + "/" + file, mOutput);
     }
 
     public static String read(String file) {
