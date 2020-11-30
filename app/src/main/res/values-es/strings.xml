@@ -898,7 +898,6 @@
     <string name="fota_partition">Fota partition</string>
     <string name="flash">Flash</string>
     <string name="flasher">Flasher</string>
-    <string name="flasher_warning">This feature is still very new and under development. It may not have full compatibility with many flashable zip files. If you think that the flashing process failed in any case due to the above mentioned incompatibilities, please restart the app immediately before doing anything.\n\nAlso, I do not recommend to try flashing anything over 500 MB.\n\n***USE AT YOUR OWN RISK***\n</string>
     <string name="flasher_summary">Click the flash button to select and flash a recovery ZIP file without rebooting into custom recovery. The changes will be applied after a reboot.</string>
     <string name="file_size_limit">Warning! You\'re selected a file of ~%s MB for flashing. Flashing bigger files, such as ROM\'s, using this app might be dangerous to your device.</string>
     <string name="execute">Execute</string>
@@ -1005,8 +1004,6 @@
     <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from GitHub:</string>
     <string name="busybox_installer">BusyBox Installer</string>
     <string name="busybox_installer_summary">It is highly recommended to have a standalone BusyBox installation on your device to work some features of this app properly (e.g., \'unzip\' &amp; \'mke2fs\' binaries for flashing &amp; \'curl\' or \'wget\' binary for kernel OTA updates). As an attempt to help users on this issue, a simple app is made available, which can be used as a one-click BusyBox installation utility for arm, arm64 and x86 device. Click here to Get It!</string>
-    <string name="debug_mode">Debug Mode</string>
-    <string name="debug_mode_summary">Debug Mode is enabled! A more detailed flashing log (useful for debugging issues) will be displayed.</string>
 
     <!-- Update Channel -->
     <string name="update_channel_message">(<i>for developers only</i>)\nApp will create an update channel (json) for your kernel, as long as the information\'s provided in this page are accurate.</string>

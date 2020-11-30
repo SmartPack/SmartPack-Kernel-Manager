@@ -1087,7 +1087,6 @@
     <string name="unknown_link">Ainda não foi fornecido pelo desenvolvedor!</string>
     <string name="unsupported_controller">\'%s\' não existe neste dispositivo! Abortando.</string>
     <string name="custom_controls_message">Basicamente, você pode criar um controlador personalizado para qualquer caminho sysfs existente, desde que você tenha um Gerenciador de Arquivos root instalado. No entanto, observe que esse recurso é muito poderoso para bagunçar o seu dispositivo.\n\n***USE POR SUA CONTA E RISCO***</string>
-    <string name="flasher_warning">Este recurso ainda é muito novo e está em desenvolvimento. Pode não ter compatibilidade total com muitos arquivos zip flasheáveis. Se você acha que o processo de flash falhou devido às incompatibilidades mencionadas acima, reinicie o aplicativo imediatamente antes de fazer qualquer coisa.\n\nTambém não recomendo tentar flashear qualquer coisa com mais de 500 MB.\n\n***USE POR SUA CONTA E RISCO***\n</string>
     <string name="grarak_summary">O homem por trás do \'Kernel Adiutor\', o ancestral do SmartPack-Kernel Manager. Este projeto não existiria sem ele. Um enorme respeito por ele, não apenas por seu trabalho duro no Kernel Adiutor, mas também por ser aberto ao open-source.</string>
     <string name="overall_summary">Bem-vindo à página inicial do SmartPack-Kernel Manager. Esta página fornece informações muito básicas do seu dispositivo. Opções avançadas de ajustes do kernel podem ser encontradas nas suas respectivas páginas.</string>
     <string name="share_app_message">Obtenha o SmartPack-Kernel Manager %s em GitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest</string>
@@ -1123,8 +1122,6 @@
     <string name="lmk_fast_run">Ativar execução rápida</string>
     <string name="script_executed">%s executado com sucesso!</string>
     <string name="rebooting_message">Reiniciando em 5s</string>
-    <string name="debug_mode">Modo depuração</string>
-    <string name="debug_mode_summary">O modo de depuração está ativado! Um registro mais detalhado de flash (útil para problemas de depuração) será exibido.</string>
     <string name="update_channel_create_warning">As alterações que você fez serão perdidas!</string>
     <string name="clear_all_summary">Tudo o que você adicionou a esta página será limpo!</string>
     <string name="build_prop_uneditable">Infelizmente, o arquivo \'build.prop\' no seu dispositivo não está gravável!</string>

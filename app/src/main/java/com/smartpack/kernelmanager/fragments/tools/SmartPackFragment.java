@@ -33,8 +33,6 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.OpenableColumns;
 import android.view.Menu;
-import android.view.View;
-import android.widget.CheckBox;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.FlashingActivity;
@@ -631,23 +629,16 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".zip"));
                 return;
             }
-            if (mPath.contains("(") || mPath.contains(")")) {
-                Utils.snackbar(getRootView(), getString(R.string.file_name_error));
-            }
-            if (SmartPack.fileSize(new File(mPath)) >= 100000000) {
-                Utils.snackbar(getRootView(), getString(R.string.file_size_limit, (SmartPack.fileSize(new File(mPath)) / 1000000)));
-            }
-            Dialog manualFlash = new Dialog(requireActivity());
-            manualFlash.setIcon(R.mipmap.ic_launcher);
-            manualFlash.setTitle(getString(R.string.flasher));
-            manualFlash.setMessage(getString(R.string.sure_message, new File(mPath).getName()) + ("\n\n") +
-                    getString(R.string.warning) + (" ") + getString(R.string.flasher_warning));
-            manualFlash.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
-            });
-            manualFlash.setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> {
-                flashingTask(new File(mPath));
-            });
-            manualFlash.show();
+            new Dialog(requireActivity())
+                    .setIcon(R.mipmap.ic_launcher)
+                    .setTitle(getString(R.string.flasher))
+                    .setMessage(getString(R.string.sure_message, new File(mPath).getName()) + (SmartPack.fileSize(new File(mPath)) >= 100000000 ?
+                            ("\n\n") + getString(R.string.file_size_limit, (SmartPack.fileSize(new File(mPath)) / 1000000)) : ""))
+                    .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                    })
+                    .setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> {
+                        flashingTask(new File(mPath));
+                    }).show();
         }
     }
 
