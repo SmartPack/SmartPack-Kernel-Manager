@@ -33,6 +33,7 @@ import android.view.Menu;
 
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.activities.ApplyScriptActivity;
 import com.smartpack.kernelmanager.activities.EditorActivity;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
@@ -63,18 +64,11 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
 
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
 
-    private boolean mLoaded;
-    private boolean mPermissionDenied;
+    private boolean mLoaded, mPermissionDenied, mShowCreateNameDialog;
 
-    private Dialog mExecuteDialog;
-    private Dialog mOptionsDialog;
-    private Dialog mDeleteDialog;
-    private boolean mShowCreateNameDialog;
+    private Dialog mDeleteDialog, mExecuteDialog, mOptionsDialog;
 
-    private String mCreateName;
-
-    private String mEditScript;
-    private String mPath;
+    private String mCreateName, mEditScript, mPath;
 
     private DetailsFragment mDetailsFragment;
 
@@ -271,27 +265,24 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     @SuppressLint("StaticFieldLeak")
     private void execute(final String script) {
         new AsyncTask<Void, Void, Void>() {
-            private String mResult;
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                showProgressMessage(getString(R.string.executing) + " " + script + "...");
+                ScriptManager.mApplying = true;
+                ScriptManager.mScriptName = script;
+                ScriptManager.mOutput = new ArrayList<>();
+                Intent applyIntent = new Intent(requireActivity(), ApplyScriptActivity.class);
+                startActivity(applyIntent);
             }
             @Override
             protected Void doInBackground(Void... voids) {
-                mResult = ScriptManager.execute(script);
+                ScriptManager.execute(script);
                 return null;
             }
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                hideProgressMessage();
-                new Dialog(requireActivity())
-                        .setMessage(mResult != null && !mResult.isEmpty() ? mResult : getString(R.string.script_executed, script))
-                        .setCancelable(false)
-                        .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
-                        })
-                        .show();
+                ScriptManager.mApplying = false;
             }
         }.execute();
     }
