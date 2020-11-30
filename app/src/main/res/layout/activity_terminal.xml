@@ -2,14 +2,15 @@
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:cardBackgroundColor="?android:attr/colorBackground"
     android:layout_gravity="center"
-    android:padding="16dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:padding="16dp" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?android:attr/colorBackground"
         android:orientation="vertical">
 
         <FrameLayout
@@ -95,33 +96,23 @@
                 android:tint="?android:attr/colorBackground"/>
         </FrameLayout>
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            android:layout_marginBottom="50dp" >
+            android:layout_marginBottom="50dp"
+            android:scrollbars="vertical" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/shell_output"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center" >
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/shell_output"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:gravity="center_vertical"
-                    android:layout_gravity="start|center"
-                    android:background="@null"
-                    android:cursorVisible="true"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                    android:textSize="15sp" />
-            </LinearLayout>
-        </ScrollView>
+                android:layout_gravity="start"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textStyle="bold"
+                android:textSize="15sp" />
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -132,9 +123,6 @@
         android:layout_gravity="bottom|center"
         android:textStyle="bold"
         android:background="@color/colorPrimaryVariant"
-        android:text="@string/clear"
         android:textColor="?android:attr/colorAccent"
         android:textSize="18sp" />
-
-    <include layout="@layout/rv_progress_view" />
 </androidx.cardview.widget.CardView>
