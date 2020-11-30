@@ -103,7 +103,7 @@ public class RootUtils {
     }
 
     public static void runAndGetLiveOutput(String command, List<String> output) {
-        Shell.su(command).to(output).exec();
+        Shell.su(command).to(output, output).exec();
     }
 
     @NonNull
