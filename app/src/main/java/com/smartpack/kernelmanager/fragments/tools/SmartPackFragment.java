@@ -216,7 +216,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                 shareChannel.setAction(Intent.ACTION_SEND);
                                 shareChannel.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
                                 shareChannel.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_channel_message,
-                                        Utils.readFile(Utils.getInternalDataStorage() + "/updatechannel")) +
+                                        Utils.readFile(requireActivity().getFilesDir().getPath() + "/updatechannel")) +
                                         " https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest");
                                 shareChannel.setType("text/plain");
                                 Intent shareIntent = Intent.createChooser(shareChannel, null);
@@ -639,18 +639,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     .setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> {
                         flashingTask(new File(mPath));
                     }).show();
-        }
-    }
-
-    @Override
-    public void onStart(){
-        super.onStart();
-
-        // Initialize kernel update check - Once in a day
-        if (Utils.isNetworkAvailable(requireActivity()) && Prefs.getBoolean("update_check", true, getActivity())
-                && !KernelUpdater.getUpdateChannel(requireActivity()).equals("Unavailable") && Utils.isDownloadBinaries() &&
-                KernelUpdater.lastModified(requireActivity()) + 89280000L < System.currentTimeMillis()) {
-            KernelUpdater.updateInfo(Utils.readFile(KernelUpdater.updateChannelInfo(requireActivity())), getActivity());
         }
     }
 
