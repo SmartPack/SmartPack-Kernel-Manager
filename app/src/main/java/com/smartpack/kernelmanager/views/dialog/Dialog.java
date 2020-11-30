@@ -19,20 +19,20 @@
  */
 package com.smartpack.kernelmanager.views.dialog;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.database.Cursor;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.view.View;
-import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 /**
  * Created by willi on 07.11.16.
  */
 
-public class Dialog extends AlertDialog.Builder {
+public class Dialog extends MaterialAlertDialogBuilder {
 
     private DialogInterface.OnDismissListener mOnDismissListener;
 
@@ -40,82 +40,98 @@ public class Dialog extends AlertDialog.Builder {
         super(context);
     }
 
+    @NonNull
     @Override
     public Dialog setTitle(CharSequence title) {
         return (Dialog) super.setTitle(title);
     }
 
+    @NonNull
     @Override
     public Dialog setTitle(int titleId) {
         return (Dialog) super.setTitle(titleId);
     }
 
+    @NonNull
     @Override
     public Dialog setMessage(CharSequence message) {
         return (Dialog) super.setMessage(message);
     }
 
+    @NonNull
     @Override
     public Dialog setMessage(int messageId) {
         return (Dialog) super.setMessage(messageId);
     }
 
+    @NonNull
     @Override
     public Dialog setView(int layoutResId) {
         return (Dialog) super.setView(layoutResId);
     }
 
+    @NonNull
     @Override
     public Dialog setView(View view) {
         return (Dialog) super.setView(view);
     }
 
+    @NonNull
     @Override
     public Dialog setItems(CharSequence[] items, DialogInterface.OnClickListener listener) {
         return (Dialog) super.setItems(items, listener);
     }
 
+    @NonNull
     @Override
     public Dialog setItems(int itemsId, DialogInterface.OnClickListener listener) {
         return (Dialog) super.setItems(itemsId, listener);
     }
 
+    @NonNull
     @Override
     public Dialog setPositiveButton(CharSequence text, DialogInterface.OnClickListener listener) {
         return (Dialog) super.setPositiveButton(text, listener);
     }
 
+    @NonNull
     @Override
     public Dialog setPositiveButton(int textId, DialogInterface.OnClickListener listener) {
         return (Dialog) super.setPositiveButton(textId, listener);
     }
 
+    @NonNull
     @Override
     public Dialog setNegativeButton(CharSequence text, DialogInterface.OnClickListener listener) {
         return (Dialog) super.setNegativeButton(text, listener);
     }
 
+    @NonNull
     @Override
     public Dialog setNegativeButton(int textId, DialogInterface.OnClickListener listener) {
         return (Dialog) super.setNegativeButton(textId, listener);
     }
 
+    @NonNull
     @Override
     public Dialog setMultiChoiceItems(int itemsId, boolean[] checkedItems, DialogInterface.OnMultiChoiceClickListener listener){
         return (Dialog) super.setMultiChoiceItems(itemsId, checkedItems, listener);
     }
 
+    @NonNull
     @Override
-    public Dialog setMultiChoiceItems(Cursor cursor, String isCheckedColumn, String labelColumn, DialogInterface.OnMultiChoiceClickListener listener){
+    public Dialog setMultiChoiceItems(Cursor cursor, @NonNull String isCheckedColumn, @NonNull String labelColumn, DialogInterface.OnMultiChoiceClickListener listener){
         return (Dialog) super.setMultiChoiceItems(cursor, isCheckedColumn, labelColumn, listener);
     }
 
+    @NonNull
     @Override
     public Dialog
     setMultiChoiceItems(CharSequence[] items, boolean[] checkedItems, DialogInterface.OnMultiChoiceClickListener listener){
         return (Dialog) super.setMultiChoiceItems(items, checkedItems, listener);
     }
 
+    @NonNull
     public Dialog setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
         mOnDismissListener = onDismissListener;
         setOnCancelListener(dialogInterface -> {
@@ -124,18 +140,6 @@ public class Dialog extends AlertDialog.Builder {
             }
         });
         return this;
-    }
-
-    @Override
-    public AlertDialog show() {
-        try {
-            AlertDialog dialog = create();
-            dialog.setOnDismissListener(mOnDismissListener);
-            dialog.show();
-            return dialog;
-        } catch (WindowManager.BadTokenException ignored) {
-            return create();
-        }
     }
 
 }
