@@ -62,7 +62,7 @@ public class SmartPack {
                 FLASH_FOLDER = Utils.getInternalDataStorage() + "/flash",
                 CLEANING_COMMAND = "rm -r '" + FLASH_FOLDER + "'",
                 mZipPath = context.getCacheDir() + "/flash.zip";
-        String flashingCommand = "BOOTMODE=true sh " + mScriptPath + " dummy 1 " + mZipPath + " && echo success";
+        String flashingCommand = "BOOTMODE=true sh " + mScriptPath + " dummy 1 " + mZipPath + " 2>/dev/null && echo success";
         if (Utils.existFile(FLASH_FOLDER)) {
             RootUtils.runCommand(CLEANING_COMMAND);
         } else {
