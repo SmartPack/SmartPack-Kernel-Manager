@@ -25,10 +25,10 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.database.tools.profiles.Profiles;
 import com.smartpack.kernelmanager.services.profile.Tile;
@@ -64,9 +64,7 @@ import java.lang.ref.WeakReference;
  */
 public class MainActivity extends BaseActivity {
 
-    private TextView mRootAccess;
-    private TextView mBusybox;
-    private TextView mCollectInfo;
+    private MaterialTextView mBusybox, mCollectInfo, mRootAccess;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

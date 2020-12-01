@@ -16,7 +16,7 @@
             android:background="@color/colorPrimaryVariant"
             android:gravity="end|center_vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/flashing_title"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
@@ -46,7 +46,7 @@
             android:layout_height="match_parent"
             android:padding="8dp">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/output_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
         android:orientation="horizontal"
         android:layout_margin="10dp" >
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cancel_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,16 +75,16 @@
             app:cardCornerRadius="10dp"
             android:visibility="gone" >
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="?android:attr/textColorPrimary"
                 android:text="@string/cancel"
                 android:textSize="18sp"
                 android:padding="15dp" />
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/reboot_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -95,14 +95,14 @@
             app:cardCornerRadius="10dp"
             android:visibility="gone" >
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="?android:attr/textColorPrimary"
                 android:text="@string/reboot"
                 android:textSize="18sp"
                 android:padding="15dp" />
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
     <LinearLayout
@@ -115,14 +115,14 @@
         android:gravity="center"
         android:alpha="0.5" >
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="?android:attr/colorAccent"
             android:layout_gravity="center"
             app:cardCornerRadius="10dp" >
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/progress_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -133,6 +133,6 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textSize="20sp" />
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </RelativeLayout>

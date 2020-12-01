@@ -21,8 +21,8 @@ package com.smartpack.kernelmanager.views.recyclerview.overallstatistics;
 
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -32,13 +32,10 @@ import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
  */
 public class FrequencyTableView extends RecyclerViewItem {
 
-    private TextView mFrequency;
-    private TextView mPercentage;
-    private TextView mDuration;
+    private MaterialTextView mFrequency, mPercentage, mDuration;
     private ProgressBar mProgress;
 
-    private CharSequence mFreqText;
-    private CharSequence mDurationText;
+    private CharSequence mFreqText, mDurationText;
     private int mUsage = -1;
 
     @Override

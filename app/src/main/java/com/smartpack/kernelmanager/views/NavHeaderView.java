@@ -30,10 +30,10 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Prefs;
@@ -59,7 +59,7 @@ public class NavHeaderView extends LinearLayout {
     }
 
     private static Callback sCallback;
-    private ImageView mImage;
+    private AppCompatImageView mImage;
 
     public NavHeaderView(Context context) {
         this(context, null);
@@ -84,7 +84,7 @@ public class NavHeaderView extends LinearLayout {
         };
 
         LayoutInflater.from(context).inflate(R.layout.nav_header_view, this);
-        mImage = (ImageView) findViewById(R.id.nav_header_pic);
+        mImage = findViewById(R.id.nav_header_pic);
 
         boolean noPic;
         try {

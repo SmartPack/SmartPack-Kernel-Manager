@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="160dp" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
         android:layout_height="68dp"
         android:gravity="center_vertical"
@@ -21,7 +21,7 @@
         android:textColor="@color/colorOnPrimary"
         android:textSize="22sp" />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="0dp">
@@ -33,21 +33,21 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/root_access_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
                 android:text="@string/checking_root" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/busybox_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
                 android:text="@string/searching_busybox" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/info_collect_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,5 +61,5 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-7dp"
             android:indeterminate="true" />
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

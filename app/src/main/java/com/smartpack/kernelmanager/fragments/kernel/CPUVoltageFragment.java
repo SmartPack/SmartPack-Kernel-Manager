@@ -24,10 +24,10 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
@@ -110,12 +110,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
         view.setInputType(InputType.TYPE_CLASS_NUMBER);
         view.setOnGenericValueListener((genericSelectView, value) -> {
             mVoltage.setVoltage(freq, value, getActivity());
-            getHandler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    reload();
-                }
-            }, 200);
+            getHandler().postDelayed(() -> reload(), 200);
         });
     }
 
@@ -135,7 +130,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                                  @Nullable Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_global_offset, container, false);
-            final TextView offset = rootView.findViewById(R.id.offset);
+            final MaterialTextView offset = rootView.findViewById(R.id.offset);
             offset.setText(Utils.strFormat("%d" + getString(R.string.mv), mGlobaloffset));
             rootView.findViewById(R.id.button_minus).setOnClickListener(v -> {
                 mGlobaloffset -= 5;

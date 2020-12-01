@@ -29,7 +29,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +36,7 @@ import androidx.annotation.Nullable;
 import com.bvalosek.cpuspy.CpuSpyApp;
 import com.bvalosek.cpuspy.CpuStateMonitor;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
@@ -386,7 +386,7 @@ public class CPUTimes extends RecyclerViewFragment {
                 view.setLayoutParams(new LinearLayout
                         .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT, 1));
-                ((TextView) view.findViewById(R.id.usage_core_text)).setText(getString(R.string.core, i + 1));
+                ((MaterialTextView) view.findViewById(R.id.usage_core_text)).setText(getString(R.string.core, i + 1));
                 mUsages.add(view);
                 subView.addView(view);
             }
@@ -446,9 +446,9 @@ public class CPUTimes extends RecyclerViewFragment {
             if (mFreqs == null || mCPUUsages == null || mUsages == null) return;
             for (int i = 0; i < mUsages.size(); i++) {
                 View usageView = mUsages.get(i);
-                TextView usageOfflineText = usageView.findViewById(R.id.usage_offline_text);
-                TextView usageLoadText = usageView.findViewById(R.id.usage_load_text);
-                TextView usageFreqText = usageView.findViewById(R.id.usage_freq_text);
+                MaterialTextView usageOfflineText = usageView.findViewById(R.id.usage_offline_text);
+                MaterialTextView usageLoadText = usageView.findViewById(R.id.usage_load_text);
+                MaterialTextView usageFreqText = usageView.findViewById(R.id.usage_freq_text);
                 XYGraph usageGraph = usageView.findViewById(R.id.usage_graph);
                 if (mFreqs[i] == 0) {
                     usageOfflineText.setVisibility(View.VISIBLE);

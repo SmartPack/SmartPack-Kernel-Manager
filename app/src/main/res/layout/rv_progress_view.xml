@@ -14,7 +14,7 @@
         android:layout_height="100dp"
         android:layout_gravity="center"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/progress_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

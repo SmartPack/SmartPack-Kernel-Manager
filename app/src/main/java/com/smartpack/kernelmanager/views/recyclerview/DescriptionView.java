@@ -26,9 +26,9 @@ import android.view.View;
 
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.PopupMenu;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 
 /**
@@ -42,16 +42,11 @@ public class DescriptionView extends RecyclerViewItem {
 
     private View mRootView;
     private AppCompatImageButton mMenuIconView;
-    private AppCompatImageView mImageView;
-    private AppCompatImageView mIndicatorView;
-    private AppCompatTextView mTitleView;
-    private AppCompatTextView mSummaryView;
+    private AppCompatImageView mImageView, mIndicatorView;
+    private MaterialTextView mTitleView, mSummaryView;
 
-    private Drawable mImage;
-    private Drawable mIndicator;
-    private Drawable mMenuIcon;
-    private CharSequence mTitle;
-    private CharSequence mSummary;
+    private Drawable mImage, mIndicator, mMenuIcon;
+    private CharSequence mTitle, mSummary;
     private MovementMethod mLinkMovementMethod;
     private PopupMenu mPopupMenu;
     private OnMenuListener mOnMenuListener;

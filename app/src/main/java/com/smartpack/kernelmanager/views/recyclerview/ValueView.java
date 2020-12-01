@@ -20,10 +20,10 @@
 package com.smartpack.kernelmanager.views.recyclerview;
 
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.StringRes;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 
 /**
@@ -31,16 +31,12 @@ import com.smartpack.kernelmanager.R;
  */
 public abstract class ValueView extends RecyclerViewItem {
 
-    private TextView mTitleView;
-    private TextView mSummaryView;
+    private CharSequence mTitle, mSummary;
+    private MaterialTextView mSummaryView, mTitleView, mValueView;
     private View mValueParent;
-    private TextView mValueView;
     private View mProgress;
-
-    private CharSequence mTitle;
-    private CharSequence mSummary;
-    private String mValue;
     private int mValuesRes;
+    private String mValue;
 
     @Override
     public int getLayoutRes() {

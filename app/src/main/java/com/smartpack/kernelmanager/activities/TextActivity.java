@@ -21,10 +21,10 @@ package com.smartpack.kernelmanager.activities;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 
@@ -45,7 +45,7 @@ public class TextActivity extends BaseActivity {
         final String url = getIntent().getStringExtra(SUMMARY_INTENT);
 
         if (message != null)
-            ((TextView) findViewById(R.id.message_text)).setText(message);
+            ((MaterialTextView) findViewById(R.id.message_text)).setText(message);
         if (url != null)
             findViewById(R.id.help_fab).setOnClickListener(new View.OnClickListener() {
                 @Override

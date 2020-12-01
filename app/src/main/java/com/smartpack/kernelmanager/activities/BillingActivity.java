@@ -33,7 +33,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,6 +45,7 @@ import com.android.billingclient.api.ConsumeResponseListener;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
@@ -72,7 +72,7 @@ public class BillingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_billing);
 
         AppCompatImageButton mBack = findViewById(R.id.back_button);
-        AppCompatTextView mCancel = findViewById(R.id.cancel_button);
+        MaterialTextView mCancel = findViewById(R.id.cancel_button);
 
         mData.add(new RecycleViewItem(getString(R.string.purchase_app), getResources().getDrawable(R.drawable.ic_donate)));
         mData.add(new RecycleViewItem(getString(R.string.support_coffee), getResources().getDrawable(R.drawable.ic_coffee)));
@@ -263,7 +263,7 @@ public class BillingActivity extends AppCompatActivity {
 
         public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             private AppCompatImageView mIcon;
-            private AppCompatTextView mTitle;
+            private MaterialTextView mTitle;
 
             public ViewHolder(View view) {
                 super(view);

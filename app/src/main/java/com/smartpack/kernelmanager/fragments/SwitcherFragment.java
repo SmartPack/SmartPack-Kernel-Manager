@@ -22,14 +22,14 @@ package com.smartpack.kernelmanager.fragments;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SwitchCompat;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 
+import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 
 /**
@@ -59,12 +59,12 @@ public class SwitcherFragment extends BaseFragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_switcher, container, false);
         if (mTitle != null) {
-            ((TextView) view.findViewById(R.id.title)).setText(mTitle);
+            ((MaterialTextView) view.findViewById(R.id.title)).setText(mTitle);
         }
         if (mSummary != null) {
-            ((TextView) view.findViewById(R.id.summary)).setText(mSummary);
+            ((MaterialTextView) view.findViewById(R.id.summary)).setText(mSummary);
         }
-        SwitchCompat mSwitch = view.findViewById(R.id.switcher);
+        SwitchMaterial mSwitch = view.findViewById(R.id.switcher);
         mSwitch.setChecked(mChecked);
         mSwitch.setOnCheckedChangeListener(mOnCheckedChangeListener);
         return view;

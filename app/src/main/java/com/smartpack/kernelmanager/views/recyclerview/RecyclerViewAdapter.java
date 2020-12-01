@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Prefs;
 
@@ -87,7 +88,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
         if (item.cardCompatible()
                 && Prefs.getBoolean("forcecards", false, view.getContext())) {
-            androidx.cardview.widget.CardView cardView = new androidx.cardview.widget.CardView(view.getContext());
+            MaterialCardView cardView = new MaterialCardView(view.getContext());
             cardView.setRadius(view.getResources().getDimension(R.dimen.cardview_radius));
             cardView.setCardElevation(view.getResources().getDimension(R.dimen.cardview_elevation));
             cardView.setUseCompatPadding(true);

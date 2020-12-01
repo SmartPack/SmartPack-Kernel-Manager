@@ -26,9 +26,9 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.widget.NestedScrollView;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.tools.ScriptManager;
@@ -41,7 +41,7 @@ import java.util.ConcurrentModificationException;
 
 public class ApplyScriptActivity extends AppCompatActivity {
 
-    private AppCompatTextView mScriptTitle, mOutput;
+    private MaterialTextView mScriptTitle, mOutput;
     private NestedScrollView mScrollView;
 
     @SuppressLint("SetTextI18n")

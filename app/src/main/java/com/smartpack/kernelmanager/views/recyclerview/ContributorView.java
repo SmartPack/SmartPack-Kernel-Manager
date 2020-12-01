@@ -20,10 +20,10 @@
 package com.smartpack.kernelmanager.views.recyclerview;
 
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
@@ -50,8 +50,8 @@ public class ContributorView extends RecyclerViewItem {
         super.onCreateView(view);
 
         AppCompatImageView image = view.findViewById(R.id.image);
-        TextView name = view.findViewById(R.id.name);
-        TextView contributions = view.findViewById(R.id.contributions);
+        MaterialTextView name = view.findViewById(R.id.name);
+        MaterialTextView contributions = view.findViewById(R.id.contributions);
 
         ViewUtils.loadImagefromUrl(mContributor.getAvatarUrl(), image, 200, 200);
         name.setText(mContributor.getLogin());

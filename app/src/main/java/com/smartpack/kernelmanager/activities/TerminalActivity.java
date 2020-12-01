@@ -31,10 +31,10 @@ import android.view.Menu;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.widget.NestedScrollView;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
@@ -51,7 +51,7 @@ import java.util.Objects;
 public class TerminalActivity extends BaseActivity {
 
     private AppCompatEditText mShellCommand;
-    private AppCompatTextView mClearAll, mShellOutput;
+    private MaterialTextView mClearAll, mShellOutput;
     private boolean mRunning = false;
     private CharSequence mHistory = null;
     private int i;
@@ -70,7 +70,7 @@ public class TerminalActivity extends BaseActivity {
         AppCompatImageButton mRecent = findViewById(R.id.recent_button);
         AppCompatImageButton mSave = findViewById(R.id.enter_button);
         mShellCommand = findViewById(R.id.shell_command);
-        AppCompatTextView mShellCommandTitle = findViewById(R.id.shell_command_title);
+        MaterialTextView mShellCommandTitle = findViewById(R.id.shell_command_title);
         mShellOutput = findViewById(R.id.shell_output);
         mScrollView = findViewById(R.id.scroll_view);
 

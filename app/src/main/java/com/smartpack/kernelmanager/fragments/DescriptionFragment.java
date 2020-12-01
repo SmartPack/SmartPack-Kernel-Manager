@@ -24,10 +24,10 @@ import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 
@@ -45,11 +45,9 @@ public class DescriptionFragment extends BaseFragment {
         return fragment;
     }
 
-    private TextView mTitleView;
-    private TextView mSummaryView;
+    private MaterialTextView mTitleView, mSummaryView;
 
-    private CharSequence mTitle;
-    private CharSequence mSummary;
+    private CharSequence mTitle, mSummary;
 
     @Nullable
     @Override

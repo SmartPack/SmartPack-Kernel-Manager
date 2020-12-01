@@ -1,10 +1,10 @@
 package com.smartpack.kernelmanager.views.recyclerview;
 
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.StringRes;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 
 /**
@@ -13,10 +13,8 @@ import com.smartpack.kernelmanager.R;
 
 public abstract class InputValueView extends RecyclerViewItem {
 
-    private TextView mTitleView;
-    private View mValueParent;
-    private TextView mValueView;
-    private View mProgress;
+    private MaterialTextView mTitleView, mValueView;
+    private View mValueParent, mProgress;
 
     private CharSequence mTitle;
     private String mValue;

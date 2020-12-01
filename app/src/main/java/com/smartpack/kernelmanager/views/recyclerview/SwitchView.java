@@ -24,10 +24,10 @@ import android.view.View;
 
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.appcompat.widget.SwitchCompat;
 
+import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 
 import java.util.ArrayList;
@@ -48,14 +48,11 @@ public class SwitchView extends RecyclerViewItem {
 
     private AppCompatImageView mImageView;
     private AppCompatImageButton mMenuIconView;
-    private AppCompatTextView mTitle;
-    private AppCompatTextView mSummary;
-    private SwitchCompat mSwitcher;
+    private MaterialTextView mTitle, mSummary;
+    private SwitchMaterial mSwitcher;
 
-    private Drawable mImage;
-    private Drawable mMenuIcon;
-    private CharSequence mTitleText;
-    private CharSequence mSummaryText;
+    private Drawable mImage, mMenuIcon;
+    private CharSequence mTitleText, mSummaryText;
     private PopupMenu mPopupMenu;
     private OnMenuListener mOnMenuListener;
     private boolean mChecked;

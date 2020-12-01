@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/selectableItemBackground"
     android:focusable="true"
     android:padding="10dp">
@@ -27,7 +26,7 @@
                 android:layout_weight="1"
                 android:gravity="end|center_vertical">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -61,7 +60,7 @@
                 android:layout_weight="1"
                 android:gravity="end|center_vertical">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/value"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"

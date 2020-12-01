@@ -25,14 +25,14 @@
             android:layout_marginStart="16dp"
             android:orientation="vertical">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="middle"
                 android:textColor="?android:attr/textColorPrimary" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/contributions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

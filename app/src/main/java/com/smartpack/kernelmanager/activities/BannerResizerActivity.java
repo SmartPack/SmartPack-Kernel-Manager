@@ -23,11 +23,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
@@ -81,7 +81,7 @@ public class BannerResizerActivity extends BaseActivity {
             final int px = Prefs.getInt("banner_size", defaultHeight, requireActivity());
             setHeight(banner, px);
 
-            final TextView text = rootView.findViewById(R.id.seekbar_text);
+            final MaterialTextView text = rootView.findViewById(R.id.seekbar_text);
             text.setText(Utils.strFormat("%d" + getString(R.string.px), px));
 
             final DiscreteSeekBar seekBar = rootView.findViewById(R.id.seekbar);

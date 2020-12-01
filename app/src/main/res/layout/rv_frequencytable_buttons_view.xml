@@ -24,7 +24,7 @@
             android:tint="?attr/colorAccent"
             app:srcCompat="@drawable/ic_refresh" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -53,7 +53,7 @@
             android:tint="?attr/colorAccent"
             app:srcCompat="@drawable/ic_refresh" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -81,7 +81,7 @@
             android:tint="?attr/colorAccent"
             app:srcCompat="@drawable/ic_restore" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

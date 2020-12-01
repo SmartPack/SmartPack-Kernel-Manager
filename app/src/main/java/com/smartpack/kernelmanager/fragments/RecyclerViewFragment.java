@@ -41,7 +41,6 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
@@ -54,7 +53,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.BaseActivity;
 import com.smartpack.kernelmanager.activities.NavigationActivity;
@@ -83,7 +84,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     private Handler mHandler;
     private ScheduledThreadPoolExecutor mPoolExecutor;
 
-    private View mRootView;
+    private View mRootView, mViewPagerShadow, mViewPagerParent;;
 
     private List<RecyclerViewItem> mItems = new ArrayList<>();
     private RecyclerView mRecyclerView;
@@ -92,17 +93,14 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     private Scroller mScroller;
 
     private LinearLayout mProgress;
-    private AppCompatTextView mProgressMessage;
+    private MaterialTextView mProgressMessage, mForegroundText;
 
     private List<Fragment> mViewPagerFragments;
     private ViewPagerAdapter mViewPagerAdapter;
-    private View mViewPagerParent;
     private ViewPager mViewPager;
-    private View mViewPagerShadow;
     private CirclePageIndicator mCirclePageIndicator;
 
-    private FloatingActionButton mTopFab;
-    private FloatingActionButton mBottomFab;
+    private FloatingActionButton mTopFab, mBottomFab;
 
     private AppBarLayout mAppBarLayout;
     private Toolbar mToolBar;
@@ -111,8 +109,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
     private ValueAnimator mForegroundAnimator;
     private boolean mForegroundVisible;
-    private View mForegroundParent;
-    private AppCompatTextView mForegroundText;
+    private MaterialCardView mForegroundParent;
     private float mForegroundHeight;
     private CharSequence mForegroundStrText;
 
@@ -208,7 +205,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             mForegroundParent = mRootView.findViewById(R.id.foreground_parent);
             mForegroundText = mRootView.findViewById(R.id.foreground_text);
             mForegroundText.setOnClickListener(v -> dismissForeground());
-            AppCompatTextView cancelText = mRootView.findViewById(R.id.cancel_button);
+            MaterialTextView cancelText = mRootView.findViewById(R.id.cancel_button);
             cancelText.setOnClickListener(v -> dismissForeground());
             getChildFragmentManager().beginTransaction().replace(R.id.foreground_content,
                     foregroundFragment).commit();

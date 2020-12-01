@@ -28,10 +28,10 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.tools.SmartPack;
@@ -43,10 +43,8 @@ import com.smartpack.kernelmanager.utils.tools.SmartPack;
 public class FlashingActivity extends BaseActivity {
 
     private AppCompatImageButton mSaveButton;
-    private AppCompatTextView mFlashingHeading;
-    private AppCompatTextView mFlashingResult;
-    private CardView mCancelButton;
-    private CardView mRebootButton;
+    private MaterialTextView mFlashingHeading, mFlashingResult;
+    private MaterialCardView mCancelButton, mRebootButton;
     private LinearLayout mProgressLayout;
     private NestedScrollView mScrollView;
 
@@ -58,7 +56,7 @@ public class FlashingActivity extends BaseActivity {
         mCancelButton = findViewById(R.id.cancel_button);
         mFlashingHeading = findViewById(R.id.flashing_title);
         mFlashingResult = findViewById(R.id.output_text);
-        AppCompatTextView mProgressMessage = findViewById(R.id.progress_message);
+        MaterialTextView mProgressMessage = findViewById(R.id.progress_message);
         mSaveButton = findViewById(R.id.save_button);
         mRebootButton = findViewById(R.id.reboot_button);
         mProgressLayout = findViewById(R.id.progress_layout);
