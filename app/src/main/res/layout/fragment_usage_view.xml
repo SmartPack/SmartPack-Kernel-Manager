@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/usage_offline_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         android:textSize="16sp"
         android:visibility="gone" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/usage_load_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         android:textColor="@color/colorOnPrimary"
         android:textSize="12sp" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/usage_freq_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
         android:textColor="@color/colorOnPrimary"
         android:textSize="12sp" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/usage_core_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

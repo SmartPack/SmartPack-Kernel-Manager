@@ -29,13 +29,13 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
@@ -314,7 +314,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
 
     public static class SearchFragment extends BaseFragment {
 
-        private TextView mItemsText;
+        private MaterialTextView mItemsText;
         private int mItemsCount;
 
         @Nullable

@@ -22,8 +22,8 @@
 package com.smartpack.kernelmanager.views.recyclerview;
 
 import android.view.View;
-import android.widget.TextView;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 
 /**
@@ -33,15 +33,9 @@ import com.smartpack.kernelmanager.R;
  */
 
 public class MultiStatsView extends RecyclerViewItem {
-    private TextView mTitleView;
-    private TextView mStatViewOne;
-    private TextView mStatViewTwo;
-    private TextView mStatViewThree;
+    private MaterialTextView mTitleView, mStatViewOne, mStatViewTwo, mStatViewThree;
 
-    private CharSequence mTitle;
-    private CharSequence mStatOne;
-    private CharSequence mStatTwo;
-    private CharSequence mStatThree;
+    private CharSequence mTitle, mStatOne, mStatTwo, mStatThree;
 
     @Override
     public int getLayoutRes() {

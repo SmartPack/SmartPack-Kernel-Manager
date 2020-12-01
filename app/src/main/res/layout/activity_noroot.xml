@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
@@ -27,7 +27,7 @@
                 android:background="@color/colorPrimaryVariant"
                 android:tint="?android:attr/colorAccent"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/title_main"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
@@ -41,7 +41,7 @@
                 android:textColor="?android:attr/colorAccent" />
         </FrameLayout>
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
@@ -67,7 +67,7 @@
                         android:background="@null"
                         android:tint="?android:attr/colorAccent"/>
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/message_main"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                         android:src="@drawable/ic_playstore"
                         android:background="@null" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textStyle="bold|italic"
@@ -104,10 +104,10 @@
                         android:textSize="18sp" />
                 </LinearLayout>
             </LinearLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/cancel_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -118,4 +118,4 @@
         android:text="@string/cancel"
         android:textColor="?android:attr/colorAccent"
         android:textSize="18sp" />
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

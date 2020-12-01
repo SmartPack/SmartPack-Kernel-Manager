@@ -13,7 +13,7 @@
         android:orientation="vertical"
         tools:ignore="UselessParent">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/summary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                 android:layout_weight="1"
                 android:gravity="end|center_vertical">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

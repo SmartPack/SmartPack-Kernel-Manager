@@ -27,8 +27,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatTextView;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 
@@ -38,7 +38,7 @@ import com.smartpack.kernelmanager.fragments.BaseFragment;
 
 public class DetailsFragment extends BaseFragment {
 
-    private AppCompatTextView mCodeText;
+    private MaterialTextView mCodeText;
 
     @Nullable
     @Override

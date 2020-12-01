@@ -21,8 +21,8 @@ package com.smartpack.kernelmanager.views.recyclerview.overallstatistics;
 
 import android.annotation.SuppressLint;
 import android.view.View;
-import android.widget.TextView;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.cpu.Temperature;
@@ -33,12 +33,9 @@ import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
  */
 public class TemperatureView extends RecyclerViewItem {
 
-    private View mCPUParent;
-    private View mGPUParent;
+    private View mCPUParent, mGPUParent;
 
-    private TextView mCPU;
-    private TextView mGPU;
-    private TextView mBattery;
+    private MaterialTextView mCPU, mGPU, mBattery;
 
     private double mBatteryTemp;
 

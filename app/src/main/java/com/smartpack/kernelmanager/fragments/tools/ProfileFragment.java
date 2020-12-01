@@ -38,12 +38,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SwitchCompat;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.NavigationActivity;
 import com.smartpack.kernelmanager.activities.tools.profile.ProfileActivity;
@@ -589,8 +589,8 @@ public class ProfileFragment extends RecyclerViewFragment {
                                  @Nullable Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_apply_on_boot, container, false);
 
-            ((TextView) rootView.findViewById(R.id.title)).setText(getString(R.string.profile_tasker_toast));
-            SwitchCompat switchCompat = rootView.findViewById(R.id.switcher);
+            ((MaterialTextView) rootView.findViewById(R.id.title)).setText(getString(R.string.profile_tasker_toast));
+            SwitchMaterial switchCompat = rootView.findViewById(R.id.switcher);
             switchCompat.setChecked(Prefs.getBoolean("showtaskertoast", true, getActivity()));
             switchCompat.setOnCheckedChangeListener((compoundButton, b) -> Prefs.saveBoolean("showtaskertoast", b, getActivity()));
 

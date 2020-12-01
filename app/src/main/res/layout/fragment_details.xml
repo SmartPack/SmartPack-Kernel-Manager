@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginBottom="50sp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/code_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,5 +21,5 @@
             android:textColor="?android:attr/textColorPrimary"
             android:textIsSelectable="true"
             android:textSize="13sp" />
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </androidx.core.widget.NestedScrollView>

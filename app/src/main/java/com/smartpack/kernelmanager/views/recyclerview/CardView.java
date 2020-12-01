@@ -29,11 +29,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.PopupMenu;
 
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 
 import java.util.ArrayList;
@@ -51,33 +52,25 @@ public class CardView extends RecyclerViewItem {
 
     private Activity mActivity;
 
-    private androidx.cardview.widget.CardView mRootView;
-    private View mTitleParent;
-    private AppCompatImageView mImageView;
-    private TextView mTitle;
-    private AppCompatImageView mArrow;
-    private View mLayoutParent;
+    private MaterialCardView mRootView;
+    private AppCompatImageView mImageView, mArrow;
+    private MaterialTextView mTitle;
+    private View mTitleParent, mLayoutParent, mMenuButton;
     private LinearLayout mLayout;
-    private View mMenuButton;
 
     private Drawable mImage;
     private CharSequence mTitleText;
     private PopupMenu mPopupMenu;
     private OnMenuListener mOnMenuListener;
 
-    private List<RecyclerViewItem> mItems = new ArrayList<>();
+    private List<RecyclerViewItem> mItems = new ArrayList<>(), mLoading = new ArrayList<>();
     private HashMap<RecyclerViewItem, View> mViews = new HashMap<>();
 
-    private List<RecyclerViewItem> mLoading = new ArrayList<>();
     private List<Runnable> mRunnables = new ArrayList<>();
 
-    private int mLayoutHeight;
+    private int mLayoutHeight, mGrxColor = 0;
     private ValueAnimator mLayoutAnimator;
-    private boolean mShowLayout = true;
-    private boolean mExpandable = true;
-
-    private boolean mGrxIsInitSelected = false;
-    private int mGrxColor = 0;
+    private boolean mShowLayout = true, mExpandable = true, mGrxIsInitSelected = false;
 
     public CardView(Activity activity) {
         if (activity == null) {
@@ -101,7 +94,7 @@ public class CardView extends RecyclerViewItem {
     }
 
     private void initLayouts(View view) {
-        mRootView = (androidx.cardview.widget.CardView) view;
+        mRootView = (MaterialCardView) view;
         mTitleParent = view.findViewById(R.id.title_parent);
         mImageView = view.findViewById(R.id.image);
         mTitle = view.findViewById(R.id.card_title);

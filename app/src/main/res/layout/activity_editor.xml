@@ -6,7 +6,7 @@
 
     <include layout="@layout/app_bar_main" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -23,6 +23,5 @@
             android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
             android:textSize="13sp" />
 
-    </ScrollView>
-
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

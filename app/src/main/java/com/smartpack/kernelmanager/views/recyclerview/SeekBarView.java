@@ -21,8 +21,7 @@ package com.smartpack.kernelmanager.views.recyclerview;
 
 import android.view.View;
 
-import androidx.appcompat.widget.AppCompatTextView;
-
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
@@ -41,20 +40,14 @@ public class SeekBarView extends RecyclerViewItem {
         void onMove(SeekBarView seekBarView, int position, String value);
     }
 
-    private AppCompatTextView mTitle;
-    private AppCompatTextView mSummary;
-    private AppCompatTextView mValue;
+    private MaterialTextView mTitle, mSummary, mValue;
     private DiscreteSeekBar mSeekBar;
 
-    private CharSequence mTitleText;
-    private CharSequence mSummaryText;
+    private CharSequence mTitleText, mSummaryText;
 
-    private int mMin;
-    private int mMax = 100;
-    private int mProgress;
+    private int mMin, mMax = 100, mProgress, mOffset = 1;
     private String mUnit;
     private List<String> mItems;
-    private int mOffset = 1;
     private boolean mEnabled = true;
 
     private OnSeekBarListener mOnSeekBarListener;

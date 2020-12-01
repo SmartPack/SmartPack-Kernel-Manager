@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView android:id="@+id/foreground_parent"
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/foreground_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="bottom"
@@ -21,7 +22,7 @@
         android:layout_gravity="bottom"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/foreground_text"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -40,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/cancel_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -51,4 +52,4 @@
         android:padding="10dp"
         android:background="@color/colorPrimary"
         android:textColor="@color/colorOnPrimary" />
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

@@ -20,8 +20,8 @@
 package com.smartpack.kernelmanager.views.recyclerview;
 
 import android.view.View;
-import android.widget.TextView;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.views.XYGraph;
 
@@ -33,12 +33,9 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class XYGraphView extends RecyclerViewItem {
 
-    private TextView mTitle;
-    private TextView mText;
+    private MaterialTextView mTitle, mText;
     private XYGraph mGraph;
-
-    private CharSequence mTitleStr;
-    private CharSequence mTextStr;
+    private CharSequence mTitleStr, mTextStr;
     private Queue<Integer> mPercentages = new LinkedBlockingQueue<>();
 
     @Override

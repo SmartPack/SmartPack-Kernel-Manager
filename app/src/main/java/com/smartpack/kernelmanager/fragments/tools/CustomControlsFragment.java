@@ -33,10 +33,10 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
 
 import androidx.appcompat.widget.PopupMenu;
 
+import com.google.android.material.checkbox.MaterialCheckBox;
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
@@ -45,11 +45,11 @@ import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
+import com.smartpack.kernelmanager.utils.tools.CustomControls;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.GenericInputView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
-import com.smartpack.kernelmanager.utils.tools.CustomControls;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -386,13 +386,13 @@ public class CustomControlsFragment extends RecyclerViewFragment {
      */
     private void warningDialog() {
         View checkBoxView = View.inflate(getActivity(), R.layout.rv_checkbox, null);
-        CheckBox checkBox = checkBoxView.findViewById(R.id.checkbox);
+        MaterialCheckBox checkBox = checkBoxView.findViewById(R.id.checkbox);
         checkBox.setChecked(true);
         checkBox.setText(getString(R.string.always_show));
         checkBox.setOnCheckedChangeListener((buttonView, isChecked)
                 -> mAlertDialogue = isChecked);
 
-        new Dialog(Objects.requireNonNull(getActivity()))
+        new Dialog(requireActivity())
                 .setIcon(R.mipmap.ic_launcher)
                 .setTitle(getString(R.string.warning))
                 .setMessage(getString(R.string.custom_controls_message))

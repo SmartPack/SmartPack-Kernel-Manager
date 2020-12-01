@@ -20,8 +20,8 @@
 package com.smartpack.kernelmanager.views.recyclerview;
 
 import android.view.View;
-import android.widget.TextView;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 
 /**
@@ -30,11 +30,9 @@ import com.smartpack.kernelmanager.R;
 
 public class StatsView extends RecyclerViewItem {
 
-    private TextView mStatView;
-    private TextView mTitleView;
+    private MaterialTextView mStatView, mTitleView;
 
-    private CharSequence mStat;
-    private CharSequence mTitle;
+    private CharSequence mStat, mTitle;
 
     @Override
     public int getLayoutRes() {

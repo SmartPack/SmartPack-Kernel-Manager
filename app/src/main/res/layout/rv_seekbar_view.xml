@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,13 +19,13 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/summary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/value"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -52,8 +52,6 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/button_minus"
-            android:layout_toLeftOf="@+id/button_plus"
-            android:layout_toRightOf="@+id/button_minus"
             android:layout_toStartOf="@+id/button_plus"
             app:dsb_allowTrackClickToDrag="false"
             app:dsb_indicatorPopupEnabled="false"
@@ -64,7 +62,6 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_centerVertical="true"
             android:background="?attr/selectableItemBackgroundBorderless"

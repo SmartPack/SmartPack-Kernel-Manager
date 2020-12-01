@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
             android:layout_weight="1"
             android:textColor="?android:attr/textColorPrimary" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/done_image"
             android:layout_width="25dp"
             android:layout_height="25dp"

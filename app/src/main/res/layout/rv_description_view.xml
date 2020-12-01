@@ -5,7 +5,6 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:baselineAligned="false"
-    android:foreground="?attr/selectableItemBackground"
     android:background="?attr/selectableItemBackground"
     android:padding="10dp"
     android:focusable="true"
@@ -28,14 +27,14 @@
         android:orientation="vertical"
         android:baselineAligned="false">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="false"
             android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,5 +61,4 @@
         android:src="@drawable/ic_dots"
         android:visibility="gone"
         android:scaleType="center" />
-
 </LinearLayout>

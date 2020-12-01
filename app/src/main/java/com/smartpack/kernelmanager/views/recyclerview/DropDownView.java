@@ -24,10 +24,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 
 import java.util.ArrayList;
@@ -38,13 +38,11 @@ import java.util.List;
  */
 public class DropDownView extends RecyclerViewItem {
 
-    private TextView mTitle;
-    private TextView mSummary;
+    private MaterialTextView mTitle, mSummary;
     private AppCompatImageView mArrow;
     private LinearLayout mParent;
 
-    private CharSequence mTitleText;
-    private CharSequence mSummaryText;
+    private CharSequence mTitleText, mSummaryText;
     private List<String> mItems;
     private int mSelection = -1;
     private boolean mExpanded;
@@ -139,7 +137,7 @@ public class DropDownView extends RecyclerViewItem {
             for (int i = 0; i < mItems.size(); i++) {
                 View item = LayoutInflater.from(mParent.getContext()).inflate(R.layout.rv_drop_down_item_view,
                         mParent, false);
-                ((TextView) item.findViewById(R.id.title)).setText(mItems.get(i));
+                ((MaterialTextView) item.findViewById(R.id.title)).setText(mItems.get(i));
                 mDoneViews.add(item.findViewById(R.id.done_image));
                 item.findViewById(R.id.done_image).setVisibility(View.GONE);
 

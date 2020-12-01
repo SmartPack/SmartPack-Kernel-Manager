@@ -12,13 +12,13 @@
         android:layout_marginStart="16dp"
         android:src="@mipmap/ic_launcher_round" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="16dp"
@@ -26,5 +26,5 @@
             android:text="@string/about_me"
             android:textColor="@color/colorOnPrimary"
             android:textSize="15sp" />
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

@@ -25,7 +25,7 @@
                 android:background="@color/colorPrimary"
                 android:elevation="3dp" />
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="2dp"
@@ -41,7 +41,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/seekbar_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

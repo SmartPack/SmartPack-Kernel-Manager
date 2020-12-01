@@ -26,9 +26,9 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.cardview.widget.CardView;
 
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
@@ -52,7 +52,7 @@ public class UpdateChannelActivity extends BaseActivity {
     private AppCompatEditText mSHA1Hint;
     private AppCompatEditText mSupportHint;
     private AppCompatEditText mDonationHint;
-    private CardView mCardView;
+    private MaterialCardView mCardView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,7 +72,7 @@ public class UpdateChannelActivity extends BaseActivity {
                 Utils.snackbar(mCardView, getString(R.string.submit_failed));
             }
         });
-        AppCompatTextView mClearAll = findViewById(R.id.clear_all);
+        MaterialTextView mClearAll = findViewById(R.id.clear_all);
         mClearAll.setOnClickListener(v -> {
             if (isTextEntered()) {
                 new Dialog(this)

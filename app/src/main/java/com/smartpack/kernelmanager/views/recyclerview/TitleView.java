@@ -21,8 +21,7 @@ package com.smartpack.kernelmanager.views.recyclerview;
 
 import android.view.View;
 
-import androidx.appcompat.widget.AppCompatTextView;
-
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 
 /**
@@ -30,7 +29,7 @@ import com.smartpack.kernelmanager.R;
  */
 public class TitleView extends RecyclerViewItem {
 
-    private AppCompatTextView mTitle;
+    private MaterialTextView mTitle;
 
     private CharSequence mTitleText;
 

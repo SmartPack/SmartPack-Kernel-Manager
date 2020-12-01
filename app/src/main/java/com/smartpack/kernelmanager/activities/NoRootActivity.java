@@ -27,8 +27,8 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatTextView;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 
@@ -44,8 +44,8 @@ public class NoRootActivity extends BaseActivity {
         setContentView(R.layout.activity_noroot);
 
         LinearLayout bbi = findViewById(R.id.bbi);
-        AppCompatTextView mainTitle = findViewById(R.id.title_main);
-        AppCompatTextView mainMessage = findViewById(R.id.message_main);
+        MaterialTextView mainTitle = findViewById(R.id.title_main);
+        MaterialTextView mainMessage = findViewById(R.id.message_main);
         bbi.setOnClickListener(v -> Utils.launchUrl(bbi, "https://play.google.com/store/apps/details?id=com.smartpack.busyboxinstaller", this));
         if (Utils.mHasRoot && !Utils.mHasBusybox) {
             bbi.setVisibility(View.VISIBLE);
@@ -57,7 +57,7 @@ public class NoRootActivity extends BaseActivity {
         }
         AppCompatImageButton mBack = findViewById(R.id.back_button);
         mBack.setOnClickListener(v -> onBackPressed());
-        AppCompatTextView mCancel = findViewById(R.id.cancel_button);
+        MaterialTextView mCancel = findViewById(R.id.cancel_button);
         mCancel.setOnClickListener(v -> super.onBackPressed());
     }
 }
