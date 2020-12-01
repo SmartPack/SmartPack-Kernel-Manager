@@ -375,7 +375,7 @@
     <string name="thermal_info">在下面选项中只使用一种温度管理，同时使用超过一种可能会导致不可预期的行为。</string>
     <string name="thermald">温控</string>
     <string name="thermald_summary">避免装置过热的原厂温度管理。 如果目前核心有其它选项时应该停用。</string>
-    <string name="intellithermal_summary">将高通的温度管里更换为由 faux123 开发的核​​心</string>
+    <string name="intellithermal_summary">将高通的温度管理更换为由 faux123 开发的核​​心</string>
     <string name="intellithermal_optimized">Intellithermal 优化版</string>
     <string name="intellithermal_optimized_summary">将高通的温度管理更换为由 faux123 与 alucard_24 开发的核​​心</string>
     <string name="thermal_debug_mask_summary">允许您启动侦错调试遮罩。</string>
