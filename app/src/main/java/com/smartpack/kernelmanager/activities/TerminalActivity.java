@@ -54,9 +54,11 @@ public class TerminalActivity extends BaseActivity {
     private AppCompatTextView mClearAll, mShellOutput;
     private boolean mRunning = false;
     private CharSequence mHistory = null;
-    private static String whoAmI = RootUtils.runAndGetOutput("whoami");
-    private List<String> mLastCommand = new ArrayList<>(), mResult = null;
+    private int i;
+    private List<String> mResult = null;
     private NestedScrollView mScrollView;
+    private String whoAmI = RootUtils.runAndGetOutput("whoami");
+    private StringBuilder mLastCommand = new StringBuilder();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -91,17 +93,20 @@ public class TerminalActivity extends BaseActivity {
 
         mBack.setOnClickListener(v -> onBackPressed());
         mRecent.setOnClickListener(v -> {
+            String[] lines = mLastCommand.toString().split(",");
             PopupMenu popupMenu = new PopupMenu(this, mShellCommand);
             Menu menu = popupMenu.getMenu();
             if (mLastCommand.toString().isEmpty()) {
                 return;
             }
-            for (String mCommand : mLastCommand)  {
-                menu.add(Menu.NONE, Menu.NONE, Menu.NONE, mCommand);
+            for (i = 0; i < lines.length; i++) {
+                menu.add(Menu.NONE, i, Menu.NONE, lines[i]);
             }
             popupMenu.setOnMenuItemClickListener(item -> {
-                for (String mCommand : mLastCommand) {
-                    mShellCommand.setText(mCommand);
+                for (i = 0; i < lines.length; i++) {
+                    if (item.getItemId() == i) {
+                        mShellCommand.setText(lines[i]);
+                    }
                 }
                 return false;
             });
@@ -157,7 +162,7 @@ public class TerminalActivity extends BaseActivity {
                     sb.append(" ").append(s);
             }
             final String[] mCommand = {sb.toString().replaceFirst(" ","")};
-            mLastCommand.add(mCommand[0]);
+            mLastCommand.append(mCommand[0]).append(",");
             if (mCommand[0].endsWith("\n")) {
                 mCommand[0] = mCommand[0].replace("\n","");
             }
