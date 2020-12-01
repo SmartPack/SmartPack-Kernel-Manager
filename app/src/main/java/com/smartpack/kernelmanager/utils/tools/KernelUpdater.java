@@ -48,11 +48,6 @@ public class KernelUpdater {
         Utils.downloadFile(updateInfo(context), value, context);
     }
 
-    public static void clearUpdateInfo(Context context) {
-        Utils.delete(updateChannelInfo(context));
-        Utils.delete(updateInfo(context));
-    }
-
     private static String getKernelInfo(Context context) {
         try {
             JSONObject obj = new JSONObject(Utils.readFile(updateInfo(context)));
@@ -92,7 +87,8 @@ public class KernelUpdater {
             }
             @Override
             protected Void doInBackground(Void... voids) {
-                clearUpdateInfo(context);
+                new File(context.getFilesDir().getPath() + "/updatechannel").delete();
+                new File(context.getFilesDir().getPath() + "/release").delete();
                 updateInfo(value, context);
                 updateChannel(value, context);
                 Utils.sleep(1);

@@ -180,7 +180,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 return;
             }
             if (value.isEmpty()) {
-                KernelUpdater.clearUpdateInfo(requireActivity());
+                new File(requireActivity().getFilesDir().getPath() + "/updatechannel").delete();
+                new File(requireActivity().getFilesDir().getPath() + "/release").delete();
                 Utils.snackbar(getRootView(), getString(R.string.update_channel_empty));
                 reload();
                 return;
@@ -205,7 +206,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                     .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
                                     })
                                     .setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {
-                                        KernelUpdater.clearUpdateInfo(requireActivity());
+                                        new File(requireActivity().getFilesDir().getPath() + "/updatechannel").delete();
+                                        new File(requireActivity().getFilesDir().getPath() + "/release").delete();
                                         reload();
                                     })
                                     .show();
