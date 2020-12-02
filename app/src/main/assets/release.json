@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Largely improved flasher (now show real-time output + correct flashing status).\n - Scripts and Terminal now onwards display outputs in real-time.\n - Fixed bug on sharing custom controller.\n - App now uses Material Alert Dialogs.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.5/com.smartpack.kernelmanager-v14.5-release.apk",
-  "sha1": "e1faec92fa1ddd83f2749912f4ff97d2de242681",
-  "latestVersion": "14.5",
-  "latestVersionCode": 145
+  "releaseNotes": "Change-logs\n - Fixed some issues on the Terminal page.\n - Avoid error string from Flasher output.\n - App now uses material elements as much as possible.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.6/com.smartpack.kernelmanager-v14.6-release.apk",
+  "sha1": "30ed204cf0276cbc794733d8802ccdf40628717e",
+  "latestVersion": "14.6",
+  "latestVersionCode": 146
 }

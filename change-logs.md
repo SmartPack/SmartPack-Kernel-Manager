@@ -1,5 +1,9 @@
 # Change-logs
 
+## 131. December 02, 2020
+*Release-tag: beta_v14.6*<br>
+Fixed some issues on the Terminal page. Avoid error string from Flasher output. App now uses material elements as much as possible. Miscellaneous changes.
+
 ## 130. November 30, 2020
 *Release-tag: beta_v14.5*<br>
 Largely improved flasher (now show real-time output + correct flashing status). Scripts and Terminal now onwards display outputs in real-time. Fixed bug on sharing custom controller. App now uses Material Alert Dialogs. Miscellaneous changes.
