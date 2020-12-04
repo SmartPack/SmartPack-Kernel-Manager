@@ -822,7 +822,6 @@
     <string name="fota_partition">Fota 파티션</string>
     <string name="flash">설치</string>
     <string name="flasher">설치 매니저</string>
-    <string name="flasher_warning">주의: 이 기능은 여전히 개발 중입니다. 설치 가능한 zip 파일들에 대한 완벽한 호환성을 보장하지 않습니다. 만약 위에서 언급된 비호환성으로 인해 설치가 되지 않았다고 생각하신다면, 다시 무언가를 실행하기 전에 앱을 즉시 다시 시작하세요.\n\n*** <b>위험을 감수하고 사용하세요 (본인 책임입니다)</b> ***\n</string>
     <string name="flasher_summary">설치 버튼을 눌러 리커버리 ZIP 파일을 선택하고 커스텀 리커버리로의 부팅 없이 설치하세요. 변경된 점들은 다시 시작 후에 적용됩니다.</string>
     <string name="file_size_limit">주의! ~%s MB의 파일을 선택했습니다. 이 앱을 통해 롬과 같은 큰 파일들을 설치하는 것은 여러분의 기기에 문제를 야기할 수도 있습니다.</string>
     <string name="execute">실행</string>

@@ -897,7 +897,6 @@
     <string name="fota_partition">Fota partycja</string>
     <string name="flash">Flash (Wgraj)</string>
     <string name="flasher">Flasher</string>
-    <string name="flasher_warning">Ta funkcja jest wciąż bardzo nowa i w fazie rozwoju. Może nie mieć pełnej zgodności z wieloma plikami zip z możliwością flashowania. Jeśli uważasz, że proces flashowania w jakimkolwiek przypadku nie powiódł się z powodu wyżej wymienionych niezgodności, uruchom ponownie aplikację bezpośrednio przed podjęciem jakichkolwiek czynności.\n\nAlso, Nie polecam próbować flashowania czegokolwiek powyżej 500 MB.\n\n***UŻYWAJ NA WŁASNE RYZYKO***\n</string>
     <string name="flasher_summary">Kliknij przycisk flash, aby wybrać i wgrać plik ZIP za pomocą odzyskiwania(recovery) bez ponownego uruchamiania w trybie nieoficjalnego odzyskiwania(recovery). Zmiany zostaną zastosowane po ponownym uruchomieniu.</string>
     <string name="file_size_limit">Ostrzeżenie! Wybrano plik ~%s MB do flashowania. Flashowanie większych plików, takich jak ROM, za pomocą tej aplikacji może być niebezpieczne dla twojego urządzenia.</string>
     <string name="execute">Wykonać</string>
@@ -1004,8 +1003,6 @@
     <string name="share_channel_message">Aby skonfigurować ten kanał aktualizacji, po prostu wprowadź \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
     <string name="busybox_installer">BusyBox Instalator</string>
     <string name="busybox_installer_summary">Zdecydowanie zaleca się posiadanie samodzielnej instalacji BusyBox na urządzeniu, aby niektóre funkcje tej aplikacji działały poprawnie (e.g., \'unzip\' &amp; \'mke2fs\' binaries for flashing &amp; \'curl\' or \'wget\' binary for kernel OTA updates). Aby pomóc użytkownikom w tym problemie, udostępniono prostą aplikację, której można użyć jako narzędzia instalacyjnego BusyBox jednym kliknięciem dla urządzeń arm, arm64 i x86. Kliknij tutaj, aby to zdobyć!</string>
-    <string name="debug_mode">Tryb Debugowania</string>
-    <string name="debug_mode_summary">Tryb debugowania jest włączony! Zostanie wyświetlony bardziej szczegółowy dziennik flashowania (przydatny w przypadku problemów z debugowaniem).</string>
 
     <!-- Update Channel -->
     <string name="update_channel_message">(<i>for developers only</i>)\nApp utworzy kanał aktualizacji (json) dla twojego jądra, o ile informacje podane na tej stronie są dokładne.</string>

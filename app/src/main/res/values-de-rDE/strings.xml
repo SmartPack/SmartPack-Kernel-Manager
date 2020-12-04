@@ -896,7 +896,6 @@
     <string name="fota_partition">Fota Partition</string>
     <string name="flash">Flash</string>
     <string name="flasher">Flasher</string>
-    <string name="flasher_warning">Dieses Feature ist sehr neu und befindet sich noch in der Entwicklung. Viele flashbare ZIPs könnten nicht kompatibel sein. Fallst du merkst das der Prozess durch die oben angemerketen Probleme entsteht starte sofort die App neu bovor die ZIP anwendest.\n\nIch empfehle dir keine ZIP über 500 MB zu flashen.\n\n***Benutzung auf eigene Gefahr***\n</string>
     <string name="flasher_summary">Klicke auf den Flash Knopf und wähle eine Recovery ZIP aus die ohne Neustart in Recovery installiert werden soll. Änderungen werden nach dem Neustart angewendent.</string>
     <string name="file_size_limit">Achtung! Du hat eine Datei mit einer Größe von ~%s MB zum flashen ausgewählt. Flashen von großen Datein wie Roms mit dieser App kann gefährlich sein für das Gerät.</string>
     <string name="execute">Ausführen</string>
@@ -1002,8 +1001,6 @@
     <string name="share_channel_message">Um den Update Kanal zu konfigurieren, einfach \'%s\' eingeben bei SmartPack-Kernel Manager -> SmartPack -> Update Kanal Url.\n\nHole SmartPack-Kernel Manager vom PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
     <string name="busybox_installer">BusyBox Installer</string>
     <string name="busybox_installer_summary">Es wird empfohlen eine eingenständige Installation von BusyBox zu haben für Funktionen wie (z.B.: \'unzip\' &amp; \'mke2fs\' zum flashen &amp; \'curl\' oder \'wget\' für Kernel OTA Updates). Um Nutzer bei dem Problem zu helfen gibt es eine App die BusyBox mit einem Klick istalliert für arm, arm64 und x86 Geräte. Klicke hier um sie zu bekommen!</string>
-    <string name="debug_mode">Debug Modus</string>
-    <string name="debug_mode_summary">Debug Modus ist aktiviert! Ein detaillierter Flash-Log wird jetzt angezeit (nützlich um Probleme nachzuvollziehen).</string>
     <string name="download_failed">Es scheint das der Download fehlgeschlagen ist oder die Datei beschädigt!</string>
     <string name="check_update">Auf Aktualisierungen Prüfen</string>
 

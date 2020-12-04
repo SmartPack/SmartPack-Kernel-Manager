@@ -1018,7 +1018,6 @@
     <string name="json_created">更新频道 %s 创建成功。请托管它并与您的用户分析直接下载的连接。</string>
     <string name="remove">移除</string>
     <string name="busybox_installer">BusyBox 安装器</string>
-    <string name="debug_mode">调试模式</string>
     <string name="flashing_failed">刷写失败</string>
     <string name="flashing_finished">刷写完成</string>
     <string name="rebooting_message">5 秒后重新启动</string>
@@ -1053,7 +1052,6 @@
     <string name="share">分享</string>
     <string name="share_with">分享方式</string>
     <string name="got_it">明白了</string>
-    <string name="flasher_warning">"此功能还很新且仍在开发中。它可能与很多可刷新 zip 不完全兼容。如果您认为由于上述不兼容导致刷写在任何情况下均失败，请在执行其他操作前重启该应用。  另外，不建议刷写 500 MB 以上的内容。  ***使用自担风险*** "</string>
     <string name="execute">执行</string>
     <string name="sure_message">确定刷写 %s？</string>
     <string name="apply">应用</string>
@@ -1085,7 +1083,6 @@
     <string name="share_script">要应用此脚本，只需在 \'SmartPack-Kernel Manager -> 脚本管理器 -> 导入\'  中导入此文件。</string>
     <string name="update_channel_message">（<i>仅供开发人员</i>）</string>
     <string name="update_channel_instructions">只要此页面中提供的信息准确无误，App就会为您的内核创建一个更新通道（json）。</string>
-    <string name="debug_mode_summary">调试模式已启用！将显示更详细的刷写日志以用于调试问题。</string>
     <string name="custom_controls_message">基本上您可以为任何现有的 sysfs 路径创建一个自定义控制器，只需已安装一个支持的 Root 的文件管理器。但请注意，此功能十分强大，或将弄乱您的设备。</string>
     <string name="scripts_manager_message">想要一个独立的应用程序来管理脚本？点击这里！</string>
     <string name="scripts_onboot_summary">如果启用此开关，此页面中列出的所有脚本将在系统启动时执行。</string>

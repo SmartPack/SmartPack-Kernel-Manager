@@ -888,7 +888,6 @@
     <string name="fota_partition">የ Fota ክፋይ</string>
     <string name="flash">ብልጭታ</string>
     <string name="flasher">ፍላሸር</string>
-    <string name="flasher_warning">ይህ ባህርይ አሁንም በጣም አዲስ እና በሂደት ላይ ነው። ከብዙ ተጣጣፊ ዚፕ ፋይሎች ጋር ሙሉ ተኳኋኝነት ላይኖረው ይችላል። ከላይ በተጠቀሱት ተኳሃኝ አልባ መገልገያዎች ምክንያት ብልጭታው ሂደት በማንኛውም ሁኔታ አልተሳካለትም ብለው ካመኑ እባክዎን ማንኛውንም ነገር ከማድረግዎ በፊት ወዲያውኑ መተግበሪያውን እንደገና ያስጀምሩ። * በችግርዎ ላይ ይጠቀሙበት *** \n</string>
     <string name="flasher_summary">ወደ ብጁ መልሶ ማግኛ ሳይመለስ የመልሶ ማግኛ ዚፕ ፋይልን ለመምረጥ እና ለማስነሳት ፍላሽ ቁልፍን ጠቅ ያድርጉ። ለውጦቹ ከዳግም ማስነሳት በኋላ ይተገበራሉ።</string>
     <string name="file_size_limit">ማስጠንቀቂያ! ለማብራት የ%% ሜባ ፋይል መርጠዋል ፡፡ እንደ ሮም ያሉ ትልልቅ ፋይሎችን ማፍሰስ ይህንን መተግበሪያ መጠቀም ለእርስዎ መሣሪያ አደገኛ ሊሆን ይችላል ፡፡</string>
     <string name="execute">ይገድሉ</string>
