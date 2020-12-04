@@ -963,6 +963,8 @@
     <string name="scripts_onboot_summary">If you enable this switch, all the scripts listed in this page will be executed on boot.</string>
     <string name="script_executed">%s executed successfully!</string>
     <string name="exceute_question">Execute %s?</string>
+    <string name="exceute_cancel_title">Executing %s cancelled!</string>
+    <string name="exceute_cancel_question">Cancel executing %s?</string>
     <string name="remove_script_question">%s will be also removed from the Script Manager.\n\nAre you sure?</string>
     <string name="script_exists">A script named %s is already exists! Aborting.</string>
     <string name="executing">Executing</string>
