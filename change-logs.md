@@ -1,5 +1,9 @@
 # Change-logs
 
+## 115. December 05, 2020
+*Release-tag: beta_v14.7*<br>
+Updated to use Magisk BusyBox binaries (if available) as much as possible. Largely improved flasher (now show real-time output + correct flashing status). Scripts and Terminal now onwards display outputs in real-time. App now uses material elements as much as possible (please feel free to share your comments). Updated to use accent color (for texts) in many places. Fixed bug on sharing custom controller. Moved internal update (app update and kernel update) files into internal data storage folder. Miscellaneous changes.
+
 ## 114. November 11, 2020
 *Release-tag: v14.2*<br>
 All the premium features are now free. Removed Ads from app. Replace password with Biometric authentication. Simplified & moved Reset App to Settings menu. Replaced most Toast messages with SnackBar. Allowed disabling tasker toast message. Miscellaneous changes.
