@@ -31,7 +31,9 @@ import androidx.core.widget.NestedScrollView;
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.root.RootUtils;
 import com.smartpack.kernelmanager.utils.tools.ScriptManager;
+import com.smartpack.kernelmanager.views.dialog.Dialog;
 
 import java.util.ConcurrentModificationException;
 
@@ -41,6 +43,7 @@ import java.util.ConcurrentModificationException;
 
 public class ApplyScriptActivity extends AppCompatActivity {
 
+    private boolean mCancelled = false;
     private MaterialTextView mScriptTitle, mOutput;
     private NestedScrollView mScrollView;
 
@@ -70,12 +73,14 @@ public class ApplyScriptActivity extends AppCompatActivity {
                         Thread.sleep(100);
                         runOnUiThread(() -> {
                             try {
-                                mOutput.setText(Utils.getOutput(ScriptManager.mOutput));
+                                mOutput.setText(Utils.getOutput(ScriptManager.mOutput).isEmpty() ? getString(R.string.executing) + " ..." : Utils.getOutput(ScriptManager.mOutput));
                             } catch (ConcurrentModificationException ignored) {}
                             if (ScriptManager.mApplying) {
+                                mScriptTitle.setText(getString(R.string.executing));
                                 mScrollView.fullScroll(NestedScrollView.FOCUS_DOWN);
                             } else {
-                                mScriptTitle.setText(getString(R.string.script_executed, ScriptManager.mScriptName));
+                                mScriptTitle.setText(mCancelled ? getString(R.string.exceute_cancel_title, ScriptManager.mScriptName) : getString(R.string.script_executed, ScriptManager.mScriptName));
+                                mOutput.setText(Utils.getOutput(ScriptManager.mOutput).isEmpty() ? getString(R.string.script_executed, ScriptManager.mScriptName) : Utils.getOutput(ScriptManager.mOutput));
                             }
                         });
                     }
@@ -86,7 +91,20 @@ public class ApplyScriptActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (ScriptManager.mApplying) return;
+        if (ScriptManager.mApplying) {
+            new Dialog(this)
+                    .setMessage(getString(R.string.exceute_cancel_question, ScriptManager.mScriptName))
+                    .setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
+                    })
+                    .setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
+                        mCancelled = true;
+                        RootUtils.closeSU();
+                    }).show();
+            return;
+        }
+        if (mCancelled) {
+            mCancelled = false;
+        }
         super.onBackPressed();
     }
 
