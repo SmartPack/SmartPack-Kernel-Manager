@@ -39,44 +39,36 @@ import java.io.File;
 
 public class KernelUpdater {
 
-    private static final String UPDATE_CHANNEL = Utils.getInternalDataStorage() + "/updatechannel";
-    private static final String UPDATE_INFO = Utils.getInternalDataStorage() + "/updateinfo";
-
-    private static void updateChannel(String value) {
-        Utils.create(value, UPDATE_CHANNEL);
+    private static void updateChannel(String value, Context context) {
+        Utils.create(value, updateChannelInfo(context));
     }
 
     public static void updateInfo(String value, Context context) {
         Utils.prepareInternalDataStorage();
-        Utils.downloadFile(UPDATE_INFO, value, context);
+        Utils.downloadFile(updateInfo(context), value, context);
     }
 
-    public static void clearUpdateInfo() {
-        Utils.delete(UPDATE_CHANNEL);
-        Utils.delete(UPDATE_INFO);
-    }
-
-    private static String getKernelInfo() {
+    private static String getKernelInfo(Context context) {
         try {
-            JSONObject obj = new JSONObject(Utils.readFile(UPDATE_INFO));
+            JSONObject obj = new JSONObject(Utils.readFile(updateInfo(context)));
             return (obj.getString("kernel"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    private static String getSupportInfo() {
+    private static String getSupportInfo(Context context) {
         try {
-            JSONObject obj = new JSONObject(Utils.readFile(UPDATE_INFO));
+            JSONObject obj = new JSONObject(Utils.readFile(updateInfo(context)));
             return (obj.getString("support"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static String getUpdateChannel() {
-        if (Utils.existFile(UPDATE_CHANNEL)) {
-            return Utils.readFile(UPDATE_CHANNEL);
+    public static String getUpdateChannel(Context context) {
+        if (Utils.existFile(updateChannelInfo(context))) {
+            return Utils.readFile(updateChannelInfo(context));
         } else {
             return "Unavailable";
         }
@@ -95,9 +87,10 @@ public class KernelUpdater {
             }
             @Override
             protected Void doInBackground(Void... voids) {
-                clearUpdateInfo();
+                new File(context.getFilesDir().getPath() + "/updatechannel").delete();
+                new File(context.getFilesDir().getPath() + "/release").delete();
                 updateInfo(value, context);
-                updateChannel(value);
+                updateChannel(value, context);
                 Utils.sleep(1);
                 return null;
             }
@@ -108,78 +101,86 @@ public class KernelUpdater {
                     mProgressDialog.dismiss();
                 } catch (IllegalArgumentException ignored) {
                 }
-                if (getKernelName().equals("Unavailable")) {
+                if (getKernelName(context).equals("Unavailable")) {
                     Utils.toast(R.string.update_channel_invalid, context);
                 }
             }
         }.execute();
     }
 
-    public static String getKernelName() {
+    public static String getKernelName(Context context) {
         try {
-            JSONObject obj = new JSONObject(getKernelInfo());
+            JSONObject obj = new JSONObject(getKernelInfo(context));
             return (obj.getString("name"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static String getLatestVersion() {
+    public static String getLatestVersion(Context context) {
         try {
-            JSONObject obj = new JSONObject(getKernelInfo());
+            JSONObject obj = new JSONObject(getKernelInfo(context));
             return (obj.getString("version"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static String getUrl() {
+    public static String getUrl(Context context) {
         try {
-            JSONObject obj = new JSONObject(getKernelInfo());
+            JSONObject obj = new JSONObject(getKernelInfo(context));
             return (obj.getString("link"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static String getChecksum() {
+    public static String getChecksum(Context context) {
         try {
-            JSONObject obj = new JSONObject(getKernelInfo());
+            JSONObject obj = new JSONObject(getKernelInfo(context));
             return (obj.getString("sha1"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static String getChangeLog() {
+    public static String getChangeLog(Context context) {
         try {
-            JSONObject obj = new JSONObject(getKernelInfo());
+            JSONObject obj = new JSONObject(getKernelInfo(context));
             return (obj.getString("changelog_url"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static String getSupport() {
+    public static String getSupport(Context context) {
         try {
-            JSONObject obj = new JSONObject(getSupportInfo());
+            JSONObject obj = new JSONObject(getSupportInfo(context));
             return (obj.getString("link"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static String getDonationLink() {
+    public static String getDonationLink(Context context) {
         try {
-            JSONObject obj = new JSONObject(getSupportInfo());
+            JSONObject obj = new JSONObject(getSupportInfo(context));
             return (obj.getString("donation"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static long lastModified() {
-        return new File(UPDATE_INFO).lastModified();
+    private static String updateInfo(Context context) {
+        return context.getFilesDir().getPath() + "/release";
+    }
+
+    public static String updateChannelInfo(Context context) {
+        return context.getFilesDir().getPath() + "/updatechannel";
+    }
+
+    public static long lastModified(Context context) {
+        return new File(updateInfo(context)).lastModified();
     }
 
 }

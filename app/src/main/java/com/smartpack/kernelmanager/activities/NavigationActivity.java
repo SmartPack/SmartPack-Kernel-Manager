@@ -99,6 +99,7 @@ import com.smartpack.kernelmanager.utils.kernel.wake.Wake;
 import com.smartpack.kernelmanager.utils.kernel.wakelock.Wakelocks;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 import com.smartpack.kernelmanager.utils.tools.Backup;
+import com.smartpack.kernelmanager.utils.tools.KernelUpdater;
 
 import org.frap129.spectrum.Spectrum;
 import org.frap129.spectrum.SpectrumFragment;
@@ -527,6 +528,18 @@ public class NavigationActivity extends BaseActivity
                 return new NavigationFragment[0];
             }
         };
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        // Initialize kernel update check - Once in a day
+        if (Utils.isNetworkAvailable(this) && Prefs.getBoolean("update_check", true, this)
+                && !KernelUpdater.getUpdateChannel(this).equals("Unavailable") && Utils.isDownloadBinaries() &&
+                KernelUpdater.lastModified(this) + 89280000L < System.currentTimeMillis()) {
+            KernelUpdater.updateInfo(Utils.readFile(KernelUpdater.updateChannelInfo(this)), this);
+        }
     }
 
 }
