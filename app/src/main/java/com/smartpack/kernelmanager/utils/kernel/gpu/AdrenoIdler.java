@@ -79,7 +79,8 @@ public class AdrenoIdler {
     }
 
     public static boolean isAdrenoIdlerEnabled() {
-        return Utils.readFile(ADRENO_IDLER_ACTIVATE).equals("Y");
+        return Utils.readFile(ADRENO_IDLER_ACTIVATE).equals("Y") ||
+                Utils.readFile(ADRENO_IDLER_ACTIVATE).equals("1");
     }
 
     public static boolean supported() {
