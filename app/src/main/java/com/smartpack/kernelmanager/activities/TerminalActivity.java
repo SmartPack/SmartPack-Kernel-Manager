@@ -215,6 +215,12 @@ public class TerminalActivity extends BaseActivity {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        mShellCommand.requestFocus();
+    }
+
+    @Override
     public void onBackPressed() {
         if (mRunning) return;
         super.onBackPressed();
