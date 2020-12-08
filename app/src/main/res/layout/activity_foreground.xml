@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?android:attr/colorBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryVariant" >
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="start"
+            android:src="@drawable/ic_back"
+            android:background="@color/colorPrimaryVariant"
+            android:tint="?android:attr/colorAccent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+        android:textColor="?android:attr/colorAccent"
+        android:gravity="start|center_vertical"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:padding="10dp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/foreground_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorPrimaryVariant"
+        android:layout_alignParentBottom="true"
+        app:cardCornerRadius="15dp" >
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="?android:attr/colorAccent"
+            android:textStyle="bold|italic"
+            android:text="@string/cancel"
+            android:clickable="false"
+            android:gravity="center"
+            android:textSize="17sp" />
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

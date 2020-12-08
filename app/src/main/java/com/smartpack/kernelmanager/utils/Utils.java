@@ -107,6 +107,9 @@ public class Utils {
     public static boolean mTranslator = false;
     public static boolean mUpdateCheck = false;
 
+    public static String mDetailsTitle = null;
+    public static String mDetailsTxt = null;
+
     private static final String TAG = Utils.class.getSimpleName();
 
     public static boolean isPackageInstalled(String id, Context context) {
