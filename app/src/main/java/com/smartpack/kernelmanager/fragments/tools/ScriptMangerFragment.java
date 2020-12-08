@@ -35,6 +35,7 @@ import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.ApplyScriptActivity;
 import com.smartpack.kernelmanager.activities.EditorActivity;
+import com.smartpack.kernelmanager.activities.ForegroundActivity;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
@@ -70,8 +71,6 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
 
     private String mCreateName, mEditScript, mPath;
 
-    private DetailsFragment mDetailsFragment;
-
     @Override
     protected Drawable getTopFabDrawable() {
         return ViewUtils.getColoredIcon(R.drawable.ic_add, requireActivity());
@@ -80,11 +79,6 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     @Override
     protected boolean showTopFab() {
         return true;
-    }
-
-    @Override
-    protected BaseFragment getForegroundFragment() {
-        return mDetailsFragment = new DetailsFragment();
     }
 
     @Override
@@ -213,9 +207,10 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                                 startActivityForResult(intent, 0);
                                 break;
                             case 2:
-                                setForegroundText(script);
-                                mDetailsFragment.setText(ScriptManager.read(script));
-                                showForeground();
+                                Utils.mDetailsTitle = script.replace(".sh","").toUpperCase();
+                                Utils.mDetailsTxt = ScriptManager.read(script);
+                                Intent details = new Intent(getActivity(), ForegroundActivity.class);
+                                startActivity(details);
                                 break;
                             case 3:
                                 if (onBootScripts.contains(script)) {

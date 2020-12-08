@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="?android:attr/colorBackground"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="50sp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/code_text"
+            android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="16dp"
-            android:paddingTop="16dp"
             android:textColor="?android:attr/textColorPrimary"
             android:textIsSelectable="true"
             android:textSize="13sp" />
     </androidx.core.widget.NestedScrollView>
-</androidx.core.widget.NestedScrollView>
+</RelativeLayout>

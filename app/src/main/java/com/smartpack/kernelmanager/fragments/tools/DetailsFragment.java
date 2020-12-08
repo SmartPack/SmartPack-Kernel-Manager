@@ -31,6 +31,7 @@ import androidx.annotation.Nullable;
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
+import com.smartpack.kernelmanager.utils.Utils;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on March 30, 2020
@@ -38,21 +39,18 @@ import com.smartpack.kernelmanager.fragments.BaseFragment;
 
 public class DetailsFragment extends BaseFragment {
 
-    private MaterialTextView mCodeText;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_details, container, false);
 
-        mCodeText = rootView.findViewById(R.id.code_text);
+        MaterialTextView mText = rootView.findViewById(R.id.text);
+
+        if (Utils.mDetailsTxt != null) {
+            mText.setText(Utils.mDetailsTxt);
+        }
 
         return rootView;
     }
 
-    void setText(String string) {
-        if (mCodeText != null) {
-            mCodeText.setText(string);
-        }
-    }
 }

@@ -45,6 +45,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.activities.ForegroundActivity;
 import com.smartpack.kernelmanager.activities.NavigationActivity;
 import com.smartpack.kernelmanager.activities.tools.profile.ProfileActivity;
 import com.smartpack.kernelmanager.activities.tools.profile.ProfileEditActivity;
@@ -101,8 +102,6 @@ public class ProfileFragment extends RecyclerViewFragment {
     private ImportProfile mImportProfile;
     private Dialog mSelectDialog;
 
-    private DetailsFragment mDetailsFragment;
-
     @Override
     protected boolean showViewPager() {
         return true;
@@ -111,11 +110,6 @@ public class ProfileFragment extends RecyclerViewFragment {
     @Override
     protected boolean showTopFab() {
         return !mTaskerMode;
-    }
-
-    @Override
-    protected BaseFragment getForegroundFragment() {
-        return mTaskerMode ? null : (mDetailsFragment = new DetailsFragment());
     }
 
     @Override
@@ -322,10 +316,10 @@ public class ProfileFragment extends RecyclerViewFragment {
                                             mCommandsText.append(command.getCommand()).append("\n");
                                         }
                                     }
-                                    mCommandsText.setLength(mCommandsText.length() - 1);
-                                    setForegroundText(items1.get(position).getName().toUpperCase());
-                                    mDetailsFragment.setText(mCommandsText.toString());
-                                    showForeground();
+                                    Utils.mDetailsTitle = items1.get(position).getName().toUpperCase();
+                                    Utils.mDetailsTxt = mCommandsText.toString();
+                                    Intent details = new Intent(getActivity(), ForegroundActivity.class);
+                                    startActivity(details);
                                 } else {
                                     Utils.snackbar(getRootView(), getString(R.string.profile_empty));
                                 }
