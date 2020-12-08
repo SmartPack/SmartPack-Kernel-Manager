@@ -551,7 +551,7 @@ public class Utils {
     }
 
     public static void delete(String path) {
-        RootUtils.runCommand(Utils.isMagiskBinaryExist("rm") ? Utils.magiskBusyBox() + " rm -r " : "rm -r " + path);
+        new RootFile(path).delete();
     }
 
     public static void sleep(int sec) {
