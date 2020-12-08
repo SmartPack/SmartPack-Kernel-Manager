@@ -1139,6 +1139,7 @@
     <!-- Translator -->
     <string name="edit_string_warning">This string contains some special characters! Please be careful.</string>
     <string name="delete_string">Delete string</string>
+    <string name="illegal_string_warning">You\'re entered some illegal characters! Your changes won\'t be saved.</string>
     <string name="import_string">Import custom string</string>
     <string name="import_string_hint">Input-custom-string-url-here</string>
     <string name="import_string_message">Please remove the current string from this page before importing a new one!</string>

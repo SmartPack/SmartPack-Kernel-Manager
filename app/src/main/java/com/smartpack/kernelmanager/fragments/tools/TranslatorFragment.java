@@ -23,6 +23,8 @@ package com.smartpack.kernelmanager.fragments.tools;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -30,10 +32,12 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -41,9 +45,11 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
+import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
@@ -114,7 +120,7 @@ public class TranslatorFragment extends RecyclerViewFragment {
                         text += ".xml";
                     }
                     Utils.prepareInternalDataStorage();
-                    Utils.create("<!--Created by SmartPack-Kernel Manager-->\n" + Utils.readFile(mStringPath), Environment.getExternalStorageDirectory().toString() + "/" + text);
+                    Utils.create(getStrings(), Environment.getExternalStorageDirectory().toString() + "/" + text);
                     Utils.snackbar(getRootView(), getString(R.string.save_string_message, Environment.getExternalStorageDirectory().toString() + "/" + text));
                 }, getActivity()).setOnDismissListener(dialogInterface -> {
         }).show();
@@ -203,7 +209,7 @@ public class TranslatorFragment extends RecyclerViewFragment {
                                 summary.contains("&amp;") || summary.contains("b>") || summary.contains("i>")) {
                             Utils.snackbar(getRootView(), getString(R.string.edit_string_warning));
                         }
-                        ViewUtils.dialogEditText(summary,
+                        dialogEditText(summary,
                                 (dialogInterface, i) -> {
                                 }, text -> {
                                     if (text.isEmpty()) {
@@ -230,6 +236,88 @@ public class TranslatorFragment extends RecyclerViewFragment {
             mPermissionDenied = true;
             Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
         }
+    }
+
+    private String getStrings() {
+        List<String> mData = new ArrayList<>();
+        if (Utils.existFile(mStringPath)) {
+            for (String line : Objects.requireNonNull(Utils.readFile(mStringPath)).split("\\r?\\n")) {
+                if (line.contains("<string name=") && line.endsWith("</string>") && !line.contains("translatable=\"false")) {
+                    mData.add(line);
+                }
+            }
+        }
+        return "<resources xmlns:tools=\"http://schemas.android.com/tools\" tools:ignore=\"MissingTranslation\">\n<!--Created by SmartPack-Kernel Manager-->\n\n" +
+                mData.toString().replace("[","").replace("]","").replace(",","\n") + "\n</resources>";
+    }
+
+    private boolean checkIllegalCharacters(String string) {
+        String[] array = string.trim().split("\\s+");
+        for (String s : array) {
+            if (!s.matches("&gt;|&lt;|&amp;") && s.startsWith("&")
+                    || s.startsWith("<") && s.length() == 1 || s.startsWith(">") && s.length() == 1
+                    || s.startsWith("<b") && s.length() <= 3 || s.startsWith("</") && s.length() <= 4
+                    || s.startsWith("<i") && s.length() <= 3 || s.startsWith("\"") || s.startsWith("'"))
+                return true;
+        }
+        return false;
+    }
+
+    private Dialog dialogEditText(String text, final DialogInterface.OnClickListener negativeListener,
+                                  final ViewUtils.OnDialogEditTextListener onDialogEditTextListener,
+                                  Context context) {
+        LinearLayout layout = new LinearLayout(context);
+        int padding = (int) context.getResources().getDimension(R.dimen.dialog_padding);
+        layout.setPadding(padding, padding, padding, padding);
+
+        final AppCompatEditText editText = new AppCompatEditText(context);
+        editText.setGravity(Gravity.START);
+        editText.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        if (text != null) {
+            editText.append(text);
+        }
+        Snackbar snackBar = Snackbar.make(getRootView(), getString(R.string.illegal_string_warning), Snackbar.LENGTH_INDEFINITE);
+        snackBar.setAction(R.string.dismiss, v -> snackBar.dismiss());
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (checkIllegalCharacters(Objects.requireNonNull(s.toString()))) {
+                    editText.setTextColor(Color.RED);
+                    snackBar.show();
+                } else {
+                    editText.setTextColor(Prefs.getBoolean("darktheme", true, context) ? Color.WHITE : Color.BLACK);
+                    snackBar.dismiss();
+                }
+            }
+        });
+        layout.addView(editText);
+
+        Dialog dialog = new Dialog(context).setView(layout);
+        if (negativeListener != null) {
+            dialog.setNegativeButton(context.getString(R.string.cancel), negativeListener);
+        }
+        if (onDialogEditTextListener != null) {
+            dialog.setPositiveButton(context.getString(R.string.ok), (dialog1, which) -> {
+                if (checkIllegalCharacters(Objects.requireNonNull(editText.getText()).toString())) {
+                    return;
+                }
+                onDialogEditTextListener.onClick(editText.getText().toString());
+            });
+            dialog.setOnDismissListener(dialog1 -> {
+                if (negativeListener != null) {
+                    negativeListener.onClick(dialog1, 0);
+                }
+            });
+        }
+        return dialog;
     }
 
     public static class SearchFragment extends BaseFragment {
