@@ -83,6 +83,11 @@ public class CPUFreq {
     private static final String CPU_GOVERNOR_TUNABLES = "/sys/devices/system/cpu/cpufreq/%s";
     private static final String CPU_GOVERNOR_TUNABLES_CORE = "/sys/devices/system/cpu/cpu%d/cpufreq/%s";
 
+    private static final String CPU_POLICY0 = "/sys/devices/system/cpu/cpufreq/policy0";
+    private static final String CPU_POLICY6 = "/sys/devices/system/cpu/cpufreq/policy6";
+    private static final String CPU_POLICY0_MAX_FREQ = CPU_POLICY0 + "/scaling_max_freq";
+    private static final String CPU_POLICY6_MAX_FREQ = CPU_POLICY6 + "/scaling_max_freq";
+
     private int mCpuCount;
     private int mPrimeCpu = -1;
     private int mBigCpu = -1;
@@ -418,6 +423,13 @@ public class CPUFreq {
         return Utils.existFile(Utils.strFormat(CPU_MAX_SCREEN_OFF_FREQ, cpu));
     }
 
+    private static int cpuPolicyMax(String cpu) {
+        if (Utils.existFile(cpu)) {
+            return Utils.strToInt(Utils.readFile(cpu));
+        }
+        return 0;
+    }
+
     public void setMinFreq(int freq, int min, int max, Context context) {
         MSMPerformance msmPerformance = MSMPerformance.getInstance();
         int maxFreq = getMaxFreq(min, false);
@@ -719,12 +731,14 @@ public class CPUFreq {
     }
 
     private boolean is6Little2Big() {
+        int cpuPolicy0Max = cpuPolicyMax(CPU_POLICY0_MAX_FREQ);
+        int cpuPolicy6Max = cpuPolicyMax(CPU_POLICY6_MAX_FREQ);
         List<Integer> cpu5Freqs = getFreqs(5);
         List<Integer> cpu6Freqs = getFreqs(6);
         if (cpu5Freqs != null && cpu6Freqs != null) {
             int cpu5Max = cpu5Freqs.get(cpu5Freqs.size() - 1);
             int cpu6Max = cpu6Freqs.get(cpu6Freqs.size() - 1);
-            return cpu5Max < cpu6Max;
+            return cpu5Max < cpu6Max || cpuPolicy0Max < cpuPolicy6Max;
         }
         return false;
     }
