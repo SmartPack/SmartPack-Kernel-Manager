@@ -1,0 +1,34 @@
+<i>SmartPack-Kernel Manager</i> is a heavily modified version of Kernel Adiutor developed by Willi Ye. All the credits go to the original developer, not only for his hard work on Kernel Adiutor, but also for being open to open-source community.
+
+Your device must be <i>ROOTED</i> to use this app. Otherwise, please don't bother installing this app.
+
+<b>Features</b>
+
+- Almost all the features available in Kernel Adiutor.
+- Option to flash recovery zip files while running Android OS.
+- A simple and user-friendly Custom Controller, which is totally different to that of the official KA (Documentation: https://smartpack.github.io/spkm/customcontrols/).
+- A Script Manager to easily create, import, edit, share and execute any properly formatted shell scripts.
+- A Kernel downloader, which is also totally different to that of the official KA (Documentation: https://smartpack.github.io/kerneldownloads/).
+- CPU Input Boost & Devfreq Boost (Sultanxda).
+- Simple MSM Thermal (Sultanxda).
+- Advanced Control for Fast Charge (yank555.lu) & Boeffla Charge Level Interface (Lord Boeffla).
+- K-Lapse Support (tanish2k09)
+- Boeffla Sound (Lord Boeffla) with Per-channel Control
+- Per-channel control for Flar's sound.
+- Significantly different Faux Sound implementation.
+- In-built Spectrum Support (frap129).
+- Wake and sleep gestures (flar2).
+- Adreno Boost (flar2).
+- Dynamic Stune Boost (joshuous)
+- MSM Sleeper (flar2).
+- Boeffla Wakelock Blocker (Lord Boeffla).
+- Display Backlight Control (Min & Max).
+- Switches to tweak SELinux, Android Doze mode and PrintK logging.
+- WireGuard version information.
+- Auto-updates (in *About* page).
+- Real-time Charging Status.
+- RAM & Swap Status.
+- LED Blink/Fade support.
+- Dedicated Frequently Asked Questions (FAQ) section.
+- Also compatible with any devices and kernels.
+- And much more…
