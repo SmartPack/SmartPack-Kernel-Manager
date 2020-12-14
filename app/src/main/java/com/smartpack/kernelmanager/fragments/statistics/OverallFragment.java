@@ -66,7 +66,8 @@ public class OverallFragment extends RecyclerViewFragment {
 
     private String mDeviceToatlTime, mDeviceAwakeTime, mDeviceDeepsleepTime;
     private String mBatteryChargingStatus, mBatteryInfoTile;
-    private int mBatteryVolt, mBatteryLevel, mMemTotal, mMemFree, mSwapTotal, mSwapFree;;
+    private int mBatteryVolt, mBatteryLevel, mMemTotal, mMemFree, mSwapTotal, mSwapFree,
+            mAwakePercentage, mDeepSleepPercentage;
 
     private TemperatureView mTemperature;
 
@@ -201,7 +202,9 @@ public class OverallFragment extends RecyclerViewFragment {
 
         mDeviceToatlTime = Utils.getDurationBreakdown(SystemClock.elapsedRealtime());
         mDeviceAwakeTime = Utils.getDurationBreakdown(SystemClock.uptimeMillis());
+        mAwakePercentage = Math.round((float) (SystemClock.uptimeMillis() * 100) / SystemClock.elapsedRealtime());
         mDeviceDeepsleepTime = Utils.getDurationBreakdown(SystemClock.elapsedRealtime() - SystemClock.uptimeMillis());
+        mDeepSleepPercentage = Math.round((float) ((SystemClock.elapsedRealtime() - SystemClock.uptimeMillis()) * 100) / SystemClock.elapsedRealtime());
 
         mBatteryLevel = Battery.getBatteryLevel();
         mBatteryVolt = Battery.getBatteryVoltage();
@@ -231,8 +234,8 @@ public class OverallFragment extends RecyclerViewFragment {
         }
         if (mUpTime != null) {
             mUpTime.setStatsOne(("Total: ") + mDeviceToatlTime);
-            mUpTime.setStatsTwo(("Awake: ") + mDeviceAwakeTime);
-            mUpTime.setStatsThree(("Deep Sleep: ") + mDeviceDeepsleepTime);
+            mUpTime.setStatsTwo(("Awake: ") + mDeviceAwakeTime + " (" + mAwakePercentage + "%)");
+            mUpTime.setStatsThree(("Deep Sleep: ") + mDeviceDeepsleepTime + " (" + mDeepSleepPercentage + "%)");
         }
         if (mBatteryInfo != null) {
             mBatteryInfo.setStatsOne(("Voltage: ") + mBatteryVolt + (" mV"));
@@ -242,24 +245,22 @@ public class OverallFragment extends RecyclerViewFragment {
             mBatteryInfo.setProgressTitle(mBatteryLevel + "%");
         }
         if (mVM != null) {
-            if (mMemTotal != 0) {
-                mVM.setTitleLeft(getString(R.string.ram));
-                mVM.setMaxLeft((int)mMemTotal);
-                mVM.setProgressLeft((int)mMemFree);
-                mVM.setHeadingOneLeft("Total");
-                mVM.setHeadingTwoLeft("Used");
-                mVM.setSummaryOneLeft(mMemTotal + " MB");
-                mVM.setSummaryTwoLeft(mMemFree + " MB");
-            }
-            if (mSwapTotal != 0) {
-                mVM.setTitleRight("Swap");
-                mVM.setMaxRight((int)mSwapTotal);
-                mVM.setProgressRight((int)mSwapFree);
-                mVM.setHeadingOneRight("Total");
-                mVM.setHeadingTwoRight("Used");
-                mVM.setSummaryOneRight(mSwapTotal + " MB");
-                mVM.setSummaryTwoRight(mSwapFree + " MB");
-            }
+            // RAM
+            mVM.setTitleLeft(getString(R.string.ram));
+            mVM.setMaxLeft(mMemTotal);
+            mVM.setProgressLeft(mMemFree);
+            mVM.setHeadingOneLeft("Total");
+            mVM.setHeadingTwoLeft("Used");
+            mVM.setSummaryOneLeft(mMemTotal + " MB");
+            mVM.setSummaryTwoLeft(mMemFree + " MB");
+            // Swap
+            mVM.setTitleRight("Swap");
+            mVM.setMaxRight(mSwapTotal);
+            mVM.setProgressRight(mSwapFree);
+            mVM.setHeadingOneRight("Total");
+            mVM.setHeadingTwoRight("Used");
+            mVM.setSummaryOneRight(mSwapTotal + " MB");
+            mVM.setSummaryTwoRight(mSwapFree + " MB");
         }
     }
 
