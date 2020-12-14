@@ -28,7 +28,7 @@ import android.os.SystemClock;
 import android.view.Menu;
 
 import com.smartpack.kernelmanager.R;
-import com.smartpack.kernelmanager.activities.TabLayoutActivity;
+import com.smartpack.kernelmanager.activities.LaunchFragmentActivity;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Device;
@@ -65,10 +65,8 @@ public class OverallFragment extends RecyclerViewFragment {
     private StatsView mGPUFreqStatsView;
 
     private String mDeviceToatlTime, mDeviceAwakeTime, mDeviceDeepsleepTime;
-    private float mMemTotal, mMemFree, mSwapTotal, mSwapFree;
-
     private String mBatteryChargingStatus, mBatteryInfoTile;
-    private int mBatteryVolt, mBatteryLevel;
+    private int mBatteryVolt, mBatteryLevel, mMemTotal, mMemFree, mSwapTotal, mSwapFree;;
 
     private TemperatureView mTemperature;
 
@@ -190,7 +188,7 @@ public class OverallFragment extends RecyclerViewFragment {
     }
 
     private void switchFragment() {
-        Intent intent = new Intent(getActivity(), TabLayoutActivity.class);
+        Intent intent = new Intent(getActivity(), LaunchFragmentActivity.class);
         startActivity(intent);
     }
 
@@ -210,14 +208,14 @@ public class OverallFragment extends RecyclerViewFragment {
         mBatteryInfoTile = Battery.ChargingInfoTitle();
         mBatteryChargingStatus = Battery.getchargingstatus();
 
-        mMemTotal = mMemInfo.getItemMb("MemTotal");
+        mMemTotal = (int)mMemInfo.getItemMb("MemTotal");
         if (mMemTotal != 0) {
-            mMemFree = mMemInfo.getItemMb("MemTotal")
-                    - (mMemInfo.getItemMb("Cached") + mMemInfo.getItemMb("MemFree"));
+            mMemFree = (int)(mMemInfo.getItemMb("MemTotal")
+                    - (mMemInfo.getItemMb("Cached") + mMemInfo.getItemMb("MemFree")));
         }
-        mSwapTotal = Device.MemInfo.getInstance().getItemMb("SwapTotal");
+        mSwapTotal = (int)Device.MemInfo.getInstance().getItemMb("SwapTotal");
         if (mSwapTotal != 0) {
-            mSwapFree = Device.MemInfo.getInstance().getItemMb("SwapTotal") - mMemInfo.getItemMb("SwapFree");
+            mSwapFree = (int)(Device.MemInfo.getInstance().getItemMb("SwapTotal") - mMemInfo.getItemMb("SwapFree"));
         }
     }
 
