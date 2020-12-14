@@ -56,7 +56,7 @@ import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.StartActivity;
 import com.smartpack.kernelmanager.activities.StartActivityMaterial;
-import com.smartpack.kernelmanager.activities.TabLayoutActivity;
+import com.smartpack.kernelmanager.activities.LaunchFragmentActivity;
 import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
@@ -606,7 +606,7 @@ public class Utils {
                 } catch (IllegalArgumentException ignored) {
                 }
                 mTranslator = true;
-                Intent intent = new Intent(activity, TabLayoutActivity.class);
+                Intent intent = new Intent(activity, LaunchFragmentActivity.class);
                 activity.startActivity(intent);
             }
         }.execute();

@@ -24,7 +24,7 @@ package com.smartpack.kernelmanager.activities;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.Fragment;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.kernel.BatteryFragment;
@@ -35,38 +35,37 @@ import com.smartpack.kernelmanager.fragments.statistics.DeviceFragment;
 import com.smartpack.kernelmanager.fragments.tools.TranslatorFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUTimes;
-import com.smartpack.kernelmanager.views.recyclerview.PagerAdapter;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on June 17, 2020
  */
 
-public class TabLayoutActivity extends BaseActivity {
+public class LaunchFragmentActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tablayout);
+        setContentView(R.layout.activity_launchfragment);
 
-        ViewPager viewPager = findViewById(R.id.viewPagerID);
-
-        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
+        Fragment selectedFragment = null;
         if (Utils.mBattery) {
-            adapter.AddFragment(new BatteryFragment(), getString(R.string.battery));
+            selectedFragment = new BatteryFragment();
         } else if (Utils.mCPU) {
-            adapter.AddFragment(new CPUFragment(), getString(R.string.cpu));
+            selectedFragment = new CPUFragment();
         } else if (Utils.mCPUTimes) {
-            adapter.AddFragment(new CPUTimes(), getString(R.string.cpu_times));
+            selectedFragment = new CPUTimes();
         } else if (Utils.mDevice) {
-            adapter.AddFragment(new DeviceFragment(), getString(R.string.device));
+            selectedFragment = new DeviceFragment();
         } else if (Utils.mGPU) {
-            adapter.AddFragment(new GPUFragment(), getString(R.string.gpu));
+            selectedFragment = new GPUFragment();
         } else if (Utils.mMemory) {
-            adapter.AddFragment(new VMFragment(), getString(R.string.virtual_memory));
+            selectedFragment = new VMFragment();
         } else if (Utils.mTranslator) {
-            adapter.AddFragment(new TranslatorFragment(), getString(R.string.translator));
+            selectedFragment = new TranslatorFragment();
         }
-        viewPager.setAdapter(adapter);
+        assert selectedFragment != null;
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                selectedFragment).commit();
     }
 
     @Override
