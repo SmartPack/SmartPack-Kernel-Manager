@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Fixed some issues on the Terminal page.\n - Avoid error string from Flasher output.\n - App now uses material elements as much as possible.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.6/com.smartpack.kernelmanager-v14.6-release.apk",
-  "sha1": "30ed204cf0276cbc794733d8802ccdf40628717e",
-  "latestVersion": "14.6",
-  "latestVersionCode": 146
+  "releaseNotes": "Change-logs\n - Enhanced Overall page UI (now more beautiful).\n - Fixed (hopefully) Adreno idler status not showing properly on some devices.\n - Improved Script and Profile details view.\n - Improved Terminal and Translator pages.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.8/com.smartpack.kernelmanager-v14.8-release.apk",
+  "sha1": "92a3d32910a92c558427d9326738775dc2714828",
+  "latestVersion": "14.8",
+  "latestVersionCode": 148
 }

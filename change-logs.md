@@ -1,5 +1,9 @@
 # Change-logs
 
+## 132. December 14, 2020
+*Release-tag: beta_v14.8*<br>
+Enhance Overall page UI. Fixed (hopefully) Adreno idler status not showing properly on some devices. Improved Script and Profile details view. Improved Terminal and Translator pages. Miscellaneous changes.
+
 ## 131. December 02, 2020
 *Release-tag: beta_v14.6*<br>
 Fixed some issues on the Terminal page. Avoid error string from Flasher output. App now uses material elements as much as possible. Miscellaneous changes.
