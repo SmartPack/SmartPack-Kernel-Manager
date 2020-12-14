@@ -300,9 +300,12 @@ public class Battery {
         return Utils.existFile(VOLTAGE);
     }
 
-    public static String BatteryVoltage() {
-        int voltage = Utils.strToInt(Utils.readFile(VOLTAGE));
-        return String.valueOf(voltage / 1000);
+    public static int getBatteryVoltage() {
+        return Utils.strToInt(Utils.readFile(VOLTAGE)) / 1000;
+    }
+
+    public static int getBatteryLevel() {
+        return Utils.strToInt(Utils.readFile(LEVEL));
     }
 
     private static String ChargerType() {

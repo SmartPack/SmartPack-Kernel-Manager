@@ -22,6 +22,7 @@
 package com.smartpack.kernelmanager.views.recyclerview;
 
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
@@ -33,9 +34,11 @@ import com.smartpack.kernelmanager.R;
  */
 
 public class MultiStatsView extends RecyclerViewItem {
-    private MaterialTextView mTitleView, mStatViewOne, mStatViewTwo, mStatViewThree;
 
-    private CharSequence mTitle, mStatOne, mStatTwo, mStatThree;
+    private CharSequence mTitle, mProgressTitle, mStatOne, mStatTwo, mStatThree;
+    private MaterialTextView mTitleView, mProgressTitleView, mStatViewOne, mStatViewTwo, mStatViewThree;
+    private ProgressBar mProgressBar;
+    private int mMax, mProgressPercent;
 
     @Override
     public int getLayoutRes() {
@@ -48,6 +51,8 @@ public class MultiStatsView extends RecyclerViewItem {
         mStatViewOne = view.findViewById(R.id.statsOne);
         mStatViewTwo = view.findViewById(R.id.statsTwo);
         mStatViewThree = view.findViewById(R.id.statsThree);
+        mProgressTitleView = view.findViewById(R.id.progress_title);
+        mProgressBar = view.findViewById(R.id.progress);
 
         super.onCreateView(view);
     }
@@ -72,6 +77,21 @@ public class MultiStatsView extends RecyclerViewItem {
         refresh();
     }
 
+    public void setMax(int progress) {
+        mMax = progress;
+        refresh();
+    }
+
+    public void setProgress(int progress) {
+        mProgressPercent = progress;
+        refresh();
+    }
+
+    public void setProgressTitle(CharSequence text) {
+        mProgressTitle = text;
+        refresh();
+    }
+
     @Override
     protected void refresh() {
         super.refresh();
@@ -91,6 +111,17 @@ public class MultiStatsView extends RecyclerViewItem {
         if (mStatViewThree != null && mStatThree != null) {
             mStatViewThree.setText(mStatThree);
             mStatViewThree.setVisibility(View.VISIBLE);
+        }
+        if (mProgressBar != null && mMax != 0) {
+            mProgressBar.setMax(mMax);
+        }
+        if (mProgressBar != null && mProgressPercent != 0) {
+            mProgressBar.setProgress(mProgressPercent);
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
+        if (mProgressTitleView != null && mProgressTitle != null) {
+            mProgressTitleView.setText(mProgressTitle);
+            mProgressTitleView.setVisibility(View.VISIBLE);
         }
     }
 }

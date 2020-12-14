@@ -1,44 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="10dp"
-    android:paddingRight="10dp"
-    android:paddingLeft="10dp"
-    android:paddingBottom="1dp" >
+    android:padding="10dp" >
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/title"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxLines="1"
-        android:textAllCaps="true"
-        android:visibility="gone" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/statsOne"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:orientation="vertical"
         android:layout_gravity="center"
-        android:textColor="?android:attr/textColorPrimary"
-        android:visibility="gone" />
+        android:gravity="center" >
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/statsTwo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="?android:attr/textColorPrimary"
-        android:visibility="gone" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textAllCaps="true"
+            android:visibility="gone" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/statsThree"
-        android:layout_width="wrap_content"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/statsOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="?android:attr/textColorPrimary"
+            android:visibility="gone" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/statsTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="?android:attr/textColorPrimary"
+            android:visibility="gone" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/statsThree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="?android:attr/textColorPrimary"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="?android:attr/textColorPrimary"
-        android:visibility="gone" />
-</LinearLayout>
+        android:orientation="vertical"
+        android:layout_gravity="end"
+        android:gravity="center" >
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:indeterminate="false"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_shape"
+            android:progressDrawable="@drawable/circular_progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:visibility="gone" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/progress_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?android:attr/colorAccent"
+            android:textStyle="bold"
+            android:paddingTop="10dp"
+            android:textSize="17sp"
+            android:visibility="gone"
+            android:gravity="center" />
+    </LinearLayout>
+</FrameLayout>
