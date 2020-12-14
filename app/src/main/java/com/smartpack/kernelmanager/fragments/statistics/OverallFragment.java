@@ -57,23 +57,18 @@ public class OverallFragment extends RecyclerViewFragment {
 
     private GPUFreq mGPUFreq;
 
-    private Integer mCurFreqoffset;
-    private Integer mGPUCurFreq;
+    private Integer mCurFreqoffset, mGPUCurFreq;
 
-    private MultiStatsView mUpTime;
-    private MultiStatsView mBatteryInfo;
+    private MultiStatsView mUpTime, mBatteryInfo;
     private CircularProgressView mVM;
 
     private StatsView mGPUFreqStatsView;
 
-    private String mDeviceToatlTime;
-    private String mDeviceAwakeTime;
-    private String mDeviceDeepsleepTime;
+    private String mDeviceToatlTime, mDeviceAwakeTime, mDeviceDeepsleepTime;
     private float mMemTotal, mMemFree, mSwapTotal, mSwapFree;
 
-    private String mBatteryChargingStatus;
-    private String mBatteryInfoTile;
-    private String mBatteryVolt;
+    private String mBatteryChargingStatus, mBatteryInfoTile;
+    private int mBatteryVolt, mBatteryLevel;
 
     private TemperatureView mTemperature;
 
@@ -167,7 +162,7 @@ public class OverallFragment extends RecyclerViewFragment {
             });
 
             mBatteryInfo = new MultiStatsView();
-            mBatteryInfo.setTitle((" Health: ") + Battery.BatteryHealth());
+            mBatteryInfo.setTitle(("Health: ") + Battery.BatteryHealth());
             battery.addItem(mBatteryInfo);
             items.add(battery);
         }
@@ -210,7 +205,8 @@ public class OverallFragment extends RecyclerViewFragment {
         mDeviceAwakeTime = Utils.getDurationBreakdown(SystemClock.uptimeMillis());
         mDeviceDeepsleepTime = Utils.getDurationBreakdown(SystemClock.elapsedRealtime() - SystemClock.uptimeMillis());
 
-        mBatteryVolt = Battery.BatteryVoltage();
+        mBatteryLevel = Battery.getBatteryLevel();
+        mBatteryVolt = Battery.getBatteryVoltage();
         mBatteryInfoTile = Battery.ChargingInfoTitle();
         mBatteryChargingStatus = Battery.getchargingstatus();
 
@@ -243,6 +239,9 @@ public class OverallFragment extends RecyclerViewFragment {
         if (mBatteryInfo != null) {
             mBatteryInfo.setStatsOne(("Voltage: ") + mBatteryVolt + (" mV"));
             mBatteryInfo.setStatsTwo(mBatteryInfoTile + (": ") + mBatteryChargingStatus + (" mA"));
+            mBatteryInfo.setMax(100);
+            mBatteryInfo.setProgress(mBatteryLevel);
+            mBatteryInfo.setProgressTitle(mBatteryLevel + "%");
         }
         if (mVM != null) {
             if (mMemTotal != 0) {
