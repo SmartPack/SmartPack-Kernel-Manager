@@ -38,6 +38,7 @@ import com.smartpack.kernelmanager.utils.kernel.battery.Battery;
 import com.smartpack.kernelmanager.utils.kernel.gpu.GPU;
 import com.smartpack.kernelmanager.utils.kernel.gpu.GPUFreq;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
+import com.smartpack.kernelmanager.views.recyclerview.CircularProgressView;
 import com.smartpack.kernelmanager.views.recyclerview.MultiStatsView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.StatsView;
@@ -59,20 +60,16 @@ public class OverallFragment extends RecyclerViewFragment {
     private Integer mCurFreqoffset;
     private Integer mGPUCurFreq;
 
-    private long mDeviceMemTotalCheck;
-    private long mDeviceSwapTotalCheck;
-
     private MultiStatsView mUpTime;
     private MultiStatsView mBatteryInfo;
-    private MultiStatsView mVM;
+    private CircularProgressView mVM;
 
     private StatsView mGPUFreqStatsView;
 
     private String mDeviceToatlTime;
     private String mDeviceAwakeTime;
     private String mDeviceDeepsleepTime;
-    private String mDeviceRamInfoOne;
-    private String mDeviceRamInfoTwo;
+    private float mMemTotal, mMemFree, mSwapTotal, mSwapFree;
 
     private String mBatteryChargingStatus;
     private String mBatteryInfoTile;
@@ -190,8 +187,9 @@ public class OverallFragment extends RecyclerViewFragment {
                     return false;
                 });
             });
-            mVM = new MultiStatsView();
+            mVM = new CircularProgressView();
             memmory.addItem(mVM);
+
             items.add(memmory);
         }
     }
@@ -216,15 +214,14 @@ public class OverallFragment extends RecyclerViewFragment {
         mBatteryInfoTile = Battery.ChargingInfoTitle();
         mBatteryChargingStatus = Battery.getchargingstatus();
 
-        mDeviceMemTotalCheck = mMemInfo.getItemMb("MemTotal");
-        if (mDeviceMemTotalCheck != 0) {
-            mDeviceRamInfoOne = "RAM - Total: " + mMemInfo.getItemMb("MemTotal") + " MB, Used: " + (mMemInfo.getItemMb("MemTotal")
-                    - (mMemInfo.getItemMb("Cached") + mMemInfo.getItemMb("MemFree"))) + " MB";
+        mMemTotal = mMemInfo.getItemMb("MemTotal");
+        if (mMemTotal != 0) {
+            mMemFree = mMemInfo.getItemMb("MemTotal")
+                    - (mMemInfo.getItemMb("Cached") + mMemInfo.getItemMb("MemFree"));
         }
-        mDeviceSwapTotalCheck = Device.MemInfo.getInstance().getItemMb("SwapTotal");
-        if (mDeviceSwapTotalCheck != 0) {
-            mDeviceRamInfoTwo = "Swap - Total: " + Device.MemInfo.getInstance().getItemMb("SwapTotal") + " MB, Used: "
-                    + (Device.MemInfo.getInstance().getItemMb("SwapTotal") - mMemInfo.getItemMb("SwapFree")) + " MB";
+        mSwapTotal = Device.MemInfo.getInstance().getItemMb("SwapTotal");
+        if (mSwapTotal != 0) {
+            mSwapFree = Device.MemInfo.getInstance().getItemMb("SwapTotal") - mMemInfo.getItemMb("SwapFree");
         }
     }
 
@@ -248,13 +245,23 @@ public class OverallFragment extends RecyclerViewFragment {
             mBatteryInfo.setStatsTwo(mBatteryInfoTile + (": ") + mBatteryChargingStatus + (" mA"));
         }
         if (mVM != null) {
-            if (mDeviceMemTotalCheck != 0) {
-                mVM.setStatsOne(mDeviceRamInfoOne);
+            if (mMemTotal != 0) {
+                mVM.setTitleLeft(getString(R.string.ram));
+                mVM.setMaxLeft((int)mMemTotal);
+                mVM.setProgressLeft((int)mMemFree);
+                mVM.setHeadingOneLeft("Total");
+                mVM.setHeadingTwoLeft("Used");
+                mVM.setSummaryOneLeft(mMemTotal + " MB");
+                mVM.setSummaryTwoLeft(mMemFree + " MB");
             }
-            if (mDeviceSwapTotalCheck != 0) {
-                mVM.setStatsTwo(mDeviceRamInfoTwo);
-            } else {
-                mVM.setStatsTwo("Swap: N/A");
+            if (mSwapTotal != 0) {
+                mVM.setTitleRight("Swap");
+                mVM.setMaxRight((int)mSwapTotal);
+                mVM.setProgressRight((int)mSwapFree);
+                mVM.setHeadingOneRight("Total");
+                mVM.setHeadingTwoRight("Used");
+                mVM.setSummaryOneRight(mSwapTotal + " MB");
+                mVM.setSummaryTwoRight(mSwapFree + " MB");
             }
         }
     }
