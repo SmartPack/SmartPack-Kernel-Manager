@@ -29,13 +29,13 @@ import android.view.Menu;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.LaunchFragmentActivity;
+import com.smartpack.kernelmanager.activities.OverallActivity;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Device;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.kernel.battery.Battery;
-import com.smartpack.kernelmanager.utils.kernel.gpu.GPU;
 import com.smartpack.kernelmanager.utils.kernel.gpu.GPUFreq;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.CircularProgressView;
@@ -93,26 +93,10 @@ public class OverallFragment extends RecyclerViewFragment {
         cardView.setTitle(getString(R.string.overall) + " " + getString(R.string.statistics));
         cardView.setOnMenuListener((cardView1, popupMenu) -> {
             Menu menu = popupMenu.getMenu();
-            menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.cpu));
-            menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.cpu_times));
-            if (GPU.supported()) {
-                menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.gpu));
-            }
+            menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
             popupMenu.setOnMenuItemClickListener(item -> {
-                switch (item.getItemId()) {
-                    case 0:
-                        Utils.mCPU = true;
-                        switchFragment();
-                        break;
-                    case 1:
-                        Utils.mCPUTimes = true;
-                        switchFragment();
-                        break;
-                    case 2:
-                        Utils.mGPU = true;
-                        switchFragment();
-                        break;
-                }
+                Intent intent = new Intent(getActivity(), OverallActivity.class);
+                startActivity(intent);
                 return false;
             });
         });
