@@ -1,5 +1,9 @@
 # Change-logs
 
+## 132. December 18, 2020
+*Release-tag: beta_v14.9*<br>
+Updated Translator page items. Slightly Translator items on Overall page. Miscellaneous changes.
+
 ## 132. December 14, 2020
 *Release-tag: beta_v14.8*<br>
 Enhance Overall page UI. Fixed (hopefully) Adreno idler status not showing properly on some devices. Improved Script and Profile details view. Improved Terminal and Translator pages. Miscellaneous changes.

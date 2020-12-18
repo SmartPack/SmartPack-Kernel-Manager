@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Enhanced Overall page UI (now more beautiful).\n - Fixed (hopefully) Adreno idler status not showing properly on some devices.\n - Improved Script and Profile details view.\n - Improved Terminal and Translator pages.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.8/com.smartpack.kernelmanager-v14.8-release.apk",
-  "sha1": "92a3d32910a92c558427d9326738775dc2714828",
-  "latestVersion": "14.8",
-  "latestVersionCode": 148
+  "releaseNotes": "Change-logs\n - Updated Translator page items.\n - Slightly updated items on Overall page.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.9/com.smartpack.kernelmanager-v14.9-release.apk",
+  "sha1": "53402b32fc2af7e008d5c17f029575d7e1283db2",
+  "latestVersion": "14.9",
+  "latestVersionCode": 149
 }
