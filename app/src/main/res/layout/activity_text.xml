@@ -14,8 +14,6 @@
         android:layout_gravity="end|bottom"
         android:layout_marginBottom="@dimen/nav_header_fab_margin_bottom"
         android:layout_marginEnd="@dimen/nav_header_fab_margin_right"
-        android:layout_marginLeft="@dimen/nav_header_fab_margin_left"
-        android:layout_marginRight="@dimen/nav_header_fab_margin_right"
         android:layout_marginStart="@dimen/nav_header_fab_margin_left"
         android:layout_marginTop="@dimen/nav_header_fab_margin_top"
         app:backgroundTint="?attr/colorAccent"
