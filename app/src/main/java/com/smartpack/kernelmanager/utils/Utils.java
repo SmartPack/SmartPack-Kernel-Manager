@@ -56,7 +56,6 @@ import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.StartActivity;
 import com.smartpack.kernelmanager.activities.StartActivityMaterial;
-import com.smartpack.kernelmanager.activities.LaunchFragmentActivity;
 import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
@@ -585,37 +584,11 @@ public class Utils {
         return "/data/adb/magisk/busybox";
     }
 
-    public static void importTranslation(Activity activity) {
-        new AsyncTask<Void, Void, Void>() {
-            private ProgressDialog mProgressDialog;
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                mProgressDialog = new ProgressDialog(activity);
-                mProgressDialog.setMessage(activity.getString(R.string.importing_string) + ("..."));
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.show();
-            }
-            @Override
-            protected Void doInBackground(Void... voids) {
-                if (!existFile(Utils.getInternalDataStorage() + "/strings.xml") && isNetworkAvailable(activity)) {
-                    downloadFile(Utils.getInternalDataStorage() + "/strings.xml",
-                            "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/beta/app/src/main/res/values/strings.xml", activity);
-                }
-                return null;
-            }
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                try {
-                    mProgressDialog.dismiss();
-                } catch (IllegalArgumentException ignored) {
-                }
-                mTranslator = true;
-                Intent intent = new Intent(activity, LaunchFragmentActivity.class);
-                activity.startActivity(intent);
-            }
-        }.execute();
+    public static void importTranslation(String url, Activity activity) {
+        if (!existFile(Utils.getInternalDataStorage() + "/strings.xml") && isNetworkAvailable(activity)) {
+            downloadFile(Utils.getInternalDataStorage() + "/strings.xml",
+                    "https://github.com/SmartPack/SmartPack-Kernel-Manager/raw/master/app/src/main/res/" + url + "/strings.xml", activity);
+        }
     }
 
     public static void downloadFile(String path, String url, Context context) {

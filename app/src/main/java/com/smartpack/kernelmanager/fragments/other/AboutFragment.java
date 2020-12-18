@@ -22,6 +22,7 @@ package com.smartpack.kernelmanager.fragments.other;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ import androidx.annotation.Nullable;
 
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.activities.LaunchFragmentActivity;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
@@ -248,7 +250,7 @@ public class AboutFragment extends RecyclerViewFragment {
         }
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint({"UseCompatLoadingForDrawables", "StaticFieldLeak"})
     private void translationsInit(List<RecyclerViewItem> items) {
         TitleView translators = new TitleView();
         translators.setText(getString(R.string.translators));
@@ -259,7 +261,27 @@ public class AboutFragment extends RecyclerViewFragment {
         translator.setSummary(getString(R.string.translators_message));
         translator.setFullSpan(true);
         translator.setOnItemClickListener(item -> {
-            Utils.importTranslation(getActivity());
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected void onPreExecute() {
+                    super.onPreExecute();
+                    showProgressMessage(getString(R.string.importing_string) + ("..."));
+                    showProgress();
+                }
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    Utils.importTranslation("values", getActivity());
+                    return null;
+                }
+                @Override
+                protected void onPostExecute(Void aVoid) {
+                    super.onPostExecute(aVoid);
+                    hideProgress();
+                    Utils.mTranslator = true;
+                    Intent intent = new Intent(requireActivity(), LaunchFragmentActivity.class);
+                    startActivity(intent);
+                }
+            }.execute();
         });
 
         items.add(translator);

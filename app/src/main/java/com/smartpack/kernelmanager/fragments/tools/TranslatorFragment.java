@@ -35,6 +35,7 @@ import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -343,11 +344,26 @@ public class TranslatorFragment extends RecyclerViewFragment {
                 PopupMenu popupMenu = new PopupMenu(requireActivity(), settings);
                 Menu menu = popupMenu.getMenu();
                 if (Utils.existFile(Utils.getInternalDataStorage() + "/strings.xml")) {
-                    menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.delete_string));
+                    menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.delete_string));
                 }
-                menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.import_string));
+                SubMenu import_string = menu.addSubMenu(Menu.NONE, 0, Menu.NONE, getString(R.string.import_string));
+                import_string.add(Menu.NONE, 2, Menu.NONE, "Chinese (rTW)");
+                import_string.add(Menu.NONE, 3, Menu.NONE, "Chinese (rCN)");
+                import_string.add(Menu.NONE, 4, Menu.NONE, "Russian");
+                import_string.add(Menu.NONE, 5, Menu.NONE, "Portuguese (rPt)");
+                import_string.add(Menu.NONE, 6, Menu.NONE, "Korean");
+                import_string.add(Menu.NONE, 7, Menu.NONE, "Ukrainian");
+                import_string.add(Menu.NONE, 8, Menu.NONE, "Amharic");
+                import_string.add(Menu.NONE, 9, Menu.NONE, "German");
+                import_string.add(Menu.NONE, 10, Menu.NONE, "Spanish");
+                import_string.add(Menu.NONE, 11, Menu.NONE, "Polish");
                 popupMenu.setOnMenuItemClickListener(item -> {
                     if (item.getItemId() == 0) {
+                        return false;
+                    } else if (item.getItemId() > 1 && Utils.existFile(Utils.getInternalDataStorage() + "/strings.xml")) {
+                        Utils.snackbar(mRootView, getString(R.string.import_string_message));
+                        return false;
+                    } else if (item.getItemId() == 1) {
                         new Dialog(requireActivity())
                                 .setMessage(getString(R.string.delete_string_message))
                                 .setNegativeButton(getString(R.string.cancel), (dialogInterface, iv) -> {
@@ -358,44 +374,52 @@ public class TranslatorFragment extends RecyclerViewFragment {
                                     translatorFragment.reload();
                                 })
                                 .show();
-                    } else if (item.getItemId() == 1) {
-                        if (Utils.existFile(Utils.getInternalDataStorage() + "/strings.xml")) {
-                            Utils.snackbar(mRootView, getString(R.string.import_string_message));
-                        } else if (!Utils.isNetworkAvailable(requireActivity())) {
-                            Utils.snackbar(mRootView, getString(R.string.no_internet));
-                        } else {
-                            ViewUtils.dialogEditText(getString(R.string.import_string_hint),
-                                    (dialogInterface, i) -> {
-                                    }, text -> {
-                                        if (text.isEmpty()) {
-                                            return;
-                                        }
-                                        new AsyncTask<Void, Void, Void>() {
-                                            @Override
-                                            protected void onPreExecute() {
-                                                super.onPreExecute();
-                                                assert translatorFragment != null;
-                                                translatorFragment.showProgressMessage(getString(R.string.importing_string) + ("..."));
-                                            }
-
-                                            @Override
-                                            protected Void doInBackground(Void... voids) {
-                                                Utils.downloadFile(Utils.getInternalDataStorage() + "/strings.xml", text
-                                                        .replace("/blob/", "/raw/"), getActivity());
-                                                return null;
-                                            }
-
-                                            @Override
-                                            protected void onPostExecute(Void aVoid) {
-                                                super.onPostExecute(aVoid);
-                                                assert translatorFragment != null;
-                                                translatorFragment.hideProgressMessage();
-                                                translatorFragment.reload();
-                                            }
-                                        }.execute();
-                                    }, getActivity()).setOnDismissListener(dialogInterface -> {
-                            }).show();
-                        }
+                    } else {
+                        new AsyncTask<Void, Void, Void>() {
+                            String url = null;
+                            @Override
+                            protected void onPreExecute() {
+                                super.onPreExecute();
+                                assert translatorFragment != null;
+                                translatorFragment.showProgressMessage(getString(R.string.importing_string) + ("..."));
+                                translatorFragment.showProgress();
+                                if (item.getItemId() == 2) {
+                                    url = "values-zh-rTW";
+                                } else if (item.getItemId() == 3) {
+                                    url = "values-zh-rCN";
+                                } else if (item.getItemId() == 4) {
+                                    url = "values-ru";
+                                } else if (item.getItemId() == 5) {
+                                    url = "values-pt-rBR";
+                                } else if (item.getItemId() == 6) {
+                                    url = "values-ko";
+                                } else if (item.getItemId() == 7) {
+                                    url = "values-uk";
+                                } else if (item.getItemId() == 8) {
+                                    url = "values-am";
+                                } else if (item.getItemId() == 9) {
+                                    url = "values-de-rDE";
+                                } else if (item.getItemId() == 10) {
+                                    url = "values-es";
+                                } else if (item.getItemId() == 11) {
+                                    url = "values-pl";
+                                }
+                            }
+                            @Override
+                            protected Void doInBackground(Void... voids) {
+                                if (url != null) {
+                                    Utils.importTranslation(url, getActivity());
+                                }
+                                return null;
+                            }
+                            @Override
+                            protected void onPostExecute(Void aVoid) {
+                                super.onPostExecute(aVoid);
+                                assert translatorFragment != null;
+                                translatorFragment.hideProgress();
+                                translatorFragment.reload();
+                            }
+                        }.execute();
                     }
                     return false;
                 });
