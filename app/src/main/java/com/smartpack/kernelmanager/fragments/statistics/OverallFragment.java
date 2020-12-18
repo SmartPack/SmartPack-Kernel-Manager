@@ -240,9 +240,11 @@ public class OverallFragment extends RecyclerViewFragment {
         if (mBatteryInfo != null) {
             mBatteryInfo.setStatsOne(("Voltage: ") + mBatteryVolt + (" mV"));
             mBatteryInfo.setStatsTwo(mBatteryInfoTile + (": ") + mBatteryChargingStatus + (" mA"));
-            mBatteryInfo.setMax(100);
-            mBatteryInfo.setProgress(mBatteryLevel);
-            mBatteryInfo.setProgressTitle(mBatteryLevel + "%");
+            if (Battery.hasBatteryLevel()) {
+                mBatteryInfo.setMax(100);
+                mBatteryInfo.setProgress(mBatteryLevel);
+                mBatteryInfo.setProgressTitle(mBatteryLevel + "%");
+            }
         }
         if (mVM != null) {
             // RAM

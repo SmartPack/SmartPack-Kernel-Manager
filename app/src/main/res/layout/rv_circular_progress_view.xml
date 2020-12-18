@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    android:gravity="center"
     android:padding="10dp" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp" >
 
         <LinearLayout
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="start"
-            android:gravity="center" >
+            android:orientation="vertical" >
 
             <ProgressBar
                 android:id="@+id/progressLeft"
@@ -28,20 +35,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="?android:attr/colorAccent"
-                android:textStyle="bold"
-                android:paddingTop="10dp"
-                android:textSize="17sp"
+                android:layout_gravity="center"
                 android:visibility="gone"
-                android:gravity="center" />
+                android:paddingTop="10dp"
+                android:textStyle="bold"
+                android:textSize="17sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="75dp"
-            android:layout_gravity="start"
-            android:orientation="vertical"
-            android:gravity="center" >
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="vertical" >
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/heading_oneLeft"
@@ -78,14 +84,54 @@
                 android:visibility="gone"
                 android:gravity="center" />
         </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="?android:attr/textColorPrimary"
+        android:layout_margin="10dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp" >
+
+        <LinearLayout
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <ProgressBar
+                android:id="@+id/progressRight"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:indeterminate="false"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_shape"
+                android:progressDrawable="@drawable/circular_progress_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:visibility="gone" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/titleRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?android:attr/colorAccent"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:paddingTop="10dp"
+                android:textStyle="bold"
+                android:textSize="17sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="75dp"
-            android:layout_gravity="end"
-            android:orientation="vertical"
-            android:gravity="center" >
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="vertical" >
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/heading_oneRight"
@@ -122,34 +168,5 @@
                 android:visibility="gone"
                 android:gravity="center" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="end"
-            android:gravity="center" >
-
-            <ProgressBar
-                android:id="@+id/progressRight"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:indeterminate="false"
-                android:layout_gravity="center"
-                android:background="@drawable/circle_shape"
-                android:progressDrawable="@drawable/circular_progress_bar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:visibility="gone" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/titleRight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="?android:attr/colorAccent"
-                android:textStyle="bold"
-                android:paddingTop="10dp"
-                android:textSize="17sp"
-                android:visibility="gone"
-                android:gravity="center" />
-        </LinearLayout>
-</FrameLayout>
+    </LinearLayout>
+</LinearLayout>
