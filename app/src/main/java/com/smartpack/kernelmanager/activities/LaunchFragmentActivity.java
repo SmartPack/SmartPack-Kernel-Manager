@@ -28,13 +28,10 @@ import androidx.fragment.app.Fragment;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.kernel.BatteryFragment;
-import com.smartpack.kernelmanager.fragments.kernel.CPUFragment;
-import com.smartpack.kernelmanager.fragments.kernel.GPUFragment;
 import com.smartpack.kernelmanager.fragments.kernel.VMFragment;
 import com.smartpack.kernelmanager.fragments.statistics.DeviceFragment;
 import com.smartpack.kernelmanager.fragments.tools.TranslatorFragment;
 import com.smartpack.kernelmanager.utils.Utils;
-import com.smartpack.kernelmanager.utils.kernel.cpu.CPUTimes;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on June 17, 2020
@@ -50,14 +47,8 @@ public class LaunchFragmentActivity extends BaseActivity {
         Fragment selectedFragment = null;
         if (Utils.mBattery) {
             selectedFragment = new BatteryFragment();
-        } else if (Utils.mCPU) {
-            selectedFragment = new CPUFragment();
-        } else if (Utils.mCPUTimes) {
-            selectedFragment = new CPUTimes();
         } else if (Utils.mDevice) {
             selectedFragment = new DeviceFragment();
-        } else if (Utils.mGPU) {
-            selectedFragment = new GPUFragment();
         } else if (Utils.mMemory) {
             selectedFragment = new VMFragment();
         } else if (Utils.mTranslator) {
@@ -71,10 +62,7 @@ public class LaunchFragmentActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         if (Utils.mBattery) Utils.mBattery = false;
-        if (Utils.mCPU) Utils.mCPU = false;
-        if (Utils.mCPUTimes) Utils.mCPUTimes = false;
         if (Utils.mDevice) Utils.mDevice = false;
-        if (Utils.mGPU) Utils.mGPU = false;
         if (Utils.mMemory) Utils.mMemory = false;
         if (Utils.mTranslator) Utils.mTranslator = false;
         super.onBackPressed();

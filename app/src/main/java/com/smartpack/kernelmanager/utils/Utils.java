@@ -94,10 +94,7 @@ public class Utils {
     public static BiometricPrompt.PromptInfo mPromptInfo;
 
     public static boolean mBattery = false;
-    public static boolean mCPU = false;
-    public static boolean mCPUTimes = false;
     public static boolean mDevice = false;
-    public static boolean mGPU = false;
     public static boolean mHasBusybox;
     public static boolean mHasRoot;
     public static boolean mMemory = false;
