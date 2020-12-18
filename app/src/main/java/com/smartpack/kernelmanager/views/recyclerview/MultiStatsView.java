@@ -22,6 +22,7 @@
 package com.smartpack.kernelmanager.views.recyclerview;
 
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.google.android.material.textview.MaterialTextView;
@@ -39,6 +40,8 @@ public class MultiStatsView extends RecyclerViewItem {
     private MaterialTextView mTitleView, mProgressTitleView, mStatViewOne, mStatViewTwo, mStatViewThree;
     private ProgressBar mProgressBar;
     private int mMax, mProgressPercent;
+    private LinearLayout mProgressLayout;
+    private View mSeparator;
 
     @Override
     public int getLayoutRes() {
@@ -53,6 +56,8 @@ public class MultiStatsView extends RecyclerViewItem {
         mStatViewThree = view.findViewById(R.id.statsThree);
         mProgressTitleView = view.findViewById(R.id.progress_title);
         mProgressBar = view.findViewById(R.id.progress);
+        mProgressLayout = view.findViewById(R.id.progress_layout);
+        mSeparator = view.findViewById(R.id.separator);
 
         super.onCreateView(view);
     }
@@ -118,6 +123,8 @@ public class MultiStatsView extends RecyclerViewItem {
         if (mProgressBar != null && mProgressPercent != 0) {
             mProgressBar.setProgress(mProgressPercent);
             mProgressBar.setVisibility(View.VISIBLE);
+            mProgressLayout.setVisibility(View.VISIBLE);
+            mSeparator.setVisibility(View.VISIBLE);
         }
         if (mProgressTitleView != null && mProgressTitle != null) {
             mProgressTitleView.setText(mProgressTitle);

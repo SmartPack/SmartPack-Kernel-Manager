@@ -292,7 +292,7 @@ public class Battery {
         return Utils.readFile(HEALTH);
     }
 
-    private static boolean hasBatteryLevel() {
+    public static boolean hasBatteryLevel() {
         return Utils.existFile(LEVEL);
     }
 
