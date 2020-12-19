@@ -39,6 +39,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Html;
 import android.util.Base64;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -697,6 +698,11 @@ public class Utils {
     @SuppressLint("SimpleDateFormat")
     public static String getTimeStamp() {
         return new SimpleDateFormat("yyyyMMdd_HH-mm").format(new Date());
+    }
+
+    public static int getScreenDPI(Context context) {
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        return dm.densityDpi;
     }
 
     public static String prepareReboot() {

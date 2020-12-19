@@ -22,10 +22,12 @@
 package com.smartpack.kernelmanager.views.recyclerview;
 
 import android.view.View;
-import android.widget.ProgressBar;
+import android.widget.LinearLayout;
 
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.utils.Utils;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 12, 2020
@@ -39,7 +41,7 @@ public class CircularProgressView extends RecyclerViewItem {
     private MaterialTextView mTitleLeft, mHeadingOneLeft, mHeadingTwoLeft, mSummaryOneLeft,
             mSummaryTwoLeft, mTitleRight, mHeadingOneRight, mHeadingTwoRight, mSummaryOneRight,
             mSummaryTwoRight;
-    private ProgressBar mProgressBarLeft, mProgressBarRight;
+    private CircularProgressIndicator mProgressBarLeft, mProgressBarRight;
 
     @Override
     public int getLayoutRes() {
@@ -60,7 +62,11 @@ public class CircularProgressView extends RecyclerViewItem {
         mSummaryTwoLeft = view.findViewById(R.id.summary_twoLeft);
         mSummaryOneRight = view.findViewById(R.id.summary_oneRight);
         mSummaryTwoRight = view.findViewById(R.id.summary_twoRight);
+        LinearLayout mParentLayout = view.findViewById(R.id.parent_layout);
 
+        if (Utils.getScreenDPI(view.getContext()) < 390) {
+            mParentLayout.setOrientation(LinearLayout.VERTICAL);
+        }
         super.onCreateView(view);
     }
 

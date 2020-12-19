@@ -23,10 +23,11 @@ package com.smartpack.kernelmanager.views.recyclerview;
 
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.utils.Utils;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 03, 2019
@@ -38,7 +39,7 @@ public class MultiStatsView extends RecyclerViewItem {
 
     private CharSequence mTitle, mProgressTitle, mStatOne, mStatTwo, mStatThree;
     private MaterialTextView mTitleView, mProgressTitleView, mStatViewOne, mStatViewTwo, mStatViewThree;
-    private ProgressBar mProgressBar;
+    private CircularProgressIndicator mProgressBar;
     private int mMax, mProgressPercent;
     private LinearLayout mProgressLayout;
     private View mSeparator;
@@ -58,6 +59,11 @@ public class MultiStatsView extends RecyclerViewItem {
         mProgressBar = view.findViewById(R.id.progress);
         mProgressLayout = view.findViewById(R.id.progress_layout);
         mSeparator = view.findViewById(R.id.separator);
+        LinearLayout mParentLayout = view.findViewById(R.id.parent_layout);
+
+        if (Utils.getScreenDPI(view.getContext()) < 390) {
+            mParentLayout.setOrientation(LinearLayout.VERTICAL);
+        }
 
         super.onCreateView(view);
     }
