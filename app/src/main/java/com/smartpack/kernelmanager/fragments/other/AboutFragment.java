@@ -123,6 +123,12 @@ public class AboutFragment extends RecyclerViewFragment {
         support.setSummary(getString(R.string.support_summary));
         support.setOnItemClickListener(item -> Utils.launchUrl(getRootView(),"https://t.me/smartpack_kmanager", getActivity()));
 
+        DescriptionView fdroid = new DescriptionView();
+        fdroid.setDrawable(getResources().getDrawable(R.drawable.ic_fdroid));
+        fdroid.setTitle(getString(R.string.fdroid));
+        fdroid.setSummary(getString(R.string.fdroid_summary));
+        fdroid.setOnItemClickListener(item -> Utils.launchUrl(getRootView(),"https://f-droid.org/packages/com.smartpack.kernelmanager", getActivity()));
+
         DescriptionView sourcecode = new DescriptionView();
         sourcecode.setDrawable(getResources().getDrawable(R.drawable.ic_source));
         sourcecode.setTitle(getString(R.string.source_code));
@@ -176,9 +182,10 @@ public class AboutFragment extends RecyclerViewFragment {
 
         items.add(about);
         items.add(versioninfo);
-        items.add(sourcecode);
         items.add(support);
+        items.add(fdroid);
         items.add(changelogs);
+        items.add(sourcecode);
         items.add(donatetome);
         items.add(share);
     }

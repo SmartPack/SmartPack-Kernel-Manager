@@ -21,11 +21,14 @@
 
 package com.smartpack.kernelmanager.utils.tools;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -40,7 +43,10 @@ import com.smartpack.kernelmanager.views.dialog.Dialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on January 16, 2020
@@ -197,6 +203,37 @@ public class UpdateCheck {
                 new File(LATEST_VERSION_APK));
         intent.setDataAndType(uriFile, "application/vnd.android.package-archive");
         context.startActivity(Intent.createChooser(intent, ""));
+    }
+
+    /*
+     * Based on the ApkSignatureVerifier.java in https://github.com/f-droid/fdroidclient
+     * Ref: https://raw.githubusercontent.com/f-droid/fdroidclient/master/app/src/main/java/org/fdroid/fdroid/installer/ApkSignatureVerifier.java
+     */
+    public static boolean isSignatureMatched(Context context) {
+        try {
+            return !Arrays.equals(getSignature(context.getPackageName(), context), getSignature("org.fdroid.fdroid", context));
+        } catch (NullPointerException ignored) {
+        }
+        return false;
+    }
+
+    @SuppressLint("PackageManagerGetSignatures")
+    private static byte[] getSignature(String packageid, Context context) {
+        try {
+            PackageInfo pkgInfo = context.getPackageManager().getPackageInfo(packageid, PackageManager.GET_SIGNATURES);
+            return signatureToBytes(pkgInfo.signatures);
+        } catch (PackageManager.NameNotFoundException ignored) {}
+        return null;
+    }
+
+    private static byte[] signatureToBytes(Signature[] signatures) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        for (Signature sig : signatures) {
+            try {
+                outputStream.write(sig.toByteArray());
+            } catch (IOException ignored) {}
+        }
+        return outputStream.toByteArray();
     }
 
 }

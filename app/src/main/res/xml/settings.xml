@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-    <Preference
-        android:key="update_check"
-        android:summary="@string/check_update_summary"
-        android:title="@string/check_update" />
-    <SwitchPreferenceCompat
-        android:defaultValue="true"
-        android:key="auto_update"
-        android:summary="@string/auto_update_check" />
+
+    <PreferenceCategory
+        android:key="app_settings"
+        android:title="@string/app_name">
+
+        <Preference
+            android:key="update_check"
+            android:summary="@string/check_update_summary"
+            android:title="@string/check_update" />
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="auto_update"
+            android:summary="@string/auto_update_check" />
+    </PreferenceCategory>
+
     <Preference
         android:key="reset_settings"
         android:summary="@string/reset_settings_summary"

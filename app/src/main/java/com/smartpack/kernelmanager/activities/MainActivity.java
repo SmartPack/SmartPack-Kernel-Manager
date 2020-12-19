@@ -265,6 +265,9 @@ public class MainActivity extends BaseActivity {
         if (!Utils.isDownloadBinaries()) {
             return;
         }
+        if (!UpdateCheck.isSignatureMatched(this)) {
+            return;
+        }
         if (Utils.isNetworkAvailable(this) && Prefs.getBoolean("auto_update", true, this)) {
             if (!UpdateCheck.hasVersionInfo(this) || (UpdateCheck.lastModified(this) + 3720000L < System.currentTimeMillis())) {
                 UpdateCheck.getVersionInfo(this);

@@ -73,6 +73,7 @@ import java.util.Objects;
 public class SettingsFragment extends PreferenceFragmentCompat implements
         Preference.OnPreferenceChangeListener, Preference.OnPreferenceClickListener {
 
+    private static final String KEY_APP_SETTINGS = "app_settings";
     private static final String KEY_UPDATE_CHECK_AUTO = "auto_update";
     private static final String KEY_UPDATE_CHECK = "update_check";
     private static final String KEY_RESET_SETTINGS = "reset_settings";
@@ -156,6 +157,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             PreferenceCategory sectionSecurity = findPreference(KEY_SECURITY_CATEGORY);
             assert sectionSecurity != null;
             getPreferenceScreen().removePreference(sectionSecurity);
+        }
+
+        if (!UpdateCheck.isSignatureMatched(getActivity())) {
+            PreferenceCategory appSettings = findPreference(KEY_APP_SETTINGS);
+            assert appSettings != null;
+            getPreferenceScreen().removePreference(appSettings);
         }
 
         NavigationActivity activity = (NavigationActivity) requireActivity();
