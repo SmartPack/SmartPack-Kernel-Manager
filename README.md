@@ -1,8 +1,8 @@
 ![](banner.png)
 
-[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v14.9-green)](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.9/com.smartpack.kernelmanager-v14.9-release.apk)
+[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v15.1-green)](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v15.1/com.smartpack.kernelmanager-v15.1-release.apk)
 ![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/total)
-![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/v14.9/total)
+![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/v15.1/total)
 ![](https://img.shields.io/github/contributors/smartpack/SmartPack-Kernel-Manager)
 ![](https://img.shields.io/github/license/smartpack/SmartPack-Kernel-Manager)
 
@@ -11,11 +11,15 @@ Welcome to the <strong>beta</strong> development channel of SmartPack-Kernel Man
 <br><strong>Warning</strong>: Be aware that the beta builds contains experimental features. Please expect some bugs.
 
 ## Download
-[<img src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
      alt=""
-     height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.9/com.smartpack.kernelmanager-v14.9-release.apk) [<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png"
+     height="80">](https://f-droid.org/packages/com.smartpack.kernelmanager)
+     [<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png"
      alt=""
      height="80">](https://apt.izzysoft.de/fdroid/index/apk/com.smartpack.kernelmanager)
+     [<img src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
+          alt=""
+          height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v15.1/com.smartpack.kernelmanager-v15.1-release.apk)
 
 ## Features
 * Almost all the features available in Kernel Adiutor.

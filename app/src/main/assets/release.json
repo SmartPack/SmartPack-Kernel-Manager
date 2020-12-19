@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Updated Translator page items.\n - Slightly updated items on Overall page.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v14.9/com.smartpack.kernelmanager-v14.9-release.apk",
-  "sha1": "53402b32fc2af7e008d5c17f029575d7e1283db2",
-  "latestVersion": "14.9",
-  "latestVersionCode": 149
+  "releaseNotes": "Change-logs\n - Disabled update check if the app is installed from F-Droid.\n - Hopefully fixed layout issues on Overall Page.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v15.1/com.smartpack.kernelmanager-v15.1-release.apk",
+  "sha1": "a42afe065b8e04269a9a90a3132b94cd8334b046",
+  "latestVersion": "15.1",
+  "latestVersionCode": 151
 }

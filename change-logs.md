@@ -1,5 +1,9 @@
 # Change-logs
 
+## 132. December 19, 2020
+*Release-tag: beta_v15.1*<br>
+Disabled update check if the app is installed from F-Droid. Hopefully fixed layout issues on Overall Page. Miscellaneous changes.
+
 ## 132. December 18, 2020
 *Release-tag: beta_v14.9*<br>
 Updated Translator page items. Slightly Translator items on Overall page. Miscellaneous changes.
