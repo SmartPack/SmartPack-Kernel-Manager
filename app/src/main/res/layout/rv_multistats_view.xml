@@ -32,7 +32,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="?android:attr/textColorPrimary"
             android:visibility="gone" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -40,7 +39,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="?android:attr/textColorPrimary"
             android:visibility="gone" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -48,17 +46,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="?android:attr/textColorPrimary"
             android:visibility="gone" />
     </LinearLayout>
-
-    <View
-        android:id="@+id/separator"
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="?android:attr/textColorPrimary"
-        android:layout_margin="10dp"
-        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/progress_layout"
@@ -82,7 +71,7 @@
             android:id="@+id/progress_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="?android:attr/colorAccent"
+            android:textColor="?attr/colorAccent"
             android:layout_gravity="center"
             android:paddingTop="10dp"
             android:visibility="gone"

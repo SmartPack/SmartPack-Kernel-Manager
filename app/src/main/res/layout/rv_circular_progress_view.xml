@@ -33,7 +33,7 @@
                 android:id="@+id/titleLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?android:attr/colorAccent"
+                android:textColor="?attr/colorAccent"
                 android:layout_gravity="center"
                 android:visibility="gone"
                 android:paddingTop="10dp"
@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textColor="?android:attr/colorAccent"
+                android:textColor="?attr/colorAccent"
                 android:textSize="17sp"
                 android:visibility="gone"
                 android:gravity="center"/>
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textColor="?android:attr/colorAccent"
+                android:textColor="?attr/colorAccent"
                 android:paddingTop="10dp"
                 android:textSize="17sp"
                 android:visibility="gone"
@@ -84,12 +84,6 @@
                 android:gravity="center" />
         </LinearLayout>
     </LinearLayout>
-
-    <View
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="?android:attr/textColorPrimary"
-        android:layout_margin="10dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -115,7 +109,7 @@
                 android:id="@+id/titleRight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?android:attr/colorAccent"
+                android:textColor="?attr/colorAccent"
                 android:layout_gravity="center"
                 android:visibility="gone"
                 android:paddingTop="10dp"
@@ -135,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textColor="?android:attr/colorAccent"
+                android:textColor="?attr/colorAccent"
                 android:textSize="17sp"
                 android:visibility="gone"
                 android:gravity="center"/>
@@ -152,7 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textColor="?android:attr/colorAccent"
+                android:textColor="?attr/colorAccent"
                 android:paddingTop="10dp"
                 android:textSize="17sp"
                 android:visibility="gone"

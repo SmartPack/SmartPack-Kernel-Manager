@@ -34,7 +34,6 @@ import com.smartpack.kernelmanager.utils.Utils;
  *
  * Largely based on the original implementation of StatsView by Willi Ye
  */
-
 public class MultiStatsView extends RecyclerViewItem {
 
     private CharSequence mTitle, mProgressTitle, mStatOne, mStatTwo, mStatThree;
@@ -42,7 +41,6 @@ public class MultiStatsView extends RecyclerViewItem {
     private CircularProgressIndicator mProgressBar;
     private int mMax, mProgressPercent;
     private LinearLayout mProgressLayout;
-    private View mSeparator;
 
     @Override
     public int getLayoutRes() {
@@ -58,7 +56,6 @@ public class MultiStatsView extends RecyclerViewItem {
         mProgressTitleView = view.findViewById(R.id.progress_title);
         mProgressBar = view.findViewById(R.id.progress);
         mProgressLayout = view.findViewById(R.id.progress_layout);
-        mSeparator = view.findViewById(R.id.separator);
         LinearLayout mParentLayout = view.findViewById(R.id.parent_layout);
 
         if (Utils.getScreenDPI(view.getContext()) < 390) {
@@ -130,7 +127,6 @@ public class MultiStatsView extends RecyclerViewItem {
             mProgressBar.setProgress(mProgressPercent);
             mProgressBar.setVisibility(View.VISIBLE);
             mProgressLayout.setVisibility(View.VISIBLE);
-            mSeparator.setVisibility(View.VISIBLE);
         }
         if (mProgressTitleView != null && mProgressTitle != null) {
             mProgressTitleView.setText(mProgressTitle);
