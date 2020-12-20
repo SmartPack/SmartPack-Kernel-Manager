@@ -1,5 +1,9 @@
 # Change-logs
 
+## 117. December 20, 2020
+*Release-tag: beta_v15.3*<br>
+Hopefully fixed crashes on some devices (sorry for the issue). Updated google.android.material library to latest beta.
+
 ## 116. December 19, 2020
 *Release-tag: beta_v15.0*<br>
 Enhance Overall page UI. Fixed (hopefully) Adreno idler status not showing properly on some devices. Improved Script and Profile details view. Improved Terminal and Translator pages. Miscellaneous changes.
