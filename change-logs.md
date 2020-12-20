@@ -1,6 +1,10 @@
 # Change-logs
 
-## 132. December 19, 2020
+## 134. December 20, 2020
+*Release-tag: beta_v15.2*<br>
+Hopefully fixed crashes on some devices (sorry for the issue). Updated google.android.material library to latest beta.
+
+## 133. December 19, 2020
 *Release-tag: beta_v15.1*<br>
 Disabled update check if the app is installed from F-Droid. Hopefully fixed layout issues on Overall Page. Miscellaneous changes.
 

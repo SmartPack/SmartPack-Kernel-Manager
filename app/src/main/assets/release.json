@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Disabled update check if the app is installed from F-Droid.\n - Hopefully fixed layout issues on Overall Page.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v15.1/com.smartpack.kernelmanager-v15.1-release.apk",
+  "releaseNotes": "Change-logs\n - Hopefully fixed crashes on some devices (sorry for the issue).\n - Updated google.android.material library to latest beta.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v15.2/com.smartpack.kernelmanager-v15.2-release.apk",
   "sha1": "a42afe065b8e04269a9a90a3132b94cd8334b046",
-  "latestVersion": "15.1",
-  "latestVersionCode": 151
+  "latestVersion": "15.2",
+  "latestVersionCode": 152
 }
