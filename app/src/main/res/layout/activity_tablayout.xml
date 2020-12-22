@@ -17,15 +17,15 @@
             android:layout_height="wrap_content"
             app:tabGravity="center"
             app:tabMode="scrollable"
-            android:visibility="gone"
             android:background="@color/colorPrimary"
             app:tabTextColor="@color/colorOnPrimary"
             app:tabSelectedTextColor="?attr/colorAccent"
-            android:id="@+id/tabLayoutID" />
+            android:id="@+id/tab_layout" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/viewPagerID" />
+        android:layout_marginBottom="50dp"
+        android:id="@+id/view_pager" />
 </RelativeLayout>

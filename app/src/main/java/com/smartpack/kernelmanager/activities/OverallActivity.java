@@ -22,8 +22,6 @@
 package com.smartpack.kernelmanager.activities;
 
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
@@ -49,8 +47,8 @@ public class OverallActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tablayout);
 
-        TabLayout tabLayout = findViewById(R.id.tabLayoutID);
-        ViewPager viewPager = findViewById(R.id.viewPagerID);
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        ViewPager viewPager = findViewById(R.id.view_pager);
 
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
         adapter.AddFragment(new CPUFragment(), getString(R.string.cpu));
@@ -63,9 +61,6 @@ public class OverallActivity extends BaseActivity {
         }
 
         viewPager.setAdapter(adapter);
-        tabLayout.setVisibility(View.VISIBLE);
-        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) viewPager.getLayoutParams();
-        lp.bottomMargin += 150;
         tabLayout.setupWithViewPager(viewPager);
     }
 
