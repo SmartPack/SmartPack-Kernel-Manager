@@ -6,9 +6,9 @@ Your device must be <i>ROOTED</i> to use this app. Otherwise, please don't bothe
 
 - Almost all the features available in Kernel Adiutor.
 - Option to flash recovery zip files while running Android OS.
-- A simple and user-friendly Custom Controller, which is totally different to that of the official KA (Documentation: https://smartpack.github.io/spkm/customcontrols/).
+- A simple and user-friendly Custom Controller, which is totally different to that of the official KA (<a href='https://smartpack.github.io/spkm/customcontrols/'>Documentation</a>).
 - A Script Manager to easily create, import, edit, share and execute any properly formatted shell scripts.
-- A Kernel downloader, which is also totally different to that of the official KA (Documentation: https://smartpack.github.io/kerneldownloads/).
+- A Kernel downloader, which is also totally different to that of the official KA  (<a href='https://smartpack.github.io/kerneldownloads/'>Documentation</a>).
 - CPU Input Boost & Devfreq Boost (Sultanxda).
 - Simple MSM Thermal (Sultanxda).
 - Advanced Control for Fast Charge (yank555.lu) & Boeffla Charge Level Interface (Lord Boeffla).
