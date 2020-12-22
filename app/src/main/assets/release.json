@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Hopefully fixed crashes on some devices (sorry for the issue).\n - Updated google.android.material library to latest beta.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v15.2/com.smartpack.kernelmanager-v15.2-release.apk",
-  "sha1": "a2f5677f2787dacde0b8ce97c6923847bfb58497",
-  "latestVersion": "15.2",
-  "latestVersionCode": 152
+  "releaseNotes": "Change-logs\n - Updated CPU Cluster Control.\n - Fixed layout issues on CPU Boost & Overall Activities.\n - Slightly updated cardview corner.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v15.4/com.smartpack.kernelmanager-v15.4-release.apk",
+  "sha1": "fa6164b8cdff8aba68bf2157c516b59f0d7efb61",
+  "latestVersion": "15.4",
+  "latestVersionCode": 154
 }

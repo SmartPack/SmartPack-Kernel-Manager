@@ -1,5 +1,9 @@
 # Change-logs
 
+## 135. December 22, 2020
+*Release-tag: beta_v15.4*<br>
+Updated CPU Cluster Control. Fixed layout issues on CPU Boost & Overall Activities. Slightly updated cardview corner. Miscellaneous changes.
+
 ## 134. December 20, 2020
 *Release-tag: beta_v15.2*<br>
 Hopefully fixed crashes on some devices (sorry for the issue). Updated google.android.material library to latest beta.
