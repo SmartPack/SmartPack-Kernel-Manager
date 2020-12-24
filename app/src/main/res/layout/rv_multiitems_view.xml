@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center" >
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="15dp" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorAccent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="8dp" >
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:tint="@color/colorPrimaryVariant"
+                    android:background="?attr/colorAccent"
+                    android:layout_gravity="start"
+                    android:src="@drawable/ic_tools"
+                    android:clickable="false"
+                    android:rotation="-5" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryVariant"
+                    android:layout_marginStart="5dp"
+                    android:textStyle="bold|italic"
+                    android:text="@string/tools"
+                    android:textAllCaps="true"
+                    android:gravity="center"
+                    android:clickable="false"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_terminal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="15dp" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorAccent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="8dp" >
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:tint="@color/colorPrimaryVariant"
+                    android:background="?attr/colorAccent"
+                    android:src="@drawable/ic_console"
+                    android:layout_gravity="start"
+                    android:clickable="false" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryVariant"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/terminal"
+                    android:textStyle="bold|italic"
+                    android:textAllCaps="true"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</HorizontalScrollView>

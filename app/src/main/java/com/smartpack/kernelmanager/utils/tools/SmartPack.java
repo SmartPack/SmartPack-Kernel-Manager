@@ -22,11 +22,15 @@
 package com.smartpack.kernelmanager.utils.tools;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 
+import com.smartpack.kernelmanager.activities.FlashingActivity;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,7 +56,38 @@ public class SmartPack {
         return file.length();
     }
 
-    public static void manualFlash(Context context) {
+    public static void flashingTask(File file, Context context) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                SmartPack.mFlashing = true;
+                SmartPack.mZipName = file.getName();
+                SmartPack.mFlashingResult = new StringBuilder();
+                SmartPack.mFlashingOutput = new ArrayList<>();
+                Intent flashingIntent = new Intent(context, FlashingActivity.class);
+                context.startActivity(flashingIntent);
+            }
+            @Override
+            protected Void doInBackground(Void... voids) {
+                SmartPack.mFlashingResult.append("** Preparing to flash ").append(file.getName()).append("...\n\n");
+                SmartPack.mFlashingResult.append("** Path: '").append(file.toString()).append("'\n\n");
+                Utils.delete(context.getCacheDir() + "/flash.zip");
+                SmartPack.mFlashingResult.append("** Copying '").append(file.getName()).append("' into temporary folder: ");
+                SmartPack.mFlashingResult.append(RootUtils.runAndGetError("cp '" + file.toString() + "' " + context.getCacheDir() + "/flash.zip"));
+                SmartPack.mFlashingResult.append(Utils.existFile(context.getCacheDir() + "/flash.zip") ? "Done *\n\n" : "\n\n");
+                SmartPack.manualFlash(context);
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                SmartPack.mFlashing = false;
+            }
+        }.execute();
+    }
+
+    private static void manualFlash(Context context) {
         /*
          * Flashing recovery zip without rebooting to custom recovery (Credits to osm0sis @ xda-developers.com)
          * Also include code from https://github.com/topjohnwu/Magisk/

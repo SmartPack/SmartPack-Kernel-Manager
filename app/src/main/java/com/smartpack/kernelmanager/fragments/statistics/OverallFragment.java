@@ -39,6 +39,7 @@ import com.smartpack.kernelmanager.utils.kernel.battery.Battery;
 import com.smartpack.kernelmanager.utils.kernel.gpu.GPUFreq;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.CircularProgressView;
+import com.smartpack.kernelmanager.views.recyclerview.MultiItemsView;
 import com.smartpack.kernelmanager.views.recyclerview.MultiStatsView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.StatsView;
@@ -128,6 +129,9 @@ public class OverallFragment extends RecyclerViewFragment {
         mUpTime.setTitle(getString(R.string.device) + " " + getString(R.string.uptime));
         device.addItem(mUpTime);
         items.add(device);
+
+        MultiItemsView mMenu = new MultiItemsView();
+        items.add(mMenu);
 
         if (Battery.haschargingstatus() || Battery.hasBatteryVoltage()) {
             CardView battery = new CardView(getActivity());

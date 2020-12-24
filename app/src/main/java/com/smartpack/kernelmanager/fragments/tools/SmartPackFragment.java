@@ -35,7 +35,6 @@ import android.provider.OpenableColumns;
 import android.view.Menu;
 
 import com.smartpack.kernelmanager.R;
-import com.smartpack.kernelmanager.activities.FlashingActivity;
 import com.smartpack.kernelmanager.activities.TerminalActivity;
 import com.smartpack.kernelmanager.activities.UpdateChannelActivity;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
@@ -513,38 +512,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     @SuppressLint("StaticFieldLeak")
-    private void flashingTask(File file) {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                SmartPack.mFlashing = true;
-                SmartPack.mZipName = file.getName();
-                SmartPack.mFlashingResult = new StringBuilder();
-                SmartPack.mFlashingOutput = new ArrayList<>();
-                Intent flashingIntent = new Intent(getActivity(), FlashingActivity.class);
-                startActivity(flashingIntent);
-            }
-            @Override
-            protected Void doInBackground(Void... voids) {
-                SmartPack.mFlashingResult.append("** Preparing to flash ").append(file.getName()).append("...\n\n");
-                SmartPack.mFlashingResult.append("** Path: '").append(file.toString()).append("'\n\n");
-                Utils.delete(requireActivity().getCacheDir() + "/flash.zip");
-                SmartPack.mFlashingResult.append("** Copying '").append(file.getName()).append("' into temporary folder: ");
-                SmartPack.mFlashingResult.append(RootUtils.runAndGetError("cp '" + file.toString() + "' " + requireActivity().getCacheDir() + "/flash.zip"));
-                SmartPack.mFlashingResult.append(Utils.existFile(requireActivity().getCacheDir() + "/flash.zip") ? "Done *\n\n" : "\n\n");
-                SmartPack.manualFlash(requireActivity());
-                return null;
-            }
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                SmartPack.mFlashing = false;
-            }
-        }.execute();
-    }
-
-    @SuppressLint("StaticFieldLeak")
     private void downloadKernel() {
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -572,7 +539,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                             .setNegativeButton(getString(R.string.cancel), (dialog, id) -> {
                             })
                             .setPositiveButton(getString(R.string.flash), (dialog, id) -> {
-                                flashingTask(new File(Utils.getInternalDataStorage() + "/Kernel.zip"));
+                                SmartPack.flashingTask(new File(Utils.getInternalDataStorage() + "/Kernel.zip"), requireActivity());
                             })
                             .show();
                 } else {
@@ -639,7 +606,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
                     })
                     .setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> {
-                        flashingTask(new File(mPath));
+                        SmartPack.flashingTask(new File(mPath), requireActivity());
                     }).show();
         }
     }

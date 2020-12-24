@@ -997,6 +997,7 @@
     <string name="update_check_message">SmartPack-Kernel Manager will check for a new version of %s once in a day!</string>
     <string name="other_options">Other Options</string>
     <string name="shell">Run Shell Command</string>
+    <string name="terminal">Terminal</string>
     <string name="shell_summary">Execute shell commands and get output</string>
     <string name="support">Support</string>
     <string name="support_summary">Visit support page</string>

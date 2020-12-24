@@ -80,6 +80,7 @@
         <activity android:name=".activities.tools.profile.ProfileActivity" />
         <activity android:name=".activities.LaunchFragmentActivity" />
         <activity android:name=".activities.TerminalActivity" />
+        <activity android:name=".activities.ToolsActivity" />
         <activity android:name=".activities.UpdateChannelActivity" />
         <activity
             android:name=".activities.SecurityActivity"
