@@ -21,6 +21,7 @@ package com.smartpack.kernelmanager.fragments.other;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
+import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 
@@ -54,11 +55,15 @@ public class FAQFragment extends RecyclerViewFragment {
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
         for (int id : sHelps.keySet()) {
+            CardView cardView = new CardView(getActivity());
+            cardView.setTitle(getString(id));
+
             DescriptionView descriptionView = new DescriptionView();
-            descriptionView.setTitle(getString(id));
             descriptionView.setSummary(getString(sHelps.get(id)));
 
-            items.add(descriptionView);
+            cardView.addItem(descriptionView);
+
+            items.add(cardView);
         }
     }
 
