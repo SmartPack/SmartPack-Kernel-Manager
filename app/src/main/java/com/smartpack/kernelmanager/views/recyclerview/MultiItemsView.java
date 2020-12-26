@@ -25,10 +25,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 
+import androidx.appcompat.widget.AppCompatImageButton;
+
 import com.google.android.material.card.MaterialCardView;
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.activities.LaunchFragmentActivity;
 import com.smartpack.kernelmanager.activities.TerminalActivity;
 import com.smartpack.kernelmanager.activities.ToolsActivity;
+import com.smartpack.kernelmanager.utils.Utils;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 24, 2020
@@ -43,6 +47,7 @@ public class MultiItemsView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(View view) {
+        AppCompatImageButton mInfo = view.findViewById(R.id.icon_info);
         MaterialCardView mTerminal = view.findViewById(R.id.card_terminal);
         MaterialCardView mTools = view.findViewById(R.id.card_tools);
 
@@ -53,6 +58,12 @@ public class MultiItemsView extends RecyclerViewItem {
 
         mTools.setOnClickListener(v -> {
             Intent intent = new Intent(view.getContext(), ToolsActivity.class);
+            view.getContext().startActivity(intent);
+        });
+
+        mInfo.setOnClickListener(v -> {
+            Utils.mAbout = true;
+            Intent intent = new Intent(view.getContext(), LaunchFragmentActivity.class);
             view.getContext().startActivity(intent);
         });
         super.onCreateView(view);
