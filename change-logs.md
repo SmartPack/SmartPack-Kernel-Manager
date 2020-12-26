@@ -1,5 +1,9 @@
 # Change-logs
 
+## 136. December 26, 2020
+*Release-tag: beta_v15.5*<br>
+Added more options to Overall page. Made cluster check more strict to avoid issues on some devices. Visually improved FAQ page. Completely disabled update check if app is installed via F-Droid (avoid signature related issues). Miscellaneous changes.
+
 ## 135. December 22, 2020
 *Release-tag: beta_v15.4*<br>
 Updated CPU Cluster Control. Fixed layout issues on CPU Boost & Overall Activities. Slightly updated cardview corner. Miscellaneous changes.
