@@ -137,19 +137,25 @@ public class OverallFragment extends RecyclerViewFragment {
             CardView battery = new CardView(getActivity());
             battery.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_battery, requireContext()));
             battery.setTitle(getString(R.string.battery));
-            battery.setOnMenuListener((battery1, popupMenu) -> {
-                Menu menu = popupMenu.getMenu();
-                menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
+            if (Battery.getInstance(requireActivity()).supported()) {
+                battery.setOnMenuListener((battery1, popupMenu) -> {
+                    Menu menu = popupMenu.getMenu();
+                    menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
 
-                popupMenu.setOnMenuItemClickListener(item -> {
-                    Utils.mBattery = true;
-                    switchFragment();
-                    return false;
+                    popupMenu.setOnMenuItemClickListener(item -> {
+                        Utils.mBattery = true;
+                        switchFragment();
+                        return false;
+                    });
                 });
-            });
+            }
 
             mBatteryInfo = new MultiStatsView();
             mBatteryInfo.setTitle(("Health: ") + Battery.BatteryHealth());
+            if (Battery.getInstance(requireActivity()).hasCapacity()) {
+                mBatteryInfo.setStatsTwo(getString(R.string.capacity) + ": " + Battery.getInstance(requireActivity())
+                        .getCapacity() + getString(R.string.mah));
+            }
             battery.addItem(mBatteryInfo);
             items.add(battery);
         }
@@ -227,7 +233,7 @@ public class OverallFragment extends RecyclerViewFragment {
         }
         if (mBatteryInfo != null) {
             mBatteryInfo.setStatsOne(("Voltage: ") + mBatteryVolt + (" mV"));
-            mBatteryInfo.setStatsTwo(mBatteryInfoTile + (": ") + mBatteryChargingStatus + (" mA"));
+            mBatteryInfo.setStatsThree(mBatteryInfoTile + (": ") + mBatteryChargingStatus + (" mA"));
             if (Battery.hasBatteryLevel()) {
                 mBatteryInfo.setMax(100);
                 mBatteryInfo.setProgress(mBatteryLevel);

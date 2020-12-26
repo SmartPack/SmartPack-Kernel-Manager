@@ -23,7 +23,6 @@ import android.text.InputType;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
-import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.kernel.battery.Battery;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
@@ -65,10 +64,6 @@ public class BatteryFragment extends RecyclerViewFragment {
         super.postInit();
 
         addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
-        if (mBattery.hasCapacity()) {
-            addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.capacity),
-                    mBattery.getCapacity() + getString(R.string.mah)));
-        }
     }
 
     private void acciInit(List<RecyclerViewItem> items) {
