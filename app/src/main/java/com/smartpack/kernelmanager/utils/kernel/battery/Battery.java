@@ -462,9 +462,8 @@ public class Battery {
     }
 
     public boolean supported() {
-        return hasFastCharge() || haschargeLevel() || hasUSBFastCharge() || hasBatteryLevel() || hasBatteryVoltage()
-                || hasBatteryHealth() || haschargingstatus() || hasBlx() || hasbatterychargelimit()
-                || hasOPOTGSwitch() || hasChargingEnable();
+        return hasFastCharge() || haschargeLevel() || hasUSBFastCharge() || hasBlx()
+                || hasbatterychargelimit() || hasOPOTGSwitch() || hasChargingEnable();
     }
 
     private void run(String command, String id, Context context) {
