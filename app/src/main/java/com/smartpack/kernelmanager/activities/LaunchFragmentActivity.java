@@ -29,6 +29,7 @@ import androidx.fragment.app.Fragment;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.kernel.BatteryFragment;
 import com.smartpack.kernelmanager.fragments.kernel.VMFragment;
+import com.smartpack.kernelmanager.fragments.other.AboutFragment;
 import com.smartpack.kernelmanager.fragments.statistics.DeviceFragment;
 import com.smartpack.kernelmanager.fragments.tools.TranslatorFragment;
 import com.smartpack.kernelmanager.utils.Utils;
@@ -45,7 +46,9 @@ public class LaunchFragmentActivity extends BaseActivity {
         setContentView(R.layout.activity_launchfragment);
 
         Fragment selectedFragment = null;
-        if (Utils.mBattery) {
+        if (Utils.mAbout) {
+            selectedFragment = new AboutFragment();
+        } else if (Utils.mBattery) {
             selectedFragment = new BatteryFragment();
         } else if (Utils.mDevice) {
             selectedFragment = new DeviceFragment();
@@ -61,6 +64,7 @@ public class LaunchFragmentActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
+        if (Utils.mAbout) Utils.mAbout = false;
         if (Utils.mBattery) Utils.mBattery = false;
         if (Utils.mDevice) Utils.mDevice = false;
         if (Utils.mMemory) Utils.mMemory = false;

@@ -93,6 +93,7 @@ public class Utils {
 
     public static BiometricPrompt.PromptInfo mPromptInfo;
 
+    public static boolean mAbout = false;
     public static boolean mBattery = false;
     public static boolean mDevice = false;
     public static boolean mHasBusybox;

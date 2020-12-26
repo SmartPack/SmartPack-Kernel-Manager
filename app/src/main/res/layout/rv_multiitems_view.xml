@@ -94,5 +94,16 @@
                     android:textSize="15sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/icon_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:tint="?attr/colorAccent"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_info"
+            android:clickable="false" />
     </LinearLayout>
 </HorizontalScrollView>
