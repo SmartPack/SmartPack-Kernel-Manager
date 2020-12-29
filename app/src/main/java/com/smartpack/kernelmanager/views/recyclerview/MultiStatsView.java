@@ -58,7 +58,8 @@ public class MultiStatsView extends RecyclerViewItem {
         mProgressLayout = view.findViewById(R.id.progress_layout);
         LinearLayout mParentLayout = view.findViewById(R.id.parent_layout);
 
-        if (Utils.getScreenDPI(view.getContext()) < 390) {
+        if (Utils.getScreenDPI(view.getContext()) < 390 || Utils.isTablet(view.getContext()) &&
+                Utils.getScreenDPI(view.getContext()) < 500) {
             mParentLayout.setOrientation(LinearLayout.VERTICAL);
         }
 

@@ -64,7 +64,8 @@ public class CircularProgressView extends RecyclerViewItem {
         mSummaryTwoRight = view.findViewById(R.id.summary_twoRight);
         LinearLayout mParentLayout = view.findViewById(R.id.parent_layout);
 
-        if (Utils.getScreenDPI(view.getContext()) < 390) {
+        if (Utils.getScreenDPI(view.getContext()) < 390 || Utils.isTablet(view.getContext()) &&
+                Utils.getScreenDPI(view.getContext()) < 500) {
             mParentLayout.setOrientation(LinearLayout.VERTICAL);
         }
         super.onCreateView(view);
