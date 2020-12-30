@@ -40,7 +40,6 @@ import com.smartpack.kernelmanager.utils.kernel.screen.GammaProfiles;
 import com.smartpack.kernelmanager.utils.kernel.screen.Misc;
 import com.smartpack.kernelmanager.views.ColorTable;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
-import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.DropDownView;
 import com.smartpack.kernelmanager.views.recyclerview.GenericSelectView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -104,21 +103,8 @@ public class ScreenFragment extends RecyclerViewFragment {
     protected void addItems(List<RecyclerViewItem> items) {
         if (Misc.haskcalRed() || Misc.haskcalGreen() || Misc.haskcalBlue()) {
             kcalColorInit(items);
-        }
-        if (mCalibration.hasColors()) {
+        } else if (mCalibration.hasColors()) {
             screenColorInit(items);
-        }
-
-        // Advertise Own App
-        if (!Utils.isPackageInstalled("com.smartpack.scriptmanager", requireActivity()) && mCalibration.hasColors()
-                || Misc.haskcalRed() || Misc.haskcalGreen() || Misc.haskcalBlue()) {
-            DescriptionView scc = new DescriptionView();
-            scc.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
-            scc.setSummary(getString(R.string.scc_messgae));
-            scc.setOnItemClickListener(item -> {
-                Utils.launchUrl(getRootView(), "https://play.google.com/store/apps/details?id=com.smartpack.colorcontrol", getActivity());
-            });
-            items.add(scc);
         }
 
         if (mCalibration.hasSRGB() || mCalibration.hasScreenHBM() || mCalibration.hasScreenContrast()
