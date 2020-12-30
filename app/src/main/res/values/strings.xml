@@ -865,6 +865,10 @@
     <string name="auto_sync">Auto-Sync Data</string>
     <string name="auto_sync_summary">Allow apps to automatically refresh data.\nPlease Note: It will be applied, irrespective of your on-boot settings.</string>
     <string name="cpuset">CPU Sets</string>
+    <string name="selinux">SELinux</string>
+    <string name="selinux_summary">Set SELinux state</string>
+    <string name="selinux_permissive">Permissive</string>
+    <string name="selinux_enforcing">Enforcing</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">Performance Tweaks</string>

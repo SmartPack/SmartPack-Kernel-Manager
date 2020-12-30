@@ -64,7 +64,8 @@ public class MiscFragment extends RecyclerViewFragment {
 		if (mVibration.supported() || mMisc.hasLoggerEnable() || Misc.hasPrintKMode() || mMisc.hasCrc()
 				|| mMisc.hasFsync() || mMisc.hasDynamicFsync() || mMisc.hasGentleFairSleepers() || mMisc.hasArchPower()
 				|| mMisc.hasHapticOverride() || Misc.hasHapticUser() || Misc.hasHapticsNotification()
-				|| Misc.hasHapticsCall()) {
+				|| Misc.hasHapticsCall() || Misc.hasLeases() || Misc.hasLeaseBreakTime()
+				|| Misc.hasSELinux()) {
 			miscInit(items);
 		}
 		if (PowerSuspend.supported()) {
@@ -308,7 +309,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			miscCard.addItem(archPower);
 		}
 
-		if (mMisc.hasLeases()) {
+		if (Misc.hasLeases()) {
 			SwitchView enable = new SwitchView();
 			enable.setTitle(getString(R.string.leases_enable));
 			enable.setSummary(getString(R.string.leases_enable_summary));
@@ -340,6 +341,21 @@ public class MiscFragment extends RecyclerViewFragment {
 			});
 
 			miscCard.addItem(leaseBreakTime);
+		}
+
+		if (Misc.hasSELinux()) {
+			SelectView SELinux = new SelectView();
+			SELinux.setTitle(getString(R.string.selinux));
+			SELinux.setSummary(getString(R.string.selinux_summary));
+			SELinux.setItems(Misc.seLinux(requireActivity()));
+			SELinux.setItem(Misc.getSELinux());
+			SELinux.setOnItemSelected((selectView, position, item) -> {
+				mMisc.setSELinux(position, getActivity());
+				getHandler().postDelayed(() -> SELinux.setItem(Misc.getSELinux()),
+						500);
+			});
+
+			miscCard.addItem(SELinux);
 		}
 
 		SwitchView userSync = new SwitchView();
