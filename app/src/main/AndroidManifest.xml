@@ -75,6 +75,7 @@
         <activity android:name=".activities.EditorActivity" />
         <activity android:name=".activities.FlashingActivity" />
         <activity android:name=".activities.ForegroundActivity" />
+        <activity android:name=".activities.LicenceActivity" />
         <activity android:name=".activities.NoRootActivity" />
         <activity android:name=".activities.OverallActivity" />
         <activity android:name=".activities.tools.profile.ProfileActivity" />

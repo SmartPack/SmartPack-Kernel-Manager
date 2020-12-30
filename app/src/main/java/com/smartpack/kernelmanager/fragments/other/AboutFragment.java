@@ -33,6 +33,7 @@ import androidx.annotation.Nullable;
 
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.activities.LicenceActivity;
 import com.smartpack.kernelmanager.activities.TranslatorActivity;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
@@ -118,6 +119,15 @@ public class AboutFragment extends RecyclerViewFragment {
             startActivity(settings);
         });
 
+        DescriptionView licence = new DescriptionView();
+        licence.setDrawable(getResources().getDrawable(R.drawable.ic_gpl));
+        licence.setTitle(getString(R.string.licence));
+        licence.setSummary(getString(R.string.licence_summary));
+        licence.setOnItemClickListener(item -> {
+            Intent intent = new Intent(requireActivity(), LicenceActivity.class);
+            startActivity(intent);
+        });
+
         DescriptionView support = new DescriptionView();
         support.setDrawable(getResources().getDrawable(R.drawable.ic_support));
         support.setTitle(getString(R.string.support));
@@ -183,10 +193,11 @@ public class AboutFragment extends RecyclerViewFragment {
 
         items.add(about);
         items.add(versioninfo);
-        items.add(support);
+        items.add(licence);
         items.add(fdroid);
         items.add(changelogs);
         items.add(sourcecode);
+        items.add(support);
         items.add(donatetome);
         items.add(share);
     }
@@ -352,18 +363,7 @@ public class AboutFragment extends RecyclerViewFragment {
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                                  @Nullable Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_info, container, false);
-            rootView.findViewById(R.id.image).setOnClickListener(view -> {
-                Dialog licence = new Dialog(requireActivity());
-                licence.setIcon(R.mipmap.ic_launcher);
-                licence.setTitle(getString(R.string.licence));
-                licence.setMessage(getString(R.string.licence_message));
-                licence.setPositiveButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                });
-
-                licence.show();
-            });
-            return rootView;
+            return inflater.inflate(R.layout.fragment_info, container, false);
         }
     }
 

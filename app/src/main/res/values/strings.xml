@@ -1129,7 +1129,7 @@
     <string name="donate_me_message">\nIf you like to appreciate my work, please consider donating to me as it is helpful to continue my projects more active, although it is not at all necessary.\n</string>
     <string name="auto_update_check">Auto Update Check</string>
     <string name="licence">License</string>
-    <string name="licence_message" translatable="false">SmartPack-Kernel Manager is a free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nSmartPack-Kernel Manager is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with SmartPack-Kernel Manager. If not, visit http://www.gnu.org/licenses/.</string>
+    <string name="licence_summary">View GPL V3</string>
     <string name="share_app">Share App</string>
     <string name="share_app_summary">Share this app with your friends</string>
     <string name="share_app_message">Get SmartPack-Kernel Manager %s from GitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest</string>
