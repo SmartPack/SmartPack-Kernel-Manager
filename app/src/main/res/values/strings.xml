@@ -1151,7 +1151,7 @@
     <string name="save_string_message">New translation string is generated as \'%s\'!</string>
     <string name="search_hint">Enter search word here!</string>
     <string name="translator">Translator</string>
-    <string name="translator_message">Help me to translate this app into your language! Once you\'re done, please transfer the new string to me in Telegram or GitHub.</string>
+    <string name="translator_message">Help me to translate this app into your language! Once you\'re done, please send the new string to the developer in Telegram or GitHub.</string>
 
     <!-- FAQ -->
     <string name="how_different">Q1. How different is this app from Grarak\’s official Kernel Adiutor?</string>

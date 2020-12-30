@@ -99,7 +99,6 @@ public class Utils {
     public static boolean mHasBusybox;
     public static boolean mHasRoot;
     public static boolean mMemory = false;
-    public static boolean mTranslator = false;
 
     public static String mDetailsTitle = null;
     public static String mDetailsTxt = null;

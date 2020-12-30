@@ -34,7 +34,7 @@ import androidx.annotation.Nullable;
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.BillingActivity;
-import com.smartpack.kernelmanager.activities.LaunchFragmentActivity;
+import com.smartpack.kernelmanager.activities.TranslatorActivity;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
@@ -261,10 +261,12 @@ public class AboutFragment extends RecyclerViewFragment {
         translators.setText(getString(R.string.translators));
         items.add(translators);
 
+        CardView translatorCard = new CardView(getActivity());
+        translatorCard.setFullSpan(true);
+
         DescriptionView translator = new DescriptionView();
         translator.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_language, requireActivity()));
         translator.setSummary(getString(R.string.translators_message));
-        translator.setFullSpan(true);
         translator.setOnItemClickListener(item -> {
             new AsyncTask<Void, Void, Void>() {
                 @Override
@@ -282,14 +284,14 @@ public class AboutFragment extends RecyclerViewFragment {
                 protected void onPostExecute(Void aVoid) {
                     super.onPostExecute(aVoid);
                     hideProgress();
-                    Utils.mTranslator = true;
-                    Intent intent = new Intent(requireActivity(), LaunchFragmentActivity.class);
+                    Intent intent = new Intent(requireActivity(), TranslatorActivity.class);
                     startActivity(intent);
                 }
             }.execute();
         });
 
-        items.add(translator);
+        translatorCard.addItem(translator);
+        items.add(translatorCard);
 
         for (final String lib : sTranslations.keySet()) {
             DescriptionView descriptionView = new DescriptionView();
