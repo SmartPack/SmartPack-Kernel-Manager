@@ -65,7 +65,7 @@ public class MiscFragment extends RecyclerViewFragment {
 				|| mMisc.hasFsync() || mMisc.hasDynamicFsync() || mMisc.hasGentleFairSleepers() || mMisc.hasArchPower()
 				|| mMisc.hasHapticOverride() || Misc.hasHapticUser() || Misc.hasHapticsNotification()
 				|| Misc.hasHapticsCall() || Misc.hasLeases() || Misc.hasLeaseBreakTime()
-				|| Misc.hasSELinux()) {
+				|| Misc.hasSELinux() || Misc.hasDoze()) {
 			miscInit(items);
 		}
 		if (PowerSuspend.supported()) {
@@ -356,6 +356,19 @@ public class MiscFragment extends RecyclerViewFragment {
 			});
 
 			miscCard.addItem(SELinux);
+		}
+
+		if (Misc.hasDoze()) {
+			SwitchView doze = new SwitchView();
+			doze.setTitle(getString(R.string.doze));
+			doze.setSummary(getString(R.string.doze_summary));
+			doze.setChecked(Misc.isDozeEnabled());
+			doze.addOnSwitchListener((switchView, isChecked)
+					-> mMisc.enableDoze(isChecked, requireActivity()));
+			getHandler().postDelayed(() -> doze.setChecked(Misc.isDozeEnabled()),
+					500);
+
+			miscCard.addItem(doze);
 		}
 
 		SwitchView userSync = new SwitchView();

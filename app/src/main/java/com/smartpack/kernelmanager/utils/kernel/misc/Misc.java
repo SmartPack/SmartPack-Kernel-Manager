@@ -60,6 +60,8 @@ public class Misc {
 
     private static final String HOSTNAME_KEY = "net.hostname";
 
+    private static final String DOZE = "dumpsys deviceidle";
+
     private static final String HAPTICS = "/sys/class/leds/vibrator";
     private static final String HAPTICS_OVERRIDE = HAPTICS + "/vmax_override";
     private static final String HAPTICS_USER = HAPTICS + "/vmax_mv_user";
@@ -164,6 +166,20 @@ public class Misc {
 
     public static boolean hasSELinux() {
         return Utils.existFile(SELINUX);
+    }
+
+    public void enableDoze(boolean enable, Context context) {
+        run(Control.runShellCommand(enable ? DOZE + " enable" + " && " + DOZE + " force-idle" :
+                DOZE + " disable"), DOZE, context);
+    }
+
+    public static boolean isDozeEnabled() {
+        return RootUtils.runAndGetOutput(DOZE + " enabled").equals("1");
+    }
+
+    public static boolean hasDoze() {
+        return RootUtils.runAndGetOutput(DOZE + " enabled").equals("1")
+                || RootUtils.runAndGetOutput(DOZE + " enabled").equals("0");
     }
 
     public void enableGentleFairSleepers(boolean enable, Context context) {

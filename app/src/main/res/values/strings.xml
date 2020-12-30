@@ -865,6 +865,8 @@
     <string name="auto_sync">Auto-Sync Data</string>
     <string name="auto_sync_summary">Allow apps to automatically refresh data.\nPlease Note: It will be applied, irrespective of your on-boot settings.</string>
     <string name="cpuset">CPU Sets</string>
+    <string name="doze">Force Doze</string>
+    <string name="doze_summary">Enable doze mode to prevents certain tasks from running if your device is in idle state.</string>
     <string name="selinux">SELinux</string>
     <string name="selinux_summary">Set SELinux state</string>
     <string name="selinux_permissive">Permissive</string>

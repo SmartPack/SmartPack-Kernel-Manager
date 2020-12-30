@@ -783,6 +783,8 @@
     <string name="leases_enable_summary">Включение или отключение аренды файлов в масштабе всей системы</string>
     <string name="lease_break_time">Lease Break Time</string>
     <string name="lease_break_time_summary">Льготный период, который ядро предоставляет процессу, удерживающему аренду файла, после того, как оно отправило этому процессу сигнал, уведомляющий его о том, что другой процесс ожидает открытия файла.</string>
+    <string name="doze">Режим Doze</string>
+    <string name="doze_summary">Включите режим Doze, чтобы запретить выполнение определенных задач, если ваше устройство находится в режиме ожидания.</string>
     <string name="auto_sync">Auto-Sync Data</string>
     <string name="auto_sync_summary">Allow apps to automatically refresh data.\nPlease Note: It will be applied, irrespective of your on-boot settings.</string>
     <string name="cpuset">CPU Sets</string>

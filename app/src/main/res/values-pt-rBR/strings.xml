@@ -813,6 +813,8 @@
     <string name="leases_enable_summary">Ativar ou desativar concessões de arquivos em todo o sistema</string>
     <string name="lease_break_time">Tempo de pausa da concessão</string>
     <string name="lease_break_time_summary">O período de carência que o kernel concede a um processo que mantém uma concessão de arquivo depois de enviar um sinal para esse processo, notificando-o de que outro processo está aguardando para abrir o arquivo.</string>
+    <string name="doze">Modo Doze</string>
+    <string name="doze_summary">Ative o modo doze para impedir que determinadas tarefas sejam executadas se o dispositivo estiver no estado ocioso.</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">Tweas de desempenho</string>

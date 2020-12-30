@@ -767,6 +767,8 @@
     <string name="leases_enable_summary">在系统层面启用或停用档案租用</string>
     <string name="lease_break_time">租用终止时间</string>
     <string name="lease_break_time_summary">内核向持有租用档案的处理程序发出另一程序正在等待打开该文件的信号后，内核给予的宽限期。</string>
+    <string name="doze">Doze 模式</string>
+    <string name="doze_summary">启用 Doze 模式，当您的装置处于待机状态时，防止某些任务在后台执行。  </string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">性能调整</string>
