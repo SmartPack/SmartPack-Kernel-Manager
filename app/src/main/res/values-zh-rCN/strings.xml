@@ -958,7 +958,6 @@
     <string name="suspend_cpus">挂起的 CPU</string>
     <string name="boefflasound">Boeffla Sound</string>
     <string name="faux_sound">Faux Sound</string>
-    <string name="scc_messgae">想拥有一个独立的应用来控制 KCAL/K-lapse？点击这里！</string>
     <string name="white">白色</string>
     <string name="flash_led">闪光灯 LED 强度</string>
     <string name="yellow">黄色</string>
@@ -979,7 +978,6 @@
     <string name="edit_string_warning">请注意，此字符串含有特殊字符。</string>
     <string name="delete_string">删除字符串</string>
     <string name="import_string">导入自定义字符串</string>
-    <string name="import_string_hint">输入字符串所在网址</string>
     <string name="import_string_message">导入新字符串前，请移除此页中的当前字符串。</string>
     <string name="importing_string">从网址导入字符串</string>
     <string name="translator">翻译器</string>

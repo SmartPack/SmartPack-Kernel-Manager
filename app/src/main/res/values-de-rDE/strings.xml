@@ -493,7 +493,6 @@
     <string name="lock_mic_gain">Mikrofonverstärkung festhalten</string>
     <string name="lock_mic_gain_summary">Verhindert modifizierungen an der Mikrofonlautstärke.</string>
     <string name="per_channel_controls">Pro-Kanal Einstellungen</string>
-    <string name="scc_messgae">Möchtest du eine separate App zum einstellen von KCAL/K-lapse? Drücke hier!</string>
 
     <!-- Screen -->
     <string name="screen_color">Bildschirmfrabe</string>

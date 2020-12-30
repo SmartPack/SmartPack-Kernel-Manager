@@ -494,7 +494,6 @@
     <string name="lock_mic_gain">Lock Microphone Gain</string>
     <string name="lock_mic_gain_summary">Zapobiegaj modyfikacjom wzmocnień mikrofonu</string>
     <string name="per_channel_controls">Sterowanie kanałami</string>
-    <string name="scc_messgae">Chcesz mieć samodzielną aplikację do sterowania KCAL / K-lapse? Kliknij tutaj!</string>
 
     <!-- Screen -->
     <string name="screen_color">Screen Color</string>
@@ -1113,7 +1112,6 @@
     <string name="edit_string_warning">Ten ciąg zawiera kilka znaków specjalnych! Proszę bądź ostrożny.</string>
     <string name="delete_string">Usuń ciąg</string>
     <string name="import_string">Importuj ciąg niestandardowy</string>
-    <string name="import_string_hint">Tutaj-wprowadź-niestandardowy-ciąg-url-tutaj</string>
     <string name="import_string_message">Usuń bieżący ciąg z tej strony przed zaimportowaniem nowego!</string>
     <string name="importing_string">Importowanie ciągu znaków z sieci</string>
     <string name="delete_string_message">Czy na pewno chcesz usunąć bieżący ciąg string.xml z sdcard?</string>
