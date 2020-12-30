@@ -1,0 +1,4 @@
+* Fixed Translator page crashing on certain situations.
+* Slightly updated overall page layout on certain DPI.
+* Restored Doze and SeLinux control.
+* Miscellaneous changes.

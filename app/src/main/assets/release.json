@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Added more options to Overall page.\n - Made cluster check more strict to avoid issues on some devices.\n - Visually improved FAQ page.\n - Completely disabled update check if app is installed via F-Droid (avoid signature related issues).\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v15.5/com.smartpack.kernelmanager-v15.5-release.apk",
-  "sha1": "026052e4aa5076b682fee74fc7621c2dd4602384",
-  "latestVersion": "15.5",
-  "latestVersionCode": 155
+  "releaseNotes": "Change-logs\n - Fixed Translator page crashing on certain situations.\n - Slightly updated overall page layout on certain DPI.\n - Restored Doze and SeLinux control.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v15.6/com.smartpack.kernelmanager-v15.6-release.apk",
+  "sha1": "892ca2106aa334db8385e5e6a863c253a9e8902c",
+  "latestVersion": "15.6",
+  "latestVersionCode": 156
 }

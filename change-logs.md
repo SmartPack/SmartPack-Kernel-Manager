@@ -1,5 +1,9 @@
 # Change-logs
 
+## 137. December 30, 2020
+*Release-tag: beta_v15.6*<br>
+Fixed Translator crashing on certain situations. Slightly updated overall page layout on certain DPI. Restored Doze and SeLinux control. Miscellaneous changes.
+
 ## 136. December 26, 2020
 *Release-tag: beta_v15.5*<br>
 Added more options to Overall page. Made cluster check more strict to avoid issues on some devices. Visually improved FAQ page. Completely disabled update check if app is installed via F-Droid (avoid signature related issues). Miscellaneous changes.
