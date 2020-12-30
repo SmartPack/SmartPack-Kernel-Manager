@@ -40,6 +40,7 @@ import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
+import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.TitleView;
@@ -187,23 +188,29 @@ public class AboutFragment extends RecyclerViewFragment {
         special_mentions.setText(getString(R.string.special_mentions));
         items.add(special_mentions);
 
+        CardView GrarakCard = new CardView(getActivity());
+        GrarakCard.setTitle(getString(R.string.grarak));
+        GrarakCard.setFullSpan(true);
+
         DescriptionView Grarak = new DescriptionView();
         Grarak.setDrawable(getResources().getDrawable(R.drawable.ic_grarak));
-        Grarak.setTitle(getString(R.string.grarak));
         Grarak.setSummary(getString(R.string.grarak_summary));
-        Grarak.setFullSpan(true);
         Grarak.setOnItemClickListener(item -> Utils.launchUrl(getRootView(), "https://github.com/Grarak", getActivity()));
 
-        items.add(Grarak);
+        GrarakCard.addItem(Grarak);
+        items.add(GrarakCard);
+
+        CardView osm0sisCard = new CardView(getActivity());
+        osm0sisCard.setTitle(getString(R.string.osm0sis));
+        osm0sisCard.setFullSpan(true);
 
         DescriptionView osm0sis = new DescriptionView();
         osm0sis.setDrawable(getResources().getDrawable(R.drawable.ic_osm0sis));
-        osm0sis.setTitle(getString(R.string.osm0sis));
         osm0sis.setSummary(getString(R.string.osm0sis_summary));
-        osm0sis.setFullSpan(true);
         osm0sis.setOnItemClickListener(item -> Utils.launchUrl(getRootView(), "https://github.com/osm0sis", getActivity()));
 
-        items.add(osm0sis);
+        osm0sisCard.addItem(osm0sis);
+        items.add(osm0sisCard);
 
         TitleView credits = new TitleView();
         credits.setText(getString(R.string.credits));
