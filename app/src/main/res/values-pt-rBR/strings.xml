@@ -1100,7 +1100,6 @@
     <string name="flashing_finished">O flash terminou</string>
     <string name="flashing_failed">O flash falhou</string>
     <string name="scripts_manager_message">Gostaria de ter um aplicativo independente para gerenciar seus scripts? Clique aqui!</string>
-    <string name="scc_messgae">Gostaria de ter um aplicativo independente para controlar o KCAL / K-lapse? Clique aqui!</string>
     <string name="gpu_lib">Biblioteca GPU do sistema</string>
     <string name="stune_boost">Boost stune</string>
     <string name="cpu_boost_settings">Configurações do impulso da CPU</string>
@@ -1121,7 +1120,6 @@
     <string name="edit_string_warning">Esta string contém alguns caracteres especiais! Por favor, seja cuidadoso.</string>
     <string name="delete_string">Deletar string</string>
     <string name="import_string">Importar string personalizada</string>
-    <string name="import_string_hint">Insira-a-url-da-string-personalizada-aqui</string>
     <string name="import_string_message">Por favor, remova a string atual desta página antes de importar uma nova!</string>
     <string name="importing_string">Importando string da web</string>
     <string name="delete_string_message">Tem certeza de que deseja excluir o atual string.xml do cartão SD?</string>
