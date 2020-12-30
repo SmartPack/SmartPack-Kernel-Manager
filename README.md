@@ -1,6 +1,6 @@
 ![](banner.png)
 
-[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v15.3-green)](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release)
+[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v15.7-green)](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release)
 ![](https://img.shields.io/github/contributors/smartpack/SmartPack-Kernel-Manager)
 ![](https://img.shields.io/github/license/smartpack/SmartPack-Kernel-Manager)
 
