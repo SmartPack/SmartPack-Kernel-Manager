@@ -32,3 +32,8 @@ Your device must be <i>ROOTED</i> to use this app. Otherwise, please don't bothe
 - Dedicated Frequently Asked Questions (FAQ) section.
 - Also compatible with any devices and kernels.
 - And much more…
+
+<b>Please Note</b>
+
+* SmartPack-Kernel Manager contains its own auto-update implementation, which is only available for installation from GitHub release page (and consequently, for IzzyOnDroid). In that case, APK files provided by the developer is directly acquired from the official GitHub release page.
+* The Anti-Features (NonFreeNet) tag by F-Droid is due to the Kernel downloader (requires downloading kernel from web provided by kernel developers).
