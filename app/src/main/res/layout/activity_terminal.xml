@@ -42,60 +42,6 @@
                 android:textColor="?android:attr/colorAccent" />
         </FrameLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/colorPrimaryVariant"
-            android:gravity="center_vertical">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/shell_command_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_gravity="start|center"
-                android:textStyle="bold"
-                android:textColor="?android:attr/colorAccent"
-                android:textSize="18sp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/shell_command"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="75dp"
-                android:layout_marginEnd="100dp"
-                android:cursorVisible="true"
-                android:gravity="center_vertical"
-                android:layout_gravity="start|center"
-                android:textColorHint="?android:attr/textColorPrimary"
-                android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
-                android:imeOptions="actionDone"
-                android:padding="10dp"
-                android:textSize="15sp" />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/enter_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="50dp"
-                android:layout_gravity="center_vertical|end"
-                android:src="@drawable/ic_enter"
-                android:background="?android:attr/colorAccent"
-                android:tint="?android:attr/colorBackground"/>
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/recent_button"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="10dp"
-                android:layout_gravity="center_vertical|end"
-                android:src="@drawable/ic_up"
-                android:background="?android:attr/colorAccent"
-                android:tint="?android:attr/colorBackground"/>
-        </FrameLayout>
-
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
@@ -103,15 +49,67 @@
             android:layout_marginBottom="50dp"
             android:scrollbars="vertical" >
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/shell_output"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textStyle="bold"
-                android:textSize="15sp" />
+                android:orientation="vertical" >
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/shell_output"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:paddingStart="10dp"
+                    android:visibility="gone"
+                    android:paddingEnd="10dp"
+                    android:textStyle="bold"
+                    android:textSize="15sp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="40dp"
+                        android:gravity="center" >
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/shell_command_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start|center"
+                            android:textColor="?android:attr/colorAccent"
+                            android:textStyle="bold"
+                            android:gravity="start"
+                            android:textSize="17sp" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/shell_command"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textMultiLine|textNoSuggestions"
+                            android:layout_gravity="start|center"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:gravity="center_vertical"
+                            android:cursorVisible="true" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/recent_button"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center_vertical|end"
+                        android:src="@drawable/ic_up"
+                        android:background="?android:attr/colorAccent"
+                        android:tint="?android:attr/colorBackground"/>
+                </FrameLayout>
+            </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 
