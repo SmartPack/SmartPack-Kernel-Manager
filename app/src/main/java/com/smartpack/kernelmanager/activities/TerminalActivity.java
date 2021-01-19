@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -51,13 +52,13 @@ import java.util.Objects;
 public class TerminalActivity extends BaseActivity {
 
     private AppCompatEditText mShellCommand;
-    private MaterialTextView mClearAll, mShellOutput;
+    private MaterialTextView mClearAll, mShellCommandTitle, mShellOutput;
     private boolean mRunning = false;
     private CharSequence mHistory = null;
     private int i;
     private List<String> mResult = null;
     private NestedScrollView mScrollView;
-    private String whoAmI = RootUtils.runAndGetOutput("whoami");
+    private String mPWD = RootUtils.runAndGetOutput("pwd"), whoAmI = RootUtils.runAndGetOutput("whoami");
     private StringBuilder mLastCommand = new StringBuilder();
 
     @SuppressLint("SetTextI18n")
@@ -68,13 +69,12 @@ public class TerminalActivity extends BaseActivity {
 
         AppCompatImageButton mBack = findViewById(R.id.back_button);
         AppCompatImageButton mRecent = findViewById(R.id.recent_button);
-        AppCompatImageButton mSave = findViewById(R.id.enter_button);
         mShellCommand = findViewById(R.id.shell_command);
-        MaterialTextView mShellCommandTitle = findViewById(R.id.shell_command_title);
+        mShellCommandTitle = findViewById(R.id.shell_command_title);
         mShellOutput = findViewById(R.id.shell_output);
         mScrollView = findViewById(R.id.scroll_view);
 
-        mShellCommandTitle.setText(whoAmI);
+        mShellCommandTitle.setText(whoAmI + ": " + mPWD + ": ");
 
         mShellCommand.addTextChangedListener(new TextWatcher() {
             @Override
@@ -112,7 +112,6 @@ public class TerminalActivity extends BaseActivity {
             });
             popupMenu.show();
         });
-        mSave.setOnClickListener(v -> runCommand());
         mClearAll = findViewById(R.id.clear_all);
         mClearAll.setOnClickListener(v -> {
             if (mRunning) {
@@ -182,6 +181,7 @@ public class TerminalActivity extends BaseActivity {
                             mHistory = mShellOutput.getText();
                             mRunning = true;
                             mResult = new ArrayList<>();
+                            mShellOutput.setVisibility(View.VISIBLE);
                         }
                         @SuppressLint("WrongThread")
                         @Override
@@ -198,8 +198,14 @@ public class TerminalActivity extends BaseActivity {
                         @Override
                         protected void onPostExecute(Void aVoid) {
                             super.onPostExecute(aVoid);
+                            mPWD = RootUtils.runAndGetOutput("pwd");
                             mShellCommand.setText(null);
-                            mShellOutput.setText(Utils.getOutput(mResult) + "\n\n" + mHistory);
+                            if (mHistory != null && !mHistory.toString().isEmpty()) {
+                                mShellOutput.setText(mHistory + "\n\n" + Utils.getOutput(mResult));
+                            } else {
+                                mShellOutput.setText(Utils.getOutput(mResult));
+                            }
+                            mShellCommandTitle.setText(whoAmI + ": " + mPWD + ": ");
                             mHistory = null;
                             mRunning = false;
                         }
