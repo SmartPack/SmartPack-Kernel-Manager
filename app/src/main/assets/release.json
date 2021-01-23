@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Fixed Translator page crashing on certain situations.\n - Slightly updated overall page layout on certain DPI.\n - Restored Doze and SeLinux control.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v15.6/com.smartpack.kernelmanager-v15.6-release.apk",
-  "sha1": "892ca2106aa334db8385e5e6a863c253a9e8902c",
-  "latestVersion": "15.6",
-  "latestVersionCode": 156
+  "releaseNotes": "Change-logs\n - Updated terminal page.\n - Updated build tools and dependencies.\n - Added a licence view.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v15.8/com.smartpack.kernelmanager-v15.8-release.apk",
+  "sha1": "1e1330f51cc437d0440d9614c63bae53a8ca8deb",
+  "latestVersion": "15.8",
+  "latestVersionCode": 158
 }

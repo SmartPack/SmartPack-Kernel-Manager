@@ -1,5 +1,9 @@
 # Change-logs
 
+## 138. January 23, 2020
+*Release-tag: beta_v15.8*<br>
+Updated terminal page. Updated build tools and dependencies. Added a licence view. Miscellaneous changes.
+
 ## 137. December 30, 2020
 *Release-tag: beta_v15.6*<br>
 Fixed Translator crashing on certain situations. Slightly updated overall page layout on certain DPI. Restored Doze and SeLinux control. Miscellaneous changes.
