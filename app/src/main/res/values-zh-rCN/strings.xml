@@ -14,6 +14,7 @@
     <string name="went_wrong">出现错误！</string>
     <string name="press_back_again_exit">再按一次返回键以退出应用</string>
     <string name="cancel">取消</string>
+    <string name="dismiss">消除</string>
     <string name="ok">确定</string>
     <string name="yes">是</string>
     <string name="unknown">未知</string>
@@ -52,8 +53,9 @@
 
     <!-- Headers -->
     <string name="statistics">统计信息</string>
+    <string name="kernel">内核</string>
     <string name="tools">工具</string>
-    <string name="other">其他</string>
+    <string name="other">其它</string>
 
     <!-- Menus -->
     <string name="overall">概览</string>
@@ -826,7 +828,7 @@
     <string name="applied">已应用</string>
     <string name="profile_tasker">Tasker 配置方案</string>
     <string name="profile_tasker_summary">如果想在特定事件（如启动一个应用）时应用一个配置方案，则必须使用 Tasker。</string>
-    <string name="profile_tasker_toast">当任务者套用配置档案时显示提示讯息</string>
+    <string name="profile_tasker_toast">当任务者应用配置档案时显示提示信息</string>
     <string name="profile_tile">配置方案瓷块</string>
     <string name="profile_tile_summary">显示瓷块来允许您选择配置方案。</string>
     <string name="profile_select">选择配置方案</string>
@@ -850,7 +852,7 @@
 
     <!-- SmartPack -->
     <string name="support">支持信息</string>
-    <string name="support_summary">造访 xda-developers.com 的支持页面</string>
+    <string name="support_summary">访问 xda-developers.com 的支持页面</string>
     <string name="reboot">重启</string>
     <string name="reboot_recovery">重启至 Recovery</string>
     <string name="reboot_bootloader">重启至 Bootloader</string>
@@ -882,6 +884,9 @@
     <string name="ten_sec">10 秒</string>
     <string name="twenty_sec">20 秒</string>
     <string name="fifty_sec">50 秒</string>
+    <string name="enable_onboot">开机启用</string>
+    <string name="enable_onboot_message">已禁止开机运行，设备启动时将无法应用任何设置！</string>
+    <string name="enable_onboot_summary">允许 SmartPack-Kernel Manager 开机自动运行</string>
     <string name="apply_on_boot_test_summary">测试启动时应用。这包括在系统启动期间应用的所有东西，如自定义控制器、配置方案、init.d 等。</string>
     <string name="apply_on_boot_running">启动后应用的服务已在运行。请稍等它运行完成。</string>
     <string name="test">测试</string>
@@ -902,6 +907,9 @@
     <string name="driver_message_summary">将驱动程式消息 (dmesg）保存到 /sdcard/dmesg.txt</string>
     <string name="driver_ramoops_summary">保存 /sys/fs/pstore/dmesg-ramoops* 到 \'sdcard\'</string>
     <string name="security">安全</string>
+    <string name="biometric">生物识别身份验证</string>
+    <string name="biometric_summary">使用生物识别身份验证以保护 SmartPack-Kernel Manager。</string>
+    <string name="authenticate">身份验证</string>
     <string name="sections">板块</string>
 
     <!-- About -->
@@ -911,6 +919,7 @@
     <string name="change_logs_summary">查看变更记录</string>
     <string name="donate_me_summary">通过捐赠来致谢我的成果请点这里</string>
     <string name="purchase_app">购买应用</string>
+    <string name="licence_summary">查看 GPL V3</string>
 
     <!-- Contributors -->
     <string name="commits">%d 提交</string>
@@ -1042,7 +1051,7 @@
     <string name="kernel_latest">最新版本</string>
     <string name="kernel_information">内核信息</string>
     <string name="download_completed">%s 下载成功。是否刷写？</string>
-    <string name="auto_sync_summary">允许应用自动刷新数据。\\n 请注意：无论启动设置如何，都将应用该设置。</string>
+    <string name="auto_sync_summary">允许应用自动刷新数据。\n请注意：无论启动设置如何，都将应用该设置。</string>
     <string name="thunder_charge">Thunder Charge</string>
     <string name="thunder_charge_summary">启用 varun.chitre15 制作的 Thunder Charge</string>
     <string name="auto_sync">自动同步数据</string>
