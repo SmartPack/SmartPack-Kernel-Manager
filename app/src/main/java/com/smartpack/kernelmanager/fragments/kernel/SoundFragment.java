@@ -22,6 +22,7 @@ package com.smartpack.kernelmanager.fragments.kernel;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
+import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.sound.Sound;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
@@ -59,8 +60,15 @@ public class SoundFragment extends RecyclerViewFragment {
 
 		SwitchView enable = new SwitchView();
 		SeekBarView speakerGain = new SeekBarView();
+		SeekBarView micGainGeneral = new SeekBarView();
 		SeekBarView micGain = new SeekBarView();
 		SwitchView micLock = new SwitchView();
+		SwitchView speakerTuning = new SwitchView();
+		SwitchView privacyMode = new SwitchView();
+		SwitchView dacDirect = new SwitchView();
+		SwitchView dacOverSampling = new SwitchView();
+		SwitchView fllTuning = new SwitchView();
+		SwitchView monoDownMix = new SwitchView();
 		SeekBarView epGain = new SeekBarView();
 		final SwitchView perChannel = new SwitchView();
 		SeekBarView headphoneGain = new SeekBarView();
@@ -79,6 +87,10 @@ public class SoundFragment extends RecyclerViewFragment {
 						if (mSound.hasboefflaspeaker()) {
 							speakerGain.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflaspeaker()));
 							SoundControlCard.addItem(speakerGain);
+						}
+						if (mSound.hasboefflamicGeneral()) {
+							micGainGeneral.setProgress(Sound.getboefflamicGeneral());
+							SoundControlCard.addItem(micGainGeneral);
 						}
 						if (mSound.hasboefflamic()) {
 							micGain.setProgress(mSound.getBoefflamicLimits().indexOf(mSound.getboefflamic()));
@@ -104,14 +116,45 @@ public class SoundFragment extends RecyclerViewFragment {
 								SoundControlCard.addItem(headphoneGain);
 							}
 						}
+						if (Sound.hasSpeakerTuning()) {
+							speakerTuning.setChecked(Sound.isSpeakerTuningenabled());
+							SoundControlCard.addItem(speakerTuning);
+						}
+						if (Sound.hasPrivacyMode()) {
+							privacyMode.setChecked(Sound.isPrivacyModeenabled());
+							SoundControlCard.addItem(privacyMode);
+						}
+						if (Sound.hasDACDirect()) {
+							dacDirect.setChecked(Sound.isDACDirectenabled());
+							SoundControlCard.addItem(dacDirect);
+						}
+						if (Sound.hasDACOverSampling()) {
+							dacOverSampling.setChecked(Sound.isDACOverSamplingenabled());
+							SoundControlCard.addItem(dacOverSampling);
+						}
+						if (Sound.hasFLLTuning()) {
+							fllTuning.setChecked(Sound.isFLLTuningenabled());
+							SoundControlCard.addItem(fllTuning);
+						}
+						if (Sound.hasMonoDownMix()) {
+							monoDownMix.setChecked(Sound.isMonoDownMixenabled());
+							SoundControlCard.addItem(monoDownMix);
+						}
 					} else {
 						SoundControlCard.removeItem(speakerGain);
+						SoundControlCard.removeItem(micGainGeneral);
 						SoundControlCard.removeItem(micGain);
 						SoundControlCard.removeItem(epGain);
 						SoundControlCard.removeItem(perChannel);
 						SoundControlCard.removeItem(headphoneGain);
 						SoundControlCard.removeItem(headphoneGainLeft);
 						SoundControlCard.removeItem(headphoneGainRight);
+						SoundControlCard.removeItem(speakerTuning);
+						SoundControlCard.removeItem(privacyMode);
+						SoundControlCard.removeItem(dacDirect);
+						SoundControlCard.removeItem(dacOverSampling);
+						SoundControlCard.removeItem(fllTuning);
+						SoundControlCard.removeItem(monoDownMix);
 					}
 				}, 100);
 			});
@@ -187,8 +230,13 @@ public class SoundFragment extends RecyclerViewFragment {
 
 		if (mSound.hasboefflaspeaker()) {
 			speakerGain.setTitle(getString(R.string.speaker_gain));
-			speakerGain.setItems(mSound.getBoefflaLimits());
-			speakerGain.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflaspeaker()));
+			if (Sound.isSMDK4X12()) {
+				speakerGain.setMax(63);
+				speakerGain.setProgress(Utils.strToInt(mSound.getboefflaspeaker()));
+			} else {
+				speakerGain.setItems(mSound.getBoefflaLimits());
+				speakerGain.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflaspeaker()));
+			}
 			speakerGain.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 				@Override
 				public void onStop(SeekBarView seekBarView, int position, String value) {
@@ -247,10 +295,37 @@ public class SoundFragment extends RecyclerViewFragment {
 			SoundControlCard.addItem(speakerGain);
 		}
 
+		if (mSound.hasboefflamicGeneral()) {
+			micGainGeneral.setTitle(getString(R.string.microphone_gain) + " (General)");
+			micGainGeneral.setMax(31);
+			micGainGeneral.setProgress(Sound.getboefflamicGeneral());
+			micGainGeneral.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+				@Override
+				public void onStop(SeekBarView seekBarView, int position, String value) {
+					mSound.setboefflamicGeneral(value, getActivity());
+				}
+
+				@Override
+				public void onMove(SeekBarView seekBarView, int position, String value) {
+				}
+			});
+
+			if (mSound.isboefflasoundenabled()) {
+				SoundControlCard.addItem(micGainGeneral);
+			} else {
+				SoundControlCard.removeItem(micGainGeneral);
+			}
+		}
+
 		if (mSound.hasboefflamic()) {
-			micGain.setTitle(getString(R.string.microphone_gain) + (" (Calls)"));
-			micGain.setItems(mSound.getBoefflamicLimits());
-			micGain.setProgress(mSound.getBoefflamicLimits().indexOf(mSound.getboefflamic()));
+			micGain.setTitle(getString(R.string.microphone_gain) + " (Calls)");
+			if (Sound.isSMDK4X12()) {
+				micGain.setMax(31);
+				micGain.setProgress(Utils.strToInt(mSound.getboefflamic()));
+			} else {
+				micGain.setItems(mSound.getBoefflamicLimits());
+				micGain.setProgress(mSound.getBoefflamicLimits().indexOf(mSound.getboefflamic()));
+			}
 			micGain.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 				@Override
 				public void onStop(SeekBarView seekBarView, int position, String value) {
@@ -362,6 +437,78 @@ public class SoundFragment extends RecyclerViewFragment {
 			}
 		}
 
+		if (Sound.hasSpeakerTuning()) {
+			speakerTuning.setSummary(getString(R.string.speaker_tuning));
+			speakerTuning.setChecked(Sound.isSpeakerTuningenabled());
+			speakerTuning.addOnSwitchListener((switchView, isChecked) -> mSound.enableSpeakerTuning(isChecked, getActivity()));
+
+			if (mSound.isboefflasoundenabled()) {
+				SoundControlCard.addItem(speakerTuning);
+			} else {
+				SoundControlCard.removeItem(speakerTuning);
+			}
+		}
+
+		if (Sound.hasPrivacyMode()) {
+			privacyMode.setSummary(getString(R.string.privacy_mode));
+			privacyMode.setChecked(Sound.isPrivacyModeenabled());
+			privacyMode.addOnSwitchListener((switchView, isChecked) -> mSound.enablePrivacyMode(isChecked, getActivity()));
+
+			if (mSound.isboefflasoundenabled()) {
+				SoundControlCard.addItem(privacyMode);
+			} else {
+				SoundControlCard.removeItem(privacyMode);
+			}
+		}
+
+		if (Sound.hasDACDirect()) {
+			dacDirect.setSummary(getString(R.string.dac_direct));
+			dacDirect.setChecked(Sound.isDACDirectenabled());
+			dacDirect.addOnSwitchListener((switchView, isChecked) -> mSound.enableDACDirect(isChecked, getActivity()));
+
+			if (mSound.isboefflasoundenabled()) {
+				SoundControlCard.addItem(dacDirect);
+			} else {
+				SoundControlCard.removeItem(dacDirect);
+			}
+		}
+
+		if (Sound.hasDACOverSampling()) {
+			dacOverSampling.setSummary(getString(R.string.dac_oversampling));
+			dacOverSampling.setChecked(Sound.isDACOverSamplingenabled());
+			dacOverSampling.addOnSwitchListener((switchView, isChecked) -> mSound.enableDACOverSampling(isChecked, getActivity()));
+
+			if (mSound.isboefflasoundenabled()) {
+				SoundControlCard.addItem(dacOverSampling);
+			} else {
+				SoundControlCard.removeItem(dacOverSampling);
+			}
+		}
+
+		if (Sound.hasFLLTuning()) {
+			fllTuning.setSummary(getString(R.string.fll_tuning));
+			fllTuning.setChecked(Sound.isFLLTuningenabled());
+			fllTuning.addOnSwitchListener((switchView, isChecked) -> mSound.enableFLLTuning(isChecked, getActivity()));
+
+			if (mSound.isboefflasoundenabled()) {
+				SoundControlCard.addItem(fllTuning);
+			} else {
+				SoundControlCard.removeItem(fllTuning);
+			}
+		}
+
+		if (Sound.hasMonoDownMix()) {
+			monoDownMix.setSummary(getString(R.string.mono_downmix));
+			monoDownMix.setChecked(Sound.isMonoDownMixenabled());
+			monoDownMix.addOnSwitchListener((switchView, isChecked) -> mSound.enableMonoDownMix(isChecked, getActivity()));
+
+			if (mSound.isboefflasoundenabled()) {
+				SoundControlCard.addItem(monoDownMix);
+			} else {
+				SoundControlCard.removeItem(monoDownMix);
+			}
+		}
+
 		if (mSound.hasflarep()) {
 			epGain.setTitle(getString(R.string.earpiece_gain));
 			epGain.setItems(mSound.getMicrophoneFlarLimits());
@@ -451,8 +598,13 @@ public class SoundFragment extends RecyclerViewFragment {
 			}
 
 			headphoneGain.setTitle(getString(R.string.headphone_gain));
-			headphoneGain.setItems(mSound.getBoefflaLimits());
-			headphoneGain.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflahp("all")));
+			if (Sound.isSMDK4X12()) {
+				headphoneGain.setMax(63);
+				headphoneGain.setProgress(Utils.strToInt(mSound.getboefflahp("all")));
+			} else {
+				headphoneGain.setItems(mSound.getBoefflaLimits());
+				headphoneGain.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflahp("all")));
+			}
 			headphoneGain.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 				@Override
 				public void onStop(SeekBarView seekBarView, int position, String value) {
@@ -465,8 +617,13 @@ public class SoundFragment extends RecyclerViewFragment {
 			});
 
 			headphoneGainLeft.setTitle(getString(R.string.headphone_gain) + (" (Left)"));
-			headphoneGainLeft.setItems(mSound.getBoefflaLimits());
-			headphoneGainLeft.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflahp("left")));
+			if (Sound.isSMDK4X12()) {
+				headphoneGainLeft.setMax(63);
+				headphoneGainLeft.setProgress(Utils.strToInt(mSound.getboefflahp("left")));
+			} else {
+				headphoneGainLeft.setItems(mSound.getBoefflaLimits());
+				headphoneGainLeft.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflahp("left")));
+			}
 			headphoneGainLeft.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 				@Override
 				public void onStop(SeekBarView seekBarView, int position, String value) {
@@ -479,8 +636,13 @@ public class SoundFragment extends RecyclerViewFragment {
 			});
 
 			headphoneGainRight.setTitle(getString(R.string.headphone_gain) + (" (Right)"));
-			headphoneGainRight.setItems(mSound.getBoefflaLimits());
-			headphoneGainRight.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflahp("right")));
+			if (Sound.isSMDK4X12()) {
+				headphoneGainRight.setMax(63);
+				headphoneGainRight.setProgress(Utils.strToInt(mSound.getboefflahp("right")));
+			} else {
+				headphoneGainRight.setItems(mSound.getBoefflaLimits());
+				headphoneGainRight.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflahp("right")));
+			}
 			headphoneGainRight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 				@Override
 				public void onStop(SeekBarView seekBarView, int position, String value) {
