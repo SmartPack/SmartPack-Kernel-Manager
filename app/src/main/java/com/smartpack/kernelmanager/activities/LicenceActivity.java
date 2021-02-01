@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2021 sunilpaulmathew <sunil.kde@gmail.com>
+ * Copyright (C) 2021-2022 sunilpaulmathew <sunil.kde@gmail.com>
  *
  * This file is part of SmartPack Kernel Manager, which is a heavily modified version of Kernel Adiutor,
  * originally developed by Willi Ye <williye97@gmail.com>
@@ -26,7 +26,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -63,10 +65,22 @@ public class LicenceActivity extends AppCompatActivity {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater,
                                  @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            WebView webView = new WebView(getActivity());
-            webView.loadUrl("file:///android_asset/gpl.html");
+            WebView mWebView = new WebView(requireActivity());
+            mWebView.loadUrl("https://www.gnu.org/licenses/gpl-3.0-standalone.html");
+            mWebView.setWebViewClient(new WebViewClient());
 
-            return webView;
+            requireActivity().getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+                @Override
+                public void handleOnBackPressed() {
+                    if (mWebView.canGoBack()) {
+                        mWebView.goBack();
+                    } else {
+                        requireActivity().finish();
+                    }
+                }
+            });
+
+            return mWebView;
         }
 
     }
