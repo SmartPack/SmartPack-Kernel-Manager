@@ -498,7 +498,8 @@
     <string name="speaker_leakage_summary">Software workaround to avoid leakage on the speaker driver</string>
     <string name="headset_highperf_mode">Headset High Performance Mode</string>
     <string name="headphone_gain">Headphone Gain</string>
-    <string name="speaker_gain">Speaker Gain</string>>
+    <string name="speaker_gain">Speaker Gain</string>
+    <string name="speaker_tuning">Speaker Tuning</string>
     <string name="headphone_tpa6165_gain">Headphone Amp Gain (TPA6165 Extension)</string>
     <string name="microphone_gain">Microphone Gain</string>
     <string name="volume_gain">Volume Gain</string>
@@ -510,6 +511,11 @@
     <string name="lock_mic_gain">Lock Microphone Gain</string>
     <string name="lock_mic_gain_summary">Prevent modifications to microphone gains</string>
     <string name="per_channel_controls">Per-channel controls</string>
+    <string name="privacy_mode">Privacy Mode</string>
+    <string name="dac_direct">DAC Direct</string>
+    <string name="dac_oversampling">DAC OverSampling</string>
+    <string name="fll_tuning">FLL Tuning</string>
+    <string name="mono_downmix">Mono DownMix</string>
 
     <!-- Screen -->
     <string name="screen_color">Screen Color</string>

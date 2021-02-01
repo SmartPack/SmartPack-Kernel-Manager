@@ -22,6 +22,7 @@ package com.smartpack.kernelmanager.utils.kernel.sound;
 import android.content.Context;
 
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
+import com.smartpack.kernelmanager.utils.Device;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.Control;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
@@ -68,6 +69,13 @@ public class Sound {
     private static final String BOEFFLA_HP = BOEFFLA_SOUND + "/headphone_volume";
     private static final String BOEFFLA_EP = BOEFFLA_SOUND + "/earpiece_volume";
     private static final String BOEFFLA_MIC = BOEFFLA_SOUND + "/mic_level_call";
+    private static final String BOEFFLA_MIC_GENERAL = BOEFFLA_SOUND + "/mic_level_general";
+    private static final String BOEFFLA_SPEAKER_TUNING = BOEFFLA_SOUND + "/speaker_tuning";
+    private static final String BOEFFLA_PRIVACY_MODE = BOEFFLA_SOUND + "/privacy_mode";
+    private static final String BOEFFLA_DAC_DIRECT = BOEFFLA_SOUND + "/dac_direct";
+    private static final String BOEFFLA_DAC_OVERSAMPLING = BOEFFLA_SOUND + "/dac_oversampling";
+    private static final String BOEFFLA_FLL_TUNING = BOEFFLA_SOUND + "/fll_tuning";
+    private static final String BOEFFLA_MONO_DOWNMIX = BOEFFLA_SOUND + "/mono_downmix";
     private static final String BOEFFLA_VERSION = BOEFFLA_SOUND + "/version";
 
     private static final String FAUX_SOUND = "/sys/kernel/sound_control_3";
@@ -206,6 +214,78 @@ public class Sound {
         return Utils.readFile(BOEFFLA_VERSION);
     }
 
+    public void enableSpeakerTuning(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", BOEFFLA_SPEAKER_TUNING), BOEFFLA_SPEAKER_TUNING, context);
+    }
+
+    public static boolean isSpeakerTuningenabled() {
+        return Utils.readFile(BOEFFLA_SPEAKER_TUNING).contains("1");
+    }
+
+    public static boolean hasSpeakerTuning() {
+        return Utils.existFile(BOEFFLA_SPEAKER_TUNING);
+    }
+
+    public void enablePrivacyMode(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", BOEFFLA_PRIVACY_MODE), BOEFFLA_PRIVACY_MODE, context);
+    }
+
+    public static boolean isPrivacyModeenabled() {
+        return Utils.readFile(BOEFFLA_PRIVACY_MODE).contains("1");
+    }
+
+    public static boolean hasPrivacyMode() {
+        return Utils.existFile(BOEFFLA_PRIVACY_MODE);
+    }
+
+    public void enableDACDirect(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", BOEFFLA_DAC_DIRECT), BOEFFLA_DAC_DIRECT, context);
+    }
+
+    public static boolean isDACDirectenabled() {
+        return Utils.readFile(BOEFFLA_DAC_DIRECT).contains("1");
+    }
+
+    public static boolean hasDACDirect() {
+        return Utils.existFile(BOEFFLA_DAC_DIRECT);
+    }
+
+    public void enableDACOverSampling(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", BOEFFLA_DAC_OVERSAMPLING), BOEFFLA_DAC_OVERSAMPLING, context);
+    }
+
+    public static boolean isDACOverSamplingenabled() {
+        return Utils.readFile(BOEFFLA_DAC_OVERSAMPLING).contains("1");
+    }
+
+    public static boolean hasDACOverSampling() {
+        return Utils.existFile(BOEFFLA_DAC_OVERSAMPLING);
+    }
+
+    public void enableFLLTuning(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", BOEFFLA_FLL_TUNING), BOEFFLA_FLL_TUNING, context);
+    }
+
+    public static boolean isFLLTuningenabled() {
+        return Utils.readFile(BOEFFLA_FLL_TUNING).contains("1");
+    }
+
+    public static boolean hasFLLTuning() {
+        return Utils.existFile(BOEFFLA_FLL_TUNING);
+    }
+
+    public void enableMonoDownMix(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", BOEFFLA_MONO_DOWNMIX), BOEFFLA_MONO_DOWNMIX, context);
+    }
+
+    public static boolean isMonoDownMixenabled() {
+        return Utils.readFile(BOEFFLA_MONO_DOWNMIX).contains("1");
+    }
+
+    public static boolean hasMonoDownMix() {
+        return Utils.existFile(BOEFFLA_MONO_DOWNMIX);
+    }
+
     public void setHeadphoneTpaGain(String value, Context context) {
         /*
          * Headphone Amp Gain is register 0x7.
@@ -265,7 +345,6 @@ public class Sound {
             case SPEAKER_FLAR:
                 return mFlarLimits;
             case BOEFFLA_SPEAKER:
-                return mBoefflaLimits;
             case BOEFFLA_HP:
                 return mBoefflaLimits;
             case BOEFFLA_EP:
@@ -466,6 +545,20 @@ public class Sound {
         return Utils.existFile(BOEFFLA_EP);
     }
 
+    public void setboefflamicGeneral(String value, Context context) {
+        run(Control.write(value, BOEFFLA_MIC_GENERAL), BOEFFLA_MIC_GENERAL, context);
+    }
+
+    public static int getboefflamicGeneral() {
+        String value = Utils.readFile(BOEFFLA_MIC_GENERAL).replace("Mic", "").replace("level", "")
+                .replace("general", "").replace(" ", "");
+        return Utils.strToInt(value);
+    }
+
+    public boolean hasboefflamicGeneral() {
+        return Utils.existFile(BOEFFLA_MIC_GENERAL);
+    }
+
     public void setboefflamic(String value, Context context) {
         run(Control.write(value, BOEFFLA_MIC), BOEFFLA_MIC, context);
     }
@@ -623,6 +716,10 @@ public class Sound {
 
     public boolean hasSoundControlDir() {
         return Utils.existFile(SOUND_CONTROL_DIR);
+    }
+
+    public static boolean isSMDK4X12() {
+        return Device.getBoard().equalsIgnoreCase("smdk4x12");
     }
 
     private void run(String command, String id, Context context) {
