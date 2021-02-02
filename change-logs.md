@@ -1,5 +1,9 @@
 # Change-logs
 
+## 119. February 02, 2021
+*Release-tag: beta_v16.0*<br>
+Updated terminal page. Updated Boeffla for some devices. Updated build tools and dependencies. Update Simplified Chinese translation. Miscellaneous changes.
+
 ## 118. December 30, 2020
 *Release-tag: beta_v15.7*<br>
 Updated CPU Cluster Control. Fixed layout issues on CPU Boost & Overall Activities. Slightly updated cardview corner. Added more options to Overall page. Visually improved FAQ page. Fixed Translator crashing on certain situations. Miscellaneous changes.
