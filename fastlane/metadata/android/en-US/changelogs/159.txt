@@ -1,0 +1,4 @@
+* Updated Boeffla for some devices.
+* Temporarily fix storage related issues on Android 11.
+* Update Simplified Chinese translation.
+* Miscellaneous changes.

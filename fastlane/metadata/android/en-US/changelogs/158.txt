@@ -1,4 +1,0 @@
-* Updated terminal page.
-* Updated build tools and dependencies.
-* Added a licence view.
-* Miscellaneous changes.

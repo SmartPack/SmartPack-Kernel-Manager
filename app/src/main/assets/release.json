@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Updated terminal page.\n - Updated build tools and dependencies.\n - Added a licence view.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v15.8/com.smartpack.kernelmanager-v15.8-release.apk",
-  "sha1": "1e1330f51cc437d0440d9614c63bae53a8ca8deb",
-  "latestVersion": "15.8",
-  "latestVersionCode": 158
+  "releaseNotes": "Change-logs\n - Updated Boeffla for some devices.\n - Temporarily fix storage related issues on Android 11.\n - Update Simplified Chinese translation.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v15.9/com.smartpack.kernelmanager-v15.9-release.apk",
+  "sha1": "441bf9aac413ef2944cec77cf65a171336afd773",
+  "latestVersion": "15.9",
+  "latestVersionCode": 159
 }

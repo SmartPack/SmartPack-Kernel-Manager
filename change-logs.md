@@ -1,6 +1,10 @@
 # Change-logs
 
-## 138. January 23, 2020
+## 139. February 02, 2021
+*Release-tag: beta_v15.9*<br>
+Updated Boeffla for some devices. Temporarily fix storage related issues on Android 11. Update Simplified Chinese translation. Miscellaneous changes.
+
+## 138. January 23, 2021
 *Release-tag: beta_v15.8*<br>
 Updated terminal page. Updated build tools and dependencies. Added a licence view. Miscellaneous changes.
 
