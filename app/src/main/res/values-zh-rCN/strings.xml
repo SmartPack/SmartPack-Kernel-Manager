@@ -852,7 +852,7 @@
 
     <!-- SmartPack -->
     <string name="support">支持信息</string>
-    <string name="support_summary">访问 xda-developers.com 的支持页面</string>
+    <string name="support_summary">访问支持页面</string>
     <string name="reboot">重启</string>
     <string name="reboot_recovery">重启至 Recovery</string>
     <string name="reboot_bootloader">重启至 Bootloader</string>
