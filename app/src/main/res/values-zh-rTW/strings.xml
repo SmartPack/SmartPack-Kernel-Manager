@@ -850,7 +850,7 @@
 
     <!-- SmartPack -->
     <string name="support">支援</string>
-    <string name="support_summary">造訪 xda-developers.com 的支援頁面</string>
+    <string name="support_summary">造訪支援頁面</string>
     <string name="reboot">重啟</string>
     <string name="reboot_recovery">重啟至 Recovery</string>
     <string name="reboot_bootloader">重啟至 Bootloader</string>
