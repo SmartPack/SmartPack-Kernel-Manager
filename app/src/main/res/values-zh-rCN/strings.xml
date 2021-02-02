@@ -19,8 +19,6 @@
     <string name="yes">是</string>
     <string name="unknown">未知</string>
 
-    <string name="donate_nope">白嫖党永不为奴！</string>
-    <string name="donate_yes">我喜欢这个应用，立刻氪金！</string>
     <string name="warning">警告</string>
 
     <string name="apply_on_boot">开机时自动应用</string>
@@ -924,9 +922,7 @@
     <string name="source_code_summary">在 GitHub 上查看源代码</string>
     <string name="change_logs">更新日志</string>
     <string name="change_logs_summary">查看变更记录</string>
-    <string name="donate_me">捐赠</string>
     <string name="donate_me_summary">通过捐赠来致谢我的成果请点这里</string>
-    <string name="donate_me_message"> \n如果你喜欢我的工作，请考虑给我捐款，因为有助于我的项目更加活跃，虽然这并不是强制性的。  \n</string>
     <string name="licence_summary">查看 GPL V3</string>
 
     <!-- Contributors -->

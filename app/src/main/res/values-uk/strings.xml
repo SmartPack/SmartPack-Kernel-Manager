@@ -242,11 +242,7 @@
     <string name="disksize_summary">Покращує продуктивність методом стиснення даних в RAM замість постійної пам\'яті. Використовує RAM до тих пір, поки не стане необхідним записати дані в постійну пам\'ять.</string>
     <string name="display_backlight">Підсвічування дисплея</string>
     <string name="documentation">Документація</string>
-    <string name="donate_me">Пожертвувати мені</string>
-    <string name="donate_me_message">\nЯкщо вам подобається моя робота, розгляньте можливість пожертвування мені, оскільки корисно продовжувати мої проекти більш активно, хоча в цьому немає необхідності.\n</string>
     <string name="donate_me_summary">Хочете оцінити мою роботу  пожертвуванням? клікніть сюди</string>
-    <string name="donate_nope">Я не попадуся на цю аферу!</string>
-    <string name="donate_yes">Я люблю це додаток. Повинен пожертвувати!</string>
     <string name="donation_link">Donation Link</string>
     <string name="donation_link_summary">donation_link</string>
     <string name="donations">Donations</string>

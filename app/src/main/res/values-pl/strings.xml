@@ -20,8 +20,6 @@
     <string name="yes">TAK</string>
     <string name="unknown">Nieznany</string>
 
-    <string name="donate_nope">Nie teraz!</string>
-    <string name="donate_yes">Dotacja!</string>
     <string name="warning">Ostrzeżenie!</string>
 
     <string name="apply_on_boot">Zastosuj przy starcie</string>
@@ -1089,9 +1087,7 @@
     <string name="source_code_summary">Wyświetl kod źródłowy na GitHub</string>
     <string name="change_logs">Dzienniki zmian</string>
     <string name="change_logs_summary">Wyświetl dzienniki zmian</string>
-    <string name="donate_me">Darowizna dla mnie</string>
     <string name="donate_me_summary">Chcesz docenić moją pracę darowizną? Kliknij tutaj</string>
-    <string name="donate_me_message">\nJeśli lubisz docenić moją pracę, rozważ przekazanie mi darowizn, ponieważ pomocne jest kontynuowanie moich projektów bardziej aktywnie, chociaż wcale nie jest to konieczne.\n</string>
     <string name="auto_update_check">Sprawdzanie automatycznej aktualizacji</string>
     <string name="licence">License</string>
     <string name="share_app">Udostępnij aplikacje</string>

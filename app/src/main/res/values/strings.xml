@@ -25,8 +25,6 @@
     <string name="yes">YES</string>
     <string name="unknown">Unknown</string>
 
-    <string name="donate_nope">Not now!</string>
-    <string name="donate_yes">Donate!</string>
     <string name="warning">Warning!</string>
 
     <string name="apply_on_boot">Apply on boot</string>
@@ -1130,9 +1128,7 @@
     <string name="source_code_summary">View source code at GitHub</string>
     <string name="change_logs">Change-logs</string>
     <string name="change_logs_summary">View Change-logs</string>
-    <string name="donate_me">Donate to Me</string>
     <string name="donate_me_summary">Want to appreciate my work with a Donation? Click here</string>
-    <string name="donate_me_message">\nIf you like to appreciate my work, please consider donating to me as it is helpful to continue my projects more active, although it is not at all necessary.\n</string>
     <string name="auto_update_check">Auto Update Check</string>
     <string name="licence">License</string>
     <string name="licence_summary">View GPL V3</string>

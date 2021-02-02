@@ -15,8 +15,6 @@
     <string name="ok">Ок</string>
     <string name="yes">Да</string>
     <string name="unknown">Неизвестно</string>
-    <string name="donate_nope">Я не попадусь на эту аферу!</string>
-    <string name="donate_yes">Я люблю это приложение. Должен пожертвовать!</string>
     <string name="warning">Внимание</string>
     <string name="apply_on_boot">Применять при загрузке</string>
     <string name="apply_on_boot_text">Применение настроек через %d секунд.</string>
@@ -1003,9 +1001,7 @@
     <string name="source_code_summary">Посмотреть исзодный код на GitHub</string>
     <string name="change_logs">История изменений</string>
     <string name="change_logs_summary">Посмотреть историю изменений</string>
-    <string name="donate_me">Пожертвовать мне</string>
     <string name="donate_me_summary">Хотите оценить мою работу с пожертвованием? кликните сюда</string>
-    <string name="donate_me_message">\nЕсли вам нравится моя работа, рассмотрите возможность пожертвования мне, поскольку полезно продолжать мои проекты более активно, хотя в этом нет необходимости.\n</string>
     <string name="auto_update_check">Автоматическая проверка обновлений</string>
     <string name="licence">Лицензии</string>
     <string name="share_app">Поделиться приложением</string>
