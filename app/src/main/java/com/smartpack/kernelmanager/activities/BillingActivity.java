@@ -47,6 +47,7 @@ import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 
@@ -72,7 +73,14 @@ public class BillingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_billing);
 
         AppCompatImageButton mBack = findViewById(R.id.back_button);
+        AppCompatImageButton mSupporterIcon = findViewById(R.id.supporter_button);
+        MaterialTextView mSupporterMessage = findViewById(R.id.supporter_message);
         MaterialTextView mCancel = findViewById(R.id.cancel_button);
+
+        if (Utils.isDonated(this)) {
+            mSupporterIcon.setVisibility(View.VISIBLE);
+            mSupporterMessage.setText(getString(R.string.support_status_message));
+        }
 
         mData.add(new RecycleViewItem(getString(R.string.purchase_app), getResources().getDrawable(R.drawable.ic_donate)));
         mData.add(new RecycleViewItem(getString(R.string.support_coffee), getResources().getDrawable(R.drawable.ic_coffee)));
@@ -224,8 +232,8 @@ public class BillingActivity extends AppCompatActivity {
                     new Dialog(this)
                             .setMessage(getString(R.string.support_received_message))
                             .setPositiveButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                            })
-                            .show();
+                            }).show();
+                    Prefs.saveBoolean("support_received", true, this);
                 }
             }
         } catch (Exception ignored) {}

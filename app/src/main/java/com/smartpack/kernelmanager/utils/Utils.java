@@ -118,6 +118,10 @@ public class Utils {
         return isPackageInstalled("com.smartpack.donate", context);
     }
 
+    public static boolean isDonated(Context context) {
+        return isSPDonated(context) || Prefs.getBoolean("support_received", false, context);
+    }
+
     public static void initializeAppTheme(Context context) {
         if (Prefs.getBoolean("darktheme", true, context)) {
             AppCompatDelegate.setDefaultNightMode(

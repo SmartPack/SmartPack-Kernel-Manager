@@ -48,14 +48,34 @@
                     android:padding="10dp" />
             </FrameLayout>
 
-            <com.google.android.material.textview.MaterialTextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorOnPrimary"
-                android:text="@string/support_development_summary"
-                android:linksClickable="true"
-                android:gravity="center"
-                android:padding="15dp" />
+                android:orientation="horizontal"
+                android:gravity="end|center_vertical"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp" >
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/supporter_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="start|center"
+                    android:src="@drawable/ic_heart"
+                    android:background="@color/colorPrimary"
+                    android:tint="?attr/colorAccent"
+                    android:visibility="gone" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/supporter_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorOnPrimary"
+                    android:text="@string/support_development_summary"
+                    android:gravity="center"
+                    android:padding="15dp" />
+            </LinearLayout>
         </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
