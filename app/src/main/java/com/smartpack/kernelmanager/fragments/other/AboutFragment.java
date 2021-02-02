@@ -162,19 +162,10 @@ public class AboutFragment extends RecyclerViewFragment {
 
         DescriptionView donatetome = new DescriptionView();
         donatetome.setDrawable(getResources().getDrawable(R.drawable.ic_donate));
-        donatetome.setTitle(getString(R.string.donate_me));
+        donatetome.setTitle(getString(R.string.donations));
         donatetome.setSummary(getString(R.string.donate_me_summary));
         donatetome.setOnItemClickListener(item -> {
-            Dialog donate_to_me = new Dialog(requireActivity());
-            donate_to_me.setIcon(R.mipmap.ic_launcher);
-            donate_to_me.setTitle(getString(R.string.donate_me));
-            donate_to_me.setMessage(getString(R.string.donate_me_message));
-            donate_to_me.setNeutralButton(getString(R.string.donate_nope), (dialogInterface, i) -> {
-            });
-            donate_to_me.setPositiveButton(getString(R.string.donate_yes), (dialog1, id1) -> {
-                Utils.launchUrl(getRootView(),"https://www.paypal.me/menacherry", getActivity());
-            });
-            donate_to_me.show();
+            Utils.launchUrl(getRootView(),"https://smartpack.github.io/donation/", getActivity());
         });
 
         DescriptionView share = new DescriptionView();
