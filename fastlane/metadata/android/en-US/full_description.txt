@@ -33,6 +33,10 @@ Your device must be <i>ROOTED</i> to use this app. Otherwise, please don't bothe
 - Also compatible with any devices and kernels.
 - And much more…
 
+<b>Translations</b>
+
+Please help me to translate this application via <a href='https://poeditor.com/join/project?hash=qWFlVfAlp5'>POEditor</a>. You may also translate after downloading the original language string available <a href='https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/app/src/main/res/values/strings.xml'>GitHub</a>.
+
 <b>Please Note</b>
 
 * SmartPack-Kernel Manager contains its own auto-update implementation, which is only available for installation from GitHub release page (and consequently, for IzzyOnDroid). In that case, APK files provided by the developer is directly acquired from the official GitHub release page.

@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Updated Boeffla for some devices.\n - Temporarily fix storage related issues on Android 11.\n - Update Simplified Chinese translation.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v15.9/com.smartpack.kernelmanager-v15.9-release.apk",
-  "sha1": "441bf9aac413ef2944cec77cf65a171336afd773",
-  "latestVersion": "15.9",
-  "latestVersionCode": 159
+  "releaseNotes": "Change-logs\n - Hopefully fixed issues on Boeffla sound on some devices.\n - Added POEditor translation link to About page.\n - Updated build tools.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v16.1/com.smartpack.kernelmanager-v16.1-release.apk",
+  "sha1": "2b8e24758eea21616ffd43eccb6af040ad96eb3f",
+  "latestVersion": "16.1",
+  "latestVersionCode": 161
 }

@@ -1,5 +1,9 @@
 # Change-logs
 
+## 140. February 27, 2021
+*Release-tag: beta_v16.1*<br>
+Hopefully fixed issues on Boeffla sound on some devices. Added POEditor translation link to About page. Updated build tools. Miscellaneous changes.
+
 ## 139. February 02, 2021
 *Release-tag: beta_v15.9*<br>
 Updated Boeffla for some devices. Temporarily fix storage related issues on Android 11. Update Simplified Chinese translation. Miscellaneous changes.
