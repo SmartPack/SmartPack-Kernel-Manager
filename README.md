@@ -84,6 +84,8 @@ If you like to appreciate my work, please consider donating to me (either via [P
 * [Spectrum](https://github.com/frap129/spectrum)
 
 #### Translations
+Please help me to translate this application via [POEditor](https://poeditor.com/join/project?hash=qWFlVfAlp5). You may also translate after downloading the original language string available [here](app/src/main/res/values/strings.xml).
+
 * [jason5545](https://github.com/jason5545), Chinese (Traditional)
 * [Roiyaru](https://github.com/Roiyaru), Chinese (simplified)
 * [YFdyh000](https://github.com/yfdyh000), Chinese (simplified)

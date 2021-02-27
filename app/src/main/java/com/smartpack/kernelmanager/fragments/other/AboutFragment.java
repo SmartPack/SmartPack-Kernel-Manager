@@ -279,26 +279,39 @@ public class AboutFragment extends RecyclerViewFragment {
         translator.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_language, requireActivity()));
         translator.setSummary(getString(R.string.translators_message));
         translator.setOnItemClickListener(item -> {
-            new AsyncTask<Void, Void, Void>() {
-                @Override
-                protected void onPreExecute() {
-                    super.onPreExecute();
-                    showProgressMessage(getString(R.string.importing_string) + ("..."));
-                    showProgress();
+            new Dialog(requireActivity()).setItems(getResources().getStringArray(
+                    R.array.translator_options), (dialogInterface, i) -> {
+                switch (i) {
+                    case 0:
+                        Utils.launchUrl(getRootView(), "https://poeditor.com/join/project?hash=qWFlVfAlp5", requireActivity());
+                        break;
+                    case 1:
+                        new AsyncTask<Void, Void, Void>() {
+                            @Override
+                            protected void onPreExecute() {
+                                super.onPreExecute();
+                                showProgressMessage(getString(R.string.importing_string) + ("..."));
+                                showProgress();
+                            }
+
+                            @Override
+                            protected Void doInBackground(Void... voids) {
+                                Utils.importTranslation("values", getActivity());
+                                return null;
+                            }
+
+                            @Override
+                            protected void onPostExecute(Void aVoid) {
+                                super.onPostExecute(aVoid);
+                                hideProgress();
+                                Intent intent = new Intent(requireActivity(), TranslatorActivity.class);
+                                startActivity(intent);
+                            }
+                        }.execute();
+                        break;
                 }
-                @Override
-                protected Void doInBackground(Void... voids) {
-                    Utils.importTranslation("values", getActivity());
-                    return null;
-                }
-                @Override
-                protected void onPostExecute(Void aVoid) {
-                    super.onPostExecute(aVoid);
-                    hideProgress();
-                    Intent intent = new Intent(requireActivity(), TranslatorActivity.class);
-                    startActivity(intent);
-                }
-            }.execute();
+            }).setOnDismissListener(dialogInterface -> {
+            }).show();
         });
 
         translatorCard.addItem(translator);
