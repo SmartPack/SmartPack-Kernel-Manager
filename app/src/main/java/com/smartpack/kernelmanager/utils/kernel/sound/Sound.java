@@ -90,6 +90,7 @@ public class Sound {
     private final List<String> mFlarLimits = new ArrayList<>();
     private final List<String> mFlarHpLimits = new ArrayList<>();
     private final List<String> mBoefflaLimits = new ArrayList<>();
+    private final List<String> mBoefflaLimitsSMDK4X12 = new ArrayList<>();
     private final List<String> mBoefflaEPLimits = new ArrayList<>();
     private final List<String> mBoefflaMICLimits = new ArrayList<>();
     private final List<String> mFauxLimits = new ArrayList<>();
@@ -113,6 +114,9 @@ public class Sound {
         }
         for (int i = -30; i < 31; i++) {
             mBoefflaLimits.add(String.valueOf(i));
+        }
+        for (int i = 0; i < 64; i++) {
+            mBoefflaLimitsSMDK4X12.add(String.valueOf(i));
         }
         for (int i = -10; i < 21; i++) {
             mBoefflaEPLimits.add(String.valueOf(i));
@@ -345,6 +349,11 @@ public class Sound {
             case SPEAKER_FLAR:
                 return mFlarLimits;
             case BOEFFLA_SPEAKER:
+                if (isSMDK4X12()) {
+                    return mBoefflaLimitsSMDK4X12;
+                } else {
+                    return mBoefflaLimits;
+                }
             case BOEFFLA_HP:
                 return mBoefflaLimits;
             case BOEFFLA_EP:
