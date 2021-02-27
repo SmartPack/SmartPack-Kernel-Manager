@@ -230,13 +230,8 @@ public class SoundFragment extends RecyclerViewFragment {
 
 		if (mSound.hasboefflaspeaker()) {
 			speakerGain.setTitle(getString(R.string.speaker_gain));
-			if (Sound.isSMDK4X12()) {
-				speakerGain.setMax(63);
-				speakerGain.setProgress(Utils.strToInt(mSound.getboefflaspeaker()));
-			} else {
-				speakerGain.setItems(mSound.getBoefflaLimits());
-				speakerGain.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflaspeaker()));
-			}
+			speakerGain.setItems(mSound.getBoefflaLimits());
+			speakerGain.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflaspeaker()));
 			speakerGain.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 				@Override
 				public void onStop(SeekBarView seekBarView, int position, String value) {
