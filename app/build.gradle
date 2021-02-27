@@ -18,8 +18,8 @@ android {
         applicationId "com.smartpack.kernelmanager.release"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 160
-        versionName "16.0"
+        versionCode 162
+        versionName "16.2"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -54,7 +54,7 @@ dependencies {
     implementation 'com.github.ozodrukh:CircularReveal:1.3.1'
     implementation 'com.github.topjohnwu.libsu:core:3.0.2'
     implementation 'com.google.android.apps.dashclock:dashclock-api:2.0.0'
-    implementation 'com.google.android.material:material:1.3.0-rc01'
+    implementation 'com.google.android.material:material:1.3.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'org.adw.library:discrete-seekbar:1.0.1'
     implementation 'org.cyanogenmod:platform.sdk:6.0'

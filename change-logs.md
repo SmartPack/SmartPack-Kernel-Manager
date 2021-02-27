@@ -1,23 +1,27 @@
 # Change-logs
 
+## 120. February 27, 2021
+*Release-tag: v16.2*<br>
+Hopefully fixed issues on Boeffla sound on some devices. Added POEditor translation link to About page. Updated build tools. Miscellaneous changes.
+
 ## 119. February 02, 2021
-*Release-tag: beta_v16.0*<br>
+*Release-tag: v16.0*<br>
 Updated terminal page. Updated Boeffla for some devices. Updated build tools and dependencies. Update Simplified Chinese translation. Miscellaneous changes.
 
 ## 118. December 30, 2020
-*Release-tag: beta_v15.7*<br>
+*Release-tag: v15.7*<br>
 Updated CPU Cluster Control. Fixed layout issues on CPU Boost & Overall Activities. Slightly updated cardview corner. Added more options to Overall page. Visually improved FAQ page. Fixed Translator crashing on certain situations. Miscellaneous changes.
 
 ## 117. December 20, 2020
-*Release-tag: beta_v15.3*<br>
+*Release-tag: v15.3*<br>
 Hopefully fixed crashes on some devices (sorry for the issue). Updated google.android.material library to latest beta.
 
 ## 116. December 19, 2020
-*Release-tag: beta_v15.0*<br>
+*Release-tag: v15.0*<br>
 Enhance Overall page UI. Fixed (hopefully) Adreno idler status not showing properly on some devices. Improved Script and Profile details view. Improved Terminal and Translator pages. Miscellaneous changes.
 
 ## 115. December 05, 2020
-*Release-tag: beta_v14.7*<br>
+*Release-tag: v14.7*<br>
 Updated to use Magisk BusyBox binaries (if available) as much as possible. Largely improved flasher (now show real-time output + correct flashing status). Scripts and Terminal now onwards display outputs in real-time. App now uses material elements as much as possible (please feel free to share your comments). Updated to use accent color (for texts) in many places. Fixed bug on sharing custom controller. Moved internal update (app update and kernel update) files into internal data storage folder. Miscellaneous changes.
 
 ## 114. November 11, 2020
