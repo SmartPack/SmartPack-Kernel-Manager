@@ -1141,7 +1141,9 @@
     <string name="commits">%d commits</string>
     <string name="no_internet">Please check your internet connection!</string>
     <string name="translators">Translators</string>
-    <string name="translators_message">Want to use this app in your language! Then, click here to start translating using the in-built translator!</string>
+    <string name="translators_inbuilt">In-built Translator</string>
+    <string name="translators_message">Want to use this app in your language! Then, click here to start translating using POEditor localization service or the in-built translator!</string>
+    <string name="translators_poeditor">POEditor Localization Service</string>
 
     <!-- Translator -->
     <string name="edit_string_warning">This string contains some special characters! Please be careful.</string>
