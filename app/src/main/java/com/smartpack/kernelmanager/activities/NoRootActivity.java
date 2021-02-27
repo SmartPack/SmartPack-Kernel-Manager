@@ -62,6 +62,6 @@ public class NoRootActivity extends BaseActivity {
     }
 
     private void launchBBI() {
-        Utils.launchUrl(findViewById(android.R.id.content), "https://play.google.com/store/apps/details?id=com.smartpack.busyboxinstaller", this);
+        Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.busyboxinstaller", this);
     }
 }

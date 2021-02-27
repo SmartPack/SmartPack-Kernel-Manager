@@ -40,6 +40,7 @@ import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
+import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -123,7 +124,7 @@ public class AboutFragment extends RecyclerViewFragment {
         support.setDrawable(getResources().getDrawable(R.drawable.ic_support));
         support.setTitle(getString(R.string.support));
         support.setSummary(getString(R.string.support_summary));
-        support.setOnItemClickListener(item -> Utils.launchUrl(getRootView(), "https://t.me/smartpack_kmanager", getActivity()));
+        support.setOnItemClickListener(item -> Utils.launchUrl("https://t.me/smartpack_kmanager", getActivity()));
 
         DescriptionView licence = new DescriptionView();
         licence.setDrawable(getResources().getDrawable(R.drawable.ic_gpl));
@@ -138,13 +139,13 @@ public class AboutFragment extends RecyclerViewFragment {
         sourcecode.setDrawable(getResources().getDrawable(R.drawable.ic_source));
         sourcecode.setTitle(getString(R.string.source_code));
         sourcecode.setSummary(getString(R.string.source_code_summary));
-        sourcecode.setOnItemClickListener(item -> Utils.launchUrl(getRootView(), "https://github.com/SmartPack/SmartPack-Kernel-Manager", requireActivity()));
+        sourcecode.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager", requireActivity()));
 
         DescriptionView changelogs = new DescriptionView();
         changelogs.setDrawable(getResources().getDrawable(R.drawable.ic_changelog));
         changelogs.setTitle(getString(R.string.change_logs));
         changelogs.setSummary(getString(R.string.change_logs_summary));
-        changelogs.setOnItemClickListener(item -> Utils.launchUrl(getRootView(), "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/change-logs.md", getActivity()));
+        changelogs.setOnItemClickListener(item -> Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/change-logs.md", getActivity()));
 
         DescriptionView playstore = new DescriptionView();
         playstore.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
@@ -155,7 +156,7 @@ public class AboutFragment extends RecyclerViewFragment {
                 Utils.snackbar(getRootView(), getString(R.string.no_internet));
                 return;
             }
-            Utils.launchUrl(getRootView(), "https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release", requireActivity());
+            Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release", requireActivity());
         });
 
         DescriptionView donatetome = new DescriptionView();
@@ -205,7 +206,7 @@ public class AboutFragment extends RecyclerViewFragment {
         DescriptionView Grarak = new DescriptionView();
         Grarak.setDrawable(getResources().getDrawable(R.drawable.ic_grarak));
         Grarak.setSummary(getString(R.string.grarak_summary));
-        Grarak.setOnItemClickListener(item -> Utils.launchUrl(getRootView(), "https://github.com/Grarak", getActivity()));
+        Grarak.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/Grarak", getActivity()));
 
         GrarakCard.addItem(Grarak);
         items.add(GrarakCard);
@@ -217,7 +218,7 @@ public class AboutFragment extends RecyclerViewFragment {
         DescriptionView osm0sis = new DescriptionView();
         osm0sis.setDrawable(getResources().getDrawable(R.drawable.ic_osm0sis));
         osm0sis.setSummary(getString(R.string.osm0sis_summary));
-        osm0sis.setOnItemClickListener(item -> Utils.launchUrl(getRootView(), "https://github.com/osm0sis", getActivity()));
+        osm0sis.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/osm0sis", getActivity()));
 
         osm0sisCard.addItem(osm0sis);
         items.add(osm0sisCard);
@@ -259,7 +260,7 @@ public class AboutFragment extends RecyclerViewFragment {
             }
             descriptionView.setTitle(lib.split(",")[1]);
             descriptionView.setSummary(lib.split(",")[0]);
-            descriptionView.setOnItemClickListener(item -> Utils.launchUrl(getRootView(), sCredits.get(lib), getActivity()));
+            descriptionView.setOnItemClickListener(item -> Utils.launchUrl(sCredits.get(lib), getActivity()));
 
             items.add(descriptionView);
         }
@@ -282,7 +283,7 @@ public class AboutFragment extends RecyclerViewFragment {
                     R.array.translator_options), (dialogInterface, i) -> {
                 switch (i) {
                     case 0:
-                        Utils.launchUrl(getRootView(), "https://poeditor.com/join/project?hash=qWFlVfAlp5", requireActivity());
+                        Utils.launchUrl("https://poeditor.com/join/project?hash=qWFlVfAlp5", requireActivity());
                         break;
                     case 1:
                         new AsyncTask<Void, Void, Void>() {
@@ -355,7 +356,7 @@ public class AboutFragment extends RecyclerViewFragment {
             }
             descriptionView.setTitle(lib.split(",")[1]);
             descriptionView.setSummary(lib.split(",")[0]);
-            descriptionView.setOnItemClickListener(item -> Utils.launchUrl(getRootView(), sTranslations.get(lib), getActivity()));
+            descriptionView.setOnItemClickListener(item -> Utils.launchUrl(sTranslations.get(lib), getActivity()));
 
             items.add(descriptionView);
         }

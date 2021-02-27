@@ -50,7 +50,7 @@ public class TextActivity extends BaseActivity {
             findViewById(R.id.help_fab).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Utils.launchUrl(findViewById(android.R.id.content), url, TextActivity.this);
+                    Utils.launchUrl(url, TextActivity.this);
                 }
             });
     }

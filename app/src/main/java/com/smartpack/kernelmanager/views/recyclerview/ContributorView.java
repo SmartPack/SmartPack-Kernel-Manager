@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.views.recyclerview;
 
+import android.app.Activity;
 import android.view.View;
 
 import androidx.appcompat.widget.AppCompatImageView;
@@ -57,7 +58,7 @@ public class ContributorView extends RecyclerViewItem {
         name.setText(mContributor.getLogin());
         contributions.setText(view.getResources().getString(R.string.commits, mContributor.getContributions()));
 
-        view.setOnClickListener(v -> Utils.launchUrl(view, mContributor.getHtmlUrl(), v.getContext()));
+        view.setOnClickListener(v -> Utils.launchUrl(mContributor.getHtmlUrl(), (Activity) v.getContext()));
     }
 
 }

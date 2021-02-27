@@ -36,7 +36,6 @@ import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.ApplyScriptActivity;
 import com.smartpack.kernelmanager.activities.EditorActivity;
 import com.smartpack.kernelmanager.activities.ForegroundActivity;
-import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.fragments.SwitcherFragment;
@@ -250,7 +249,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 sm.setSummary(getString(R.string.scripts_manager_message));
                 sm.setFullSpan(true);
                 sm.setOnItemClickListener(item -> {
-                    Utils.launchUrl(getRootView(), "https://play.google.com/store/apps/details?id=com.smartpack.scriptmanager", getActivity());
+                    Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.scriptmanager", getActivity());
                 });
                 items.add(sm);
             }
