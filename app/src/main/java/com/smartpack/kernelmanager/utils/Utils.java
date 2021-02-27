@@ -430,15 +430,15 @@ public class Utils {
         snackBar.show();
     }
 
-    public static void launchUrl(View view, String url, Context context) {
-        if (!isNetworkAvailable(context)) {
-            snackbar(view, context.getString(R.string.no_internet));
+    public static void launchUrl(String url, Activity activity) {
+        if (!isNetworkAvailable(activity)) {
+            snackbar(activity.findViewById(android.R.id.content), activity.getString(R.string.no_internet));
             return;
         }
         try {
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
-            context.startActivity(i);
+            activity.startActivity(i);
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
         }

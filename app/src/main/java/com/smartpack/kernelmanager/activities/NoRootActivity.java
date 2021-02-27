@@ -46,7 +46,7 @@ public class NoRootActivity extends BaseActivity {
         LinearLayout bbi = findViewById(R.id.bbi);
         MaterialTextView mainTitle = findViewById(R.id.title_main);
         MaterialTextView mainMessage = findViewById(R.id.message_main);
-        bbi.setOnClickListener(v -> Utils.launchUrl(bbi, "https://play.google.com/store/apps/details?id=com.smartpack.busyboxinstaller", this));
+        bbi.setOnClickListener(v -> Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.busyboxinstaller", this));
         if (Utils.mHasRoot && !Utils.mHasBusybox) {
             bbi.setVisibility(View.VISIBLE);
             mainTitle.setText(getString(R.string.no_busybox));

@@ -20,7 +20,6 @@
 package com.smartpack.kernelmanager.activities;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 
@@ -47,12 +46,7 @@ public class TextActivity extends BaseActivity {
         if (message != null)
             ((MaterialTextView) findViewById(R.id.message_text)).setText(message);
         if (url != null)
-            findViewById(R.id.help_fab).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Utils.launchUrl(findViewById(android.R.id.content), url, TextActivity.this);
-                }
-            });
+            findViewById(R.id.help_fab).setOnClickListener(v -> Utils.launchUrl(url, TextActivity.this));
     }
 
 }
