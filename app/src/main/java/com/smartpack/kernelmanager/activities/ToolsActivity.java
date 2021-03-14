@@ -31,7 +31,6 @@ import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.tools.BackupFragment;
 import com.smartpack.kernelmanager.fragments.tools.BuildpropFragment;
 import com.smartpack.kernelmanager.fragments.tools.CustomControlsFragment;
-import com.smartpack.kernelmanager.fragments.tools.ProfileFragment;
 import com.smartpack.kernelmanager.fragments.tools.ScriptMangerFragment;
 import com.smartpack.kernelmanager.fragments.tools.SmartPackFragment;
 import com.smartpack.kernelmanager.utils.tools.Backup;
@@ -58,7 +57,6 @@ public class ToolsActivity extends BaseActivity {
             adapter.AddFragment(new BackupFragment(), getString(R.string.backup));
         }
         adapter.AddFragment(new BuildpropFragment(), getString(R.string.build_prop_editor));
-        adapter.AddFragment(new ProfileFragment(), getString(R.string.profile));
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
     }

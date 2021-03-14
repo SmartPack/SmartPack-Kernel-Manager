@@ -229,7 +229,6 @@ public class NavigationActivity extends BaseActivity
         }
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.misc, MiscFragment.class, R.drawable.ic_clear));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.tools));
-        mFragments.add(new NavigationActivity.NavigationFragment(R.string.profile, ProfileFragment.class, R.drawable.ic_layers));
         if (Backup.hasBackup()) {
             mFragments.add(new NavigationActivity.NavigationFragment(R.string.backup, BackupFragment.class, R.drawable.ic_restore));
         }
@@ -239,6 +238,7 @@ public class NavigationActivity extends BaseActivity
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.smartpack, SmartPackFragment.class, R.drawable.ic_flash));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.on_boot, OnBootFragment.class, R.drawable.ic_start));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.other));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.profile, ProfileFragment.class, R.drawable.ic_layers));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.settings, SettingsFragment.class, R.drawable.ic_settings));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.contributors, ContributorsFragment.class, R.drawable.ic_people));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.faq, FAQFragment.class, R.drawable.ic_help));
