@@ -30,6 +30,7 @@ import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Device;
+import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.kernel.cpu.boost.CPUBoost;
@@ -102,6 +103,8 @@ public class CPUFragment extends RecyclerViewFragment {
         if (mGovernorTunableErrorDialog != null) {
             mGovernorTunableErrorDialog.show();
         }
+
+        showCPUNotes();
     }
 
     @Override
@@ -525,6 +528,19 @@ public class CPUFragment extends RecyclerViewFragment {
 
         if (msmLimiter.size() > 0) {
             items.add(msmLimiter);
+        }
+    }
+
+    private void showCPUNotes() {
+        if (Prefs.getBoolean("cpuNotes", true, requireActivity())) {
+            new Dialog(requireActivity())
+                    .setIcon(R.mipmap.ic_launcher)
+                    .setTitle(getString(R.string.warning))
+                    .setMessage(getString(R.string.cpu_note))
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.got_it, (dialog, id) -> {
+                        Prefs.saveBoolean("cpuNotes", false, requireActivity());
+                    }).show();
         }
     }
 

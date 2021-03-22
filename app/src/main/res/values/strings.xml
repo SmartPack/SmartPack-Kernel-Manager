@@ -144,6 +144,7 @@
     <string name="handlers">Handlers</string>
 
     <!-- CPU -->
+    <string name="cpu_note">Please note that some features on this page, such as CPU Cores and Frequency control, are largely controlled by system processes. As a result, changes made on this page may not persist on many devices.</string>
     <string name="cores_singular">%d core</string>
     <string name="cores">%d cores</string>
     <string name="cpu_usage">CPU Usage</string>
