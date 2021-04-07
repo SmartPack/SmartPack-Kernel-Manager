@@ -25,13 +25,16 @@ Your device must be <i>ROOTED</i> to use this app. Otherwise, please don't bothe
 - Display Backlight Control (Min & Max).
 - Switches to tweak SELinux, Android Doze mode and PrintK logging.
 - WireGuard version information.
-- Auto-updates (in *About* page).
 - Real-time Charging Status.
 - RAM & Swap Status.
 - LED Blink/Fade support.
 - Dedicated Frequently Asked Questions (FAQ) section.
 - Also compatible with any devices and kernels.
 - And much more…
+
+<b>Translations</b>
+
+Please help me to translate this application via <a href='https://poeditor.com/join/project?hash=qWFlVfAlp5'>POEditor</a>. You may also translate after downloading the original language string available <a href='https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/app/src/main/res/values/strings.xml'>GitHub</a>.
 
 <b>Please Note</b>
 
