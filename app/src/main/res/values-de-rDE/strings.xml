@@ -1011,7 +1011,7 @@
     <string name="reset_settings_message">"Appeinstellungen werden gelöscht. Bist du sicher?"</string>
     <string name="unknown_link">"Noch nicht vom Entwickler zu Verfügung gestellt!"</string>
     <string name="remove">"Entfernen"</string>
-    <string name="share_channel_message">"Um den Update Kanal zu konfigurieren, einfach '%s' eingeben bei SmartPack-Kernel Manager -> SmartPack -> Update Kanal Url.\n\nHole SmartPack-Kernel Manager vom PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release"</string>
+    <string name="share_channel_message">"Um den Update Kanal zu konfigurieren, einfach '%s' eingeben bei SmartPack-Kernel Manager -> SmartPack -> Update Kanal Url.\n\nHole SmartPack-Kernel Manager vom"</string>
     <string name="busybox_installer">"BusyBox Installer"</string>
     <string name="busybox_installer_summary">"Es wird empfohlen eine eingenständige Installation von BusyBox zu haben für Funktionen wie (z.B.: 'unzip' &amp; 'mke2fs' zum flashen &amp; 'curl' oder 'wget' für Kernel OTA Updates). Um Nutzer bei dem Problem zu helfen gibt es eine App die BusyBox mit einem Klick istalliert für arm, arm64 und x86 Geräte. Klicke hier um sie zu bekommen!"</string>
     <string name="download_failed">"Es scheint das der Download fehlgeschlagen ist oder die Datei beschädigt!"</string>
@@ -1115,13 +1115,13 @@
     <string name="licence_summary">"Betrachte GPL V3"</string>
     <string name="share_app">"App teilen"</string>
     <string name="share_app_summary">"Diese App mit Freunden teilen"</string>
-    <string name="share_app_message">"Hol SmartPack-Kernel Manager %s vom PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release"</string>
+    <string name="share_app_message">"Hol SmartPack-Kernel Manager %s vom"</string>
     <string name="grarak">"Willi Ye"</string>
     <string name="grarak_summary">"Die Person hinter 'Kernel Adiutor', der Vorgänger von SmartPack-Kernel Manager. Ohne ihn wäre dieses Projekt nicht entstanden. Großen \u2665 &amp; Respect an ihn, nicht nur für die harte Arbeit an Kernel Adiutor, aber auch das es open-source gestellt wurde."</string>
     <string name="osm0sis">"Chris Renshaw"</string>
     <string name="osm0sis_summary">"Der Entwickler des berühmten 'AnyKernel3' Projekts. Ohne seine zeitnahe Unterstützung und Betreuung hätte es das auto-flashing Feature dieser App nicht geben."</string>
 
-    <!-- Contributors -->
+    <!-- Billing -->
     <string name="commits">"%d commits"</string>
     <string name="no_internet">"Überprüfe deine Internetverbindung!"</string>
     <string name="translators">"Übersetzer"</string>

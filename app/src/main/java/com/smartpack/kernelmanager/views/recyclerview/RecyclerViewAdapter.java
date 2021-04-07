@@ -30,6 +30,7 @@ import com.google.android.material.card.MaterialCardView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Prefs;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +38,7 @@ import java.util.Map;
 /**
  * Created by willi on 17.04.16.
  */
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ItemTouchHelperAdapter {
 
     public interface OnViewChangedListener {
         void viewChanged();
@@ -54,9 +55,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         RecyclerViewItem item = mItems.get(position);
-        item.onCreateView(holder.itemView);
+        if (item != null) {
+            item.onCreateView(holder.itemView);
+        }
     }
 
     @Override
@@ -106,13 +109,73 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         };
     }
 
+    /**
+     * Not quite sure why but returning 1 prevents
+     * "halting" the drag event
+     * @see <a href="https://stackoverflow.com/questions/38666255/itemtouchhelper-the-drop-is-forced-after-the-first-jumped-line">here</a>
+     *
+     * "Not returning {@param position}". I stand corrected.
+     * So this is pretty much a TODO
+     */
     @Override
     public int getItemViewType(int position) {
+        if (containsDraggableView()) {
+            return 1;
+        }
         return position;
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+        try {
+            RecyclerViewItem item = mItems.get(position);
+
+            mViews.remove(item);
+            mItems.remove(position);
+            notifyItemRemoved(position);
+
+            if (item instanceof SwipeableDescriptionView) {
+                ((SwipeableDescriptionView) item).getOnItemSwipedListener()
+                        .onItemSwiped(item, position);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(mItems, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(mItems, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+        RecyclerViewItem item = mItems.get(toPosition);
+
+        if (item instanceof SwipeableDescriptionView) {
+            ((SwipeableDescriptionView) item).getOnItemDragListener()
+                    .onItemDrag(item, fromPosition, toPosition);
+        }
+        return true;
     }
 
     public View getFirstItem() {
         return mFirstItem;
+    }
+
+    private boolean containsDraggableView() {
+        for (RecyclerViewItem item : mItems) {
+            if (item instanceof SwipeableDescriptionView) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -27,6 +27,7 @@ import android.text.InputType;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
+import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.misc.Misc;
 import com.smartpack.kernelmanager.utils.kernel.misc.PowerSuspend;
 import com.smartpack.kernelmanager.utils.kernel.misc.Vibration;
@@ -64,7 +65,8 @@ public class MiscFragment extends RecyclerViewFragment {
 		if (mVibration.supported() || mMisc.hasLoggerEnable() || Misc.hasPrintKMode() || mMisc.hasCrc()
 				|| mMisc.hasFsync() || mMisc.hasDynamicFsync() || mMisc.hasGentleFairSleepers() || mMisc.hasArchPower()
 				|| mMisc.hasHapticOverride() || Misc.hasHapticUser() || Misc.hasHapticsNotification()
-				|| Misc.hasHapticsCall()) {
+				|| Misc.hasHapticsCall() || Misc.hasLeases() || Misc.hasLeaseBreakTime()
+				|| Misc.hasSELinux() || Misc.hasDoze()) {
 			miscInit(items);
 		}
 		if (PowerSuspend.supported()) {
@@ -308,7 +310,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			miscCard.addItem(archPower);
 		}
 
-		if (mMisc.hasLeases()) {
+		if (Misc.hasLeases()) {
 			SwitchView enable = new SwitchView();
 			enable.setTitle(getString(R.string.leases_enable));
 			enable.setSummary(getString(R.string.leases_enable_summary));
@@ -340,6 +342,38 @@ public class MiscFragment extends RecyclerViewFragment {
 			});
 
 			miscCard.addItem(leaseBreakTime);
+		}
+
+		if (Misc.hasSELinux()) {
+			SelectView SELinux = new SelectView();
+			SELinux.setTitle(getString(R.string.selinux));
+			SELinux.setSummary(getString(R.string.selinux_summary));
+			SELinux.setItems(Misc.seLinux(requireActivity()));
+			SELinux.setItem(Misc.getSELinux());
+			SELinux.setOnItemSelected((selectView, position, item) -> {
+				mMisc.setSELinux(position, getActivity());
+				getHandler().postDelayed(() -> SELinux.setItem(Misc.getSELinux()),
+						500);
+			});
+
+			if (Utils.isFDroidFlavor(requireActivity())) {
+				miscCard.addItem(SELinux);
+			}
+		}
+
+		if (Misc.hasDoze()) {
+			SwitchView doze = new SwitchView();
+			doze.setTitle(getString(R.string.doze));
+			doze.setSummary(getString(R.string.doze_summary));
+			doze.setChecked(Misc.isDozeEnabled());
+			doze.addOnSwitchListener((switchView, isChecked)
+					-> mMisc.enableDoze(isChecked, requireActivity()));
+			getHandler().postDelayed(() -> doze.setChecked(Misc.isDozeEnabled()),
+					500);
+
+			if (Utils.isFDroidFlavor(requireActivity())) {
+				miscCard.addItem(doze);
+			}
 		}
 
 		SwitchView userSync = new SwitchView();

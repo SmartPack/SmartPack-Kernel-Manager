@@ -21,7 +21,7 @@
     <string name="unknown">未知</string>
     <string name="warning">警告</string>
     <string name="apply_on_boot">開機後自動套用</string>
-    <string name="apply_on_boot_text">設定值將於 %d 秒後套用...</string>
+    <string name="apply_on_boot_text">設定值將於 %d 秒後套用…</string>
     <string name="apply_on_boot_complete">設定值套用 成功！</string>
     <string name="apply_on_boot_canceled">設定值套用 已取消。</string>
     <string name="not_in_range">不在有效的範圍內</string>
@@ -763,6 +763,8 @@
     <string name="leases_enable_summary">在系統範圍內啟用或停用檔案租用</string>
     <string name="lease_break_time">中斷租用時間</string>
     <string name="lease_break_time_summary">核心授予持有檔案租用的處理程序在向該處理程序傳送信號後授予該處理程序的寬限期, 通知它另一個處理程序正在等待開啟該檔案。</string>
+    <string name="doze">Doze 模式</string>
+    <string name="doze_summary">啟用 Doze 模式，當您的裝置處於待機狀態時，防止某些任務在後臺執行。 </string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">性能調整</string>
@@ -912,7 +914,7 @@
     <string name="purchase_app">購買應用程式</string>
     <string name="licence">授權協議</string>
 
-    <!-- Contributors -->
+    <!-- Billing -->
     <string name="commits">%d 提交</string>
     <string name="no_internet">請檢查您的網際網路連線！</string>
     <string name="translators">翻譯人員</string>

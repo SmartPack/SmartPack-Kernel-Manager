@@ -217,7 +217,9 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                 shareChannel.setAction(Intent.ACTION_SEND);
                                 shareChannel.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
                                 shareChannel.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_channel_message,
-                                        Utils.readFile(requireActivity().getFilesDir().getPath() + "/updatechannel")));
+                                        Utils.readFile(requireActivity().getFilesDir().getPath() + "/updatechannel")) + (Utils
+                                        .isFDroidFlavor(requireActivity()) ? " F-Droid: https://f-droid.org/packages/com.smartpack.kernelmanager" :
+                                        " Google Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release"));
                                 shareChannel.setType("text/plain");
                                 Intent shareIntent = Intent.createChooser(shareChannel, null);
                                 startActivity(shareIntent);

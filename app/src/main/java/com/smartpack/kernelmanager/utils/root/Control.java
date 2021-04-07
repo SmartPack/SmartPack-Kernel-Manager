@@ -55,6 +55,10 @@ public class Control {
         return setProp("ctl.stop", prop) + ";stop " + prop;
     }
 
+    public static String runShellCommand(String command) {
+        return command;
+    }
+
     public static String write(String text, String path) {
         return "echo '" + text + "' > " + path;
     }

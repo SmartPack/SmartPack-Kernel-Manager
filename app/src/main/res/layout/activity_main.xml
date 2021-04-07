@@ -54,6 +54,14 @@
                 android:padding="20dp"
                 android:text="@string/collecting_info" />
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/info_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:visibility="gone"
+                android:text="@string/check_update" />
+
         </LinearLayout>
         <ProgressBar
             style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"

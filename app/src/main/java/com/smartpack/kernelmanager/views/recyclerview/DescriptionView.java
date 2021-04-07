@@ -86,11 +86,13 @@ public class DescriptionView extends RecyclerViewItem {
         if(mGrxIsInitSelected) this.setTextColor(mGrxColor);
 
         mMenuIconView = view.findViewById(R.id.menu_button);
-        mMenuIconView.setOnClickListener(v -> {
-            if (mPopupMenu != null) {
-                mPopupMenu.show();
-            }
-        });
+        if (mMenuIconView != null) {
+            mMenuIconView.setOnClickListener(v -> {
+                if (mPopupMenu != null) {
+                    mPopupMenu.show();
+                }
+            });
+        }
 
         super.onCreateView(view);
     }

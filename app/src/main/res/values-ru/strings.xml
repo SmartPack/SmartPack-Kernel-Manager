@@ -836,6 +836,8 @@
     <string name="wireguard">"WireGuard VPN"</string>
     <string name="leases_enable_summary">"Включение или отключение аренды файлов в масштабе всей системы"</string>
     <string name="lease_break_time_summary">"Льготный период, который ядро предоставляет процессу, удерживающему аренду файла, после того, как оно отправило этому процессу сигнал, уведомляющий его о том, что другой процесс ожидает открытия файла."</string>
+    <string name="doze">Режим Doze</string>
+    <string name="doze_summary">Включите режим Doze, чтобы запретить выполнение определенных задач, если ваше устройство находится в режиме ожидания.</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">"Твики производительности"</string>
@@ -989,7 +991,7 @@
     <string name="reset_settings_message">"Настройки приложения будут полностью удалены.\n\nВы уверены?"</string>
     <string name="unknown_link">"Разработчик не предусмотрел еще!"</string>
     <string name="remove">"Удалить"</string>
-    <string name="share_channel_message">"Чтобы настроить этот канал обновление, просто введите '%s' в SmartPack-Kernel Manager -&gt; SmartPack -&gt; Канал обновления ядра\n\nВам SmartPack-ядра диспетчер\nОшибка: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release"</string>
+    <string name="share_channel_message">"Чтобы настроить этот канал обновление, просто введите '%s' в SmartPack-Kernel Manager -&gt; SmartPack -&gt; Канал обновления ядра\n\nВам SmartPack-ядра диспетчер"</string>
     <string name="busybox_installer">"Установшик BusyBox"</string>
     <string name="busybox_installer_summary">"Настоятельно рекомендуется иметь установку BusyBox на вашем устройстве, чтобы правильно работать с некоторыми функциями этого приложения (например, 'unzip' &amp; 'mke2fs' binaries for flashing &amp; 'curl' или 'wget' binary for kernel OTA updates). В качестве попытки помочь пользователям в этом вопросе доступно простое приложение, которое можно использовать в качестве утилиты установки BusyBox в один клик для устройств arm, arm64 и x86. Нажмите здесь, чтобы получить его!"</string>
     <string name="download_failed">"Похоже, скачать не удалось, или скачали поврежденный файл!"</string>
@@ -1082,7 +1084,7 @@
     <string name="osm0sis">"Крис Реншоу"</string>
     <string name="osm0sis_summary">"Девелопер проекта известный 'AnyKernel3'. Без его своевременной помощи и руководства, обновление на это приложение не будет происходить."</string>
 
-    <!-- Contributors -->
+    <!-- Billing -->
     <string name="commits">"Изменения: %d"</string>
     <string name="no_internet">"Пожалуйста, проверьте интернет-соединение!"</string>
     <string name="translators">"Переводчики"</string>

@@ -921,7 +921,7 @@
     <string name="remove">제거</string>
     <string name="download_failed">다운로드가 실패했거나, 손상된 파일이 받아진 것 같습니다!</string>
     <string name="check_update">업데이트 확인</string>
-    <string name="share_channel_message">이 업데이트 채널을 구성하려면, \'%s\' 을(를)  SmartPack-Kernel Manager -> SmartPack -> 업데이트 채널에 입력하여 URL을 업데이트하세요.\n\nSmartPack-Kernel Manager을 아래에서 다운받으세요\n플래이 스토어: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
+    <string name="share_channel_message">이 업데이트 채널을 구성하려면, \'%s\' 을(를)  SmartPack-Kernel Manager -> SmartPack -> 업데이트 채널에 입력하여 URL을 업데이트하세요.\n\nSmartPack-Kernel Manager을 아래에서 다운받으세요</string>
 
     <!-- Update Channel -->
     <string name="update_channel_message">(<i>개발자 모드</i>)\n앱은 이 페이지에 제공된 정보가 일치하다면 여러분의 커널을 위한 업데이트 채널 (json) 을 생성할 것입니다.</string>
@@ -1001,14 +1001,14 @@
     <string name="licence">라이선스</string>
     <string name="share_app">공유하기</string>
     <string name="share_app_summary">이 앱을 여러분의 친구들과 공유하세요</string>
-    <string name="share_app_message">SmartPack-Kernel Manager %s를 아래에서 다운받으세요\n\n플래이 스토어: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
+    <string name="share_app_message">SmartPack-Kernel Manager %s를 아래에서 다운받으세요</string>
     <string name="grarak">Willi Ye</string>
     <string name="grarak_summary">SmartPack-Kernel Manager의 기원인 \'Kernel Adiutor\'의 개발자입니다. 이 프로젝트는 그 없이는 존재하지 않았을 것입니다. 그의 Kernel Adiutor에 대한 노고 뿐만 아니라, 앱을 오픈 소스로 열어둔 것에 대해 큰 \u2665를 보냅니다.</string>
     <string name="osm0sis">Chris Renshaw</string>
     <string name="osm0sis_summary">유명한 \'AnyKernel3\' 프로젝트의 개발자입니다. 그의 기나긴 지원과 인내 없이는, 이 앱의 설치 기능은 존재하지 않았을 것입니다.</string>
 
 
-    <!-- Contributors -->
+    <!-- Billing -->
     <string name="commits">%d 커밋</string>
     <string name="no_internet">인터넷 연결을 확인해주세요!</string>
     <string name="translators">번역가들</string>

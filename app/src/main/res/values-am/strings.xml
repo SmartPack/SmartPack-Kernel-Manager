@@ -1072,7 +1072,7 @@
     <string name="osm0sis">ክሪስ ሬንሻሃ</string>
     <string name="osm0sis_summary">የታዋቂው \'AnyKernel3 \' ፕሮጀክት ገንቢ። ያለ እሱ ወቅታዊ ድጋፍ እና መመሪያ በዚህ መተግበሪያ ላይ ያለው ራስ-ብልጭታ ባህሪይ አይከሰትም።</string>
 
-    <!-- Contributors -->
+    <!-- Billing -->
     <string name="commits">% d ተፈጽሟል</string>
     <string name="no_internet">እባክዎ የበይነመረብ ግንኙነትዎን ይፈትሹ!</string>
     <string name="translators">ተርጓሚዎች</string>

@@ -33,13 +33,13 @@ import androidx.annotation.Nullable;
 
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
-import com.smartpack.kernelmanager.activities.BillingActivity;
 import com.smartpack.kernelmanager.activities.LicenceActivity;
 import com.smartpack.kernelmanager.activities.TranslatorActivity;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
+import com.smartpack.kernelmanager.utils.other.Billing;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -111,7 +111,7 @@ public class AboutFragment extends RecyclerViewFragment {
         DescriptionView versioninfo = new DescriptionView();
         versioninfo.setDrawable(getResources().getDrawable(R.drawable.ic_on_boot_notification));
         versioninfo.setTitle(getString(R.string.version));
-        versioninfo.setSummary((Utils.isDonated(requireActivity()) ? " Pro v" : "v") + BuildConfig.VERSION_NAME);
+        versioninfo.setSummary((Utils.isDonated(requireActivity()) ? " Pro " : " ") + BuildConfig.VERSION_NAME);
         versioninfo.setOnItemClickListener(item -> {
             Intent settings = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
             settings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -145,28 +145,33 @@ public class AboutFragment extends RecyclerViewFragment {
         changelogs.setDrawable(getResources().getDrawable(R.drawable.ic_changelog));
         changelogs.setTitle(getString(R.string.change_logs));
         changelogs.setSummary(getString(R.string.change_logs_summary));
-        changelogs.setOnItemClickListener(item -> Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/change-logs.md", getActivity()));
+        changelogs.setOnItemClickListener(item -> new Dialog(requireActivity())
+                .setIcon(R.mipmap.ic_launcher)
+                .setTitle(getString(R.string.app_name) + "\n" + BuildConfig.VERSION_NAME)
+                .setMessage(Utils.getChangelog(getActivity()))
+                .setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
+                })
+                .setPositiveButton(getString(R.string.more), (dialog1, id1) -> Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/change-logs.md", getActivity()))
+                .show());
 
-        DescriptionView playstore = new DescriptionView();
-        playstore.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
-        playstore.setTitle(getString(R.string.playstore));
-        playstore.setSummary(getString(R.string.playstore_summary));
-        playstore.setOnItemClickListener(item -> {
+        DescriptionView appStore = new DescriptionView();
+        appStore.setDrawable(getResources().getDrawable(Utils.isFDroidFlavor(requireActivity()) ? R.drawable.ic_fdroid : R.drawable.ic_playstore));
+        appStore.setTitle(getString(Utils.isFDroidFlavor(requireActivity()) ? R.string.fdroid : R.string.playstore));
+        appStore.setSummary(getString(Utils.isFDroidFlavor(requireActivity()) ? R.string.fdroid_summary : R.string.playstore_summary));
+        appStore.setOnItemClickListener(item -> {
             if (!Utils.isNetworkAvailable(requireActivity())) {
                 Utils.snackbar(getRootView(), getString(R.string.no_internet));
                 return;
             }
-            Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release", requireActivity());
+            Utils.launchUrl(Utils.isFDroidFlavor(requireActivity()) ? "https://f-droid.org/packages/com.smartpack.kernelmanager" :
+                    "https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release", requireActivity());
         });
 
         DescriptionView donatetome = new DescriptionView();
         donatetome.setDrawable(getResources().getDrawable(R.drawable.ic_donate));
         donatetome.setTitle(getString(R.string.donations));
         donatetome.setSummary(getString(R.string.donate_me_summary));
-        donatetome.setOnItemClickListener(item -> {
-            Intent intent = new Intent(requireActivity(), BillingActivity.class);
-            startActivity(intent);
-        });
+        donatetome.setOnItemClickListener(item -> Billing.showDonationMenu(requireActivity()));
 
         DescriptionView share = new DescriptionView();
         share.setDrawable(getResources().getDrawable(R.drawable.ic_share));
@@ -176,7 +181,9 @@ public class AboutFragment extends RecyclerViewFragment {
             Intent shareapp = new Intent();
             shareapp.setAction(Intent.ACTION_SEND);
             shareapp.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-            shareapp.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME));
+            shareapp.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_app_message,BuildConfig.VERSION_NAME)
+                    + (Utils.isFDroidFlavor(requireActivity()) ? " F-Droid: https://f-droid.org/packages/com.smartpack.kernelmanager"
+                    : " Google Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release"));
             shareapp.setType("text/plain");
             Intent shareIntent = Intent.createChooser(shareapp, null);
             startActivity(shareIntent);
@@ -190,7 +197,7 @@ public class AboutFragment extends RecyclerViewFragment {
         items.add(sourcecode);
         items.add(donatetome);
         items.add(share);
-        items.add(playstore);
+        items.add(appStore);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

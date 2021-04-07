@@ -869,6 +869,12 @@
     <string name="auto_sync">Auto-Sync Data</string>
     <string name="auto_sync_summary">Allow apps to automatically refresh data.\nPlease Note: It will be applied, irrespective of your on-boot settings.</string>
     <string name="cpuset">CPU Sets</string>
+    <string name="doze">Force Doze</string>
+    <string name="doze_summary">Enable doze mode to prevents certain tasks from running if your device is in idle state.</string>
+    <string name="selinux">SELinux</string>
+    <string name="selinux_summary">Set SELinux state</string>
+    <string name="selinux_permissive">Permissive</string>
+    <string name="selinux_enforcing">Enforcing</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">Performance Tweaks</string>
@@ -976,8 +982,11 @@
 
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">This section shows you what things will happen when your device boots up. If it\'s blank, then nothing will happen after boot.</string>
+    <string name="on_boot_swipe_drag_message">You can swipe left or right to remove a command (not a profile or script)!</string>
     <string name="delete_question">Delete %s?</string>
     <string name="disable_question">Disable %s?</string>
+    <string name="swipe_message">Sorry! You can\'t swipe out a %s.</string>
+    <string name="drag_message">Sorry! You can\'t drag a %s into different position.</string>
 
     <!-- SmartPack -->
     <string name="acquiring">Acquiring update info</string>
@@ -1025,11 +1034,9 @@
     <string name="reset_settings_message">App settings will be completely erased. Are you sure?</string>
     <string name="unknown_link">Not provided by the developer yet!</string>
     <string name="remove">Remove</string>
-    <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
+    <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from</string>
     <string name="busybox_installer">BusyBox Installer</string>
     <string name="busybox_installer_summary">It is highly recommended to have a standalone BusyBox installation on your device to work some features of this app properly (e.g., \'unzip\' &amp; \'mke2fs\' binaries for flashing &amp; \'curl\' or \'wget\' binary for kernel OTA updates). As an attempt to help users on this issue, a simple app is made available, which can be used as a one-click BusyBox installation utility for arm, arm64 and x86 device. Click here to Get It!</string>
-    <string name="download_failed">It seems like the download is failed, or a corrupted file is downloaded!</string>
-    <string name="check_update">Check for Updates</string>
 
     <!-- Update Channel -->
     <string name="update_channel_message">(<i>for developers only</i>)\nApp will create an update channel (json) for your kernel, as long as the information\'s provided in this page are accurate.</string>
@@ -1053,6 +1060,15 @@
     <string name="clear">Clear All</string>
     <string name="clear_message">All the fields are empty! Aborting.</string>
     <string name="clear_all_summary">Everything you added to this page will be cleared!</string>
+
+    <!-- App Updater -->
+    <string name="update_available">New update available!\nv%s</string>
+    <string name="get_it">Get It</string>
+    <string name="download_failed">It seems like the download is failed, or a corrupted file is downloaded!</string>
+    <string name="updated_dialog">Congrats! You\'ve already got an up-to-date version of SmartPack-Kernel Manager!</string>
+    <string name="auto_update_check">Auto Update Check</string>
+    <string name="check_update">Check for Updates</string>
+    <string name="check_update_summary">Check for new versions of SmartPack-Kernel Manager</string>
 
     <!-- Settings-->
     <string name="open_settings">Open Settings</string>
@@ -1113,8 +1129,10 @@
     <string name="source_code_summary">View source code at GitHub</string>
     <string name="change_logs">Change-logs</string>
     <string name="change_logs_summary">View Change-logs</string>
-    <string name="playstore">PlayStore</string>
-    <string name="playstore_summary">Visit PlayStore page</string>
+    <string name="fdroid">F-Droid</string>
+    <string name="fdroid_summary">Visit F-Droid page</string>
+    <string name="playstore">Google Play</string>
+    <string name="playstore_summary">Visit Google Play page</string>
     <string name="donate_me_summary">Support development of this project</string>
     <string name="purchase_app">Buy Donation App</string>
     <string name="billing_client_disconnected">Failed to connect with Google Play Billing client!</string>
@@ -1132,13 +1150,13 @@
     <string name="licence_summary">View GPL V3</string>
     <string name="share_app">Share App</string>
     <string name="share_app_summary">Share this app with your friends</string>
-    <string name="share_app_message">Get SmartPack-Kernel Manager %s from PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
+    <string name="share_app_message">Get SmartPack-Kernel Manager %s from</string>
     <string name="grarak">Willi Ye</string>
     <string name="grarak_summary">The man behind \'Kernel Adiutor\', the ancestor of SmartPack-Kernel Manager. This project won\'t be true without him. Huge \u2665 &amp; respect to him, not only for his hard work on Kernel Adiutor, but also for being open to open-source.</string>
     <string name="osm0sis">Chris Renshaw</string>
     <string name="osm0sis_summary">The developer of the famous \'AnyKernel3\' project. Without his timely support and guidance, the auto-flashing feature on this app won\'t be happen.</string>
 
-    <!-- Contributors -->
+    <!-- Billing -->
     <string name="commits">%d commits</string>
     <string name="no_internet">Please check your internet connection!</string>
     <string name="translators">Translators</string>

@@ -1,17 +1,27 @@
 ![](banner.png)
 
 [![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v16.2-green)](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release)
+![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/total)
+![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/v16.1/total)
 ![](https://img.shields.io/github/contributors/smartpack/SmartPack-Kernel-Manager)
 ![](https://img.shields.io/github/license/smartpack/SmartPack-Kernel-Manager)
 
 # Introduction
-Welcome to the <strong>stable</strong> development channel of SmartPack-Kernel Manager, a heavily modified version of Kernel Adiutor originally developed by Willi Ye aka Grarak. All the credits go to the original developer.<br>
-<br><strong>Please Note</strong>: The contributors are requested to send pull requests only to the [beta development](https://github.com/SmartPack/SmartPack-Kernel-Manager/tree/beta) branch (not to this stable branch).
+Welcome to the development center of SmartPack-Kernel Manager, a heavily modified version of Kernel Adiutor originally developed by Willi Ye aka Grarak. All the credits go to the original developer.<br>
 
 ## Download
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
      alt=""
      height="80">](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release)
+     [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+          alt=""
+          height="80">](https://f-droid.org/packages/com.smartpack.kernelmanager)
+          [<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png"
+                    alt=""
+                    height="80">](https://apt.izzysoft.de/fdroid/index/apk/com.smartpack.kernelmanager)
+                    [<img src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
+                                             alt=""
+                                             height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v16.1/com.smartpack.kernelmanager-v16.1-release.apk)
 
 ## Features
 * Almost all the features available in Kernel Adiutor.

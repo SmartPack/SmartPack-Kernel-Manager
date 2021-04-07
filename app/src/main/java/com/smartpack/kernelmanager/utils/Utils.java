@@ -60,6 +60,9 @@ import com.smartpack.kernelmanager.activities.StartActivityMaterial;
 import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -120,6 +123,10 @@ public class Utils {
 
     public static boolean isDonated(Context context) {
         return isSPDonated(context) || Prefs.getBoolean("support_received", false, context);
+    }
+
+    public static boolean isFDroidFlavor(Context context) {
+        return context.getPackageName().equals("com.smartpack.kernelmanager");
     }
 
     public static void initializeAppTheme(Context context) {
@@ -398,6 +405,16 @@ public class Utils {
 
         return sDur;
     }
+
+    public static String getChangelog(Context context) {
+        try {
+            return new JSONObject(Objects.requireNonNull(readAssetFile(context,
+                    "release.json"))).getString("releaseNotes");
+        } catch (JSONException ignored) {
+        }
+        return null;
+    }
+
 
     public static boolean isRTL(View view) {
         return ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_RTL;

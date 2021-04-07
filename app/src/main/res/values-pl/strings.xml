@@ -1012,7 +1012,7 @@
     <string name="reset_settings_message">"Ustawienia aplikacji zostaną całkowicie usunięte. Jesteś pewny?"</string>
     <string name="unknown_link">"Nie zostały jeszcze dostarczone przez dewelopera!"</string>
     <string name="remove">"Usunąć"</string>
-    <string name="share_channel_message">"Aby skonfigurować ten kanał aktualizacji, po prostu wprowadź '%s' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release"</string>
+    <string name="share_channel_message">"Aby skonfigurować ten kanał aktualizacji, po prostu wprowadź '%s' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from"</string>
     <string name="busybox_installer">"BusyBox Instalator"</string>
     <string name="busybox_installer_summary">"Zdecydowanie zaleca się posiadanie samodzielnej instalacji BusyBox na urządzeniu, aby niektóre funkcje tej aplikacji działały poprawnie (e.g., 'unzip' &amp; 'mke2fs' binaries for flashing &amp; 'curl' or 'wget' binary for kernel OTA updates). Aby pomóc użytkownikom w tym problemie, udostępniono prostą aplikację, której można użyć jako narzędzia instalacyjnego BusyBox jednym kliknięciem dla urządzeń arm, arm64 i x86. Kliknij tutaj, aby to zdobyć!"</string>
     <string name="download_failed">"Wygląda na to, że pobieranie nie powiodło się lub został pobrany uszkodzony plik!"</string>
@@ -1116,13 +1116,13 @@
     <string name="licence_summary">"Widok GPL V3"</string>
     <string name="share_app">"Udostępnij aplikacje"</string>
     <string name="share_app_summary">"Udostępnij tę aplikację znajomym"</string>
-    <string name="share_app_message">"pobierz SmartPack-Kernel Manager %s from PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release"</string>
+    <string name="share_app_message">"pobierz SmartPack-Kernel Manager %s from"</string>
     <string name="grarak">"Willi Ye"</string>
     <string name="grarak_summary">"Człowiek stojący za „Kernel Adiutor”, przodek SmartPack-Kernel Manager..Bez niego ten projekt nie będzie prawdziwy. Olbrzymi szacunek dla niego, nie tylko za jego ciężką pracę nad Kernel Adiutor, ale także za otwartość na oprogramowanie typu open source"</string>
     <string name="osm0sis">"Chris Renshaw"</string>
     <string name="osm0sis_summary">"Twórca słynnego projektu AnyKernel3. Bez jego szybkiego wsparcia i wskazówek funkcja automatycznego flashowania w tej aplikacji nie będzie działać."</string>
 
-    <!-- Contributors -->
+    <!-- Billing -->
     <string name="commits">"%d zatwierdza"</string>
     <string name="no_internet">"Proszę sprawdzić swoje połączenie z internetem!"</string>
     <string name="translators">"Tłumacze"</string>

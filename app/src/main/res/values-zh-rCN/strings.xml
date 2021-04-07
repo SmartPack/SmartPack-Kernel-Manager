@@ -767,6 +767,8 @@
     <string name="leases_enable_summary">在系统层面启用或停用档案租用</string>
     <string name="lease_break_time">租用终止时间</string>
     <string name="lease_break_time_summary">内核向持有租用档案的处理程序发出另一程序正在等待打开该文件的信号后，内核给予的宽限期。</string>
+    <string name="doze">Doze 模式</string>
+    <string name="doze_summary">启用 Doze 模式，当您的装置处于待机状态时，防止某些任务在后台执行。  </string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">性能调整</string>
@@ -921,7 +923,7 @@
     <string name="purchase_app">购买应用</string>
     <string name="licence_summary">查看 GPL V3</string>
 
-    <!-- Contributors -->
+    <!-- Billing -->
     <string name="commits">%d 提交</string>
     <string name="no_internet">请检查您是否正确连接网络！</string>
     <string name="translators">翻译人员</string>
@@ -991,7 +993,7 @@
     <string name="licence">许可证</string>
     <string name="share_app">分享应用</string>
     <string name="share_app_summary">与你的朋友分享此应用</string>
-    <string name="share_app_message">下载 SmartPack-Kernel Manager %s  PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
+    <string name="share_app_message">下载 SmartPack-Kernel Manager %s</string>
     <string name="grarak">Willi Ye</string>
     <string name="osm0sis">Chris Renshaw</string>
     <string name="special_mentions">特别感谢</string>

@@ -790,7 +790,7 @@ SmartPack-Kernel Manager.
     <string name="share_app">Поділитися додатком</string>
     <string name="share_app_summary">Поділіться цим додатком з друзями</string>
     <string name="share_by">\'%s\' | поділитися SmartPack-Kernel Manager</string>
-    <string name="share_channel_message">Щоб налаштувати цей канал оновлення, просто введіть \'%s\' в SmartPack-Kernel Manager -> SmartPack -> Канал оновлення ядра\n\nВам SmartPack-ядра диспетчер\nПомилка: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
+    <string name="share_channel_message">Щоб налаштувати цей канал оновлення, просто введіть \'%s\' в SmartPack-Kernel Manager -> SmartPack -> Канал оновлення ядра\n\nВам SmartPack-ядра диспетчер</string>
     <string name="share_controller">Щоб застосувати цей контролер, просто імпортувати цей файл \'SmartPack-Kernel Manager -> Custom Controls</string>
     <string name="share_script">Для встановлення цього скрипта, просто імпортувати цей файл \'SmartPack-Kernel Manager -> Script Manager -> Import\'.</string>
     <string name="share_with">Поділитися з</string>

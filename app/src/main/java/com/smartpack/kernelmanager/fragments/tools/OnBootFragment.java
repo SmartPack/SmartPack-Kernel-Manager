@@ -33,6 +33,7 @@ import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
+import com.smartpack.kernelmanager.views.recyclerview.SwipeableDescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.TitleView;
 import com.smartpack.kernelmanager.utils.tools.ScriptManager;
 
@@ -60,8 +61,14 @@ public class OnBootFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
+        if (Utils.isFDroidFlavor(requireActivity())) {
+            enableSwipeToDismiss();
+            enableDragAndDrop();
+        }
+
         addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.welcome),
-                getString(R.string.on_boot_welcome_summary)));
+                getString(R.string.on_boot_welcome_summary) + (Utils.isFDroidFlavor(requireActivity()) ?
+                        " " + getString(R.string.on_boot_swipe_drag_message) : "")));
 
         if (mDeleteDialog != null) {
             mDeleteDialog.show();
@@ -140,26 +147,46 @@ public class OnBootFragment extends RecyclerViewFragment {
 
         for (int i = 0; i < applyOnBootItems.size(); i++) {
             final ApplyOnBootItem applyOnBootItem = applyOnBootItems.get(i);
-            DescriptionView applyOnBootView = new DescriptionView();
-            applyOnBootView.setSummary((i + 1) + ". " + applyOnBootItem.mCategory.replace("_onboot", "")
-                    + ": " + applyOnBootItem.mCommand);
+            if (Utils.isFDroidFlavor(requireActivity())) {
+                SwipeableDescriptionView applyOnBootView = new SwipeableDescriptionView();
+                applyOnBootView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_drag_handle, requireContext()));
+                applyOnBootView.setSummary(applyOnBootItem.mCategory.replace("_onboot", "")
+                        + ": " + applyOnBootItem.mCommand);
+                applyOnBootView.setOnItemSwipedListener((item, position) -> {
+                    mSettings.delete(position);
+                    mSettings.commit();
+                });
 
-            applyOnBootView.setOnItemClickListener(item -> {
-                mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.delete_question,
-                        applyOnBootItem.mCommand),
-                        (dialogInterface, i1) -> {
-                        }, (dialogInterface, i1) -> {
-                            mSettings.delete(applyOnBootItem.mPosition);
-                            mSettings.commit();
-                            reload();
-                        }, dialogInterface -> mDeleteDialog = null, getActivity());
-                mDeleteDialog.show();
-            });
+                applyOnBootView.setOnItemDragListener((item, fromPosition, toPosition) -> {
+                    mSettings.swap(fromPosition, toPosition);
+                    mSettings.commit();
+                });
 
-            applyOnBoot.add(applyOnBootView);
+                applyOnBoot.add(applyOnBootView);
+            } else {
+                DescriptionView applyOnBootView = new DescriptionView();
+                applyOnBootView.setSummary((i + 1) + ". " + applyOnBootItem.mCategory.replace("_onboot", "")
+                        + ": " + applyOnBootItem.mCommand);
+
+                applyOnBootView.setOnItemClickListener(item -> {
+                    mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.delete_question,
+                            applyOnBootItem.mCommand),
+                            (dialogInterface, i1) -> {
+                            }, (dialogInterface, i1) -> {
+                                mSettings.delete(applyOnBootItem.mPosition);
+                                mSettings.commit();
+                                reload();
+                            }, dialogInterface -> mDeleteDialog = null, getActivity());
+                    mDeleteDialog.show();
+                });
+
+                applyOnBoot.add(applyOnBootView);
+            }
         }
 
-        if (applyOnBoot.size() > 0) {
+        if (Utils.isFDroidFlavor(requireActivity()) && applyOnBoot.size() > 1) {
+            items.addAll(applyOnBoot);
+        } else if (!Utils.isFDroidFlavor(requireActivity()) && applyOnBoot.size() > 0) {
             items.add(applyOnBootTitle);
             items.addAll(applyOnBoot);
         }
@@ -170,26 +197,55 @@ public class OnBootFragment extends RecyclerViewFragment {
 
         for (final Profiles.ProfileItem profileItem : mProfiles.getAllProfiles()) {
             if (profileItem.isOnBootEnabled()) {
-                DescriptionView profileView = new DescriptionView();
-                profileView.setSummary(profileItem.getName());
-                profileView.setOnItemClickListener(item -> {
-                    mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.disable_question,
-                            profileItem.getName()),
-                            (dialogInterface, i) -> {
-                            }, (dialogInterface, i) -> {
-                                profileItem.enableOnBoot(false);
-                                mProfiles.commit();
-                                reload();
-                            }, dialogInterface -> mDeleteDialog = null, getActivity());
-                    mDeleteDialog.show();
-                });
+                if (Utils.isFDroidFlavor(requireActivity())) {
+                    SwipeableDescriptionView profileView = new SwipeableDescriptionView();
+                    profileView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_drag_handle, requireContext()));
+                    profileView.setSummary(getString(R.string.profile) + ": " + profileItem.getName());
+                    profileView.setOnItemClickListener(item -> {
+                        mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.disable_question,
+                                profileItem.getName()),
+                                (dialogInterface, i) -> {
+                                }, (dialogInterface, i) -> {
+                                    profileItem.enableOnBoot(false);
+                                    mProfiles.commit();
+                                    reload();
+                                }, dialogInterface -> mDeleteDialog = null, getActivity());
+                        mDeleteDialog.show();
+                    });
+                    profileView.setOnItemSwipedListener((item, position) -> {
+                        Utils.snackbar(getRootView(), getString(R.string.swipe_message, getString(R.string.profile)));
+                        reload();
+                    });
+                    profileView.setOnItemDragListener((item, fromPosition, toPosition) -> {
+                        Utils.snackbar(getRootView(), getString(R.string.drag_message, getString(R.string.profile)));
+                        reload();
+                    });
 
-                profiles.add(profileView);
+                    profiles.add(profileView);
+                } else {
+                    DescriptionView profileView = new DescriptionView();
+                    profileView.setSummary(profileItem.getName());
+                    profileView.setOnItemClickListener(item -> {
+                        mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.disable_question,
+                                profileItem.getName()),
+                                (dialogInterface, i) -> {
+                                }, (dialogInterface, i) -> {
+                                    profileItem.enableOnBoot(false);
+                                    mProfiles.commit();
+                                    reload();
+                                }, dialogInterface -> mDeleteDialog = null, getActivity());
+                        mDeleteDialog.show();
+                    });
+
+                    profiles.add(profileView);
+                }
             }
         }
 
         if (profiles.size() > 0) {
-            items.add(profileTitle);
+            if (!Utils.isFDroidFlavor(requireActivity())) {
+                items.add(profileTitle);
+            }
             items.addAll(profiles);
         }
 
@@ -198,37 +254,90 @@ public class OnBootFragment extends RecyclerViewFragment {
             final Set<String> onBootScripts = Prefs.getStringSet("on_boot_scripts", new HashSet<>(), getActivity());
             for (final String script : ScriptManager.list()) {
                 if (script_onboot && Utils.getExtension(script).equals("sh")) {
-                    DescriptionView scriptItems = new DescriptionView();
-                    scriptItems.setSummary(getString(R.string.script_manger) + ": " + script);
-                    scriptItems.setOnItemClickListener(item -> {
-                        mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.remove_script_question, script),
-                                (dialogInterface, i) -> {
-                                }, (dialogInterface, i) -> {
-                                    ScriptManager.delete(script);
-                                    if (ScriptManager.list().isEmpty()) {
-                                        Prefs.saveBoolean("scripts_onboot", false, getActivity());
-                                    }
-                                    reload();
-                                }, dialogInterface -> mDeleteDialog = null, getActivity());
-                        mDeleteDialog.show();
-                    });
+                    if (Utils.isFDroidFlavor(requireActivity())) {
+                        SwipeableDescriptionView scriptItem = new SwipeableDescriptionView();
+                        scriptItem.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_drag_handle, requireContext()));
+                        scriptItem.setSummary(getString(R.string.script_manger) + ": " + script);
+                        scriptItem.setOnItemClickListener(item -> {
+                            mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.remove_script_question, script),
+                                    (dialogInterface, i) -> {
+                                    }, (dialogInterface, i) -> {
+                                        ScriptManager.delete(script);
+                                        if (ScriptManager.list().isEmpty()) {
+                                            Prefs.saveBoolean("scripts_onboot", false, getActivity());
+                                        }
+                                        reload();
+                                    }, dialogInterface -> mDeleteDialog = null, getActivity());
+                            mDeleteDialog.show();
+                        });
+                        scriptItem.setOnItemSwipedListener((item, position) -> {
+                            Utils.snackbar(getRootView(), getString(R.string.swipe_message, getString(R.string.script)));
+                            reload();
+                        });
+                        scriptItem.setOnItemDragListener((item, fromPosition, toPosition) -> {
+                            Utils.snackbar(getRootView(), getString(R.string.drag_message, getString(R.string.script)));
+                            reload();
+                        });
 
-                    items.add(scriptItems);
+                        items.add(scriptItem);
+                    } else {
+                        DescriptionView scriptItem = new DescriptionView();
+                        scriptItem.setSummary(getString(R.string.script_manger) + ": " + script);
+                        scriptItem.setOnItemClickListener(item -> {
+                            mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.remove_script_question, script),
+                                    (dialogInterface, i) -> {
+                                    }, (dialogInterface, i) -> {
+                                        ScriptManager.delete(script);
+                                        if (ScriptManager.list().isEmpty()) {
+                                            Prefs.saveBoolean("scripts_onboot", false, getActivity());
+                                        }
+                                        reload();
+                                    }, dialogInterface -> mDeleteDialog = null, getActivity());
+                            mDeleteDialog.show();
+                        });
+
+                        items.add(scriptItem);
+                    }
                 } else if (Prefs.getStringSet("on_boot_scripts", new HashSet<>(), getActivity()).contains(script)
                         && Utils.getExtension(script).equals("sh")) {
-                    DescriptionView scriptItems = new DescriptionView();
-                    scriptItems.setSummary(getString(R.string.script_manger) + ": " + script);
-                    scriptItems.setOnItemClickListener(item -> {
-                        mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.delete_question, script),
-                                (dialogInterface, i) -> {
-                                }, (dialogInterface, i) -> {
-                                    onBootScripts.remove(script);
-                                    reload();
-                                }, dialogInterface -> mDeleteDialog = null, getActivity());
-                        mDeleteDialog.show();
-                    });
+                    if (Utils.isFDroidFlavor(requireActivity())) {
+                        SwipeableDescriptionView scriptItem = new SwipeableDescriptionView();
+                        scriptItem.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_drag_handle, requireContext()));
+                        scriptItem.setSummary(getString(R.string.script_manger) + ": " + script);
+                        scriptItem.setOnItemClickListener(item -> {
+                            mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.delete_question, script),
+                                    (dialogInterface, i) -> {
+                                    }, (dialogInterface, i) -> {
+                                        onBootScripts.remove(script);
+                                        reload();
+                                    }, dialogInterface -> mDeleteDialog = null, getActivity());
+                            mDeleteDialog.show();
+                        });
+                        scriptItem.setOnItemSwipedListener((item, position) -> {
+                            Utils.snackbar(getRootView(), getString(R.string.swipe_message, getString(R.string.script)));
+                            reload();
+                        });
+                        scriptItem.setOnItemDragListener((item, fromPosition, toPosition) -> {
+                            Utils.snackbar(getRootView(), getString(R.string.drag_message, getString(R.string.script)));
+                            reload();
+                        });
 
-                    items.add(scriptItems);
+                        items.add(scriptItem);
+                    } else {
+                        DescriptionView scriptItem = new DescriptionView();
+                        scriptItem.setSummary(getString(R.string.script_manger) + ": " + script);
+                        scriptItem.setOnItemClickListener(item -> {
+                            mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.delete_question, script),
+                                    (dialogInterface, i) -> {
+                                    }, (dialogInterface, i) -> {
+                                        onBootScripts.remove(script);
+                                        reload();
+                                    }, dialogInterface -> mDeleteDialog = null, getActivity());
+                            mDeleteDialog.show();
+                        });
+
+                        items.add(scriptItem);
+                    }
                 }
             }
         }

@@ -221,8 +221,8 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                                 reload();
                                 break;
                             case 4:
-                                Utils.shareItem(getActivity(), script, ScriptManager.scriptFile() + "/" + script, getString(R.string.share_script) + "\n\n" +
-                                        getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME));
+                                Utils.shareItem(getActivity(), script, ScriptManager.scriptFile() + "/" + script, getString(R.string.share_script)
+                                        + "\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
                                 break;
                             case 5:
                                 mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),

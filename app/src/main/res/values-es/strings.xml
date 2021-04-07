@@ -998,7 +998,7 @@
     <string name="reset_settings_message">App settings will be completely erased. Are you sure?</string>
     <string name="unknown_link">Not provided by the developer yet!</string>
     <string name="remove">Remove</string>
-    <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
+    <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from</string>
     <string name="busybox_installer">BusyBox Installer</string>
     <string name="busybox_installer_summary">It is highly recommended to have a standalone BusyBox installation on your device to work some features of this app properly (e.g., \'unzip\' &amp; \'mke2fs\' binaries for flashing &amp; \'curl\' or \'wget\' binary for kernel OTA updates). As an attempt to help users on this issue, a simple app is made available, which can be used as a one-click BusyBox installation utility for arm, arm64 and x86 device. Click here to Get It!</string>
     <string name="download_failed">It seems like the download is failed, or a corrupted file is downloaded!</string>
@@ -1086,13 +1086,13 @@
     <string name="licence">License</string>
     <string name="share_app">Share App</string>
     <string name="share_app_summary">Share this app with your friends</string>
-    <string name="share_app_message">Get SmartPack-Kernel Manager %s from PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
+    <string name="share_app_message">Get SmartPack-Kernel Manager %s from</string>
     <string name="grarak">Willi Ye</string>
     <string name="grarak_summary">The man behind \'Kernel Adiutor\', the ancestor of SmartPack-Kernel Manager. This project won\'t be true without him. Huge \u2665 &amp; respect to him, not only for his hard work on Kernel Adiutor, but also for being open to open-source.</string>
     <string name="osm0sis">Chris Renshaw</string>
     <string name="osm0sis_summary">The developer of the famous \'AnyKernel3\' project. Without his timely support and guidance, the auto-flashing feature on this app won\'t be happen.</string>
 
-    <!-- Contributors -->
+    <!-- Billing -->
     <string name="commits">%d commits</string>
     <string name="no_internet">Please check your internet connection!</string>
     <string name="translators">Translators</string>

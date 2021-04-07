@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -57,6 +58,7 @@ import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
 import com.smartpack.kernelmanager.views.BorderCircleView;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 
@@ -71,6 +73,9 @@ import java.util.Objects;
 public class SettingsFragment extends PreferenceFragmentCompat implements
         Preference.OnPreferenceChangeListener, Preference.OnPreferenceClickListener {
 
+    private static final String KEY_APP_SETTINGS = "app_settings";
+    private static final String KEY_UPDATE_CHECK_AUTO = "auto_update";
+    private static final String KEY_UPDATE_CHECK = "update_check";
     private static final String KEY_RESET_SETTINGS = "reset_settings";
     private static final String KEY_FORCE_ENGLISH = "forceenglish";
     private static final String KEY_USER_INTERFACE = "user_interface";
@@ -120,6 +125,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     public void onCreatePreferences(Bundle bundle, String s) {
         addPreferencesFromResource(R.xml.settings);
 
+        findPreference(KEY_UPDATE_CHECK_AUTO).setOnPreferenceChangeListener(this);
+        findPreference(KEY_UPDATE_CHECK).setOnPreferenceClickListener(this);
         findPreference(KEY_RESET_SETTINGS).setOnPreferenceClickListener(this);
         SwitchPreferenceCompat forceEnglish = findPreference(KEY_FORCE_ENGLISH);
         if (Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en")) {
@@ -150,6 +157,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             PreferenceCategory sectionSecurity = findPreference(KEY_SECURITY_CATEGORY);
             assert sectionSecurity != null;
             getPreferenceScreen().removePreference(sectionSecurity);
+        }
+
+        if (!UpdateCheck.isSignatureMatched(getActivity()) || !Utils.isFDroidFlavor(requireActivity())) {
+            PreferenceCategory appSettings = findPreference(KEY_APP_SETTINGS);
+            if (appSettings != null) {
+                getPreferenceScreen().removePreference(appSettings);
+            }
         }
 
         NavigationActivity activity = (NavigationActivity) requireActivity();
@@ -190,6 +204,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         boolean checked = (boolean) o;
         String key = preference.getKey();
         switch (key) {
+            case KEY_UPDATE_CHECK_AUTO:
+                Prefs.saveBoolean("auto_update", checked, getActivity());
+                return true;
             case KEY_FORCE_ENGLISH:
             case KEY_DARK_THEME:
                 relaunchActivity();
@@ -243,6 +260,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     public boolean onPreferenceClick(Preference preference) {
         String key = preference.getKey();
         switch (key) {
+            case KEY_UPDATE_CHECK:
+                if (!Utils.isNetworkAvailable(requireActivity())) {
+                    Utils.snackbar(mRootView, getString(R.string.no_internet));
+                } else if (Build.VERSION.SDK_INT >= 23) {
+                    UpdateCheck.manualUpdateCheck(requireActivity());
+                }
+                return true;
             case KEY_RESET_SETTINGS:
                 new Dialog(requireActivity())
                         .setMessage(getString(R.string.reset_settings_message))

@@ -163,6 +163,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                     menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.delete));
                     menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.share));
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @SuppressLint("StringFormatInvalid")
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             switch (item.getItemId()) {
@@ -178,8 +179,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                                 case 1:
                                     Utils.shareItem(getActivity(), switchItems, CustomControls.switchFile().toString() +
                                             "/" + switchItems,getString(R.string.share_controller, CustomControls.switchFile()) +
-                                            " -> Import -> Switch'.\n\n" + getString(R.string.share_app_message, "v" +
-                                            BuildConfig.VERSION_NAME));
+                                            " -> Import -> Switch'.\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
                                     break;
                             }
                             return false;
@@ -192,6 +192,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
         }
     }
 
+    @SuppressLint("StringFormatInvalid")
     private void genericItemsList(List<RecyclerViewItem> items) {
         for (final String genericItems : CustomControls.genericList()) {
             if (CustomControls.switchFile().length() > 0 && Utils.existFile(Utils.readFile(
@@ -230,8 +231,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                             case 1:
                                 Utils.shareItem(getActivity(), genericItems, CustomControls.genericFile().toString() +
                                         "/" + genericItems,getString(R.string.share_controller, CustomControls.genericFile()) +
-                                        " -> Import -> Generic'.\n\n" + getString(R.string.share_app_message, "v" +
-                                        BuildConfig.VERSION_NAME));
+                                        " -> Import -> Generic'.\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
                                 break;
                         }
                         return false;

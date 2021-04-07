@@ -21,6 +21,7 @@ package com.smartpack.kernelmanager.utils.kernel.misc;
 
 import android.content.Context;
 
+import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.Control;
@@ -47,6 +48,7 @@ public class Misc {
     private static final String DYNAMIC_FSYNC = "/sys/kernel/dyn_fsync/Dyn_fsync_active";
     private static final String GENTLE_FAIR_SLEEPERS = "/sys/kernel/sched/gentle_fair_sleepers";
     private static final String ARCH_POWER = "/sys/kernel/sched/arch_power";
+    private static final String SELINUX = "/sys/fs/selinux/enforce";
     private static final String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
 
     private static final String LEASES_ENABLE = "/proc/sys/fs/leases-enable";
@@ -57,6 +59,8 @@ public class Misc {
     private static final String PRINTK_MODE = "/sys/kernel/printk_mode/printk_mode";
 
     private static final String HOSTNAME_KEY = "net.hostname";
+
+    private static final String DOZE = "dumpsys deviceidle";
 
     private static final String HAPTICS = "/sys/class/leds/vibrator";
     private static final String HAPTICS_OVERRIDE = HAPTICS + "/vmax_override";
@@ -143,6 +147,39 @@ public class Misc {
 
     public boolean hasArchPower() {
         return Utils.existFile(ARCH_POWER);
+    }
+
+    public static List<String> seLinux(Context context) {
+        List<String> list = new ArrayList<>();
+        list.add(context.getString(R.string.selinux_permissive));
+        list.add(context.getString(R.string.selinux_enforcing));
+        return list;
+    }
+
+    public static int getSELinux() {
+        return Utils.strToInt(Utils.readFile(SELINUX));
+    }
+
+    public void setSELinux(int value, Context context) {
+        run(Control.write(String.valueOf(value), SELINUX), SELINUX, context);
+    }
+
+    public static boolean hasSELinux() {
+        return Utils.existFile(SELINUX);
+    }
+
+    public void enableDoze(boolean enable, Context context) {
+        run(Control.runShellCommand(enable ? DOZE + " enable" + " && " + DOZE + " force-idle" :
+                DOZE + " disable"), DOZE, context);
+    }
+
+    public static boolean isDozeEnabled() {
+        return RootUtils.runAndGetOutput(DOZE + " enabled").equals("1");
+    }
+
+    public static boolean hasDoze() {
+        return RootUtils.runAndGetOutput(DOZE + " enabled").equals("1")
+                || RootUtils.runAndGetOutput(DOZE + " enabled").equals("0");
     }
 
     public void enableGentleFairSleepers(boolean enable, Context context) {
@@ -234,7 +271,7 @@ public class Misc {
         return Utils.readFile(LEASES_ENABLE).equals("1");
     }
 
-    public boolean hasLeases() {
+    public static boolean hasLeases() {
         return Utils.existFile(LEASES_ENABLE);
     }
 

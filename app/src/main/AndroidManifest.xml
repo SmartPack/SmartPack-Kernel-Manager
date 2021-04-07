@@ -69,7 +69,6 @@
         <activity
             android:name=".views.NavHeaderView$MainHeaderActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".activities.BillingActivity" />
         <activity android:name=".activities.CPUBoostActivity" />
         <activity android:name=".activities.ApplyScriptActivity" />
         <activity android:name=".activities.EditorActivity" />
@@ -174,15 +173,5 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>
             </intent-filter>
         </service>
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.smartpack.kernelmanager.release.provider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
-        </provider>
     </application>
 </manifest>

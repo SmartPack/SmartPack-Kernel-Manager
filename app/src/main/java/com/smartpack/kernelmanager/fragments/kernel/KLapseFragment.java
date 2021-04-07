@@ -528,9 +528,8 @@ public class KLapseFragment extends RecyclerViewFragment {
                                         .setNegativeButton(getString(R.string.cancel), (dialog, id) -> {
                                         })
                                         .setPositiveButton(getString(R.string.share), (dialog, id) -> {
-                                            Utils.shareItem(getActivity(), path, KLapse.profileFolder().toString() + "/" + path,
-                                                    getString(R.string.share_script) + "\n\n" + getString(R.string.share_app_message,
-                                                            "v" + BuildConfig.VERSION_NAME));
+                                            Utils.shareItem(getActivity(), path, KLapse.profileFolder().toString() + "/" + path, getString(R.string.share_script)
+                                                    + "\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
                                         })
                                         .show();
                             }

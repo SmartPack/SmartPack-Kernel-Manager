@@ -20,7 +20,6 @@
 package com.smartpack.kernelmanager.fragments.other;
 
 import com.google.android.material.snackbar.Snackbar;
-
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.WebpageReader;

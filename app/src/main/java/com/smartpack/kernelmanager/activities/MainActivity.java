@@ -54,6 +54,7 @@ import com.smartpack.kernelmanager.utils.kernel.thermal.Thermal;
 import com.smartpack.kernelmanager.utils.kernel.wake.Wake;
 import com.smartpack.kernelmanager.utils.kernel.wakelock.Wakelocks;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
 
 import org.frap129.spectrum.Spectrum;
 
@@ -64,7 +65,7 @@ import java.lang.ref.WeakReference;
  */
 public class MainActivity extends BaseActivity {
 
-    private MaterialTextView mBusybox, mCollectInfo, mRootAccess;
+    private MaterialTextView mBusybox, mCollectInfo, mRootAccess, mUpdateInfo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,6 +90,7 @@ public class MainActivity extends BaseActivity {
         mRootAccess = findViewById(R.id.root_access_text);
         mBusybox = findViewById(R.id.busybox_text);
         mCollectInfo = findViewById(R.id.info_collect_text);
+        mUpdateInfo = findViewById(R.id.info_update);
 
         /*
          * Hide huge banner in landscape mode
@@ -156,6 +158,11 @@ public class MainActivity extends BaseActivity {
                     collectData();
                     publishProgress(2);
                 }
+
+                // Initialize auto app update check
+                if (UpdateCheck.mUpdateCheck) {
+                    publishProgress(3);
+                }
             }
             return null;
         }
@@ -202,6 +209,7 @@ public class MainActivity extends BaseActivity {
          *               0: Checking root
          *               1: Checking busybox/toybox
          *               2: Collecting information
+         *               3: Check for updates
          */
         @Override
         protected void onProgressUpdate(Integer... values) {
@@ -220,6 +228,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case 2:
                     activity.mCollectInfo.setTextColor(accent);
+                    break;
+                case 3:
+                    activity.mUpdateInfo.setTextColor(accent);
                     break;
             }
         }
@@ -243,6 +254,29 @@ public class MainActivity extends BaseActivity {
             }
 
             activity.launch();
+        }
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        // Initialize auto app update check
+        if (!Utils.isFDroidFlavor(this)) {
+            return;
+        }
+        if (!Utils.isDownloadBinaries()) {
+            return;
+        }
+        if (!UpdateCheck.isSignatureMatched(this)) {
+            return;
+        }
+        if (Utils.isNetworkAvailable(this) && Prefs.getBoolean("auto_update", true, this)) {
+            if (!UpdateCheck.hasVersionInfo(this) || (UpdateCheck.lastModified(this) + 3720000L < System.currentTimeMillis())) {
+                UpdateCheck.getVersionInfo(this);
+                UpdateCheck.mUpdateCheck = true;
+                mUpdateInfo.setVisibility(View.VISIBLE);
+            }
         }
     }
 

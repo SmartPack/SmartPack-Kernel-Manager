@@ -1,0 +1,7 @@
+{
+  "releaseNotes": "Change-logs\n - Hopefully fixed issues on Boeffla sound on some devices.\n - Added POEditor translation link to About page.\n - Updated build tools.\n - Miscellaneous changes.",
+  "releaseUrl": "",
+  "sha1": "",
+  "latestVersion": "16.2",
+  "latestVersionCode": 162
+}

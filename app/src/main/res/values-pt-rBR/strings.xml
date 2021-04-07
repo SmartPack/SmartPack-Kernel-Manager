@@ -811,6 +811,8 @@
     <string name="leases_enable_summary">Ativar ou desativar concessões de arquivos em todo o sistema</string>
     <string name="lease_break_time">Tempo de pausa da concessão</string>
     <string name="lease_break_time_summary">O período de carência que o kernel concede a um processo que mantém uma concessão de arquivo depois de enviar um sinal para esse processo, notificando-o de que outro processo está aguardando para abrir o arquivo.</string>
+    <string name="doze">Modo Doze</string>
+    <string name="doze_summary">Ative o modo doze para impedir que determinadas tarefas sejam executadas se o dispositivo estiver no estado ocioso.</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">Tweas de desempenho</string>
@@ -964,7 +966,7 @@
     <string name="donate_me_summary">Deseja apreciar meu trabalho com uma doação? Clique aqui</string>
     <string name="purchase_app">App de doação</string>
 
-    <!-- Contributors -->
+    <!-- Billing -->
     <string name="commits">%d commits</string>
     <string name="no_internet">Por favor, verifique sua conexão à Internet!</string>
     <string name="translators">Tradutores</string>
@@ -1082,8 +1084,8 @@
     <string name="custom_controls_message">Basicamente, você pode criar um controlador personalizado para qualquer caminho sysfs existente, desde que você tenha um Gerenciador de Arquivos root instalado. No entanto, observe que esse recurso é muito poderoso para bagunçar o seu dispositivo.\n\n***USE POR SUA CONTA E RISCO***</string>
     <string name="grarak_summary">O homem por trás do \'Kernel Adiutor\', o ancestral do SmartPack-Kernel Manager. Este projeto não existiria sem ele. Um enorme respeito por ele, não apenas por seu trabalho duro no Kernel Adiutor, mas também por ser aberto ao open-source.</string>
     <string name="overall_summary">Bem-vindo à página inicial do SmartPack-Kernel Manager. Esta página fornece informações muito básicas do seu dispositivo. Opções avançadas de ajustes do kernel podem ser encontradas nas suas respectivas páginas.</string>
-    <string name="share_app_message">Obtenha o SmartPack-Kernel Manager %s em Google Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
-    <string name="share_channel_message">Para configurar esse canal, basta colocar \'%s\' em SmartPack-Kernel Manager -> SmartPack -> URL do canal de atualizações.\n\n\Obtenha o SmartPack-Kernel Manager em Google Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
+    <string name="share_app_message">Obtenha o SmartPack-Kernel Manager %s em</string>
+    <string name="share_channel_message">Para configurar esse canal, basta colocar \'%s\' em SmartPack-Kernel Manager -> SmartPack -> URL do canal de atualizações.\n\n\Obtenha o SmartPack-Kernel Manager em</string>
     <string name="update_channel_empty">Limpando informações do canal de atualização!</string>
     <string name="update_channel_info">Ao vincular o canal de atualização acima a um arquivo JSON apropriado para o seu dispositivo, você pode adicionar basicamente suporte a download de kernels e auto-flash (não para todos os dipositivos) a qualquer Kernel disponível para seu dispositivo. Por favor, peça ao seu desenvolvedor de kernel favorito para adicionar suporte a esse recurso. O kernel baixado estará disponível em \'%s\'.\n\nDicas! Você pode importar um arquivo json criado para o \'FK-Kernel Manager\' do franciscofranco (grande \u2665 &amp; rerspeito para ele) e simplesmente funcionará.\n\nPrecisa de ajuda? Clique aqui!</string>
     <string name="update_channel_instructions"><b>Nome do Kernel</b>, <b>Versão do Kernel</b> &amp; <b>Link de Download</b> são os campos obrigatórios a serem preenchidos antes de clicar no botão criar.\n\n<b>Change-logs</b> podem ser fornecidos como um texto bem formatado ou como um link para uma página on-line.\n\nSecure Hash Algorithm (<b>sha1</b>) é opcional, mas altamente recomendado para garantir a autenticidade do kernel baixado.</string>

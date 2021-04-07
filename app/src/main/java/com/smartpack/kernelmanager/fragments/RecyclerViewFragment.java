@@ -48,6 +48,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
@@ -65,6 +66,7 @@ import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.views.dialog.ViewPagerDialog;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewAdapter;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
+import com.smartpack.kernelmanager.views.recyclerview.SimpleItemTouchHelperCallback;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.lang.ref.WeakReference;
@@ -112,6 +114,8 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     private MaterialCardView mForegroundParent;
     private float mForegroundHeight;
     private CharSequence mForegroundStrText;
+
+    private SimpleItemTouchHelperCallback mItemCallback;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -182,6 +186,10 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         }, 250)) : mRecyclerViewAdapter);
         mRecyclerView.setLayoutManager(mLayoutManager = getLayoutManager());
         mRecyclerView.setHasFixedSize(true);
+
+        mItemCallback = new SimpleItemTouchHelperCallback(mRecyclerViewAdapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(mItemCallback);
+        touchHelper.attachToRecyclerView(mRecyclerView);
 
         mTopFab.setOnClickListener(v -> onTopFabClick());
         {
@@ -366,7 +374,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         Activity activity;
         if ((activity = getActivity()) != null && mAppBarLayout != null && mToolBar != null) {
             int colorPrimary = ViewUtils.getColorPrimaryColor(activity);
-            mAppBarLayout.setBackgroundDrawable(new ColorDrawable(Color.argb(alpha, Color.red(colorPrimary),
+            mAppBarLayout.setBackground(new ColorDrawable(Color.argb(alpha, Color.red(colorPrimary),
                     Color.green(colorPrimary), Color.blue(colorPrimary))));
             mToolBar.setTitleTextColor(Color.argb(alpha, 255, 255, 255));
         }
@@ -452,7 +460,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         private final List<Fragment> mFragments;
 
         public ViewPagerAdapter(FragmentManager fragmentManager, List<Fragment> fragments) {
-            super(fragmentManager);
+            super(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
             mFragments = fragments;
         }
 
@@ -793,22 +801,16 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         }
     }
 
-    private Runnable mScheduler = new Runnable() {
-        @Override
-        public void run() {
-            refreshThread();
+    private Runnable mScheduler = () -> {
+        refreshThread();
 
-            Activity activity = getActivity();
-            if (activity == null) return;
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (getActivity() != null) {
-                        refresh();
-                    }
-                }
-            });
-        }
+        Activity activity = getActivity();
+        if (activity == null) return;
+        activity.runOnUiThread(() -> {
+            if (getActivity() != null) {
+                refresh();
+            }
+        });
     };
 
     protected void refreshThread() {
@@ -838,6 +840,14 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
     protected Handler getHandler() {
         return mHandler;
+    }
+
+    protected void enableDragAndDrop() {
+        mItemCallback.setDragEnabled(true);
+    }
+
+    protected void enableSwipeToDismiss() {
+        mItemCallback.setSwipeEnabled(true);
     }
 
 }
