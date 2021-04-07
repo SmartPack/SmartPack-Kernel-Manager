@@ -6,9 +6,10 @@
 ![](https://img.shields.io/github/contributors/smartpack/SmartPack-Kernel-Manager)
 ![](https://img.shields.io/github/license/smartpack/SmartPack-Kernel-Manager)
 
+<b>Please Note:</b> This branch is no more maintained. The important changes from this branch are already merged with the [master](https://github.com/SmartPack/SmartPack-Kernel-Manager) channel.
+
 # Introduction
-Welcome to the <strong>beta</strong> development channel of SmartPack-Kernel Manager, a heavily modified version of Kernel Adiutor originally developed by Willi Ye aka Grarak. All the credits go to the original developer. This branch holds the latest changes added to SmartPack-Kernel Manager. The beta builds are exclusively published on the GitHub release page (not on PlayStore). The contributors are requested to send pull requests only to this channel.<br>
-<br><strong>Warning</strong>: Be aware that the beta builds contains experimental features. Please expect some bugs.
+Welcome to the <strong>beta</strong> development channel of SmartPack-Kernel Manager, a heavily modified version of Kernel Adiutor originally developed by Willi Ye aka Grarak. All the credits go to the original developer.
 
 ## Download
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
