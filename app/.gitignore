@@ -1,5 +1,6 @@
 /build
+/fdroid
+/play
 /release
 /src/main/gen
-/release
 *.jks

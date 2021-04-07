@@ -1,0 +1,4 @@
+* Moved Profiles from Tools to avoid crashing on certain cases.
+* Added a startup warning message on the CPU page.
+* Updated Russian, German and Polish translations.
+* Miscellaneous changes.

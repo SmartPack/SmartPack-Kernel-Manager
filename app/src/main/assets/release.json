@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Hopefully fixed issues on Boeffla sound on some devices.\n - Added POEditor translation link to About page.\n - Updated build tools.\n - Miscellaneous changes.",
-  "releaseUrl": "",
-  "sha1": "",
-  "latestVersion": "16.2",
-  "latestVersionCode": 162
+  "releaseNotes": "Change-logs\n - Moved Profiles from Tools to avoid crashing on certain cases.\n - Added a startup warning message on the CPU page.\n - Updated Russian, German and Polish translations.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v16.3/com.smartpack.kernelmanager-v16.3-fdroid-release.apk",
+  "sha1": "3def3c8e4f5f8ca3eead5c4c5da7df5f40dd1915",
+  "latestVersion": "16.3",
+  "latestVersionCode": 163
 }

@@ -1,5 +1,9 @@
 # Change-logs
 
+## 121. April 07, 2021
+*Release-tag: v16.3*<br>
+Moved Profiles from Tools to avoid crashing on certain cases. Added a startup warning message on the CPU page. Updated Russian, German and Polish translations. Miscellaneous changes.
+
 ## 120. February 27, 2021
 *Release-tag: v16.2*<br>
 Hopefully fixed issues on Boeffla sound on some devices. Added POEditor translation link to About page. Updated build tools. Miscellaneous changes.
