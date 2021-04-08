@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <string name="app_name" translatable="false">SmartPack-Kernel Manager</string>
-    <string name="checking_info">Bilgiler denetleniyor…</string>
-    <string name="checking_root">Root erişimi denetleniyor</string>
+    <string name="checking_info">Bilgiler kontrol ediliyor…</string>
+    <string name="checking_root">Root erişimi kontrol ediliyor</string>
     <string name="searching_busybox">Busybox aranıyor</string>
     <string name="collecting_info">Bilgiler toplanıyor</string>
     <string name="no_root">Root yok</string>
@@ -28,8 +28,8 @@
     <string name="warning">Uyarı!</string>
 
     <string name="apply_on_boot">Açılışta uygula</string>
-    <string name="apply_on_boot_text">Ayarlar %d saniye içinde uygulanıyor.</string>
-    <string name="apply_on_boot_complete">Ayarları uygulama tamamlandı.</string>
+    <string name="apply_on_boot_text">Ayarlar %d saniye içinde uygulanacak.</string>
+    <string name="apply_on_boot_complete">Ayarlar uygulandı.</string>
     <string name="apply_on_boot_canceled">Ayarları uygulama iptal edildi.</string>
 
     <string name="not_in_range">Aralıkta değil</string>
@@ -134,7 +134,7 @@
     <string name="hardware">Donanım</string>
     <string name="architecture">Mimari</string>
     <string name="treble_status">Project Treble Desteği</string>
-    <string name="gpu_lib">GPU System Library</string>
+    <string name="gpu_lib">GPU Sistem Kitaplığı</string>
 
     <!-- Inputs -->
     <string name="bus">Bus</string>
@@ -175,7 +175,7 @@
     <string name="cpu_quiet_summary">Sessiz İşlemci, işlemci çekirdeklerini sessiz duruma zorlamak için takılabilir ilkeler uygular. Uygun ilkeler performansa zarar vermeden güç tasarrufu sağlar.</string>
     <string name="cpu_quiet_governor">Sessiz İşlemci Düzenleyici</string>
     <string name="msm_limiter">MSM Sınırlayıcı</string>
-    <string name="msm_limiter_summary">Neobuddy89 tarafından MSM Sınırlayıcıyı etkinleştirin.</string>
+    <string name="msm_limiter_summary">Neobuddy89\'ın MSM Sınırlayıcısını etkinleştirin.</string>
     <string name="freq_control">Frekans Kontrolü</string>
     <string name="freq_control_summary">MSM Sınırlayıcının İşlemcilerinizin Frekanslarını Kontrol Etmesine İzin Verin.</string>
 
@@ -218,7 +218,7 @@
     <string name="mpdecision">MPDecision</string>
     <string name="mpdecision_summary">"Qualcomm'un hotplugging çözümü. Bu etkinleştirildiğinde frekans değiştirmeyle ilgili sorunlar yaşayabilirsiniz."</string>
     <string name="intelliplug">IntelliPlug</string>
-    <string name="intelliplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by faux123.</string>
+    <string name="intelliplug_summary">Qualcomm\'un MPDecision\'u için faux123 tarafından geliştirilen bir kernel-içi alternatif.</string>
     <string name="cpu_hotplug_profile_summary">Parantez içindeki sayı, herhangi bir zamanda çevrimiçi olmuş çekirdek miktarını gösterir.</string>
     <string name="insanity">ÇılGıN</string>
     <string name="balanced">Dengeli</string>
@@ -254,11 +254,11 @@
     <string name="down_lock_duration_summary">Bir işlemcinin çevrimiçi tutulduğu minimum aralık.</string>
     <string name="fshift">FShift</string>
     <string name="lazyplug">LazyPlug</string>
-    <string name="lazyplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by arter97.</string>
+    <string name="lazyplug_summary">Qualcomm\'un MPDecision\'u için arter97 tarafından geliştirilen bir kernel-içi alternatif.</string>
     <string name="lazy">Lazy</string>
-    <string name="possible_cpu_cores_summary">Possible CPU Cores that lazyplug can use.</string>
+    <string name="possible_cpu_cores_summary">Lazyplug\'ın kullanabileceği Olası İşlemci Çekirdekleri.</string>
     <string name="blu_plug">Blu_Plug</string>
-    <string name="blu_plug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by Code_Blue team.</string>
+    <string name="blu_plug_summary">Qualcomm\'un MPDecision\'u için Code_Blue ekibi tarafından geliştirilen bir kernel-içi alternatif.</string>
     <string name="powersaver_mode">Güç tasarrufu modu</string>
     <string name="powersaver_mode_summary">\'@1728MHz\' frekanslı çevrimiçi maksimum 1 işlemci ayarlar.</string>
     <string name="up_threshold">Üst Eşik</string>
@@ -268,7 +268,7 @@
     <string name="down_timer_cnt">Alt işlemciler için zamanlayıcı kontrolü</string>
     <string name="down_timer_cnt_summary">Alt işlemciler için zamanlayıcı kontrolü.</string>
     <string name="mako_hotplug">Mako Hotplug</string>
-    <string name="mako_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by franciscofranco.</string>
+    <string name="mako_hotplug_summary">Qualcomm\'un MPDecision\'u için franciscofranco tarafından geliştirilen bir kernel-içi alternatif.</string>
     <string name="cpus_on_touch">Dokunmada işlemciler</string>
     <string name="cpus_on_touch_summary">Ekrana dokunulduğunda veya düğmeye basıldığında açılan işlemci sayısı.</string>
     <string name="cpu_freq_unplug_limit">İşlemci Frekansı Çıkarma Sınırı</string>
@@ -285,7 +285,7 @@
     <string name="delay">Gecikme</string>
     <string name="delay_summary">Kontroller arasındaki süre.</string>
     <string name="msm_hotplug">MSM Hotplug</string>
-    <string name="msm_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by myfluxi.</string>
+    <string name="msm_hotplug_summary">Qualcomm\'un MPDecision\'u için myfluxi tarafından geliştirilen bir kernel-içi alternatif.</string>
     <string name="history_size">Geçmiş Boyutu</string>
     <string name="history_size_summary">İşlemciler arasındaki ortalama yük için dikkate alınan örnek sayısı. Daha düşük, daha hızlı/daha düzensiz demektir.</string>
     <string name="update_rate">Güncelleme Hızı</string>
@@ -297,7 +297,7 @@
     <string name="offline_load">Çevrimdışı Yük</string>
     <string name="offline_load_summary">Alt eşik yük seviyesinin altına düşerse bir işlemciyi çevrimdışı yapma.</string>
     <string name="alucard_hotplug">Alucard Hotplug</string>
-    <string name="alucard_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by Alucard.</string>
+    <string name="alucard_hotplug_summary">Qualcomm\'un MPDecision\'u için Alucard tarafından geliştirilen bir kernel-içi alternatif.</string>
     <string name="sampling_rate">Örnekleme Hızı</string>
     <string name="cpu_down_rate">Düşük İşlemci Oranı</string>
     <string name="cpu_up_rate">Yüksek İşlemci Oranı</string>
@@ -305,7 +305,7 @@
     <string name="io_is_busy_summary">"Hotplug'ın G/Ç süresini işlemci yükleme süresi olarak kabul etmesini sağlamak için kullanılır."</string>
     <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
     <string name="bricked_hotplug">Bricked Hotplug</string>
-    <string name="mb_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by show-p1984.</string>
+    <string name="mb_hotplug_summary">Qualcomm\'un MPDecision\'u için show-p1984 tarafından geliştirilen bir kernel-içi alternatif.</string>
     <string name="idle_frequency">Boştaki Frekans</string>
     <string name="idle_frequency_summary">İlk çekirdek bu frekansın altındaysa, diğer çekirdekleri devreye alma.</string>
     <string name="touch_boost_time">Dokunmatik Güçlendirme Süresi</string>
@@ -316,7 +316,7 @@
     <string name="pause">Duraklat</string>
     <string name="pause_summary">Başka bir şey işlemciyi devreye sokarsa, şu kadar süre için uyku moduna geç.</string>
     <string name="autosmp">AutoSMP</string>
-    <string name="autosmp_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by mrg666.</string>
+    <string name="autosmp_summary">Qualcomm\'un MPDecision\'u için mrg666 tarafından geliştirilen bir kernel-içi alternatif.</string>
     <string name="downrate_limits">Düşük Oran Sınırları</string>
     <string name="uprate_limits">Yüksek Oran Sınırları</string>
     <string name="cycle_down">Aşağı Döngü</string>
@@ -327,9 +327,9 @@
     <string name="min_boost_freq">Minimum Yükseltme Frekansı</string>
     <string name="hotplug_suspend">Hotplug Askıya Alma</string>
     <string name="hcube">H-Cube</string>
-    <string name="hcube_summary">OnePlus\' modified Core Control.</string>
-    <string name="min_cpus_big">Minimum CPUs big</string>
-    <string name="min_cpus_big_summary">Minimum amount of big CPUs that should be online.</string>
+    <string name="hcube_summary">OnePlus değiştirilmiş Çekirdek Kontrolü.</string>
+    <string name="min_cpus_big">En düşük işlemcilerin en büyüğü</string>
+    <string name="min_cpus_big_summary">Çevirimiçi olan en büyük işlemcilerin en düşük miktarı.</string>
     <string name="busy_down_threshold">Meşgul Olma Eşiği</string>
     <string name="busy_down_threshold_summary">Büyük işlemcilerin kapatılacağı eşik.</string>
     <string name="busy_up_threshold">Meşgul Olmama Eşiği</string>
@@ -341,7 +341,7 @@
     <string name="online_delay">Çevrimiçi Gecikme</string>
     <string name="online_delay_summary">Bir işlemciyi açmadan önce geçen süre.</string>
     <string name="msm_sleeper">MSM Sleeper</string>
-    <string name="msm_sleeper_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by flar2.</string>
+    <string name="msm_sleeper_summary">Qualcomm\'un MPDecision\'u için flar2 tarafından geliştirilen bir kernel-içi alternatif.</string>
     <string name="max_down_count">Çevrimdışı Çekirdek Eşiği</string>
     <string name="max_up_count">Çevrimiçi Çekirdek Eşiği</string>
     <string name="suspend_max_online">Askıya alma sırasında Maksimum Çevrimiçi Çekirdek</string>
@@ -350,7 +350,7 @@
     <string name="hotplug_rate">Hotplug Oranı</string>
     <string name="hotplug_rq">Hotplug RQ</string>
     <string name="aio_hotplug">AiO Hotplug</string>
-    <string name="aio_hotplug_summary">All in One HotPlug for Qualcomm devices. Developed by Shoaib0597.</string>
+    <string name="aio_hotplug_summary">Qualcomm cihazlar için Shoaib0597 tarafından geliştirilen hepsi bir arada tak çıkar çözümü.</string>
     <string name="max_cpu_online_big">Çevrimiçi maksimum büyük işlemci</string>
     <string name="max_cpu_online_big_summary">Çevrimiçi olacak maksimum büyük işlemci sayısı.</string>
     <string name="max_cpu_online_little">Maksimum Çevrimiçi Küçük İşlemci</string>
@@ -359,7 +359,7 @@
     <string name="nr_min_cpu">Minimum Çevrimiçi İşlemci</string>
     <string name="adv_sett">Gelişmiş Ayarlar</string>
     <string name="thunder_plug">ThunderPlug</string>
-    <string name="thunder_plug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by varun.chitre15</string>
+    <string name="thunder_plug_summary">Qualcomm\'un MPDecision\'u için varun.chitre15 tarafından geliştirilen bir kernel-içi alternatif</string>
     <string name="dual_core_mode">Çift Çekirdekli Mod</string>
     <string name="quad_core_mode">Dört Çekirdekli Mod</string>
     <string name="endurance_level">Dayanıklılık Düzeyi</string>
@@ -374,31 +374,31 @@
     <string name="frequencies">Frekanslar</string>
     <string name="gpu_2d_freq">GPU 2D Frekansı</string>
     <string name="gpu_2d_max_freq">GPU 2D Maksimum Frekansı</string>
-    <string name="gpu_2d_max_freq_summary">"GPU'nun ulaşabileceği maksimum 2D frekansını ayarla."</string>
+    <string name="gpu_2d_max_freq_summary">"GPU'nun ulaşabileceği maksimum 2D frekansını ayarlayın."</string>
     <string name="gpu_max_freq">GPU Maksimum Frekansı</string>
-    <string name="gpu_max_freq_summary">"GPU'nun ulaşabileceği maksimum frekansı ayarla."</string>
+    <string name="gpu_max_freq_summary">"GPU'nun ulaşabileceği maksimum frekansı ayarlayın."</string>
     <string name="gpu_min_freq">GPU Minimum Frekansı</string>
-    <string name="gpu_min_freq_summary">"GPU'nun ulaşabileceği minimum frekansı ayarla."</string>
+    <string name="gpu_min_freq_summary">"GPU'nun ulaşabileceği minimum frekansı ayarlayın."</string>
     <string name="gpu_2d_governor">GPU 2D Düzenleyici</string>
-    <string name="gpu_2d_governor_summary">GPU 2D düzenleyicisini ayarla.</string>
+    <string name="gpu_2d_governor_summary">GPU 2D düzenleyicisini ayarlayın.</string>
     <string name="gpu_governor">GPU Düzenleyici</string>
-    <string name="gpu_governor_summary">GPU düzenleyiciyi ayarla.</string>
+    <string name="gpu_governor_summary">GPU düzenleyiciyi ayarlayın.</string>
     <string name="gpu_governor_tunables">GPU Düzenleyicisi Ayarları</string>
     <string name="simple_gpu_algorithm">Basit GPU Algoritması</string>
-    <string name="simple_gpu_algorithm_summary">MSM Adreno TZ GPU Düzenleyicisi için bir eklenti. Faux123 tarafından geliştirildi.</string>
+    <string name="simple_gpu_algorithm_summary">MSM Adreno TZ GPU Düzenleyicisi için Faux123 tarafından geliştirilen bir eklenti.</string>
     <string name="adrenoboost">AdrenoBoost</string>
-    <string name="adrenoboost_summary">An add-on for MSM Adreno TZ GPU Governor. Developed by flar2</string>
+    <string name="adrenoboost_summary">MSM Adreno TZ GPU Düzenleyicisi için flar2 tarafından geliştirilen bir eklenti.</string>
     <string name="devfreq_boost">Devfreq Artırma</string>
     <string name="devfreq_boost_ms">Artırma Süresi</string>
-    <string name="devfreq_boost_ms_summary">Devfreq artırma süresini ayarla</string>
+    <string name="devfreq_boost_ms_summary">Devfreq artırma süresini ayarlayın</string>
     <string name="devfreq_boost_freq">Artırma Frekansı</string>
-    <string name="devfreq_boost_freq_summary">Devfreq artırma sıklığını ayarla</string>
+    <string name="devfreq_boost_freq_summary">Devfreq artırma sıklığını ayarlayın</string>
     <string name="laziness">Tembel</string>
     <string name="laziness_summary">Bu, GPU frekanslarını artırma veya azaltma eşiğini artırır. Ne kadar düşükse, o kadar fazla performans elde edersiniz.</string>
     <string name="ramp_thresold">Artırma Eşiği</string>
     <string name="ramp_thresold_summary">Bu, GPU düzenleyicisinin isteklerinin azaltılma sayısını artırır. Ne kadar yüksek olursa, o kadar fazla performans elde edersiniz.</string>
     <string name="adreno_idler">Adreno Idler</string>
-    <string name="adreno_idler_summary">An efficient workaround for msm-adreno-tz\'s overheads. Developed by arter97.</string>
+    <string name="adreno_idler_summary">Msm-adreno-tz\'nin daha tasarruflu ve performanslı çalışması için arter97 tarafından geliştirilen etkin bir çözüm.</string>
     <string name="down_differential">Düşük Kademeli</string>
     <string name="down_differential_summary">Verilen iş yükünün boşta olup olmadığını belirleme eşiği.</string>
     <string name="idle_wait">Boşta Bekleme</string>
@@ -412,9 +412,9 @@
     <string name="thermald">Thermald</string>
     <string name="thermald_summary">Cihazın aşırı ısınmasını önleyen stok ısıl sürücü. Mevcut kernelin alternatifi varsa devre dışı bırakılmalıdır.</string>
     <string name="intellithermal">Intellithermal</string>
-    <string name="intellithermal_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by faux123.</string>
-    <string name="intellithermal_optimized">Intellithermal Optimized</string>
-    <string name="intellithermal_optimized_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by faux123 and alucard_24.</string>
+    <string name="intellithermal_summary">Qualcomm\'un Thermald\'ı için faux123 tarafından geliştirilen bir kernel-içi alternatif.</string>
+    <string name="intellithermal_optimized">Optimize Intellithermal</string>
+    <string name="intellithermal_optimized_summary">Qualcomm\'un Thermald\'ı için faux123 ve alucard_24 tarafından geliştirilen bir kernel-içi alternatif.</string>
     <string name="thermal_debug_mask_summary">Isıl işlemler için hata ayıklama maskesini etkinleştirmenizi sağlar.</string>
     <string name="vdd_restriction">VDD Kısıtlaması</string>
     <string name="freq_throttle_temp">Frekans Azaltma Sıcaklığı</string>
@@ -451,7 +451,7 @@
     <string name="shutdown_temp">Kapanma Sıcaklığı</string>
     <string name="msm_thermal">MSM Thermal</string>
     <string name="msm_thermal_simple">Simple Thermal Monitor</string>
-    <string name="msm_thermal_simple_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by Sultanxda.</string>
+    <string name="msm_thermal_simple_summary">Qualcomm\'un Thermald\'ı için Sultanxda tarafından geliştirilen bir kernel-içi alternatif.</string>
     <string name="usermax_freq">Kullanıcı Maksimum Frekansı</string>
     <string name="freq_mitg_temp">Frekans Azaltma Sıcaklığı</string>
     <string name="freq_mitg_temp_summary">İşlemcinin maksimum frekansının azaltılacağı sıcaklık.</string>
@@ -467,11 +467,11 @@
     <!-- Battery -->
     <string name="capacity">Kapasite</string>
     <string name="blx">Pil Ömrü Uzatıcı</string>
-    <string name="blx_summary">0 ile 100 arasında bir değer girerek pilin şarj edileceği kapasite için bir sınır ayarla.</string>
+    <string name="blx_summary">0 ile 100 arasında bir değer girerek pilin şarj edileceği kapasite için bir sınır ayarlayın.</string>
     <string name="charging_enable">Şarjı Etkinleştir</string>
     <string name="charging_enable_summary">Uyarı! Devre dışı bırakılırsa şarj hemen durdurulur.</string>
     <string name="thunder_charge">Thunder Charge</string>
-    <string name="thunder_charge_summary">Enable Thunder Charge by varun.chitre15</string>
+    <string name="thunder_charge_summary">Varun.chitre15\'in Thunder Charge'ını etkinleştirin</string>
 
     <!-- Advanced Charge Control Interface -->
     <string name="acci">Gelişmiş Şarj Kontrol Arayüzü</string>
@@ -486,7 +486,7 @@
     <string name="charge_level_wireless">Şarj Seviyesi (Kablosuz)</string>
     <string name="charge_level_summary">Seviyenizi seçin (mA)</string>
     <string name="mtp_fast_charge">Hızlı Şarj olurken MTP</string>
-    <string name="mtp_fast_charge_summary">"Hızlı şarj olurken MTP'yi etkinleştirin"</string>
+    <string name="mtp_fast_charge_summary">"Hızlı şarj olurken MTP'yi etkinleştirir"</string>
     <string name="screen_limit">Screen On Current Limit</string>
     <string name="screen_limit_summary">Enable Screen On Current Limit</string>
     <string name="stockchargelogic">Stok şarj mantığı için 0 olarak ayarlayın</string>
@@ -562,7 +562,7 @@
     <string name="min_brightness">Minimum Parlaklık</string>
     <string name="min_brightness_summary">LCD ekranın parlaklığını stok romunkinden daha düşük bir seviyeye düşürmenizi sağlar.</string>
     <string name="max_brightness">Maksimum Parlaklık</string>
-    <string name="max_brightness_summary">LCD ekran parlaklığını mevcut olandan daha yüksek bir seviyeye çıkarmanıza olanak tanır.</string>
+    <string name="max_brightness_summary">LCD ekran parlaklığını mevcut olandan daha yüksek bir seviyeye çıkarmanızı sağlar.</string>
     <string name="backlight_dimmer">Arka Işık Kısma</string>
     <string name="threshold">Eşik Değeri</string>
     <string name="offset">Dengeleme</string>
@@ -815,7 +815,7 @@
     <!-- Virtual Memory -->
     <string name="zram">Z-RAM</string>
     <string name="zram_algo">Z-RAM Algoritması</string>
-    <string name="zram_algo_summary">Varsayılan Z-RAM Sıkıştırma algoritmasını ayarla.</string>
+    <string name="zram_algo_summary">Varsayılan Z-RAM Sıkıştırma algoritmasını ayarlayın.</string>
     <string name="zram_algo_warning">Z-RAM disk boyutu geçici olarak \'0 \'a düşürülecektir. Bu işlemin bazı cihazlarda ciddi etkileri olabilir.</string>
     <string name="disksize">Disk boyutu</string>
     <string name="disksize_summary">"RAM'de sıkıştırılmış bir sanal cihaz kullanmak yerine fiziksel depolamada sayfalamadan kaçınarak performansı artırmaya çalışır. Disk belleği, fiziksel depolamada takas alanını kullanmak gerekene kadar RAM'de gerçekleşir."</string>
@@ -872,7 +872,7 @@
     <string name="doze">Doze Modunu Zorla</string>
     <string name="doze_summary">Cihazınız boştayken belirli görevlerin çalışmasını önlemek için doze modunu etkinleştirin.</string>
     <string name="selinux">SELinux</string>
-    <string name="selinux_summary">SELinux durumunu ayarla</string>
+    <string name="selinux_summary">SELinux durumunu ayarlayın</string>
     <string name="selinux_permissive">Permissive</string>
     <string name="selinux_enforcing">Enforcing</string>
 
@@ -892,7 +892,7 @@
 
     <!-- Custom Controls -->
     <string name="welcome">Hoş geldiniz</string>
-    <string name="custom_controls_summary">Bu bölümde, uygulamada (henüz) olmayan özel denetimleri oluşturabilir veya içe aktarabilirsiniz. &lt;a href="https://smartpack.github.io/spkm/customcontrols/">Belge&lt;a></string>
+    <string name="custom_controls_summary">Bu bölümde, uygulamada (henüz) olmayan özel denetimleri oluşturabilir veya içe aktarabilirsiniz. &lt;a href="https://smartpack.github.io/spkm/customcontrols/">Documentation&lt;a></string>
     <string name="custom_controls_message">Desteklenen bir Kök Dosya Yöneticinizin kurulu olması koşuluyla, temelde mevcut herhangi bir sysfs yolu için özel bir denetleyici oluşturabilirsiniz. Ancak, lütfen bu özelliğin cihazınızı bozabilecek kadar güçlü olduğunu unutmayın.\n\n***RİSKLERİ GÖZE ALARAK KULLANIN***</string>
     <string name="create">Oluştur</string>
     <string name="import_item">İçe aktar</string>
@@ -1030,7 +1030,7 @@
     <string name="flashing_finished">Flashlama Tamamlandı</string>
     <string name="restoring">Geri Yükleniyor</string>
     <string name="reset_settings">Uygulamayı Sıfırla</string>
-    <string name="reset_settings_summary">Kullanıcı Ayarlarını Sıfırla</string>
+    <string name="reset_settings_summary">Kullanıcı Ayarlarını Sıfırlayın</string>
     <string name="reset_settings_message">Uygulama ayarları tamamen silinecek. Emin misiniz?</string>
     <string name="unknown_link">Henüz geliştirici tarafından sağlanmadı!</string>
     <string name="remove">Kaldır</string>
