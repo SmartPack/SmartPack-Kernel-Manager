@@ -106,6 +106,7 @@ Please help me to translate this application via [POEditor](https://poeditor.com
 * [free-bots](https://github.com/free-bots), German
 * Alejandro YT, Spanish
 * [Fruity-0](https://github.com/Fruity-0), Polish
+* [Fatih Fırıncı](https://github.com/Fatih-BaKeR), Turkish
 
 ## Report a bug or request a feature
 

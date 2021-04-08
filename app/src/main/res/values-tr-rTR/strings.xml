@@ -471,7 +471,7 @@
     <string name="charging_enable">Şarjı Etkinleştir</string>
     <string name="charging_enable_summary">Uyarı! Devre dışı bırakılırsa şarj hemen durdurulur.</string>
     <string name="thunder_charge">Thunder Charge</string>
-    <string name="thunder_charge_summary">Varun.chitre15\'in Thunder Charge'ını etkinleştirin</string>
+    <string name="thunder_charge_summary">Varun.chitre15\'in Thunder Charge\'ını etkinleştirin</string>
 
     <!-- Advanced Charge Control Interface -->
     <string name="acci">Gelişmiş Şarj Kontrol Arayüzü</string>
