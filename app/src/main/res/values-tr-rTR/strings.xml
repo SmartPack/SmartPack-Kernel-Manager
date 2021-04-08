@@ -869,6 +869,12 @@
     <string name="auto_sync">Verileri Otomatik Senkronize Et</string>
     <string name="auto_sync_summary">Uygulamaların verileri otomatik olarak yenilemesine izin ver.\nLütfen Unutmayın: Önyükleme ayarlarınızdan bağımsız olarak uygulanacaktır.</string>
     <string name="cpuset">İşlemci Ayarları</string>
+    <string name="doze">Doze Modunu Zorla</string>
+    <string name="doze_summary">Cihazınız boştayken belirli görevlerin çalışmasını önlemek için doze modunu etkinleştirin.</string>
+    <string name="selinux">SELinux</string>
+    <string name="selinux_summary">SELinux durumunu ayarla</string>
+    <string name="selinux_permissive">Permissive</string>
+    <string name="selinux_enforcing">Enforcing</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">Performans Ayarlamaları</string>
@@ -976,8 +982,11 @@
 
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">Bu bölüm, cihazınız açıldığında neler olacağını gösterir. Boşsa, açılıştan sonra hiçbir şey olmaz.</string>
+    <string name="on_boot_swipe_drag_message">Bir komutu (bir profili veya komut dosyasını değil) kaldırmak için sola veya sağa kaydırabilirsiniz!</string>
     <string name="delete_question">%s silinsin mi?</string>
     <string name="disable_question">%s devre dışı bırakılsın mı?</string>
+    <string name="swipe_message">Üzgünüz! Bir %s kaydırılamaz.</string>
+    <string name="drag_message">Üzgünüz! Bir %s farklı bir konuma kaydırılamaz.</string>
 
     <!-- SmartPack -->
     <string name="acquiring">Güncelleme bilgileri alınıyor</string>
@@ -1027,9 +1036,7 @@
     <string name="remove">Kaldır</string>
     <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from</string>
     <string name="busybox_installer">BusyBox Yükleyici</string>
-    <string name="busybox_installer_summary">Bu uygulamanın bazı özelliklerinin düzgün çalışması için cihazınızda bağımsız bir BusyBox kurulumuna sahip olmanız şiddetle tavsiye edilir (örn. \'unzip\' &amp; \'mke2fs\' binaries for flashing &amp; \'curl\' or \'wget\' binary for kernel OTA updates). Kullanıcılara bu konuda yardımcı olmak amacıyla, arm, arm64 ve x86 cihazlar için tek tıklamayla BusyBox kurulum aracı olarak kullanılabilecek basit bir uygulama kullanıma sunulmuştur. Almak için buraya tıklayın!</string>
-    <string name="download_failed">Görünüşe göre indirme başarısız oldu veya bozuk bir dosya indirildi!</string>
-    <string name="check_update">Güncellemeleri denetle</string>
+    <string name="busybox_installer_summary">Bu uygulamanın bazı özelliklerinin düzgün çalışması için cihazınızda bağımsız bir BusyBox kurulumuna sahip olmanız şiddetle tavsiye edilir (örn. \'unzip\' &amp; \'mke2fs\' binaries for flashing &amp; \'curl\' or \'wget\' binary for kernel OTA updates). Kullanıcılara bu konuda yardımcı olmak amacıyla, arm, arm64 ve x86 cihazlar için tek tıklamayla BusyBox kurulum aracı olarak kullanılabilecek basit bir uygulama kullanıma sunulmuştur. Almak için buraya tıklayın!</string>>
 
     <!-- Update Channel -->
     <string name="update_channel_message">(<i>for developers only</i>)\nApp will create an update channel (json) for your kernel, as long as the information\'s provided in this page are accurate.</string>
@@ -1053,6 +1060,15 @@
     <string name="clear">Tümünü Temizle</string>
     <string name="clear_message">Tüm alanlar boş! İptal ediliyor.</string>
     <string name="clear_all_summary">Bu sayfaya eklediğiniz her şey temizlenecek!</string>
+
+    <!-- App Updater -->
+    <string name="update_available">Yeni güncelleme mevcut!\nv%s</string>
+    <string name="get_it">Anladım</string>
+    <string name="download_failed">Görünüşe göre indirme başarısız oldu veya bozuk bir dosya indirildi!</string>
+    <string name="updated_dialog">"Tebrikler! SmartPack-Kernel Manager'ın güncel bir sürümüne zaten sahipsiniz!"</string>
+    <string name="auto_update_check">Otomatik Güncelleme Kontrolü</string>
+    <string name="check_update">Güncellemeleri Kontrol Et</string>
+    <string name="check_update_summary">"SmartPack-Kernel Manager'ın yeni sürümlerini kontrol edin"</string>
 
     <!-- Settings-->
     <string name="open_settings">Ayarları aç</string>
@@ -1115,6 +1131,8 @@
     <string name="change_logs_summary">Değişiklikleri görüntüleyin</string>
     <string name="playstore">PlayStore</string>
     <string name="playstore_summary">PlayStore sayfasını ziyaret edin</string>
+    <string name="fdroid">F-Droid</string>
+    <string name="fdroid_summary">F-Droid sayfasını ziyaret edin</string>
     <string name="donate_me_summary">Bu projenin gelişimini destekleyin</string>
     <string name="purchase_app">Bağış Uygulamasını Satın Al</string>
     <string name="billing_client_disconnected">Google Play Faturalandırma istemcisiyle bağlantı kurulamadı!</string>
