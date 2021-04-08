@@ -914,7 +914,7 @@
     <string name="purchase_app">購買應用程式</string>
     <string name="licence">授權協議</string>
 
-    <!-- Billing -->
+    <!-- Contributors -->
     <string name="commits">%d 提交</string>
     <string name="no_internet">請檢查您的網際網路連線！</string>
     <string name="translators">翻譯人員</string>

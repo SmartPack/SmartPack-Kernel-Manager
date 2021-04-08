@@ -923,7 +923,7 @@
     <string name="purchase_app">购买应用</string>
     <string name="licence_summary">查看 GPL V3</string>
 
-    <!-- Billing -->
+    <!-- Contributors -->
     <string name="commits">%d 提交</string>
     <string name="no_internet">请检查您是否正确连接网络！</string>
     <string name="translators">翻译人员</string>

@@ -1121,7 +1121,7 @@
     <string name="osm0sis">"Chris Renshaw"</string>
     <string name="osm0sis_summary">"Der Entwickler des berühmten 'AnyKernel3' Projekts. Ohne seine zeitnahe Unterstützung und Betreuung hätte es das auto-flashing Feature dieser App nicht geben."</string>
 
-    <!-- Billing -->
+    <!-- Contributors -->
     <string name="commits">"%d commits"</string>
     <string name="no_internet">"Überprüfe deine Internetverbindung!"</string>
     <string name="translators">"Übersetzer"</string>

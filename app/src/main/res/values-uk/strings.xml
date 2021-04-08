@@ -418,8 +418,7 @@
     <string name="hotplug_suspend">Hotplug Призупинити</string>
     <string name="hotplug_temp">Температура при хотплаге</string>
     <string name="hotplug_temp_summary">Порогова температура для початку виключення ядер.</string>
-    <string name="hotplug_warning">Включено кілька Hotplug драйверів!
-Будь ласка, використовуйте тільки один.</string>
+    <string name="hotplug_warning">Включено кілька Hotplug драйверів!\nБудь ласка, використовуйте тільки один.</string>
     <string name="how_different">Q1. Чим ця програма відрізняється від офіційного ядра Grarak Adiutor?</string>
     <string name="how_different_summary">В: Це додаток значно модифіковано для задоволення потреб Smart-Pack-Kernel. Деякі з додаткових функцій цього додатка включають, але не обмежуються, i. CPU Input Boost, ii. Adreno Boost, iii. Dynamic Stune Boost , iv. K-lapse, v. Розширений інтерфейс управління зарядкою (ядра Samsung msm8974), vi. Boeffla Wakelocks, vii. Засоби керування звуком Boeffla і Flar з підтримкою по каналах, viii. Перемикач SELinux, ix. Підтримка OTA для SmartPack-Kernel , х. Дисплей керування підсвічуванням і багато іншого. </string>
     <string name="hybrid">Гібридний</string>
@@ -634,9 +633,7 @@
     <string name="other">Інше</string>
     <string name="other_options">Інші опції</string>
     <string name="overall">Загальне</string>
-    <string name="overall_summary">Ласкаво просимо на головну сторінку
-SmartPack-Kernel Manager.
-Ця сторінка містить основну інформацію про ваш пристрій. Додаткові параметри настроювання ядра можна знайти на відповідних сторінках.</string>
+    <string name="overall_summary">Ласкаво просимо на головну сторінку SmartPack-Kernel Manager. Ця сторінка містить основну інформацію про ваш пристрій. Додаткові параметри настроювання ядра можна знайти на відповідних сторінках.</string>
     <string name="override_vib">Перевизначити вібрацію</string>
     <string name="override_vib_summary">Дозволяє змінити стандартні параметри вібрації системи.</string>
     <string name="override_vmin">Перевизначити мінімальна напруга</string>

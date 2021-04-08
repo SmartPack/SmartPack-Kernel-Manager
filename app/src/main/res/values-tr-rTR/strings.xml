@@ -1025,7 +1025,7 @@
     <string name="reset_settings_message">Uygulama ayarları tamamen silinecek. Emin misiniz?</string>
     <string name="unknown_link">Henüz geliştirici tarafından sağlanmadı!</string>
     <string name="remove">Kaldır</string>
-    <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from PlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
+    <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from</string>
     <string name="busybox_installer">BusyBox Yükleyici</string>
     <string name="busybox_installer_summary">Bu uygulamanın bazı özelliklerinin düzgün çalışması için cihazınızda bağımsız bir BusyBox kurulumuna sahip olmanız şiddetle tavsiye edilir (örn. \'unzip\' &amp; \'mke2fs\' binaries for flashing &amp; \'curl\' or \'wget\' binary for kernel OTA updates). Kullanıcılara bu konuda yardımcı olmak amacıyla, arm, arm64 ve x86 cihazlar için tek tıklamayla BusyBox kurulum aracı olarak kullanılabilecek basit bir uygulama kullanıma sunulmuştur. Almak için buraya tıklayın!</string>
     <string name="download_failed">Görünüşe göre indirme başarısız oldu veya bozuk bir dosya indirildi!</string>
@@ -1132,7 +1132,7 @@
     <string name="licence_summary">"GPL V3'ü görüntüleyin"</string>
     <string name="share_app">Uygulamayı Paylaş</string>
     <string name="share_app_summary">Bu uygulamayı arkadaşlarınızla paylaşın</string>
-    <string name="share_app_message">SmartPack-Kernel Manager %s uygulamasına kesinlikle bakmalısın: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release</string>
+    <string name="share_app_message">SmartPack-Kernel Manager %s uygulamasına kesinlikle bakmalısın</string>
     <string name="grarak">Willi Ye</string>
     <string name="grarak_summary">"SmartPack-Kernel Manager'ın atası olan \'Kernel Adiutor\''un arkasındaki adam. Bu proje onsuz gerçek olamazdı. Ona sadece Kernel Adiutor'daki sıkı çalışması için değil, aynı zamanda açık kaynağa açık olduğu için büyük saygı duyuyorum."</string>
     <string name="osm0sis">Chris Renshaw</string>

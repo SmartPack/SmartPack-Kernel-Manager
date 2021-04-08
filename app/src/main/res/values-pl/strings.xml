@@ -1122,7 +1122,7 @@
     <string name="osm0sis">"Chris Renshaw"</string>
     <string name="osm0sis_summary">"Twórca słynnego projektu AnyKernel3. Bez jego szybkiego wsparcia i wskazówek funkcja automatycznego flashowania w tej aplikacji nie będzie działać."</string>
 
-    <!-- Billing -->
+    <!-- Contributors -->
     <string name="commits">"%d zatwierdza"</string>
     <string name="no_internet">"Proszę sprawdzić swoje połączenie z internetem!"</string>
     <string name="translators">"Tłumacze"</string>

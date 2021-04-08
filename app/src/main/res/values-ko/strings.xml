@@ -1008,7 +1008,7 @@
     <string name="osm0sis_summary">유명한 \'AnyKernel3\' 프로젝트의 개발자입니다. 그의 기나긴 지원과 인내 없이는, 이 앱의 설치 기능은 존재하지 않았을 것입니다.</string>
 
 
-    <!-- Billing -->
+    <!-- Contributors -->
     <string name="commits">%d 커밋</string>
     <string name="no_internet">인터넷 연결을 확인해주세요!</string>
     <string name="translators">번역가들</string>

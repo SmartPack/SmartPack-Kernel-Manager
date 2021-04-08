@@ -1092,7 +1092,7 @@
     <string name="osm0sis">Chris Renshaw</string>
     <string name="osm0sis_summary">The developer of the famous \'AnyKernel3\' project. Without his timely support and guidance, the auto-flashing feature on this app won\'t be happen.</string>
 
-    <!-- Billing -->
+    <!-- Contributors -->
     <string name="commits">%d commits</string>
     <string name="no_internet">Please check your internet connection!</string>
     <string name="translators">Translators</string>

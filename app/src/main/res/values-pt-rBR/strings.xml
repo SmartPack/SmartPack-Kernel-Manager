@@ -966,7 +966,7 @@
     <string name="donate_me_summary">Deseja apreciar meu trabalho com uma doação? Clique aqui</string>
     <string name="purchase_app">App de doação</string>
 
-    <!-- Billing -->
+    <!-- Contributors -->
     <string name="commits">%d commits</string>
     <string name="no_internet">Por favor, verifique sua conexão à Internet!</string>
     <string name="translators">Tradutores</string>

@@ -1084,7 +1084,7 @@
     <string name="osm0sis">"Крис Реншоу"</string>
     <string name="osm0sis_summary">"Девелопер проекта известный 'AnyKernel3'. Без его своевременной помощи и руководства, обновление на это приложение не будет происходить."</string>
 
-    <!-- Billing -->
+    <!-- Contributors -->
     <string name="commits">"Изменения: %d"</string>
     <string name="no_internet">"Пожалуйста, проверьте интернет-соединение!"</string>
     <string name="translators">"Переводчики"</string>
