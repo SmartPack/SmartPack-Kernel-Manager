@@ -362,14 +362,16 @@ public class MiscFragment extends RecyclerViewFragment {
 		}
 
 		if (Misc.hasDoze()) {
-			SwitchView doze = new SwitchView();
+			SelectView doze = new SelectView();
 			doze.setTitle(getString(R.string.doze));
 			doze.setSummary(getString(R.string.doze_summary));
-			doze.setChecked(Misc.isDozeEnabled());
-			doze.addOnSwitchListener((switchView, isChecked)
-					-> mMisc.enableDoze(isChecked, requireActivity()));
-			getHandler().postDelayed(() -> doze.setChecked(Misc.isDozeEnabled()),
-					500);
+			doze.setItems(Misc.doze(requireActivity()));
+			doze.setItem(Misc.getDozeState());
+			doze.setOnItemSelected((selectView, position, item) -> {
+				mMisc.setDoze(position, getActivity());
+				getHandler().postDelayed(() -> doze.setItem(Misc.getDozeState()),
+						500);
+			});
 
 			if (Utils.isFDroidFlavor(requireActivity())) {
 				miscCard.addItem(doze);

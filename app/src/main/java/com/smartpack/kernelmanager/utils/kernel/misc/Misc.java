@@ -168,12 +168,63 @@ public class Misc {
         return Utils.existFile(SELINUX);
     }
 
-    public void enableDoze(boolean enable, Context context) {
-        run(Control.runShellCommand(enable ? DOZE + " enable" + " && " + DOZE + " force-idle" :
-                DOZE + " disable"), DOZE, context);
+    public static List<String> doze(Context context) {
+        List<String> list = new ArrayList<>();
+        list.add(context.getString(R.string.disabled));
+        list.add(context.getString(R.string.doze_light));
+        list.add(context.getString(R.string.doze_deep));
+        list.add(context.getString(R.string.doze));
+        return list;
     }
 
-    public static boolean isDozeEnabled() {
+    public static int getDozeState() {
+        if (RootUtils.runAndGetOutput(DOZE + " enabled").equals("1")) {
+            return 3;
+        } else if (RootUtils.runAndGetOutput(DOZE + " enabled deep").equals("1")) {
+            return 2;
+        } else if (RootUtils.runAndGetOutput(DOZE + " enabled light").equals("1")) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public void setDoze(int value, Context context) {
+        switch (value) {
+            case 0:
+                run(Control.runShellCommand(DOZE + " disable"), DOZE, context);
+                break;
+            case 1:
+                if (isForceDozeEnabled()) {
+                    run(Control.runShellCommand(DOZE + " disable"), DOZE, context);
+                } else if (isDeepDozeEnabled()) {
+                    run(Control.runShellCommand(DOZE + " disable deep"), DOZE, context);
+                }
+                run(Control.runShellCommand(DOZE + " enable light"), DOZE, context);
+                break;
+            case 2:
+                if (isForceDozeEnabled()) {
+                    run(Control.runShellCommand(DOZE + " disable"), DOZE, context);
+                } else if (isLightDozeEnabled()) {
+                    run(Control.runShellCommand(DOZE + " disable light"), DOZE, context);
+                }
+                run(Control.runShellCommand(DOZE + " enable deep"), DOZE, context);
+                break;
+            case 3:
+                run(Control.runShellCommand(DOZE + " enable" + " && " + DOZE + " force-idle"), DOZE, context);
+                break;
+        }
+    }
+
+    private static boolean isLightDozeEnabled() {
+        return RootUtils.runAndGetOutput(DOZE + " enabled light").equals("1");
+    }
+
+    private static boolean isDeepDozeEnabled() {
+        return RootUtils.runAndGetOutput(DOZE + " enabled deep").equals("1");
+    }
+
+    private static boolean isForceDozeEnabled() {
         return RootUtils.runAndGetOutput(DOZE + " enabled").equals("1");
     }
 
