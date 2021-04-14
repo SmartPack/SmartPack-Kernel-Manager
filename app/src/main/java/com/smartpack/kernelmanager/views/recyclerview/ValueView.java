@@ -97,6 +97,7 @@ public abstract class ValueView extends RecyclerViewItem {
 
         if (mSummaryView != null && mSummary != null) {
             mSummaryView.setText(mSummary);
+            mSummaryView.setVisibility(View.VISIBLE);
         }
 
         if (mValueView != null && (mValue != null || mValuesRes != 0)) {
