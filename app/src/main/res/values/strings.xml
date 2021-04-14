@@ -877,6 +877,7 @@
     <string name="selinux_summary">Set SELinux state</string>
     <string name="selinux_permissive">Permissive</string>
     <string name="selinux_enforcing">Enforcing</string>
+    <string name="transmit_queue_length">Transmit Queue Length</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">Performance Tweaks</string>

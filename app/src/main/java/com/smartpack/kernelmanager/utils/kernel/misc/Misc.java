@@ -25,6 +25,7 @@ import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.Control;
+import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
 import java.util.ArrayList;
@@ -71,6 +72,8 @@ public class Misc {
     private static final String CPUSET = "/dev/cpuset";
     private static final String[] PARAMETERS = {"audio-app/cpus", "background/cpus", "camera-daemon/cpus",
             "foreground/cpus", "restricted/cpus", "system-background/cpus", "top-app/cpus"};
+
+    private static final String TQL_PARENT = "/sys/class/net";
 
     private final List<String> mLoggers = new ArrayList<>();
     private final List<String> mCrcs = new ArrayList<>();
@@ -436,6 +439,24 @@ public class Misc {
 
     public static boolean hasCPUSet() {
         return Utils.existFile(CPUSET);
+    }
+
+    public static List<String> getTQLList() {
+        List<String> mTQLList = new ArrayList<>();
+        for (String string : new RootFile(TQL_PARENT).list()) {
+            if (Utils.existFile(TQL_PARENT + "/" + string + "/tx_queue_len")) {
+                mTQLList.add(string);
+            }
+        }
+        return mTQLList;
+    }
+
+    public static String getTQLValue(String string) {
+        return Utils.readFile(TQL_PARENT + "/" + string + "/tx_queue_len");
+    }
+
+    public void setTQLValue(String value, String string, Context context) {
+        run(Control.write(value, TQL_PARENT + "/" + string + "/tx_queue_len"), TQL_PARENT + "/" + string + "/tx_queue_len", context);
     }
 
     private void run(String command, String id, Context context) {

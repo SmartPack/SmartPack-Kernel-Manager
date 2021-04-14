@@ -33,7 +33,6 @@ import com.smartpack.kernelmanager.utils.kernel.misc.PowerSuspend;
 import com.smartpack.kernelmanager.utils.kernel.misc.Vibration;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
-import com.smartpack.kernelmanager.views.recyclerview.GenericInputView;
 import com.smartpack.kernelmanager.views.recyclerview.GenericSelectView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.SeekBarView;
@@ -74,6 +73,9 @@ public class MiscFragment extends RecyclerViewFragment {
 		}
 		if (Misc.hasCPUSet()) {
 			cpusetInit(items);
+		}
+		if (Misc.getTQLList().size() > 0) {
+			tqlInit(items);
 		}
 		networkInit(items);
 	}
@@ -469,8 +471,8 @@ public class MiscFragment extends RecyclerViewFragment {
 
 		for (int i = 0; i < Misc.size(); i++) {
 			if (Misc.exists(i)) {
-				GenericInputView cpuset = new GenericInputView();
-				cpuset.setTitle(Misc.getName(i));
+				GenericSelectView cpuset = new GenericSelectView();
+				cpuset.setSummary(Misc.getName(i));
 				cpuset.setValue(Misc.getValue(i));
 				cpuset.setValueRaw(cpuset.getValue());
 
@@ -486,7 +488,25 @@ public class MiscFragment extends RecyclerViewFragment {
 		if (cpusetCard.size() > 0) {
 			items.add(cpusetCard);
 		}
+	}
 
+	private void tqlInit(List<RecyclerViewItem> items) {
+		CardView tql = new CardView(getActivity());
+		tql.setTitle(getString(R.string.transmit_queue_length));
+
+		for (String string : Misc.getTQLList()) {
+			GenericSelectView tqlItem = new GenericSelectView();
+			tqlItem.setSummary(string.toUpperCase());
+			tqlItem.setValue(Misc.getTQLValue(string));
+
+			tqlItem.setOnGenericValueListener((genericSelectView, value) -> {
+				mMisc.setTQLValue(value, string, getActivity());
+				getHandler().postDelayed(() -> tqlItem.setValue(Misc.getTQLValue(string)),500);
+			});
+			tql.addItem(tqlItem);
+		}
+
+		items.add(tql);
 	}
 
 	private void networkInit(List<RecyclerViewItem> items) {
