@@ -118,9 +118,9 @@ public class NavigationActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ArrayList<NavigationFragment> mFragments = new ArrayList<>();
-    private Map<Integer, Class<? extends Fragment>> mActualFragments = new LinkedHashMap<>();
+    private final Map<Integer, Class<? extends Fragment>> mActualFragments = new LinkedHashMap<>();
 
-    private Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler();
     private DrawerLayout mDrawer;
     private NavigationView mNavigationView;
     private boolean mExit;
@@ -146,7 +146,7 @@ public class NavigationActivity extends BaseActivity
 
     private static class FragmentLoader extends AsyncTask<Void, Void, Void> {
 
-        private WeakReference<NavigationActivity> mRefActivity;
+        private final WeakReference<NavigationActivity> mRefActivity;
 
         private FragmentLoader(NavigationActivity activity) {
             mRefActivity = new WeakReference<>(activity);

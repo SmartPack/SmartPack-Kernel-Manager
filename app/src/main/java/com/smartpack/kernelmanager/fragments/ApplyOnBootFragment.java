@@ -38,6 +38,7 @@ import com.smartpack.kernelmanager.fragments.kernel.CPUVoltageFragment;
 import com.smartpack.kernelmanager.fragments.kernel.DisplayLEDFragment;
 import com.smartpack.kernelmanager.fragments.kernel.EntropyFragment;
 import com.smartpack.kernelmanager.fragments.kernel.GPUFragment;
+import com.smartpack.kernelmanager.fragments.kernel.IOAdvancedFragment;
 import com.smartpack.kernelmanager.fragments.kernel.IOFragment;
 import com.smartpack.kernelmanager.fragments.kernel.KLapseFragment;
 import com.smartpack.kernelmanager.fragments.kernel.KSMFragment;
@@ -55,6 +56,7 @@ import com.smartpack.kernelmanager.fragments.kernel.boost.StuneBoostFragment;
 import com.smartpack.kernelmanager.fragments.tools.CustomControlsFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.kernel.io.IOAdvanced;
 
 import java.util.HashMap;
 
@@ -78,6 +80,7 @@ public class ApplyOnBootFragment extends BaseFragment {
     public static final String BATTERY = "battery_onboot";
     public static final String LED = "led_onboot";
     public static final String IO = "io_onboot";
+    public static final String IO_ADVANCED = "ioadv_onboot";
     public static final String KSM = "ksm_onboot";
     public static final String LMK = "lmk_onboot";
     public static final String WAKELOCKS = "wakelocks_onboot";
@@ -104,6 +107,7 @@ public class ApplyOnBootFragment extends BaseFragment {
         sAssignments.put(BatteryFragment.class, BATTERY);
         sAssignments.put(DisplayLEDFragment.class, LED);
         sAssignments.put(IOFragment.class, IO);
+        sAssignments.put(IOAdvancedFragment.class, IO_ADVANCED);
         sAssignments.put(KSMFragment.class, KSM);
         sAssignments.put(LMKFragment.class, LMK);
         sAssignments.put(WakelockFragment.class, WAKELOCKS);

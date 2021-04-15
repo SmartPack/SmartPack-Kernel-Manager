@@ -718,6 +718,12 @@
     <string name="nr_requests">NR Requests</string>
     <string name="nr_requests_summary">This controls how many requests may be allocated in the block layer for read or write requests.</string>
 
+    <!-- I/O Advanced -->
+    <string name="io_blocks">I/O Blocks (%s)</string>
+    <string name="io_blocks_summary">Click here to fine-tune various I/O blocks on your device! However, please be aware that some parameters are read-only and not allowed to change on some blocks.</string>
+    <string name="io_blocks_select">Select I/O Block</string>
+    <string name="io_blocks_select_summary">Select the preferred I/O Block for fine-tuning.</string>
+
     <!-- Kernel Samepage Merging -->
     <string name="full_scans">Full scans</string>
     <string name="pages_shared">Pages shared</string>

@@ -19,9 +19,11 @@
  */
 package com.smartpack.kernelmanager.fragments.kernel;
 
+import android.content.Intent;
 import android.text.InputType;
 
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.activities.AdvancedIOActivity;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
@@ -59,6 +61,19 @@ public class IOFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
+        CardView advCard = new CardView(getActivity());
+        advCard.setTitle(getString(R.string.adv_sett));
+
+        DescriptionView advancedIO = new DescriptionView();
+        advancedIO.setSummary(getString(R.string.io_blocks_summary));
+        advancedIO.setOnItemClickListener(item -> {
+            Intent intent = new Intent(getActivity(), AdvancedIOActivity.class);
+            startActivity(intent);
+        });
+
+        advCard.addItem(advancedIO);
+        items.add(advCard);
+
         storageInit(IO.Storage.Internal, items);
         if (mIO.hasExternal()) {
             storageInit(IO.Storage.External, items);

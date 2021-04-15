@@ -69,8 +69,9 @@
         <activity
             android:name=".views.NavHeaderView$MainHeaderActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".activities.CPUBoostActivity" />
+        <activity android:name=".activities.AdvancedIOActivity" />
         <activity android:name=".activities.ApplyScriptActivity" />
+        <activity android:name=".activities.CPUBoostActivity" />
         <activity android:name=".activities.EditorActivity" />
         <activity android:name=".activities.FlashingActivity" />
         <activity android:name=".activities.ForegroundActivity" />
