@@ -385,11 +385,7 @@ public class MiscFragment extends RecyclerViewFragment {
 		userSync.setSummary(getString(R.string.auto_sync_summary));
 		userSync.setChecked(ContentResolver.getMasterSyncAutomatically());
 		userSync.addOnSwitchListener((switchView, isChecked) -> {
-			if(isChecked) {
-				ContentResolver.setMasterSyncAutomatically(true);
-			} else {
-				ContentResolver.setMasterSyncAutomatically(false);
-			}
+			ContentResolver.setMasterSyncAutomatically(isChecked);
 		});
 
 		miscCard.addItem(userSync);

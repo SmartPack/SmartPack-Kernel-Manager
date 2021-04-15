@@ -71,7 +71,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
     private String mPath;
 
-    private String logFolder = Utils.getInternalDataStorage() + "/logs";
+    private final String logFolder = Utils.getInternalDataStorage() + "/logs";
 
     @Override
     protected boolean showTopFab() {
