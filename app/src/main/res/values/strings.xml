@@ -406,6 +406,8 @@
     <string name="workload">Workload</string>
     <string name="workload_summary">Adreno idler will more actively try to ramp down the frequency if this is set to a higher value.</string>
     <string name="gpu_powelevel">GPU Power Level</string>
+    <string name="gpu_throttling">GPU Throttling</string>
+    <string name="gpu_throttling_summary">Reduces the performance when the GPU gets hot.</string>
 
     <!--Thermal-->
     <string name="thermal_info">Use only one thermal driver from the following options, using more at the same time may cause unexpected behavior.</string>

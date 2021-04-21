@@ -174,6 +174,19 @@ public class GPUFragment extends RecyclerViewFragment {
             }
         }
 
+        if (GPUMisc.hasGPUThrottling()) {
+            SwitchView throttling = new SwitchView();
+            throttling.setTitle(getString(R.string.gpu_throttling));
+            throttling.setSummary(getString(R.string.gpu_throttling_summary));
+            throttling.setChecked(GPUMisc.isGPUThrottlingEnabled());
+            throttling.addOnSwitchListener((switchView, isChecked) -> {
+                GPUMisc.enableGPUThrottling(isChecked, getActivity());
+                getHandler().postDelayed(() -> throttling.setChecked(GPUMisc.isGPUThrottlingEnabled()), 100);
+            });
+
+            gpuCard.addItem(throttling);
+        }
+
         if (GPUMisc.hasgpuPwrLevel()) {
             GenericSelectView PowerLevel = new GenericSelectView();
             PowerLevel.setTitle(getString(R.string.gpu_powelevel));

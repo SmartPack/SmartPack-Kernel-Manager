@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2021 sunilpaulmathew <sunil.kde@gmail.com>
+ * Copyright (C) 2021-2022 sunilpaulmathew <sunil.kde@gmail.com>
  *
  * This file is part of SmartPack Kernel Manager, which is a heavily modified version of Kernel Adiutor,
  * originally developed by Willi Ye <williye97@gmail.com>
@@ -26,13 +26,14 @@ import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.Control;
 
-/**
+/*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on July 08, 2019
  */
-
 public class GPUMisc {
 
-    private static final String GPU_POWER_LEVEL = "/sys/class/kgsl/kgsl-3d0/default_pwrlevel";
+    private static final String KGSL = "/sys/class/kgsl/kgsl-3d0";
+    private static final String GPU_POWER_LEVEL = KGSL + "/default_pwrlevel";
+    private static final String GPU_THROTTLING = KGSL + "/throttling";
 
     public static String getgpuPwrLevel() {
         return Utils.readFile(GPU_POWER_LEVEL);
@@ -46,7 +47,24 @@ public class GPUMisc {
         return Utils.existFile(GPU_POWER_LEVEL);
     }
 
+    public static boolean hasGPUThrottling() {
+        return Utils.existFile(GPU_THROTTLING);
+    }
+
+    public static void enableGPUThrottling(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", GPU_THROTTLING), GPU_THROTTLING, context);
+    }
+
+    public static boolean isGPUThrottlingEnabled() {
+        return Utils.readFile(GPU_THROTTLING).equals("1");
+    }
+
+    public static boolean supported() {
+        return hasgpuPwrLevel() || hasGPUThrottling();
+    }
+
     private static void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.GPU, id, context);
     }
+
 }
