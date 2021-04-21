@@ -61,7 +61,7 @@ public class MiscFragment extends RecyclerViewFragment {
 
 	@Override
 	protected void addItems(List<RecyclerViewItem> items) {
-		if (mVibration.supported() || mMisc.hasLoggerEnable() || Misc.hasPrintKMode() || mMisc.hasCrc()
+		if (mVibration.supported() || mMisc.hasLoggerEnable() || Misc.hasPrintKMode() || Misc.hasPrintKDevKMSG() || mMisc.hasCrc()
 				|| mMisc.hasFsync() || mMisc.hasDynamicFsync() || mMisc.hasGentleFairSleepers() || mMisc.hasArchPower()
 				|| mMisc.hasHapticOverride() || Misc.hasHapticUser() || Misc.hasHapticsNotification()
 				|| Misc.hasHapticsCall() || Misc.hasLeases() || Misc.hasLeaseBreakTime()
@@ -122,10 +122,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			override.setChecked(mMisc.isHapticOverrideEnabled());
 			override.addOnSwitchListener((switchView, isChecked) -> {
 				mMisc.enableHapticOverride(isChecked, getActivity());
-				getHandler().postDelayed(() -> {
-							override.setChecked(mMisc.isHapticOverrideEnabled());
-						},
-						500);
+				getHandler().postDelayed(() -> override.setChecked(mMisc.isHapticOverrideEnabled()),500);
 			});
 
 			miscCard.addItem(override);
@@ -140,10 +137,7 @@ public class MiscFragment extends RecyclerViewFragment {
 				@Override
 				public void onStop(SeekBarView seekBarView, int position, String value) {
 					mMisc.setHapticUser((position * 36), getActivity());
-					getHandler().postDelayed(() -> {
-								hapticUser.setProgress(Misc.getHapticUser() / 36);
-							},
-							500);
+					getHandler().postDelayed(() -> hapticUser.setProgress(Misc.getHapticUser() / 36),500);
 				}
 
 				@Override
@@ -163,10 +157,7 @@ public class MiscFragment extends RecyclerViewFragment {
 				@Override
 				public void onStop(SeekBarView seekBarView, int position, String value) {
 					mMisc.setHapticsNotification((position * 36), getActivity());
-					getHandler().postDelayed(() -> {
-								hapticNoti.setProgress(Misc.getHapticsNotification() / 36);
-							},
-							500);
+					getHandler().postDelayed(() -> hapticNoti.setProgress(Misc.getHapticsNotification() / 36),500);
 				}
 
 				@Override
@@ -186,10 +177,7 @@ public class MiscFragment extends RecyclerViewFragment {
 				@Override
 				public void onStop(SeekBarView seekBarView, int position, String value) {
 					mMisc.setHapticsCall((position * 36), getActivity());
-					getHandler().postDelayed(() -> {
-								hapticCalls.setProgress(Misc.getHapticsCall() / 36);
-							},
-							500);
+					getHandler().postDelayed(() -> hapticCalls.setProgress(Misc.getHapticsCall() / 36),500);
 				}
 
 				@Override
@@ -207,10 +195,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			logger.setChecked(mMisc.isLoggerEnabled());
 			logger.addOnSwitchListener((switchView, isChecked) -> {
 				mMisc.enableLogger(isChecked, getActivity());
-				getHandler().postDelayed(() -> {
-							logger.setChecked(mMisc.isLoggerEnabled());
-						},
-						500);
+				getHandler().postDelayed(() -> logger.setChecked(mMisc.isLoggerEnabled()),500);
 			});
 
 			miscCard.addItem(logger);
@@ -223,10 +208,20 @@ public class MiscFragment extends RecyclerViewFragment {
 			printk.setChecked(Misc.isPrintKModeEnabled());
 			printk.addOnSwitchListener((switchView, isChecked) -> {
 				mMisc.enablePrintKMode(isChecked, getActivity());
-				getHandler().postDelayed(() -> {
-							printk.setChecked(Misc.isPrintKModeEnabled());
-						},
-						500);
+				getHandler().postDelayed(() -> printk.setChecked(Misc.isPrintKModeEnabled()),500);
+			});
+
+			miscCard.addItem(printk);
+		}
+
+		if (Misc.hasPrintKDevKMSG()) {
+			SwitchView printk = new SwitchView();
+			printk.setTitle(getString(R.string.printk_devkmsg));
+			printk.setSummary(getString(R.string.printk_devkmsg_summary));
+			printk.setChecked(Misc.isPrintKDevKMSGEnabled());
+			printk.addOnSwitchListener((switchView, isChecked) -> {
+				mMisc.enablePrintKDevKMSG(isChecked, getActivity());
+				getHandler().postDelayed(() -> printk.setChecked(Misc.isPrintKDevKMSGEnabled()),500);
 			});
 
 			miscCard.addItem(printk);
@@ -239,10 +234,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			crc.setChecked(mMisc.isCrcEnabled());
 			crc.addOnSwitchListener((switchView, isChecked) -> {
 				mMisc.enableCrc(isChecked, getActivity());
-				getHandler().postDelayed(() -> {
-							crc.setChecked(mMisc.isCrcEnabled());
-						},
-						500);
+				getHandler().postDelayed(() -> crc.setChecked(mMisc.isCrcEnabled()),500);
 			});
 
 			miscCard.addItem(crc);
@@ -255,10 +247,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			fsync.setChecked(mMisc.isFsyncEnabled());
 			fsync.addOnSwitchListener((switchView, isChecked) -> {
 				mMisc.enableFsync(isChecked, getActivity());
-				getHandler().postDelayed(() -> {
-							fsync.setChecked(mMisc.isFsyncEnabled());
-						},
-						500);
+				getHandler().postDelayed(() -> fsync.setChecked(mMisc.isFsyncEnabled()),500);
 			});
 
 			miscCard.addItem(fsync);
@@ -271,10 +260,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			dynamicFsync.setChecked(mMisc.isDynamicFsyncEnabled());
 			dynamicFsync.addOnSwitchListener((switchView, isChecked) -> {
 				mMisc.enableDynamicFsync(isChecked, getActivity());
-				getHandler().postDelayed(() -> {
-							dynamicFsync.setChecked(mMisc.isDynamicFsyncEnabled());
-						},
-						500);
+				getHandler().postDelayed(() -> dynamicFsync.setChecked(mMisc.isDynamicFsyncEnabled()),500);
 			});
 
 			miscCard.addItem(dynamicFsync);
@@ -287,10 +273,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			gentleFairSleepers.setChecked(mMisc.isGentleFairSleepersEnabled());
 			gentleFairSleepers.addOnSwitchListener((switchView, isChecked) -> {
 				mMisc.enableGentleFairSleepers(isChecked, getActivity());
-				getHandler().postDelayed(() -> {
-							gentleFairSleepers.setChecked(mMisc.isGentleFairSleepersEnabled());
-						},
-						500);
+				getHandler().postDelayed(() -> gentleFairSleepers.setChecked(mMisc.isGentleFairSleepersEnabled()),500);
 			});
 
 			miscCard.addItem(gentleFairSleepers);
@@ -303,10 +286,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			archPower.setChecked(mMisc.isArchPowerEnabled());
 			archPower.addOnSwitchListener((switchView, isChecked) -> {
 				mMisc.enableArchPower(isChecked, getActivity());
-				getHandler().postDelayed(() -> {
-							archPower.setChecked(mMisc.isArchPowerEnabled());
-						},
-						500);
+				getHandler().postDelayed(() -> archPower.setChecked(mMisc.isArchPowerEnabled()),500);
 			});
 
 			miscCard.addItem(archPower);
@@ -319,10 +299,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			enable.setChecked(mMisc.isLeasesEnabled());
 			enable.addOnSwitchListener((switchView, isChecked) -> {
 				mMisc.enableLeases(isChecked, getActivity());
-				getHandler().postDelayed(() -> {
-							enable.setChecked(mMisc.isLeasesEnabled());
-						},
-						500);
+				getHandler().postDelayed(() -> enable.setChecked(mMisc.isLeasesEnabled()),500);
 			});
 
 			miscCard.addItem(enable);
@@ -337,10 +314,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			leaseBreakTime.setOnGenericValueListener((genericSelectView, value) -> {
 				mMisc.setLeaseBreakTime(value, getActivity());
 				genericSelectView.setValue(value);
-				getHandler().postDelayed(() -> {
-							leaseBreakTime.setValue(Misc.getLeaseBreakTime());
-						},
-						500);
+				getHandler().postDelayed(() -> leaseBreakTime.setValue(Misc.getLeaseBreakTime()),500);
 			});
 
 			miscCard.addItem(leaseBreakTime);
@@ -354,8 +328,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			SELinux.setItem(Misc.getSELinux());
 			SELinux.setOnItemSelected((selectView, position, item) -> {
 				mMisc.setSELinux(position, getActivity());
-				getHandler().postDelayed(() -> SELinux.setItem(Misc.getSELinux()),
-						500);
+				getHandler().postDelayed(() -> SELinux.setItem(Misc.getSELinux()),500);
 			});
 
 			if (Utils.isFDroidFlavor(requireActivity())) {
@@ -371,8 +344,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			doze.setItem(Misc.getDozeState());
 			doze.setOnItemSelected((selectView, position, item) -> {
 				mMisc.setDoze(position, getActivity());
-				getHandler().postDelayed(() -> doze.setItem(Misc.getDozeState()),
-						500);
+				getHandler().postDelayed(() -> doze.setItem(Misc.getDozeState()),500);
 			});
 
 			if (Utils.isFDroidFlavor(requireActivity())) {
@@ -407,10 +379,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			mode.setItem(PowerSuspend.getMode());
 			mode.setOnItemSelected((selectView, position, item) -> {
 				PowerSuspend.setMode(position, getActivity());
-				getHandler().postDelayed(() -> {
-							mode.setItem(PowerSuspend.getMode());
-						},
-						500);
+				getHandler().postDelayed(() -> mode.setItem(PowerSuspend.getMode()),500);
 			});
 
 			psCard.addItem(mode);
@@ -423,10 +392,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			state.setChecked(PowerSuspend.isOldStateEnabled());
 			state.addOnSwitchListener((switchView, isChecked) -> {
 				PowerSuspend.enableOldState(isChecked, getActivity());
-				getHandler().postDelayed(() -> {
-							state.setChecked(PowerSuspend.isOldStateEnabled());
-						},
-						500);
+				getHandler().postDelayed(() -> state.setChecked(PowerSuspend.isOldStateEnabled()),500);
 			});
 
 			psCard.addItem(state);
@@ -442,10 +408,7 @@ public class MiscFragment extends RecyclerViewFragment {
 				@Override
 				public void onStop(SeekBarView seekBarView, int position, String value) {
 					PowerSuspend.setNewState(position, getActivity());
-					getHandler().postDelayed(() -> {
-								state.setProgress(PowerSuspend.getNewState());
-							},
-							500);
+					getHandler().postDelayed(() -> state.setProgress(PowerSuspend.getNewState()),500);
 				}
 
 				@Override
@@ -517,10 +480,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			tcp.setItem(mMisc.getTcpCongestion());
 			tcp.setOnItemSelected((selectView, position, item) -> {
 				mMisc.setTcpCongestion(item, getActivity());
-				getHandler().postDelayed(() -> {
-							tcp.setItem(mMisc.getTcpCongestion());
-						},
-						500);
+				getHandler().postDelayed(() -> tcp.setItem(mMisc.getTcpCongestion()),500);
 			});
 
 			networkCard.addItem(tcp);
@@ -541,10 +501,7 @@ public class MiscFragment extends RecyclerViewFragment {
 		hostname.setValueRaw(hostname.getValue());
 		hostname.setOnGenericValueListener((genericSelectView, value) -> {
 			mMisc.setHostname(value, getActivity());
-			getHandler().postDelayed(() -> {
-						hostname.setValue(mMisc.getHostname());
-					},
-					500);
+			getHandler().postDelayed(() -> hostname.setValue(mMisc.getHostname()),500);
 		});
 
 		networkCard.addItem(hostname);

@@ -60,6 +60,7 @@ public class Misc {
     private static final String WIREGUARD = "/sys/module/wireguard/version";
 
     private static final String PRINTK_MODE = "/sys/kernel/printk_mode/printk_mode";
+    private static final String PRINTK_DEVKMSG = "/proc/sys/kernel/printk_devkmsg";
 
     private static final String HOSTNAME_KEY = "net.hostname";
 
@@ -292,6 +293,18 @@ public class Misc {
 
     public static boolean hasPrintKMode() {
         return Utils.existFile(PRINTK_MODE);
+    }
+
+    public void enablePrintKDevKMSG(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", PRINTK_DEVKMSG), PRINTK_DEVKMSG, context);
+    }
+
+    public static boolean isPrintKDevKMSGEnabled() {
+        return Utils.readFile(PRINTK_DEVKMSG).contains("1") || Utils.readFile(PRINTK_DEVKMSG).contains("on");
+    }
+
+    public static boolean hasPrintKDevKMSG() {
+        return Utils.existFile(PRINTK_DEVKMSG);
     }
 
     public static boolean hasWireguard() {

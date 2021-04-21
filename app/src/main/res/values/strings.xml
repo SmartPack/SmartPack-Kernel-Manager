@@ -886,6 +886,8 @@
     <string name="selinux_permissive">Permissive</string>
     <string name="selinux_enforcing">Enforcing</string>
     <string name="transmit_queue_length">Transmit Queue Length</string>
+    <string name="printk_devkmsg">Printk devkmsg</string>
+    <string name="printk_devkmsg_summary">Turn off Printk devkmsg kernel logging service to reduce overhead</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">Performance Tweaks</string>
