@@ -1,124 +1,62 @@
 /*
- * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
+ * Copyright (C) 2020-2021 sunilpaulmathew <sunil.kde@gmail.com>
  *
- * This file is part of Kernel Adiutor.
+ * This file is part of SmartPack Kernel Manager, which is a heavily modified version of Kernel Adiutor,
+ * originally developed by Willi Ye <williye97@gmail.com>
  *
- * Kernel Adiutor is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * Both SmartPack Kernel Manager & Kernel Adiutor are free softwares: you can redistribute it
+ * and/or modify it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Kernel Adiutor is distributed in the hope that it will be useful,
+ * SmartPack Kernel Manager is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * along with SmartPack Kernel Manager.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.smartpack.kernelmanager.utils.root;
 
-import androidx.annotation.NonNull;
-
-import com.smartpack.kernelmanager.utils.Utils;
-import com.topjohnwu.superuser.Shell;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Created by willi on 30.12.15.
+/*
+ * Originally created by willi on 30.12.15.
+ * Modified by sunilpaulmathew <sunil.kde@gmail.com> on April 18, 2021
  */
-
-// TODO: 22/04/20 Perhaps use com.github.topjohnwu.libsu:io
 public class RootFile {
 
-    private final String mFile;
-
-    public RootFile(String file) {
-        mFile = file;
+    public static void delete(String mFile) {
+        RootUtils.runCommand(("rm -r '" + mFile + "'"));
     }
 
-    public String getName() {
-        return new File(mFile).getName();
-    }
-
-    public void mkdir() {
-        Shell.su("mkdir -p '" + mFile + "'").exec();
-    }
-
-    public RootFile mv(String newPath) {
-        Shell.su("mv -f '" + mFile + "' '" + newPath + "'").exec();
-        return new RootFile(newPath);
-    }
-
-    public void cp(String path) {
-        Shell.su("cp -r '" + mFile + "' '" + path + "'").exec();
-    }
-
-    public void write(String text, boolean append) {
-        String[] array = text.split("\\r?\\n");
-        if (!append) delete();
-        for (String line : array) {
-            Shell.su("echo '" + line + "' >> " + mFile).exec();
-        }
-        RootUtils.chmod(mFile, "755");
-    }
-
-    public void execute() {
+    public static void execute(String mFile) {
         RootUtils.runCommand("sh " + mFile);
     }
 
-    public void delete() {
-        Shell.su("rm -r '" + mFile + "'").exec();
-    }
-
-    public List<String> list() {
-        List<String> list = new ArrayList<>();
-        String files = RootUtils.runAndGetOutput("ls '" + mFile + "/'");
-        if (!files.isEmpty()) {
-            // Make sure the files exists
-            for (String file : files.split("\\r?\\n")) {
-                if (file != null && !file.isEmpty() && Utils.existFile(mFile + "/" + file)) {
-                    list.add(file);
-                }
-            }
-        }
-        return list;
-    }
-
-    public List<RootFile> listFiles() {
-        List<RootFile> list = new ArrayList<>();
-        String files = RootUtils.runAndGetOutput("ls '" + mFile + "/'");
-        if (!files.isEmpty()) {
-            // Make sure the files exists
-            for (String file : files.split("\\r?\\n")) {
-                if (file != null && !file.isEmpty() && Utils.existFile(mFile + "/" + file)) {
-                    list.add(new RootFile(mFile.equals("/") ? mFile + file : mFile + "/" + file));
-                }
-            }
-        }
-        return list;
-    }
-
-    public boolean isEmpty() {
-        return "false".equals(RootUtils.runAndGetOutput("find '" + mFile + "' -mindepth 1 | read || echo false"));
-    }
-
-    public boolean exists() {
+    public static boolean exists(String mFile) {
         String output = RootUtils.runAndGetOutput("[ -e " + mFile + " ] && echo true");
         return !output.isEmpty() && output.equals("true");
     }
 
-    public String readFile() {
+    public boolean isEmpty(String mFile) {
+        return "false".equals(RootUtils.runAndGetOutput("find '" + mFile + "' -mindepth 1 | read || echo false"));
+    }
+
+    public static void mv(String mFile, String newPath) {
+        RootUtils.runCommand("mv -f '" + mFile + "' '" + newPath + "'");
+    }
+
+    public static String read(String mFile) {
         return RootUtils.runAndGetOutput("cat '" + mFile + "'");
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        return mFile;
+    public static void write(String mFile, String text, boolean append) {
+        String[] array = text.split("\\r?\\n");
+        if (!append) delete(mFile);
+        for (String line : array) {
+            RootUtils.runCommand("echo '" + line + "' >> " + mFile);
+        }
+        RootUtils.chmod(mFile, "755");
     }
+
 }

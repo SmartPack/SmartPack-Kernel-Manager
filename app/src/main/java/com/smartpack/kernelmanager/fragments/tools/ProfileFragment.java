@@ -20,18 +20,14 @@
 package com.smartpack.kernelmanager.fragments.tools;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.OpenableColumns;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -74,7 +70,9 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Objects;
+
+import in.sunilpaulmathew.rootfilepicker.activities.FilePickerActivity;
+import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
 
 /**
  * Created by willi on 10.07.16.
@@ -89,7 +87,6 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     private boolean mTaskerMode;
     private Profiles mProfiles;
-    private String mPath;
 
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
     private boolean mLoaded;
@@ -380,9 +377,10 @@ public class ProfileFragment extends RecyclerViewFragment {
                             startActivityForResult(createProfileActivityIntent(), 0);
                             break;
                         case 1:
-                            Intent intent  = new Intent(Intent.ACTION_GET_CONTENT);
-                            intent.setType("*/*");
-                            startActivityForResult(intent, 1);
+                            FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
+                            FilePicker.setExtension(".json");
+                            Intent filePicker = new Intent(getActivity(), FilePickerActivity.class);
+                            startActivityForResult(filePicker, 1);
                             break;
                     }
                 }).setOnDismissListener(dialogInterface -> mOptionsDialog = null);
@@ -445,31 +443,17 @@ public class ProfileFragment extends RecyclerViewFragment {
                 mProfiles.commit();
             }
         } else if (requestCode == 1) {
-            Uri uri = data.getData();
-            assert uri != null;
-            File file = new File(Objects.requireNonNull(uri.getPath()));
-            if (Utils.isDocumentsUI(uri)) {
-                @SuppressLint("Recycle") Cursor cursor = requireActivity().getContentResolver().query(uri, null, null, null, null);
-                if (cursor != null && cursor.moveToFirst()) {
-                    mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
-                            cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                }
-            } else {
-                mPath = Utils.getFilePath(file);
-            }
-            if (!Utils.getExtension(mPath).equals("json")) {
+            File mSelectedFile = FilePicker.getSelectedFile();
+            if (!Utils.getExtension(mSelectedFile.getAbsolutePath()).equals("json")) {
                 Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".json"));
                 return;
             }
-            if (mPath.contains("(") || mPath.contains(")")) {
-                Utils.snackbar(getRootView(), getString(R.string.file_name_error));
-            }
             Dialog selectProfile = new Dialog(requireActivity());
-            selectProfile.setMessage(getString(R.string.select_question, new File(mPath).getName()));
+            selectProfile.setMessage(getString(R.string.select_question, mSelectedFile.getName()));
             selectProfile.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
             });
             selectProfile.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
-                ImportProfile importProfile = new ImportProfile(mPath);
+                ImportProfile importProfile = new ImportProfile(mSelectedFile.getAbsolutePath());
                 if (!importProfile.readable()) {
                     Utils.snackbar(getRootView(), getString(R.string.import_malformed));
                     return;
@@ -557,9 +541,9 @@ public class ProfileFragment extends RecyclerViewFragment {
                 return;
             }
 
-            if (new ExportProfile(mExportProfile, mProfiles.getVersion()).export(text)) {
+            if (new ExportProfile(mExportProfile, mProfiles.getVersion()).export(text, requireActivity())) {
                 Utils.snackbar(getRootView(), getString(R.string.exported_item, text,
-                        Utils.getInternalDataStorage() + "/profiles"));
+                        Utils.getInternalDataStorage(requireActivity()) + "/profiles"));
             } else {
                 Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
             }

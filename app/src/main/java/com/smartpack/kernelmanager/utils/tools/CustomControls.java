@@ -25,10 +25,11 @@ import android.content.Context;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.Control;
-import com.smartpack.kernelmanager.utils.root.RootFile;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 15, 2019
@@ -36,12 +37,12 @@ import java.util.List;
 
 public class CustomControls {
 
-    public static File switchFile() {
-        return new File(Utils.getInternalDataStorage() + "/controls/switch");
+    public static File switchFile(Context context) {
+        return new File(Utils.getInternalDataStorage(context) + "/controls/switch");
     }
 
-    public static File genericFile() {
-        return new File(Utils.getInternalDataStorage() + "/controls/generic");
+    public static File genericFile(Context context) {
+        return new File(Utils.getInternalDataStorage(context) + "/controls/generic");
     }
 
     public static String getGenericValue(String string) {
@@ -71,8 +72,8 @@ public class CustomControls {
     }
 
     public static void exportPath(String path, String folder) {
-        Utils.create(path, folder + "/" + path.replaceFirst("/", "").
-                replace("/", "-"));
+        Utils.create(path, new File(folder + "/" + path.replaceFirst("/", "").
+                replace("/", "-")));
     }
 
     public static void delete(String string) {
@@ -80,20 +81,24 @@ public class CustomControls {
         file.delete();
     }
 
-    public static List<String> switchList() {
-        RootFile file = new RootFile(switchFile().toString());
-        if (!file.exists()) {
-            file.mkdir();
+    public static List<String> switchList(Context context) {
+        List<String> mList = new ArrayList<>();
+        if (switchFile(context).exists()) {
+            for (File file : Objects.requireNonNull(switchFile(context).listFiles())) {
+                mList.add(file.getName());
+            }
         }
-        return file.list();
+        return mList;
     }
 
-    public static List<String> genericList() {
-        RootFile file = new RootFile(genericFile().toString());
-        if (!file.exists()) {
-            file.mkdir();
+    public static List<String> genericList(Context context) {
+        List<String> mList = new ArrayList<>();
+        if (genericFile(context).exists()) {
+            for (File file : Objects.requireNonNull(genericFile(context).listFiles())) {
+                mList.add(file.getName());
+            }
         }
-        return file.list();
+        return mList;
     }
 
     private static void run(String command, String id, Context context) {

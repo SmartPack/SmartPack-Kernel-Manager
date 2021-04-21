@@ -36,6 +36,8 @@ import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.tools.SmartPack;
 
+import java.io.File;
+
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 23, 2020
  */
@@ -65,8 +67,8 @@ public class FlashingActivity extends BaseActivity {
         mProgressMessage.setVisibility(View.VISIBLE);
         mSaveButton.setOnClickListener(v -> {
             Utils.create("## Flasher log created by SmartPack-Kernel Manager\n\n" + SmartPack.mFlashingResult.toString(),
-                    Utils.getInternalDataStorage() + "/flasher_log-" + SmartPack.mZipName.replace(".zip", ""));
-            Utils.snackbar(findViewById(android.R.id.content), getString(R.string.flash_log_summary, Utils.getInternalDataStorage()
+                    new File(Utils.getInternalDataStorage(this), "/flasher_log-" + SmartPack.mZipName.replace(".zip", "")));
+            Utils.snackbar(findViewById(android.R.id.content), getString(R.string.flash_log_summary, Utils.getInternalDataStorage(this)
                     + "/flasher_log-" + SmartPack.mZipName.replace(".zip", "")));
         });
         mCancelButton.setOnClickListener(v -> {

@@ -23,7 +23,6 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 
 import com.google.android.material.snackbar.Snackbar;
-
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
@@ -31,13 +30,15 @@ import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
 import com.smartpack.kernelmanager.utils.root.Control;
-import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
+import com.topjohnwu.superuser.io.SuFile;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by willi on 04.05.16.
@@ -129,11 +130,10 @@ public class PathReaderFragment extends RecyclerViewFragment {
         if (path.contains("%d")) {
             path = Utils.strFormat(mPath, mMin);
         }
-        RootFile files = new RootFile(path);
-        for (final RootFile file : files.listFiles()) {
+        for (final File file : Objects.requireNonNull(SuFile.open(path).listFiles())) {
             final String name = file.getName();
-            final String value = file.readFile();
-            if (value != null && !value.isEmpty() && !value.contains("\n")) {
+            final String value = Utils.readFile(file.getAbsolutePath());
+            if (!value.isEmpty() && !value.contains("\n")) {
                 DescriptionView descriptionView = new DescriptionView();
                 descriptionView.setTitle(name);
                 descriptionView.setSummary(value);

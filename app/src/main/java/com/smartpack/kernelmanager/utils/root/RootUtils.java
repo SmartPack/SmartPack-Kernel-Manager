@@ -36,13 +36,7 @@ import java.util.Objects;
 public class RootUtils {
 
     static {
-        /* Shell.Config methods shall be called before any shell is created
-         * This is the why in this example we call it in a static block
-         * The followings are some examples, check Javadoc for more details */
-
-        //Shell.Config.setFlags(Shell.FLAG_REDIRECT_STDERR); (not yet, make it optional cuz it may break current stuff)
-        Shell.Config.verboseLogging(BuildConfig.DEBUG);
-        Shell.Config.setTimeout(10);
+        Shell.enableVerboseLogging = BuildConfig.DEBUG;
     }
 
     public static boolean rootAccess() {

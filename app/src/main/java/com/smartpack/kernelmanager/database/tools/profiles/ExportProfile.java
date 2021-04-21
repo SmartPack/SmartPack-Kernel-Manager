@@ -19,6 +19,8 @@
  */
 package com.smartpack.kernelmanager.database.tools.profiles;
 
+import android.content.Context;
+
 import com.smartpack.kernelmanager.utils.Utils;
 
 import org.json.JSONException;
@@ -43,9 +45,9 @@ public class ExportProfile {
         }
     }
 
-    public boolean export(String name) {
+    public boolean export(String name, Context context) {
         if (!name.endsWith(".json")) name += ".json";
-        File exportFiles = new File(Utils.getInternalDataStorage() + "/profiles");
+        File exportFiles = new File(Utils.getInternalDataStorage(context), "profiles");
         File file = new File(exportFiles.toString() + "/" + name);
         if (file.exists()) return false;
         exportFiles.mkdirs();

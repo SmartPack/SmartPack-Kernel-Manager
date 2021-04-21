@@ -27,10 +27,12 @@ import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.Control;
-import com.smartpack.kernelmanager.utils.root.RootFile;
+import com.topjohnwu.superuser.io.SuFile;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 14, 2021
@@ -59,9 +61,9 @@ public class IOAdvanced {
 
     public static List<String> getIOBlockList() {
         List<String> mTQLList = new ArrayList<>();
-        for (String string : new RootFile(IO_PARENT).list()) {
-            if (Utils.existFile(IO_PARENT + "/" + string + "/queue")) {
-                mTQLList.add(string);
+        for (File file : Objects.requireNonNull(SuFile.open(IO_PARENT).listFiles())) {
+            if (Utils.existFile(IO_PARENT + "/" + file.getName() + "/queue")) {
+                mTQLList.add(file.getName());
             }
         }
         return mTQLList;

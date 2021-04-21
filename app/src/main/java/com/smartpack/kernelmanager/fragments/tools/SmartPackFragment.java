@@ -23,15 +23,11 @@ package com.smartpack.kernelmanager.fragments.tools;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.provider.OpenableColumns;
 import android.view.Menu;
 
 import com.smartpack.kernelmanager.R;
@@ -55,7 +51,9 @@ import com.smartpack.kernelmanager.views.recyclerview.TitleView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
+import in.sunilpaulmathew.rootfilepicker.activities.FilePickerActivity;
+import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on July 24, 2018
@@ -68,10 +66,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
     private boolean mPermissionDenied;
 
     private Dialog mOptionsDialog;
-
-    private String mPath;
-
-    private final String logFolder = Utils.getInternalDataStorage() + "/logs";
 
     @Override
     protected boolean showTopFab() {
@@ -239,7 +233,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             DescriptionView info = new DescriptionView();
             info.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_info, requireContext()));
             info.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
-            info.setTitle(getString(R.string.update_channel_info, Utils.getInternalDataStorage()));
+            info.setTitle(getString(R.string.update_channel_info, Utils.getInternalDataStorage(requireActivity())));
             info.setOnItemClickListener(item -> Utils.launchUrl("https://smartpack.github.io/kerneldownloads/", getActivity()));
             info.setFullSpan(true);
             info.setOnMenuListener((info1, popupMenu) -> {
@@ -384,10 +378,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                 return;
             }
-            SmartPack.prepareFolder(logFolder);
-            new Execute().execute("logcat -d > " + logFolder + "/logcat-" + Utils.getTimeStamp());
-            new Execute().execute("logcat  -b radio -v time -d > " + logFolder + "/radio-" + Utils.getTimeStamp());
-            new Execute().execute("logcat -b events -v time -d > " + logFolder + "/events-" + Utils.getTimeStamp());
+            SmartPack.prepareFolder(SmartPack.getLogFolderPath(requireActivity()));
+            new Execute().execute("logcat -d > " + SmartPack.getLogFolderPath(requireActivity()) + "/logcat-" + Utils.getTimeStamp());
+            new Execute().execute("logcat  -b radio -v time -d > " + SmartPack.getLogFolderPath(requireActivity()) + "/radio-" + Utils.getTimeStamp());
+            new Execute().execute("logcat -b events -v time -d > " + SmartPack.getLogFolderPath(requireActivity()) + "/events-" + Utils.getTimeStamp());
         });
         items.add(logcat);
 
@@ -400,8 +394,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                     return;
                 }
-                SmartPack.prepareFolder(logFolder);
-                new Execute().execute("cat /proc/last_kmsg > " + logFolder + "/last_kmsg-" + Utils.getTimeStamp());
+                SmartPack.prepareFolder(SmartPack.getLogFolderPath(requireActivity()));
+                new Execute().execute("cat /proc/last_kmsg > " + SmartPack.getLogFolderPath(requireActivity()) + "/last_kmsg-" + Utils.getTimeStamp());
             });
             items.add(lastkmsg);
         }
@@ -414,8 +408,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                 return;
             }
-            SmartPack.prepareFolder(logFolder);
-            new Execute().execute("dmesg > " + logFolder + "/dmesg-" + Utils.getTimeStamp());
+            SmartPack.prepareFolder(SmartPack.getLogFolderPath(requireActivity()));
+            new Execute().execute("dmesg > " + SmartPack.getLogFolderPath(requireActivity()) + "/dmesg-" + Utils.getTimeStamp());
         });
         items.add(dmesg);
 
@@ -428,8 +422,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                     return;
                 }
-                SmartPack.prepareFolder(logFolder);
-                new Execute().execute("cat /sys/fs/pstore/dmesg-ramoops* > " + logFolder + "/dmesg-ramoops-" + Utils.getTimeStamp());
+                SmartPack.prepareFolder(SmartPack.getLogFolderPath(requireActivity()));
+                new Execute().execute("cat /sys/fs/pstore/dmesg-ramoops* > " + SmartPack.getLogFolderPath(requireActivity()) + "/dmesg-ramoops-" + Utils.getTimeStamp());
             });
             items.add(dmesgRamoops);
         }
@@ -443,8 +437,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                     return;
                 }
-                SmartPack.prepareFolder(logFolder);
-                new Execute().execute("cat /sys/fs/pstore/console-ramoops* > " + logFolder + "/console-ramoops-" + Utils.getTimeStamp());
+                SmartPack.prepareFolder(SmartPack.getLogFolderPath(requireActivity()));
+                new Execute().execute("cat /sys/fs/pstore/console-ramoops* > " + SmartPack.getLogFolderPath(requireActivity()) + "/console-ramoops-" + Utils.getTimeStamp());
             });
             items.add(ramoops);
         }
@@ -522,8 +516,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
             }
             @Override
             protected Void doInBackground(Void... voids) {
-                Utils.prepareInternalDataStorage();
-                Utils.downloadFile(Utils.getInternalDataStorage() + "/Kernel.zip", KernelUpdater.getUrl(requireActivity()), getActivity());
+                Utils.prepareInternalDataStorage(requireActivity());
+                Utils.downloadFile(Utils.getInternalDataStorage(requireActivity()) + "/Kernel.zip", KernelUpdater.getUrl(requireActivity()), getActivity());
                 return null;
             }
             @Override
@@ -531,7 +525,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 super.onPostExecute(aVoid);
                 hideProgressMessage();
                 if (KernelUpdater.getChecksum(requireActivity()).equals("Unavailable") || !KernelUpdater.getChecksum(requireActivity()).equals("Unavailable") &&
-                        Utils.getChecksum(Utils.getInternalDataStorage() + "/Kernel.zip").contains(KernelUpdater.getChecksum(requireActivity()))) {
+                        Utils.getChecksum(Utils.getInternalDataStorage(requireActivity()) + "/Kernel.zip").contains(KernelUpdater.getChecksum(requireActivity()))) {
                     new Dialog(requireActivity())
                             .setMessage(getString(R.string.download_completed,
                                     KernelUpdater.getKernelName(requireActivity()) + "-" + KernelUpdater.getLatestVersion(requireActivity())))
@@ -539,7 +533,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                             .setNegativeButton(getString(R.string.cancel), (dialog, id) -> {
                             })
                             .setPositiveButton(getString(R.string.flash), (dialog, id) -> {
-                                SmartPack.flashingTask(new File(Utils.getInternalDataStorage() + "/Kernel.zip"), requireActivity());
+                                SmartPack.flashingTask(new File(Utils.getInternalDataStorage(requireActivity()) + "/Kernel.zip"), requireActivity());
                             })
                             .show();
                 } else {
@@ -561,10 +555,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
             Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
             return;
         }
-
-        Intent manualflash  = new Intent(Intent.ACTION_GET_CONTENT);
-        manualflash.setType("application/*");
-        startActivityForResult(manualflash, 0);
+        FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
+        FilePicker.setExtension(".zip");
+        Intent filePicker = new Intent(getActivity(), FilePickerActivity.class);
+        startActivityForResult(filePicker, 0);
     }
 
     @Override
@@ -581,32 +575,17 @@ public class SmartPackFragment extends RecyclerViewFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            assert uri != null;
-            File file = new File(Objects.requireNonNull(uri.getPath()));
-            if (Utils.isDocumentsUI(uri)) {
-                @SuppressLint("Recycle") Cursor cursor = requireActivity().getContentResolver().query(uri, null, null, null, null);
-                if (cursor != null && cursor.moveToFirst()) {
-                    mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
-                            cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                }
-            } else {
-                mPath = Utils.getFilePath(file);
-            }
-            if (!mPath.endsWith(".zip")) {
-                Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".zip"));
-                return;
-            }
+        if (requestCode == 0 && data != null) {
+            File mSelectedFile = FilePicker.getSelectedFile();
             new Dialog(requireActivity())
                     .setIcon(R.mipmap.ic_launcher)
                     .setTitle(getString(R.string.flasher))
-                    .setMessage(getString(R.string.sure_message, new File(mPath).getName()) + (SmartPack.fileSize(new File(mPath)) >= 100000000 ?
-                            ("\n\n") + getString(R.string.file_size_limit, (SmartPack.fileSize(new File(mPath)) / 1000000)) : ""))
+                    .setMessage(getString(R.string.sure_message, mSelectedFile.getName()) + (SmartPack.fileSize(mSelectedFile) >= 100000000 ?
+                            ("\n\n") + getString(R.string.file_size_limit, (SmartPack.fileSize(mSelectedFile) / 1000000)) : ""))
                     .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
                     })
                     .setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> {
-                        SmartPack.flashingTask(new File(mPath), requireActivity());
+                        SmartPack.flashingTask(mSelectedFile, requireActivity());
                     }).show();
         }
     }

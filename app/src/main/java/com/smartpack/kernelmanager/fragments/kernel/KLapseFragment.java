@@ -45,6 +45,7 @@ import com.smartpack.kernelmanager.views.recyclerview.SeekBarView;
 import com.smartpack.kernelmanager.views.recyclerview.SelectView;
 import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -494,7 +495,7 @@ public class KLapseFragment extends RecyclerViewFragment {
                         if (text.contains(" ")) {
                             text = text.replace(" ", "_");
                         }
-                        if (Utils.existFile(KLapse.profileFolder().toString() + "/" + text)) {
+                        if (Utils.existFile(KLapse.profileFolder(requireActivity()).toString() + "/" + text)) {
                             Utils.snackbar(getRootView(), getString(R.string.profile_exists, text));
                             return;
                         }
@@ -507,15 +508,15 @@ public class KLapseFragment extends RecyclerViewFragment {
                             }
                             @Override
                             protected Void doInBackground(Void... voids) {
-                                KLapse.prepareProfileFolder();
-                                Utils.create("#!/system/bin/sh\n\n# Created by SmartPack-Kernel Manager", KLapse.profileFolder().toString() + "/" + path);
+                                KLapse.prepareProfileFolder(requireActivity());
+                                Utils.create("#!/system/bin/sh\n\n# Created by SmartPack-Kernel Manager", new File(KLapse.profileFolder(requireActivity()).toString(), path));
                                 if (KLapse.supported()) {
-                                    Utils.append("\n# K-lapse", KLapse.profileFolder().toString() + "/" + path);
+                                    Utils.append("\n# K-lapse", KLapse.profileFolder(requireActivity()).toString() + "/" + path);
                                     for (int i = 0; i < KLapse.size(); i++) {
-                                        KLapse.exportKlapseSettings(path, i);
+                                        KLapse.exportKlapseSettings(path, i, requireActivity());
                                     }
                                 }
-                                Utils.append("\n# The END\necho \"Profile applied successfully...\" | tee /dev/kmsg", KLapse.profileFolder().toString() + "/" + path);
+                                Utils.append("\n# The END\necho \"Profile applied successfully...\" | tee /dev/kmsg", KLapse.profileFolder(requireActivity()).toString() + "/" + path);
                                 return null;
                             }
                             @Override
@@ -523,12 +524,12 @@ public class KLapseFragment extends RecyclerViewFragment {
                                 super.onPostExecute(aVoid);
                                 hideProgressMessage();
                                 new Dialog(requireActivity())
-                                        .setMessage(getString(R.string.profile_created, KLapse.profileFolder().toString() + "/" + path))
+                                        .setMessage(getString(R.string.profile_created, KLapse.profileFolder(requireActivity()).toString() + "/" + path))
                                         .setCancelable(false)
                                         .setNegativeButton(getString(R.string.cancel), (dialog, id) -> {
                                         })
                                         .setPositiveButton(getString(R.string.share), (dialog, id) -> {
-                                            Utils.shareItem(getActivity(), path, KLapse.profileFolder().toString() + "/" + path, getString(R.string.share_script)
+                                            Utils.shareItem(getActivity(), path, KLapse.profileFolder(requireActivity()).toString() + "/" + path, getString(R.string.share_script)
                                                     + "\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
                                         })
                                         .show();

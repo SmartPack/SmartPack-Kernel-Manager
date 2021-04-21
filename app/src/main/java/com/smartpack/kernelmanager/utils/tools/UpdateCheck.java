@@ -58,10 +58,9 @@ public class UpdateCheck {
     public static boolean mUpdateCheck = false;
 
     private static final String LATEST_VERSION_URL = "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/app/src/main/assets/release.json";
-    private static final String LATEST_VERSION_APK = Utils.getInternalDataStorage() + "/" + BuildConfig.APPLICATION_ID + ".apk";
 
     public static void getVersionInfo(Context context) {
-        Utils.prepareInternalDataStorage();
+        Utils.prepareInternalDataStorage(context);
         Utils.downloadFile(releaseInfo(context), LATEST_VERSION_URL, context);
     }
 
@@ -110,9 +109,13 @@ public class UpdateCheck {
         }
     }
 
+    private static String getLatestAPK(Context context) {
+        return Utils.getInternalDataStorage(context) + "/" + BuildConfig.APPLICATION_ID + ".apk";
+    }
+
     private static void getLatestApp(Context context) {
-        Utils.prepareInternalDataStorage();
-        Utils.downloadFile(LATEST_VERSION_APK, getUrl(context), context);
+        Utils.prepareInternalDataStorage(context);
+        Utils.downloadFile(getLatestAPK(context), getUrl(context), context);
     }
 
     public static boolean hasVersionInfo(Context context) {
@@ -168,7 +171,7 @@ public class UpdateCheck {
                     mProgressDialog.dismiss();
                 } catch (IllegalArgumentException ignored) {
                 }
-                if (Utils.existFile(LATEST_VERSION_APK) && Utils.getChecksum(LATEST_VERSION_APK).contains(getChecksum(context))) {
+                if (Utils.existFile(getLatestAPK(context)) && Utils.getChecksum(getLatestAPK(context)).contains(getChecksum(context))) {
                     installUpdate(context);
                 } else {
                     new Dialog(context)
@@ -203,7 +206,7 @@ public class UpdateCheck {
         intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         Uri uriFile;
         uriFile = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider",
-                new File(LATEST_VERSION_APK));
+                new File(getLatestAPK(context)));
         intent.setDataAndType(uriFile, "application/vnd.android.package-archive");
         context.startActivity(Intent.createChooser(intent, ""));
     }

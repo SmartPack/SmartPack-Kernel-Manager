@@ -483,7 +483,7 @@ public class NavigationActivity extends BaseActivity
 
         public int mId;
         public Class<? extends Fragment> mFragmentClass;
-        private int mDrawable;
+        private final int mDrawable;
 
         NavigationFragment(int id) {
             this(id, null, 0);

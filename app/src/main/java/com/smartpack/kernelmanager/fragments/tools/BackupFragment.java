@@ -21,16 +21,12 @@ package com.smartpack.kernelmanager.fragments.tools;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.provider.OpenableColumns;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
@@ -49,7 +45,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Objects;
+
+import in.sunilpaulmathew.rootfilepicker.activities.FilePickerActivity;
+import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
 
 /**
  * Created by willi on 09.07.16.
@@ -67,8 +65,6 @@ public class BackupFragment extends RecyclerViewFragment {
     private Dialog mRestoreDialog;
 
     private boolean mLoaded;
-
-    private String mPath;
 
     @Override
     protected boolean showTopFab() {
@@ -208,10 +204,10 @@ public class BackupFragment extends RecyclerViewFragment {
     }
 
     private void itemInit(List<RecyclerViewItem> items, final Backup.PARTITION partition) {
-        if (new File(Backup.getPath(partition)).exists() && new File(Backup.getPath(partition)).length() > 0
-                && Backup.getItemsList(partition) != null) {
-            for (final String backup : Backup.getItemsList(partition)) {
-                final File image = new File(Backup.getPath(partition) + "/" + backup);
+        if (new File(Backup.getPath(partition, requireActivity())).exists() && new File(Backup.getPath(partition, requireActivity())).length() > 0
+                && Backup.getItemsList(partition, requireActivity()).size() > 0) {
+            for (final String backup : Backup.getItemsList(partition, requireActivity())) {
+                final File image = new File(Backup.getPath(partition, requireActivity()) + "/" + backup);
                 if (image.isFile()) {
                     DescriptionView descriptionView = new DescriptionView();
                     descriptionView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_file, requireContext()));
@@ -255,9 +251,10 @@ public class BackupFragment extends RecyclerViewFragment {
                             showBackupFlashingDialog(null);
                             break;
                         case 1:
-                            Intent intent  = new Intent(Intent.ACTION_GET_CONTENT);
-                            intent.setType("*/*");
-                            startActivityForResult(intent, 0);
+                            FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
+                            FilePicker.setExtension(".img");
+                            Intent filePicker = new Intent(getActivity(), FilePickerActivity.class);
+                            startActivityForResult(filePicker, 0);
                             break;
                     }
                 }).setOnDismissListener(dialogInterface -> mOptionsDialog = null);
@@ -387,7 +384,7 @@ public class BackupFragment extends RecyclerViewFragment {
                             text = text.replace(" ", "_");
                         }
 
-                        if (Utils.existFile(Backup.getPath(partition) + "/" + text)) {
+                        if (Utils.existFile(Backup.getPath(partition, requireActivity()) + "/" + text)) {
                             Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
                             return;
                         }
@@ -402,7 +399,7 @@ public class BackupFragment extends RecyclerViewFragment {
 
                             @Override
                             protected Void doInBackground(Void... voids) {
-                                Backup.backup(path, partition);
+                                Backup.backup(path, partition, requireActivity());
                                 return null;
                             }
 
@@ -435,27 +432,13 @@ public class BackupFragment extends RecyclerViewFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            assert uri != null;
-            File file = new File(Objects.requireNonNull(uri.getPath()));
-            if (Utils.isDocumentsUI(uri)) {
-                @SuppressLint("Recycle") Cursor cursor = requireActivity().getContentResolver().query(uri, null, null, null, null);
-                if (cursor != null && cursor.moveToFirst()) {
-                    mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
-                            cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                }
-            } else {
-                mPath = Utils.getFilePath(file);
-            }
-            if (!Utils.getExtension(mPath).equals("img")) {
+        if (requestCode == 0 && data != null) {
+            File mSelectedFile = FilePicker.getSelectedFile();
+            if (!Utils.getExtension(mSelectedFile.getAbsolutePath()).equals("img")) {
                 Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".img"));
                 return;
             }
-            if (mPath.contains("(") || mPath.contains(")")) {
-                Utils.snackbar(getRootView(), getString(R.string.file_name_error));
-            }
-            showBackupFlashingDialog(new File(mPath));
+            showBackupFlashingDialog(mSelectedFile);
         }
     }
 

@@ -20,12 +20,15 @@
 
 package com.smartpack.kernelmanager.utils.tools;
 
+import android.content.Context;
+
 import com.smartpack.kernelmanager.utils.Utils;
-import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 18, 2019
@@ -35,53 +38,56 @@ import java.util.List;
 
 public class ScriptManager {
 
-    private static final String SCRIPT = Utils.getInternalDataStorage() + "/scripts";
     public static String mScriptName = null;
 
     public static List<String> mOutput = null;
 
     public static boolean mApplying;
 
-    public static File scriptFile() {
-        return new File(SCRIPT);
+    public static File scriptFile(Context context) {
+        return new File(Utils.getInternalDataStorage(context), "/scripts");
     }
 
-    public static void write(String file, String text) {
-        RootFile f = new RootFile(SCRIPT + "/" + file);
-        f.write(text, false);
-    }
-
-    public static void importScript(String string) {
-        if (scriptFile().exists() && scriptFile().isFile()) {
-            scriptFile().delete();
+    public static void write(String file, String text, Context context) {
+        if (scriptFile(context).exists() && scriptFile(context).isFile()) {
+            scriptFile(context).delete();
         }
-        scriptFile().mkdirs();
-        RootUtils.runCommand("cp " + string + " " + SCRIPT);
+        scriptFile(context).mkdirs();
+        Utils.create(text, new File(scriptFile(context), file));
     }
 
-    public static void delete(String file) {
-        RootFile f = new RootFile(SCRIPT + "/" + file);
-        f.delete();
-    }
-
-    public static void execute(String file) {
-        RootUtils.runAndGetLiveOutput("sh " + SCRIPT + "/" + file, mOutput);
-    }
-
-    public static String read(String file) {
-        return Utils.readFile(SCRIPT + "/" + file);
-    }
-
-    public static String scriptExistsCheck(String file) {
-        return SCRIPT + "/" + file;
-    }
-
-    public static List<String> list() {
-        RootFile file = new RootFile(SCRIPT);
-        if (!file.exists()) {
-            file.mkdir();
+    public static void importScript(String string, Context context) {
+        if (scriptFile(context).exists() && scriptFile(context).isFile()) {
+            scriptFile(context).delete();
         }
-        return file.list();
+        scriptFile(context).mkdirs();
+        Utils.create(Utils.readFile(string), new File(scriptFile(context).getAbsolutePath(), new File(string).getName()));
+    }
+
+    public static void delete(String file, Context context) {
+        Utils.delete(new File(scriptFile(context), file).getAbsolutePath());
+    }
+
+    public static void execute(String file, Context context) {
+        RootUtils.runAndGetLiveOutput("sh " + new File(scriptFile(context), file).getAbsolutePath(), mOutput);
+    }
+
+    public static String read(String file, Context context) {
+        return Utils.readFile(new File(scriptFile(context), file).getAbsolutePath());
+    }
+
+    public static String scriptExistsCheck(String file, Context context) {
+        return new File(scriptFile(context), file).getAbsolutePath();
+    }
+
+    public static List<String> list(Context context) {
+        List<String> mList = new ArrayList<>();
+        if (scriptFile(context).exists()) {
+            for (File file : Objects.requireNonNull(scriptFile(context).listFiles())) {
+                mList.add(file.getName());
+            }
+        }
+        return mList;
     }
 
 }

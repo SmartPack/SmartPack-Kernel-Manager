@@ -23,12 +23,9 @@ package com.smartpack.kernelmanager.fragments.tools;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.provider.OpenableColumns;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,7 +51,9 @@ import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
+import in.sunilpaulmathew.rootfilepicker.activities.FilePickerActivity;
+import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 15, 2018
@@ -70,8 +69,6 @@ public class CustomControlsFragment extends RecyclerViewFragment {
 
     private Dialog mDeleteDialog;
     private Dialog mSelectionMenu;
-
-    private String mPath;
 
     @Override
     protected boolean showTopFab() {
@@ -141,20 +138,20 @@ public class CustomControlsFragment extends RecyclerViewFragment {
     }
 
     private void switchItemsList(List<RecyclerViewItem> items) {
-        for (final String switchItems : CustomControls.switchList()) {
-            if (CustomControls.switchFile().length() > 0 && Utils.existFile(Utils.readFile(
-                    CustomControls.switchFile().toString() + "/" + switchItems))) {
+        for (final String switchItems : CustomControls.switchList(requireActivity())) {
+            if (CustomControls.switchFile(requireActivity()).length() > 0 && Utils.existFile(Utils.readFile(
+                    CustomControls.switchFile(requireActivity()).toString() + "/" + switchItems))) {
                 SwitchView itemslist = new SwitchView();
                 itemslist.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
-                itemslist.setSummary(Utils.readFile(CustomControls.switchFile().toString()+ "/" + switchItems));
+                itemslist.setSummary(Utils.readFile(CustomControls.switchFile(requireActivity()).toString()+ "/" + switchItems));
                 itemslist.setChecked(CustomControls.isSwitchEnabled(Utils.readFile(
-                        CustomControls.switchFile().toString() + "/" + switchItems)));
+                        CustomControls.switchFile(requireActivity()).toString() + "/" + switchItems)));
                 itemslist.addOnSwitchListener((switchView, isChecked) -> {
                     CustomControls.enableSwitch(isChecked, Utils.readFile(
-                            CustomControls.switchFile().toString() + "/" + switchItems), getActivity());
+                            CustomControls.switchFile(requireActivity()).toString() + "/" + switchItems), getActivity());
                     getHandler().postDelayed(() -> {
                                 itemslist.setChecked(CustomControls.isSwitchEnabled(Utils.readFile(
-                                        CustomControls.switchFile().toString() + "/" + switchItems)));
+                                        CustomControls.switchFile(requireActivity()).toString() + "/" + switchItems)));
                             },
                             500);
                 });
@@ -171,14 +168,14 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                                     mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
                                             (dialogInterface, i) -> {
                                             }, (dialogInterface, i) -> {
-                                                CustomControls.delete(CustomControls.switchFile().toString() + "/" + switchItems);
+                                                CustomControls.delete(CustomControls.switchFile(requireActivity()).toString() + "/" + switchItems);
                                                 reload();
                                             }, dialogInterface -> mDeleteDialog = null, getActivity());
                                     mDeleteDialog.show();
                                     break;
                                 case 1:
-                                    Utils.shareItem(getActivity(), switchItems, CustomControls.switchFile().toString() +
-                                            "/" + switchItems,getString(R.string.share_controller, CustomControls.switchFile()) +
+                                    Utils.shareItem(getActivity(), switchItems, CustomControls.switchFile(requireActivity()).toString() +
+                                            "/" + switchItems,getString(R.string.share_controller, CustomControls.switchFile(requireActivity())) +
                                             " -> Import -> Switch'.\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
                                     break;
                             }
@@ -194,21 +191,21 @@ public class CustomControlsFragment extends RecyclerViewFragment {
 
     @SuppressLint("StringFormatInvalid")
     private void genericItemsList(List<RecyclerViewItem> items) {
-        for (final String genericItems : CustomControls.genericList()) {
-            if (CustomControls.switchFile().length() > 0 && Utils.existFile(Utils.readFile(
-                    CustomControls.genericFile().toString() + "/" + genericItems))) {
+        for (final String genericItems : CustomControls.genericList(requireActivity())) {
+            if (CustomControls.switchFile(requireActivity()).length() > 0 && Utils.existFile(Utils.readFile(
+                    CustomControls.genericFile(requireActivity()).toString() + "/" + genericItems))) {
                 GenericInputView itemslist = new GenericInputView();
                 itemslist.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
-                itemslist.setTitle(Utils.readFile(CustomControls.genericFile().toString()+ "/" + genericItems));
+                itemslist.setTitle(Utils.readFile(CustomControls.genericFile(requireActivity()).toString()+ "/" + genericItems));
                 itemslist.setValue(CustomControls.getGenericValue(Utils.readFile(
-                        CustomControls.genericFile().toString() + "/" + genericItems)));
+                        CustomControls.genericFile(requireActivity()).toString() + "/" + genericItems)));
                 itemslist.setInputType(InputType.TYPE_CLASS_NUMBER);
                 itemslist.setOnGenericValueListener((genericInputView, value) -> {
-                    CustomControls.setGenericValue(value, Utils.readFile(CustomControls.genericFile().toString() +
+                    CustomControls.setGenericValue(value, Utils.readFile(CustomControls.genericFile(requireActivity()).toString() +
                             "/" + genericItems), getActivity());
                     getHandler().postDelayed(() -> {
                                 itemslist.setValue(CustomControls.getGenericValue(Utils.readFile(
-                                        CustomControls.genericFile().toString() + "/" + genericItems)));
+                                        CustomControls.genericFile(requireActivity()).toString() + "/" + genericItems)));
                             },
                             500);
                 });
@@ -223,14 +220,14 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                                 mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
                                         (dialogInterface, i) -> {
                                         }, (dialogInterface, i) -> {
-                                            CustomControls.delete(CustomControls.genericFile().toString() + "/" + genericItems);
+                                            CustomControls.delete(CustomControls.genericFile(requireActivity()).toString() + "/" + genericItems);
                                             reload();
                                         }, dialogInterface -> mDeleteDialog = null, getActivity());
                                 mDeleteDialog.show();
                                 break;
                             case 1:
-                                Utils.shareItem(getActivity(), genericItems, CustomControls.genericFile().toString() +
-                                        "/" + genericItems,getString(R.string.share_controller, CustomControls.genericFile()) +
+                                Utils.shareItem(getActivity(), genericItems, CustomControls.genericFile(requireActivity()).toString() +
+                                        "/" + genericItems,getString(R.string.share_controller, CustomControls.genericFile(requireActivity())) +
                                         " -> Import -> Generic'.\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
                                 break;
                         }
@@ -264,13 +261,13 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                                     R.array.create_controls_options), (dialogInterface1, i1) -> {
                                         switch (i1) {
                                             case 0:
-                                                Intent switchIntent  = new Intent(Intent.ACTION_GET_CONTENT);
-                                                switchIntent.setType("*/*");
-                                                startActivityForResult(switchIntent, 0);
+                                                FilePicker.setPath("/sys");
+                                                Intent filePicker = new Intent(getActivity(), FilePickerActivity.class);
+                                                startActivityForResult(filePicker, 0);
                                                 break;
                                             case 1:
-                                                Intent genericIntent  = new Intent(Intent.ACTION_GET_CONTENT);
-                                                genericIntent.setType("*/*");
+                                                FilePicker.setPath("/sys");
+                                                Intent genericIntent = new Intent(getActivity(), FilePickerActivity.class);
                                                 startActivityForResult(genericIntent, 1);
                                                 break;
                                         }
@@ -282,13 +279,13 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                                     R.array.create_controls_options), (dialogInterface13, i12) -> {
                                         switch (i12) {
                                             case 0:
-                                                Intent switchIntent  = new Intent(Intent.ACTION_GET_CONTENT);
-                                                switchIntent.setType("*/*");
+                                                FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
+                                                Intent switchIntent = new Intent(getActivity(), FilePickerActivity.class);
                                                 startActivityForResult(switchIntent, 2);
                                                 break;
                                             case 1:
-                                                Intent genericIntent  = new Intent(Intent.ACTION_GET_CONTENT);
-                                                genericIntent.setType("*/*");
+                                                FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
+                                                Intent genericIntent = new Intent(getActivity(), FilePickerActivity.class);
                                                 startActivityForResult(genericIntent, 3);
                                                 break;
                                         }
@@ -324,44 +321,26 @@ public class CustomControlsFragment extends RecyclerViewFragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (data != null) {
-            Uri uri = data.getData();
-            assert uri != null;
-            File file = new File(Objects.requireNonNull(uri.getPath()));
-            if (Utils.isDocumentsUI(uri)) {
-                @SuppressLint("Recycle") Cursor cursor = requireActivity().getContentResolver().query(uri, null, null, null, null);
-                if (cursor != null && cursor.moveToFirst()) {
-                    mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
-                            cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                }
-            } else {
-                mPath = Utils.getFilePath(file);
-            }
-            if (mPath.contains("(") || mPath.contains(")")) {
-                Utils.snackbar(getRootView(), getString(R.string.file_name_error));
-            }
+            File mSelectedFile = FilePicker.getSelectedFile();
             if (requestCode == 0 || requestCode == 1) {
-                if (!Utils.getExtension(file.getName()).isEmpty() || mPath.startsWith("/storage/")) {
-                    Utils.snackbar(getRootView(), getString(R.string.invalid_path, mPath));
+                if (!Utils.getExtension(mSelectedFile.getName()).isEmpty() || mSelectedFile.getName().startsWith("/storage/")) {
+                    Utils.snackbar(getRootView(), getString(R.string.invalid_path, mSelectedFile.getName()));
                     return;
                 }
             } else {
-                if (!Utils.getExtension(mPath).isEmpty()) {
-                    Utils.snackbar(getRootView(), getString(R.string.invalid_controller, mPath));
+                if ((requestCode == 2 || requestCode == 3) && !Utils.existFile(Utils.readFile(mSelectedFile.getAbsolutePath()))) {
+                    Utils.snackbar(getRootView(), getString(R.string.unsupported_controller, Utils.readFile(mSelectedFile.getName())));
                     return;
                 }
             }
-            if ((requestCode == 2 || requestCode == 3) && !Utils.existFile(Utils.readFile(mPath))) {
-                Utils.snackbar(getRootView(), getString(R.string.unsupported_controller, Utils.readFile(mPath)));
-                return;
-            }
-            File controls = (requestCode == 0 || requestCode == 2 ? CustomControls.switchFile() : CustomControls.genericFile());
-            if (Utils.existFile(controls + "/" + mPath.replaceFirst("/", "").
-                    replace("/", "-")) || Utils.existFile(controls + "/" + file.getName())) {
-                Utils.snackbar(getRootView(), getString(R.string.already_added, mPath));
+            File controls = (requestCode == 0 || requestCode == 2 ? CustomControls.switchFile(requireActivity()) : CustomControls.genericFile(requireActivity()));
+            if (Utils.existFile(controls + "/" + mSelectedFile.getAbsolutePath().replaceFirst("/", "").
+                    replace("/", "-")) || Utils.existFile(controls + "/" + mSelectedFile.getName())) {
+                Utils.snackbar(getRootView(), getString(R.string.already_added, mSelectedFile.getName()));
                 return;
             }
             Dialog selectControl = new Dialog(requireActivity());
-            selectControl.setMessage(getString(R.string.select_question, mPath));
+            selectControl.setMessage(getString(R.string.select_question, mSelectedFile.getName()));
             selectControl.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
             });
             selectControl.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
@@ -370,9 +349,9 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                 }
                 controls.mkdirs();
                 if (requestCode == 0 || requestCode == 1) {
-                    CustomControls.exportPath(mPath, (requestCode == 0 ? CustomControls.switchFile().toString() : CustomControls.genericFile().toString()));
+                    CustomControls.exportPath(mSelectedFile.getAbsolutePath(), (requestCode == 0 ? CustomControls.switchFile(requireActivity()).toString() : CustomControls.genericFile(requireActivity()).toString()));
                 } else {
-                    Utils.copy(mPath, (requestCode == 2 ? CustomControls.switchFile().toString() : CustomControls.genericFile().toString()));
+                    Utils.copy(mSelectedFile.getAbsolutePath(), (requestCode == 2 ? CustomControls.switchFile(requireActivity()).toString() : CustomControls.genericFile(requireActivity()).toString()));
                 }
                 reload();
             });

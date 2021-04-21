@@ -341,19 +341,19 @@ public class KLapse {
             FLOW_FREQ, BACKLIGHT_RANGE_UPPER, BACKLIGHT_RANGE_LOWER
     };
 
-    public static File profileFolder() {
-        return new File(Utils.getInternalDataStorage () + "/klapse/");
+    public static File profileFolder(Context context) {
+        return new File(Utils.getInternalDataStorage(context), "klapse/");
     }
 
-    public static void prepareProfileFolder() {
-        if (profileFolder().exists() && profileFolder().isDirectory()) {
-            profileFolder().delete();
+    public static void prepareProfileFolder(Context context) {
+        if (profileFolder(context).exists() && profileFolder(context).isDirectory()) {
+            profileFolder(context).delete();
         }
-        profileFolder().mkdirs();
+        profileFolder(context).mkdirs();
     }
 
-    public static void exportKlapseSettings(String name, int position) {
-        prepareProfileFolder();
+    public static void exportKlapseSettings(String name, int position, Context context) {
+        prepareProfileFolder(context);
         String value = Utils.readFile(KLAPSE_PROFILE[position]);
         if (value.contains("Y")) {
             value = "1";
@@ -362,7 +362,7 @@ public class KLapse {
         }
         if (Utils.existFile(KLAPSE_PROFILE[position])) {
             String command = "echo " + value + " > " + KLAPSE_PROFILE[position];
-            Utils.append (command, profileFolder().toString() + "/" + name);
+            Utils.append (command, profileFolder(context).toString() + "/" + name);
         }
     }
 

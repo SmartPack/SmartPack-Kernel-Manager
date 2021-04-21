@@ -84,7 +84,7 @@ public class ApplyOnBootService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        /**
+        /*
          * Initialize Spectrum Profiles, Wakelock Blocker & Execute Scripts
          */
         if (RootUtils.rootAccess()) {
@@ -98,19 +98,17 @@ public class ApplyOnBootService extends Service {
 
             // Apply everything regardless
             if (Prefs.getBoolean("scripts_onboot", false, this)
-                    && !ScriptManager.list().isEmpty()) {
-                for (final String script : ScriptManager.list()) {
+                    && !ScriptManager.list(this).isEmpty()) {
+                for (final String script : ScriptManager.list(this)) {
                     if (Utils.getExtension(script).equals("sh")) {
-                        RootFile file = new RootFile(ScriptManager.scriptFile() + "/" + script);
-                        file.execute();
+                        RootFile.execute(ScriptManager.scriptFile(this) + "/" + script);
                     }
                 }
             } else {
-                for (final String script : ScriptManager.list()) {
+                for (final String script : ScriptManager.list(this)) {
                     if (Utils.getExtension(script).equals("sh")) {
                         if (Prefs.getStringSet("on_boot_scripts", new HashSet<>(), this).contains(script)) {
-                            RootFile file = new RootFile(ScriptManager.scriptFile() + "/" + script);
-                            file.execute();
+                            RootFile.execute(ScriptManager.scriptFile(this) + "/" + script);
                         }
                     }
                 }

@@ -57,6 +57,7 @@ import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -72,7 +73,6 @@ public class TranslatorFragment extends RecyclerViewFragment {
     private boolean mPermissionDenied;
 
     private String mKeyText;
-    private String mStringPath = Utils.getInternalDataStorage() + "/strings.xml";
 
     @Override
     protected void init() {
@@ -105,7 +105,7 @@ public class TranslatorFragment extends RecyclerViewFragment {
             return;
         }
 
-        if (!Utils.existFile(mStringPath)) {
+        if (!Utils.existFile(getStringPath())) {
             Utils.snackbar(getRootView(), getString(R.string.save_string_error));
             return;
         }
@@ -120,8 +120,8 @@ public class TranslatorFragment extends RecyclerViewFragment {
                     if (!text.endsWith(".xml")) {
                         text += ".xml";
                     }
-                    Utils.prepareInternalDataStorage();
-                    Utils.create(getStrings(), Environment.getExternalStorageDirectory().toString() + "/" + text);
+                    Utils.prepareInternalDataStorage(requireActivity());
+                    Utils.create(getStrings(), new File(Environment.getExternalStorageDirectory().toString(), text));
                     Utils.snackbar(getRootView(), getString(R.string.save_string_message, Environment.getExternalStorageDirectory().toString() + "/" + text));
                 }, getActivity()).setOnDismissListener(dialogInterface -> {
         }).show();
@@ -176,7 +176,7 @@ public class TranslatorFragment extends RecyclerViewFragment {
     }
 
     private void loadInTo(List<RecyclerViewItem> items) {
-        if (!Utils.existFile(mStringPath)) {
+        if (!Utils.existFile(getStringPath())) {
             DescriptionView stringEmpty = new DescriptionView();
             stringEmpty.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_language, requireActivity()));
             stringEmpty.setSummary(getString(R.string.reload_message));
@@ -185,7 +185,7 @@ public class TranslatorFragment extends RecyclerViewFragment {
             return;
         }
         try {
-            for (String line : Objects.requireNonNull(Utils.readFile(mStringPath)).split("\\r?\\n")) {
+            for (String line : Objects.requireNonNull(Utils.readFile(getStringPath())).split("\\r?\\n")) {
                 if (line.contains("<string name=") && line.endsWith("</string>") && !line.contains("translatable=\"false")) {
                     String[] finalLine = line.split("\">");
 
@@ -216,7 +216,7 @@ public class TranslatorFragment extends RecyclerViewFragment {
                                     if (text.isEmpty()) {
                                         return;
                                     }
-                                    Utils.create(Objects.requireNonNull(Utils.readFile(mStringPath)).replace(finalLine[1], text + "</string>"), mStringPath);
+                                    Utils.create(Objects.requireNonNull(Utils.readFile(getStringPath())).replace(finalLine[1], text + "</string>"), new File(getStringPath()));
                                     strings.setSummary(text);
                                 }, getActivity()).setOnDismissListener(dialogInterface -> {
                         }).show();
@@ -241,8 +241,8 @@ public class TranslatorFragment extends RecyclerViewFragment {
 
     private String getStrings() {
         List<String> mData = new ArrayList<>();
-        if (Utils.existFile(mStringPath)) {
-            for (String line : Objects.requireNonNull(Utils.readFile(mStringPath)).split("\\r?\\n")) {
+        if (Utils.existFile(getStringPath())) {
+            for (String line : Objects.requireNonNull(Utils.readFile(getStringPath())).split("\\r?\\n")) {
                 if (line.contains("<string name=") && line.endsWith("</string>") && !line.contains("translatable=\"false")) {
                     mData.add(line);
                 }
@@ -250,6 +250,10 @@ public class TranslatorFragment extends RecyclerViewFragment {
         }
         return "<resources xmlns:tools=\"http://schemas.android.com/tools\" tools:ignore=\"MissingTranslation\">\n<!--Created by SmartPack-Kernel Manager-->\n\n" +
                 mData.toString().replace("[","").replace("]","").replace(",","\n") + "\n</resources>";
+    }
+
+    private String getStringPath() {
+        return Utils.getInternalDataStorage(requireActivity()) + "/strings.xml";
     }
 
     private boolean checkIllegalCharacters(String string) {
@@ -343,7 +347,7 @@ public class TranslatorFragment extends RecyclerViewFragment {
             settings.setOnClickListener(v -> {
                 PopupMenu popupMenu = new PopupMenu(requireActivity(), settings);
                 Menu menu = popupMenu.getMenu();
-                if (Utils.existFile(Utils.getInternalDataStorage() + "/strings.xml")) {
+                if (Utils.existFile(Utils.getInternalDataStorage(requireActivity()) + "/strings.xml")) {
                     menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.delete_string));
                 }
                 SubMenu import_string = menu.addSubMenu(Menu.NONE, 0, Menu.NONE, getString(R.string.import_string));
@@ -360,7 +364,7 @@ public class TranslatorFragment extends RecyclerViewFragment {
                 popupMenu.setOnMenuItemClickListener(item -> {
                     if (item.getItemId() == 0) {
                         return false;
-                    } else if (item.getItemId() > 1 && Utils.existFile(Utils.getInternalDataStorage() + "/strings.xml")) {
+                    } else if (item.getItemId() > 1 && Utils.existFile(Utils.getInternalDataStorage(requireActivity()) + "/strings.xml")) {
                         Utils.snackbar(mRootView, getString(R.string.import_string_message));
                         return false;
                     } else if (item.getItemId() == 1) {
@@ -369,7 +373,7 @@ public class TranslatorFragment extends RecyclerViewFragment {
                                 .setNegativeButton(getString(R.string.cancel), (dialogInterface, iv) -> {
                                 })
                                 .setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {
-                                    Utils.delete(Utils.getInternalDataStorage() + "/strings.xml");
+                                    Utils.delete(Utils.getInternalDataStorage(requireActivity()) + "/strings.xml");
                                     assert translatorFragment != null;
                                     translatorFragment.reload();
                                 })

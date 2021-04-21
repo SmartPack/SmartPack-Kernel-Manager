@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.services.boot;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -47,6 +48,7 @@ import com.smartpack.kernelmanager.utils.root.Control;
 import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -64,6 +66,7 @@ public class ApplyOnBoot {
         void onFinish();
     }
 
+    @SuppressLint("StringFormatMatches")
     static boolean apply(final Context context, final ApplyOnBootListener listener) {
         if (!Prefs.getBoolean(ApplyOnBootFragment.getAssignment(CPUHotplugFragment.class), false, context)) {
             Prefs.remove("core_ctl_min_cpus_big", context);
@@ -202,10 +205,8 @@ public class ApplyOnBoot {
                     for (String command : commands) {
                         s.append(command).append("\n");
                     }
-                    RootFile file = new RootFile("/data/local/tmp/kerneladiutortmp.sh");
-                    file.mkdir();
-                    file.write(s.toString(), false);
-                    file.execute();
+                    Utils.create(s.toString(), new File(context.getCacheDir(), "kerneladiutortmp.sh"));
+                    RootFile.execute(new File(context.getCacheDir(), "kerneladiutortmp.sh").getAbsolutePath());
                 } else {
                     for (String command : commands) {
                         RootUtils.runCommand(command);
@@ -230,10 +231,8 @@ public class ApplyOnBoot {
                     for (String command : profileCommands) {
                         s.append(command).append("\n");
                     }
-                    RootFile file = new RootFile("/data/local/tmp/kerneladiutortmp.sh");
-                    file.mkdir();
-                    file.write(s.toString(), false);
-                    file.execute();
+                    Utils.create(s.toString(), new File(context.getCacheDir(), "kerneladiutortmp.sh"));
+                    RootFile.execute(new File(context.getCacheDir(), "kerneladiutortmp.sh").getAbsolutePath());
                 } else {
                     for (String command : profileCommands) {
                         RootUtils.runCommand(command);

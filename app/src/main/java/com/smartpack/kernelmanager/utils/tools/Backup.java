@@ -20,15 +20,16 @@
 package com.smartpack.kernelmanager.utils.tools;
 
 import android.annotation.SuppressLint;
-import android.os.Environment;
+import android.content.Context;
 import android.util.Log;
 
 import com.smartpack.kernelmanager.utils.Utils;
-import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by willi on 09.07.16.
@@ -105,8 +106,8 @@ public class Backup {
         RootUtils.runCommand(command);
     }
 
-    public static void backup(String name, PARTITION partition_type) {
-        String command = "dd if=" + getPartition(partition_type) + " of='" + getPath(partition_type) + "/" + name + "'";
+    public static void backup(String name, PARTITION partition_type, Context context) {
+        String command = "dd if=" + getPartition(partition_type) + " of='" + getPath(partition_type, context) + "/" + name + "'";
         Log.i(TAG, "Executing: " + command);
         RootUtils.runCommand(command);
     }
@@ -125,7 +126,7 @@ public class Backup {
     }
 
     @SuppressLint("SdCardPath")
-    public static String getPath(PARTITION PARTITION_type) {
+    public static String getPath(PARTITION PARTITION_type, Context context) {
         String folder = null;
         switch (PARTITION_type) {
             case BOOT:
@@ -138,22 +139,22 @@ public class Backup {
                 folder = "fota";
                 break;
         }
-        File file = new File(Utils.getInternalDataStorage() + "/backup/" + folder);
+        File file = new File(Utils.getInternalDataStorage(context), "backup/" + folder);
         if (file.exists() && file.isFile()) {
             file.delete();
         }
         file.mkdirs();
-        if (Utils.existFile(file.toString())) return file.toString();
-        return Utils.getInternalDataStorage().replace(
-                Environment.getExternalStorageDirectory().toString(), "/sdcard") + "/backup/" + folder;
+        return file.toString();
     }
 
-    public static List<String> getItemsList(PARTITION PARTITION_type) {
-        RootFile file = new RootFile(getPath(PARTITION_type));
-        if (!file.exists()) {
-            file.mkdir();
+    public static List<String> getItemsList(PARTITION PARTITION_type, Context context) {
+        List<String> mList = new ArrayList<>();
+        if (Utils.existFile(getPath(PARTITION_type, context))) {
+            for (File file : Objects.requireNonNull(new File(getPath(PARTITION_type, context)).listFiles())) {
+                mList.add(file.getName());
+            }
         }
-        return file.list();
+        return mList;
     }
 
     public static String getBootPartition() {

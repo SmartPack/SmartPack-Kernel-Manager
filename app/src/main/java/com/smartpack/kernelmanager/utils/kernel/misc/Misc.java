@@ -25,12 +25,14 @@ import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.Control;
-import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.topjohnwu.superuser.io.SuFile;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by willi on 29.06.16.
@@ -426,9 +428,9 @@ public class Misc {
 
     public static List<String> getTQLList() {
         List<String> mTQLList = new ArrayList<>();
-        for (String string : new RootFile(TQL_PARENT).list()) {
-            if (Utils.existFile(TQL_PARENT + "/" + string + "/tx_queue_len")) {
-                mTQLList.add(string);
+        for (File file : Objects.requireNonNull(SuFile.open(TQL_PARENT).listFiles())) {
+            if (Utils.existFile(TQL_PARENT + "/" + file.getName() + "/tx_queue_len")) {
+                mTQLList.add(file.getName());
             }
         }
         return mTQLList;

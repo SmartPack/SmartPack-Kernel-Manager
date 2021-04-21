@@ -38,7 +38,6 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Html;
-import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -79,7 +78,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
@@ -96,15 +94,9 @@ public class Utils {
 
     public static BiometricPrompt.PromptInfo mPromptInfo;
 
-    public static boolean mAbout = false;
-    public static boolean mBattery = false;
-    public static boolean mDevice = false;
-    public static boolean mHasBusybox;
-    public static boolean mHasRoot;
-    public static boolean mMemory = false;
+    public static boolean mAbout = false, mBattery = false, mDevice = false, mHasBusybox, mHasRoot, mMemory = false;
 
-    public static String mDetailsTitle = null;
-    public static String mDetailsTxt = null;
+    public static String mDetailsTitle = null, mDetailsTxt = null;
 
     private static final String TAG = Utils.class.getSimpleName();
 
@@ -218,14 +210,6 @@ public class Utils {
         return false;
     }
 
-    public static String decodeString(String text) {
-        return new String(Base64.decode(text, Base64.DEFAULT), StandardCharsets.UTF_8);
-    }
-
-    public static String encodeString(String text) {
-        return Base64.encodeToString(text.getBytes(StandardCharsets.UTF_8), Base64.DEFAULT);
-    }
-
     public static boolean hasCMSDK() {
         return cyanogenmod.os.Build.CM_VERSION.SDK_INT >= cyanogenmod.os.Build.CM_VERSION_CODES.APRICOT;
     }
@@ -252,33 +236,20 @@ public class Utils {
         return path;
     }
 
-    public static String getInternalDataStorage() {
-        return Environment.getExternalStorageDirectory().toString() + "/SP";
+    public static File getInternalDataStorage(Context context) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            return context.getExternalFilesDir("");
+        } else {
+            return new File(Environment.getExternalStorageDirectory(), "SP");
+        }
     }
 
-    public static void prepareInternalDataStorage() {
-        File file = new File(getInternalDataStorage());
+    public static void prepareInternalDataStorage(Context context) {
+        File file = getInternalDataStorage(context);
         if (file.exists() && file.isFile()) {
             file.delete();
         }
         file.mkdirs();
-    }
-
-    // MD5 code from
-    // https://github.com/CyanogenMod/android_packages_apps_CMUpdater/blob/cm-12.1/src/com/cyanogenmod/updater/utils/MD5.java
-    public static boolean checkMD5(String md5, File updateFile) {
-        if (md5 == null || updateFile == null || md5.isEmpty()) {
-            Log.e(TAG, "MD5 string empty or updateFile null");
-            return false;
-        }
-
-        String calculatedDigest = calculateMD5(updateFile);
-        if (calculatedDigest == null) {
-            Log.e(TAG, "calculatedDigest null");
-            return false;
-        }
-
-        return calculatedDigest.equalsIgnoreCase(md5);
     }
 
     private static String calculateMD5(File updateFile) {
@@ -491,7 +462,7 @@ public class Utils {
 
     public static void writeFile(String path, String text, boolean append, boolean asRoot) {
         if (asRoot) {
-            new RootFile(path).write(text, append);
+            RootFile.write(path, text, append);
             return;
         }
 
@@ -517,7 +488,7 @@ public class Utils {
 
     public static String readFile(String file, boolean root) {
         if (root) {
-            return new RootFile(file).readFile();
+            return RootFile.read(file);
         }
 
         BufferedReader buf = null;
@@ -547,14 +518,13 @@ public class Utils {
     }
 
     public static boolean existFile(String file, boolean root) {
-        return !root ? new File(file).exists() : new RootFile(file).exists();
+        return !root ? new File(file).exists() : RootFile.exists(file);
     }
 
-    public static void create(String text, String path) {
+    public static void create(String text, File path) {
         try {
-            File logFile = new File(path);
-            logFile.createNewFile();
-            FileOutputStream fOut = new FileOutputStream(logFile);
+            path.createNewFile();
+            FileOutputStream fOut = new FileOutputStream(path);
             OutputStreamWriter myOutWriter =
                     new OutputStreamWriter(fOut);
             myOutWriter.append(text);
@@ -568,8 +538,16 @@ public class Utils {
         RootUtils.runCommand("echo '" + text + "' >> " + path);
     }
 
-    public static void delete(String path) {
-        new RootFile(path).delete();
+    public static void delete(String file) {
+        delete(file, true);
+    }
+
+    public static void delete(String file, boolean root) {
+        if (root) {
+            RootFile.delete(file);
+        } else {
+            new File(file).delete();
+        }
     }
 
     public static void sleep(int sec) {
@@ -598,8 +576,8 @@ public class Utils {
     }
 
     public static void importTranslation(String url, Activity activity) {
-        if (!existFile(Utils.getInternalDataStorage() + "/strings.xml") && isNetworkAvailable(activity)) {
-            downloadFile(Utils.getInternalDataStorage() + "/strings.xml",
+        if (!existFile(Utils.getInternalDataStorage(activity) + "/strings.xml") && isNetworkAvailable(activity)) {
+            downloadFile(Utils.getInternalDataStorage(activity) + "/strings.xml",
                     "https://github.com/SmartPack/SmartPack-Kernel-Manager/raw/master/app/src/main/res/" + url + "/strings.xml", activity);
         }
     }
@@ -637,38 +615,6 @@ public class Utils {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         assert cm != null;
         return (cm.getActiveNetworkInfo() != null) && cm.getActiveNetworkInfo().isConnectedOrConnecting();
-    }
-
-    public static String getFilePath(File file) {
-        String path = file.getAbsolutePath();
-        if (path.startsWith("/document/raw:")) {
-            path = path.replace("/document/raw:", "");
-        } else if (path.startsWith("/document/primary:")) {
-            path = (Environment.getExternalStorageDirectory() + ("/") + path.replace("/document/primary:", ""));
-        } else if (path.startsWith("/document/")) {
-            path = path.replace("/document/", "/storage/").replace(":", "/");
-        }
-        if (path.startsWith("/storage_root/storage/emulated/0")) {
-            path = path.replace("/storage_root/storage/emulated/0", "/storage/emulated/0");
-        } else if (path.startsWith("/storage_root")) {
-            path = path.replace("storage_root", "storage/emulated/0");
-        }
-        if (path.startsWith("/external")) {
-            path = path.replace("external", "storage/emulated/0");
-        } if (path.startsWith("/root/")) {
-            path = path.replace("/root", "");
-        }
-        if (path.contains("file%3A%2F%2F%2F")) {
-            path = path.replace("file%3A%2F%2F%2F", "").replace("%2F", "/");
-        }
-        if (path.contains("%2520")) {
-            path = path.replace("%2520", " ");
-        }
-        return path;
-    }
-
-    public static boolean isDocumentsUI(Uri uri) {
-        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }
 
     /**

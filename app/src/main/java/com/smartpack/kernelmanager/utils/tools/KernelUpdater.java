@@ -40,11 +40,11 @@ import java.io.File;
 public class KernelUpdater {
 
     private static void updateChannel(String value, Context context) {
-        Utils.create(value, updateChannelInfo(context));
+        Utils.create(value, new File(updateChannelInfo(context)));
     }
 
     public static void updateInfo(String value, Context context) {
-        Utils.prepareInternalDataStorage();
+        Utils.prepareInternalDataStorage(context);
         Utils.downloadFile(updateInfo(context), value, context);
     }
 

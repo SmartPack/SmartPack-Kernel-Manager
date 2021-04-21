@@ -276,9 +276,9 @@ public class BuildpropFragment extends RecyclerViewFragment {
                             modify(null, null);
                             break;
                         case 1:
-                            Buildprop.backup();
+                            Buildprop.backup(requireActivity());
                             Utils.snackbar(getRootView(), getString(R.string.backup_item, Buildprop.BUILD_PROP,
-                                    Utils.getInternalDataStorage()));
+                                    Utils.getInternalDataStorage(requireActivity())));
                             break;
                     }
                 }).setOnDismissListener(dialog -> mAddDialog = null);

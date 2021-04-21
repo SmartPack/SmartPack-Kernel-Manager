@@ -37,6 +37,7 @@ import com.smartpack.kernelmanager.views.dialog.Dialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.Objects;
 
 /**
@@ -120,7 +121,7 @@ public class UpdateChannelActivity extends BaseActivity {
                     if (text.contains(" ")) {
                         text = text.replace(" ", "_");
                     }
-                    if (Utils.existFile(Utils.getInternalDataStorage() + "/" + text)) {
+                    if (Utils.existFile(Utils.getInternalDataStorage(this) + "/" + text)) {
                         Utils.snackbar(mCardView, getString(R.string.already_exists, text));
                         return;
                     }
@@ -137,11 +138,11 @@ public class UpdateChannelActivity extends BaseActivity {
                         support.put("link", mSupportHint.getText());
                         support.put("donation", mDonationHint.getText());
                         obj.put("support", support);
-                        Utils.prepareInternalDataStorage();
-                        Utils.create(obj.toString(), Utils.getInternalDataStorage() + "/" + text);
+                        Utils.prepareInternalDataStorage(this);
+                        Utils.create(obj.toString(), new File(Utils.getInternalDataStorage(this), text));
                         new Dialog(this)
                                 .setMessage(getString(R.string.json_created,
-                                        Utils.getInternalDataStorage() + "/" + text))
+                                        Utils.getInternalDataStorage(this) + "/" + text))
                                 .setCancelable(false)
                                 .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
                                 })

@@ -20,6 +20,7 @@
 package com.smartpack.kernelmanager.utils.tools;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Environment;
 
 import com.smartpack.kernelmanager.utils.Utils;
@@ -40,13 +41,8 @@ public class Buildprop {
     public static boolean mWritableRoot = true;
 
     @SuppressLint("SdCardPath")
-    public static void backup() {
-        File data = new File(Utils.getInternalDataStorage());
-        if (!data.exists()) {
-            data.mkdirs();
-        }
-        new RootFile(BUILD_PROP).cp(data.toString().replace(
-                Environment.getExternalStorageDirectory().toString(), "/sdcard") + "/build.prop");
+    public static void backup(Context context) {
+        Utils.create(Utils.readFile(BUILD_PROP), new File(Utils.getInternalDataStorage(context), "build.prop"));
     }
 
     public static void overwrite(String oldKey, String oldValue, String newKey, String newValue) {
