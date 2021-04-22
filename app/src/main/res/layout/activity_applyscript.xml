@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="?android:attr/colorBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -19,7 +18,7 @@
             android:scaleType="center"
             android:background="@color/colorPrimaryVariant"
             android:layout_gravity="start|center_vertical"
-            android:tint="?android:attr/colorAccent"
+            android:tint="@color/colorOnPrimary"
             android:src="@drawable/ic_back"
             android:layout_marginEnd="10dp" />
 
@@ -29,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_gravity="start|center_vertical"
-            android:textColor="?android:attr/colorAccent"
+            android:textColor="@color/colorOnPrimary"
             android:focusable="false"
             android:textStyle="bold"
             android:textSize="20sp" />
@@ -44,7 +43,6 @@
             android:id="@+id/result_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="?android:attr/textColorPrimary"
             android:textSize="15sp"
             android:padding="10dp"/>
     </androidx.core.widget.NestedScrollView>
