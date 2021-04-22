@@ -45,10 +45,9 @@ import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Objects;
 
-/**
+/*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on September 23, 2020
  */
-
 public class TerminalActivity extends BaseActivity {
 
     private AppCompatEditText mShellCommand;
@@ -58,8 +57,9 @@ public class TerminalActivity extends BaseActivity {
     private int i;
     private List<String> mResult = null;
     private NestedScrollView mScrollView;
-    private String mPWD = RootUtils.runAndGetOutput("pwd"), whoAmI = RootUtils.runAndGetOutput("whoami");
-    private StringBuilder mLastCommand = new StringBuilder();
+    private String mPWD = RootUtils.runAndGetOutput("pwd");
+    private final String whoAmI = RootUtils.runAndGetOutput("whoami");
+    private final StringBuilder mLastCommand = new StringBuilder();
 
     @SuppressLint("SetTextI18n")
     @Override

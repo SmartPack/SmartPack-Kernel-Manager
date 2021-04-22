@@ -26,10 +26,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.appcompat.widget.AppCompatEditText;
 
 import com.smartpack.kernelmanager.R;
 
@@ -58,14 +59,16 @@ public class EditorActivity extends BaseActivity {
         }
 
         CharSequence text = getIntent().getCharSequenceExtra(TEXT_INTENT);
-        mEditText = (AppCompatEditText) findViewById(R.id.edittext);
+        mEditText = findViewById(R.id.edittext);
         if (text != null) {
             mEditText.append(text);
         }
+
+        mEditText.requestFocus();
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putCharSequence(EDITTEXT_INTENT, mEditText.getText());
     }
@@ -81,7 +84,7 @@ public class EditorActivity extends BaseActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent = new Intent();
         intent.putExtra(TEXT_INTENT, mEditText.getText());
         setResult(0, intent);

@@ -242,9 +242,9 @@ public class ViewUtils {
     }
 
     private static class CustomTarget implements Target {
-        private ImageView mImageView;
-        private int mMaxWidth;
-        private int mMaxHeight;
+        private final ImageView mImageView;
+        private final int mMaxWidth;
+        private final int mMaxHeight;
 
         private CustomTarget(ImageView imageView, int maxWidth, int maxHeight) {
             mImageView = imageView;
