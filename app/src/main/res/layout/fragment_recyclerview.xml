@@ -55,7 +55,4 @@
         android:layout_marginEnd="@dimen/recyclerview_fab_margin_right"
         android:visibility="gone"
         app:backgroundTint="?attr/colorAccent"/>
-
-    <include layout="@layout/rv_foreground_view" />
-
 </RelativeLayout>

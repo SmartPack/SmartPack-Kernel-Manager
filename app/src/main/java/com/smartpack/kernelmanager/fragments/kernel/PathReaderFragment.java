@@ -25,11 +25,13 @@ import android.os.AsyncTask;
 import com.google.android.material.snackbar.Snackbar;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
+import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
 import com.smartpack.kernelmanager.utils.root.Control;
+import com.smartpack.kernelmanager.utils.tools.PathReader;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -45,42 +47,18 @@ import java.util.Objects;
  */
 public class PathReaderFragment extends RecyclerViewFragment {
 
-    private String mPath;
-    private int mMin;
-    private int mMax;
-    private String mError;
-    private String mCategory;
-
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
 
     @Override
-    protected boolean showViewPager() {
-        return false;
-    }
+    protected void init() {
+        super.init();
 
-    @Override
-    protected boolean isForeground() {
-        return true;
+        addViewPagerFragment(DescriptionFragment.newInstance(PathReader.getTitle().toUpperCase(), getString(R.string.tunables_title, PathReader.getTitle())));
     }
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-    }
-
-    void setPath(String path, String category) {
-        setPath(path, -1, -1, category);
-    }
-
-    void setPath(String path, int min, int max, String category) {
-        mPath = path;
-        mMin = min;
-        mMax = max;
-        mCategory = category;
         reload();
-    }
-
-    void setError(String error) {
-        mError = error;
     }
 
     private void reload() {
@@ -112,8 +90,8 @@ public class PathReaderFragment extends RecyclerViewFragment {
                                 addItem(item);
                             }
                             hideProgress();
-                            if (itemsSize() < 1 && mError != null) {
-                                Snackbar.make(getRootView(), mError, Snackbar.LENGTH_SHORT).show();
+                            if (itemsSize() < 1 && PathReader.getError() != null) {
+                                Snackbar.make(getRootView(), PathReader.getError(), Snackbar.LENGTH_SHORT).show();
                             }
                             mLoader = null;
                         }
@@ -125,10 +103,10 @@ public class PathReaderFragment extends RecyclerViewFragment {
     }
 
     private void load(List<RecyclerViewItem> items) {
-        if (mPath == null) return;
-        String path = mPath;
+        if (PathReader.getPath() == null) return;
+        String path = PathReader.getPath();
         if (path.contains("%d")) {
-            path = Utils.strFormat(mPath, mMin);
+            path = Utils.strFormat(PathReader.getPath(), PathReader.getMin());
         }
         for (final File file : Objects.requireNonNull(SuFile.open(path).listFiles())) {
             final String name = file.getName();
@@ -138,14 +116,14 @@ public class PathReaderFragment extends RecyclerViewFragment {
                 descriptionView.setTitle(name);
                 descriptionView.setSummary(value);
                 descriptionView.setOnItemClickListener(item -> {
-                    List<Integer> freqs = CPUFreq.getInstance(getActivity()).getFreqs(mMin);
+                    List<Integer> freqs = CPUFreq.getInstance(getActivity()).getFreqs(PathReader.getMin());
                     int freq = Utils.strToInt(value);
                     if (freqs != null && freq != 0 && freqs.contains(freq)) {
                         String[] values = new String[freqs.size()];
                         for (int i = 0; i < values.length; i++) {
                             values[i] = String.valueOf(freqs.get(i));
                         }
-                        showArrayDialog(value, values, mPath + "/" + name, name);
+                        showArrayDialog(value, values, PathReader.getPath() + "/" + name, name);
                     } else {
                         showEditTextDialog(value, name);
                     }
@@ -177,16 +155,16 @@ public class PathReaderFragment extends RecyclerViewFragment {
     private void showEditTextDialog(String value, final String name) {
         ViewUtils.dialogEditText(value, (dialog, which) -> {
         }, text -> {
-            run(mPath + "/" + name, text, mPath + "/" + name);
+            run(PathReader.getPath() + "/" + name, text, PathReader.getPath() + "/" + name);
             reload();
         }, getActivity()).show();
     }
 
     private void run(String path, String value, String id) {
-        if (ApplyOnBootFragment.CPU.equals(mCategory) && mPath.contains("%d")) {
-            CPUFreq.getInstance(getActivity()).applyCpu(path, value, mMin, mMax, getActivity());
+        if (ApplyOnBootFragment.CPU.equals(PathReader.getCategory()) && PathReader.getPath().contains("%d")) {
+            CPUFreq.getInstance(getActivity()).applyCpu(path, value, PathReader.getMin(), PathReader.getMax(), getActivity());
         } else {
-            Control.runSetting(Control.write(value, path), mCategory, id, getActivity());
+            Control.runSetting(Control.write(value, path), PathReader.getCategory(), id, getActivity());
         }
     }
 

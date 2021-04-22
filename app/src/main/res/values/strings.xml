@@ -162,6 +162,7 @@
     <string name="governor_tunables_summary">The various configuration items which are Governor-dependent.</string>
     <string name="cpu_governor_tunables_read_error">Failed to read current governor of CPU.\n\nIf you are using a QCOM big.LITTLE device this is a known problem. The system forces the CPU to turn off cores making it extremely hard to read out CPU specific stats. Try to select this option again. The CPU sometimes refuses to turn on a core.</string>
     <string name="tunables_error">%s is not tuneable</string>
+    <string name="tunables_title">Fine-tune the configuration items that are associated with \'%s\'</string>
     <string name="manual">Manual</string>
     <string name="mc_power_saving">Multicore Power Saving</string>
     <string name="mc_power_saving_summary">Try to group tasks into the least cores possible.</string>

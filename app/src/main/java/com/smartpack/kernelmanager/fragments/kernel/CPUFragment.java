@@ -25,8 +25,8 @@ import android.util.SparseArray;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.CPUBoostActivity;
+import com.smartpack.kernelmanager.activities.TunablesActivity;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
-import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Device;
@@ -40,6 +40,7 @@ import com.smartpack.kernelmanager.utils.kernel.cpu.Misc;
 import com.smartpack.kernelmanager.utils.kernel.cpu.boost.StuneBoost;
 import com.smartpack.kernelmanager.utils.kernel.cpu.boost.VoxPopuli;
 import com.smartpack.kernelmanager.utils.kernel.cpuhotplug.MSMLimiter;
+import com.smartpack.kernelmanager.utils.tools.PathReader;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -79,17 +80,11 @@ public class CPUFragment extends RecyclerViewFragment {
     private SelectView mCPUMaxScreenOffLITTLE;
     private SelectView mCPUGovernorLITTLE;
 
-    private SparseArray<SwitchView> mCoresBig = new SparseArray<>();
-    private SparseArray<SwitchView> mCoresMid = new SparseArray<>();
-    private SparseArray<SwitchView> mCoresLITTLE = new SparseArray<>();
+    private final SparseArray<SwitchView> mCoresBig = new SparseArray<>();
+    private final SparseArray<SwitchView> mCoresMid = new SparseArray<>();
+    private final SparseArray<SwitchView> mCoresLITTLE = new SparseArray<>();
 
-    private PathReaderFragment mGovernorTunableFragment;
     private Dialog mGovernorTunableErrorDialog;
-
-    @Override
-    protected BaseFragment getForegroundFragment() {
-        return mGovernorTunableFragment = new PathReaderFragment();
-    }
 
     @Override
     protected void init() {
@@ -350,11 +345,14 @@ public class CPUFragment extends RecyclerViewFragment {
                     }, dialog -> mGovernorTunableErrorDialog = null, getActivity());
             mGovernorTunableErrorDialog.show();
         } else {
-            setForegroundText(governor);
-            mGovernorTunableFragment.setError(getString(R.string.tunables_error, governor));
-            mGovernorTunableFragment.setPath(mCPUFreq.getGovernorTunablesPath(min, governor), min, max,
-                    ApplyOnBootFragment.CPU);
-            showForeground();
+            PathReader.setTitle(governor);
+            PathReader.setError(getString(R.string.tunables_error, governor));
+            PathReader.setPath(mCPUFreq.getGovernorTunablesPath(min, governor));
+            PathReader.setCategory(ApplyOnBootFragment.CPU);
+            PathReader.setMax(max);
+            PathReader.setMin(min);
+            Intent intent = new Intent(requireActivity(), TunablesActivity.class);
+            startActivity(intent);
         }
         if (offline) {
             mCPUFreq.onlineCpu(min, false, false, null);

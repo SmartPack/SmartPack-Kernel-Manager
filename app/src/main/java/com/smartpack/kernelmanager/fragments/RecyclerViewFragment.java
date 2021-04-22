@@ -54,7 +54,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
@@ -88,14 +87,14 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
     private View mRootView, mViewPagerShadow, mViewPagerParent;;
 
-    private List<RecyclerViewItem> mItems = new ArrayList<>();
+    private final List<RecyclerViewItem> mItems = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerViewAdapter mRecyclerViewAdapter;
     private Scroller mScroller;
 
     private LinearLayout mProgress;
-    private MaterialTextView mProgressMessage, mForegroundText;
+    private MaterialTextView mProgressMessage;
 
     private List<Fragment> mViewPagerFragments;
     private ViewPagerAdapter mViewPagerAdapter;
@@ -108,12 +107,6 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     private Toolbar mToolBar;
 
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
-
-    private ValueAnimator mForegroundAnimator;
-    private boolean mForegroundVisible;
-    private MaterialCardView mForegroundParent;
-    private float mForegroundHeight;
-    private CharSequence mForegroundStrText;
 
     private SimpleItemTouchHelperCallback mItemCallback;
 
@@ -158,7 +151,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         mAppBarLayout = ((BaseActivity) requireActivity()).getAppBarLayout();
         mToolBar = ((BaseActivity) requireActivity()).getToolBar();
 
-        if (mAppBarLayout != null && !isForeground()) {
+        if (mAppBarLayout != null) {
             mAppBarLayout.postDelayed(() -> {
                 if (mAppBarLayout != null && isAdded() && getActivity() != null) {
                     ViewCompat.setElevation(mAppBarLayout, showViewPager() && !hideBanner() ?
@@ -205,19 +198,6 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             if (drawable != null) {
                 mBottomFab.setImageDrawable(drawable);
             }
-        }
-
-        BaseFragment foregroundFragment = getForegroundFragment();
-        mForegroundVisible = false;
-        if (foregroundFragment != null) {
-            mForegroundParent = mRootView.findViewById(R.id.foreground_parent);
-            mForegroundText = mRootView.findViewById(R.id.foreground_text);
-            mForegroundText.setOnClickListener(v -> dismissForeground());
-            MaterialTextView cancelText = mRootView.findViewById(R.id.cancel_button);
-            cancelText.setOnClickListener(v -> dismissForeground());
-            getChildFragmentManager().beginTransaction().replace(R.id.foreground_content,
-                    foregroundFragment).commit();
-            mForegroundHeight = getResources().getDisplayMetrics().heightPixels;
         }
 
         if (itemsSize() == 0) {
@@ -330,7 +310,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             setAppBarLayoutAlpha(0);
             adjustScrollPosition();
         } else {
-            mRecyclerView.setPadding(mRecyclerView.getPaddingLeft(), isForeground() ? 0 : mToolBar.getHeight(),
+            mRecyclerView.setPadding(mRecyclerView.getPaddingLeft(), mToolBar.getHeight(),
                     mRecyclerView.getPaddingRight(), mRecyclerView.getPaddingBottom());
             mRecyclerView.setClipToPadding(true);
             ViewGroup.LayoutParams layoutParams = mViewPagerParent.getLayoutParams();
@@ -370,7 +350,6 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     protected abstract void addItems(List<RecyclerViewItem> items);
 
     private void setAppBarLayoutAlpha(int alpha) {
-        if (isForeground()) return;
         Activity activity;
         if ((activity = getActivity()) != null && mAppBarLayout != null && mToolBar != null) {
             int colorPrimary = ViewUtils.getColorPrimaryColor(activity);
@@ -625,58 +604,6 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         adjustScrollPosition();
     }
 
-    protected boolean isForeground() {
-        return false;
-    }
-
-    protected BaseFragment getForegroundFragment() {
-        return null;
-    }
-
-    public void setForegroundText(CharSequence text) {
-        mForegroundStrText = text;
-    }
-
-    public void showForeground() {
-        if (mForegroundStrText != null) {
-            mForegroundText.setText(mForegroundStrText);
-        }
-        if (mForegroundAnimator != null) mForegroundAnimator.cancel();
-        mForegroundAnimator = ValueAnimator.ofFloat(mForegroundHeight, 0f);
-        mForegroundAnimator.addUpdateListener(animation -> mForegroundParent.setTranslationY((float) animation.getAnimatedValue()));
-        mForegroundAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-                super.onAnimationStart(animation);
-                mForegroundParent.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                mForegroundVisible = true;
-                mForegroundAnimator = null;
-            }
-        });
-        mForegroundAnimator.start();
-    }
-
-    private void dismissForeground() {
-        float translation = mForegroundParent.getTranslationY();
-        mForegroundAnimator = ValueAnimator.ofFloat(translation, mForegroundHeight);
-        mForegroundAnimator.addUpdateListener(animation -> mForegroundParent.setTranslationY((float) animation.getAnimatedValue()));
-        mForegroundAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                mForegroundParent.setVisibility(View.GONE);
-                mForegroundVisible = false;
-                mForegroundAnimator = null;
-            }
-        });
-        mForegroundAnimator.start();
-    }
-
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -769,10 +696,6 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
     @Override
     public boolean onBackPressed() {
-        if (mForegroundVisible) {
-            dismissForeground();
-            return true;
-        }
         return false;
     }
 
@@ -801,7 +724,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         }
     }
 
-    private Runnable mScheduler = () -> {
+    private final Runnable mScheduler = () -> {
         refreshThread();
 
         Activity activity = getActivity();
@@ -825,7 +748,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         mItems.clear();
         mRecyclerViewAdapter = null;
         setAppBarLayoutAlpha(255);
-        if (mAppBarLayout != null && !isForeground()) {
+        if (mAppBarLayout != null) {
             mAppBarLayout.setTranslationY(0);
             ViewCompat.setElevation(mAppBarLayout, 0);
         }

@@ -24,10 +24,11 @@ import android.text.InputType;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.AdvancedIOActivity;
+import com.smartpack.kernelmanager.activities.TunablesActivity;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
-import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.kernel.io.IO;
+import com.smartpack.kernelmanager.utils.tools.PathReader;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.GenericSelectView;
@@ -43,13 +44,7 @@ import java.util.List;
  */
 public class IOFragment extends RecyclerViewFragment {
 
-    private PathReaderFragment mIOTunableFragment;
     private IO mIO;
-
-    @Override
-    protected BaseFragment getForegroundFragment() {
-        return mIOTunableFragment = new PathReaderFragment();
-    }
 
     @Override
     protected void init() {
@@ -112,7 +107,16 @@ public class IOFragment extends RecyclerViewFragment {
             DescriptionView tunable = new DescriptionView();
             tunable.setTitle(getString(R.string.scheduler_tunable));
             tunable.setSummary(getString(R.string.scheduler_tunable_summary));
-            tunable.setOnItemClickListener(item -> showTunables(mIO.getScheduler(storage), mIO.getIOSched(storage)));
+            tunable.setOnItemClickListener(item -> {
+                PathReader.setTitle(mIO.getScheduler(storage));
+                PathReader.setError(getString(R.string.tunables_error, mIO.getScheduler(storage)));
+                PathReader.setPath(mIO.getIOSched(storage));
+                PathReader.setCategory(ApplyOnBootFragment.IO);
+                PathReader.setMax(-1);
+                PathReader.setMin(-1);
+                Intent intent = new Intent(requireActivity(), TunablesActivity.class);
+                startActivity(intent);
+            });
 
             StorageCard.addItem(tunable);
         }
@@ -260,13 +264,6 @@ public class IOFragment extends RecyclerViewFragment {
         if (StorageCard.size() > 0) {
             items.add(StorageCard);
         }
-    }
-
-    private void showTunables(String scheduler, String path) {
-        setForegroundText(scheduler);
-        mIOTunableFragment.setError(getString(R.string.tunables_error, scheduler));
-        mIOTunableFragment.setPath(path, ApplyOnBootFragment.IO);
-        showForeground();
     }
 
 }
