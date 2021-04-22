@@ -22,14 +22,18 @@
 package com.smartpack.kernelmanager.fragments.kernel;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.text.InputType;
 
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.activities.TunablesActivity;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.kernel.io.IOAdvanced;
+import com.smartpack.kernelmanager.utils.tools.PathReader;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
+import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.GenericSelectView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.SeekBarView;
@@ -130,6 +134,21 @@ public class IOAdvancedFragment extends RecyclerViewFragment {
             });
 
             blocksCard.addItem(scheduler);
+
+            DescriptionView tunable = new DescriptionView();
+            tunable.setSummary(getString(R.string.scheduler_tunable));
+            tunable.setOnItemClickListener(item -> {
+                PathReader.setTitle(IOAdvanced.getScheduler(requireActivity()));
+                PathReader.setError(getString(R.string.tunables_error, IOAdvanced.getScheduler(requireActivity())));
+                PathReader.setPath(IOAdvanced.getSchedulerPath(requireActivity()));
+                PathReader.setCategory(ApplyOnBootFragment.IO);
+                PathReader.setMax(-1);
+                PathReader.setMin(-1);
+                Intent intent = new Intent(requireActivity(), TunablesActivity.class);
+                startActivity(intent);
+            });
+
+            blocksCard.addItem(tunable);
         }
 
         if (IOAdvanced.hasReadAhead(requireActivity())) {

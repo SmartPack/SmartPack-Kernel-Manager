@@ -91,6 +91,10 @@ public class IOAdvanced {
         return "";
     }
 
+    public static String getSchedulerPath(Context context) {
+        return IO_PARENT + "/" + getCurrentBlock(context) + "/queue/" + IOSCHED;
+    }
+
     public static List<String> getSchedulers(Context context) {
         String[] schedulers = Utils.readFile(IO_PARENT + "/" + getCurrentBlock(context) + "/queue/" + SCHEDULER).split(" ");
         List<String> list = new ArrayList<>();
