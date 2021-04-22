@@ -55,7 +55,7 @@
         android:id="@+id/menu_button"
         android:layout_width="30dp"
         android:layout_height="20dp"
-        android:layout_gravity="end|bottom"
+        android:layout_gravity="end|center"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:tint="?android:attr/textColorSecondary"
         android:src="@drawable/ic_dots"
