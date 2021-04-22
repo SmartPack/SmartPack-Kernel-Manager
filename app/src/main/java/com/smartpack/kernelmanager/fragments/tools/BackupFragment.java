@@ -252,7 +252,7 @@ public class BackupFragment extends RecyclerViewFragment {
                             break;
                         case 1:
                             FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
-                            FilePicker.setExtension(".img");
+                            FilePicker.setExtension("img");
                             Intent filePicker = new Intent(getActivity(), FilePickerActivity.class);
                             startActivityForResult(filePicker, 0);
                             break;

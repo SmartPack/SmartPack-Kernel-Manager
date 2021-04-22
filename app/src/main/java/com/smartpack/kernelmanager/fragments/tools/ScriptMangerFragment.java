@@ -351,7 +351,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                             break;
                         case 1:
                             FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
-                            FilePicker.setExtension(".sh");
+                            FilePicker.setExtension("sh");
                             Intent filePicker = new Intent(getActivity(), FilePickerActivity.class);
                             startActivityForResult(filePicker, 2);
                             break;

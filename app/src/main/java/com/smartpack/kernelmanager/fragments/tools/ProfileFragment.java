@@ -378,7 +378,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                             break;
                         case 1:
                             FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
-                            FilePicker.setExtension(".json");
+                            FilePicker.setExtension("json");
                             Intent filePicker = new Intent(getActivity(), FilePickerActivity.class);
                             startActivityForResult(filePicker, 1);
                             break;

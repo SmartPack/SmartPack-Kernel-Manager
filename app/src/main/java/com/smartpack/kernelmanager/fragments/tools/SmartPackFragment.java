@@ -556,7 +556,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             return;
         }
         FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
-        FilePicker.setExtension(".zip");
+        FilePicker.setExtension("zip");
         Intent filePicker = new Intent(getActivity(), FilePickerActivity.class);
         startActivityForResult(filePicker, 0);
     }

@@ -329,7 +329,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                 }
             } else {
                 if ((requestCode == 2 || requestCode == 3) && !Utils.existFile(Utils.readFile(mSelectedFile.getAbsolutePath()))) {
-                    Utils.snackbar(getRootView(), getString(R.string.unsupported_controller, Utils.readFile(mSelectedFile.getName())));
+                    Utils.snackbar(getRootView(), getString(R.string.unsupported_controller, mSelectedFile.getName()));
                     return;
                 }
             }
