@@ -533,8 +533,11 @@ public class NavigationActivity extends BaseActivity
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
+
+        // Show app folder migration dialog
+        Utils.migrateDialog(this);
 
         // Initialize auto app update check
         if (Build.VERSION.SDK_INT >= 23) {
