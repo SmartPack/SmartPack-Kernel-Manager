@@ -1,5 +1,9 @@
 # Change-logs
 
+## 123. April 23, 2021
+*Release-tag: v16.5*<br>
+Implemented own file picker for various tasks (app won't support external file manager applications anymore: please read more at https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/important_notice.md). App will now target latest Android SDK. Moved scheduler/governor tunables into a new page. Added new features: GPU Throttling & PrintkK devkmsg. Many many other changes. Please check https://github.com/SmartPack/SmartPack-Kernel-Manager/commits/master to know more.
+
 ## 122. April 15, 2021
 *Release-tag: v16.4*<br>
 Added a separate page to control all the I/O blocks. Added control over Transmit Queue Length. Doze control will now offer light and deep modes (F-Droid only feature). Added Turkish translations. Now building with latest gradle plugin. Miscellaneous changes.

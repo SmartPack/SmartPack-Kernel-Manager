@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Added a separate page to control all the I/O blocks.\n - Added control over Transmit Queue Length.\n - Doze control will now offer light and deep modes (F-Droid only feature).\n - Added Turkish translations.\n - Now building with latest gradle plugin.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v16.4/com.smartpack.kernelmanager-v16.4-fdroid-release.apk",
-  "sha1": "f4cae215bd17b1ce85f78ab571f1bc2922a9b60d",
-  "latestVersion": "16.4",
-  "latestVersionCode": 164
+  "releaseNotes": "Change-logs\n - Implemented own file picker for various tasks (app won't support external file manager applications anymore).\n - App will now target latest Android SDK.\n - Moved scheduler/governor tunable into a new page.\n - Added new features: GPU Throttling and PrintkK devkmsg.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v16.5/com.smartpack.kernelmanager-v16.5-fdroid-release.apk",
+  "sha1": "1bd3800d94f6153291dd073ded0401b70dd54f46",
+  "latestVersion": "16.5",
+  "latestVersionCode": 165
 }

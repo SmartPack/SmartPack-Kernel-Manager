@@ -1,6 +1,0 @@
-* Added a separate page to control all the I/O blocks.
-* Added control over Transmit Queue Length.
-* Doze control will now offer light and deep modes.
-* Added Turkish translations.
-* Now building with latest gradle plugin.
-* Miscellaneous changes.
