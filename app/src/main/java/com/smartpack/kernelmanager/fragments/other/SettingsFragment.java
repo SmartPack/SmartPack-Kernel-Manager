@@ -48,7 +48,6 @@ import androidx.preference.PreferenceViewHolder;
 import androidx.preference.SwitchPreferenceCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.BannerResizerActivity;
 import com.smartpack.kernelmanager.activities.MainActivity;
@@ -396,8 +395,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     }
 
     public void resetSettings() {
-        RootUtils.runCommand("rm -rf /data/data/" + BuildConfig.APPLICATION_ID);
-        RootUtils.runCommand("pm clear " + BuildConfig.APPLICATION_ID + " && am start -n " + BuildConfig.APPLICATION_ID + "/com.smartpack.kernelmanager.activities.MainActivity");
+        RootUtils.runCommand("rm -rf /data/data/" + requireActivity().getPackageName());
+        RootUtils.runCommand("pm clear " + requireActivity().getPackageName() + " && am start -n " + requireActivity().getPackageName() + "/com.smartpack.kernelmanager.activities.MainActivity");
     }
 
     private void relaunchActivity() {

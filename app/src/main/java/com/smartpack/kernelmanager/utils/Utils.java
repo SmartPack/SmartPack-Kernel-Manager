@@ -164,8 +164,11 @@ public class Utils {
     }
 
     public static boolean isFingerprintAvailable(Context context) {
-        FingerprintManagerCompat fingerprintManager = FingerprintManagerCompat.from(context);
-        return fingerprintManager.hasEnrolledFingerprints();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_FINGERPRINT)) {
+            return FingerprintManagerCompat.from(context).hasEnrolledFingerprints();
+        }
+        return false;
     }
 
     public static void showBiometricPrompt(Context context) {
