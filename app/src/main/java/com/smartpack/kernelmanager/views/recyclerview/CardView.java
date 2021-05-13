@@ -50,7 +50,7 @@ public class CardView extends RecyclerViewItem {
         void onMenuReady(CardView cardView, PopupMenu popupMenu);
     }
 
-    private Activity mActivity;
+    private final Activity mActivity;
 
     private MaterialCardView mRootView;
     private AppCompatImageView mImageView, mArrow;
@@ -63,10 +63,10 @@ public class CardView extends RecyclerViewItem {
     private PopupMenu mPopupMenu;
     private OnMenuListener mOnMenuListener;
 
-    private List<RecyclerViewItem> mItems = new ArrayList<>(), mLoading = new ArrayList<>();
-    private HashMap<RecyclerViewItem, View> mViews = new HashMap<>();
+    private final List<RecyclerViewItem> mItems = new ArrayList<>(), mLoading = new ArrayList<>();
+    private final HashMap<RecyclerViewItem, View> mViews = new HashMap<>();
 
-    private List<Runnable> mRunnables = new ArrayList<>();
+    private final List<Runnable> mRunnables = new ArrayList<>();
 
     private int mLayoutHeight, mGrxColor = 0;
     private ValueAnimator mLayoutAnimator;

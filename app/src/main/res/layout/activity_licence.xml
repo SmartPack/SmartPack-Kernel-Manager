@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView android:layout_width="match_parent"
+<com.google.android.material.card.MaterialCardView
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_gravity="center"
-    android:padding="16dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:padding="16dp" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,18 +20,18 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@color/colorPrimaryVariant"
-            android:tint="?attr/colorAccent"
+            android:tint="@color/colorWhite"
             android:gravity="center_vertical"
             android:src="@drawable/ic_back" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:padding="5dp"
             android:textStyle="bold"
             android:gravity="center_vertical"
-            android:text="@string/licence"
-            android:textColor="?attr/colorAccent"
+            android:textColor="@color/colorWhite"
             android:textIsSelectable="true"
             android:textSize="20sp" />
     </LinearLayout>
@@ -38,7 +39,6 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?android:attr/colorBackground"
         android:layout_marginBottom="50sp"
         android:layout_marginTop="50dp"
         android:layout_gravity="start"
@@ -59,7 +59,7 @@
         android:text="@string/cancel"
         android:textStyle="bold"
         android:background="@color/colorPrimaryVariant"
-        android:textColor="?attr/colorAccent"
+        android:textColor="@color/colorWhite"
         android:textSize="18sp"
         android:padding="10dp" />
 </com.google.android.material.card.MaterialCardView>

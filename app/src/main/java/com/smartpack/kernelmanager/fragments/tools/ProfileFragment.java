@@ -56,6 +56,7 @@ import com.smartpack.kernelmanager.fragments.SwitcherFragment;
 import com.smartpack.kernelmanager.services.boot.ApplyOnBoot;
 import com.smartpack.kernelmanager.services.profile.Tile;
 import com.smartpack.kernelmanager.services.profile.Widget;
+import com.smartpack.kernelmanager.utils.Common;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
@@ -139,12 +140,9 @@ public class ProfileFragment extends RecyclerViewFragment {
                 addViewPagerFragment(SwitcherFragment.newInstance(getString(R.string.profile_tile),
                         getString(R.string.profile_tile_summary),
                         Prefs.getBoolean("profiletile", false, getActivity()),
-                        new CompoundButton.OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                                Prefs.saveBoolean("profiletile", b, getActivity());
-                                Tile.publishProfileTile(mProfiles.getAllProfiles(), getActivity());
-                            }
+                        (compoundButton, b) -> {
+                            Prefs.saveBoolean("profiletile", b, getActivity());
+                            Tile.publishProfileTile(mProfiles.getAllProfiles(), getActivity());
                         }));
             }
         }
@@ -192,7 +190,7 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     private static class UILoader extends AsyncTask<Void, Void, List<RecyclerViewItem>> {
 
-        private WeakReference<ProfileFragment> mRefFragment;
+        private final WeakReference<ProfileFragment> mRefFragment;
 
         private UILoader(ProfileFragment fragment) {
             mRefFragment = new WeakReference<>(fragment);
@@ -313,8 +311,8 @@ public class ProfileFragment extends RecyclerViewFragment {
                                             mCommandsText.append(command.getCommand()).append("\n");
                                         }
                                     }
-                                    Utils.mDetailsTitle = items1.get(position).getName().toUpperCase();
-                                    Utils.mDetailsTxt = mCommandsText.toString();
+                                    Common.setDetailsTitle(items1.get(position).getName().toUpperCase());
+                                    Common.setDetailsTxt(mCommandsText.toString());
                                     Intent details = new Intent(getActivity(), ForegroundActivity.class);
                                     startActivity(details);
                                 } else {

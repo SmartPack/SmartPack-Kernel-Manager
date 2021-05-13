@@ -30,6 +30,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
 
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.utils.Common;
 import com.smartpack.kernelmanager.utils.Utils;
 
 /**
@@ -47,7 +48,7 @@ public class NoRootActivity extends BaseActivity {
         MaterialTextView mainTitle = findViewById(R.id.title_main);
         MaterialTextView mainMessage = findViewById(R.id.message_main);
         bbi.setOnClickListener(v -> launchBBI());
-        if (Utils.mHasRoot && !Utils.mHasBusybox) {
+        if (Common.hasRoot() && !Common.hasBusyBox()) {
             bbi.setVisibility(View.VISIBLE);
             mainTitle.setText(getString(R.string.no_busybox));
             mainMessage.setText(R.string.busybox_message);

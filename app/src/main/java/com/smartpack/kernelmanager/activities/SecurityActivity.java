@@ -27,7 +27,7 @@ import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 
 import com.smartpack.kernelmanager.R;
-import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.Common;
 
 import java.util.concurrent.Executor;
 
@@ -63,8 +63,8 @@ public class SecurityActivity extends BaseActivity {
             }
         });
 
-        Utils.showBiometricPrompt(this);
-        mBiometricPrompt.authenticate(Utils.mPromptInfo);
+        Common.showBiometricPrompt(this);
+        mBiometricPrompt.authenticate(Common.getPromptInfo());
     }
 
 }

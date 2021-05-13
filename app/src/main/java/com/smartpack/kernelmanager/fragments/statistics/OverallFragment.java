@@ -32,6 +32,8 @@ import com.smartpack.kernelmanager.activities.LaunchFragmentActivity;
 import com.smartpack.kernelmanager.activities.OverallActivity;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
+import com.smartpack.kernelmanager.fragments.kernel.BatteryFragment;
+import com.smartpack.kernelmanager.utils.Common;
 import com.smartpack.kernelmanager.utils.Device;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
@@ -120,7 +122,7 @@ public class OverallFragment extends RecyclerViewFragment {
             menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
 
             popupMenu.setOnMenuItemClickListener(item -> {
-                Utils.mDevice = true;
+                Common.setSelectedFragment(new DeviceFragment());
                 switchFragment();
                 return false;
             });
@@ -143,7 +145,7 @@ public class OverallFragment extends RecyclerViewFragment {
                     menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
 
                     popupMenu.setOnMenuItemClickListener(item -> {
-                        Utils.mBattery = true;
+                        Common.setSelectedFragment(new BatteryFragment());
                         switchFragment();
                         return false;
                     });
@@ -170,7 +172,7 @@ public class OverallFragment extends RecyclerViewFragment {
                 menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
 
                 popupMenu.setOnMenuItemClickListener(item -> {
-                    Utils.mMemory = true;
+                    Common.setSelectedFragment(new MemoryFragment());
                     switchFragment();
                     return false;
                 });

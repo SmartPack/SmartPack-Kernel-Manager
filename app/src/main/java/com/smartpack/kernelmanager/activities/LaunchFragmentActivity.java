@@ -24,15 +24,9 @@ package com.smartpack.kernelmanager.activities;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.smartpack.kernelmanager.R;
-import com.smartpack.kernelmanager.fragments.kernel.BatteryFragment;
-import com.smartpack.kernelmanager.fragments.kernel.VMFragment;
-import com.smartpack.kernelmanager.fragments.other.AboutFragment;
-import com.smartpack.kernelmanager.fragments.statistics.DeviceFragment;
-import com.smartpack.kernelmanager.fragments.tools.TranslatorFragment;
-import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.Common;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on June 17, 2020
@@ -45,27 +39,15 @@ public class LaunchFragmentActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launchfragment);
 
-        Fragment selectedFragment = null;
-        if (Utils.mAbout) {
-            selectedFragment = new AboutFragment();
-        } else if (Utils.mBattery) {
-            selectedFragment = new BatteryFragment();
-        } else if (Utils.mDevice) {
-            selectedFragment = new DeviceFragment();
-        } else if (Utils.mMemory) {
-            selectedFragment = new VMFragment();
+        if (Common.getSelectedFragment() != null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    Common.getSelectedFragment()).commit();
         }
-        assert selectedFragment != null;
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                selectedFragment).commit();
     }
 
     @Override
     public void onBackPressed() {
-        if (Utils.mAbout) Utils.mAbout = false;
-        if (Utils.mBattery) Utils.mBattery = false;
-        if (Utils.mDevice) Utils.mDevice = false;
-        if (Utils.mMemory) Utils.mMemory = false;
+        Common.setSelectedFragment(null);
         super.onBackPressed();
     }
 

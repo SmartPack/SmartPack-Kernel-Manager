@@ -36,6 +36,7 @@ import com.smartpack.kernelmanager.activities.ForegroundActivity;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.fragments.SwitcherFragment;
+import com.smartpack.kernelmanager.utils.Common;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
@@ -206,8 +207,8 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                                 startActivityForResult(intent, 0);
                                 break;
                             case 2:
-                                Utils.mDetailsTitle = script.replace(".sh","").toUpperCase();
-                                Utils.mDetailsTxt = ScriptManager.read(script, requireActivity());
+                                Common.setDetailsTitle(script.replace(".sh","").toUpperCase());
+                                Common.setDetailsTxt(ScriptManager.read(script, requireActivity()));
                                 Intent details = new Intent(getActivity(), ForegroundActivity.class);
                                 startActivity(details);
                                 break;

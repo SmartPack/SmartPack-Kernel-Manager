@@ -46,7 +46,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.biometric.BiometricPrompt;
 import androidx.core.content.FileProvider;
 import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 import androidx.core.view.ViewCompat;
@@ -56,9 +55,9 @@ import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.StartActivity;
 import com.smartpack.kernelmanager.activities.StartActivityMaterial;
+import com.smartpack.kernelmanager.activities.WebViewActivity;
 import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
-import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.topjohnwu.superuser.io.SuFile;
 
@@ -94,12 +93,6 @@ import java.util.concurrent.TimeUnit;
  * Created by willi on 14.04.16.
  */
 public class Utils {
-
-    public static BiometricPrompt.PromptInfo mPromptInfo;
-
-    public static boolean mAbout = false, mBattery = false, mDevice = false, mHasBusybox, mHasRoot, mMemory = false;
-
-    public static String mDetailsTitle = null, mDetailsTxt = null;
 
     private static final String TAG = Utils.class.getSimpleName();
 
@@ -169,13 +162,6 @@ public class Utils {
             return FingerprintManagerCompat.from(context).hasEnrolledFingerprints();
         }
         return false;
-    }
-
-    public static void showBiometricPrompt(Context context) {
-        mPromptInfo = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle(context.getString(R.string.authenticate))
-                .setNegativeButtonText(context.getString(R.string.cancel))
-                .build();
     }
 
     public static void setupStartActivity(Context context) {
@@ -431,6 +417,13 @@ public class Utils {
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void launchWebView(String title, String url, Activity activity) {
+        Common.setWebViewTitle(title);
+        Common.setUrl(url);
+        Intent intent = new Intent(activity, WebViewActivity.class);
+        activity.startActivity(intent);
     }
 
     public static void shareItem(Context context, String name, String path, String string) {

@@ -21,7 +21,6 @@
 
 package com.smartpack.kernelmanager.views.recyclerview;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 
@@ -32,7 +31,8 @@ import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.LaunchFragmentActivity;
 import com.smartpack.kernelmanager.activities.TerminalActivity;
 import com.smartpack.kernelmanager.activities.ToolsActivity;
-import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.fragments.other.AboutFragment;
+import com.smartpack.kernelmanager.utils.Common;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 24, 2020
@@ -62,7 +62,7 @@ public class MultiItemsView extends RecyclerViewItem {
         });
 
         mInfo.setOnClickListener(v -> {
-            Utils.mAbout = true;
+            Common.setSelectedFragment(new AboutFragment());
             Intent intent = new Intent(view.getContext(), LaunchFragmentActivity.class);
             view.getContext().startActivity(intent);
         });

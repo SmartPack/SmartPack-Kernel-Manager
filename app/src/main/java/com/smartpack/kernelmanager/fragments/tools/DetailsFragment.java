@@ -31,7 +31,7 @@ import androidx.annotation.Nullable;
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
-import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.Common;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on March 30, 2020
@@ -46,8 +46,8 @@ public class DetailsFragment extends BaseFragment {
 
         MaterialTextView mText = rootView.findViewById(R.id.text);
 
-        if (Utils.mDetailsTxt != null) {
-            mText.setText(Utils.mDetailsTxt);
+        if (Common.getDetailsTxt() != null) {
+            mText.setText(Common.getDetailsTxt());
         }
 
         return rootView;

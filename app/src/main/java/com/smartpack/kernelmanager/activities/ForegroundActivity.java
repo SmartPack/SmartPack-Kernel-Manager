@@ -30,7 +30,7 @@ import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.tools.DetailsFragment;
-import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.Common;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 07, 2020
@@ -47,8 +47,8 @@ public class ForegroundActivity extends BaseActivity {
         MaterialTextView mTitle = findViewById(R.id.title);
         MaterialCardView mCancel = findViewById(R.id.cancel);
 
-        if (Utils.mDetailsTitle != null) {
-            mTitle.setText(Utils.mDetailsTitle);
+        if (Common.getDetailsTitle() != null) {
+            mTitle.setText(Common.getDetailsTitle());
         }
         mBack.setOnClickListener(v -> {
             onBackPressed();
@@ -62,8 +62,8 @@ public class ForegroundActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        Utils.mDetailsTitle = null;
-        Utils.mDetailsTxt = null;
+        Common.setDetailsTitle(null);
+        Common.setDetailsTxt(null);
         super.onBackPressed();
     }
 

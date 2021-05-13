@@ -55,8 +55,6 @@ import java.util.Objects;
 
 public class UpdateCheck {
 
-    public static boolean mUpdateCheck = false;
-
     private static final String LATEST_VERSION_URL = "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/app/src/main/assets/release.json";
 
     public static void getVersionInfo(Context context) {

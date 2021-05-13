@@ -33,8 +33,8 @@ import androidx.core.widget.NestedScrollView;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.utils.Common;
 import com.smartpack.kernelmanager.utils.Utils;
-import com.smartpack.kernelmanager.utils.tools.SmartPack;
 
 import java.io.File;
 
@@ -66,10 +66,10 @@ public class FlashingActivity extends BaseActivity {
         mProgressMessage.setText(getString(R.string.flashing));
         mProgressMessage.setVisibility(View.VISIBLE);
         mSaveButton.setOnClickListener(v -> {
-            Utils.create("## Flasher log created by SmartPack-Kernel Manager\n\n" + SmartPack.mFlashingResult.toString(),
-                    new File(Utils.getInternalDataStorage(this), "/flasher_log-" + SmartPack.mZipName.replace(".zip", "")));
+            Utils.create("## Flasher log created by SmartPack-Kernel Manager\n\n" + Common.getFlashingResult().toString(),
+                    new File(Utils.getInternalDataStorage(this), "/flasher_log-" + Common.getZipName().replace(".zip", "")));
             Utils.snackbar(findViewById(android.R.id.content), getString(R.string.flash_log_summary, Utils.getInternalDataStorage(this)
-                    + "/flasher_log-" + SmartPack.mZipName.replace(".zip", "")));
+                    + "/flasher_log-" + Common.getZipName().replace(".zip", "")));
         });
         mCancelButton.setOnClickListener(v -> {
             onBackPressed();
@@ -89,18 +89,18 @@ public class FlashingActivity extends BaseActivity {
                     while (!isInterrupted()) {
                         Thread.sleep(100);
                         runOnUiThread(() -> {
-                            if (SmartPack.mFlashing) {
+                            if (Common.isFlashing()) {
                                 mScrollView.fullScroll(NestedScrollView.FOCUS_DOWN);
                             } else {
                                 mProgressLayout.setVisibility(View.GONE);
-                                mSaveButton.setVisibility(Utils.getOutput(SmartPack.mFlashingOutput).endsWith("\nsuccess") ? View.VISIBLE : View.GONE);
-                                mRebootButton.setVisibility(Utils.getOutput(SmartPack.mFlashingOutput).endsWith("\nsuccess") ? View.VISIBLE : View.GONE);
+                                mSaveButton.setVisibility(Utils.getOutput(Common.getFlashingOutput()).endsWith("\nsuccess") ? View.VISIBLE : View.GONE);
+                                mRebootButton.setVisibility(Utils.getOutput(Common.getFlashingOutput()).endsWith("\nsuccess") ? View.VISIBLE : View.GONE);
                                 mCancelButton.setVisibility(View.VISIBLE);
                             }
-                            mFlashingHeading.setText(SmartPack.mFlashing ? getString(R.string.flashing) : Utils.getOutput(SmartPack.mFlashingOutput).endsWith("\nsuccess") ?
+                            mFlashingHeading.setText(Common.isFlashing() ? getString(R.string.flashing) : Utils.getOutput(Common.getFlashingOutput()).endsWith("\nsuccess") ?
                                     getString(R.string.flashing_finished) : getString(R.string.flashing_failed));
-                            mFlashingResult.setText(!Utils.getOutput(SmartPack.mFlashingOutput).isEmpty() ? Utils.getOutput(SmartPack.mFlashingOutput)
-                                    .replace("\nsuccess","") : SmartPack.mFlashing ? "" : SmartPack.mFlashingResult.toString());
+                            mFlashingResult.setText(!Utils.getOutput(Common.getFlashingOutput()).isEmpty() ? Utils.getOutput(Common.getFlashingOutput())
+                                    .replace("\nsuccess","") : Common.isFlashing() ? "" : Common.getFlashingResult().toString());
                         });
                     }
                 } catch (InterruptedException ignored) {}
@@ -115,7 +115,7 @@ public class FlashingActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if (SmartPack.mFlashing) return;
+        if (Common.isFlashing()) return;
         super.onBackPressed();
     }
 

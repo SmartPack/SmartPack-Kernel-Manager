@@ -21,15 +21,17 @@
 
 package com.smartpack.kernelmanager.activities;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -37,12 +39,12 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.utils.Common;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 29, 2020
  */
-
-public class LicenceActivity extends AppCompatActivity {
+public class WebViewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,24 +52,48 @@ public class LicenceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_licence);
 
         AppCompatImageButton mBack = findViewById(R.id.back);
+        MaterialTextView mTitle = findViewById(R.id.title);
         MaterialTextView mCancel = findViewById(R.id.cancel_button);
-        mCancel.setOnClickListener(v -> onBackPressed());
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new LicenceFragment()).commit();
+        mTitle.setText(Common.getWebViewTitle());
+        mCancel.setOnClickListener(v -> finish());
 
-        mBack.setOnClickListener(v -> onBackPressed());
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WebViewFragment()).commit();
+
+        mBack.setOnClickListener(v -> finish());
     }
 
-    public static class LicenceFragment extends Fragment {
+    public static class WebViewFragment extends Fragment {
 
+        @SuppressLint("SetJavaScriptEnabled")
         @Nullable
         @Override
-        public View onCreateView(@NonNull LayoutInflater inflater,
-                                 @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            WebView mWebView = new WebView(requireActivity());
-            mWebView.loadUrl("https://www.gnu.org/licenses/gpl-3.0-standalone.html");
-            mWebView.setWebViewClient(new WebViewClient());
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View mRootView = inflater.inflate(R.layout.fragment_webview, container, false);
+
+            MaterialTextView mProgress = mRootView.findViewById(R.id.progress_message);
+            WebView mWebView = mRootView.findViewById(R.id.webview);
+
+            WebSettings mWebSettings = mWebView.getSettings();
+            mWebSettings.setDomStorageEnabled(true);
+            mWebSettings.setJavaScriptEnabled(true);
+            mWebSettings.setBuiltInZoomControls(true);
+
+            mWebView.setWebViewClient(new WebViewClient() {
+                public void onPageFinished(WebView view, String url) {
+                    mProgress.setVisibility(View.GONE);
+                    mWebView.setVisibility(View.VISIBLE);
+                }
+            });
+
+            mWebView.setWebChromeClient(new WebChromeClient() {
+                @SuppressLint("SetTextI18n")
+                public void onProgressChanged(WebView view, int progress) {
+                    mProgress.setText("Loading (" + progress + "%) ...");
+                }
+            });
+
+            mWebView.loadUrl(Common.getUrl());
 
             requireActivity().getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
                 @Override
@@ -80,7 +106,7 @@ public class LicenceActivity extends AppCompatActivity {
                 }
             });
 
-            return mWebView;
+            return mRootView;
         }
 
     }

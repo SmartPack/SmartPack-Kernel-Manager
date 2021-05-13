@@ -32,6 +32,7 @@ import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.database.tools.profiles.Profiles;
 import com.smartpack.kernelmanager.services.profile.Tile;
+import com.smartpack.kernelmanager.utils.Common;
 import com.smartpack.kernelmanager.utils.Device;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
@@ -147,20 +148,20 @@ public class MainActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            Utils.mHasRoot = RootUtils.rootAccess();
+            Common.hasRoot(RootUtils.rootAccess());
             publishProgress(0);
 
-            if (Utils.mHasRoot) {
-                Utils.mHasBusybox = RootUtils.busyboxInstalled();
+            if (Common.hasRoot()) {
+                Common.hasBusyBox(RootUtils.busyboxInstalled());
                 publishProgress(1);
 
-                if (Utils.mHasBusybox) {
+                if (Common.hasBusyBox()) {
                     collectData();
                     publishProgress(2);
                 }
 
                 // Initialize auto app update check
-                if (UpdateCheck.mUpdateCheck) {
+                if (Common.isUpdateCheckEnabled()) {
                     publishProgress(3);
                 }
             }
@@ -221,10 +222,10 @@ public class MainActivity extends BaseActivity {
             int accent = ViewUtils.getThemeAccentColor(activity);
             switch (values[0]) {
                 case 0:
-                    activity.mRootAccess.setTextColor(Utils.mHasRoot ? accent : red);
+                    activity.mRootAccess.setTextColor(Common.hasRoot() ? accent : red);
                     break;
                 case 1:
-                    activity.mBusybox.setTextColor(Utils.mHasBusybox ? accent : red);
+                    activity.mBusybox.setTextColor(Common.hasBusyBox() ? accent : red);
                     break;
                 case 2:
                     activity.mCollectInfo.setTextColor(accent);
@@ -246,7 +247,7 @@ public class MainActivity extends BaseActivity {
              * launch text activity which let the user know
              * what the problem is.
              */
-            if (!Utils.mHasRoot || !Utils.mHasBusybox) {
+            if (!Common.hasRoot() || !Common.hasBusyBox()) {
                 Intent noRoot = new Intent(activity, NoRootActivity.class);
                 activity.startActivity(noRoot);
                 activity.finish();
@@ -274,7 +275,7 @@ public class MainActivity extends BaseActivity {
         if (Utils.isNetworkAvailable(this) && Prefs.getBoolean("auto_update", true, this)) {
             if (!UpdateCheck.hasVersionInfo(this) || (UpdateCheck.lastModified(this) + 3720000L < System.currentTimeMillis())) {
                 UpdateCheck.getVersionInfo(this);
-                UpdateCheck.mUpdateCheck = true;
+                Common.enableUpdateCheck(true);
                 mUpdateInfo.setVisibility(View.VISIBLE);
             }
         }
