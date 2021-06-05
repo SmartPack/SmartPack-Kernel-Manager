@@ -138,7 +138,7 @@ public class AboutFragment extends RecyclerViewFragment {
         sourcecode.setDrawable(getResources().getDrawable(R.drawable.ic_source));
         sourcecode.setTitle(getString(R.string.source_code));
         sourcecode.setSummary(getString(R.string.source_code_summary));
-        sourcecode.setOnItemClickListener(item -> Utils.launchWebView(getString(R.string.source_code), "https://github.com/SmartPack/SmartPack-Kernel-Manager", requireActivity()));
+        sourcecode.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager", requireActivity()));
 
         DescriptionView changelogs = new DescriptionView();
         changelogs.setDrawable(getResources().getDrawable(R.drawable.ic_changelog));
@@ -150,7 +150,7 @@ public class AboutFragment extends RecyclerViewFragment {
                 .setMessage(Utils.getChangelog(getActivity()))
                 .setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
                 })
-                .setPositiveButton(getString(R.string.more), (dialog1, id1) -> Utils.launchWebView(getString(R.string.change_logs), "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/change-logs.md", getActivity()))
+                .setPositiveButton(getString(R.string.more), (dialog1, id1) -> Utils.launchWebView(getString(R.string.change_logs), "https://github.com/SmartPack/SmartPack-Kernel-Manager/raw/master/change-logs.md", getActivity()))
                 .show());
 
         DescriptionView appStore = new DescriptionView();
@@ -212,7 +212,7 @@ public class AboutFragment extends RecyclerViewFragment {
         DescriptionView Grarak = new DescriptionView();
         Grarak.setDrawable(getResources().getDrawable(R.drawable.ic_grarak));
         Grarak.setSummary(getString(R.string.grarak_summary));
-        Grarak.setOnItemClickListener(item -> Utils.launchWebView(getString(R.string.credits), "https://github.com/Grarak", getActivity()));
+        Grarak.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/Grarak", getActivity()));
 
         GrarakCard.addItem(Grarak);
         items.add(GrarakCard);
@@ -224,7 +224,7 @@ public class AboutFragment extends RecyclerViewFragment {
         DescriptionView osm0sis = new DescriptionView();
         osm0sis.setDrawable(getResources().getDrawable(R.drawable.ic_osm0sis));
         osm0sis.setSummary(getString(R.string.osm0sis_summary));
-        osm0sis.setOnItemClickListener(item -> Utils.launchWebView(getString(R.string.credits), "https://github.com/osm0sis", getActivity()));
+        osm0sis.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/osm0sis", getActivity()));
 
         osm0sisCard.addItem(osm0sis);
         items.add(osm0sisCard);
@@ -266,7 +266,7 @@ public class AboutFragment extends RecyclerViewFragment {
             }
             descriptionView.setTitle(lib.split(",")[1]);
             descriptionView.setSummary(lib.split(",")[0]);
-            descriptionView.setOnItemClickListener(item -> Utils.launchWebView(getString(R.string.credits), sCredits.get(lib), getActivity()));
+            descriptionView.setOnItemClickListener(item -> Utils.launchUrl(sCredits.get(lib), getActivity()));
 
             items.add(descriptionView);
         }
@@ -365,7 +365,7 @@ public class AboutFragment extends RecyclerViewFragment {
             }
             descriptionView.setTitle(lib.split(",")[1]);
             descriptionView.setSummary(lib.split(",")[0]);
-            descriptionView.setOnItemClickListener(item -> Utils.launchWebView(getString(R.string.translators), sTranslations.get(lib), getActivity()));
+            descriptionView.setOnItemClickListener(item -> Utils.launchUrl(sTranslations.get(lib), getActivity()));
 
             items.add(descriptionView);
         }
