@@ -54,7 +54,6 @@ import java.util.List;
 public class AboutFragment extends RecyclerViewFragment {
 
     private static final LinkedHashMap<String, String> sCredits = new LinkedHashMap<>();
-    private static final LinkedHashMap<String, String> sTranslations = new LinkedHashMap<>();
 
     static {
         sCredits.put("libsu,topjohnwu", "https://github.com/topjohnwu");
@@ -67,21 +66,6 @@ public class AboutFragment extends RecyclerViewFragment {
         sCredits.put("Platform SDK,CyanogenMod", "https://github.com/CyanogenMod/cm_platform_sdk");
         sCredits.put("Round Corner Progress Bar,Akexorcist", "https://github.com/akexorcist/Android-RoundCornerProgressBar");
         sCredits.put("App Icon,Toxinpiper", "https://t.me/toxinpiper");
-    }
-
-    static {
-        sTranslations.put("Chinese (rTW),jason5545", "https://github.com/jason5545");
-        sTranslations.put("Chinese (rCN),Roiyaru", "https://github.com/Roiyaru");
-        sTranslations.put("Russian,Andrey", "https://github.com/andrey167");
-        sTranslations.put("Portuguese (rBr),Lennoard Silva", "https://github.com/Lennoard");
-        sTranslations.put("Russian/Ukrainian,kiratt", "http://4pda.ru/forum/index.php?showuser=5859577");
-        sTranslations.put("Amharic,Mikesew1320", "https://github.com/Mikesew1320");
-        sTranslations.put("Korean,SmgKhOaRn", "https://github.com/SmgKhOaRn");
-        sTranslations.put("German (rDE),free-bots", "https://github.com/free-bots");
-        sTranslations.put("Spanish,Alejandro YT", "");
-        sTranslations.put("Chinese (rCN),YFdyh000", "https://github.com/yfdyh000");
-        sTranslations.put("Polish,Fruity-0", "https://github.com/Fruity-0");
-        sTranslations.put("Turkish,Fatih Fırıncı", "https://github.com/Fatih-BaKeR");
     }
 
     @Override
@@ -323,52 +307,13 @@ public class AboutFragment extends RecyclerViewFragment {
         translatorCard.addItem(translator);
         items.add(translatorCard);
 
-        for (final String lib : sTranslations.keySet()) {
-            DescriptionView descriptionView = new DescriptionView();
-            switch (lib.split(",")[1]) {
-                case "jason5545":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_jason5545));
-                    break;
-                case "Andrey":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_andrey167));
-                    break;
-                case "Roiyaru":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_roiyaru));
-                    break;
-                case "Lennoard Silva":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_lennoard));
-                    break;
-                case "kiratt":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_kiratt));
-                    break;
-                case "Mikesew1320":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_mikesew));
-                    break;
-                case "SmgKhOaRn":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_smg));
-                    break;
-                case "free-bots":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_freebots));
-                    break;
-                case "Alejandro YT":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_es));
-                    break;
-                case "YFdyh000":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_yfdyh000));
-                    break;
-                case "Fruity-0":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_fruity0));
-                    break;
-                case "Fatih Fırıncı":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_fatih_baker));
-                    break;
-            }
-            descriptionView.setTitle(lib.split(",")[1]);
-            descriptionView.setSummary(lib.split(",")[0]);
-            descriptionView.setOnItemClickListener(item -> Utils.launchUrl(sTranslations.get(lib), getActivity()));
+        DescriptionView translators_list = new DescriptionView();
+        translators_list.setSummary(getString(R.string.translators_summary));
+        translators_list.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_people, requireActivity()));
+        translators_list.setFullSpan(true);
+        translators_list.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager#translations", getActivity()));
 
-            items.add(descriptionView);
-        }
+        items.add(translators_list);
     }
 
     public static class InfoFragment extends BaseFragment {

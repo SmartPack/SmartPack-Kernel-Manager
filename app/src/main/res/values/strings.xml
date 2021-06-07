@@ -1177,6 +1177,7 @@
     <string name="translators_inbuilt">In-built Translator</string>
     <string name="translators_message">Want to use this app in your language! Then, click here to start translating using POEditor localization service or the in-built translator!</string>
     <string name="translators_poeditor">POEditor Localization Service</string>
+    <string name="translators_summary">Click here to see an incomplete list of people who supported SmartPack-Kernel Manager with translations!</string>
 
     <!-- Translator -->
     <string name="edit_string_warning">This string contains some special characters! Please be careful.</string>

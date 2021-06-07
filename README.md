@@ -96,17 +96,20 @@ If you like to appreciate my efforts to provide this applications entirely free,
 Please help me to translate this application via [POEditor](https://poeditor.com/join/project?hash=qWFlVfAlp5). You may also translate after downloading the original language string available [here](app/src/main/res/values/strings.xml).
 
 * [jason5545](https://github.com/jason5545), Chinese (Traditional)
-* [Roiyaru](https://github.com/Roiyaru), Chinese (simplified)
-* [YFdyh000](https://github.com/yfdyh000), Chinese (simplified)
-* [Andrey](https://github.com/andrey167), Russian
+* [Roiyaru](https://github.com/Roiyaru) & [YFdyh000](https://github.com/yfdyh000), Chinese (simplified)
+* [Andrey](https://github.com/andrey167), tommynok & [kiratt](http://4pda.ru/forum/index.php?showuser=5859577), Russian
 * [Lennoard Silva](https://github.com/Lennoard), Portuguese (Brazilian)
 * [SmgKhOaRn](https://github.com/SmgKhOaRn), Korean
-* [kiratt](http://4pda.ru/forum/index.php?showuser=5859577), Russian/Ukrainian
+* [kiratt](http://4pda.ru/forum/index.php?showuser=5859577) & tommynok, Ukrainian
 * [Mikesew1320](https://github.com/Mikesew1320), Amharic
-* [free-bots](https://github.com/free-bots), German
-* Alejandro YT, Spanish
+* [free-bots](https://github.com/free-bots) & Lars S, German
+* Alejandro YT & Cold, Spanish
 * [Fruity-0](https://github.com/Fruity-0), Polish
-* [Fatih Fırıncı](https://github.com/Fatih-BaKeR), Turkish
+* [Fatih Fırıncı](https://github.com/Fatih-BaKeR) & omerakgoz34, Turkish
+* Phil, Portuguese (Portugal)
+* Many other people contributed via [POEditor](https://poeditor.com/join/project?hash=qWFlVfAlp5)
+
+_If you think I missed your name, please let me know._
 
 ## Report a bug or request a feature
 
