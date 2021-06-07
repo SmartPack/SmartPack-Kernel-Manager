@@ -58,8 +58,6 @@ import com.smartpack.kernelmanager.activities.StartActivityMaterial;
 import com.smartpack.kernelmanager.activities.WebViewActivity;
 import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
-import com.smartpack.kernelmanager.views.dialog.Dialog;
-import com.topjohnwu.superuser.io.SuFile;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -724,50 +722,6 @@ public class Utils {
         }
         return mData.toString().substring(1, mData.toString().length() - 1).replace(", ","\n")
                 .replaceAll("(?m)^[ \t]*\r?\n", "");
-    }
-
-    // This is for temporary use
-    public static void migrateDialog(Context context) {
-        File mOldPath = SuFile.open(Environment.getExternalStorageDirectory(), "SP"), mNewPath = context.getExternalFilesDir("");
-        if (Build.VERSION.SDK_INT >= 29 && mOldPath.exists() && !Prefs.getBoolean("migration_message", false, context)) {
-            String mSummary = "In order to meet the new regulations of Google, the internal storage folder of SmartPack-Kernel Manager is now moved from '" + mOldPath.getAbsolutePath() + "' to  '" + mNewPath.getAbsolutePath() + "'. Do you want to move your old files (such as partition backup images, custom controls, scripts etc.) to the new location?\n\nIf you opt to cancel, SmartPack-Kernel Manager will lose access to the already existing files.";
-            new Dialog(context)
-                    .setIcon(R.mipmap.ic_launcher)
-                    .setTitle("Please Note")
-                    .setMessage(mSummary)
-                    .setCancelable(false)
-                    .setNegativeButton(context.getString(R.string.cancel), (dialog, id) -> {
-                    })
-                    .setPositiveButton("Move Now", (dialog, id) -> {
-                        new AsyncTask<Void, Void, Void>() {
-                            private ProgressDialog mProgressDialog;
-                            @Override
-                            protected void onPreExecute() {
-                                super.onPreExecute();
-                                mProgressDialog = new ProgressDialog(context);
-                                mProgressDialog.setMessage("Moving files from '" + mOldPath.getAbsolutePath() + "' to  '" + mNewPath.getAbsolutePath() + "'...");
-                                mProgressDialog.setCancelable(false);
-                                mProgressDialog.show();
-                                mNewPath.mkdirs();
-                            }
-                            @Override
-                            protected Void doInBackground(Void... voids) {
-                                RootUtils.runCommand("cp -r " + mOldPath.getAbsolutePath() + "/* " + mNewPath.getAbsolutePath());
-                                return null;
-                            }
-                            @Override
-                            protected void onPostExecute(Void aVoid) {
-                                super.onPostExecute(aVoid);
-                                try {
-                                    mProgressDialog.dismiss();
-                                } catch (IllegalArgumentException ignored) {
-                                }
-                            }
-                        }.execute();
-                    })
-                    .show();
-            Prefs.saveBoolean("migration_message", true, context);
-        }
     }
 
 }

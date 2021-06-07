@@ -1,5 +1,9 @@
 # Change-logs
 
+## 124. June 07, 2021
+*Release-tag: v16.6*<br>
+Added Portuguese (Portugal) translations and updated others. Lots of internal improvements. Updated build tools. Miscellaneous changes.
+
 ## 123. April 23, 2021
 *Release-tag: v16.5*<br>
 Implemented own file picker for various tasks (app won't support external file manager applications anymore: please read more at https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/important_notice.md). App will now target latest Android SDK. Moved scheduler/governor tunables into a new page. Added new features: GPU Throttling & PrintkK devkmsg. Many many other changes. Please check https://github.com/SmartPack/SmartPack-Kernel-Manager/commits/master to know more.

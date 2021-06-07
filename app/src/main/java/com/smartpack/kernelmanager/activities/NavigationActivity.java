@@ -536,9 +536,6 @@ public class NavigationActivity extends BaseActivity
     public void onStart() {
         super.onStart();
 
-        // Show app folder migration dialog
-        Utils.migrateDialog(this);
-
         // Initialize auto app update check
         if (Build.VERSION.SDK_INT >= 23) {
             requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);

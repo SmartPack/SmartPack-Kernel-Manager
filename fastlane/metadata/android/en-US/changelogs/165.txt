@@ -1,5 +1,0 @@
-* Implemented own file picker for various tasks (app won't support external file manager applications anymore: please read more at https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/important_notice.md).
-* App will now target latest Android SDK.
-* Moved scheduler/governor tunable into a new page.
-* Added new features: GPU Throttling & PrintkK devkmsg.
-* Many many other changes. Please check https://github.com/SmartPack/SmartPack-Kernel-Manager/commits/master to know more.

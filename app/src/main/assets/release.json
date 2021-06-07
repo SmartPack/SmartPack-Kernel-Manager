@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Implemented own file picker for various tasks (app won't support external file manager applications anymore).\n - App will now target latest Android SDK.\n - Moved scheduler/governor tunable into a new page.\n - Added new features: GPU Throttling and PrintkK devkmsg.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v16.5/com.smartpack.kernelmanager-v16.5-fdroid-release.apk",
-  "sha1": "1bd3800d94f6153291dd073ded0401b70dd54f46",
-  "latestVersion": "16.5",
-  "latestVersionCode": 165
+  "releaseNotes": "Change-logs\n - Added Portuguese (Portugal) translations and updated others.\n - Lots of internal improvements.\n - Updated build tools.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v16.6/com.smartpack.kernelmanager-v16.6-fdroid-release.apk",
+  "sha1": "230c5ed7e2a8db07fcea55071972a28712db30d1",
+  "latestVersion": "16.6",
+  "latestVersionCode": 166
 }

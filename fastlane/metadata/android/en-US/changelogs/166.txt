@@ -1,0 +1,4 @@
+* Added Portuguese (Portugal) translations and updated others.
+* Lots of internal improvements.
+* Updated build tools.
+* Miscellaneous changes.
