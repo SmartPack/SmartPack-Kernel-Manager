@@ -1,0 +1,16 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion '30.0.3'
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 30
+        consumerProguardFiles("proguard-rules.pro")
+    }
+}
+
+dependencies {
+    implementation 'com.google.android.material:material:1.3.0'
+}

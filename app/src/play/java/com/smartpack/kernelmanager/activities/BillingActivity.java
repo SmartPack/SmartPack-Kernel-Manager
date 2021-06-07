@@ -221,7 +221,7 @@ public class BillingActivity extends AppCompatActivity {
     private void handlePurchases(Purchase purchase) {
         try {
             if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
-                if (purchase.getSku().equals("donation_100") || purchase.getSku().equals("donation_250") || purchase.getSku().equals("donation_500")) {
+                if (purchase.getSkus().contains("donation_100") || purchase.getSkus().contains("donation_250") || purchase.getSkus().contains("donation_500")) {
                     ConsumeParams consumeParams = ConsumeParams.newBuilder()
                             .setPurchaseToken(purchase.getPurchaseToken())
                             .build();

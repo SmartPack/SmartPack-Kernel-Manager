@@ -1,1 +1,2 @@
-include ':app'
+include(":app", ":seekbar")
+rootProject.name = "SmartPack-Kernel Manager"
