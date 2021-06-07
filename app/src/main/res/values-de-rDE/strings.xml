@@ -4,19 +4,42 @@
     <string name="checking_root">"Überprüfe Root-Zugriff"</string>
     <string name="searching_busybox">"Suche nach busybox"</string>
     <string name="collecting_info">"Informationen sammeln"</string>
-    <string name="no_root">"Kein root"</string>
-    <string name="no_busybox">"Kein busybox"</string>
+    <string name="no_root">"Kein root Zugriff"</string>
+    <string name="no_busybox">"Keine busybox Installation"</string>
     <string name="open">"Öffne %s"</string>
 
     <!-- No Root/BusyBox -->
-    <string name="busybox_message">"<b>Warum ist dieser Fehler aufgetreten?</b>\n\nEs wurde auf deinem Gerät keine richtige Installation von <i>BusyBox</i> gefunden. Leider braucht der SmartPack-Kernel Manager eine Anzahl von <i>BusyBox</i> Binärdateien um die Aufgaben zu erledigen (z.B. Auto-flashing)!\n\n\n<b>Wie behebe ich das Problem?</b>\n\nBitte installiere das eigenständige <i>BusyBox</i> System um das Problem zu beheben. Ein kostenloses open-source BusyBox Installier-Programm, welches die <i>BusyBox</i> Binärdateien in wenigen Klicks installiert, wurde von unserem Team gemacht und ist im PlayStore erhältlich!"</string>
-    <string name="busybox_install_message">"Klicke hier, um das BusyBox Installier-Programm vom PlayStore herunterzuladen"</string>
-    <string name="no_root_message">"<b>Wieso ist dieser Fehler aufgetreten?</b>\n\nDein Gerät ist entweder nicht gerootet, oder du hast die Root-Berechtigung für SmartPack-Kernel Manager abgelehnt!\n\n\n<b>Wieso wird die Root-Berechtigung benötigt?</b>\n\nUm die Kern-Parameter zu kontrollieren muss der SmartPack-Kernel Manager manche System Dateien ändern, die ohne root nicht erreichbar sind!\n\n\n<b>Wie kann ich mein Gerät rooten?</b>\n\nEine einfache Google Suche wird dir helfen viele Anleitungen für das rooten deines Gerätes zu finden. Bitte schaue es dir an, wie es funktioniert!\n\n\n<b>Ist es sicher das Gerät zu rooten?</b>\n\nBeim rooten besteht ein Sicherheitsrisiko, aber normalerweise sollte es sicher sein!"</string>
+    <string name="busybox_message">"Warum ist dieser Fehler aufgetreten?
+
+Es wurde auf deinem Gerät keine richtige Installation von BusyBox gefunden.
+Leider braucht der SmartPack-Kernel Manager eine Anzahl von BusyBox Binärdateien um die Aufgaben zu erledigen (z.B. Auto-flashing)!
+
+Wie behebe ich das Problem?
+
+Bitte installiere das eigenständige BusyBox System um das Problem zu beheben. Ein kostenloses open-source BusyBox Installier-Programm, welches die BusyBox Binärdateien in wenigen Klicks installiert, wurde von unserem Team gemacht und ist im PlayStore erhältlich!"</string>
+    <string name="no_root_message">"Wieso ist dieser Fehler aufgetreten?
+
+Dein Gerät ist entweder nicht gerootet, oder du hast die Root-Berechtigung für SmartPack-Kernel Manager abgelehnt!
+
+
+Wieso wird die Root-Berechtigung benötigt?
+
+Um die Kern-Parameter zu kontrollieren muss der SmartPack-Kernel Manager manche System Dateien ändern, die ohne root nicht erreichbar sind!
+
+
+Wie kann ich mein Gerät rooten?
+
+Eine einfache Google Suche wird dir helfen viele Anleitungen für das rooten deines Gerätes zu finden. Bitte schaue es dir an, wie es funktioniert!
+
+
+Ist es sicher das Gerät zu rooten?
+
+Beim rooten besteht ein Sicherheitsrisiko, aber normalerweise sollte es sicher sein!"</string>
 
     <!-- Security -->
     <string name="select_picture">"Bild auswählen"</string>
     <string name="no_picture">"Kein Bild"</string>
-    <string name="went_wrong">"Etwas ist schief gelaufen!"</string>
+    <string name="went_wrong">"Etwas ist schiefgelaufen!"</string>
     <string name="press_back_again_exit">"Zurücktaste nochmals drücken zum Beenden"</string>
     <string name="cancel">"Abbrechen"</string>
     <string name="dismiss">"Ablehnen"</string>
@@ -52,7 +75,7 @@
     <string name="px">"px"</string>
 
     <!-- Headers -->
-    <string name="statistics">"Statistik"</string>
+    <string name="statistics">"Statistiken"</string>
     <string name="kernel">"Kernel"</string>
     <string name="tools">"Tools"</string>
     <string name="other">"Andere"</string>
@@ -66,12 +89,12 @@
     <string name="cpu_hotplug">"CPU Hotplug"</string>
     <string name="cpu_voltage">"CPU Spannung"</string>
     <string name="gpu">"GPU"</string>
-    <string name="thermal">"Thermik"</string>
+    <string name="thermal">"Abwärme"</string>
     <string name="battery">"Batterie"</string>
     <string name="sound">"Ton"</string>
     <string name="screen">"Bildschirm"</string>
-    <string name="wake">"Aufwach Gesten"</string>
-    <string name="led">"Display and LED"</string>
+    <string name="wake">"Weckgesten"</string>
+    <string name="led">"Display und LED"</string>
     <string name="io_scheduler">"I/O Scheduler"</string>
     <string name="ksm">"KSM"</string>
     <string name="uksm">"UKSM"</string>
@@ -80,7 +103,7 @@
     <string name="entropy">"Entropie"</string>
     <string name="misc">"Sontiges"</string>
     <string name="custom_controls">"Benutzerdefinierte Steuerungen"</string>
-    <string name="backup">"Backup"</string>
+    <string name="backup">"Sicherung"</string>
     <string name="build_prop_editor">"Build prop Editor"</string>
     <string name="profile">"Profil"</string>
     <string name="script_manger">"Script Manager"</string>
@@ -100,7 +123,7 @@
     <string name="refresh">"Aktualisieren"</string>
     <string name="reset">"Zurücksetzen"</string>
     <string name="restore">"Wiederherstellen"</string>
-    <string name="restore_sure_message">"Wollen sie wirklich %s wiederherstellen?"</string>
+    <string name="restore_sure_message">"Wollen sie %s wirklich wiederherstellen?"</string>
     <string name="deep_sleep">"Tiefschlaf"</string>
     <string name="uptime">"Laufzeit"</string>
     <string name="error_frequencies">"Frequenzen konnten nicht geladen werden"</string>
@@ -146,7 +169,9 @@
     <string name="cpu_governor_summary">"Der CPU Governor bestimmt wie die CPU sich bei änderungen der Auslastung verhält. Durch die Änderungen des Governor werden die Frequenzbereiche der CPU anderst angesteuert."</string>
     <string name="cpu_governor_tunables">"CPU Governor Abstimmungen"</string>
     <string name="governor_tunables_summary">"Die verschiedenen Einstellungsmöglichkeiten sind Governor abhänig."</string>
-    <string name="cpu_governor_tunables_read_error">"Der aktuelle Governor konnte nicht bestimmt werden.\n\nBei QCOM big.LITTLE Geräten ist es ein bekanntes Problem. Das System zwingt die CPU Kerne auszuschalten, dies erschwert das Auslesen der CPU Statistik. Versuche die Option nochmals. Der CPU weigert sich manchmal einen Kern einzuschalten."</string>
+    <string name="cpu_governor_tunables_read_error">"Der aktuelle Governor konnte nicht bestimmt werden.
+
+Bei QCOM big.LITTLE Geräten ist es ein bekanntes Problem. Das System zwingt die CPU Kerne auszuschalten, dies erschwert das Auslesen der CPU Statistik. Versuche die Option nochmals. Der CPU weigert sich manchmal einen Kern einzuschalten."</string>
     <string name="tunables_error">"%s ist nicht abstimmbar"</string>
     <string name="manual">"Manuel"</string>
     <string name="mc_power_saving">"Mehrkern Stromsparen"</string>
@@ -200,7 +225,8 @@
     <string name="powerhal_tunables">"Power HAL einstelle"</string>
 
     <!-- CPU Hotplug -->
-    <string name="hotplug_warning">"Mehr als ein hotplugging system ist aktiviert!\nBitte nur eins verwenden."</string>
+    <string name="hotplug_warning">"Mehr als ein hotplugging system ist aktiviert!
+Bitte nur eins verwenden."</string>
     <string name="mpdecision">"MPDecision"</string>
     <string name="mpdecision_summary">"Qualcomm's hotplugging Lösung. Du könntest Probleme mit schwankenden Frequenzen bekommen."</string>
     <string name="intelliplug">"IntelliPlug"</string>
@@ -227,7 +253,7 @@
     <string name="cpus_boosted">"CPUs Boosted"</string>
     <string name="cpus_boosted_summary">"Maximale Anzahl an CPUs die gleichzeitig geboosted werden."</string>
     <string name="min_cpu_online">"Minimal CPU Online"</string>
-    <string name="min_cpu_online_summary">"Minimale Anzahl an CPUs die aktiv bleiben.."</string>
+    <string name="min_cpu_online_summary">"Minimale Anzahl an CPUs die aktiv bleiben."</string>
     <string name="max_cpu_online">"Maximum CPU Online"</string>
     <string name="max_cpu_online_summary">"Maximale Anzahl an CPUs die aktiv bleiben."</string>
     <string name="max_cpu_online_screen_off">"Maximum CPU ausgeschaleter Bildschirm"</string>
@@ -338,7 +364,7 @@
     <string name="aio_hotplug">"AiO Hotplug"</string>
     <string name="aio_hotplug_summary">"All in One HotPlug für Qualcomm Geräte. Entwickelt von Shoaib0597."</string>
     <string name="max_cpu_online_big">"Maximale große und aktive CPUs"</string>
-    <string name="max_cpu_online_big_summary">"Maximale Anzahl an großen aktiven CPUs"</string>
+    <string name="max_cpu_online_big_summary">"Maximale Anzahl an großen CPUs die aktiv sind."</string>
     <string name="max_cpu_online_little">"Maximale klein und aktive CPUs"</string>
     <string name="max_cpu_online_little_summary">"Maximale Anzahl an kleinen aktiven CPUs."</string>
     <string name="nr_max_cpu">"Maximum Online CPUs"</string>
@@ -354,7 +380,7 @@
     <!-- CPU Voltage -->
     <string name="global_offset">"Globale Verschiebung"</string>
     <string name="override_vmin">"Überschriebe minimale Spannung"</string>
-    <string name="override_vmin_summary">"Deaktivieren um die Begrenzung vom Hersteller für die Untertaktung zu umgehen."</string>
+    <string name="override_vmin_summary">"Deaktivieren um die Begrenzung vom Hersteller für die Untertaktung zu umgehen"</string>
 
     <!-- GPU -->
     <string name="frequencies">"Frequenzen"</string>
@@ -376,7 +402,7 @@
     <string name="adrenoboost_summary">"Ein Add-on für MSM Adreno TZ GPU Governor. Entwickelt von flar2"</string>
     <string name="devfreq_boost">"Devfreq Boost"</string>
     <string name="devfreq_boost_ms">"Boost Zeitspanne"</string>
-    <string name="devfreq_boost_ms_summary">"Setzt die devfreq boost Zeitspanne."</string>
+    <string name="devfreq_boost_ms_summary">"Setzt die devfreq boost Zeitspanne"</string>
     <string name="devfreq_boost_freq">"Boost Frequenz"</string>
     <string name="devfreq_boost_freq_summary">"Setzt die devfreq boost Frequenz"</string>
     <string name="laziness">"Laziness"</string>
@@ -394,7 +420,7 @@
     <string name="gpu_powelevel">"GPU Power Level"</string>
 
     <!-- Thermal -->
-    <string name="thermal_info">"Benutze nur einen Thermik-Treiber. Mehr als einer kann zu unerwünschten Verhalten führen."</string>
+    <string name="thermal_info">"Benutze nur einen Thermik-Treiber, mehr als einer kann zu unerwünschten Verhalten führen."</string>
     <string name="thermald">"Thermald"</string>
     <string name="thermald_summary">"Standard-Treiber der das Gerät vor überhitzung schützt. Dies sollte nur deaktiviert werden wenn der Kernel eine Alternative bereitstellt."</string>
     <string name="intellithermal">"Intellithermal"</string>
@@ -474,13 +500,13 @@
     <string name="mtp_fast_charge">"MTP beim Schnellladen aktivieren"</string>
     <string name="mtp_fast_charge_summary">"MTP beim Schnellladen aktivieren"</string>
     <string name="screen_limit">"Aktuelles Limit beim eingeschaltetem Bildschirm"</string>
-    <string name="screen_limit_summary">"Aktiviere Limit beim eingeschaltetem Bildschirm."</string>
-    <string name="stockchargelogic">"Setzte 0 für die Standard Ladelogik."</string>
+    <string name="screen_limit_summary">"Aktiviere Limit beim eingeschaltetem Bildschirm"</string>
+    <string name="stockchargelogic">"Setzte 0 für die Standard Ladelogik"</string>
 
     <!-- Sound -->
     <string name="sound_control">"Toneinstellung"</string>
     <string name="speaker_leakage">"Lautsprechertreiberverlust"</string>
-    <string name="speaker_leakage_summary">"Software Workaround Verlust beim Laufsprechertreiber zu verhindern."</string>
+    <string name="speaker_leakage_summary">"Software Workaround um Verluste beim Laufsprechertreiber zu verhindern"</string>
     <string name="headset_highperf_mode">"Headset High Performance Modus"</string>
     <string name="headphone_gain">"Köpfhörerverstärkung"</string>
     <string name="speaker_gain">"Lautsprecherverstärkung"</string>
@@ -494,7 +520,7 @@
     <string name="faux_sound">"Faux Sound"</string>
     <string name="faux_sound_summary">"Faux Sound Engine ein/ausschalten"</string>
     <string name="lock_mic_gain">"Mikrofonverstärkung festhalten"</string>
-    <string name="lock_mic_gain_summary">"Verhindert modifizierungen an der Mikrofonlautstärke."</string>
+    <string name="lock_mic_gain_summary">"Verhindert Modifikationen an der Mikrofonlautstärke"</string>
     <string name="per_channel_controls">"Pro-Kanal Einstellungen"</string>
     <string name="privacy_mode">"Privatsphären-Modus"</string>
     <string name="dac_direct">"DAC Direkt"</string>
@@ -556,9 +582,9 @@
     <string name="negative_toggle_summary">"Beim schnellen viemaligen drücken der Menütaste werden die Bildschirmfarben invertiert."</string>
     <string name="mdnie_global_controls">"mDNIe globale Einstellung"</string>
     <string name="register_hook">"Register Hook"</string>
-    <string name="register_hook_summary">"Registerabhörung funktioniert wie ein Hook und wird abfangende Szenarioeintstellungen aktivieren und modifizieren durch Delta-Einstellungen. Wenn ein Szenario kein Register oder Einstellung hat kann es nicht mit dem Hook modifiziert werden."</string>
+    <string name="register_hook_summary">"Registerabhörung funktioniert wie ein Hook und wird abfangende Szenarioeintstellungen aktivieren und modifizieren durch Delta-Einstellungen. Wenn ein Szenario (kein Register) oder Einstellung hat kann es nicht mit dem Hook modifiziert werden."</string>
     <string name="master_sequence">"Master Sequenz"</string>
-    <string name="master_sequence_summary">"Beim aktivieren werden die Samsung Profile und Sequenzen deativiert und ignoriert. Die Rom Einstellungen werden deaktiviert."</string>
+    <string name="master_sequence_summary">"Beim aktivieren werden die Samsung Profile und Sequenzen deativiert und ignoriert, die Rom Einstellungen werden deaktiviert."</string>
     <string name="glove_mode">"Handschuhmodus"</string>
     <string name="glove_mode_summary">"Beim aktivieren kannst du das Smartphone mit Handschuhen benutzten."</string>
 
@@ -673,9 +699,9 @@
     <string name="on">"An"</string>
     <string name="off">"Aus"</string>
     <string name="fade_ramp_control">"Verblassungsstärke Einstellung"</string>
-    <string name="fade_ramp_control_summary">"Aktiviert / Deaktviert LED Ein- und Ausblendung."</string>
+    <string name="fade_ramp_control_summary">"Aktiviert / Deaktviert LED Ein- und Ausblendung (Schwelle) Kontrolle."</string>
     <string name="fade_in">"Einblenden"</string>
-    <string name="fade_in_summary">"Setzt die Zeitspanne der steigenden Flanke"</string>
+    <string name="fade_in_summary">"Legt den Zeitraum der Steigerung fest."</string>
     <string name="fade_out">"Ausblenden"</string>
     <string name="fade_out_summary">"Setzt die Zeitspanne der fallenden Flanke."</string>
     <string name="display_backlight">"Hintergrundbeleuchtung"</string>
@@ -744,7 +770,7 @@
     <!-- Wakelock -->
     <string name="wakelock">"Wakelocks"</string>
     <string name="wakelocks_other">"Andere Wakelocks"</string>
-    <string name="wakelock_summary">"Die Wackelocks sind nicht ohne Grund da. Dies Bedeutet, dass das Blockieren zu kleineren oder größeren Problemen führt oder zu Seitenefekten führen kann, bzw. das System unbenutzbar machen kann. Das Blockieren der Wakelock wird auf eigene Gefahr durchgeführt."</string>
+    <string name="wakelock_summary">"Die Wackelocks sind nicht ohne Grund da. Dies Bedeutet, dass das Blockieren zu kleineren oder größeren Problemen führt oder zu Seitenefekten führen kann, oder das System unbenutzbar macht. Das Blockieren der Wakelock wird auf eigene Gefahr durchgeführt."</string>
     <string name="boeffla_wakelock">"Boeffla generischer Wakelock Blocker"</string>
     <string name="wkl_order">"Wakelocks-Reihenfolge"</string>
     <string name="wkl_order_summary">"Wähle die Listenanordnung der Wacklocks"</string>
@@ -790,7 +816,7 @@
     <string name="wkl_sensorhub">"SensorHub"</string>
     <string name="wkl_sensorhub_summary">"Der SensorHub Wakelock ist die größte Wachhaltequelle.Deaktiviere es für besseren Deep Sleep und wenigere Aufwachzeiten. Aktivieren für Standard Verhalten."</string>
     <string name="wkl_ssp">"SSP"</string>
-    <string name="wkl_ssp_summary">"Der SSP Wakelock ist die größte Wachhaltequelle.Deaktiviere es für besseren Deep Sleep und wenigere Aufwachzeiten. Aktivieren für Standard Verhalten..Deaktiviere es für besseren Deep Sleep und wenigere Aufwachzeiten. Aktivieren für Standard Verhalten."</string>
+    <string name="wkl_ssp_summary">"Das SSP Wakelock ist nach Sensorhub eine der größten Wake-Quellen. Deaktivieren Sie diese Option für einen besseren Tiefschlaf und weniger Wachzeit. Für Standardverhalten aktivieren."</string>
     <string name="wkl_gps">"GPS"</string>
     <string name="wkl_gps_summary">"Der bcm4359 Wakelock (GPS chip) ist einer größte Wachhaltequelle nach Sensorhub &amp; SSP. Deaktiviere es für besseren Deep Sleep und wenigere Aufwachzeiten. Aktivieren für Standard Verhalten."</string>
     <string name="wkl_wireless">"Wireless"</string>
@@ -804,7 +830,7 @@
     <string name="zram_algo_summary">"Setzt den standard Z-RAM Kompressionsalgorithmus."</string>
     <string name="zram_algo_warning">"Z-RAM Größe wird temporär auf '0' verringert. Dies kann auf manchen Geräten zu größen Auswirkungen führen."</string>
     <string name="disksize">"Größe"</string>
-    <string name="disksize_summary">"Versucht die Performance zu verbessernd indem auf den auf den Gerätespeicher beim paging verzichtet wird. Stattdessen wird ein komprimiertes virtuelles Gerät im Arbeitsspeicher verwendent. Paging wird im RAM ausgeführt bis es notwendig ist es im Swap auf dem Gerätespeicher auszuverlagern."</string>
+    <string name="disksize_summary">"Versucht die Performance zu verbessern indem auf den auf den Gerätespeicher beim paging verzichtet wird. Stattdessen wird ein komprimiertes virtuelles Gerät im Arbeitsspeicher verwendent &amp; Paging wird im RAM ausgeführt bis es notwendig ist es im Swap auf dem Gerätespeicher auszuverlagern."</string>
     <string name="zswap">"ZSWAP"</string>
     <string name="zswap_summary">"ZSwap ist ein ressourcen sparender Cache für Swap-Pages. Es nimmt Pages die dabei sind ausgelagert zu werden und versucht sie in einen dynamisch zugewiesenen RAM-basierten Speicherpool zu komprimieren. Zswap tauscht grundsätzlich CPU-Zyklen gegen potenziell reduzierte Swap I/O."</string>
     <string name="memory_pool">"Memorypool"</string>
@@ -842,14 +868,14 @@
     <string name="lcd_panel">"LCD Schirm"</string>
     <string name="hybrid">"Hybrid"</string>
     <string name="power_suspend_state">"Power Suspend Zustand"</string>
-    <string name="power_suspend_state_summary">"Kernel Power Management Treiber verwenden wenn der Bildschirm aus ist. Es wird mehr Energie gespart wenn es aktiv ist. Die Einstellung kann nur vorgenommen werden wenn User Modus aktiv ist."</string>
+    <string name="power_suspend_state_summary">"Kernel Power Management Treiber verwenden wenn der Bildschirm aus ist. Es wird mehr Energie gespart wenn es aktiv ist. Hinweis: Die Einstellung kann nur vorgenommen werden wenn User Modus aktiv ist."</string>
     <string name="network">"Netzwerk"</string>
     <string name="tcp">"TCP Congestion Algorithmus"</string>
     <string name="tcp_summary">"Das Transmission Control Protocol ist eins der Kern Protokolle der Internet protocol suite (IP) und es ist so bekannt das es oft nur als TCP/IP bezeicht wird."</string>
     <string name="hostname">"Hostname"</string>
     <string name="wireguard">"WireGuard VPN"</string>
     <string name="leases_enable">"Ausliehen aktivieren"</string>
-    <string name="leases_enable_summary">"Aktiviert oder deaktiviert das Dateiausleihen auf ganzer Systemebnene."</string>
+    <string name="leases_enable_summary">"Aktiviert oder deaktiviert das Dateiausleihen auf Systemebene"</string>
     <string name="lease_break_time">"Ausliehpausenzeit"</string>
     <string name="lease_break_time_summary">"Die Schonfrist, die der Kernel einem Prozess gewährt, der eine Datei verleiht, nachdem ein Signal an diesen Prozess gesendet wurde, das ihn darüber informiert, dass ein anderer Prozess darauf wartet, die Datei zu öffnen."</string>
     <string name="auto_sync">"Auto-Sync Data"</string>
@@ -1018,8 +1044,8 @@
     <string name="check_update">"Auf Aktualisierungen Prüfen"</string>
 
     <!-- Update Channel -->
-    <string name="update_channel_message">"(<i>nur für Entwickler</i>)\nDie erstellt einen Update Kanel (JSON) für deinen Kernel, solange die hier zur Verfügung gestellten Information stimmen."</string>
-    <string name="update_channel_instructions">"<b>Kernel Name</b>, <b>Kernel Version</b> &amp; <b>Download Link</b> sind die wichtigsten Informationen die zum erstellen benötigt werden.\n\n<b>Change-logs</b> können als formatierter Text oder als Link auf einer Seite hinterlegt werden.\n\nEin sicherer Hash Algorithmus (<b>sha1</b>) ist optional, wird aber empfohlen um die Echtheit des heruntergeladenen Kernels zu bestimmen."</string>
+    <string name="update_channel_message">"(nur für Entwickler)\nDie erstellt einen Update Kanel (JSON) für deinen Kernel, solange die hier zur Verfügung gestellten Information stimmen."</string>
+    <string name="update_channel_instructions">"Kernel Name, Kernel Version/Download Link sind die wichtigsten Informationen die zum erstellen benötigt werden.\n\nChange-logs/ können als formatierter Text oder als Link auf einer Seite hinterlegt werden.\n\nEin sicherer Hash Algorithmus (sha1) ist optional, wird aber empfohlen um die Echtheit des heruntergeladenen Kernels zu bestimmen."</string>
     <string name="kernel_name">"Kernel Name"</string>
     <string name="kernel_name_summary">"Kernel_Name"</string>
     <string name="kernel_version">"Kernel Version"</string>
@@ -1165,4 +1191,39 @@
     <string name="can_i_contribute_summary">"Antw. Natürlich. Jede Art der Unterstützung ist willkommen (Spenden, Code etc.). Bitte besuche den Über Bereich für mehr Informationen."</string>
     <string name="translators_inbuilt">"Eingebauter übersetzer"</string>
     <string name="translators_poeditor">"POEditor Lokalisierungs Service"</string>
+
+    <!-- CPU -->
+    <string name="cpu_note">"Bitte beachten Sie, dass einige Funktionen auf dieser Seite, wie z. B. CPU-Kerne und Frequenzsteuerung, weitgehend von Systemprozessen gesteuert werden. Infolgedessen bleiben die auf dieser Seite vorgenommenen Änderungen auf vielen Geräten möglicherweise nicht bestehen."</string>
+    <string name="doze">"Tiefschlaf forcieren"</string>
+    <string name="doze_summary">"Aktivieren Sie den Tiefschlaf-Modus, um zu verhindern, dass bestimmte Aufgaben ausgeführt werden, wenn sich Ihr Gerät im Ruhezustand befindet."</string>
+    <string name="selinux">"SELinux"</string>
+    <string name="selinux_summary">"SELinux Modus einstellen"</string>
+    <string name="selinux_permissive">"Permissive"</string>
+    <string name="selinux_enforcing">"Enforcing"</string>
+    <string name="on_boot_swipe_drag_message">"Sie können nach links oder rechts wischen, um einen Befehl zu entfernen (kein Profil oder Skript)!"</string>
+    <string name="swipe_message">"Es tut uns leid! Sie können %s nicht herauswischen."</string>
+    <string name="drag_message">"Es tut uns leid! Sie können %s nicht an eine andere Position ziehen"</string>
+
+    <!-- App Updater -->
+    <string name="update_available">"Neues Update v%s verfügbar"</string>
+    <string name="get_it">"Verstanden"</string>
+    <string name="updated_dialog">"Glückwunsch! Sie haben bereits eine aktuelle Version von SmartPack-Kernel Manager!"</string>
+    <string name="auto_update_check">"automatisches Update"</string>
+    <string name="check_update_summary">"Suchen Sie nach neuen Versionen von SmartPack-Kernel Manager"</string>
+    <string name="fdroid">"F-Droid"</string>
+    <string name="fdroid_summary">"F-Droid Webseite besuchen"</string>
+
+    <!-- I/O Advanced -->
+    <string name="io_blocks">"I/O Blöcke (%s)"</string>
+    <string name="io_blocks_summary">"Klicken Sie hier, um verschiedene E/A-Blöcke auf Ihrem Gerät zu optimieren! Beachten Sie jedoch, dass einige Parameter schreibgeschützt sind und sich in einigen Blöcken nicht ändern dürfen."</string>
+    <string name="io_blocks_select">"I/O Blöcke auswählen"</string>
+    <string name="io_blocks_select_summary">"Wählen Sie den bevorzugten I/O Block zur Feinabstimmung aus"</string>
+    <string name="doze_deep">"Tiefschlaf"</string>
+    <string name="doze_light">"Leichtes Dösen"</string>
+    <string name="transmit_queue_length">"Warteschlangenlänge übertragen"</string>
+    <string name="tunables_title">"Optimieren Sie die Konfiguration, die '%s' zugeordnet sind."</string>
+    <string name="gpu_throttling">"GPU Drosselung"</string>
+    <string name="gpu_throttling_summary">"Reduziert die Geschwindigkeit wenn die GPU zu warm wird"</string>
+    <string name="printk_devkmsg">"devkmsg anzeigen"</string>
+    <string name="printk_devkmsg_summary">"Deaktivieren Sie den Printk devkmsg-Kernel-Protokollierungsdienst, um den Overhead zu reduzieren"</string>
 </resources>
