@@ -19,11 +19,13 @@
  */
 package com.smartpack.kernelmanager.fragments.kernel;
 
+import android.annotation.SuppressLint;
 import android.text.InputType;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
+import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.kernel.battery.Battery;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -32,6 +34,7 @@ import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.SeekBarView;
 import com.smartpack.kernelmanager.views.recyclerview.SelectView;
 import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
+import com.smartpack.kernelmanager.views.recyclerview.TitleView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +69,7 @@ public class BatteryFragment extends RecyclerViewFragment {
         addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void acciInit(List<RecyclerViewItem> items) {
         CardView acci = new CardView(getActivity());
         acci.setTitle(getString(R.string.acci));
@@ -352,6 +356,22 @@ public class BatteryFragment extends RecyclerViewFragment {
 
         if (acci.size() > 0) {
             items.add(acci);
+        }
+
+        if (!Utils.isPackageInstalled("com.paget96.batteryguru", requireActivity())) {
+            TitleView bg = new TitleView();
+            bg.setText(getString(R.string.battery_guru));
+
+            items.add(bg);
+
+            DescriptionView battery_guru = new DescriptionView();
+            battery_guru.setDrawable(getResources().getDrawable(R.drawable.ic_batteryguru));
+            battery_guru.setSummary(getString(R.string.battery_guru_summary));
+            battery_guru.setFullSpan(true);
+            battery_guru.setOnItemClickListener(item -> {
+                Utils.launchUrl("https://play.google.com/store/apps/details?id=com.paget96.batteryguru", getActivity());
+            });
+            items.add(battery_guru);
         }
     }
 
