@@ -33,6 +33,7 @@ import com.smartpack.kernelmanager.activities.OverallActivity;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.fragments.kernel.BatteryFragment;
+import com.smartpack.kernelmanager.fragments.kernel.VMFragment;
 import com.smartpack.kernelmanager.utils.Common;
 import com.smartpack.kernelmanager.utils.Device;
 import com.smartpack.kernelmanager.utils.Utils;
@@ -172,7 +173,7 @@ public class OverallFragment extends RecyclerViewFragment {
                 menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
 
                 popupMenu.setOnMenuItemClickListener(item -> {
-                    Common.setSelectedFragment(new MemoryFragment());
+                    Common.setSelectedFragment(new VMFragment());
                     switchFragment();
                     return false;
                 });

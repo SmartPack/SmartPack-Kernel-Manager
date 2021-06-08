@@ -26,15 +26,14 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.LocaleList;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
-import com.google.android.material.appbar.AppBarLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
@@ -49,7 +48,7 @@ import java.util.Objects;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-    private static HashMap<String, Integer> sAccentColors = new HashMap<>();
+    private static final HashMap<String, Integer> sAccentColors = new HashMap<>();
 
     static {
         sAccentColors.put("red_accent", R.style.Theme_Red);
