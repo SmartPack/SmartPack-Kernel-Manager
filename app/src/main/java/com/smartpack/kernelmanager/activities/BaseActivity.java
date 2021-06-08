@@ -19,13 +19,8 @@
  */
 package com.smartpack.kernelmanager.activities;
 
-import android.content.Context;
-import android.content.ContextWrapper;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.LocaleList;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -40,7 +35,6 @@ import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -77,31 +71,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(statusBarColor());
         }
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        if (Prefs.getBoolean("forceenglish", false, newBase)) {
-            super.attachBaseContext(wrap(newBase, new Locale("en_US")));
-        } else {
-            super.attachBaseContext(newBase);
-        }
-    }
-
-    public static ContextWrapper wrap(Context context, Locale newLocale) {
-        Resources res = context.getResources();
-        Configuration configuration = res.getConfiguration();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            configuration.setLocale(newLocale);
-            LocaleList localeList = new LocaleList(newLocale);
-            LocaleList.setDefault(localeList);
-            configuration.setLocales(localeList);
-            context = context.createConfigurationContext(configuration);
-        } else {
-            configuration.setLocale(newLocale);
-            context = context.createConfigurationContext(configuration);
-        }
-        return new ContextWrapper(context);
     }
 
     public AppBarLayout getAppBarLayout() {

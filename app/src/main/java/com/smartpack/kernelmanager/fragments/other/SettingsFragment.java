@@ -23,7 +23,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -128,8 +127,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         findPreference(KEY_UPDATE_CHECK).setOnPreferenceClickListener(this);
         findPreference(KEY_RESET_SETTINGS).setOnPreferenceClickListener(this);
         SwitchPreferenceCompat forceEnglish = findPreference(KEY_FORCE_ENGLISH);
-        if (Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en")) {
-            assert forceEnglish != null;
+        if (java.util.Locale.getDefault().getLanguage().startsWith("en")) {
             getPreferenceScreen().removePreference(forceEnglish);
         } else {
             assert forceEnglish != null;

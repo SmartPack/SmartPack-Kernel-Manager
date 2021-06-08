@@ -537,7 +537,7 @@ public class NavigationActivity extends BaseActivity
         super.onStart();
 
         // Initialize auto app update check
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         }
         if (UpdateCheck.hasVersionInfo(this) && BuildConfig.VERSION_CODE < UpdateCheck.versionCode(this)) {

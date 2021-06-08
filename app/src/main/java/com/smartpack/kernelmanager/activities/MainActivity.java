@@ -72,6 +72,11 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Force English Language, if applicable
+        if (Prefs.getBoolean("forceenglish", false, this)) {
+            Utils.setLanguage("en_US", this);
+        }
+
         /*
          * Initialize Spectrum Profiles & Wakelock Blocker
          */
@@ -140,7 +145,7 @@ public class MainActivity extends BaseActivity {
 
     private static class CheckingTask extends AsyncTask<Void, Integer, Void> {
 
-        private WeakReference<MainActivity> mRefActivity;
+        private final WeakReference<MainActivity> mRefActivity;
 
         private CheckingTask(MainActivity activity) {
             mRefActivity = new WeakReference<>(activity);
