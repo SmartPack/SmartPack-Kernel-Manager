@@ -1,5 +1,9 @@
 # Change-logs
 
+## 125. June 13, 2021
+*Release-tag: v16.7*<br>
+Added option to apply a (single) script (configurable) from Quick Title. Fixed app crashing when clicking "More" options from the Memory card (overall page). Fixed Force English option not working. Miscellaneous changes.
+
 ## 124. June 07, 2021
 *Release-tag: v16.6*<br>
 Added Portuguese (Portugal) translations and updated others. Lots of internal improvements. Updated build tools. Miscellaneous changes.

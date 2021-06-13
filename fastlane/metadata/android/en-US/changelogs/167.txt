@@ -1,0 +1,4 @@
+* Added option to apply a (single) script (configurable) from Quick Title.
+* Fixed app crashing when clicking "More" options from the Memory card (overall page).
+* Fixed Force English option not working.
+* Miscellaneous changes.

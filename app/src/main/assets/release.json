@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Added Portuguese (Portugal) translations and updated others.\n - Lots of internal improvements.\n - Updated build tools.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v16.6/com.smartpack.kernelmanager-v16.6-fdroid-release.apk",
-  "sha1": "230c5ed7e2a8db07fcea55071972a28712db30d1",
-  "latestVersion": "16.6",
-  "latestVersionCode": 166
+  "releaseNotes": "Change-logs\n - Added option to apply a (single) script (configurable) from Quick Title.\n - Fixed app crashing when clicking \"More\" options from the Memory card (overall page).\n - Fixed Force English option not working.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v16.7/com.smartpack.kernelmanager-v16.7-fdroid-release.apk",
+  "sha1": "d199f1c38cb5f44e6f75669dd4960d4536e84a31",
+  "latestVersion": "16.7",
+  "latestVersionCode": 167
 }
