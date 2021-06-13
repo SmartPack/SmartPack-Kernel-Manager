@@ -16,9 +16,4 @@
 
 <manifest
     package="org.adw.library.widgets.discreteseekbar">
-
-    <application>
-
-    </application>
-
 </manifest>

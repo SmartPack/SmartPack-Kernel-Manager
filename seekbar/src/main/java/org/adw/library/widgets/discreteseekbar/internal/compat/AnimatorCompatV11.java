@@ -17,30 +17,15 @@
 package org.adw.library.widgets.discreteseekbar.internal.compat;
 
 import android.animation.ValueAnimator;
-import android.annotation.TargetApi;
-import android.os.Build;
 
-/**
- * Class to wrap a {@link android.animation.ValueAnimator}
- * for use with AnimatorCompat
- *
- * @hide
- * @see {@link org.adw.library.widgets.discreteseekbar.internal.compat.AnimatorCompat}
- */
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class AnimatorCompatV11 extends AnimatorCompat {
 
-    ValueAnimator animator;
+    private final ValueAnimator animator;
 
     public AnimatorCompatV11(float start, float end, final AnimationFrameUpdateListener listener) {
         super();
         animator = ValueAnimator.ofFloat(start, end);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                listener.onAnimationFrame((Float) animation.getAnimatedValue());
-            }
-        });
+        animator.addUpdateListener(animation -> listener.onAnimationFrame((Float) animation.getAnimatedValue()));
     }
 
     @Override

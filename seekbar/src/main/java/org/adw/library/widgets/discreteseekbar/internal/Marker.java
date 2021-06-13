@@ -22,41 +22,28 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
+
+import com.google.android.material.textview.MaterialTextView;
 
 import org.adw.library.widgets.discreteseekbar.R;
 import org.adw.library.widgets.discreteseekbar.internal.compat.SeekBarCompat;
 import org.adw.library.widgets.discreteseekbar.internal.drawable.MarkerDrawable;
 
-/**
- * {@link android.view.ViewGroup} to be used as the real indicator.
- * <p>
- * I've used this to be able to accommodate the TextView
- * and the {@link org.adw.library.widgets.discreteseekbar.internal.drawable.MarkerDrawable}
- * with the required positions and offsets
- * </p>
- *
- * @hide
- */
 @SuppressLint("ViewConstructor")
 public class Marker extends ViewGroup implements MarkerDrawable.MarkerAnimationListener {
-    private static final int PADDING_DP = 4;
-    private static final int ELEVATION_DP = 8;
-    //The TextView to show the info
-    private final TextView mNumber;
-    //The max width of this View
+
+    private static final int PADDING_DP = 4, ELEVATION_DP = 8;
+    private final MaterialTextView mNumber;
     private int mWidth;
-    //some distance between the thumb and our bubble marker.
-    //This will be added to our measured height
     private final int mSeparation;
     MarkerDrawable mMarkerDrawable;
 
@@ -72,7 +59,7 @@ public class Marker extends ViewGroup implements MarkerDrawable.MarkerAnimationL
         int padding = (int) (PADDING_DP * displayMetrics.density) * 2;
         int textAppearanceId = a.getResourceId(R.styleable.DiscreteSeekBar_dsb_indicatorTextAppearance,
                 R.style.Widget_DiscreteIndicatorTextAppearance);
-        mNumber = new TextView(context);
+        mNumber = new MaterialTextView(context);
         //Add some padding to this textView so the bubble has some space to breath
         mNumber.setPadding(padding, 0, padding, 0);
         mNumber.setTextAppearance(context, textAppearanceId);
@@ -91,21 +78,20 @@ public class Marker extends ViewGroup implements MarkerDrawable.MarkerAnimationL
 
         mSeparation = separation;
         ColorStateList color = a.getColorStateList(R.styleable.DiscreteSeekBar_dsb_indicatorColor);
-        mMarkerDrawable = new MarkerDrawable(color, thumbSize);
+        if (color != null) {
+            mMarkerDrawable = new MarkerDrawable(color, thumbSize);
+        }
         mMarkerDrawable.setCallback(this);
         mMarkerDrawable.setMarkerListener(this);
         mMarkerDrawable.setExternalOffset(padding);
 
-        //Elevation for anroid 5+
         float elevation = a.getDimension(R.styleable.DiscreteSeekBar_dsb_indicatorElevation, ELEVATION_DP * displayMetrics.density);
         ViewCompat.setElevation(this, elevation);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            SeekBarCompat.setOutlineProvider(this, mMarkerDrawable);
-        }
+        SeekBarCompat.setOutlineProvider(this, mMarkerDrawable);
         a.recycle();
     }
 
-    @SuppressLint("RtlHardcoded")
+    @SuppressLint({"RtlHardcoded", "SetTextI18n"})
     public void resetSizes(String maxValue) {
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         //Account for negative numbers... is there any proper way of getting the biggest string between our range????
@@ -154,7 +140,7 @@ public class Marker extends ViewGroup implements MarkerDrawable.MarkerAnimationL
     }
 
     @Override
-    protected boolean verifyDrawable(Drawable who) {
+    protected boolean verifyDrawable(@NonNull Drawable who) {
         return who == mMarkerDrawable || super.verifyDrawable(who);
     }
 

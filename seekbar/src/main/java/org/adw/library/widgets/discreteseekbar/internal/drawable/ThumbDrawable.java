@@ -25,23 +25,7 @@ import android.os.SystemClock;
 
 import androidx.annotation.NonNull;
 
-/**
- * <h1>HACK</h1>
- * <p>
- * Special {@link org.adw.library.widgets.discreteseekbar.internal.drawable.StateDrawable} implementation
- * to draw the Thumb circle.
- * </p>
- * <p>
- * It's special because it will stop drawing once the state is pressed/focused BUT only after a small delay.
- * </p>
- * <p>
- * This special delay is meant to help avoiding frame glitches while the {@link org.adw.library.widgets.discreteseekbar.internal.Marker} is added to the Window
- * </p>
- *
- * @hide
- */
 public class ThumbDrawable extends StateDrawable implements Animatable {
-    //The current size for this drawable. Must be converted to real DPs
     public static final int DEFAULT_SIZE_DP = 12;
     private final int mSize;
     private boolean mOpen;

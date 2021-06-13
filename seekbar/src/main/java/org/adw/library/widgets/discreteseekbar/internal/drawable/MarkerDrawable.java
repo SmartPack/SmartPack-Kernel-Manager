@@ -31,19 +31,6 @@ import android.view.animation.Interpolator;
 
 import androidx.annotation.NonNull;
 
-/**
- * Implementation of {@link StateDrawable} to draw a morphing marker symbol.
- * <p>
- * It's basically an implementation of an {@link android.graphics.drawable.Animatable} Drawable with the following details:
- * </p>
- * <ul>
- * <li>Animates from a circle shape to a "marker" shape just using a RoundRect</li>
- * <li>Animates color change from the normal state color to the pressed state color</li>
- * <li>Uses a {@link android.graphics.Path} to also serve as Outline for API>=21</li>
- * </ul>
- *
- * @hide
- */
 public class MarkerDrawable extends StateDrawable implements Animatable {
     private static final long FRAME_DURATION = 1000 / 60;
     private static final int ANIMATION_DURATION = 250;
@@ -54,20 +41,16 @@ public class MarkerDrawable extends StateDrawable implements Animatable {
     private boolean mReverse = false;
     private boolean mRunning = false;
     private int mDuration = ANIMATION_DURATION;
-    //size of the actual thumb drawable to use as circle state size
     private final float mClosedStateSize;
-    //value to store que current scale when starting an animation and interpolate from it
     private float mAnimationInitialValue;
-    //extra offset directed from the View to account
-    //for its internal padding between circle state and marker state
     private int mExternalOffset;
-    //colors for interpolation
-    private int mStartColor;//Color when the Marker is OPEN
-    private int mEndColor;//Color when the arker is CLOSED
+    private int mStartColor;
+    private int mEndColor;
 
-    Path mPath = new Path();
-    RectF mRect = new RectF();
-    Matrix mMatrix = new Matrix();
+    private final Path mPath = new Path();
+    private final RectF mRect = new RectF();
+    private final Matrix mMatrix = new Matrix();
+
     private MarkerAnimationListener mMarkerListener;
 
     public MarkerDrawable(@NonNull ColorStateList tintList, int closedSize) {
@@ -83,12 +66,6 @@ public class MarkerDrawable extends StateDrawable implements Animatable {
         mExternalOffset = offset;
     }
 
-    /**
-     * The two colors that will be used for the seek thumb.
-     *
-     * @param startColor Color used for the seek thumb
-     * @param endColor   Color used for popup indicator
-     */
     public void setColors(int startColor, int endColor) {
         mStartColor = startColor;
         mEndColor = endColor;
@@ -236,14 +213,9 @@ public class MarkerDrawable extends StateDrawable implements Animatable {
         return Color.argb((int) a, (int) r, (int) g, (int) b);
     }
 
-
-    /**
-     * A listener interface to porpagate animation events
-     * This is the "poor's man" AnimatorListener for this Drawable
-     */
     public interface MarkerAnimationListener {
-        public void onClosingComplete();
+        void onClosingComplete();
 
-        public void onOpeningComplete();
+        void onOpeningComplete();
     }
 }

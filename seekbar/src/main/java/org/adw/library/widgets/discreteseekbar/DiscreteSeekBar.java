@@ -24,7 +24,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -53,61 +52,23 @@ import java.util.Locale;
 
 public class DiscreteSeekBar extends View {
 
-    /**
-     * Interface to propagate seekbar change event
-     */
     public interface OnProgressChangeListener {
-        /**
-         * When the {@link DiscreteSeekBar} value changes
-         *
-         * @param seekBar  The DiscreteSeekBar
-         * @param value    the new value
-         * @param fromUser if the change was made from the user or not (i.e. the developer calling {@link #setProgress(int)}
-         */
-        public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser);
 
-        public void onStartTrackingTouch(DiscreteSeekBar seekBar);
+        void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser);
 
-        public void onStopTrackingTouch(DiscreteSeekBar seekBar);
+        void onStartTrackingTouch(DiscreteSeekBar seekBar);
+
+        void onStopTrackingTouch(DiscreteSeekBar seekBar);
     }
 
-    /**
-     * Interface to transform the current internal value of this DiscreteSeekBar to anther one for the visualization.
-     * <p/>
-     * This will be used on the floating bubble to display a different value if needed.
-     * <p/>
-     * Using this in conjunction with {@link #setIndicatorFormatter(String)} you will be able to manipulate the
-     * value seen by the user
-     *
-     * @see #setIndicatorFormatter(String)
-     * @see #setNumericTransformer(DiscreteSeekBar.NumericTransformer)
-     */
     public static abstract class NumericTransformer {
-        /**
-         * Return the desired value to be shown to the user.
-         * This value will be formatted using the format specified by {@link #setIndicatorFormatter} before displaying it
-         *
-         * @param value The value to be transformed
-         * @return The transformed int
-         */
+
         public abstract int transform(int value);
 
-        /**
-         * Return the desired value to be shown to the user.
-         * This value will be displayed 'as is' without further formatting.
-         *
-         * @param value The value to be transformed
-         * @return A formatted string
-         */
         public String transformToString(int value) {
             return String.valueOf(value);
         }
 
-        /**
-         * Used to indicate which transform will be used. If this method returns true,
-         * {@link #transformToString(int)} will be used, otherwise {@link #transform(int)}
-         * will be used
-         */
         public boolean useStringTransform() {
             return false;
         }
@@ -122,9 +83,6 @@ public class DiscreteSeekBar extends View {
         }
     }
 
-
-    private static final boolean isLollipopOrGreater = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
-    //We want to always use a formatter so the indicator numbers are "translated" to specific locales.
     private static final String DEFAULT_FORMATTER = "%d";
 
     private static final int PRESSED_STATE = android.R.attr.state_pressed;
@@ -149,8 +107,7 @@ public class DiscreteSeekBar extends View {
     private boolean mMirrorForRtl = false;
     private boolean mAllowTrackClick = true;
     private boolean mIndicatorPopupEnabled = true;
-    //We use our own Formatter to avoid creating new instances on every progress change
-    Formatter mFormatter;
+    private Formatter mFormatter;
     private String mIndicatorFormatter;
     private NumericTransformer mNumericTransformer;
     private StringBuilder mFormatBuilder;
@@ -251,11 +208,7 @@ public class DiscreteSeekBar extends View {
         }
 
         mRipple = SeekBarCompat.getRipple(rippleColor);
-        if (isLollipopOrGreater) {
-            SeekBarCompat.setBackground(this, mRipple);
-        } else {
-            mRipple.setCallback(this);
-        }
+        SeekBarCompat.setBackground(this, mRipple);
 
         TrackRectDrawable shapeDrawable = new TrackRectDrawable(trackColor);
         mTrack = shapeDrawable;
@@ -293,24 +246,11 @@ public class DiscreteSeekBar extends View {
 
     }
 
-    /**
-     * Sets the current Indicator formatter string
-     *
-     * @param formatter
-     * @see String#format(String, Object...)
-     * @see #setNumericTransformer(DiscreteSeekBar.NumericTransformer)
-     */
     public void setIndicatorFormatter(@Nullable String formatter) {
         mIndicatorFormatter = formatter;
         updateProgressMessage(mValue);
     }
 
-    /**
-     * Sets the current {@link DiscreteSeekBar.NumericTransformer}
-     *
-     * @param transformer
-     * @see #getNumericTransformer()
-     */
     public void setNumericTransformer(@Nullable NumericTransformer transformer) {
         mNumericTransformer = transformer != null ? transformer : new DefaultNumericTransformer();
         //We need to refresh the PopupIndicator view
@@ -318,29 +258,6 @@ public class DiscreteSeekBar extends View {
         updateProgressMessage(mValue);
     }
 
-    /**
-     * Retrieves the current {@link DiscreteSeekBar.NumericTransformer}
-     *
-     * @return NumericTransformer
-     * @see #setNumericTransformer
-     */
-    public NumericTransformer getNumericTransformer() {
-        return mNumericTransformer;
-    }
-
-    /**
-     * Sets the maximum value for this DiscreteSeekBar
-     * if the supplied argument is smaller than the Current MIN value,
-     * the MIN value will be set to MAX-1
-     * <p/>
-     * <p>
-     * Also if the current progress is out of the new range, it will be set to MIN
-     * </p>
-     *
-     * @param max
-     * @see #setMin(int)
-     * @see #setProgress(int)
-     */
     public void setMax(int max) {
         mMax = max;
         if (mMax < mMin) {
@@ -359,18 +276,6 @@ public class DiscreteSeekBar extends View {
         return mMax;
     }
 
-    /**
-     * Sets the minimum value for this DiscreteSeekBar
-     * if the supplied argument is bigger than the Current MAX value,
-     * the MAX value will be set to MIN+1
-     * <p>
-     * Also if the current progress is out of the new range, it will be set to MIN
-     * </p>
-     *
-     * @param min
-     * @see #setMax(int)
-     * @see #setProgress(int)
-     */
     public void setMin(int min) {
         mMin = min;
         if (mMin > mMax) {
@@ -387,14 +292,6 @@ public class DiscreteSeekBar extends View {
         return mMin;
     }
 
-    /**
-     * Sets the current progress for this DiscreteSeekBar
-     * The supplied argument will be capped to the current MIN-MAX range
-     *
-     * @param progress
-     * @see #setMax(int)
-     * @see #setMin(int)
-     */
     public void setProgress(int progress) {
         setProgress(progress, false);
     }
@@ -413,47 +310,19 @@ public class DiscreteSeekBar extends View {
         }
     }
 
-    /**
-     * Get the current progress
-     *
-     * @return the current progress :-P
-     */
     public int getProgress() {
         return mValue;
     }
 
-    /**
-     * Sets a listener to receive notifications of changes to the DiscreteSeekBar's progress level. Also
-     * provides notifications of when the DiscreteSeekBar shows/hides the bubble indicator.
-     *
-     * @param listener The seek bar notification listener
-     * @see DiscreteSeekBar.OnProgressChangeListener
-     */
     public void setOnProgressChangeListener(@Nullable OnProgressChangeListener listener) {
         mPublicChangeListener = listener;
     }
 
-    /**
-     * Sets the color of the seek thumb, as well as the color of the popup indicator.
-     *
-     * @param thumbColor     The color the seek thumb will be changed to
-     * @param indicatorColor The color the popup indicator will be changed to
-     *                       The indicator will animate from thumbColor to indicatorColor
-     *                       when opening
-     */
     public void setThumbColor(int thumbColor, int indicatorColor) {
         mThumb.setColorStateList(ColorStateList.valueOf(thumbColor));
         mIndicator.setColors(indicatorColor, thumbColor);
     }
 
-    /**
-     * Sets the color of the seek thumb, as well as the color of the popup indicator.
-     *
-     * @param thumbColorStateList The ColorStateList the seek thumb will be changed to
-     * @param indicatorColor      The color the popup indicator will be changed to
-     *                            The indicator will animate from thumbColorStateList(pressed state) to indicatorColor
-     *                            when opening
-     */
     public void setThumbColor(@NonNull ColorStateList thumbColorStateList, int indicatorColor) {
         mThumb.setColorStateList(thumbColorStateList);
         //we use the "pressed" color to morph the indicator from it to its own color
@@ -461,64 +330,30 @@ public class DiscreteSeekBar extends View {
         mIndicator.setColors(indicatorColor, thumbColor);
     }
 
-    /**
-     * Sets the color of the seekbar scrubber
-     *
-     * @param color The color the track  scrubber will be changed to
-     */
     public void setScrubberColor(int color) {
         mScrubber.setColorStateList(ColorStateList.valueOf(color));
     }
 
-    /**
-     * Sets the color of the seekbar scrubber
-     *
-     * @param colorStateList The ColorStateList the track scrubber will be changed to
-     */
     public void setScrubberColor(@NonNull ColorStateList colorStateList) {
         mScrubber.setColorStateList(colorStateList);
     }
 
-    /**
-     * Sets the color of the seekbar ripple
-     *
-     * @param color The color the track  ripple will be changed to
-     */
     public void setRippleColor(int color) {
         setRippleColor(new ColorStateList(new int[][]{new int[]{}}, new int[]{color}));
     }
 
-    /**
-     * Sets the color of the seekbar ripple
-     *
-     * @param colorStateList The ColorStateList the track ripple will be changed to
-     */
     public void setRippleColor(@NonNull ColorStateList colorStateList) {
         SeekBarCompat.setRippleColor(mRipple, colorStateList);
     }
 
-    /**
-     * Sets the color of the seekbar scrubber
-     *
-     * @param color The color the track will be changed to
-     */
     public void setTrackColor(int color) {
         mTrack.setColorStateList(ColorStateList.valueOf(color));
     }
 
-    /**
-     * Sets the color of the seekbar scrubber
-     *
-     * @param colorStateList The ColorStateList the track will be changed to
-     */
     public void setTrackColor(@NonNull ColorStateList colorStateList) {
         mTrack.setColorStateList(colorStateList);
     }
 
-    /**
-     * If {@code enabled} is false the indicator won't appear. By default popup indicator is
-     * enabled.
-     */
     public void setIndicatorPopupEnabled(boolean enabled) {
         this.mIndicatorPopupEnabled = enabled;
     }
@@ -538,7 +373,7 @@ public class DiscreteSeekBar extends View {
         if (mPublicChangeListener != null) {
             mPublicChangeListener.onProgressChanged(DiscreteSeekBar.this, value, fromUser);
         }
-        onValueChanged(value);
+        onValueChanged();
     }
 
     private void notifyBubble(boolean open) {
@@ -549,34 +384,13 @@ public class DiscreteSeekBar extends View {
         }
     }
 
-    /**
-     * When the {@link DiscreteSeekBar} enters pressed or focused state
-     * the bubble with the value will be shown, and this method called
-     * <p>
-     * Subclasses may override this to add functionality around this event
-     * </p>
-     */
     protected void onShowBubble() {
     }
 
-    /**
-     * When the {@link DiscreteSeekBar} exits pressed or focused state
-     * the bubble with the value will be hidden, and this method called
-     * <p>
-     * Subclasses may override this to add functionality around this event
-     * </p>
-     */
     protected void onHideBubble() {
     }
 
-    /**
-     * When the {@link DiscreteSeekBar} value changes this method is called
-     * <p>
-     * Subclasses may override this to add functionality around this event
-     * without having to specify a {@link DiscreteSeekBar.OnProgressChangeListener}
-     * </p>
-     */
-    protected void onValueChanged(int value) {
+    protected void onValueChanged() {
     }
 
     private void updateKeyboardRange() {
@@ -610,7 +424,7 @@ public class DiscreteSeekBar extends View {
     }
 
     @Override
-    public void scheduleDrawable(Drawable who, Runnable what, long when) {
+    public void scheduleDrawable(@NonNull Drawable who, @NonNull Runnable what, long when) {
         super.scheduleDrawable(who, what, when);
     }
 
@@ -638,9 +452,7 @@ public class DiscreteSeekBar extends View {
 
     @Override
     protected synchronized void onDraw(Canvas canvas) {
-        if (!isLollipopOrGreater) {
-            mRipple.draw(canvas);
-        }
+        mRipple.draw(canvas);
         super.onDraw(canvas);
         mTrack.draw(canvas);
         mScrubber.draw(canvas);
@@ -712,6 +524,7 @@ public class DiscreteSeekBar extends View {
         return mFormatter.format(format, value).toString();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (!isEnabled()) {
@@ -751,7 +564,7 @@ public class DiscreteSeekBar extends View {
         return SeekBarCompat.isInScrollingContainer(getParent());
     }
 
-    private boolean startDragging(MotionEvent ev, boolean ignoreTrackIfInScrollContainer) {
+    private void startDragging(MotionEvent ev, boolean ignoreTrackIfInScrollContainer) {
         final Rect bounds = mTempRect;
         mThumb.copyBounds(bounds);
         //Grow the current thumb rect for a bigger touch area
@@ -776,7 +589,6 @@ public class DiscreteSeekBar extends View {
                 mPublicChangeListener.onStartTrackingTouch(this);
             }
         }
-        return mIsDragging;
     }
 
     private boolean isDragging() {
@@ -831,7 +643,6 @@ public class DiscreteSeekBar extends View {
         } else if (progress > mMax) {
             progress = mMax;
         }
-        //setProgressValueOnly(progress);
 
         if (mPositionAnimator != null) {
             mPositionAnimator.cancel();
@@ -839,12 +650,7 @@ public class DiscreteSeekBar extends View {
 
         mAnimationTarget = progress;
         mPositionAnimator = AnimatorCompat.create(curProgress,
-                progress, new AnimatorCompat.AnimationFrameUpdateListener() {
-                    @Override
-                    public void onAnimationFrame(float currentValue) {
-                        setAnimationPosition(currentValue);
-                    }
-                });
+                progress, this::setAnimationPosition);
         mPositionAnimator.setDuration(PROGRESS_ANIMATION_DURATION);
         mPositionAnimator.start();
     }
@@ -961,7 +767,7 @@ public class DiscreteSeekBar extends View {
     }
 
     @Override
-    protected boolean verifyDrawable(Drawable who) {
+    protected boolean verifyDrawable(@NonNull Drawable who) {
         return who == mThumb || who == mTrack || who == mScrubber || who == mRipple || super.verifyDrawable(who);
     }
 
@@ -972,12 +778,7 @@ public class DiscreteSeekBar extends View {
         }
     }
 
-    private final Runnable mShowIndicatorRunnable = new Runnable() {
-        @Override
-        public void run() {
-            showFloater();
-        }
-    };
+    private final Runnable mShowIndicatorRunnable = this::showFloater;
 
     private void showFloater() {
         if (!isInEditMode()) {

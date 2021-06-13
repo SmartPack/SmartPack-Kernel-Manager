@@ -22,12 +22,6 @@ import android.graphics.Paint;
 
 import androidx.annotation.NonNull;
 
-/**
- * Simple {@link org.adw.library.widgets.discreteseekbar.internal.drawable.StateDrawable} implementation
- * to draw rectangles
- *
- * @hide
- */
 public class TrackRectDrawable extends StateDrawable {
     public TrackRectDrawable(@NonNull ColorStateList tintStateList) {
         super(tintStateList);

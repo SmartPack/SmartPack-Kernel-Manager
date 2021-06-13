@@ -16,7 +16,6 @@
 
 package org.adw.library.widgets.discreteseekbar.internal.compat;
 
-import android.annotation.TargetApi;
 import android.content.res.ColorStateList;
 import android.graphics.Outline;
 import android.graphics.drawable.Drawable;
@@ -29,13 +28,6 @@ import android.widget.TextView;
 
 import org.adw.library.widgets.discreteseekbar.internal.drawable.MarkerDrawable;
 
-/**
- * Wrapper compatibility class to call some API-Specific methods
- * And offer alternate procedures when possible
- *
- * @hide
- */
-@TargetApi(21)
 class SeekBarCompatDontCrash {
     public static void setOutlineProvider(View marker, final MarkerDrawable markerDrawable) {
         marker.setOutlineProvider(new ViewOutlineProvider() {

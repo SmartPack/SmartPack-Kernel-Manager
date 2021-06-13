@@ -16,6 +16,7 @@
 
 package org.adw.library.widgets.discreteseekbar.internal;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
@@ -34,31 +35,14 @@ import androidx.core.view.GravityCompat;
 import org.adw.library.widgets.discreteseekbar.internal.compat.SeekBarCompat;
 import org.adw.library.widgets.discreteseekbar.internal.drawable.MarkerDrawable;
 
-/**
- * Class to manage the floating bubble thing, similar (but quite worse tested than {@link android.widget.PopupWindow}
- * <p/>
- * <p>
- * This will attach a View to the Window (full-width, measured-height, positioned just under the thumb)
- * </p>
- *
- * @hide
- * @see #showIndicator(android.view.View, android.graphics.Rect)
- * @see #dismiss()
- * @see #dismissComplete()
- * @see org.adw.library.widgets.discreteseekbar.internal.PopupIndicator.Floater
- */
 public class PopupIndicator {
 
     private final WindowManager mWindowManager;
     private boolean mShowing;
     private final Floater mPopupView;
-    //Outside listener for the DiscreteSeekBar to get MarkerDrawable animation events.
-    //The whole chain of events goes this way:
-    //MarkerDrawable->Marker->Floater->mListener->DiscreteSeekBar....
-    //... phew!
     private MarkerDrawable.MarkerAnimationListener mListener;
     private final int[] mDrawingLocation = new int[2];
-    Point screenSize = new Point();
+    private final Point screenSize = new Point();
 
     public PopupIndicator(Context context, AttributeSet attrs, int defStyleAttr, String maxValue, int thumbSize, int separation) {
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -76,10 +60,6 @@ public class PopupIndicator {
         mListener = listener;
     }
 
-    /**
-     * We want the Floater to be full-width because the contents will be moved from side to side.
-     * We may/should change this in the future to use just the PARENT View width and/or pass it in the constructor
-     */
     private void measureFloater() {
         int specWidth = View.MeasureSpec.makeMeasureSpec(screenSize.x, View.MeasureSpec.EXACTLY);
         int specHeight = View.MeasureSpec.makeMeasureSpec(screenSize.y, View.MeasureSpec.AT_MOST);
@@ -124,17 +104,10 @@ public class PopupIndicator {
         mPopupView.setColors(startColor, endColor);
     }
 
-    /**
-     * This will start the closing animation of the Marker and call onClosingComplete when finished
-     */
     public void dismiss() {
         mPopupView.mMarker.animateClose();
     }
 
-    /**
-     * FORCE the popup window to be removed.
-     * You typically calls this when the parent view is being removed from the window to avoid a Window Leak
-     */
     public void dismissComplete() {
         if (isShowing()) {
             mShowing = false;
@@ -180,12 +153,6 @@ public class PopupIndicator {
         return p;
     }
 
-    /**
-     * I'm NOT completely sure how all this bitwise things work...
-     *
-     * @param curFlags
-     * @return
-     */
     private int computeFlags(int curFlags) {
         curFlags &= ~(
                 WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES |
@@ -201,16 +168,11 @@ public class PopupIndicator {
         return curFlags;
     }
 
-    /**
-     * Small FrameLayout class to hold and move the bubble around when requested
-     * I wanted to use the {@link Marker} directly
-     * but doing so would make some things harder to implement
-     * (like moving the marker around, having the Marker's outline to work, etc)
-     */
     private class Floater extends FrameLayout implements MarkerDrawable.MarkerAnimationListener {
         private final Marker mMarker;
         private int mOffset;
 
+        @SuppressLint("RtlHardcoded")
         public Floater(Context context, AttributeSet attrs, int defStyleAttr, String maxValue, int thumbSize, int separation) {
             super(context);
             mMarker = new Marker(context, attrs, defStyleAttr, maxValue, thumbSize, separation);

@@ -26,14 +26,6 @@ import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
 
-/**
- * A drawable that changes it's Paint color depending on the Drawable State
- * <p>
- * Subclasses should implement {@link #doDraw(android.graphics.Canvas, android.graphics.Paint)}
- * </p>
- *
- * @hide
- */
 public abstract class StateDrawable extends Drawable {
     private ColorStateList mTintStateList;
     private final Paint mPaint;
@@ -52,7 +44,7 @@ public abstract class StateDrawable extends Drawable {
     }
 
     @Override
-    public boolean setState(int[] stateSet) {
+    public boolean setState(@NonNull int[] stateSet) {
         boolean handled = super.setState(stateSet);
         handled = updateTint(stateSet) || handled;
         return handled;
@@ -75,7 +67,7 @@ public abstract class StateDrawable extends Drawable {
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
         mPaint.setColor(mCurrentColor);
         int alpha = modulateAlpha(Color.alpha(mCurrentColor));
         mPaint.setAlpha(alpha);
@@ -87,13 +79,6 @@ public abstract class StateDrawable extends Drawable {
         mCurrentColor = tintStateList.getDefaultColor();
     }
 
-    /**
-     * Subclasses should implement this method to do the actual drawing
-     *
-     * @param canvas The current {@link android.graphics.Canvas} to draw into
-     * @param paint  The {@link android.graphics.Paint} preconfigurred with the current
-     *               {@link android.content.res.ColorStateList} color
-     */
     abstract void doDraw(Canvas canvas, Paint paint);
 
     @Override
