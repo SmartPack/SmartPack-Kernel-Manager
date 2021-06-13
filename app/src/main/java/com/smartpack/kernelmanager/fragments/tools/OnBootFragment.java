@@ -35,7 +35,7 @@ import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.SwipeableDescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.TitleView;
-import com.smartpack.kernelmanager.utils.tools.ScriptManager;
+import com.smartpack.kernelmanager.utils.tools.Scripts;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -249,10 +249,10 @@ public class OnBootFragment extends RecyclerViewFragment {
             items.addAll(profiles);
         }
 
-        if (!ScriptManager.list(requireActivity()).isEmpty()) {
+        if (!Scripts.list(requireActivity()).isEmpty()) {
             boolean script_onboot = Prefs.getBoolean("scripts_onboot", false, getActivity());
             final Set<String> onBootScripts = Prefs.getStringSet("on_boot_scripts", new HashSet<>(), getActivity());
-            for (final String script : ScriptManager.list(requireActivity())) {
+            for (final String script : Scripts.list(requireActivity())) {
                 if (script_onboot && Utils.getExtension(script).equals("sh")) {
                     if (Utils.isFDroidFlavor(requireActivity())) {
                         SwipeableDescriptionView scriptItem = new SwipeableDescriptionView();
@@ -262,8 +262,8 @@ public class OnBootFragment extends RecyclerViewFragment {
                             mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.remove_script_question, script),
                                     (dialogInterface, i) -> {
                                     }, (dialogInterface, i) -> {
-                                        ScriptManager.delete(script, requireActivity());
-                                        if (ScriptManager.list(requireActivity()).isEmpty()) {
+                                        Scripts.delete(script, requireActivity());
+                                        if (Scripts.list(requireActivity()).isEmpty()) {
                                             Prefs.saveBoolean("scripts_onboot", false, getActivity());
                                         }
                                         reload();
@@ -287,8 +287,8 @@ public class OnBootFragment extends RecyclerViewFragment {
                             mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.remove_script_question, script),
                                     (dialogInterface, i) -> {
                                     }, (dialogInterface, i) -> {
-                                        ScriptManager.delete(script, requireActivity());
-                                        if (ScriptManager.list(requireActivity()).isEmpty()) {
+                                        Scripts.delete(script, requireActivity());
+                                        if (Scripts.list(requireActivity()).isEmpty()) {
                                             Prefs.saveBoolean("scripts_onboot", false, getActivity());
                                         }
                                         reload();

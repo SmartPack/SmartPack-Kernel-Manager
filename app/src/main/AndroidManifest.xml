@@ -150,7 +150,7 @@
             </intent-filter>
         </receiver>
 
-        <!-- Profile Tile -->
+        <!-- Spectrum Tile -->
         <service
             android:name=".tiles.SpectrumTile"
             android:enabled="true"
@@ -162,6 +162,19 @@
             </intent-filter>
         </service>
 
+        <!-- Script Tile -->
+        <service
+            android:name=".tiles.ScriptTile"
+            android:enabled="true"
+            android:icon="@drawable/ic_console"
+            android:label="@string/script"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
+
+        <!-- Klapse Tile -->
         <service
             android:name=".tiles.KLapseTile"
             android:enabled="true"

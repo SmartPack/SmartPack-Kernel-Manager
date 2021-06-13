@@ -36,9 +36,7 @@ import com.smartpack.kernelmanager.utils.kernel.screen.KLapse;
 public class KLapseTile extends TileService {
 
     private int id = KLapse.getklapseEnable();
-    private int nightR = KLapse.getklapseRed();
-    private int nightG = KLapse.getklapseGreen();
-    private int nightB = KLapse.getklapseBlue();
+    private final int nightR = KLapse.getklapseRed(), nightG = KLapse.getklapseGreen(), nightB = KLapse.getklapseBlue();
 
     @Override
     public void onStartListening() {

@@ -41,7 +41,7 @@ import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
-import com.smartpack.kernelmanager.utils.tools.ScriptManager;
+import com.smartpack.kernelmanager.utils.tools.Scripts;
 import com.smartpack.kernelmanager.utils.kernel.wakelock.Wakelocks;
 
 import org.frap129.spectrum.Spectrum;
@@ -98,17 +98,17 @@ public class ApplyOnBootService extends Service {
 
             // Apply everything regardless
             if (Prefs.getBoolean("scripts_onboot", false, this)
-                    && !ScriptManager.list(this).isEmpty()) {
-                for (final String script : ScriptManager.list(this)) {
+                    && !Scripts.list(this).isEmpty()) {
+                for (final String script : Scripts.list(this)) {
                     if (Utils.getExtension(script).equals("sh")) {
-                        RootFile.execute(ScriptManager.scriptFile(this) + "/" + script);
+                        RootFile.execute(Scripts.scriptFile(this) + "/" + script);
                     }
                 }
             } else {
-                for (final String script : ScriptManager.list(this)) {
+                for (final String script : Scripts.list(this)) {
                     if (Utils.getExtension(script).equals("sh")) {
                         if (Prefs.getStringSet("on_boot_scripts", new HashSet<>(), this).contains(script)) {
-                            RootFile.execute(ScriptManager.scriptFile(this) + "/" + script);
+                            RootFile.execute(Scripts.scriptFile(this) + "/" + script);
                         }
                     }
                 }

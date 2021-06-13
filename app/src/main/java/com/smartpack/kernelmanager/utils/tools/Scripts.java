@@ -36,7 +36,7 @@ import java.util.Objects;
  * Ref: https://github.com/Grarak/KernelAdiutor/blob/master/app/src/main/java/com/grarak/kerneladiutor/utils/tools/Initd.java
  */
 
-public class ScriptManager {
+public class Scripts {
 
     public static String mScriptName = null;
 

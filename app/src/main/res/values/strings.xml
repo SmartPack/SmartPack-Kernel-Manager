@@ -995,6 +995,8 @@
     <string name="script_exists">A script named %s is already exists! Aborting.</string>
     <string name="executing">Executing</string>
     <string name="share_script">To apply this script, simply import this file on \'SmartPack-Kernel Manager -> Script Manager -> Import\'.</string>
+    <string name="quick_tile">Quick Tile</string>
+    <string name="quick_tile_empty_message">No scripts are set to apply from this tile!</string>
 
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">This section shows you what things will happen when your device boots up. If it\'s blank, then nothing will happen after boot.</string>

@@ -40,7 +40,7 @@ import com.smartpack.kernelmanager.utils.Common;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
-import com.smartpack.kernelmanager.utils.tools.ScriptManager;
+import com.smartpack.kernelmanager.utils.tools.Scripts;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -168,13 +168,13 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     @SuppressLint("UseCompatLoadingForDrawables")
     private void load(List<RecyclerViewItem> items) {
         final Set<String> onBootScripts = Prefs.getStringSet("on_boot_scripts", new HashSet<>(), requireContext());
-        for (final String script : ScriptManager.list(requireActivity())) {
+        for (final String script : Scripts.list(requireActivity())) {
             if (Utils.getExtension(script).equals("sh")) {
                 DescriptionView descriptionView = new DescriptionView();
                 descriptionView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_file, requireContext()));
                 descriptionView.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
                 descriptionView.setTitle(script);
-                descriptionView.setSummary(ScriptManager.scriptFile(requireActivity()) + "/" + script);
+                descriptionView.setSummary(Scripts.scriptFile(requireActivity()) + "/" + script);
 
                 if (Prefs.getBoolean("enable_onboot", true, getActivity()) && onBootScripts.contains(script)) {
                     descriptionView.setIndicator(ViewUtils.getColoredIcon(R.drawable.ic_flash, requireActivity()));
@@ -189,8 +189,11 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                         menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.on_boot))
                                 .setCheckable(true).setChecked(onBootScripts.contains(script));
                     }
-                    menu.add(Menu.NONE, 4, Menu.NONE, getString(R.string.share));
-                    menu.add(Menu.NONE, 5, Menu.NONE, getString(R.string.delete));
+                    menu.add(Menu.NONE, 4, Menu.NONE, getString(R.string.quick_tile)).setCheckable(true)
+                            .setChecked(Prefs.getString("apply_tile", null, getActivity()) != null &&
+                                    Prefs.getString("apply_tile", null, getActivity()).equals(script));
+                    menu.add(Menu.NONE, 5, Menu.NONE, getString(R.string.share));
+                    menu.add(Menu.NONE, 6, Menu.NONE, getString(R.string.delete));
                     popupMenu.setOnMenuItemClickListener(item -> {
                         switch (item.getItemId()) {
                             case 0:
@@ -203,12 +206,12 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                                 mEditScript = script;
                                 Intent intent = new Intent(getActivity(), EditorActivity.class);
                                 intent.putExtra(EditorActivity.TITLE_INTENT, script);
-                                intent.putExtra(EditorActivity.TEXT_INTENT, ScriptManager.read(script, requireActivity()));
+                                intent.putExtra(EditorActivity.TEXT_INTENT, Scripts.read(script, requireActivity()));
                                 startActivityForResult(intent, 0);
                                 break;
                             case 2:
                                 Common.setDetailsTitle(script.replace(".sh","").toUpperCase());
-                                Common.setDetailsTxt(ScriptManager.read(script, requireActivity()));
+                                Common.setDetailsTxt(Scripts.read(script, requireActivity()));
                                 Intent details = new Intent(getActivity(), ForegroundActivity.class);
                                 startActivity(details);
                                 break;
@@ -222,14 +225,23 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                                 reload();
                                 break;
                             case 4:
-                                Utils.shareItem(getActivity(), script, ScriptManager.scriptFile(requireActivity()) + "/" + script, getString(R.string.share_script)
-                                        + "\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
+                                if (Prefs.getString("apply_tile", null, getActivity()) != null &&
+                                        Prefs.getString("apply_tile", null, getActivity()).equals(script)) {
+                                    Prefs.saveString("apply_tile", null, getActivity());
+                                } else {
+                                    Prefs.saveString("apply_tile", script, getActivity());
+                                }
+                                reload();
                                 break;
                             case 5:
+                                Utils.shareItem(getActivity(), script, Scripts.scriptFile(requireActivity()) + "/" + script, getString(R.string.share_script)
+                                        + "\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
+                                break;
+                            case 6:
                                 mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
                                         (dialogInterface, i) -> {
                                         }, (dialogInterface, i) -> {
-                                            ScriptManager.delete(script, requireActivity());
+                                            Scripts.delete(script, requireActivity());
                                             reload();
                                         }, dialogInterface -> mDeleteDialog = null, getActivity());
                                 mDeleteDialog.show();
@@ -263,21 +275,21 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                ScriptManager.mApplying = true;
-                ScriptManager.mScriptName = script;
-                ScriptManager.mOutput = new ArrayList<>();
+                Scripts.mApplying = true;
+                Scripts.mScriptName = script;
+                Scripts.mOutput = new ArrayList<>();
                 Intent applyIntent = new Intent(requireActivity(), ApplyScriptActivity.class);
                 startActivity(applyIntent);
             }
             @Override
             protected Void doInBackground(Void... voids) {
-                ScriptManager.execute(script, requireActivity());
+                Scripts.execute(script, requireActivity());
                 return null;
             }
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                ScriptManager.mApplying = false;
+                Scripts.mApplying = false;
             }
         }.execute();
     }
@@ -307,10 +319,10 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
 
         if (data == null) return;
         if (requestCode == 0) {
-            ScriptManager.write(mEditScript, Objects.requireNonNull(data.getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString(), requireActivity());
+            Scripts.write(mEditScript, Objects.requireNonNull(data.getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString(), requireActivity());
             reload();
         } else if (requestCode == 1) {
-            ScriptManager.write(mCreateName, Objects.requireNonNull(data.getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString(), requireActivity());
+            Scripts.write(mCreateName, Objects.requireNonNull(data.getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString(), requireActivity());
             mCreateName = null;
             reload();
         } else if (requestCode == 2) {
@@ -319,7 +331,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".sh"));
                 return;
             }
-            if (Utils.existFile(ScriptManager.scriptExistsCheck(mSelectedFile.getName(), requireActivity()))) {
+            if (Utils.existFile(Scripts.scriptExistsCheck(mSelectedFile.getName(), requireActivity()))) {
                 Utils.snackbar(getRootView(), getString(R.string.script_exists, mSelectedFile.getName()));
                 return;
             }
@@ -328,7 +340,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
             selectQuestion.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
             selectQuestion.setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {
-                ScriptManager.importScript(mSelectedFile.getAbsolutePath(), requireActivity());
+                Scripts.importScript(mSelectedFile.getAbsolutePath(), requireActivity());
                 reload();
             });
             selectQuestion.show();
@@ -378,7 +390,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 text = text.replace(" ", "_");
             }
 
-            if (ScriptManager.list(requireActivity()).contains(text)) {
+            if (Scripts.list(requireActivity()).contains(text)) {
                 Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
                 return;
             }
