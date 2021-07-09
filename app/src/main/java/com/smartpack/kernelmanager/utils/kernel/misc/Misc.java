@@ -53,6 +53,7 @@ public class Misc {
     private static final String ARCH_POWER = "/sys/kernel/sched/arch_power";
     private static final String SELINUX = "/sys/fs/selinux/enforce";
     private static final String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
+    private static final String TCP_CONGESTIONS_CONTROL = "/proc/sys/net/ipv4/tcp_congestion_control";
 
     private static final String LEASES_ENABLE = "/proc/sys/fs/leases-enable";
     private static final String LEASE_BREAK_TIME = "/proc/sys/fs/lease-break-time";
@@ -136,7 +137,7 @@ public class Misc {
     }
 
     public String getTcpCongestion() {
-        return getTcpAvailableCongestions().get(0);
+         return Utils.readFile(TCP_CONGESTIONS_CONTROL);
     }
 
     public List<String> getTcpAvailableCongestions() {
