@@ -136,8 +136,16 @@ public class Misc {
         run("sysctl -w net.ipv4.tcp_congestion_control=" + tcpCongestion, TCP_AVAILABLE_CONGESTIONS, context);
     }
 
+    private static boolean isTCPCCExist() {
+        return Utils.existFile(TCP_CONGESTIONS_CONTROL);
+    }
+
     public String getTcpCongestion() {
-         return Utils.readFile(TCP_CONGESTIONS_CONTROL);
+        if (isTCPCCExist()) {
+            return Utils.readFile(TCP_CONGESTIONS_CONTROL);
+        } else {
+            return getTcpAvailableCongestions().get(0);
+        }
     }
 
     public List<String> getTcpAvailableCongestions() {
