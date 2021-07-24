@@ -33,7 +33,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 
 import androidx.annotation.Nullable;
 
@@ -177,13 +176,10 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     private void reload() {
         if (mLoader == null) {
-            getHandler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    clearItems();
-                    mLoader = new UILoader(ProfileFragment.this);
-                    mLoader.execute();
-                }
+            getHandler().postDelayed(() -> {
+                clearItems();
+                mLoader = new UILoader(ProfileFragment.this);
+                mLoader.execute();
             }, 250);
         }
     }
@@ -541,7 +537,7 @@ public class ProfileFragment extends RecyclerViewFragment {
 
             if (new ExportProfile(mExportProfile, mProfiles.getVersion()).export(text, requireActivity())) {
                 Utils.snackbar(getRootView(), getString(R.string.exported_item, text,
-                        Utils.getInternalDataStorage(requireActivity()) + "/profiles"));
+                        new File(Environment.getExternalStorageDirectory(), "SP/profiles").getAbsolutePath()));
             } else {
                 Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
             }

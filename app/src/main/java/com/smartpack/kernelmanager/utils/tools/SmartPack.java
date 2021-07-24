@@ -24,11 +24,13 @@ package com.smartpack.kernelmanager.utils.tools;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Environment;
 
 import com.smartpack.kernelmanager.activities.FlashingActivity;
 import com.smartpack.kernelmanager.utils.Common;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.topjohnwu.superuser.io.SuFile;
 
 import java.io.File;
 
@@ -38,12 +40,12 @@ import java.io.File;
 
 public class SmartPack {
 
-    public static String getLogFolderPath(Context context) {
-        return Utils.getInternalDataStorage(context) + "/logs";
+    public static String getLogFolderPath() {
+        return new File(Environment.getExternalStorageDirectory(), "SP/logs").getAbsolutePath();
     }
 
     public static void prepareFolder(String path) {
-        File file = new File(path);
+        File file = SuFile.open(path);
         if (file.exists() && file.isFile()) {
             file.delete();
         }

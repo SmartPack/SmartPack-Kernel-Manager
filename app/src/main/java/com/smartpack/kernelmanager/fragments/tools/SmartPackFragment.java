@@ -378,10 +378,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                 return;
             }
-            SmartPack.prepareFolder(SmartPack.getLogFolderPath(requireActivity()));
-            new Execute().execute("logcat -d > " + SmartPack.getLogFolderPath(requireActivity()) + "/logcat-" + Utils.getTimeStamp());
-            new Execute().execute("logcat  -b radio -v time -d > " + SmartPack.getLogFolderPath(requireActivity()) + "/radio-" + Utils.getTimeStamp());
-            new Execute().execute("logcat -b events -v time -d > " + SmartPack.getLogFolderPath(requireActivity()) + "/events-" + Utils.getTimeStamp());
+            SmartPack.prepareFolder(SmartPack.getLogFolderPath());
+            new Execute().execute("logcat -d > " + SmartPack.getLogFolderPath() + "/logcat-" + Utils.getTimeStamp());
+            new Execute().execute("logcat  -b radio -v time -d > " + SmartPack.getLogFolderPath() + "/radio-" + Utils.getTimeStamp());
+            new Execute().execute("logcat -b events -v time -d > " + SmartPack.getLogFolderPath() + "/events-" + Utils.getTimeStamp());
         });
         items.add(logcat);
 
@@ -394,8 +394,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                     return;
                 }
-                SmartPack.prepareFolder(SmartPack.getLogFolderPath(requireActivity()));
-                new Execute().execute("cat /proc/last_kmsg > " + SmartPack.getLogFolderPath(requireActivity()) + "/last_kmsg-" + Utils.getTimeStamp());
+                SmartPack.prepareFolder(SmartPack.getLogFolderPath());
+                new Execute().execute("cat /proc/last_kmsg > " + SmartPack.getLogFolderPath() + "/last_kmsg-" + Utils.getTimeStamp());
             });
             items.add(lastkmsg);
         }
@@ -408,8 +408,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                 return;
             }
-            SmartPack.prepareFolder(SmartPack.getLogFolderPath(requireActivity()));
-            new Execute().execute("dmesg > " + SmartPack.getLogFolderPath(requireActivity()) + "/dmesg-" + Utils.getTimeStamp());
+            SmartPack.prepareFolder(SmartPack.getLogFolderPath());
+            new Execute().execute("dmesg > " + SmartPack.getLogFolderPath() + "/dmesg-" + Utils.getTimeStamp());
         });
         items.add(dmesg);
 
@@ -422,8 +422,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                     return;
                 }
-                SmartPack.prepareFolder(SmartPack.getLogFolderPath(requireActivity()));
-                new Execute().execute("cat /sys/fs/pstore/dmesg-ramoops* > " + SmartPack.getLogFolderPath(requireActivity()) + "/dmesg-ramoops-" + Utils.getTimeStamp());
+                SmartPack.prepareFolder(SmartPack.getLogFolderPath());
+                new Execute().execute("cat /sys/fs/pstore/dmesg-ramoops* > " + SmartPack.getLogFolderPath() + "/dmesg-ramoops-" + Utils.getTimeStamp());
             });
             items.add(dmesgRamoops);
         }
@@ -437,8 +437,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
                     return;
                 }
-                SmartPack.prepareFolder(SmartPack.getLogFolderPath(requireActivity()));
-                new Execute().execute("cat /sys/fs/pstore/console-ramoops* > " + SmartPack.getLogFolderPath(requireActivity()) + "/console-ramoops-" + Utils.getTimeStamp());
+                SmartPack.prepareFolder(SmartPack.getLogFolderPath());
+                new Execute().execute("cat /sys/fs/pstore/console-ramoops* > " + SmartPack.getLogFolderPath() + "/console-ramoops-" + Utils.getTimeStamp());
             });
             items.add(ramoops);
         }
