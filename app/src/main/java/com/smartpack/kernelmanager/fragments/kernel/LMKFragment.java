@@ -43,7 +43,7 @@ public class LMKFragment extends RecyclerViewFragment {
 
     private final LinkedHashMap<Integer, String> sProfiles = new LinkedHashMap<>();
 
-    private List<SeekBarView> mMinFrees = new ArrayList<>();
+    private final List<SeekBarView> mMinFrees = new ArrayList<>();
 
     @Override
     protected void init() {
@@ -98,6 +98,15 @@ public class LMKFragment extends RecyclerViewFragment {
             fastRun.addOnSwitchListener((switchView, isChecked) -> LMK.enableFastRun(isChecked, getActivity()));
 
             lmkCard.addItem(fastRun);
+        }
+
+        if (LMK.hasProcessReclaim()) {
+            SwitchView processReclaim = new SwitchView();
+            processReclaim.setSummary(getString(R.string.process_reclaim));
+            processReclaim.setChecked(LMK.isProcessReclaimEnabled());
+            processReclaim.addOnSwitchListener((switchView, isChecked) -> LMK.enableProcessReclaim(isChecked, getActivity()));
+
+            lmkCard.addItem(processReclaim);
         }
 
         mMinFrees.clear();

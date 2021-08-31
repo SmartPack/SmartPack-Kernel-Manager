@@ -39,6 +39,7 @@ public class LMK {
     private static final String SWAP_WAIT = "/sys/module/lowmemorykiller/parameters/swap_wait";
     private static final String SWAP_WAIT_PERCENT = "/sys/module/lowmemorykiller/parameters/swap_wait_percent";
     private static final String FAST_RUN = "/sys/module/lowmemorykiller/parameters/lmk_fast_run";
+    private static final String PROCESS_RECLAIM = "/sys/module/process_reclaim/parameters/enable_process_reclaim";
 
     public static void setSwapWaitPercent(int value, Context context) {
         run(Control.write(String.valueOf(value), SWAP_WAIT_PERCENT), SWAP_WAIT_PERCENT, context);
@@ -104,9 +105,21 @@ public class LMK {
         return Utils.existFile(FAST_RUN);
     }
 
+    public static void enableProcessReclaim(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", PROCESS_RECLAIM), PROCESS_RECLAIM, context);
+    }
+
+    public static boolean isProcessReclaimEnabled() {
+        return Utils.readFile(PROCESS_RECLAIM).equals("1");
+    }
+
+    public static boolean hasProcessReclaim() {
+        return Utils.existFile(PROCESS_RECLAIM);
+    }
+
     public static boolean supported() {
         try {
-            return getMinFrees().size() > 1;
+            return getMinFrees().size() > 1 || hasFastRun() || hasProcessReclaim();
         } catch (NullPointerException ignored) {
             return false;
         }
