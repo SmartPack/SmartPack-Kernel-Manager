@@ -72,6 +72,21 @@ public class VMFragment extends RecyclerViewFragment {
             vmCard.addItem(dirNotifier);
         }
 
+        if (VM.hasStatInterval()) {
+            GenericSelectView statInterval = new GenericSelectView();
+            statInterval.setTitle(getString(R.string.vm_stat_interval) + (" (s)"));
+            statInterval.setSummary(getString(R.string.vm_stat_interval_summary));
+            statInterval.setValue(VM.getStatInterval());
+            statInterval.setInputType(InputType.TYPE_CLASS_NUMBER);
+            statInterval.setOnGenericValueListener((genericSelectView, value) -> {
+                VM.setStatInterval(value, getActivity());
+                genericSelectView.setValue(value);
+                getHandler().postDelayed(() -> genericSelectView.setValue(VM.getStatInterval()),500);
+            });
+
+            vmCard.addItem(statInterval);
+        }
+
         if (!(Prefs.getBoolean("vm_tunables", false, getActivity())))
             Prefs.saveBoolean("vm_tunables", false, getActivity());
 

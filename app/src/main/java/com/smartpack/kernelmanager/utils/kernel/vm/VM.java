@@ -81,4 +81,16 @@ public class VM {
         return Utils.existFile(DIR_NOTIFY);
     }
 
+    public static String getStatInterval() {
+        return Utils.readFile(STAT_INTERVAL);
+    }
+
+    public static void setStatInterval(String value, Context context) {
+        run(Control.write(String.valueOf(value), STAT_INTERVAL), STAT_INTERVAL, context);
+    }
+
+    public static boolean hasStatInterval() {
+        return Utils.existFile(STAT_INTERVAL);
+    }
+
 }
