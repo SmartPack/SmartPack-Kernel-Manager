@@ -838,6 +838,8 @@
     <string name="maximum_compression_ratio">Maximum compression ratio</string>
     <string name="maximum_compression_ratio_summary">Maximum compression ratio, as percentage, for an acceptable compressed page. Any page that does not compress by at least this ratio will be rejected.</string>
     <string name="virtual_memory_tunables">Virtual memory tunable\'s</string>
+    <string name="dir_change_notifier">Directory Change Notifier</string>
+    <string name="dir_change_notifier_summary">Directory change notifier service informs processes about file/directory changes.</string>
 
     <!-- Entropy -->
     <string name="available">Available</string>

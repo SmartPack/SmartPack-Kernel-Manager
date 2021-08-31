@@ -30,6 +30,9 @@ import com.smartpack.kernelmanager.utils.root.Control;
  */
 public class VM {
 
+    private static final String STAT_INTERVAL = "/proc/sys/vm/stat_interval";
+    private static final String DIR_NOTIFY = "/proc/sys/fs/dir-notify-enable";
+
     private static final String PATH = "/proc/sys/vm";
     private static final String[] SUPPORTED_VM = {"admin_reserve_kbytes", "block_dump", "compact_memory",
             "compact_unevictable_allowed", "dirty_ratio", "dirty_bytes", "dirty_background_ratio", "dirty_background_bytes",
@@ -64,6 +67,18 @@ public class VM {
 
     private static void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.VM, id, context);
+    }
+
+    public static void enableDirNotify(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", DIR_NOTIFY), DIR_NOTIFY, context);
+    }
+
+    public static boolean isDirNotifyEnabled() {
+        return Utils.readFile(DIR_NOTIFY).equals("1");
+    }
+
+    public static boolean hasDirNotify() {
+        return Utils.existFile(DIR_NOTIFY);
     }
 
 }

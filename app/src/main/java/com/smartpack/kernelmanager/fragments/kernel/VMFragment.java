@@ -62,6 +62,16 @@ public class VMFragment extends RecyclerViewFragment {
         CardView vmCard = new CardView(getActivity());
         vmCard.setTitle(getString(R.string.virtual_memory));
 
+        if (VM.hasDirNotify()) {
+            SwitchView dirNotifier = new SwitchView();
+            dirNotifier.setTitle(getString(R.string.dir_change_notifier));
+            dirNotifier.setSummary(getString(R.string.dir_change_notifier_summary));
+            dirNotifier.setChecked(VM.isDirNotifyEnabled());
+            dirNotifier.addOnSwitchListener((switchView, isChecked) -> VM.enableDirNotify(isChecked, getActivity()));
+
+            vmCard.addItem(dirNotifier);
+        }
+
         if (!(Prefs.getBoolean("vm_tunables", false, getActivity())))
             Prefs.saveBoolean("vm_tunables", false, getActivity());
 
@@ -96,11 +106,7 @@ public class VMFragment extends RecyclerViewFragment {
                 }
 
                 final vmTunablesManager manager = new vmTunablesManager();
-                if (Prefs.getBoolean("vm_tunables", false, getActivity())) {
-                    manager.showVMTunables(true);
-                } else {
-                    manager.showVMTunables(false);
-                }
+                manager.showVMTunables(Prefs.getBoolean("vm_tunables", false, getActivity()));
                 vmTunables.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                     @Override
                     public void onChanged(SwitchView switchview, boolean isChecked) {
@@ -130,10 +136,8 @@ public class VMFragment extends RecyclerViewFragment {
         zram.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
             @Override
             public void onStop(SeekBarView seekBarView, int position, String value) {
-                ZRAM.setDisksize(position * 8, getActivity());
-                getHandler().postDelayed(() -> {
-                            zram.setProgress(ZRAM.getDisksize() / 8);
-                        },
+                ZRAM.setDisksize(position * 8L, getActivity());
+                getHandler().postDelayed(() -> zram.setProgress(ZRAM.getDisksize() / 8),
                         500);
             }
 
