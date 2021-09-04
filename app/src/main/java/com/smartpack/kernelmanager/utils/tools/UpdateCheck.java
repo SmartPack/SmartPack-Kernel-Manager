@@ -30,7 +30,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 
 import androidx.core.content.FileProvider;
@@ -139,18 +138,15 @@ public class UpdateCheck {
                 .setCancelable(false)
                 .setNegativeButton(context.getString(R.string.cancel), (dialog, id) -> {
                 })
-                .setPositiveButton(context.getString(R.string.get_it), (dialog, id) -> {
-                    updaterTask(context);
-                })
+                .setPositiveButton(context.getString(R.string.get_it), (dialog, id) -> updaterTask(context))
                 .show();
     }
 
     private static void updaterTask(Context context) {
-        new AsyncTask<Void, Void, Void>() {
+        new AsyncTasks() {
             private ProgressDialog mProgressDialog;
             @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
+            public void onPreExecute() {
                 mProgressDialog = new ProgressDialog(context);
                 mProgressDialog.setMessage(context.getString(R.string.downloading_update, context.
                         getString(R.string.app_name) + " v" + versionName(context) + " ..."));
@@ -158,13 +154,11 @@ public class UpdateCheck {
                 mProgressDialog.show();
             }
             @Override
-            protected Void doInBackground(Void... voids) {
+            public void doInBackground() {
                 getLatestApp(context);
-                return null;
             }
             @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
+            public void onPostExecute() {
                 try {
                     mProgressDialog.dismiss();
                 } catch (IllegalArgumentException ignored) {
@@ -219,10 +213,9 @@ public class UpdateCheck {
         return mKey.equals(mKeyAPK);
     }
 
-    @SuppressLint("PackageManagerGetSignatures")
     private static byte[] getSignature(String packageid, Context context) {
         try {
-            PackageInfo pkgInfo = context.getPackageManager().getPackageInfo(packageid, PackageManager.GET_SIGNATURES);
+            @SuppressLint("PackageManagerGetSignatures") PackageInfo pkgInfo = context.getPackageManager().getPackageInfo(packageid, PackageManager.GET_SIGNATURES);
             return signatureToBytes(pkgInfo.signatures);
         } catch (PackageManager.NameNotFoundException ignored) {}
         return null;

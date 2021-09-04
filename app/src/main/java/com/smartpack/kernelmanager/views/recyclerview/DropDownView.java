@@ -47,7 +47,7 @@ public class DropDownView extends RecyclerViewItem {
     private int mSelection = -1;
     private boolean mExpanded;
 
-    private List<View> mDoneViews = new ArrayList<>();
+    private final List<View> mDoneViews = new ArrayList<>();
 
     private float mItemHeight;
     private ValueAnimator mAnimator;

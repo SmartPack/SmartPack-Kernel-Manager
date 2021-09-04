@@ -27,7 +27,6 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -62,6 +61,7 @@ import com.smartpack.kernelmanager.activities.NavigationActivity;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
+import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.views.dialog.ViewPagerDialog;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewAdapter;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -106,7 +106,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     private AppBarLayout mAppBarLayout;
     private Toolbar mToolBar;
 
-    private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
+    private AsyncTasks mLoader;
 
     private SimpleItemTouchHelperCallback mItemCallback;
 
@@ -217,10 +217,11 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         return mRootView;
     }
 
-    private static class UILoader extends AsyncTask<Void, Void, List<RecyclerViewItem>> {
+    private static class UILoader extends AsyncTasks {
 
-        private WeakReference<RecyclerViewFragment> mRefFragment;
-        private Bundle mSavedInstanceState;
+        private final WeakReference<RecyclerViewFragment> mRefFragment;
+        private List<RecyclerViewItem> items;
+        private final Bundle mSavedInstanceState;
 
         private UILoader(RecyclerViewFragment fragment, Bundle savedInstanceState) {
             mRefFragment = new WeakReference<>(fragment);
@@ -228,8 +229,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         }
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
+        public void onPreExecute() {
             RecyclerViewFragment fragment = mRefFragment.get();
 
             fragment.showProgress();
@@ -237,25 +237,22 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         }
 
         @Override
-        protected List<RecyclerViewItem> doInBackground(Void... params) {
+        public void doInBackground() {
             RecyclerViewFragment fragment = mRefFragment.get();
 
             if (fragment.isAdded() && fragment.getActivity() != null) {
-                List<RecyclerViewItem> items = new ArrayList<>();
+                items = new ArrayList<>();
                 fragment.addItems(items);
-                return items;
             }
-            return null;
         }
 
         @Override
-        protected void onPostExecute(List<RecyclerViewItem> recyclerViewItems) {
-            super.onPostExecute(recyclerViewItems);
-            if (isCancelled() || recyclerViewItems == null) return;
+        public void onPostExecute() {
+            //if (isCancelled() || recyclerViewItems == null) return;
 
             final RecyclerViewFragment fragment = mRefFragment.get();
 
-            for (RecyclerViewItem item : recyclerViewItems) {
+            for (RecyclerViewItem item : items) {
                 fragment.addItem(item);
             }
             fragment.hideProgress();
@@ -753,7 +750,6 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             ViewCompat.setElevation(mAppBarLayout, 0);
         }
         if (mLoader != null) {
-            mLoader.cancel(true);
             mLoader = null;
         }
         for (RecyclerViewItem item : mItems) {

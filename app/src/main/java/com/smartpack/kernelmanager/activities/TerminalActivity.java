@@ -22,7 +22,6 @@
 package com.smartpack.kernelmanager.activities;
 
 import android.annotation.SuppressLint;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -39,6 +38,7 @@ import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
@@ -173,19 +173,17 @@ public class TerminalActivity extends BaseActivity {
                 } else if (mCommand[0].equals("su") || mCommand[0].contains("su ")) {
                     mShellCommand.setText(null);
                 } else {
-                    new AsyncTask<Void, Void, Void>() {
+                    new AsyncTasks() {
                         @Override
-                        protected void onPreExecute() {
-                            super.onPreExecute();
+                        public void onPreExecute() {
                             mShellOutput.setTextIsSelectable(false);
                             mHistory = mShellOutput.getText();
                             mRunning = true;
                             mResult = new ArrayList<>();
                             mShellOutput.setVisibility(View.VISIBLE);
                         }
-                        @SuppressLint("WrongThread")
                         @Override
-                        protected Void doInBackground(Void... voids) {
+                        public void doInBackground() {
                             if (mShellCommand.getText() != null && !mCommand[0].isEmpty()) {
                                 mResult.add(whoAmI + ": " + mCommand[0]);
                                 RootUtils.runAndGetLiveOutput(mCommand[0], mResult);
@@ -193,11 +191,9 @@ public class TerminalActivity extends BaseActivity {
                                     mResult.add(whoAmI + ": " + mCommand[0] + "\n" + mCommand[0]);
                                 }
                             }
-                            return null;
                         }
                         @Override
-                        protected void onPostExecute(Void aVoid) {
-                            super.onPostExecute(aVoid);
+                        public void onPostExecute() {
                             mPWD = RootUtils.runAndGetOutput("pwd");
                             mShellCommand.setText(null);
                             if (mHistory != null && !mHistory.toString().isEmpty()) {

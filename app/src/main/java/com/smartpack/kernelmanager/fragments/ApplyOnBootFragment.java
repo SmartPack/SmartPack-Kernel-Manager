@@ -56,7 +56,6 @@ import com.smartpack.kernelmanager.fragments.kernel.boost.StuneBoostFragment;
 import com.smartpack.kernelmanager.fragments.tools.CustomControlsFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
-import com.smartpack.kernelmanager.utils.kernel.io.IOAdvanced;
 
 import java.util.HashMap;
 

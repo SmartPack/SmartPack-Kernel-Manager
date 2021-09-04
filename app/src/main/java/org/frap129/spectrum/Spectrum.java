@@ -35,7 +35,7 @@ import com.smartpack.kernelmanager.utils.root.RootUtils;
 
 public class Spectrum {
 
-    private static boolean spectrumVendor = RootUtils.getProp("vendor.spectrum.support").equals("1");
+    private static final boolean spectrumVendor = RootUtils.getProp("vendor.spectrum.support").equals("1");
 
     public static String getProfile() {
 	if (spectrumVendor) {

@@ -39,9 +39,9 @@ public class Control {
     private static Control sControl;
 
     private boolean mProfileMode;
-    private LinkedHashMap<String, String> mProfileCommands = new LinkedHashMap<>();
+    private final LinkedHashMap<String, String> mProfileCommands = new LinkedHashMap<>();
 
-    private Executor mExecutor = Executors.newSingleThreadExecutor();
+    private final Executor mExecutor = Executors.newSingleThreadExecutor();
 
     public static String setProp(String prop, String value) {
         return "setprop " + prop + " " + value;

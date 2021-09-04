@@ -22,10 +22,8 @@
 package com.smartpack.kernelmanager.fragments.kernel;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.text.InputType;
 import android.widget.TimePicker;
 
@@ -36,6 +34,7 @@ import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.kernel.screen.KLapse;
+import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -481,61 +480,56 @@ public class KLapseFragment extends RecyclerViewFragment {
     private void showCreateDialog() {
         ViewUtils.dialogEditText("",
                 (dialogInterface, i) -> {
-                }, new ViewUtils.OnDialogEditTextListener() {
-                    @SuppressLint("StaticFieldLeak")
-                    @Override
-                    public void onClick(String text) {
-                        if (text.isEmpty()) {
-                            Utils.snackbar(getRootView(), getString(R.string.name_empty));
-                            return;
-                        }
-                        if (!text.endsWith(".sh")) {
-                            text += ".sh";
-                        }
-                        if (text.contains(" ")) {
-                            text = text.replace(" ", "_");
-                        }
-                        if (Utils.existFile(KLapse.profileFolder(requireActivity()).toString() + "/" + text)) {
-                            Utils.snackbar(getRootView(), getString(R.string.profile_exists, text));
-                            return;
-                        }
-                        final String path = text;
-                        new AsyncTask<Void, Void, Void>() {
-                            @Override
-                            protected void onPreExecute() {
-                                super.onPreExecute();
-                                showProgressMessage(getString(R.string.exporting_settings, getString(R.string.klapse)) + "...");
-                            }
-                            @Override
-                            protected Void doInBackground(Void... voids) {
-                                KLapse.prepareProfileFolder(requireActivity());
-                                Utils.create("#!/system/bin/sh\n\n# Created by SmartPack-Kernel Manager", new File(KLapse.profileFolder(requireActivity()).toString(), path));
-                                if (KLapse.supported()) {
-                                    Utils.append("\n# K-lapse", KLapse.profileFolder(requireActivity()).toString() + "/" + path);
-                                    for (int i = 0; i < KLapse.size(); i++) {
-                                        KLapse.exportKlapseSettings(path, i, requireActivity());
-                                    }
-                                }
-                                Utils.append("\n# The END\necho \"Profile applied successfully...\" | tee /dev/kmsg", KLapse.profileFolder(requireActivity()).toString() + "/" + path);
-                                return null;
-                            }
-                            @Override
-                            protected void onPostExecute(Void aVoid) {
-                                super.onPostExecute(aVoid);
-                                hideProgressMessage();
-                                new Dialog(requireActivity())
-                                        .setMessage(getString(R.string.profile_created, KLapse.profileFolder(requireActivity()).toString() + "/" + path))
-                                        .setCancelable(false)
-                                        .setNegativeButton(getString(R.string.cancel), (dialog, id) -> {
-                                        })
-                                        .setPositiveButton(getString(R.string.share), (dialog, id) -> {
-                                            Utils.shareItem(getActivity(), path, KLapse.profileFolder(requireActivity()).toString() + "/" + path, getString(R.string.share_script)
-                                                    + "\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
-                                        })
-                                        .show();
-                            }
-                        }.execute();
+                }, text -> {
+                    if (text.isEmpty()) {
+                        Utils.snackbar(getRootView(), getString(R.string.name_empty));
+                        return;
                     }
+                    if (!text.endsWith(".sh")) {
+                        text += ".sh";
+                    }
+                    if (text.contains(" ")) {
+                        text = text.replace(" ", "_");
+                    }
+                    if (Utils.existFile(KLapse.profileFolder(requireActivity()).toString() + "/" + text)) {
+                        Utils.snackbar(getRootView(), getString(R.string.profile_exists, text));
+                        return;
+                    }
+                    final String path = text;
+
+                    new AsyncTasks() {
+
+                        @Override
+                        public void onPreExecute() {
+                            showProgressMessage(getString(R.string.exporting_settings, getString(R.string.klapse)) + "...");
+                        }
+                        @Override
+                        public void doInBackground() {
+                            KLapse.prepareProfileFolder(requireActivity());
+                            Utils.create("#!/system/bin/sh\n\n# Created by SmartPack-Kernel Manager", new File(KLapse.profileFolder(requireActivity()).toString(), path));
+                            if (KLapse.supported()) {
+                                Utils.append("\n# K-lapse", KLapse.profileFolder(requireActivity()).toString() + "/" + path);
+                                for (int i = 0; i < KLapse.size(); i++) {
+                                    KLapse.exportKlapseSettings(path, i, requireActivity());
+                                }
+                            }
+                            Utils.append("\n# The END\necho \"Profile applied successfully...\" | tee /dev/kmsg", KLapse.profileFolder(requireActivity()).toString() + "/" + path);
+                        }
+                        @Override
+                        public void onPostExecute() {
+                            hideProgressMessage();
+                            new Dialog(requireActivity())
+                                    .setMessage(getString(R.string.profile_created, KLapse.profileFolder(requireActivity()).toString() + "/" + path))
+                                    .setCancelable(false)
+                                    .setNegativeButton(getString(R.string.cancel), (dialog, id) -> {
+                                    })
+                                    .setPositiveButton(getString(R.string.share), (dialog, id) -> {
+                                        Utils.shareItem(getActivity(), path, KLapse.profileFolder(requireActivity()).toString() + "/" + path, getString(R.string.share_script)
+                                                + "\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
+                                    })
+                                    .show();
+                        }
+                    }.execute();
                 }, getActivity()).setOnDismissListener(dialogInterface -> {
                 }).show();
     }

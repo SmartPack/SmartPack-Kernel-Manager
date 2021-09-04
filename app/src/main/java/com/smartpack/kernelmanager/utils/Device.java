@@ -49,7 +49,7 @@ public class Device {
 
         private static final String BUS_INPUT = "/proc/bus/input/devices";
 
-        private List<Item> mItems = new ArrayList<>();
+        private final List<Item> mItems = new ArrayList<>();
 
         private Input() {
             String value = Utils.readFile(BUS_INPUT);

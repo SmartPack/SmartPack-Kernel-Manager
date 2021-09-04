@@ -22,7 +22,6 @@ package com.smartpack.kernelmanager.fragments.other;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -39,6 +38,7 @@ import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.other.Billing;
+import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -276,23 +276,20 @@ public class AboutFragment extends RecyclerViewFragment {
                         Utils.launchUrl("https://poeditor.com/join/project?hash=qWFlVfAlp5", requireActivity());
                         break;
                     case 1:
-                        new AsyncTask<Void, Void, Void>() {
+                        new AsyncTasks() {
                             @Override
-                            protected void onPreExecute() {
-                                super.onPreExecute();
+                            public void onPreExecute() {
                                 showProgressMessage(getString(R.string.importing_string) + ("..."));
                                 showProgress();
                             }
 
                             @Override
-                            protected Void doInBackground(Void... voids) {
+                            public void doInBackground() {
                                 Utils.importTranslation("values", getActivity());
-                                return null;
                             }
 
                             @Override
-                            protected void onPostExecute(Void aVoid) {
-                                super.onPostExecute(aVoid);
+                            public void onPostExecute() {
                                 hideProgress();
                                 Intent intent = new Intent(requireActivity(), TranslatorActivity.class);
                                 startActivity(intent);

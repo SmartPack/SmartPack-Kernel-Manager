@@ -25,8 +25,8 @@ package com.smartpack.kernelmanager.utils.kernel;
 
 public class Switch {
 
-    private String mEnable;
-    private String mDisable;
+    private final String mEnable;
+    private final String mDisable;
 
     public Switch(String enable, String disable) {
         mEnable = enable;

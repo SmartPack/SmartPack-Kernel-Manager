@@ -48,7 +48,7 @@ import java.util.List;
 
 public class WakelockFragment extends RecyclerViewFragment {
 
-    private List<CardView> mWakeCard = new ArrayList<>();
+    private final List<CardView> mWakeCard = new ArrayList<>();
 
     @Override
     protected void init() {

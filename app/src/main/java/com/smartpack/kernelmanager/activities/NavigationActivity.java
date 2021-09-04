@@ -23,7 +23,6 @@ import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -99,6 +98,7 @@ import com.smartpack.kernelmanager.utils.kernel.thermal.Thermal;
 import com.smartpack.kernelmanager.utils.kernel.wake.Wake;
 import com.smartpack.kernelmanager.utils.kernel.wakelock.Wakelocks;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.utils.tools.Backup;
 import com.smartpack.kernelmanager.utils.tools.KernelUpdater;
 import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
@@ -144,7 +144,7 @@ public class NavigationActivity extends BaseActivity
         }
     }
 
-    private static class FragmentLoader extends AsyncTask<Void, Void, Void> {
+    private static class FragmentLoader extends AsyncTasks {
 
         private final WeakReference<NavigationActivity> mRefActivity;
 
@@ -153,20 +153,23 @@ public class NavigationActivity extends BaseActivity
         }
 
         @Override
-        protected Void doInBackground(Void... voids) {
-            NavigationActivity activity = mRefActivity.get();
-            if (activity == null) return null;
-            activity.initFragments();
-            return null;
+        public void onPreExecute() {
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
+        public void doInBackground() {
+            NavigationActivity activity = mRefActivity.get();
+            if (activity == null) return;
+            activity.initFragments();
+        }
+
+        @Override
+        public void onPostExecute() {
             NavigationActivity activity = mRefActivity.get();
             if (activity == null) return;
             activity.init(null);
         }
+
     }
 
     private void initFragments() {

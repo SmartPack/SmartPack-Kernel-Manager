@@ -23,7 +23,6 @@ package com.smartpack.kernelmanager.utils.tools;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Environment;
 
 import com.smartpack.kernelmanager.activities.FlashingActivity;
@@ -57,10 +56,9 @@ public class SmartPack {
     }
 
     public static void flashingTask(File file, Context context) {
-        new AsyncTask<Void, Void, Void>() {
+        new AsyncTasks() {
             @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
+            public void onPreExecute() {
                 Common.isFlashing(true);
                 Common.setZipName(file.getName());
                 Common.getFlashingResult().setLength(0);
@@ -69,19 +67,17 @@ public class SmartPack {
                 context.startActivity(flashingIntent);
             }
             @Override
-            protected Void doInBackground(Void... voids) {
+            public void doInBackground() {
                 Common.getFlashingResult().append("** Preparing to flash ").append(file.getName()).append("...\n\n");
                 Common.getFlashingResult().append("** Path: '").append(file.toString()).append("'\n\n");
                 Utils.delete(context.getCacheDir() + "/flash.zip");
                 Common.getFlashingResult().append("** Copying '").append(file.getName()).append("' into temporary folder: ");
                 Common.getFlashingResult().append(RootUtils.runAndGetError("cp '" + file.toString() + "' " + context.getCacheDir() + "/flash.zip"));
                 Common.getFlashingResult().append(Utils.existFile(context.getCacheDir() + "/flash.zip") ? "Done *\n\n" : "\n\n");
-                SmartPack.manualFlash(context);
-                return null;
+                manualFlash(context);
             }
             @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
+            public void onPostExecute() {
                 Common.isFlashing(false);
             }
         }.execute();

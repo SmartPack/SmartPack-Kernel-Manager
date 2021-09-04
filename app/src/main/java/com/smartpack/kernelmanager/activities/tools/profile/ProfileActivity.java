@@ -66,7 +66,7 @@ public class ProfileActivity extends BaseActivity {
     public static final String RESULT_ID_INTENT = "result_id";
     public static final String RESULT_COMMAND_INTENT = "result_command";
 
-    private LinkedHashMap<String, Fragment> mItems = new LinkedHashMap<>();
+    private final LinkedHashMap<String, Fragment> mItems = new LinkedHashMap<>();
 
     private int mProfilePosition;
     private int mMode;

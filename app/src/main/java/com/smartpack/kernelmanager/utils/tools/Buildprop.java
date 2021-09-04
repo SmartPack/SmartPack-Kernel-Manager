@@ -19,12 +19,9 @@
  */
 package com.smartpack.kernelmanager.utils.tools;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Environment;
 
 import com.smartpack.kernelmanager.utils.Utils;
-import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
 import java.io.File;
@@ -40,7 +37,6 @@ public class Buildprop {
     public static boolean mWritableSystem = true;
     public static boolean mWritableRoot = true;
 
-    @SuppressLint("SdCardPath")
     public static void backup(Context context) {
         Utils.create(Utils.readFile(BUILD_PROP), new File(Utils.getInternalDataStorage(context), "build.prop"));
     }

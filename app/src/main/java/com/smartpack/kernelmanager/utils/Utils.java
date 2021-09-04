@@ -34,7 +34,6 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -59,6 +58,7 @@ import com.smartpack.kernelmanager.activities.StartActivityMaterial;
 import com.smartpack.kernelmanager.activities.WebViewActivity;
 import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -673,24 +673,21 @@ public class Utils {
     }
 
     public static void rebootCommand(Context context) {
-        new AsyncTask<Void, Void, Void>() {
+        new AsyncTasks() {
             private ProgressDialog mProgressDialog;
             @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
+            public void onPreExecute() {
                 mProgressDialog = new ProgressDialog(context);
                 mProgressDialog.setMessage(context.getString(R.string.rebooting) + ("..."));
                 mProgressDialog.setCancelable(false);
                 mProgressDialog.show();
             }
             @Override
-            protected Void doInBackground(Void... voids) {
+            public void doInBackground() {
                 RootUtils.runCommand(prepareReboot());
-                return null;
             }
             @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
+            public void onPostExecute() {
                 try {
                     mProgressDialog.dismiss();
                 } catch (IllegalArgumentException ignored) {

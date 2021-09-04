@@ -20,7 +20,6 @@
 package com.smartpack.kernelmanager.activities.tools.profile;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -32,6 +31,7 @@ import com.smartpack.kernelmanager.database.tools.profiles.Profiles;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
+import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -48,7 +48,6 @@ import java.util.Objects;
 public class ProfileEditActivity extends BaseActivity {
 
     public static final String POSITION_INTENT = "position";
-
     private static boolean sChanged;
     private int mPosition;
 
@@ -97,7 +96,7 @@ public class ProfileEditActivity extends BaseActivity {
 
         private Profiles mProfiles;
         private Profiles.ProfileItem mItem;
-        private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
+        private AsyncTasks mLoader;
 
         private Dialog mDeleteDialog;
 
@@ -122,8 +121,8 @@ public class ProfileEditActivity extends BaseActivity {
                 mItem = mProfiles.getAllProfiles().get(getArguments()
                         .getInt(POSITION_INTENT));
                 if (mItem.getCommands().size() < 1) {
-                    Utils.snackbar(getRootView(), getString(R.string.profile_empty));
-                    requireActivity().finish();
+                    Utils.snackbar(requireActivity().findViewById(android.R.id.content), getString(R.string.profile_empty));
+                    getHandler().postDelayed(() -> requireActivity().finish(),1000);
                 }
             }
         }
@@ -172,30 +171,27 @@ public class ProfileEditActivity extends BaseActivity {
             mLoader = null;
         }
 
-        private static class UILoader extends AsyncTask<Void, Void, List<RecyclerViewItem>> {
-
-            private WeakReference<ProfileEditFragment> mRefFragment;
+        private static class UILoader extends AsyncTasks {
+            private List<RecyclerViewItem> items;
+            private final WeakReference<ProfileEditFragment> mRefFragment;
 
             private UILoader(ProfileEditFragment fragment) {
                 mRefFragment = new WeakReference<>(fragment);
             }
 
             @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
+            public void onPreExecute() {
                 mRefFragment.get().showProgress();
             }
 
             @Override
-            protected List<RecyclerViewItem> doInBackground(Void... params) {
-                List<RecyclerViewItem> items = new ArrayList<>();
+            public void doInBackground() {
+                items = new ArrayList<>();
                 mRefFragment.get().load(items);
-                return items;
             }
 
             @Override
-            protected void onPostExecute(List<RecyclerViewItem> items) {
-                super.onPostExecute(items);
+            public void onPostExecute() {
                 ProfileEditFragment fragment = mRefFragment.get();
                 for (RecyclerViewItem item : items) {
                     fragment.addItem(item);

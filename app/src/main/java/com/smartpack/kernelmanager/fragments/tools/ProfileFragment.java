@@ -234,6 +234,9 @@ public class ProfileFragment extends RecyclerViewFragment {
                 descriptionView.setIndicator(ViewUtils.getColoredIcon(R.drawable.ic_flash, requireActivity()));
             }
             descriptionView.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
+            descriptionView.setOnItemClickListener(item -> {
+                applyProfile(descriptionView, position);
+            });
             descriptionView.setOnMenuListener((cardView1, popupMenu) -> {
                 Menu menu = popupMenu.getMenu();
                 menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.apply));
@@ -249,36 +252,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                     List<Profiles.ProfileItem> items1 = mProfiles.getAllProfiles();
                     switch (item.getItemId()) {
                         case 0:
-                            if (mTaskerMode) {
-                                mSelectDialog = ViewUtils.dialogBuilder(getString(R.string.select_question,
-                                        descriptionView.getSummary()), (dialogInterface, i12) -> {
-                                }, (dialogInterface, i12) -> ((ProfileTaskerActivity) requireActivity()).finish(
-                                        descriptionView.getSummary().toString(),
-                                        mProfiles.getAllProfiles().get(position).getCommands()), dialogInterface -> mSelectDialog = null, getActivity());
-                                mSelectDialog.show();
-                            } else {
-                                mApplyDialog = ViewUtils.dialogBuilder(getString(R.string.apply_question,
-                                        descriptionView.getSummary()), (dialogInterface, i12) -> {
-                                }, (dialogInterface, i12) -> {
-                                    for (Profiles.ProfileItem.CommandItem command : mProfiles.getAllProfiles()
-                                            .get(position).getCommands()) {
-                                        CPUFreq.ApplyCpu applyCpu;
-                                        if (command.getCommand().startsWith("#") && ((applyCpu =
-                                                new CPUFreq.ApplyCpu(command.getCommand().substring(1)))
-                                                .toString() != null)) {
-                                            for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu)) {
-                                                Control.runSetting(applyCpuCommand, null, null, null);
-                                            }
-                                        } else {
-                                            Control.runSetting(command.getCommand(), null, null, null);
-                                        }
-                                    }
-                                }, dialogInterface -> mApplyDialog = null, getActivity());
-                                try {
-                                    mApplyDialog.show();
-                                } catch (NullPointerException ignored) {
-                                }
-                            }
+                            applyProfile(descriptionView, position);
                             break;
                         case 1:
                             Intent create = createProfileActivityIntent();
@@ -345,11 +319,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 });
             });
 
-            if (mTaskerMode) {
-                items.add(descriptionView);
-            } else {
-                items.add(descriptionView);
-            }
+            items.add(descriptionView);
         }
 
         if (!mTaskerMode) {
@@ -357,6 +327,39 @@ public class ProfileFragment extends RecyclerViewFragment {
             int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(requireActivity(), Widget.class));
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.profile_list);
             Tile.publishProfileTile(profileItems, getActivity());
+        }
+    }
+
+    private void applyProfile(DescriptionView descriptionView, int position) {
+        if (mTaskerMode) {
+            mSelectDialog = ViewUtils.dialogBuilder(getString(R.string.select_question,
+                    descriptionView.getSummary()), (dialogInterface, i12) -> {
+            }, (dialogInterface, i12) -> ((ProfileTaskerActivity) requireActivity()).finish(
+                    descriptionView.getSummary().toString(),
+                    mProfiles.getAllProfiles().get(position).getCommands()), dialogInterface -> mSelectDialog = null, getActivity());
+            mSelectDialog.show();
+        } else {
+            mApplyDialog = ViewUtils.dialogBuilder(getString(R.string.apply_question,
+                    descriptionView.getSummary()), (dialogInterface, i12) -> {
+            }, (dialogInterface, i12) -> {
+                for (Profiles.ProfileItem.CommandItem command : mProfiles.getAllProfiles()
+                        .get(position).getCommands()) {
+                    CPUFreq.ApplyCpu applyCpu;
+                    if (command.getCommand().startsWith("#") && ((applyCpu =
+                            new CPUFreq.ApplyCpu(command.getCommand().substring(1)))
+                            .toString() != null)) {
+                        for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu)) {
+                            Control.runSetting(applyCpuCommand, null, null, null);
+                        }
+                    } else {
+                        Control.runSetting(command.getCommand(), null, null, null);
+                    }
+                }
+            }, dialogInterface -> mApplyDialog = null, getActivity());
+            try {
+                mApplyDialog.show();
+            } catch (NullPointerException ignored) {
+            }
         }
     }
 

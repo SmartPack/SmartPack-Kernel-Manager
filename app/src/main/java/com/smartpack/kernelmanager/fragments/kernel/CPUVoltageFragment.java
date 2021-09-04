@@ -48,7 +48,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
 
     private Voltage mVoltage;
 
-    private List<GenericSelectView> mVoltages = new ArrayList<>();
+    private final List<GenericSelectView> mVoltages = new ArrayList<>();
 
     @Override
     public int getSpanCount() {

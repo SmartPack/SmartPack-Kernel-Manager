@@ -43,7 +43,7 @@ public class CheckBoxView extends ValueView {
     private View mView;
     private Dialog mDialog;
     private List<String> mItems = new ArrayList<>();
-    private boolean[] mCheckBoxes = new boolean[]{false, false, false, false};
+    private final boolean[] mCheckBoxes = new boolean[]{false, false, false, false};
     private int mCurrValue = S2w.getInstance().get();
 
 

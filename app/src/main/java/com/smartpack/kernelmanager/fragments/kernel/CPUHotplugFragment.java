@@ -62,7 +62,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	private MBHotplug mMBHotplug;
 	private CoreCtl mCoreCtl;
 
-	private List<SwitchView> mEnableViews = new ArrayList<>();
+	private final List<SwitchView> mEnableViews = new ArrayList<>();
 
 	@Override
 	protected void init() {

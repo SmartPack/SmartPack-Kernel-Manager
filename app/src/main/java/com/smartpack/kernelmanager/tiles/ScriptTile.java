@@ -24,7 +24,6 @@ package com.smartpack.kernelmanager.tiles;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
@@ -33,6 +32,7 @@ import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.utils.tools.Scripts;
 
 import java.io.File;
@@ -67,23 +67,20 @@ public class ScriptTile extends TileService {
                 mQuickTile).getAbsolutePath());
 
         if (mSupported) {
-            new AsyncTask<Void, Void, Void>() {
+            new AsyncTasks() {
                 @Override
-                protected void onPreExecute() {
-                    super.onPreExecute();
+                public void onPreExecute() {
                     Utils.toast( getString(R.string.applying_profile, mQuickTile), context);
                     mNewLabel = getString(R.string.applying_profile, mQuickTile);
                     mNewState = Tile.STATE_INACTIVE;
 
                 }
                 @Override
-                protected Void doInBackground(Void... voids) {
+                public void doInBackground() {
                     RootUtils.runCommand("sh " + new File(Scripts.scriptFile(context), mQuickTile).getAbsolutePath());
-                    return null;
                 }
                 @Override
-                protected void onPostExecute(Void aVoid) {
-                    super.onPostExecute(aVoid);
+                public void onPostExecute() {
                     Utils.toast(mQuickTile + " " + getString(R.string.applied), context);
                     mNewLabel = getString(R.string.script) + ": " + mQuickTile;
                     mNewState = Tile.STATE_ACTIVE;

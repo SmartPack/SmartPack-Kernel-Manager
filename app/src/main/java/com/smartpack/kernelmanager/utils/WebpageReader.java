@@ -40,9 +40,9 @@ public class WebpageReader {
         void onFailure(String url);
     }
 
-    private Activity mActivity;
+    private final Activity mActivity;
     private HttpURLConnection mConnection;
-    private WebpageListener mWebpageListener;
+    private final WebpageListener mWebpageListener;
 
     public WebpageReader(Activity activity, WebpageListener webpageListener) {
         mActivity = activity;

@@ -24,7 +24,6 @@ package com.smartpack.kernelmanager.activities;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.kernel.IOAdvancedFragment;

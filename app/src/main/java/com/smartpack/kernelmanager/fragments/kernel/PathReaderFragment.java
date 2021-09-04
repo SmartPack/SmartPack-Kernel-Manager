@@ -19,9 +19,6 @@
  */
 package com.smartpack.kernelmanager.fragments.kernel;
 
-import android.annotation.SuppressLint;
-import android.os.AsyncTask;
-
 import com.google.android.material.snackbar.Snackbar;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
@@ -31,6 +28,7 @@ import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
 import com.smartpack.kernelmanager.utils.root.Control;
+import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.utils.tools.PathReader;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -47,7 +45,7 @@ import java.util.Objects;
  */
 public class PathReaderFragment extends RecyclerViewFragment {
 
-    private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
+    private AsyncTasks mLoader;
 
     @Override
     protected void init() {
@@ -63,41 +61,36 @@ public class PathReaderFragment extends RecyclerViewFragment {
 
     private void reload() {
         if (mLoader == null) {
-            getHandler().postDelayed(new Runnable() {
-                @SuppressLint("StaticFieldLeak")
-                @Override
-                public void run() {
-                    clearItems();
-                    mLoader = new AsyncTask<Void, Void, List<RecyclerViewItem>>() {
+            getHandler().postDelayed(() -> {
+                clearItems();
+                mLoader = new AsyncTasks() {
 
-                        @Override
-                        protected void onPreExecute() {
-                            super.onPreExecute();
-                            showProgress();
-                        }
+                    private List<RecyclerViewItem> items;
 
-                        @Override
-                        protected List<RecyclerViewItem> doInBackground(Void... voids) {
-                            List<RecyclerViewItem> items = new ArrayList<>();
-                            load(items);
-                            return items;
-                        }
+                    @Override
+                    public void onPreExecute() {
+                        showProgress();
+                    }
 
-                        @Override
-                        protected void onPostExecute(List<RecyclerViewItem> recyclerViewItems) {
-                            super.onPostExecute(recyclerViewItems);
-                            for (RecyclerViewItem item : recyclerViewItems) {
-                                addItem(item);
-                            }
-                            hideProgress();
-                            if (itemsSize() < 1 && PathReader.getError() != null) {
-                                Snackbar.make(getRootView(), PathReader.getError(), Snackbar.LENGTH_SHORT).show();
-                            }
-                            mLoader = null;
+                    @Override
+                    public void doInBackground() {
+                        items = new ArrayList<>();
+                        load(items);
+                    }
+
+                    @Override
+                    public void onPostExecute() {
+                        for (RecyclerViewItem item : items) {
+                            addItem(item);
                         }
-                    };
-                    mLoader.execute();
-                }
+                        hideProgress();
+                        if (itemsSize() < 1 && PathReader.getError() != null) {
+                            Snackbar.make(getRootView(), PathReader.getError(), Snackbar.LENGTH_SHORT).show();
+                        }
+                        mLoader = null;
+                    }
+                };
+                mLoader.execute();
             }, 200);
         }
     }

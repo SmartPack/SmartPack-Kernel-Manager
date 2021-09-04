@@ -40,7 +40,7 @@ public class KSMFragment extends RecyclerViewFragment {
 
     private KSM mKSM;
 
-    private List<DescriptionView> mInfos = new ArrayList<>();
+    private final List<DescriptionView> mInfos = new ArrayList<>();
 
     public int getSpanCount() {
         return super.getSpanCount() + 1;

@@ -21,7 +21,6 @@ package com.smartpack.kernelmanager.views.recyclerview;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.View;
 
 import com.smartpack.kernelmanager.R;
