@@ -261,7 +261,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 if (!Utils.isNetworkAvailable(requireActivity())) {
                     Utils.snackbar(mRootView, getString(R.string.no_internet));
                 } else if (Build.VERSION.SDK_INT >= 23) {
-                    UpdateCheck.manualUpdateCheck(requireActivity());
+                    UpdateCheck.isManualUpdate(true);
+                    new UpdateCheck().initialize(0, requireActivity());
                 }
                 return true;
             case KEY_RESET_SETTINGS:

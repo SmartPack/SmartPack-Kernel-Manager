@@ -271,18 +271,12 @@ public class MainActivity extends BaseActivity {
         if (!Utils.isFDroidFlavor(this)) {
             return;
         }
-        if (!Utils.isDownloadBinaries()) {
-            return;
-        }
         if (!UpdateCheck.isSignatureMatched(this)) {
             return;
         }
-        if (Utils.isNetworkAvailable(this) && Prefs.getBoolean("auto_update", true, this)) {
-            if (!UpdateCheck.hasVersionInfo(this) || (UpdateCheck.lastModified(this) + 3720000L < System.currentTimeMillis())) {
-                UpdateCheck.getVersionInfo(this);
-                Common.enableUpdateCheck(true);
-                mUpdateInfo.setVisibility(View.VISIBLE);
-            }
+        if (Prefs.getBoolean("auto_update", true, this) && UpdateCheck.isUpdateTime(this)) {
+            Common.enableUpdateCheck(true);
+            mUpdateInfo.setVisibility(View.VISIBLE);
         }
     }
 

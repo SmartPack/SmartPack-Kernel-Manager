@@ -42,7 +42,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
-import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.kernel.BatteryFragment;
@@ -78,6 +77,7 @@ import com.smartpack.kernelmanager.fragments.tools.OnBootFragment;
 import com.smartpack.kernelmanager.fragments.tools.ProfileFragment;
 import com.smartpack.kernelmanager.fragments.tools.ScriptMangerFragment;
 import com.smartpack.kernelmanager.fragments.tools.SmartPackFragment;
+import com.smartpack.kernelmanager.utils.Common;
 import com.smartpack.kernelmanager.utils.Device;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
@@ -543,10 +543,9 @@ public class NavigationActivity extends BaseActivity
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         }
-        if (UpdateCheck.hasVersionInfo(this) && BuildConfig.VERSION_CODE < UpdateCheck.versionCode(this)) {
-            UpdateCheck.updateAvailableDialog(this);
+        if (Common.isUpdateCheckEnabled()) {
+            new UpdateCheck().initialize(1, this);
         }
-
         // Initialize kernel update check - Once in a day
         if (Utils.isNetworkAvailable(this) && Prefs.getBoolean("update_check", true, this)
                 && !KernelUpdater.getUpdateChannel(this).equals("Unavailable") && Utils.isDownloadBinaries() &&
