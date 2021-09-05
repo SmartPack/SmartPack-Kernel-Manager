@@ -21,8 +21,11 @@
 
 package com.smartpack.kernelmanager.views.recyclerview;
 
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import androidx.appcompat.widget.AppCompatImageButton;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textview.MaterialTextView;
@@ -31,16 +34,17 @@ import com.smartpack.kernelmanager.utils.Utils;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 03, 2019
- *
  * Largely based on the original implementation of StatsView by Willi Ye
  */
 public class MultiStatsView extends RecyclerViewItem {
 
+    private AppCompatImageButton mIcon;
     private CharSequence mTitle, mProgressTitle, mStatOne, mStatTwo, mStatThree;
-    private MaterialTextView mTitleView, mProgressTitleView, mStatViewOne, mStatViewTwo, mStatViewThree;
     private CircularProgressIndicator mProgressBar;
+    private Drawable mDrawable;
     private int mMax, mProgressPercent;
     private LinearLayout mProgressLayout;
+    private MaterialTextView mTitleView, mProgressTitleView, mStatViewOne, mStatViewTwo, mStatViewThree;
 
     @Override
     public int getLayoutRes() {
@@ -56,6 +60,7 @@ public class MultiStatsView extends RecyclerViewItem {
         mProgressTitleView = view.findViewById(R.id.progress_title);
         mProgressBar = view.findViewById(R.id.progress);
         mProgressLayout = view.findViewById(R.id.progress_layout);
+        mIcon = view.findViewById(R.id.icon);
         LinearLayout mParentLayout = view.findViewById(R.id.parent_layout);
 
         if (Utils.getScreenDPI(view.getContext()) < 390 || Utils.isTablet(view.getContext()) &&
@@ -101,6 +106,11 @@ public class MultiStatsView extends RecyclerViewItem {
         refresh();
     }
 
+    public void setIcon(Drawable icon) {
+        mDrawable = icon;
+        refresh();
+    }
+
     @Override
     protected void refresh() {
         super.refresh();
@@ -132,6 +142,15 @@ public class MultiStatsView extends RecyclerViewItem {
         if (mProgressTitleView != null && mProgressTitle != null) {
             mProgressTitleView.setText(mProgressTitle);
             mProgressTitleView.setVisibility(View.VISIBLE);
+        }
+        if (mIcon != null && mDrawable != null) {
+            mIcon.setImageDrawable(mDrawable);
+            mIcon.setVisibility(View.VISIBLE);
+            mIcon.setOnClickListener(v -> {
+                if (getOnItemClickListener() != null) {
+                    getOnItemClickListener().onClick(MultiStatsView.this);
+                }
+            });
         }
     }
 }

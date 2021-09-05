@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.fragments.statistics;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -91,6 +92,7 @@ public class OverallFragment extends RecyclerViewFragment {
         statsInit(items);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void statsInit(List<RecyclerViewItem> items) {
         CardView cardView = new CardView(getActivity());
         cardView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_chart, requireContext()));
@@ -158,6 +160,15 @@ public class OverallFragment extends RecyclerViewFragment {
             if (Battery.getInstance(requireActivity()).hasCapacity()) {
                 mBatteryInfo.setStatsTwo(getString(R.string.capacity) + ": " + Battery.getInstance(requireActivity())
                         .getCapacity() + getString(R.string.mah));
+            }
+            if (Utils.isPackageInstalled("com.paget96.batteryguru", requireActivity())) {
+                mBatteryInfo.setIcon(getResources().getDrawable(R.drawable.ic_batteryguru));
+                mBatteryInfo.setOnItemClickListener(v -> {
+                    Intent launchIntent = requireActivity().getPackageManager().getLaunchIntentForPackage("com.paget96.batteryguru");
+                    if (launchIntent != null) {
+                        startActivity(launchIntent);
+                    }
+                });
             }
             battery.addItem(mBatteryInfo);
             items.add(battery);
@@ -263,7 +274,7 @@ public class OverallFragment extends RecyclerViewFragment {
         }
     }
 
-    private BroadcastReceiver mBatteryReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mBatteryReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             mBatteryRaw = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0) / 10D;
