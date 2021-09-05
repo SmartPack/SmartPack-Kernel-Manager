@@ -533,6 +533,10 @@ public class Utils {
         }
     }
 
+    public static void create(String text, String path) {
+        RootUtils.runCommand("echo '" + text + "' > " + path);
+    }
+
     public static void append(String text, String path) {
         RootUtils.runCommand("echo '" + text + "' >> " + path);
     }

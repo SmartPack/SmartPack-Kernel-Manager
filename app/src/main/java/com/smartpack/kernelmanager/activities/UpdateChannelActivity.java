@@ -22,6 +22,7 @@
 package com.smartpack.kernelmanager.activities;
 
 import android.os.Bundle;
+import android.os.Environment;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -33,6 +34,7 @@ import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
+import com.topjohnwu.superuser.io.SuFile;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -80,9 +82,7 @@ public class UpdateChannelActivity extends BaseActivity {
                         .setMessage(getString(R.string.clear_all_summary) + " " + getString(R.string.sure_question))
                         .setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
                         })
-                        .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                            clearAll();
-                        })
+                        .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> clearAll())
                         .show();
             } else {
                 Utils.snackbar(mCardView, getString(R.string.clear_message));
@@ -121,7 +121,7 @@ public class UpdateChannelActivity extends BaseActivity {
                     if (text.contains(" ")) {
                         text = text.replace(" ", "_");
                     }
-                    if (Utils.existFile(Utils.getInternalDataStorage(this) + "/" + text)) {
+                    if (Utils.existFile(new File(Environment.getExternalStorageDirectory(), "SP/" + text).getAbsolutePath())) {
                         Utils.snackbar(mCardView, getString(R.string.already_exists, text));
                         return;
                     }
@@ -138,11 +138,11 @@ public class UpdateChannelActivity extends BaseActivity {
                         support.put("link", mSupportHint.getText());
                         support.put("donation", mDonationHint.getText());
                         obj.put("support", support);
-                        Utils.prepareInternalDataStorage(this);
-                        Utils.create(obj.toString(), new File(Utils.getInternalDataStorage(this), text));
+                        File jsonFile = SuFile.open(Environment.getExternalStorageDirectory(), "SP/" + text);
+                        SuFile.open(Environment.getExternalStorageDirectory(), "SP/").mkdirs();
+                        Utils.create(obj.toString(), jsonFile.getAbsolutePath());
                         new Dialog(this)
-                                .setMessage(getString(R.string.json_created,
-                                        Utils.getInternalDataStorage(this) + "/" + text))
+                                .setMessage(getString(R.string.json_created,new File(Environment.getExternalStorageDirectory(), "SP/")))
                                 .setCancelable(false)
                                 .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
                                 })
@@ -170,9 +170,7 @@ public class UpdateChannelActivity extends BaseActivity {
                     .setMessage(getString(R.string.update_channel_create_warning) + " " + getString(R.string.sure_question))
                     .setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
                     })
-                    .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                        super.onBackPressed();
-                    })
+                    .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> super.onBackPressed())
                     .show();
         } else {
             super.onBackPressed();
