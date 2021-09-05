@@ -547,10 +547,8 @@ public class NavigationActivity extends BaseActivity
             new UpdateCheck().initialize(1, this);
         }
         // Initialize kernel update check - Once in a day
-        if (Utils.isNetworkAvailable(this) && Prefs.getBoolean("update_check", true, this)
-                && !KernelUpdater.getUpdateChannel(this).equals("Unavailable") && Utils.isDownloadBinaries() &&
-                KernelUpdater.lastModified(this) + 89280000L < System.currentTimeMillis()) {
-            KernelUpdater.updateInfo(Utils.readFile(KernelUpdater.updateChannelInfo(this)), this);
+        if (KernelUpdater.isUpdateTime(this)) {
+            new KernelUpdater().initialize(24, this);
         }
     }
 

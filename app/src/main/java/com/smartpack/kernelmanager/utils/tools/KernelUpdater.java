@@ -21,17 +21,22 @@
 
 package com.smartpack.kernelmanager.utils.tools;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.AsyncTask;
 
-import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on January 21, 2020
@@ -39,18 +44,32 @@ import java.io.File;
 
 public class KernelUpdater {
 
-    private static void updateChannel(String value, Context context) {
-        Utils.create(value, new File(updateChannelInfo(context)));
+    private static JSONObject mJSONObject = null;
+
+    public KernelUpdater() {
     }
 
-    public static void updateInfo(String value, Context context) {
-        Utils.prepareInternalDataStorage(context);
-        Utils.downloadFile(updateInfo(context), value, context);
+    public static boolean isUpdateTime(Context context) {
+        return Prefs.getBoolean("update_check", false, context) && !KernelUpdater.getUpdateChannel(
+                context).equals("Unavailable") && System.currentTimeMillis() > Prefs.getLong("kernelUCTimeStamp",
+                0, context) + 24 * 60 * 60 * 1000;
+    }
+
+    public static File updateInfo(Context context) {
+        return new File(context.getExternalFilesDir(""), "release");
+    }
+
+    public static File updateChannelInfo(Context context) {
+        return new File(context.getExternalFilesDir(""), "updatechannel");
+    }
+
+    public static JSONObject getJSONObject() {
+        return mJSONObject;
     }
 
     private static String getKernelInfo(Context context) {
         try {
-            JSONObject obj = new JSONObject(Utils.readFile(updateInfo(context)));
+            JSONObject obj = new JSONObject(Utils.readFile(updateInfo(context).getAbsolutePath()));
             return (obj.getString("kernel"));
         } catch (JSONException e) {
             return "Unavailable";
@@ -59,7 +78,7 @@ public class KernelUpdater {
 
     private static String getSupportInfo(Context context) {
         try {
-            JSONObject obj = new JSONObject(Utils.readFile(updateInfo(context)));
+            JSONObject obj = new JSONObject(Utils.readFile(updateInfo(context).getAbsolutePath()));
             return (obj.getString("support"));
         } catch (JSONException e) {
             return "Unavailable";
@@ -67,45 +86,11 @@ public class KernelUpdater {
     }
 
     public static String getUpdateChannel(Context context) {
-        if (Utils.existFile(updateChannelInfo(context))) {
-            return Utils.readFile(updateChannelInfo(context));
+        if (Utils.existFile(updateChannelInfo(context).getAbsolutePath())) {
+            return Utils.readFile(updateChannelInfo(context).getAbsolutePath());
         } else {
             return "Unavailable";
         }
-    }
-
-    public static void acquireUpdateInfo(String value, Context context) {
-        new AsyncTask<Void, Void, Void>() {
-            private ProgressDialog mProgressDialog;
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                mProgressDialog = new ProgressDialog(context);
-                mProgressDialog.setMessage(context.getString(R.string.acquiring));
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.show();
-            }
-            @Override
-            protected Void doInBackground(Void... voids) {
-                new File(context.getFilesDir().getPath() + "/updatechannel").delete();
-                new File(context.getFilesDir().getPath() + "/release").delete();
-                updateInfo(value, context);
-                updateChannel(value, context);
-                Utils.sleep(1);
-                return null;
-            }
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                try {
-                    mProgressDialog.dismiss();
-                } catch (IllegalArgumentException ignored) {
-                }
-                if (getKernelName(context).equals("Unavailable")) {
-                    Utils.toast(R.string.update_channel_invalid, context);
-                }
-            }
-        }.execute();
     }
 
     public static String getKernelName(Context context) {
@@ -171,16 +156,49 @@ public class KernelUpdater {
         }
     }
 
-    private static String updateInfo(Context context) {
-        return context.getFilesDir().getPath() + "/release";
+    public static void saveUpdateChannel(String value, Context context) {
+        Utils.create(value, updateChannelInfo(context));
     }
 
-    public static String updateChannelInfo(Context context) {
-        return context.getFilesDir().getPath() + "/updatechannel";
+    public static void acquireUpdateInfo(String value) {
+        try (InputStream is = new URL(value).openStream()) {
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+            String jsonText = UpdateCheck.readAll(rd);
+            mJSONObject = new JSONObject(jsonText);
+        } catch (IOException | JSONException ignored) {
+        }
     }
 
-    public static long lastModified(Context context) {
-        return new File(updateInfo(context)).lastModified();
+    private static void parse(int updateCheckInterval, Context context) {
+        new AsyncTasks() {
+
+            private long ucTimeStamp;
+            private int interval;
+            @Override
+            public void onPreExecute() {
+                ucTimeStamp = Prefs.getLong("kernelUCTimeStamp", 0, context);
+                interval = updateCheckInterval * 60 * 60 * 1000;
+            }
+
+            @Override
+            public void doInBackground() {
+                if (System.currentTimeMillis() > ucTimeStamp + interval) {
+                    acquireUpdateInfo(Objects.requireNonNull(Utils.readFile(KernelUpdater.updateChannelInfo(context).getAbsolutePath())));
+                }
+            }
+
+            @Override
+            public void onPostExecute() {
+                if (mJSONObject != null) {
+                    Utils.create(mJSONObject.toString(), updateInfo(context));
+                    Prefs.saveLong("kernelUCTimeStamp", System.currentTimeMillis(), context);
+                }
+            }
+        }.execute();
+    }
+
+    public void initialize(int updateCheckInterval, Context context) {
+        parse(updateCheckInterval, context);
     }
 
 }

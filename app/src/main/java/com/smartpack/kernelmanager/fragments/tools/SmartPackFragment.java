@@ -23,6 +23,7 @@ package com.smartpack.kernelmanager.fragments.tools;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
@@ -182,8 +183,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             if (value.contains("/blob/")) {
                 value = value.replace("/blob/", "/raw/");
             }
-            KernelUpdater.acquireUpdateInfo(value, getActivity());
-            reload();
+            acquireUpdateInfo(value, getActivity());
 
         });
         if (!KernelUpdater.getKernelName(requireActivity()).equals("Unavailable")) {
@@ -330,7 +330,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             items.add(donations);
         }
 
-        if (!KernelUpdater.getKernelName(requireActivity()).equals("Unavailable") && Utils.isDownloadBinaries()) {
+        if (!KernelUpdater.getKernelName(requireActivity()).equals("Unavailable")) {
             SwitchView update_check = new SwitchView();
             update_check.setSummary(getString(R.string.check_update));
             update_check.setChecked(Prefs.getBoolean("update_check", false, getActivity()));
@@ -543,6 +543,36 @@ public class SmartPackFragment extends RecyclerViewFragment {
                             .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
                             })
                             .show();
+                }
+            }
+        }.execute();
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    public void acquireUpdateInfo(String value, Context context) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                showProgressMessage(getString(R.string.acquiring) + ("..."));
+                KernelUpdater.updateInfo(context).delete();
+            }
+            @Override
+            protected Void doInBackground(Void... voids) {
+                KernelUpdater.acquireUpdateInfo(value);
+                KernelUpdater.saveUpdateChannel(value, context);
+                Utils.sleep(1);
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                if (KernelUpdater.getJSONObject() != null) {
+                    Utils.create(KernelUpdater.getJSONObject().toString(), KernelUpdater.updateInfo(context));
+                    Prefs.saveLong("kernelUCTimeStamp", System.currentTimeMillis(), context);
+                    reload();
+                } else {
+                    Utils.toast(R.string.update_channel_invalid, context);
                 }
             }
         }.execute();

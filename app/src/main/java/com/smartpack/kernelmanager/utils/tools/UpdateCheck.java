@@ -32,11 +32,11 @@ import android.content.pm.Signature;
 import android.net.Uri;
 
 import androidx.core.content.FileProvider;
-import androidx.preference.PreferenceManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
+import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 
@@ -87,9 +87,9 @@ public class UpdateCheck {
         return BuildConfig.VERSION_CODE < getVersionCode();
     }
 
-    public static boolean isUpdateTime(Activity activity) {
-        return System.currentTimeMillis() > PreferenceManager.getDefaultSharedPreferences(activity).getLong(
-                "ucTimeStamp", 0) + 60 * 60 * 1000;
+    public static boolean isUpdateTime(Context context) {
+        return UpdateCheck.isSignatureMatched(context) && Prefs.getBoolean("auto_update", true, context)
+                && System.currentTimeMillis() > Prefs.getLong("ucTimeStamp", 0, context) + 60 * 60 * 1000;
     }
 
     private static byte[] getSignature(String packageid, Context context) {
@@ -137,7 +137,16 @@ public class UpdateCheck {
         return mSHA1;
     }
 
-    private static String readAll(Reader rd) throws IOException {
+    private static String getLatestAPK(Context context) {
+        return Utils.getInternalDataStorage(context) + "/" + BuildConfig.APPLICATION_ID + ".apk";
+    }
+
+    private static void getLatestApp(Context context) {
+        Utils.prepareInternalDataStorage(context);
+        Utils.downloadFile(getLatestAPK(context), getUrl(), context);
+    }
+
+    static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
         while ((cp = rd.read()) != -1) {
@@ -156,15 +165,6 @@ public class UpdateCheck {
         return mReleaseURL;
     }
 
-    private static String getLatestAPK(Context context) {
-        return Utils.getInternalDataStorage(context) + "/" + BuildConfig.APPLICATION_ID + ".apk";
-    }
-
-    private static void getLatestApp(Context context) {
-        Utils.prepareInternalDataStorage(context);
-        Utils.downloadFile(getLatestAPK(context), getUrl(), context);
-    }
-
     public static void isManualUpdate(boolean b) {
         mManualUpdate = b;
     }
@@ -176,7 +176,7 @@ public class UpdateCheck {
             private int interval;
             @Override
             public void onPreExecute() {
-                ucTimeStamp = PreferenceManager.getDefaultSharedPreferences(activity).getLong("ucTimeStamp", 0);
+                ucTimeStamp = Prefs.getLong("ucTimeStamp", 0, activity);
                 interval = updateCheckInterval * 60 * 60 * 1000;
             }
 
@@ -221,8 +221,7 @@ public class UpdateCheck {
                     }
                 }
 
-                PreferenceManager.getDefaultSharedPreferences(activity).edit().putLong("ucTimeStamp", System
-                        .currentTimeMillis()).apply();
+                Prefs.saveLong("ucTimeStamp", System.currentTimeMillis(), activity);
             }
         }.execute();
     }

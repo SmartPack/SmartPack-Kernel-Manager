@@ -156,7 +156,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             getPreferenceScreen().removePreference(sectionSecurity);
         }
 
-        if (!UpdateCheck.isSignatureMatched(getActivity()) || !Utils.isFDroidFlavor(requireActivity())) {
+        if (!UpdateCheck.isSignatureMatched(getActivity()) || Utils.isFDroidFlavor(requireActivity())) {
             PreferenceCategory appSettings = findPreference(KEY_APP_SETTINGS);
             if (appSettings != null) {
                 getPreferenceScreen().removePreference(appSettings);

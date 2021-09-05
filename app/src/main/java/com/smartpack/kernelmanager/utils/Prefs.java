@@ -20,7 +20,8 @@
 package com.smartpack.kernelmanager.utils;
 
 import android.content.Context;
-import android.preference.PreferenceManager;
+
+import androidx.preference.PreferenceManager;
 
 import java.util.Set;
 
@@ -37,8 +38,16 @@ public class Prefs {
         return PreferenceManager.getDefaultSharedPreferences(context).getInt(name, defaults);
     }
 
+    public static long getLong(String name, long defaults, Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getLong(name, defaults);
+    }
+
     public static void saveInt(String name, int value, Context context) {
         PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(name, value).apply();
+    }
+
+    public static void saveLong(String name, long value, Context context) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(name, value).apply();
     }
 
     public static boolean getBoolean(String name, boolean defaults, Context context) {

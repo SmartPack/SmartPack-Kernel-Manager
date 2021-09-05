@@ -561,11 +561,6 @@ public class Utils {
         return RootUtils.runAndGetOutput("sha1sum " + path);
     }
 
-    public static boolean isDownloadBinaries() {
-        return isMagiskBinaryExist("wget") || isMagiskBinaryExist("curl") ||
-                Utils.existFile("/system/bin/curl") || Utils.existFile("/system/bin/wget");
-    }
-
     public static boolean isMagiskBinaryExist(String command) {
         return !RootUtils.runAndGetError("/data/adb/magisk/busybox " + command).contains("applet not found");
     }
@@ -582,31 +577,18 @@ public class Utils {
     }
 
     public static void downloadFile(String path, String url, Context context) {
-        if (!isNetworkAvailable(context)) {
-            toast(R.string.no_internet, context);
-            return;
-        }
-        if (isMagiskBinaryExist("wget")) {
-            RootUtils.runCommand(magiskBusyBox() + " wget -O " + path + " " + url);
-        } else if (isMagiskBinaryExist("curl")) {
-            RootUtils.runCommand(magiskBusyBox() + " curl -L -o " + path + " " + url);
-        } else if (isDownloadBinaries()) {
-            RootUtils.runCommand((Utils.existFile("/system/bin/curl") ?
-                    "curl -L -o " : "wget -O ") + path + " " + url);
-        } else {
-            /*
-             * Based on the following stackoverflow discussion
-             * Ref: https://stackoverflow.com/questions/15758856/android-how-to-download-file-from-webserver
-             */
-            try (InputStream input = new URL(url).openStream();
-                 OutputStream output = new FileOutputStream(path)) {
-                byte[] data = new byte[4096];
-                int count;
-                while ((count = input.read(data)) != -1) {
-                    output.write(data, 0, count);
-                }
-            } catch (Exception ignored) {
+        /*
+         * Based on the following stackoverflow discussion
+         * Ref: https://stackoverflow.com/questions/15758856/android-how-to-download-file-from-webserver
+         */
+        try (InputStream input = new URL(url).openStream();
+             OutputStream output = new FileOutputStream(path)) {
+            byte[] data = new byte[4096];
+            int count;
+            while ((count = input.read(data)) != -1) {
+                output.write(data, 0, count);
             }
+        } catch (Exception ignored) {
         }
     }
 

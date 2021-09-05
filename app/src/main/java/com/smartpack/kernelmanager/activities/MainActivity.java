@@ -55,6 +55,7 @@ import com.smartpack.kernelmanager.utils.kernel.thermal.Thermal;
 import com.smartpack.kernelmanager.utils.kernel.wake.Wake;
 import com.smartpack.kernelmanager.utils.kernel.wakelock.Wakelocks;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.smartpack.kernelmanager.utils.tools.KernelUpdater;
 import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
 
 import org.frap129.spectrum.Spectrum;
@@ -268,14 +269,12 @@ public class MainActivity extends BaseActivity {
         super.onStart();
 
         // Initialize auto app update check
-        if (!Utils.isFDroidFlavor(this)) {
-            return;
-        }
-        if (!UpdateCheck.isSignatureMatched(this)) {
-            return;
-        }
-        if (Prefs.getBoolean("auto_update", true, this) && UpdateCheck.isUpdateTime(this)) {
+        if (UpdateCheck.isUpdateTime(this)) {
             Common.enableUpdateCheck(true);
+            mUpdateInfo.setVisibility(View.VISIBLE);
+        }
+
+        if (KernelUpdater.isUpdateTime(this)) {
             mUpdateInfo.setVisibility(View.VISIBLE);
         }
     }
