@@ -62,8 +62,22 @@ Rooting poses some security risk, but it's generally safe to do!"</string>
     <!-- Editor -->
     <string name="save">"Kaydet"</string>
 
+    <!-- Units -->
+    <string name="mhz">"MHz"</string>
+    <string name="celsius">"°C"</string>
+    <string name="fahrenheit">"°F"</string>
+    <string name="mb">"MB"</string>
+    <string name="ms">"ms"</string>
+    <string name="mv">"mV"</string>
+    <string name="min">"min"</string>
+    <string name="mah">"mAh"</string>
+    <string name="ma">"mA"</string>
+    <string name="kb">"kB"</string>
+    <string name="px">"px"</string>
+
     <!-- Headers -->
     <string name="statistics">"İstatistikler"</string>
+    <string name="kernel">"Kernel"</string>
     <string name="tools">"Araçlar"</string>
     <string name="other">"Diğer"</string>
 
@@ -75,6 +89,7 @@ Rooting poses some security risk, but it's generally safe to do!"</string>
     <string name="cpu">"İşlemci"</string>
     <string name="cpu_hotplug">"İşlemci Hotplug"</string>
     <string name="cpu_voltage">"İşlemci Voltajı"</string>
+    <string name="gpu">"GPU"</string>
     <string name="thermal">"Termal"</string>
     <string name="battery">"Pil"</string>
     <string name="sound">"Ses"</string>
@@ -82,6 +97,8 @@ Rooting poses some security risk, but it's generally safe to do!"</string>
     <string name="wake">"Uyandırma Hareketleri"</string>
     <string name="led">"Ekran ve LED"</string>
     <string name="io_scheduler">"G/Ç Zamanlayıcı"</string>
+    <string name="ksm">"KSM"</string>
+    <string name="uksm">"UKSM"</string>
     <string name="lmk">"Düşük Bellek Sonlandırıcı"</string>
     <string name="virtual_memory">"Sanal Bellek"</string>
     <string name="entropy">"Entropi"</string>
@@ -93,6 +110,7 @@ Rooting poses some security risk, but it's generally safe to do!"</string>
     <string name="script_manger">"Komut Dosyası Yöneticisi"</string>
     <string name="on_boot">"Açılışta"</string>
     <string name="settings">"Ayarlar"</string>
+    <string name="smartpack">"SmartPack"</string>
     <string name="about">"Hakkında"</string>
     <string name="contributors">"Katkıda Bulunanlar"</string>
     <string name="faq">"SSS"</string>
@@ -195,7 +213,17 @@ Bir QCOM big.LITTLE aygıtı kullanıyorsanız, bu bilinen bir sorundur. Sistem,
     <string name="hotplug_boost_summary">"Hotplug Artırma, giriş artırmaya benzer ancak işlemciler çevrimiçi olduğunda ortaya çıkar."</string>
     <string name="touch_boost">"Dokunmatik Hızlandırma"</string>
     <string name="touch_boost_summary">"Bu, ekrana dokunursanız veya bir düğmeye basarsanız minimum işlemci hızınızı artıracaktır."</string>
+    <string name="cpu_input_boost">"CPU Input Boost"</string>
+    <string name="cpu_input_boost_summary">"Enable CPU Input Boost, an event-based CPU boosting driver by Sultanxda."</string>
+    <string name="cpuiboost_duration">"Input Boost Duration"</string>
+    <string name="cpuiboost_duration_summary">"Set CPU Input Boost duration"</string>
+    <string name="wake_boost_duration">"Wake Boost Duration"</string>
+    <string name="cluster_return_freq">"Cluster Return Frequency"</string>
+    <string name="dyn_stune_boost">"Dynamic Stune Boost"</string>
+    <string name="stune_boost_ms">"Stune Boost Duration"</string>
     <string name="stune_boost_sett">"Stune Hızlandırıcı Ayarları"</string>
+    <string name="powerhal">"Power HAL"</string>
+    <string name="powerhal_tunables">"Power HAL Tunables"</string>
 
     <!-- CPU Hotplug -->
     <string name="hotplug_warning">"Birden fazla hotplugging sistemi etkin!
@@ -423,6 +451,15 @@ Lütfen yalnızca birini kullanın."</string>
     <string name="freq_limit_debug_summary">"Bu, sıcaklık maksimuma ulaştığında işlemcileri yavaşlatarak hata ayıklamaya izin verir."</string>
     <string name="temp_limit_min_freq">"Sıcaklık Sınırı Minimum Frekansı"</string>
     <string name="temp_limit_min_freq_summary">"Sıcaklık maksimuma ulaşılınca düşülecek frekans değeri."</string>
+    <string name="allowed_low_low">"Phase 1: Allowed Low Low"</string>
+    <string name="allowed_low_high">"Phase 1: Allowed Low High"</string>
+    <string name="allowed_low_freq">"Phase 1: Allowed Low Frequency"</string>
+    <string name="allowed_mid_low">"Phase 2: Allowed Mid Low"</string>
+    <string name="allowed_mid_high">"Phase 2: Allowed Mid High"</string>
+    <string name="allowed_mid_freq">"Phase 2: Allowed Mid Frequency"</string>
+    <string name="allowed_max_low">"Phase 3: Allowed Max Low"</string>
+    <string name="allowed_max_high">"Phase 3: Allowed Max High"</string>
+    <string name="allowed_max_freq">"Phase 3: Allowed Max Frequency"</string>
     <string name="check_interval">"Denetleme Aralığı"</string>
     <string name="shutdown_temp">"Kapanma Sıcaklığı"</string>
     <string name="msm_thermal">"MSM Thermal"</string>
@@ -551,6 +588,36 @@ Lütfen yalnızca birini kullanın."</string>
     <string name="master_sequence_summary">"Ana sırayı etkinleştirmek Samsung'un profillerini ve senaryolarını devre dışı bırakır ve yok sayar, ROM denetimleri devre dışı bırakılır."</string>
     <string name="glove_mode">"Eldiven Modu"</string>
     <string name="glove_mode_summary">"Bunu etkinleştirmek, eldiven takarken bile telefonunuzu kullanmanıza izin verir."</string>
+
+    <!-- K-lapse -->
+    <string name="klapse">"K-lapse"</string>
+    <string name="klapse_summary">"Select preferred K-lapse mode, a kernel level live-display module by tanish2k09. This shouldn't be Turned-Off to tune the rest of K-lapse parameters."</string>
+    <string name="klapse_off">"Turned-Off"</string>
+    <string name="export_settings">"Export K-lapse Settings"</string>
+    <string name="time_scale">"Time Based Scaling"</string>
+    <string name="bright_scale">"Brightness Based Scaling"</string>
+    <string name="night_mode_schedule">"Night Mode Schedule"</string>
+    <string name="start_time">"Start"</string>
+    <string name="end_time">"End"</string>
+    <string name="scaling_rate">"Scaling Rate (Minute)"</string>
+    <string name="scaling_rate_summary">"Controls how soon the RGB reaches from Daytime to Night Mode inside of start and stop hour range."</string>
+    <string name="fadeback_time">"Fade-back Time (Minute)"</string>
+    <string name="fadeback_time_summary">"The number of minutes before End Time when RGB should start going back to Daytime colors."</string>
+    <string name="daytime_rgb">"Daytime Colors"</string>
+    <string name="nightmode_rgb">"Night Mode Colors"</string>
+    <string name="dimming">"Dimming"</string>
+    <string name="dimming_summary">"100: Accurate brightness; 50: 50% of current intensity."</string>
+    <string name="auto_dimming">"Auto Dimming"</string>
+    <string name="auto_dimming_summary">"Automatically set the brightness factor in a set time range."</string>
+    <string name="auto_dimming_schedule">"Auto Dimming Schedule"</string>
+    <string name="backlight_range">"Backlight Range"</string>
+    <string name="pulse_freq">"Pulse Frequency"</string>
+    <string name="pulse_freq_summary">"The number of milliseconds after which klapse_pulse is called."</string>
+    <string name="flow_freq">"Flow Frequency"</string>
+    <string name="flow_freq_summary">"The amount of milliseconds after which 1 RGB frame is shifted."</string>
+    <string name="profile_exists">"A profile named %s is already exists! Aborting."</string>
+    <string name="profile_created">"K-lapse settings are successfully exported and available at '%s'! Would you like to share it?"</string>
+    <string name="exporting_settings">"Exporting %s settings"</string>
 
     <!-- Wake -->
     <string name="dt2w">"Çift Tıklayarak Uyandır"</string>
@@ -851,7 +918,7 @@ Mevcut önceden tanımlanmış profillerden birini seçin."</string>
     <string name="delete">"Sil"</string>
     <string name="share">"Paylaş"</string>
     <string name="share_by">"'%s' | SmartPack-Kernel Manager tarafından paylaşıldı"</string>
-    <string name="share_controller">"Bu denetleyiciyi uygulamak için, bu dosyayı 'SmartPack-Kernel Manager -> Özel Denetimlere aktarmanız yeterlidir"</string>
+    <string name="share_controller">"Bu denetleyiciyi uygulamak için, bu dosyayı 'SmartPack-Kernel Manager -&gt; Özel Denetimlere aktarmanız yeterlidir"</string>
     <string name="share_with">"Şununla paylaş"</string>
     <string name="sure_question">"Emin misiniz?"</string>
     <string name="name">"İsim"</string>
@@ -924,6 +991,7 @@ Mevcut önceden tanımlanmış profillerden birini seçin."</string>
 Emin misiniz?"</string>
     <string name="script_exists">"%s adında bir komut dosyası zaten var! İptal ediliyor."</string>
     <string name="executing">"Çalıştırılıyor"</string>
+    <string name="share_script">"To apply this script, simply import this file on 'SmartPack-Kernel Manager -&gt; Script Manager -&gt; Import'."</string>
 
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">"Bu bölüm, cihazınız açıldığında neler olacağını gösterir. Boşsa, açılıştan sonra hiçbir şey olmaz."</string>
@@ -976,12 +1044,22 @@ Emin misiniz?"</string>
     <string name="reset_settings_message">"Uygulama ayarları tamamen silinecek. Emin misiniz?"</string>
     <string name="unknown_link">"Henüz geliştirici tarafından sağlanmadı!"</string>
     <string name="remove">"Kaldır"</string>
+    <string name="share_channel_message">"To configure this update channel, simply input '%s' on SmartPack-Kernel Manager -&gt; SmartPack -&gt; Update Channel Url.
+
+Get SmartPack-Kernel Manager from"</string>
     <string name="busybox_installer">"BusyBox Yükleyici"</string>
     <string name="busybox_installer_summary">"Bu uygulamanın bazı özelliklerinin düzgün çalışması için cihazınızda bağımsız bir BusyBox kurulumuna sahip olmanız şiddetle tavsiye edilir (örn. 'unzip' &amp; 'mke2fs' binaries for flashing &amp; 'curl' or 'wget' binary for kernel OTA updates). Kullanıcılara bu konuda yardımcı olmak amacıyla, arm, arm64 ve x86 cihazlar için tek tıklamayla BusyBox kurulum aracı olarak kullanılabilecek basit bir uygulama kullanıma sunulmuştur. Almak için buraya tıklayın!"</string>
     <string name="download_failed">"Görünüşe göre indirme başarısız oldu veya bozuk bir dosya indirildi!"</string>
     <string name="check_update">"Güncellemeleri Kontrol Et"</string>
 
     <!-- Update Channel -->
+    <string name="update_channel_message">"(for developers only)
+App will create an update channel (json) for your kernel, as long as the information's provided in this page are accurate."</string>
+    <string name="update_channel_instructions">"Kernel Name, Kernel Version &amp; Download Link are the mandatory fields to be filled before clicking the create button.
+
+Change-logs could be provided, either as a well formatted text, or as a link to an online page.
+
+Secure Hash Algorithm (sha1) is optional, but highly recommended to ensure the authenticity of the downloaded kernel."</string>
     <string name="kernel_name">"Kernel Adı"</string>
     <string name="kernel_name_summary">"Kernel_name"</string>
     <string name="kernel_version">"Kernel Sürümü"</string>
@@ -990,6 +1068,7 @@ Emin misiniz?"</string>
     <string name="download_link_summary">"download_link"</string>
     <string name="changelog_summary">"changelog_texts_or_url"</string>
     <string name="sha1">"Güvenli Hash Algoritması"</string>
+    <string name="sha1_summary">"sha1"</string>
     <string name="support_group">"Destek Grubu"</string>
     <string name="support_group_summary">"support_link"</string>
     <string name="donation_link">"Bağış Bağlantısı"</string>
