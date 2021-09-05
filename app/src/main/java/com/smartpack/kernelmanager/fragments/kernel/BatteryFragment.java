@@ -20,6 +20,7 @@
 package com.smartpack.kernelmanager.fragments.kernel;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.text.InputType;
 
 import com.smartpack.kernelmanager.R;
@@ -358,21 +359,27 @@ public class BatteryFragment extends RecyclerViewFragment {
             items.add(acci);
         }
 
-        if (!Utils.isPackageInstalled("com.paget96.batteryguru", requireActivity())) {
-            TitleView bg = new TitleView();
-            bg.setText(getString(R.string.battery_guru));
+        TitleView bg = new TitleView();
+        bg.setText(getString(R.string.battery_guru));
 
-            items.add(bg);
+        items.add(bg);
 
-            DescriptionView battery_guru = new DescriptionView();
-            battery_guru.setDrawable(getResources().getDrawable(R.drawable.ic_batteryguru));
-            battery_guru.setSummary(getString(R.string.battery_guru_summary));
-            battery_guru.setFullSpan(true);
-            battery_guru.setOnItemClickListener(item -> {
+        DescriptionView battery_guru = new DescriptionView();
+        battery_guru.setDrawable(getResources().getDrawable(R.drawable.ic_batteryguru));
+        battery_guru.setSummary(getString(R.string.battery_guru_summary));
+        battery_guru.setFullSpan(true);
+        battery_guru.setOnItemClickListener(item -> {
+            if (Utils.isPackageInstalled("com.paget96.batteryguru", requireActivity())) {
+                Intent launchIntent = requireActivity().getPackageManager().getLaunchIntentForPackage("com.paget96.batteryguru");
+                if (launchIntent != null) {
+                    startActivity(launchIntent);
+                    requireActivity().finish();
+                }
+            } else {
                 Utils.launchUrl("https://play.google.com/store/apps/details?id=com.paget96.batteryguru", getActivity());
-            });
-            items.add(battery_guru);
-        }
+            }
+        });
+        items.add(battery_guru);
     }
 
 }
