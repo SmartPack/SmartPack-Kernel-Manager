@@ -1,8 +1,8 @@
 ![](banner.png)
 
-[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v16.7-green)](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release)
+[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v16.8-green)](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release)
 ![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/total)
-![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/v16.7/total)
+![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/v16.8/total)
 ![](https://img.shields.io/github/contributors/smartpack/SmartPack-Kernel-Manager)
 ![](https://img.shields.io/github/license/smartpack/SmartPack-Kernel-Manager)
 
@@ -21,7 +21,7 @@ Welcome to the development center of SmartPack-Kernel Manager, a heavily modifie
                     height="80">](https://apt.izzysoft.de/fdroid/index/apk/com.smartpack.kernelmanager)
                     [<img src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
                                              alt=""
-                                             height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v16.7/com.smartpack.kernelmanager-v16.7-fdroid-release.apk)
+                                             height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v16.8/com.smartpack.kernelmanager-v16.8-fdroid-release.apk)
 
 ## Features
 * Almost all the features available in Kernel Adiutor.
@@ -107,6 +107,7 @@ Please help me to translate this application via [POEditor](https://poeditor.com
 * [Fruity-0](https://github.com/Fruity-0), Polish
 * [Fatih Fırıncı](https://github.com/Fatih-BaKeR) & omerakgoz34, Turkish
 * Phil, Portuguese (Portugal)
+* Catellone94 & Gianfranco. liguori.96, Italian
 * Many other people contributed via [POEditor](https://poeditor.com/join/project?hash=qWFlVfAlp5)
 
 _If you think I missed your name, please let me know._

@@ -1,5 +1,9 @@
 # Change-logs
 
+## 126. September 05, 2021
+*Release-tag: v16.8*<br>
+Logs and exported profiles will now be saved into /sdcard/SP. LMK: Added Process Reclaim support. VM: Added VM stat interval & Directory change notifier service. Replaced using depreciated AsyncTask (almost) with Executer. Improved Update channel. Added Italian translations (and updated Portuguese (Brazilian) and Turkish). Miscellaneous changes.
+
 ## 125. June 13, 2021
 *Release-tag: v16.7*<br>
 Added option to apply a (single) script (configurable) from Quick Title. Fixed app crashing when clicking "More" options from the Memory card (overall page). Fixed Force English option not working. Miscellaneous changes.
