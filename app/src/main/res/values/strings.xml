@@ -408,7 +408,7 @@
     <string name="workload_summary">Adreno idler will more actively try to ramp down the frequency if this is set to a higher value.</string>
     <string name="gpu_powelevel">GPU Power Level</string>
     <string name="gpu_throttling">GPU Throttling</string>
-    <string name="gpu_throttling_summary">Reduces the performance when the GPU gets hot.</string>
+    <string name="gpu_throttling_summary">Throttle the GPU when device gets hot.</string>
 
     <!--Thermal-->
     <string name="thermal_info">Use only one thermal driver from the following options, using more at the same time may cause unexpected behavior.</string>
@@ -841,7 +841,7 @@
     <string name="dir_change_notifier">Directory Change Notifier</string>
     <string name="dir_change_notifier_summary">Directory change notifier service informs processes about file/directory changes.</string>
     <string name="vm_stat_interval">VM Stat Interval</string>
-    <string name="vm_stat_interval_summary">The time interval between VM statistics are updated.</string>
+    <string name="vm_stat_interval_summary">The time interval between which VM statistics are updated.</string>
 
     <!-- Entropy -->
     <string name="available">Available</string>
@@ -895,7 +895,7 @@
     <string name="selinux_enforcing">Enforcing</string>
     <string name="transmit_queue_length">Transmit Queue Length</string>
     <string name="printk_devkmsg">Printk devkmsg</string>
-    <string name="printk_devkmsg_summary">Turn off Printk devkmsg kernel logging service to reduce overhead</string>
+    <string name="printk_devkmsg_summary">Control the logging to /dev/kmsg from userspace.</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">Performance Tweaks</string>
