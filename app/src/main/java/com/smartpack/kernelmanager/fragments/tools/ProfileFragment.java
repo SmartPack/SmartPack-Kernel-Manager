@@ -538,7 +538,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 return;
             }
 
-            if (new ExportProfile(mExportProfile, mProfiles.getVersion()).export(text, requireActivity())) {
+            if (new ExportProfile(mExportProfile, mProfiles.getVersion()).export(text)) {
                 Utils.snackbar(getRootView(), getString(R.string.exported_item, text,
                         new File(Environment.getExternalStorageDirectory(), "SP/profiles").getAbsolutePath()));
             } else {

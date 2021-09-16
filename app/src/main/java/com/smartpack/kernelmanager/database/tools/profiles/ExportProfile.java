@@ -19,7 +19,6 @@
  */
 package com.smartpack.kernelmanager.database.tools.profiles;
 
-import android.content.Context;
 import android.os.Environment;
 
 import com.smartpack.kernelmanager.utils.Utils;
@@ -47,13 +46,13 @@ public class ExportProfile {
         }
     }
 
-    public boolean export(String name, Context context) {
+    public boolean export(String name) {
         if (!name.endsWith(".json")) name += ".json";
         File exportFiles = SuFile.open(Environment.getExternalStorageDirectory(), "SP/profiles");
         File file = SuFile.open(exportFiles.toString() + "/" + name);
         if (file.exists()) return false;
         exportFiles.mkdirs();
-        Utils.writeFile(file.toString(), mMain.toString(), false, false);
+        Utils.writeFile(file.toString(), mMain.toString(), false, true);
         return true;
     }
 
