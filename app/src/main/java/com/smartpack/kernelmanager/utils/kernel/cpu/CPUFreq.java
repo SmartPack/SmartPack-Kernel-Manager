@@ -737,34 +737,48 @@ public class CPUFreq {
     private boolean is6Little2Big() {
         int cpuPolicy0Max = cpuPolicyMax(CPU_POLICY0_MAX_FREQ);
         int cpuPolicy6Max = cpuPolicyMax(CPU_POLICY6_MAX_FREQ);
+        List<Integer> cpu3Freqs = getFreqs(3);
+        List<Integer> cpu4Freqs = getFreqs(4);
         List<Integer> cpu5Freqs = getFreqs(5);
         List<Integer> cpu6Freqs = getFreqs(6);
         if (cpu5Freqs != null && cpu6Freqs != null) {
+            int cpu3Max = cpu3Freqs.get(cpu3Freqs.size() - 1);
+            int cpu4Max = cpu4Freqs.get(cpu4Freqs.size() - 1);
             int cpu5Max = cpu5Freqs.get(cpu5Freqs.size() - 1);
             int cpu6Max = cpu6Freqs.get(cpu6Freqs.size() - 1);
-            return cpu5Max < cpu6Max || cpuPolicy0Max < cpuPolicy6Max;
+            return cpu3Max == cpu4Max && cpu4Max == cpu5Max && cpu5Max < cpu6Max || cpuPolicy0Max < cpuPolicy6Max;
         }
         return false;
     }
 
     private boolean is4Little2Mid2Big() {
+        List<Integer> cpu3Freqs = getFreqs(3);
+        List<Integer> cpu4Freqs = getFreqs(4);
         List<Integer> cpu5Freqs = getFreqs(5);
         List<Integer> cpu6Freqs = getFreqs(6);
         if (cpu5Freqs != null && cpu6Freqs != null) {
+            int cpu3Max = cpu3Freqs.get(cpu3Freqs.size() - 1);
+            int cpu4Max = cpu4Freqs.get(cpu4Freqs.size() - 1);
             int cpu5Max = cpu5Freqs.get(cpu5Freqs.size() - 1);
             int cpu6Max = cpu6Freqs.get(cpu6Freqs.size() - 1);
-            return cpu5Max < cpu6Max;
+            return cpu3Max < cpu4Max && cpu4Max == cpu5Max && cpu5Max < cpu6Max;
         }
         return false;
     }
 
     private boolean is4Little3Mid1Big() {
+        List<Integer> cpu3Freqs = getFreqs(3);
+        List<Integer> cpu4Freqs = getFreqs(4);
+        List<Integer> cpu5Freqs = getFreqs(5);
         List<Integer> cpu6Freqs = getFreqs(6);
         List<Integer> cpu7Freqs = getFreqs(7);
         if (cpu6Freqs != null && cpu7Freqs != null) {
+            int cpu3Max = cpu3Freqs.get(cpu3Freqs.size() - 1);
+            int cpu4Max = cpu4Freqs.get(cpu4Freqs.size() - 1);
+            int cpu5Max = cpu5Freqs.get(cpu5Freqs.size() - 1);
             int cpu6Max = cpu6Freqs.get(cpu6Freqs.size() - 1);
             int cpu7Max = cpu7Freqs.get(cpu7Freqs.size() - 1);
-            return cpu6Max < cpu7Max;
+            return cpu3Max < cpu4Max && cpu4Max == cpu5Max && cpu5Max == cpu6Max && cpu6Max < cpu7Max;
         }
         return false;
     }
