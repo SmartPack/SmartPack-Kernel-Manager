@@ -20,14 +20,12 @@
 package com.smartpack.kernelmanager.fragments.tools;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Environment;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
@@ -35,7 +33,9 @@ import com.smartpack.kernelmanager.utils.Device;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.utils.tools.Backup;
+import com.smartpack.kernelmanager.utils.tools.PathReader;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -54,7 +54,6 @@ import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
  */
 public class BackupFragment extends RecyclerViewFragment {
 
-    private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
     private boolean mPermissionDenied;
 
     private Dialog mOptionsDialog;
@@ -133,41 +132,31 @@ public class BackupFragment extends RecyclerViewFragment {
     }
 
     private void reload() {
-        if (mLoader == null) {
-            getHandler().postDelayed(new Runnable() {
-                @SuppressLint("StaticFieldLeak")
+        getHandler().postDelayed(() -> {
+            clearItems();
+            new AsyncTasks() {
+                private List<RecyclerViewItem> items;
+
                 @Override
-                public void run() {
-                    clearItems();
-                    mLoader = new AsyncTask<Void, Void, List<RecyclerViewItem>>() {
-
-                        @Override
-                        protected void onPreExecute() {
-                            super.onPreExecute();
-                            showProgress();
-                        }
-
-                        @Override
-                        protected List<RecyclerViewItem> doInBackground(Void... voids) {
-                            List<RecyclerViewItem> items = new ArrayList<>();
-                            load(items);
-                            return items;
-                        }
-
-                        @Override
-                        protected void onPostExecute(List<RecyclerViewItem> items) {
-                            super.onPostExecute(items);
-                            for (RecyclerViewItem item : items) {
-                                addItem(item);
-                            }
-                            hideProgress();
-                            mLoader = null;
-                        }
-                    };
-                    mLoader.execute();
+                public void onPreExecute() {
+                    showProgress();
+                    items = new ArrayList<>();
                 }
-            }, 250);
-        }
+
+                @Override
+                public void doInBackground() {
+                    load(items);
+                }
+
+                @Override
+                public void onPostExecute() {
+                    for (RecyclerViewItem item : items) {
+                        addItem(item);
+                    }
+                    hideProgress();
+                }
+            }.execute();
+        }, 250);
     }
 
     private void load(List<RecyclerViewItem> items) {
@@ -251,10 +240,11 @@ public class BackupFragment extends RecyclerViewFragment {
                             showBackupFlashingDialog(null);
                             break;
                         case 1:
-                            FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
                             FilePicker.setExtension("img");
-                            Intent filePicker = new Intent(getActivity(), FilePickerActivity.class);
-                            startActivityForResult(filePicker, 0);
+                            FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
+                            FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
+                            Intent intent = new Intent(requireContext(), FilePickerActivity.class);
+                            startActivityForResult(intent, 0);
                             break;
                     }
                 }).setOnDismissListener(dialogInterface -> mOptionsDialog = null);
@@ -278,26 +268,20 @@ public class BackupFragment extends RecyclerViewFragment {
     private void restore(final Backup.PARTITION partition, final File file, final boolean flashing) {
         mRestoreDialog = ViewUtils.dialogBuilder(flashing? getString(R.string.sure_message, file.getName()) :
                 getString(R.string.restore_sure_message, file.getName()), (dialogInterface, i) -> {
-                }, new DialogInterface.OnClickListener() {
-            @SuppressLint("StaticFieldLeak")
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                new AsyncTask<Void, Void, Void>() {
+                }, (dialogInterface, i) -> new AsyncTasks() {
+
                     @Override
-                    protected void onPreExecute() {
-                        super.onPreExecute();
+                    public void onPreExecute() {
                         showProgressMessage(getString(flashing ? R.string.flashing : R.string.restoring));
                     }
 
                     @Override
-                    protected Void doInBackground(Void... voids) {
+                    public void doInBackground() {
                         Backup.restore(file, partition);
-                        return null;
                     }
 
                     @Override
-                    protected void onPostExecute(Void aVoid) {
-                        super.onPostExecute(aVoid);
+                    public void onPostExecute() {
                         hideProgressMessage();
                         // Show an option to reboot after flashing/restoring
                         Dialog dialog = new Dialog(requireActivity());
@@ -309,29 +293,27 @@ public class BackupFragment extends RecyclerViewFragment {
                         });
                         dialog.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
                             Utils.snackbar(getRootView(), getString(R.string.rebooting_message));
-                            new AsyncTask<Void, Void, Void>() {
+                            new AsyncTasks() {
+
                                 @Override
-                                protected void onPreExecute() {
-                                    super.onPreExecute();
+                                public void onPreExecute() {
                                     showProgressMessage(getString(R.string.executing) + ("..."));
                                 }
+
                                 @Override
-                                protected Void doInBackground(Void... voids) {
+                                public void doInBackground() {
                                     RootUtils.runCommand(Utils.prepareReboot());
-                                    return null;
                                 }
+
                                 @Override
-                                protected void onPostExecute(Void aVoid) {
-                                    super.onPostExecute(aVoid);
+                                public void onPostExecute() {
                                     hideProgressMessage();
                                 }
                             }.execute();
                         });
                         dialog.show();
                     }
-                }.execute();
-            }
-        }, dialogInterface -> mRestoreDialog = null, getActivity());
+                }.execute(), dialogInterface -> mRestoreDialog = null, getActivity());
         mRestoreDialog.show();
     }
 
@@ -367,50 +349,44 @@ public class BackupFragment extends RecyclerViewFragment {
         mBackupPartition = partition;
         ViewUtils.dialogEditText(partition == Backup.PARTITION.BOOT ? Device.getKernelVersion(false) : null,
                 (dialogInterface, i) -> {
-                }, new ViewUtils.OnDialogEditTextListener() {
-                    @SuppressLint("StaticFieldLeak")
-                    @Override
-                    public void onClick(String text) {
-                        if (text.isEmpty()) {
-                            Utils.snackbar(getRootView(), getString(R.string.name_empty));
-                            return;
-                        }
-
-                        if (!text.endsWith(".img")) {
-                            text += ".img";
-                        }
-
-                        if (text.contains(" ")) {
-                            text = text.replace(" ", "_");
-                        }
-
-                        if (Utils.existFile(Backup.getPath(partition, requireActivity()) + "/" + text)) {
-                            Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
-                            return;
-                        }
-
-                        final String path = text;
-                        new AsyncTask<Void, Void, Void>() {
-                            @Override
-                            protected void onPreExecute() {
-                                super.onPreExecute();
-                                showProgressMessage(getString(R.string.backing_up));
-                            }
-
-                            @Override
-                            protected Void doInBackground(Void... voids) {
-                                Backup.backup(path, partition, requireActivity());
-                                return null;
-                            }
-
-                            @Override
-                            protected void onPostExecute(Void aVoid) {
-                                super.onPostExecute(aVoid);
-                                hideProgressMessage();
-                                reload();
-                            }
-                        }.execute();
+                }, text -> {
+                    if (text.isEmpty()) {
+                        Utils.snackbar(getRootView(), getString(R.string.name_empty));
+                        return;
                     }
+
+                    if (!text.endsWith(".img")) {
+                        text += ".img";
+                    }
+
+                    if (text.contains(" ")) {
+                        text = text.replace(" ", "_");
+                    }
+
+                    if (Utils.existFile(Backup.getPath(partition, requireActivity()) + "/" + text)) {
+                        Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
+                        return;
+                    }
+
+                    final String path = text;
+                    new AsyncTasks(){
+
+                        @Override
+                        public void onPreExecute() {
+                            showProgressMessage(getString(R.string.backing_up));
+                        }
+
+                        @Override
+                        public void doInBackground() {
+                            Backup.backup(path, partition, requireActivity());
+                        }
+
+                        @Override
+                        public void onPostExecute() {
+                            hideProgressMessage();
+                            reload();
+                        }
+                    }.execute();
                 }, getActivity()).setOnDismissListener(dialogInterface -> mBackupPartition = null).show();
     }
 
@@ -445,9 +421,6 @@ public class BackupFragment extends RecyclerViewFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mLoader != null) {
-            mLoader.cancel(true);
-        }
         mPermissionDenied = false;
         mLoaded = false;
     }

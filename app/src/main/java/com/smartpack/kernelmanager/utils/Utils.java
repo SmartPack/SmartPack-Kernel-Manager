@@ -59,6 +59,7 @@ import com.smartpack.kernelmanager.activities.WebViewActivity;
 import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
+import com.topjohnwu.superuser.io.SuFile;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -239,9 +240,9 @@ public class Utils {
     public static void prepareInternalDataStorage(Context context) {
         File file = getInternalDataStorage(context);
         if (file.exists() && file.isFile()) {
-            file.delete();
+            delete(file.getAbsolutePath());
         }
-        file.mkdirs();
+        mkdir(file.getAbsolutePath());
     }
 
     private static String calculateMD5(File updateFile) {
@@ -535,6 +536,10 @@ public class Utils {
 
     public static void create(String text, String path) {
         RootUtils.runCommand("echo '" + text + "' > " + path);
+    }
+
+    public static boolean mkdir(String path) {
+        return SuFile.open(path).mkdirs();
     }
 
     public static void append(String text, String path) {

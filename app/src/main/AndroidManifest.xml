@@ -35,7 +35,8 @@
         android:theme="@style/AppTheme"
         android:supportsRtl="true" >
 
-        <activity android:name=".activities.StartActivity" android:label="@string/smartpack" >
+        <activity android:name=".activities.StartActivity" android:label="@string/smartpack"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,8 +50,9 @@
 
         <activity
             android:name=".activities.StartActivityMaterial" android:label="@string/smartpack"
+            android:icon="@mipmap/ic_launcher_material"
             android:enabled="false"
-            android:icon="@mipmap/ic_launcher_material">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -62,36 +64,59 @@
                 android:resource="@xml/shortcuts" />
         </activity>
 
-        <activity android:name=".activities.MainActivity" />
-        <activity android:name=".activities.NavigationActivity" />
-        <activity android:name=".activities.TextActivity" />
-        <activity android:name=".activities.AdvancedIOActivity" />
-        <activity android:name=".activities.ApplyScriptActivity" />
-        <activity android:name=".activities.BannerResizerActivity" />
-        <activity android:name=".activities.CPUBoostActivity" />
-        <activity android:name=".activities.EditorActivity" />
-        <activity android:name=".activities.FlashingActivity" />
-        <activity android:name=".activities.ForegroundActivity" />
-        <activity android:name=".activities.LaunchFragmentActivity" />
-        <activity android:name=".activities.NoRootActivity" />
-        <activity android:name=".activities.OverallActivity" />
+        <activity android:name=".activities.MainActivity"
+            android:exported="false" />
+        <activity android:name=".activities.NavigationActivity"
+            android:exported="false" />
+        <activity android:name=".activities.TextActivity"
+            android:exported="false" />
+        <activity android:name=".activities.AdvancedIOActivity"
+            android:exported="false" />
+        <activity android:name=".activities.ApplyScriptActivity"
+            android:exported="false" />
+        <activity android:name=".activities.BannerResizerActivity"
+            android:exported="false" />
+        <activity android:name=".activities.CPUBoostActivity"
+            android:exported="false" />
+        <activity android:name=".activities.EditorActivity"
+            android:exported="false" />
+        <activity android:name=".activities.FlashingActivity"
+            android:exported="false" />
+        <activity android:name=".activities.ForegroundActivity"
+            android:exported="false" />
+        <activity android:name=".activities.LaunchFragmentActivity"
+            android:exported="false" />
+        <activity android:name=".activities.NoRootActivity"
+            android:exported="false" />
+        <activity android:name=".activities.OverallActivity"
+            android:exported="false" />
         <activity android:name=".activities.SecurityActivity"
-            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
-        <activity android:name=".activities.tools.profile.ProfileActivity" />
-        <activity android:name=".activities.tools.profile.ProfileEditActivity" />
-        <activity android:name=".activities.TerminalActivity" />
-        <activity android:name=".activities.ToolsActivity" />
-        <activity android:name=".activities.TranslatorActivity" />
-        <activity android:name=".activities.TunablesActivity" />
-        <activity android:name=".activities.UpdateChannelActivity" />
-        <activity android:name=".activities.WebViewActivity" />
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation"
+            android:exported="false" />
+        <activity android:name=".activities.tools.profile.ProfileActivity"
+            android:exported="false" />
+        <activity android:name=".activities.tools.profile.ProfileEditActivity"
+            android:exported="false" />
+        <activity android:name=".activities.TerminalActivity"
+            android:exported="false" />
+        <activity android:name=".activities.ToolsActivity"
+            android:exported="false" />
+        <activity android:name=".activities.TranslatorActivity"
+            android:exported="false" />
+        <activity android:name=".activities.TunablesActivity"
+            android:exported="false" />
+        <activity android:name=".activities.UpdateChannelActivity"
+            android:exported="false" />
+        <activity android:name=".activities.WebViewActivity"
+            android:exported="false" />
         <activity android:name=".views.NavHeaderView$MainHeaderActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="false" />
 
         <receiver
             android:name=".services.boot.OnBootReceiver"
-            android:enabled="true"
-            android:exported="true">
+            android:exported="true"
+            android:enabled="true" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -102,7 +127,8 @@
         <receiver android:name=".services.boot.ApplyOnBoot$CancelReceiver" />
 
         <!-- Profile Widget -->
-        <receiver android:name=".services.profile.Widget">
+        <receiver android:name=".services.profile.Widget"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -117,7 +143,8 @@
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <!-- CM SDK -->
-        <receiver android:name=".services.profile.Tile" >
+        <receiver android:name=".services.profile.Tile"
+            android:exported="false" >
             <intent-filter>
                 <action android:name=".action.ACTION_TOGGLE_STATE" />
             </intent-filter>
@@ -127,7 +154,8 @@
         <service
             android:name=".services.DashClock"
             android:icon="@drawable/ic_launcher_preview"
-            android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
+            android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.android.apps.dashclock.Extension" />
             </intent-filter>
@@ -138,13 +166,15 @@
         </service>
 
         <!-- Tasker -->
-        <activity android:name=".activities.tools.profile.ProfileTaskerActivity">
+        <activity android:name=".activities.tools.profile.ProfileTaskerActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="com.twofortyfouram.locale.intent.action.EDIT_SETTING" />
             </intent-filter>
         </activity>
 
-        <receiver android:name=".services.profile.Tasker" >
+        <receiver android:name=".services.profile.Tasker"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING" />
             </intent-filter>
@@ -153,10 +183,11 @@
         <!-- Spectrum Tile -->
         <service
             android:name=".tiles.SpectrumTile"
-            android:enabled="true"
             android:icon="@drawable/ic_spectrum_logo"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             android:label="@string/profileTile"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            android:exported="false"
+            android:enabled="true" >
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>
             </intent-filter>
@@ -165,10 +196,11 @@
         <!-- Script Tile -->
         <service
             android:name=".tiles.ScriptTile"
-            android:enabled="true"
             android:icon="@drawable/ic_console"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             android:label="@string/script"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            android:exported="false"
+            android:enabled="true" >
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>
             </intent-filter>
@@ -177,10 +209,11 @@
         <!-- Klapse Tile -->
         <service
             android:name=".tiles.KLapseTile"
-            android:enabled="true"
             android:icon="@drawable/ic_klapse"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             android:label="@string/klapse"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            android:exported="false"
+            android:enabled="true" >
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>
             </intent-filter>

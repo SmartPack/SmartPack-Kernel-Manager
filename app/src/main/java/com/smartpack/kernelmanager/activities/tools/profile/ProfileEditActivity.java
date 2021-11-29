@@ -96,7 +96,6 @@ public class ProfileEditActivity extends BaseActivity {
 
         private Profiles mProfiles;
         private Profiles.ProfileItem mItem;
-        private AsyncTasks mLoader;
 
         private Dialog mDeleteDialog;
 
@@ -133,13 +132,10 @@ public class ProfileEditActivity extends BaseActivity {
         }
 
         private void reload() {
-            if (mLoader == null) {
-                getHandler().postDelayed(() -> {
-                    clearItems();
-                    mLoader = new UILoader(ProfileEditFragment.this);
-                    mLoader.execute();
-                }, 250);
-            }
+            getHandler().postDelayed(() -> {
+                clearItems();
+                new UILoader(ProfileEditFragment.this).execute();
+            }, 250);
         }
 
         private void load(List<RecyclerViewItem> items) {
@@ -168,7 +164,6 @@ public class ProfileEditActivity extends BaseActivity {
             super.onDestroy();
             mProfiles = null;
             mItem = null;
-            mLoader = null;
         }
 
         private static class UILoader extends AsyncTasks {
@@ -197,7 +192,6 @@ public class ProfileEditActivity extends BaseActivity {
                     fragment.addItem(item);
                 }
                 fragment.hideProgress();
-                fragment.mLoader = null;
             }
         }
     }

@@ -49,8 +49,6 @@ public class IOAdvancedFragment extends RecyclerViewFragment {
 
     private IOAdvanced mIOAdvanced;
 
-    private AsyncTasks mLoader;
-
     @Override
     protected void init() {
         super.init();
@@ -65,37 +63,33 @@ public class IOAdvancedFragment extends RecyclerViewFragment {
     }
 
     private void reload() {
-        if (mLoader == null) {
-            getHandler().postDelayed(() -> {
-                clearItems();
-                mLoader = new AsyncTasks() {
-                    private List<RecyclerViewItem> items;
+        getHandler().postDelayed(() -> {
+            clearItems();
+            new AsyncTasks() {
+                private List<RecyclerViewItem> items;
 
-                    @Override
-                    public void onPreExecute() {
-                        showProgress();
-                    }
+                @Override
+                public void onPreExecute() {
+                    showProgress();
+                    items = new ArrayList<>();
+                }
 
-                    @Override
-                    public void doInBackground() {
-                        items = new ArrayList<>();
-                        if (IOAdvanced.getIOBlockList().size() > 0) {
-                            IOBlocksInit(items);
-                        }
+                @Override
+                public void doInBackground() {
+                    if (IOAdvanced.getIOBlockList().size() > 0) {
+                        IOBlocksInit(items);
                     }
+                }
 
-                    @Override
-                    public void onPostExecute() {
-                        for (RecyclerViewItem item : items) {
-                            addItem(item);
-                        }
-                        hideProgress();
-                        mLoader = null;
+                @Override
+                public void onPostExecute() {
+                    for (RecyclerViewItem item : items) {
+                        addItem(item);
                     }
-                };
-                mLoader.execute();
-            }, 250);
-        }
+                    hideProgress();
+                }
+            }.execute();
+        }, 250);
     }
 
     private void IOBlocksInit(List<RecyclerViewItem> items) {

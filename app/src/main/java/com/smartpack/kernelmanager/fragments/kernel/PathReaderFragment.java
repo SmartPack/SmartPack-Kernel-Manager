@@ -45,8 +45,6 @@ import java.util.Objects;
  */
 public class PathReaderFragment extends RecyclerViewFragment {
 
-    private AsyncTasks mLoader;
-
     @Override
     protected void init() {
         super.init();
@@ -60,39 +58,34 @@ public class PathReaderFragment extends RecyclerViewFragment {
     }
 
     private void reload() {
-        if (mLoader == null) {
-            getHandler().postDelayed(() -> {
-                clearItems();
-                mLoader = new AsyncTasks() {
+        getHandler().postDelayed(() -> {
+            clearItems();
+            new AsyncTasks() {
+                private List<RecyclerViewItem> items;
 
-                    private List<RecyclerViewItem> items;
+                @Override
+                public void onPreExecute() {
+                    showProgress();
+                    items = new ArrayList<>();
+                }
 
-                    @Override
-                    public void onPreExecute() {
-                        showProgress();
+                @Override
+                public void doInBackground() {
+                    load(items);
+                }
+
+                @Override
+                public void onPostExecute() {
+                    for (RecyclerViewItem item : items) {
+                        addItem(item);
                     }
-
-                    @Override
-                    public void doInBackground() {
-                        items = new ArrayList<>();
-                        load(items);
+                    hideProgress();
+                    if (itemsSize() < 1 && PathReader.getError() != null) {
+                        Snackbar.make(getRootView(), PathReader.getError(), Snackbar.LENGTH_SHORT).show();
                     }
-
-                    @Override
-                    public void onPostExecute() {
-                        for (RecyclerViewItem item : items) {
-                            addItem(item);
-                        }
-                        hideProgress();
-                        if (itemsSize() < 1 && PathReader.getError() != null) {
-                            Snackbar.make(getRootView(), PathReader.getError(), Snackbar.LENGTH_SHORT).show();
-                        }
-                        mLoader = null;
-                    }
-                };
-                mLoader.execute();
-            }, 200);
-        }
+                }
+            }.execute();
+        }, 250);
     }
 
     private void load(List<RecyclerViewItem> items) {

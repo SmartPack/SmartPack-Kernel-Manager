@@ -19,9 +19,6 @@
  */
 package com.smartpack.kernelmanager.fragments.tools;
 
-import android.annotation.SuppressLint;
-import android.os.AsyncTask;
-
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.database.Settings;
 import com.smartpack.kernelmanager.database.tools.profiles.Profiles;
@@ -30,12 +27,13 @@ import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
+import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
+import com.smartpack.kernelmanager.utils.tools.Scripts;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.SwipeableDescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.TitleView;
-import com.smartpack.kernelmanager.utils.tools.Scripts;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,8 +50,6 @@ public class OnBootFragment extends RecyclerViewFragment {
     private Profiles mProfiles;
 
     private boolean mLoaded;
-
-    private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
 
     private Dialog mDeleteDialog;
 
@@ -90,40 +86,31 @@ public class OnBootFragment extends RecyclerViewFragment {
     }
 
     private void reload() {
-        if (mLoader == null) {
-            getHandler().postDelayed(new Runnable() {
-                @SuppressLint("StaticFieldLeak")
+        getHandler().postDelayed(() -> {
+            clearItems();
+            new AsyncTasks() {
+                private List<RecyclerViewItem> items;
+
                 @Override
-                public void run() {
-                    mLoader = new AsyncTask<Void, Void, List<RecyclerViewItem>>() {
-                        @Override
-                        protected void onPreExecute() {
-                            super.onPreExecute();
-                            clearItems();
-                            showProgress();
-                        }
-
-                        @Override
-                        protected List<RecyclerViewItem> doInBackground(Void... voids) {
-                            List<RecyclerViewItem> items = new ArrayList<>();
-                            load(items);
-                            return items;
-                        }
-
-                        @Override
-                        protected void onPostExecute(List<RecyclerViewItem> recyclerViewItems) {
-                            super.onPostExecute(recyclerViewItems);
-                            for (RecyclerViewItem item : recyclerViewItems) {
-                                addItem(item);
-                            }
-                            hideProgress();
-                            mLoader = null;
-                        }
-                    };
-                    mLoader.execute();
+                public void onPreExecute() {
+                    showProgress();
+                    items = new ArrayList<>();
                 }
-            }, 250);
-        }
+
+                @Override
+                public void doInBackground() {
+                    load(items);
+                }
+
+                @Override
+                public void onPostExecute() {
+                    for (RecyclerViewItem item : items) {
+                        addItem(item);
+                    }
+                    hideProgress();
+                }
+            }.execute();
+        }, 250);
     }
 
     private void load(List<RecyclerViewItem> items) {
@@ -361,9 +348,5 @@ public class OnBootFragment extends RecyclerViewFragment {
         mSettings = null;
         mProfiles = null;
         mLoaded = false;
-        if (mLoader != null) {
-            mLoader.cancel(true);
-            mLoader = null;
-        }
     }
 }

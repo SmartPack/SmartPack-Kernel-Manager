@@ -25,7 +25,6 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -61,6 +60,7 @@ import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
 import com.smartpack.kernelmanager.utils.root.Control;
+import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -88,7 +88,6 @@ public class ProfileFragment extends RecyclerViewFragment {
     private boolean mTaskerMode;
     private Profiles mProfiles;
 
-    private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
     private boolean mLoaded;
 
     private LinkedHashMap<String, String> mCommands;
@@ -175,45 +174,38 @@ public class ProfileFragment extends RecyclerViewFragment {
     }
 
     private void reload() {
-        if (mLoader == null) {
-            getHandler().postDelayed(() -> {
-                clearItems();
-                mLoader = new UILoader(ProfileFragment.this);
-                mLoader.execute();
-            }, 250);
-        }
+        getHandler().postDelayed(() -> {
+            clearItems();
+            new UILoader(ProfileFragment.this).execute();
+        }, 250);
     }
 
-    private static class UILoader extends AsyncTask<Void, Void, List<RecyclerViewItem>> {
+    private static class UILoader extends AsyncTasks {
 
-        private final WeakReference<ProfileFragment> mRefFragment;
-
+        private List<RecyclerViewItem> items;
         private UILoader(ProfileFragment fragment) {
             mRefFragment = new WeakReference<>(fragment);
         }
+        private final WeakReference<ProfileFragment> mRefFragment;
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
+        public void onPreExecute() {
             mRefFragment.get().showProgress();
+            items = new ArrayList<>();
         }
 
         @Override
-        protected List<RecyclerViewItem> doInBackground(Void... voids) {
-            List<RecyclerViewItem> items = new ArrayList<>();
+        public void doInBackground() {
             mRefFragment.get().load(items);
-            return items;
         }
 
         @Override
-        protected void onPostExecute(List<RecyclerViewItem> items) {
-            super.onPostExecute(items);
+        public void onPostExecute() {
             ProfileFragment fragment = mRefFragment.get();
             for (RecyclerViewItem item : items) {
                 fragment.addItem(item);
             }
             fragment.hideProgress();
-            fragment.mLoader = null;
         }
     }
 
@@ -234,9 +226,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 descriptionView.setIndicator(ViewUtils.getColoredIcon(R.drawable.ic_flash, requireActivity()));
             }
             descriptionView.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
-            descriptionView.setOnItemClickListener(item -> {
-                applyProfile(descriptionView, position);
-            });
+            descriptionView.setOnItemClickListener(item -> applyProfile(descriptionView, position));
             descriptionView.setOnMenuListener((cardView1, popupMenu) -> {
                 Menu menu = popupMenu.getMenu();
                 menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.apply));
@@ -374,10 +364,11 @@ public class ProfileFragment extends RecyclerViewFragment {
                             startActivityForResult(createProfileActivityIntent(), 0);
                             break;
                         case 1:
-                            FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
                             FilePicker.setExtension("json");
-                            Intent filePicker = new Intent(getActivity(), FilePickerActivity.class);
-                            startActivityForResult(filePicker, 1);
+                            FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
+                            FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
+                            Intent intent = new Intent(requireContext(), FilePickerActivity.class);
+                            startActivityForResult(intent, 1);
                             break;
                     }
                 }).setOnDismissListener(dialogInterface -> mOptionsDialog = null);
@@ -550,10 +541,6 @@ public class ProfileFragment extends RecyclerViewFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mLoader != null) {
-            mLoader.cancel(true);
-            mLoader = null;
-        }
         mLoaded = false;
     }
 

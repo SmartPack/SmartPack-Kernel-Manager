@@ -22,6 +22,7 @@ package com.smartpack.kernelmanager.fragments;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -85,7 +86,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     private Handler mHandler;
     private ScheduledThreadPoolExecutor mPoolExecutor;
 
-    private View mRootView, mViewPagerShadow, mViewPagerParent;;
+    private View mRootView, mViewPagerShadow, mViewPagerParent;
 
     private final List<RecyclerViewItem> mItems = new ArrayList<>();
     private RecyclerView mRecyclerView;
@@ -169,14 +170,11 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             mRecyclerView.addOnScrollListener(mScroller);
         }
         mRecyclerView.setAdapter(mRecyclerViewAdapter == null ? mRecyclerViewAdapter
-                = new RecyclerViewAdapter(mItems, () -> getHandler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (isAdded() && getActivity() != null) {
-                    adjustScrollPosition();
-                }
-            }
-        }, 250)) : mRecyclerViewAdapter);
+                = new RecyclerViewAdapter(mItems, () -> getHandler().postDelayed(() -> {
+                    if (isAdded() && getActivity() != null) {
+                        adjustScrollPosition();
+                    }
+                }, 250)) : mRecyclerViewAdapter);
         mRecyclerView.setLayoutManager(mLayoutManager = getLayoutManager());
         mRecyclerView.setHasFixedSize(true);
 
@@ -396,6 +394,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         return height;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     protected void clearItems() {
         mItems.clear();
         if (mRecyclerViewAdapter != null) {

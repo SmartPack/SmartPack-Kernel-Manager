@@ -95,30 +95,32 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     private void reload() {
-        new AsyncTasks() {
-            private List<RecyclerViewItem> items;
+        getHandler().postDelayed(() -> {
+            clearItems();
+            new AsyncTasks() {
+                private List<RecyclerViewItem> items;
 
-            @Override
-            public void onPreExecute() {
-                clearItems();
-                showProgress();
-            }
-
-            @Override
-            public void doInBackground() {
-                items = new ArrayList<>();
-                SmartPackInit(items);
-                OtherOptionsInit(items);
-            }
-
-            @Override
-            public void onPostExecute() {
-                for (RecyclerViewItem item : items) {
-                    addItem(item);
+                @Override
+                public void onPreExecute() {
+                    showProgress();
+                    items = new ArrayList<>();
                 }
-                hideProgress();
-            }
-        }.execute();
+
+                @Override
+                public void doInBackground() {
+                    SmartPackInit(items);
+                    OtherOptionsInit(items);
+                }
+
+                @Override
+                public void onPostExecute() {
+                    for (RecyclerViewItem item : items) {
+                        addItem(item);
+                    }
+                    hideProgress();
+                }
+            }.execute();
+        }, 250);
     }
 
     @Override
@@ -277,9 +279,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             DescriptionView download = new DescriptionView();
             download.setTitle(getString(R.string.download));
             download.setSummary(getString(R.string.get_it_summary));
-            download.setOnItemClickListener(item -> {
-                downloadKernel();
-            });
+            download.setOnItemClickListener(item -> downloadKernel());
 
             items.add(download);
         }
@@ -527,10 +527,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
     @Override
     protected void onTopFabClick() {
         super.onTopFabClick();
-        FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
         FilePicker.setExtension("zip");
-        Intent filePicker = new Intent(getActivity(), FilePickerActivity.class);
-        startActivityForResult(filePicker, 0);
+        FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
+        FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
+        Intent intent = new Intent(requireContext(), FilePickerActivity.class);
+        startActivityForResult(intent, 0);
     }
 
     @SuppressLint({"StringFormatInvalid", "StringFormatMatches"})
@@ -538,7 +539,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 0 && data != null) {
+        if (requestCode == 0 && data != null && FilePicker.getSelectedFile().exists()) {
             File mSelectedFile = FilePicker.getSelectedFile();
             new Dialog(requireActivity())
                     .setIcon(R.mipmap.ic_launcher)
@@ -547,7 +548,9 @@ public class SmartPackFragment extends RecyclerViewFragment {
                             ("\n\n") + getString(R.string.file_size_limit, (SmartPack.fileSize(mSelectedFile) / 1000000)) : ""))
                     .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
                     })
-                    .setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> SmartPack.flashingTask(mSelectedFile, requireActivity())).show();
+                    .setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> SmartPack.flashingTask(
+                            mSelectedFile, requireActivity())
+                    ).show();
         }
     }
 

@@ -27,7 +27,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
@@ -53,6 +52,7 @@ import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
+import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -67,8 +67,6 @@ import java.util.Objects;
  */
 
 public class TranslatorFragment extends RecyclerViewFragment {
-
-    private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
 
     private boolean mPermissionDenied;
 
@@ -134,45 +132,32 @@ public class TranslatorFragment extends RecyclerViewFragment {
     }
 
     public void reload() {
-        if (mLoader == null) {
-            getHandler().postDelayed(new Runnable() {
-                @SuppressLint("StaticFieldLeak")
+        getHandler().postDelayed(() -> {
+            clearItems();
+            new AsyncTasks() {
+                private List<RecyclerViewItem> items;
+
                 @Override
-                public void run() {
-                    mLoader = new AsyncTask<Void, Void, List<RecyclerViewItem>>() {
-
-                        @Override
-                        protected void onPreExecute() {
-                            super.onPreExecute();
-                            showProgress();
-                        }
-
-                        @Override
-                        protected List<RecyclerViewItem> doInBackground(Void... voids) {
-                            List<RecyclerViewItem> items = new ArrayList<>();
-                            loadInTo(items);
-                            return items;
-                        }
-
-                        @Override
-                        protected void onPostExecute(List<RecyclerViewItem> recyclerViewItems) {
-                            super.onPostExecute(recyclerViewItems);
-
-                            if (isAdded()) {
-                                clearItems();
-                                for (RecyclerViewItem item : recyclerViewItems) {
-                                    addItem(item);
-                                }
-
-                                hideProgress();
-                                mLoader = null;
-                            }
-                        }
-                    };
-                    mLoader.execute();
+                public void onPreExecute() {
+                    showProgress();
+                    items = new ArrayList<>();
                 }
-            }, 250);
-        }
+
+                @Override
+                public void doInBackground() {
+                    loadInTo(items);
+                }
+
+                @Override
+                public void onPostExecute() {
+                    for (RecyclerViewItem item : items) {
+                        addItem(item);
+                    }
+
+                    hideProgress();
+                }
+            }.execute();
+        }, 250);
     }
 
     private void loadInTo(List<RecyclerViewItem> items) {
@@ -379,11 +364,11 @@ public class TranslatorFragment extends RecyclerViewFragment {
                                 })
                                 .show();
                     } else {
-                        new AsyncTask<Void, Void, Void>() {
-                            String url = null;
+                        new AsyncTasks() {
+                            private String url = null;
+
                             @Override
-                            protected void onPreExecute() {
-                                super.onPreExecute();
+                            public void onPreExecute() {
                                 assert translatorFragment != null;
                                 translatorFragment.showProgressMessage(getString(R.string.importing_string) + ("..."));
                                 translatorFragment.showProgress();
@@ -409,16 +394,16 @@ public class TranslatorFragment extends RecyclerViewFragment {
                                     url = "values-pl";
                                 }
                             }
+
                             @Override
-                            protected Void doInBackground(Void... voids) {
+                            public void doInBackground() {
                                 if (url != null) {
                                     Utils.importTranslation(url, getActivity());
                                 }
-                                return null;
                             }
+
                             @Override
-                            protected void onPostExecute(Void aVoid) {
-                                super.onPostExecute(aVoid);
+                            public void onPostExecute() {
                                 assert translatorFragment != null;
                                 translatorFragment.hideProgress();
                                 translatorFragment.reload();
@@ -460,9 +445,6 @@ public class TranslatorFragment extends RecyclerViewFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mLoader != null) {
-            mLoader.cancel(true);
-        }
         mKeyText = null;
     }
 

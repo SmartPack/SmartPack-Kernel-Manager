@@ -22,7 +22,6 @@ package com.smartpack.kernelmanager.fragments.tools;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -42,6 +41,7 @@ import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.utils.tools.Buildprop;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -57,7 +57,6 @@ import java.util.List;
  */
 public class BuildpropFragment extends RecyclerViewFragment {
 
-    private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
     private LinkedHashMap<String, String> mProps;
     private String mKeyText;
     private String mValueText;
@@ -107,22 +106,17 @@ public class BuildpropFragment extends RecyclerViewFragment {
     }
 
     private void reload(final boolean read) {
-        if (mLoader == null) {
-            getHandler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    clearItems();
-                    mLoader = new UILoader(BuildpropFragment.this, read);
-                    mLoader.execute();
-                }
-            }, 250);
-        }
+        getHandler().postDelayed(() -> {
+            clearItems();
+            new UILoader(BuildpropFragment.this, read).execute();
+        }, 250);
     }
 
-    private static class UILoader extends AsyncTask<Void, Void, List<RecyclerViewItem>> {
+    private static class UILoader extends AsyncTasks {
 
-        private WeakReference<BuildpropFragment> mRefFragment;
-        private boolean mRead;
+        private final boolean mRead;
+        private List<RecyclerViewItem> items;
+        private final WeakReference<BuildpropFragment> mRefFragment;
 
         private UILoader(BuildpropFragment fragment, boolean read) {
             mRefFragment = new WeakReference<>(fragment);
@@ -130,32 +124,28 @@ public class BuildpropFragment extends RecyclerViewFragment {
         }
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
+        public void onPreExecute() {
             mRefFragment.get().showProgress();
+            items = new ArrayList<>();
         }
 
         @Override
-        protected List<RecyclerViewItem> doInBackground(Void... voids) {
+        public void doInBackground() {
             BuildpropFragment fragment = mRefFragment.get();
             if (mRead) {
                 fragment.mProps = Buildprop.getProps();
             }
-            List<RecyclerViewItem> items = new ArrayList<>();
             fragment.load(items);
-            return items;
         }
 
         @Override
-        protected void onPostExecute(List<RecyclerViewItem> items) {
-            super.onPostExecute(items);
+        public void onPostExecute() {
             BuildpropFragment fragment = mRefFragment.get();
 
             for (RecyclerViewItem item : items) {
                 fragment.addItem(item);
             }
             fragment.hideProgress();
-            fragment.mLoader = null;
         }
     }
 
@@ -304,9 +294,6 @@ public class BuildpropFragment extends RecyclerViewFragment {
         }
         if (Buildprop.mWritableRoot) {
             RootUtils.mount("ro", "/");
-        }
-        if (mLoader != null) {
-            mLoader.cancel(true);
         }
         mKeyText = null;
         mValueText = null;

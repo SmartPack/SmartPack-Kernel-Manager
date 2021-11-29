@@ -24,7 +24,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Environment;
 import android.view.Menu;
 
@@ -40,6 +39,8 @@ import com.smartpack.kernelmanager.utils.Common;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
+import com.smartpack.kernelmanager.utils.kernel.io.IOAdvanced;
+import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.utils.tools.Scripts;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -62,8 +63,6 @@ import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
  */
 
 public class ScriptMangerFragment extends RecyclerViewFragment {
-
-    private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
 
     private boolean mLoaded, mPermissionDenied, mShowCreateNameDialog;
 
@@ -125,44 +124,31 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     }
 
     private void reload() {
-        if (mLoader == null) {
-            getHandler().postDelayed(new Runnable() {
-                @SuppressLint("StaticFieldLeak")
+        getHandler().postDelayed(() -> {
+            clearItems();
+            new AsyncTasks() {
+                private List<RecyclerViewItem> items;
+
                 @Override
-                public void run() {
-                    clearItems();
-                    mLoader = new AsyncTask<Void, Void, List<RecyclerViewItem>>() {
-
-                        @Override
-                        protected void onPreExecute() {
-                            super.onPreExecute();
-                            showProgress();
-                        }
-
-                        @Override
-                        protected List<RecyclerViewItem> doInBackground(Void... voids) {
-                            List<RecyclerViewItem> items = new ArrayList<>();
-                            load(items);
-                            return items;
-                        }
-
-                        @Override
-                        protected void onPostExecute(List<RecyclerViewItem> recyclerViewItems) {
-                            super.onPostExecute(recyclerViewItems);
-                            if (isAdded()) {
-                                clearItems();
-                                for (RecyclerViewItem item : recyclerViewItems) {
-                                    addItem(item);
-                                }
-                                hideProgress();
-                                mLoader = null;
-                            }
-                        }
-                    };
-                    mLoader.execute();
+                public void onPreExecute() {
+                    showProgress();
+                    items = new ArrayList<>();
                 }
-            }, 250);
-        }
+
+                @Override
+                public void doInBackground() {
+                    load(items);
+                }
+
+                @Override
+                public void onPostExecute() {
+                    for (RecyclerViewItem item : items) {
+                        addItem(item);
+                    }
+                    hideProgress();
+                }
+            }.execute();
+        }, 250);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -261,9 +247,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 sm.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
                 sm.setSummary(getString(R.string.scripts_manager_message));
                 sm.setFullSpan(true);
-                sm.setOnItemClickListener(item -> {
-                    Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.scriptmanager", getActivity());
-                });
+                sm.setOnItemClickListener(item -> Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.scriptmanager", getActivity()));
                 items.add(sm);
             }
         }
@@ -271,24 +255,24 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
 
     @SuppressLint("StaticFieldLeak")
     private void execute(final String script) {
-        new AsyncTask<Void, Void, Void>() {
+        new AsyncTasks() {
+
             @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
+            public void onPreExecute() {
                 Scripts.mApplying = true;
                 Scripts.mScriptName = script;
                 Scripts.mOutput = new ArrayList<>();
                 Intent applyIntent = new Intent(requireActivity(), ApplyScriptActivity.class);
                 startActivity(applyIntent);
             }
+
             @Override
-            protected Void doInBackground(Void... voids) {
+            public void doInBackground() {
                 Scripts.execute(script, requireActivity());
-                return null;
             }
+
             @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
+            public void onPostExecute() {
                 Scripts.mApplying = false;
             }
         }.execute();
@@ -363,10 +347,11 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                             showCreateDialog();
                             break;
                         case 1:
-                            FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
                             FilePicker.setExtension("sh");
-                            Intent filePicker = new Intent(getActivity(), FilePickerActivity.class);
-                            startActivityForResult(filePicker, 2);
+                            FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
+                            FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
+                            Intent intent = new Intent(requireContext(), FilePickerActivity.class);
+                            startActivityForResult(intent, 2);
                             break;
                     }
                 }).setOnDismissListener(dialogInterface -> mOptionsDialog = null);
@@ -407,10 +392,6 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mLoader != null) {
-            mLoader.cancel(true);
-            mLoader = null;
-        }
         mLoaded = false;
     }
 }
