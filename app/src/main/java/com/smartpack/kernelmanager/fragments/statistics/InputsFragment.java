@@ -19,6 +19,8 @@
  */
 package com.smartpack.kernelmanager.fragments.statistics;
 
+import android.annotation.SuppressLint;
+
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Device;
@@ -50,11 +52,12 @@ public class InputsFragment extends RecyclerViewFragment {
         for (Device.Input.Item input : inputs) {
             String name;
             if ((name = input.getName()) != null) {
+                @SuppressLint({"StringFormatInvalid", "LocalSuppress"})
                 String[][] list = {
                         {getString(R.string.bus), input.getBus()},
                         {getString(R.string.vendor), input.getVendor()},
                         {getString(R.string.product), input.getProduct()},
-                        {getString(R.string.version), input.getVersion()},
+                        {getString(R.string.version,"").replace(": ", ""), input.getVersion()},
                         {getString(R.string.sysfs), input.getSysfs()},
                         {getString(R.string.handlers), input.getHandlers()}
                 };

@@ -149,7 +149,6 @@
     <!-- Inputs -->
     <string name="bus">"Шина"</string>
     <string name="product">"Изделие"</string>
-    <string name="version">"Версия"</string>
     <string name="handlers">"Обработчики"</string>
 
     <!-- CPU -->

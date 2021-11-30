@@ -149,7 +149,6 @@
     <!-- Inputs -->
     <string name="bus">"Barramento"</string>
     <string name="product">"Produto"</string>
-    <string name="version">"Versão"</string>
     <string name="handlers">"Handlers"</string>
 
     <!-- CPU -->

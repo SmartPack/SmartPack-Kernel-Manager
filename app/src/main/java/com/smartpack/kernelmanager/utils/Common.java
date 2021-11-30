@@ -31,6 +31,8 @@ import com.smartpack.kernelmanager.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.sunilpaulmathew.sCommon.Utils.sSerializableItems;
+
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on May 08, 2021
  */
@@ -73,6 +75,43 @@ public class Common {
 
     public static Fragment getSelectedFragment() {
         return mSelectedFragment;
+    }
+
+    public static List<sSerializableItems> getCredits() {
+        List<sSerializableItems> mData = new ArrayList<>();
+        mData.add(new sSerializableItems(null, "Willi Ye", "Kernel Adiutor", "https://github.com/Grarak/KernelAdiutor"));
+        mData.add(new sSerializableItems(null, "Chris Renshaw", "Auto-flashing", "https://github.com/osm0sis"));
+        mData.add(new sSerializableItems(null, "John Wu", "libsu", "https://github.com/topjohnwu/libsu"));
+        mData.add(new sSerializableItems(null, "Joe Maples", "Spectrum", "https://github.com/frap129/spectrum"));
+        mData.add(new sSerializableItems(null, "CyanogenMod", "Platform SDK", "https://github.com/CyanogenMod/cm_platform_sdk"));
+        mData.add(new sSerializableItems(null, "Google", "AndroidX & NavigationView", null));
+        mData.add(new sSerializableItems(null, "Ozodrukh", "CircularReveal", "https://github.com/ozodrukh/CircularReveal"));
+        mData.add(new sSerializableItems(null, "Roman Nurik", "DashClock", "https://github.com/romannurik/dashclock"));
+        mData.add(new sSerializableItems(null, "Square", "Picasso", "https://github.com/square/picasso"));
+        mData.add(new sSerializableItems(null, "Akexorcist","Round Corner Progress Bar", "https://github.com/akexorcist/Android-RoundCornerProgressBar"));
+
+        mData.add(new sSerializableItems(null, "Toxinpiper", "App Icon", "https://t.me/toxinpiper"));
+
+        mData.add(new sSerializableItems(null, "jason5545", "Chinese (Traditional) Translations", "https://github.com/jason5545"));
+        mData.add(new sSerializableItems(null, "Roiyaru", "Chinese (simplified) Translations", "https://github.com/Roiyaru"));
+        mData.add(new sSerializableItems(null, "YFdyh000", "Chinese (simplified) Translations", "https://github.com/yfdyh000"));
+        mData.add(new sSerializableItems(null, "Andrey","Russian Translations", "https://github.com/andrey167"));
+        mData.add(new sSerializableItems(null, "tommynok", "Russian & Ukrainian Translations", null));
+        mData.add(new sSerializableItems(null, "kiratt","Russian & Ukrainian Translations", "http://4pda.ru/forum/index.php?showuser=5859577"));
+        mData.add(new sSerializableItems(null, "Lennoard Silva", "Portuguese (Brazilian) Translations", "https://github.com/Lennoard"));
+        mData.add(new sSerializableItems(null, "FiestaLake", "Korean Translations", "https://github.com/FiestaLake"));
+        mData.add(new sSerializableItems(null, "Mikesew1320", "Amharic Translations", "https://github.com/Mikesew1320"));
+        mData.add(new sSerializableItems(null, "free-bots", "German Translations", "https://github.com/free-bots"));
+        mData.add(new sSerializableItems(null, "Lars S", "German Translations", null));
+        mData.add(new sSerializableItems(null, "Alejandro YT", "Spanish Translations", null));
+        mData.add(new sSerializableItems(null, "Cold", "Spanish Translations", null));
+        mData.add(new sSerializableItems(null, "Fruity-0", "Polish Translations", "https://github.com/Fruity-0"));
+        mData.add(new sSerializableItems(null, "Fatih Fırıncı", "Turkish Translations", "https://github.com/Fatih-BaKeR"));
+        mData.add(new sSerializableItems(null, "omerakgoz34 (BSÇE)", "Turkish Translations", "https://github.com/omerakgoz34"));
+        mData.add(new sSerializableItems(null, "Phil", "Portuguese (Portugal) Translations", null));
+        mData.add(new sSerializableItems(null, "Catellone94", "Italian Translations", null));
+        mData.add(new sSerializableItems(null, "Gianfranco. liguori.96", "Italian Translations", null));
+        return mData;
     }
 
     public static List<String> getFlashingOutput() {

@@ -104,7 +104,6 @@
     <!-- Inputs -->
     <string name="bus">匯流排(Bus)</string>
     <string name="product">產品</string>
-    <string name="version">版本</string>
     <string name="handlers">管理者</string>
 
     <!-- CPU -->

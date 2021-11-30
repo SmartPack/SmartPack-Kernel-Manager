@@ -145,7 +145,6 @@
     <!-- Inputs -->
     <string name="bus">"Bus"</string>
     <string name="product">"Prodotto"</string>
-    <string name="version">"Versione"</string>
     <string name="handlers">"Gestori"</string>
 
     <!-- CPU -->

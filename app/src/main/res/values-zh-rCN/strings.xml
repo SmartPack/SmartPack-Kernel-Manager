@@ -124,7 +124,6 @@
     <!-- Inputs -->
     <string name="bus">总线</string>
     <string name="product">产品</string>
-    <string name="version">版本</string>
     <string name="handlers">处理器</string>
 
     <!-- CPU -->

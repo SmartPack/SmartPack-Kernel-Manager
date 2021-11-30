@@ -126,7 +126,6 @@
     <!-- Inputs -->
     <string name="bus">"Bus"</string>
     <string name="product">"Produkt"</string>
-    <string name="version">"Wersja"</string>
     <string name="handlers">"Obsługa"</string>
 
     <!-- CPU -->

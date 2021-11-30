@@ -34,6 +34,7 @@ import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
+import com.smartpack.kernelmanager.utils.Common;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.other.Billing;
@@ -43,30 +44,16 @@ import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.TitleView;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 
+import in.sunilpaulmathew.sCommon.Utils.sCreditsUtils;
 import in.sunilpaulmathew.sCommon.Utils.sTranslatorUtils;
+import in.sunilpaulmathew.sCommon.Utils.sUtils;
 
 /**
  * Created by willi on 22.07.16.
  */
 public class AboutFragment extends RecyclerViewFragment {
-
-    private static final LinkedHashMap<String, String> sCredits = new LinkedHashMap<>();
-
-    static {
-        sCredits.put("libsu,topjohnwu", "https://github.com/topjohnwu");
-        sCredits.put("Spectrum,Joe Maples", "https://github.com/frap129/spectrum");
-        sCredits.put("AndroidX,Google", "https://developer.android.com/jetpack/androidx");
-        sCredits.put("NavigationView,Google", "https://developer.android.com/reference/com/google/android/material/navigation/NavigationView");
-        sCredits.put("CircularReveal,Ozodrukh", "https://github.com/ozodrukh/CircularReveal");
-        sCredits.put("DashClock,Roman Nurik", "https://github.com/romannurik/dashclock");
-        sCredits.put("Picasso,Square", "https://github.com/square/picasso");
-        sCredits.put("Platform SDK,CyanogenMod", "https://github.com/CyanogenMod/cm_platform_sdk");
-        sCredits.put("Round Corner Progress Bar,Akexorcist", "https://github.com/akexorcist/Android-RoundCornerProgressBar");
-        sCredits.put("App Icon,Toxinpiper", "https://t.me/toxinpiper");
-    }
 
     @Override
     protected void init() {
@@ -87,14 +74,14 @@ public class AboutFragment extends RecyclerViewFragment {
         translationsInit(items);
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint({"UseCompatLoadingForDrawables", "StringFormatInvalid"})
     private void aboutInit(List<RecyclerViewItem> items) {
         TitleView about = new TitleView();
         about.setText(getString(R.string.app_name));
 
         DescriptionView versioninfo = new DescriptionView();
         versioninfo.setDrawable(getResources().getDrawable(R.drawable.ic_on_boot_notification));
-        versioninfo.setTitle(getString(R.string.version));
+        versioninfo.setTitle(getString(R.string.version,"").replace(": ", ""));
         versioninfo.setSummary((Utils.isDonated(requireActivity()) ? " Pro " : " ") + BuildConfig.VERSION_NAME);
         versioninfo.setOnItemClickListener(item -> {
             Intent settings = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -205,55 +192,24 @@ public class AboutFragment extends RecyclerViewFragment {
         osm0sisCard.addItem(osm0sis);
         items.add(osm0sisCard);
 
-        TitleView credits = new TitleView();
-        credits.setText(getString(R.string.credits));
+        CardView credits = new CardView(requireActivity());
+        credits.setTitle(getString(R.string.credits));
+        credits.setFullSpan(true);
+        DescriptionView creditsSummary = new DescriptionView();
+        creditsSummary.setDrawable(getResources().getDrawable(R.drawable.ic_credits));
+        creditsSummary.setSummary(getString(R.string.credits_summary));
+        creditsSummary.setOnItemClickListener(item -> new sCreditsUtils(Common.getCredits(),
+                sUtils.getDrawable(R.mipmap.ic_launcher, requireActivity()),
+                sUtils.getDrawable(R.drawable.ic_back, requireActivity()),
+                ViewUtils.getThemeAccentColor(requireActivity()),
+                18, getString(R.string.app_name), "2021-2022, sunilpaulmathew",
+                BuildConfig.VERSION_NAME).launchCredits(requireActivity()));
+        credits.addItem(creditsSummary);
         items.add(credits);
-
-        for (final String lib : sCredits.keySet()) {
-            DescriptionView descriptionView = new DescriptionView();
-            switch (lib.split(",")[1]) {
-                case "topjohnwu":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_topjohnwu));
-                    break;
-                case "Joe Maples":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_frap129));
-                    break;
-                case "Google":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_google));
-                    break;
-                case "Ozodrukh":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_ozodrukh));
-                    break;
-                case "Roman Nurik":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_romannurik));
-                    break;
-                case "Square":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_square));
-                    break;
-                case "Akexorcist":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_akexorcist));
-                    break;
-                case "CyanogenMod":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_cyanogenmod));
-                    break;
-                case "Toxinpiper":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_on_boot_notification));
-                    break;
-            }
-            descriptionView.setTitle(lib.split(",")[1]);
-            descriptionView.setSummary(lib.split(",")[0]);
-            descriptionView.setOnItemClickListener(item -> Utils.launchUrl(sCredits.get(lib), getActivity()));
-
-            items.add(descriptionView);
-        }
     }
 
     @SuppressLint({"UseCompatLoadingForDrawables", "StaticFieldLeak"})
     private void translationsInit(List<RecyclerViewItem> items) {
-        TitleView translators = new TitleView();
-        translators.setText(getString(R.string.translators));
-        items.add(translators);
-
         CardView translatorCard = new CardView(getActivity());
         translatorCard.setFullSpan(true);
 
@@ -265,14 +221,6 @@ public class AboutFragment extends RecyclerViewFragment {
 
         translatorCard.addItem(translator);
         items.add(translatorCard);
-
-        DescriptionView translators_list = new DescriptionView();
-        translators_list.setSummary(getString(R.string.translators_summary));
-        translators_list.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_people, requireActivity()));
-        translators_list.setFullSpan(true);
-        translators_list.setOnItemClickListener(item -> Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager#translations", getActivity()));
-
-        items.add(translators_list);
     }
 
     public static class InfoFragment extends BaseFragment {

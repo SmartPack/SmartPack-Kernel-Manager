@@ -108,7 +108,6 @@
     <!-- Inputs -->
     <string name="bus">버스</string>
     <string name="product">제품</string>
-    <string name="version">버전</string>
     <string name="handlers">핸들러</string>
 
     <!-- CPU -->

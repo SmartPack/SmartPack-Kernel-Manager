@@ -149,7 +149,6 @@
     <!-- Inputs -->
     <string name="bus">"Bus"</string>
     <string name="product">"Ürün"</string>
-    <string name="version">"Sürüm"</string>
     <string name="handlers">"Handlers"</string>
 
     <!-- CPU -->

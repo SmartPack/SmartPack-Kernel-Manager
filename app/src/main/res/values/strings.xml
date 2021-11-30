@@ -137,7 +137,6 @@
     <!-- Inputs -->
     <string name="bus">Bus</string>
     <string name="product">Product</string>
-    <string name="version">Version</string>
     <string name="sysfs" translatable="false">Sysfs</string>
     <string name="handlers">Handlers</string>
 
