@@ -15,7 +15,6 @@
     <string name="no_picture">ስዕል የለም</string>
     <string name="went_wrong">የሆነ ስህተት ተከስቷል!</string>
     <string name="press_back_again_exit">ለመውጣት መልሰህ ተጫን</string>
-    <string name="cancel">ይቅር</string>
     <string name="ok">እሺ</string>
     <string name="yes">አዎ</string>
     <string name="unknown">ያልታወቀ</string>
@@ -1053,7 +1052,6 @@
 
     <!-- About -->
     <string name="about_me">ስማርትፓክ ከርነል ሥራ አስኪያጅ በዋነኝነት በ Willi Ye aka Grarak የተገነባው Kernel Auditor የተሻሻለ ስሪት ነው፤ ስለዚህም ሁሉም ምስጋናዎች ወደ ዋናው ገንቢ ይሄዳል።</string>
-    <string name="credits">ምስጋናዎች</string>
     <string name="special_mentions">ልዩ ጥቅሶች</string>
     <string name="source_code">ምንጭ ኮድ</string>
     <string name="source_code_summary">GitHub ላይ የምንጭ ኮድን ይመልከቱ</string>

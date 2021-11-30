@@ -71,9 +71,7 @@ public class FlashingActivity extends BaseActivity {
             Utils.snackbar(findViewById(android.R.id.content), getString(R.string.flash_log_summary, Utils.getInternalDataStorage(this)
                     + "/flasher_log-" + Common.getZipName().replace(".zip", "")));
         });
-        mCancelButton.setOnClickListener(v -> {
-            onBackPressed();
-        });
+        mCancelButton.setOnClickListener(v -> onBackPressed());
         mRebootButton.setOnClickListener(v -> {
             onBackPressed();
             Utils.rebootCommand(this);

@@ -39,7 +39,6 @@ import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
-import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.utils.tools.KernelUpdater;
 import com.smartpack.kernelmanager.utils.tools.SmartPack;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
@@ -55,6 +54,8 @@ import java.util.List;
 
 import in.sunilpaulmathew.rootfilepicker.activities.FilePickerActivity;
 import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
+import in.sunilpaulmathew.sCommon.Utils.sPackageUtils;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on July 24, 2018
@@ -97,7 +98,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
     private void reload() {
         getHandler().postDelayed(() -> {
             clearItems();
-            new AsyncTasks() {
+            new sExecutor() {
                 private List<RecyclerViewItem> items;
 
                 @Override
@@ -151,10 +152,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
         updateChannel.setValue((!KernelUpdater.getKernelName(requireActivity()).equals("Unavailable"))
                 ? KernelUpdater.getUpdateChannel(requireActivity()) : getString(R.string.update_channel_summary));
         updateChannel.setOnGenericValueListener((genericSelectView, value) -> {
-            if (!Utils.isNetworkAvailable(requireActivity())) {
-                Utils.snackbar(getRootView(), getString(R.string.no_internet));
-                return;
-            }
             if (value.isEmpty()) {
                 KernelUpdater.updateChannelInfo(requireActivity()).delete();
                 KernelUpdater.updateInfo(requireActivity()).delete();
@@ -187,20 +184,16 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                     .show();
                             break;
                         case 1:
-                            if (Utils.isNetworkAvailable(requireActivity())) {
-                                Intent shareChannel = new Intent();
-                                shareChannel.setAction(Intent.ACTION_SEND);
-                                shareChannel.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-                                shareChannel.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_channel_message,
-                                        Utils.readFile(KernelUpdater.updateChannelInfo(requireActivity()).getAbsolutePath())) + (Utils
-                                        .isFDroidFlavor(requireActivity()) ? " F-Droid: https://f-droid.org/packages/com.smartpack.kernelmanager" :
-                                        " Google Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release"));
-                                shareChannel.setType("text/plain");
-                                Intent shareIntent = Intent.createChooser(shareChannel, null);
-                                startActivity(shareIntent);
-                            } else {
-                                Utils.snackbar(getRootView(), getString(R.string.no_internet));
-                            }
+                            Intent shareChannel = new Intent();
+                            shareChannel.setAction(Intent.ACTION_SEND);
+                            shareChannel.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+                            shareChannel.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_channel_message,
+                                    Utils.readFile(KernelUpdater.updateChannelInfo(requireActivity()).getAbsolutePath())) + (Utils
+                                    .isFDroidFlavor(requireActivity()) ? " F-Droid: https://f-droid.org/packages/com.smartpack.kernelmanager" :
+                                    " Google Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release"));
+                            shareChannel.setType("text/plain");
+                            Intent shareIntent = Intent.createChooser(shareChannel, null);
+                            startActivity(shareIntent);
                             break;
                     }
                     return false;
@@ -319,7 +312,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private void OtherOptionsInit(List<RecyclerViewItem> items) {
-        if (!Utils.isPackageInstalled("com.smartpack.busyboxinstaller", requireActivity())) {
+        if (!sPackageUtils.isPackageInstalled("com.smartpack.busyboxinstaller", requireActivity())) {
             // Advertise Own App
             TitleView bb = new TitleView();
             bb.setText(getString(R.string.busybox_installer));
@@ -433,7 +426,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     private void Execute(String commands) {
-        new AsyncTasks() {
+        new sExecutor() {
 
             @Override
             public void onPreExecute() {
@@ -454,7 +447,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     private void downloadKernel() {
-        new AsyncTasks() {
+        new sExecutor() {
 
             @Override
             public void onPreExecute() {
@@ -465,7 +458,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             @Override
             public void doInBackground() {
                 Utils.prepareInternalDataStorage(requireActivity());
-                Utils.downloadFile(Utils.getInternalDataStorage(requireActivity()) + "/Kernel.zip", KernelUpdater.getUrl(requireActivity()), getActivity());
+                Utils.downloadFile(Utils.getInternalDataStorage(requireActivity()) + "/Kernel.zip", KernelUpdater.getUrl(requireActivity()));
             }
 
             @Override
@@ -495,7 +488,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     public void acquireUpdateInfo(String value, Context context) {
-        new AsyncTasks() {
+        new sExecutor() {
 
             @Override
             public void onPreExecute() {

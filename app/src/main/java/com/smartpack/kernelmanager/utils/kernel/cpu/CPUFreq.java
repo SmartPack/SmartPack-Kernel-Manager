@@ -22,6 +22,8 @@ package com.smartpack.kernelmanager.utils.kernel.cpu;
 import android.content.Context;
 import android.util.SparseArray;
 
+import androidx.annotation.NonNull;
+
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.utils.Device;
@@ -91,7 +93,7 @@ public class CPUFreq {
     private int mMidCpu = -1;
     private int mLITTLECpu = -1;
     public int mCoreCtlMinCpu = 2;
-    private SparseArray<List<Integer>> sFreqs = new SparseArray<>();
+    private final SparseArray<List<Integer>> sFreqs = new SparseArray<>();
     private String[] sGovernors;
 
     private CPUFreq(Context context) {
@@ -315,6 +317,7 @@ public class CPUFreq {
             return mPath;
         }
 
+        @NonNull
         public String toString() {
             return mJson;
         }

@@ -376,9 +376,7 @@ public class CPUFragment extends RecyclerViewFragment {
         powerSavingWq.setChecked(Misc.isPowerSavingWqEnabled());
         powerSavingWq.addOnSwitchListener((switchView, isChecked) -> {
             Misc.enablePowerSavingWq(isChecked, getActivity());
-            getHandler().postDelayed(() -> {
-                        powerSavingWq.setChecked(Misc.isPowerSavingWqEnabled());
-                    },
+            getHandler().postDelayed(() -> powerSavingWq.setChecked(Misc.isPowerSavingWqEnabled()),
                     500);
         });
 
@@ -393,9 +391,7 @@ public class CPUFragment extends RecyclerViewFragment {
         cfsScheduler.setItem(Misc.getCurrentCFSScheduler());
         cfsScheduler.setOnItemSelected((selectView, position, item) -> {
             Misc.setCFSScheduler(item, getActivity());
-            getHandler().postDelayed(() -> {
-                        cfsScheduler.setItem(Misc.getCurrentCFSScheduler());
-                    },
+            getHandler().postDelayed(() -> cfsScheduler.setItem(Misc.getCurrentCFSScheduler()),
                     500);
         });
 
@@ -413,9 +409,7 @@ public class CPUFragment extends RecyclerViewFragment {
             cpuQuietEnable.setChecked(Misc.isCpuQuietEnabled());
             cpuQuietEnable.addOnSwitchListener((switchView, isChecked) -> {
                 Misc.enableCpuQuiet(isChecked, getActivity());
-                getHandler().postDelayed(() -> {
-                            cpuQuietEnable.setChecked(Misc.isCpuQuietEnabled());
-                        },
+                getHandler().postDelayed(() -> cpuQuietEnable.setChecked(Misc.isCpuQuietEnabled()),
                         500);
             });
 
@@ -440,9 +434,7 @@ public class CPUFragment extends RecyclerViewFragment {
             NrMaxCPUs.setOnGenericValueListener((genericSelectView, value) -> {
                 Misc.setCpuQuietNrMaxCPUs(value, getActivity());
                 genericSelectView.setValue(value);
-                getHandler().postDelayed(() -> {
-                            NrMaxCPUs.setValue(Misc.getCpuQuietNrMaxCPUs());
-                        },
+                getHandler().postDelayed(() -> NrMaxCPUs.setValue(Misc.getCpuQuietNrMaxCPUs()),
                         500);
             });
 
@@ -457,9 +449,7 @@ public class CPUFragment extends RecyclerViewFragment {
             NrMinCPUs.setOnGenericValueListener((genericSelectView, value) -> {
                 Misc.setCpuQuietNrMinCPUs(value, getActivity());
                 genericSelectView.setValue(value);
-                getHandler().postDelayed(() -> {
-                            NrMinCPUs.setValue(Misc.getCpuQuietNrMinCPUs());
-                        },
+                getHandler().postDelayed(() -> NrMinCPUs.setValue(Misc.getCpuQuietNrMinCPUs()),
                         500);
             });
 
@@ -536,9 +526,7 @@ public class CPUFragment extends RecyclerViewFragment {
                     .setTitle(getString(R.string.warning))
                     .setMessage(getString(R.string.cpu_note))
                     .setCancelable(false)
-                    .setPositiveButton(R.string.got_it, (dialog, id) -> {
-                        Prefs.saveBoolean("cpuNotes", false, requireActivity());
-                    }).show();
+                    .setPositiveButton(R.string.got_it, (dialog, id) -> Prefs.saveBoolean("cpuNotes", false, requireActivity())).show();
         }
     }
 

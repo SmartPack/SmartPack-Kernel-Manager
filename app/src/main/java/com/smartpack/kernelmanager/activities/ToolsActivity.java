@@ -34,7 +34,8 @@ import com.smartpack.kernelmanager.fragments.tools.CustomControlsFragment;
 import com.smartpack.kernelmanager.fragments.tools.ScriptMangerFragment;
 import com.smartpack.kernelmanager.fragments.tools.SmartPackFragment;
 import com.smartpack.kernelmanager.utils.tools.Backup;
-import com.smartpack.kernelmanager.views.recyclerview.PagerAdapter;
+
+import in.sunilpaulmathew.sCommon.Adapters.sPagerAdapter;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 24, 2020
@@ -49,7 +50,7 @@ public class ToolsActivity extends BaseActivity {
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.view_pager);
-        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
+        sPagerAdapter adapter = new sPagerAdapter(getSupportFragmentManager());
         adapter.AddFragment(new SmartPackFragment(), getString(R.string.smartpack));
         adapter.AddFragment(new ScriptMangerFragment(), getString(R.string.script_manger));
         adapter.AddFragment(new CustomControlsFragment(), getString(R.string.custom_controls));

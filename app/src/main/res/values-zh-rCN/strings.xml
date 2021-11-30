@@ -13,8 +13,6 @@
     <string name="no_picture">没有图片</string>
     <string name="went_wrong">出现错误！</string>
     <string name="press_back_again_exit">再按一次返回键以退出应用</string>
-    <string name="cancel">取消</string>
-    <string name="dismiss">消除</string>
     <string name="ok">确定</string>
     <string name="yes">是</string>
     <string name="unknown">未知</string>
@@ -977,7 +975,6 @@
     <string name="high">高</string>
     <string name="hidden_app">不可见应用</string>
     <string name="lmk_fast_run">启用快速启动</string>
-    <string name="translators_message">想让这个应用说你的语言吗？点这里开始用内置的翻译器提供翻译！</string>
     <string name="edit_string_warning">请注意，此字符串含有特殊字符。</string>
     <string name="delete_string">删除字符串</string>
     <string name="import_string">导入自定义字符串</string>
@@ -997,7 +994,6 @@
     <string name="grarak">Willi Ye</string>
     <string name="osm0sis">Chris Renshaw</string>
     <string name="special_mentions">特别感谢</string>
-    <string name="credits">鸣谢</string>
     <string name="default_section">默认板块</string>
     <string name="default_section_summary">打开此应用后默认打开的板块</string>
     <string name="playstore">Play 商店</string>

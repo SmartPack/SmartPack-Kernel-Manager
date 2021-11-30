@@ -18,8 +18,6 @@
     <string name="no_picture">"Sem Imagem"</string>
     <string name="went_wrong">"Alguma coisa correu mal!"</string>
     <string name="press_back_again_exit">"Pressione novamente para sair"</string>
-    <string name="cancel">"Cancelar"</string>
-    <string name="dismiss">"Dispensar"</string>
     <string name="ok">"Está bem"</string>
     <string name="yes">"SIM"</string>
     <string name="unknown">"Desconhecido"</string>
@@ -1096,7 +1094,6 @@ Get SmartPack-Kernel Manager from"</string>
     <string name="sections">"Secções"</string>
     <string name="default_section">"Secção por Omissão"</string>
     <string name="default_section_summary">"O separador predefinido a apresentar ao abrir a aplicação!"</string>
-    <string name="credits">"Créditos"</string>
     <string name="special_mentions">"Menções Especiais"</string>
     <string name="source_code">"Código fonte"</string>
     <string name="source_code_summary">"Ver código-fonte no GitHub"</string>
@@ -1131,7 +1128,6 @@ Get SmartPack-Kernel Manager from"</string>
     <string name="commits">"%d commits"</string>
     <string name="no_internet">"Verifique a sua ligação à Internet!"</string>
     <string name="translators">"Tradutores"</string>
-    <string name="translators_message">"Quer usar esta aplicação no seu idioma! Em seguida, clique aqui para começar a traduzir usando o serviço de localização POEditor ou o tradutor encorporado!"</string>
 
     <!-- Translator -->
     <string name="edit_string_warning">"Esta string contém alguns caracteres especiais! Por favor, tenha cuidado."</string>
@@ -1173,8 +1169,6 @@ Get SmartPack-Kernel Manager from"</string>
     <string name="found_bugs_summary">"Ans. Forneça o máximo de informações possível (como qual recurso, o que não funcionou, capturas de tela ou logcat, se possível) e publique na página xda-developers. Alternativamente, você também pode levantar um problema na página do GitHub."</string>
     <string name="can_i_contribute">"Q9. Posso contribuir para os seus Projetos? Em caso afirmativo, de que modo?"</string>
     <string name="can_i_contribute_summary">"Ans. Absolutamente. Qualquer tipo de contribuições (Doações, Código, etc.) são muito bem-vindas e muito apreciadas. Por favor, visite a secção Sobre para mais detalhes."</string>
-    <string name="translators_inbuilt">"Tradutor incorporado"</string>
-    <string name="translators_poeditor">"Serviço de Localização do POEditor"</string>
 
     <!-- CPU -->
     <string name="cpu_note">"Observe que alguns recursos nesta página, como Núcleos de CPU e controle de frequência, são amplamente controlados por processos do sistema. Como resultado, as alterações feitas nesta página podem não persistir em muitos dispositivos."</string>

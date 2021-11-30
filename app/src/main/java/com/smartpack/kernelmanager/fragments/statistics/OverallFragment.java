@@ -51,6 +51,8 @@ import com.smartpack.kernelmanager.views.recyclerview.overallstatistics.Temperat
 
 import java.util.List;
 
+import in.sunilpaulmathew.sCommon.Utils.sPackageUtils;
+
 /**
  * Created by willi on 19.04.16.
  */
@@ -161,7 +163,7 @@ public class OverallFragment extends RecyclerViewFragment {
                 mBatteryInfo.setStatsTwo(getString(R.string.capacity) + ": " + Battery.getInstance(requireActivity())
                         .getCapacity() + getString(R.string.mah));
             }
-            if (Utils.isPackageInstalled("com.paget96.batteryguru", requireActivity())) {
+            if (sPackageUtils.isPackageInstalled("com.paget96.batteryguru", requireActivity())) {
                 mBatteryInfo.setIcon(getResources().getDrawable(R.drawable.ic_batteryguru));
                 mBatteryInfo.setOnItemClickListener(v -> {
                     Intent launchIntent = requireActivity().getPackageManager().getLaunchIntentForPackage("com.paget96.batteryguru");

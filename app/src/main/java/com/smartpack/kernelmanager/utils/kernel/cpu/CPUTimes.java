@@ -35,7 +35,6 @@ import androidx.annotation.Nullable;
 
 import com.bvalosek.cpuspy.CpuSpyApp;
 import com.bvalosek.cpuspy.CpuStateMonitor;
-
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
@@ -404,7 +403,7 @@ public class CPUTimes extends RecyclerViewFragment {
             }
         }
 
-        private Runnable mRefresh = new Runnable() {
+        private final Runnable mRefresh = new Runnable() {
             @Override
             public void run() {
                 refresh();

@@ -19,7 +19,6 @@
  */
 package com.smartpack.kernelmanager.activities;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -65,7 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         setTheme(sAccentColors.get(accent));
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && setStatusBarColor()) {
+        if (setStatusBarColor()) {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -74,11 +73,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public AppBarLayout getAppBarLayout() {
-        return (AppBarLayout) findViewById(R.id.appbarlayout);
+        return findViewById(R.id.appbarlayout);
     }
 
     public Toolbar getToolBar() {
-        return (Toolbar) findViewById(R.id.toolbar);
+        return findViewById(R.id.toolbar);
     }
 
     public void initToolBar() {

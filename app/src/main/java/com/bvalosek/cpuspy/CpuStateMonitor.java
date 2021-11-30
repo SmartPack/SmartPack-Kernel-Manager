@@ -50,8 +50,8 @@ public class CpuStateMonitor {
      */
     public static class CpuState implements Comparable<CpuState> {
 
-        private int mFreq = 0;
-        private long mDuration = 0;
+        private final int mFreq;
+        private final long mDuration;
 
         /**
          * init with freq and duration

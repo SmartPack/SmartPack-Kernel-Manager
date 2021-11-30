@@ -25,7 +25,6 @@ import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
@@ -33,9 +32,7 @@ import com.smartpack.kernelmanager.utils.Device;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
-import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.utils.tools.Backup;
-import com.smartpack.kernelmanager.utils.tools.PathReader;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -48,6 +45,7 @@ import java.util.List;
 
 import in.sunilpaulmathew.rootfilepicker.activities.FilePickerActivity;
 import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
 /**
  * Created by willi on 09.07.16.
@@ -134,7 +132,7 @@ public class BackupFragment extends RecyclerViewFragment {
     private void reload() {
         getHandler().postDelayed(() -> {
             clearItems();
-            new AsyncTasks() {
+            new sExecutor() {
                 private List<RecyclerViewItem> items;
 
                 @Override
@@ -268,7 +266,7 @@ public class BackupFragment extends RecyclerViewFragment {
     private void restore(final Backup.PARTITION partition, final File file, final boolean flashing) {
         mRestoreDialog = ViewUtils.dialogBuilder(flashing? getString(R.string.sure_message, file.getName()) :
                 getString(R.string.restore_sure_message, file.getName()), (dialogInterface, i) -> {
-                }, (dialogInterface, i) -> new AsyncTasks() {
+                }, (dialogInterface, i) -> new sExecutor() {
 
                     @Override
                     public void onPreExecute() {
@@ -293,7 +291,7 @@ public class BackupFragment extends RecyclerViewFragment {
                         });
                         dialog.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
                             Utils.snackbar(getRootView(), getString(R.string.rebooting_message));
-                            new AsyncTasks() {
+                            new sExecutor() {
 
                                 @Override
                                 public void onPreExecute() {
@@ -369,7 +367,7 @@ public class BackupFragment extends RecyclerViewFragment {
                     }
 
                     final String path = text;
-                    new AsyncTasks(){
+                    new sExecutor(){
 
                         @Override
                         public void onPreExecute() {

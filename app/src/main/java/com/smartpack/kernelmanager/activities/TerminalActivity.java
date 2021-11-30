@@ -38,12 +38,13 @@ import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
-import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Objects;
+
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on September 23, 2020
@@ -173,7 +174,7 @@ public class TerminalActivity extends BaseActivity {
                 } else if (mCommand[0].equals("su") || mCommand[0].contains("su ")) {
                     mShellCommand.setText(null);
                 } else {
-                    new AsyncTasks() {
+                    new sExecutor() {
                         @Override
                         public void onPreExecute() {
                             mShellOutput.setTextIsSelectable(false);

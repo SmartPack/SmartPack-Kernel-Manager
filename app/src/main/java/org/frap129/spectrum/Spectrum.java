@@ -21,9 +21,9 @@
 
 package org.frap129.spectrum;
 
-import android.os.AsyncTask;
-
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
 /*
  * Based on the original implementation of Spectrum Kernel Manager by frap129 <joe@frap129.org>
@@ -57,15 +57,25 @@ public class Spectrum {
 
     // Method that sets system property
     private static void setProp(final int profile) {
-        new AsyncTask<Object, Object, Void>() {
+        new sExecutor() {
+
             @Override
-            protected Void doInBackground(Object... params) {
-		if (spectrumVendor) {
-		    RootUtils.runCommand("setprop persist.vendor.spectrum.profile " + profile);
-		} else {
-		    RootUtils.runCommand("setprop persist.spectrum.profile " + profile);
-		}
-                return null;
+            public void onPreExecute() {
+
+            }
+
+            @Override
+            public void doInBackground() {
+                if (spectrumVendor) {
+                    RootUtils.runCommand("setprop persist.vendor.spectrum.profile " + profile);
+                } else {
+                    RootUtils.runCommand("setprop persist.spectrum.profile " + profile);
+                }
+            }
+
+            @Override
+            public void onPostExecute() {
+
             }
         }.execute();
     }

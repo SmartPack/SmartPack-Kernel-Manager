@@ -25,7 +25,6 @@ import android.Manifest;
 import android.app.TimePickerDialog;
 import android.graphics.drawable.Drawable;
 import android.text.InputType;
-import android.widget.TimePicker;
 
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
@@ -34,7 +33,6 @@ import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.kernel.screen.KLapse;
-import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -46,6 +44,8 @@ import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
 
 import java.io.File;
 import java.util.List;
+
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on May 29, 2018
@@ -125,9 +125,7 @@ public class KLapseFragment extends RecyclerViewFragment {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
                         (view, hourOfDay, minute) -> {
                             KLapse.setklapseStart((hourOfDay * 60) + minute, getActivity());
-                            getHandler().postDelayed(() -> {
-                                        klapseStart.setSummary(getString(R.string.start_time) + ": " + KLapse.getklapseStart());
-                                    },
+                            getHandler().postDelayed(() -> klapseStart.setSummary(getString(R.string.start_time) + ": " + KLapse.getklapseStart()),
                                     500);
                         }, startHr, startMin, false);
                 timePickerDialog.show();
@@ -147,9 +145,7 @@ public class KLapseFragment extends RecyclerViewFragment {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
                         (view, hourOfDay, minute) -> {
                             KLapse.setklapseStop((hourOfDay * 60) + minute, getActivity());
-                            getHandler().postDelayed(() -> {
-                                        klapseStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getklapseStop());
-                                    },
+                            getHandler().postDelayed(() -> klapseStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getklapseStop()),
                                     500);
                         }, EndHr, EndMin, false);
                 timePickerDialog.show();
@@ -416,9 +412,7 @@ public class KLapseFragment extends RecyclerViewFragment {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
                         (view, hourOfDay, minute) -> {
                             KLapse.setBrightFactStart((hourOfDay * 60) + minute, getActivity());
-                            getHandler().postDelayed(() -> {
-                                        brightFactStart.setSummary(getString(R.string.start_time) + ": " + KLapse.getBrightFactStart());
-                                    },
+                            getHandler().postDelayed(() -> brightFactStart.setSummary(getString(R.string.start_time) + ": " + KLapse.getBrightFactStart()),
                                     500);
                         }, startHr, startMin, false);
                 timePickerDialog.show();
@@ -439,15 +433,10 @@ public class KLapseFragment extends RecyclerViewFragment {
             brightFactStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getBrightFactStop());
             brightFactStop.setOnItemClickListener(item -> {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                KLapse.setBrightFactStop((hourOfDay * 60) + minute, getActivity());
-                                getHandler().postDelayed(() -> {
-                                            brightFactStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getBrightFactStop());
-                                        },
-                                        500);
-                            }
+                        (view, hourOfDay, minute) -> {
+                            KLapse.setBrightFactStop((hourOfDay * 60) + minute, getActivity());
+                            getHandler().postDelayed(() -> brightFactStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getBrightFactStop()),
+                                    500);
                         }, EndHr, EndMin, false);
                 timePickerDialog.show();
             });
@@ -497,7 +486,7 @@ public class KLapseFragment extends RecyclerViewFragment {
                     }
                     final String path = text;
 
-                    new AsyncTasks() {
+                    new sExecutor() {
 
                         @Override
                         public void onPreExecute() {
@@ -523,10 +512,8 @@ public class KLapseFragment extends RecyclerViewFragment {
                                     .setCancelable(false)
                                     .setNegativeButton(getString(R.string.cancel), (dialog, id) -> {
                                     })
-                                    .setPositiveButton(getString(R.string.share), (dialog, id) -> {
-                                        Utils.shareItem(getActivity(), path, KLapse.profileFolder(requireActivity()).toString() + "/" + path, getString(R.string.share_script)
-                                                + "\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
-                                    })
+                                    .setPositiveButton(getString(R.string.share), (dialog, id) -> Utils.shareItem(getActivity(), path, KLapse.profileFolder(requireActivity()).toString() + "/" + path, getString(R.string.share_script)
+                                            + "\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME)))
                                     .show();
                         }
                     }.execute();

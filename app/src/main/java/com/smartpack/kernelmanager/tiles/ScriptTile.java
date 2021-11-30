@@ -32,10 +32,11 @@ import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
-import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.utils.tools.Scripts;
 
 import java.io.File;
+
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on June 13, 2021
@@ -67,7 +68,7 @@ public class ScriptTile extends TileService {
                 mQuickTile).getAbsolutePath());
 
         if (mSupported) {
-            new AsyncTasks() {
+            new sExecutor() {
                 @Override
                 public void onPreExecute() {
                     Utils.toast( getString(R.string.applying_profile, mQuickTile), context);

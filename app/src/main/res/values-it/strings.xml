@@ -11,36 +11,33 @@
     <!-- No Root/BusyBox -->
     <string name="busybox_message">"Perché stai avendo questo errore?
 
-BusyBox non è installato sul tuo dispositivo. Sfortunatamente, SmartPack-Kernel Manager richiede dei file di BusyBox per eseguire alcune azioni(esempio: Flash automatico)!
+        BusyBox non è installato sul tuo dispositivo. Sfortunatamente, SmartPack-Kernel Manager richiede dei file di BusyBox per eseguire alcune azioni(esempio: Flash automatico)!
 
+        Come risolvere?
 
-Come risolvere?
-
-Per favore installa BusyBox per risolvere il problema. Sul Play Store è disponibile un edizione gratuita ed open source dell'installer di BusyBox, creata dal nostro team, che ti permette di installare i file binari di BusyBox in pochi click!"</string>
+        Per favore installa BusyBox per risolvere il problema. Sul Play Store è disponibile un edizione gratuita ed open source dell'installer di BusyBox, creata dal nostro team, che ti permette di installare i file binari di BusyBox in pochi click!"</string>
     <string name="busybox_install_message">"Clicca qui per ottenere l'installer di BusyBox dal PlayStore "</string>
     <string name="no_root_message">"Perché si è verificato questo problema?
 
-Il tuo dispositivo non è rootato o l'autorizzazione di root è stata rifiutata da te per SmartPack-Kernel Manager
+        Il tuo dispositivo non è rootato o l'autorizzazione di root è stata rifiutata da te per SmartPack-Kernel Manager
 
-Perché è necessaria l'autorizzazione di root?
+        Perché è necessaria l'autorizzazione di root?
 
-Per controllare i parametri del kernel, SmartPack-Kernel Manager deve modificare alcuni file di sistema, che non sono accessibili senza root!
+        Per controllare i parametri del kernel, SmartPack-Kernel Manager deve modificare alcuni file di sistema, che non sono accessibili senza root!
 
-Come posso eseguire il root del mio dispositivo?
+        Come posso eseguire il root del mio dispositivo?
 
-Una semplice ricerca su Google ti aiuterà a trovare molte guide per ottenere il root sul tuo dispositivo. Dai un'occhiata!
+        Una semplice ricerca su Google ti aiuterà a trovare molte guide per ottenere il root sul tuo dispositivo. Dai un'occhiata!
 
-Il rooting di un dispositivo è sicuro?
+        Il rooting di un dispositivo è sicuro?
 
-Il rooting pone alcuni rischi per la sicurezza, ma in genere è sicuro!"</string>
+        Il rooting pone alcuni rischi per la sicurezza, ma in genere è sicuro!"</string>
 
     <!-- Security -->
     <string name="select_picture">"Scegli un'immagine"</string>
     <string name="no_picture">"Nessuna immagine"</string>
     <string name="went_wrong">"Qualcosa è andato storto!"</string>
     <string name="press_back_again_exit">"Premi di nuovo indietro per uscire"</string>
-    <string name="cancel">"Annulla"</string>
-    <string name="dismiss">"Indietro"</string>
     <string name="ok">"OK"</string>
     <string name="yes">"SÌ"</string>
     <string name="unknown">"Sconosciuto"</string>
@@ -913,9 +910,6 @@ Mi motiverà molto a continuare i miei progetti più attivi! Inoltre, riceverai 
     <string name="share_app_summary">"Condividi quest'app con i tuoi amici"</string>
     <string name="share_app_message">"Ottieni SmartPack-Kernel Manager %s da"</string>
 
-    <!-- Contributors -->
-    <string name="translators_message">"Vuoi usare questa app nella tua lingua! Quindi, fai clic qui per iniziare a tradurre utilizzando il servizio di localizzazione POEditor o il traduttore integrato!"</string>
-
     <!-- Translator -->
     <string name="edit_string_warning">"Questa stringa contiene alcuni caratteri speciali! Fate attenzione."</string>
     <string name="delete_string">"Elimina stringa"</string>
@@ -956,8 +950,6 @@ Mi motiverà molto a continuare i miei progetti più attivi! Inoltre, riceverai 
     <string name="found_bugs_summary">"Ans. Fornisci quante più informazioni possibili (come quale funzione, cosa non ha funzionato, screenshot o logcat se possibile) e posta nella pagina xda-developers. In alternativa, puoi anche sollevare un problema nella pagina GitHub."</string>
     <string name="can_i_contribute">"Q9. Posso contribuire ai vostri progetti? E come?"</string>
     <string name="can_i_contribute_summary">"Ans. Assolutamente. Qualsiasi tipo di contributo (donazioni, codice ecc.) è il benvenuto e molto apprezzato. Si prega di visitare la sezione Informazioni per maggiori dettagli."</string>
-    <string name="translators_inbuilt">"Traduttore In-built"</string>
-    <string name="translators_poeditor">"POEditor Localization Service"</string>
 
     <!-- CPU -->
     <string name="cpu_note">"Tieni presente che alcune funzionalità di questa pagina, come i core della CPU e il controllo della frequenza, sono ampiamente controllate dai processi di sistema.  Di conseguenza, le modifiche apportate in questa pagina potrebbero non persistere su molti dispositivi."</string>

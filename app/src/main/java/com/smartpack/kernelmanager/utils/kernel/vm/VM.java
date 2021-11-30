@@ -41,7 +41,7 @@ public class VM {
             "mmap_rnd_compat_bits", "max_map_count", "min_free_kbytes", "min_free_order_shift", "mmap_min_addr",
             "mmap_rnd_bits", "mobile_page_compaction", "nr_pdflush_threads", "oom_dump_tasks", "oom_kill_allocating_task",
             "overcommit_kbytes", "overcommit_memory", "overcommit_ratio", "page-cluster", "panic_on_oom", "percpu_pagelist_fraction",
-            "reap_mem_on_sigkill", "scan_unevictable_pages", "swap_ratio", "swap_ratio_enable", "swappiness", "stat_interval",
+            "reap_mem_on_sigkill", "scan_unevictable_pages", "swap_ratio", "swap_ratio_enable", "swappiness",
             "user_reserve_kbytes", "vfs_cache_pressure", "want_old_faultaround_pte", "watermark_scale_factor"};
 
     public static void setValue(String value, int position, Context context) {

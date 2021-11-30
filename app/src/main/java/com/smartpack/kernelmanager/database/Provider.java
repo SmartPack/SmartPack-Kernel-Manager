@@ -155,7 +155,7 @@ public abstract class Provider {
 
     public static class DBJsonItem {
 
-        private JSONObject mItem;
+        private final JSONObject mItem;
 
         protected DBJsonItem() {
             mItem = new JSONObject();

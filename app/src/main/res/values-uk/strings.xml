@@ -117,7 +117,6 @@
     <string name="can_i_contribute_summary">В: Абсолютно. Будь-які пожертви (Пожертви, Кодекс і т. Д.) Вітаються і високо цінуються. Будь ласка, відвідайте розділ Про нас для отримання більш детальної інформації.</string>
     <string name="can_i_use">Q2. Чи можу я використовувати це додаток з іншими користувацькими ядрами?</string>
     <string name="can_i_use_summary">В: Чому б і ні? Це буде працювати як звичайно.</string>
-    <string name="cancel">Скасування</string>
     <string name="capacity">Місткість</string>
     <string name="celsius">ºC</string>
     <string name="center">У центрі</string>
@@ -203,7 +202,6 @@
     <string name="crc">Управління CRC програм</string>
     <string name="crc_summary">CRC - механізм, який включається для запобігання пошкодження даних. Блоки даних можуть втратити до 30% своєї продуктивності.</string>
     <string name="create">Створити</string>
-    <string name="credits">Credits</string>
     <string name="current_settings">Поточні налаштування</string>
     <string name="custom_charge">Користувальницький режим</string>
     <string name="custom_controls">Користувальницькі функції</string>

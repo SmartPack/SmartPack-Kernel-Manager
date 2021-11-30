@@ -37,7 +37,7 @@ public class ImportProfile {
 
     public ImportProfile(String path) {
         String json = Utils.readFile(path);
-        if (json != null && !json.isEmpty()) {
+        if (!json.isEmpty()) {
             try {
                 JSONObject main = new JSONObject(json);
                 mVersion = main.getInt("version");

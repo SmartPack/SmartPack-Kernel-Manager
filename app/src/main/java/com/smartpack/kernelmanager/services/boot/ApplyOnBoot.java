@@ -53,6 +53,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import in.sunilpaulmathew.sCommon.Utils.sUtils;
+
 /**
  * Created by willi on 24.11.17.
  */
@@ -69,7 +71,7 @@ public class ApplyOnBoot {
     @SuppressLint("StringFormatMatches")
     static boolean apply(final Context context, final ApplyOnBootListener listener) {
         if (!Prefs.getBoolean(ApplyOnBootFragment.getAssignment(CPUHotplugFragment.class), false, context)) {
-            Prefs.remove("core_ctl_min_cpus_big", context);
+            sUtils.remove("core_ctl_min_cpus_big", context);
         }
 
         boolean enabled = false;
@@ -110,10 +112,12 @@ public class ApplyOnBoot {
         final boolean toast = Prefs.getBoolean("applyonboottoast", false, context);
         final boolean script = Prefs.getBoolean("applyonbootscript", false, context);
 
+        @SuppressLint("UnspecifiedImmutableFlag")
         PendingIntent cancelIntent = PendingIntent.getBroadcast(context, 1,
                 new Intent(context, CancelReceiver.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
         Intent launchIntent = new Intent(context, MainActivity.class);
+        @SuppressLint("UnspecifiedImmutableFlag")
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, launchIntent, 0);
 
         final NotificationManager notificationManager = (NotificationManager)

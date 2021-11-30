@@ -258,9 +258,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         String key = preference.getKey();
         switch (key) {
             case KEY_UPDATE_CHECK:
-                if (!Utils.isNetworkAvailable(requireActivity())) {
-                    Utils.snackbar(mRootView, getString(R.string.no_internet));
-                } else if (Build.VERSION.SDK_INT >= 23) {
+                if (Build.VERSION.SDK_INT >= 23) {
                     UpdateCheck.isManualUpdate(true);
                     new UpdateCheck().initialize(0, requireActivity());
                 }
@@ -270,9 +268,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                         .setMessage(getString(R.string.reset_settings_message))
                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
                         })
-                        .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                            resetSettings();
-                        })
+                        .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> resetSettings())
                         .show();
                 return true;
             case KEY_BANNER_RESIZER:

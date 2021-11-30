@@ -11,38 +11,36 @@
     <!-- No Root/BusyBox -->
     <string name="busybox_message">"Warum ist dieser Fehler aufgetreten?
 
-Es wurde auf deinem Gerät keine richtige Installation von BusyBox gefunden.
-Leider braucht der SmartPack-Kernel Manager eine Anzahl von BusyBox Binärdateien um die Aufgaben zu erledigen (z.B. Auto-flashing)!
+        Es wurde auf deinem Gerät keine richtige Installation von BusyBox gefunden.
+        Leider braucht der SmartPack-Kernel Manager eine Anzahl von BusyBox Binärdateien um die Aufgaben zu erledigen (z.B. Auto-flashing)!
 
-Wie behebe ich das Problem?
+        Wie behebe ich das Problem?
 
-Bitte installiere das eigenständige BusyBox System um das Problem zu beheben. Ein kostenloses open-source BusyBox Installier-Programm, welches die BusyBox Binärdateien in wenigen Klicks installiert, wurde von unserem Team gemacht und ist im PlayStore erhältlich!"</string>
+        Bitte installiere das eigenständige BusyBox System um das Problem zu beheben. Ein kostenloses open-source BusyBox Installier-Programm, welches die BusyBox Binärdateien in wenigen Klicks installiert, wurde von unserem Team gemacht und ist im PlayStore erhältlich!"</string>
     <string name="no_root_message">"Wieso ist dieser Fehler aufgetreten?
 
-Dein Gerät ist entweder nicht gerootet, oder du hast die Root-Berechtigung für SmartPack-Kernel Manager abgelehnt!
+        Dein Gerät ist entweder nicht gerootet, oder du hast die Root-Berechtigung für SmartPack-Kernel Manager abgelehnt!
 
 
-Wieso wird die Root-Berechtigung benötigt?
+        Wieso wird die Root-Berechtigung benötigt?
 
-Um die Kern-Parameter zu kontrollieren muss der SmartPack-Kernel Manager manche System Dateien ändern, die ohne root nicht erreichbar sind!
-
-
-Wie kann ich mein Gerät rooten?
-
-Eine einfache Google Suche wird dir helfen viele Anleitungen für das rooten deines Gerätes zu finden. Bitte schaue es dir an, wie es funktioniert!
+        Um die Kern-Parameter zu kontrollieren muss der SmartPack-Kernel Manager manche System Dateien ändern, die ohne root nicht erreichbar sind!
 
 
-Ist es sicher das Gerät zu rooten?
+        Wie kann ich mein Gerät rooten?
 
-Beim rooten besteht ein Sicherheitsrisiko, aber normalerweise sollte es sicher sein!"</string>
+        Eine einfache Google Suche wird dir helfen viele Anleitungen für das rooten deines Gerätes zu finden. Bitte schaue es dir an, wie es funktioniert!
+
+
+        Ist es sicher das Gerät zu rooten?
+
+        Beim rooten besteht ein Sicherheitsrisiko, aber normalerweise sollte es sicher sein!"</string>
 
     <!-- Security -->
     <string name="select_picture">"Bild auswählen"</string>
     <string name="no_picture">"Kein Bild"</string>
     <string name="went_wrong">"Etwas ist schiefgelaufen!"</string>
     <string name="press_back_again_exit">"Zurücktaste nochmals drücken zum Beenden"</string>
-    <string name="cancel">"Abbrechen"</string>
-    <string name="dismiss">"Ablehnen"</string>
     <string name="ok">"OK"</string>
     <string name="yes">"JA"</string>
     <string name="unknown">"Unbekannt"</string>
@@ -171,7 +169,7 @@ Beim rooten besteht ein Sicherheitsrisiko, aber normalerweise sollte es sicher s
     <string name="governor_tunables_summary">"Die verschiedenen Einstellungsmöglichkeiten sind Governor abhänig."</string>
     <string name="cpu_governor_tunables_read_error">"Der aktuelle Governor konnte nicht bestimmt werden.
 
-Bei QCOM big.LITTLE Geräten ist es ein bekanntes Problem. Das System zwingt die CPU Kerne auszuschalten, dies erschwert das Auslesen der CPU Statistik. Versuche die Option nochmals. Der CPU weigert sich manchmal einen Kern einzuschalten."</string>
+        Bei QCOM big.LITTLE Geräten ist es ein bekanntes Problem. Das System zwingt die CPU Kerne auszuschalten, dies erschwert das Auslesen der CPU Statistik. Versuche die Option nochmals. Der CPU weigert sich manchmal einen Kern einzuschalten."</string>
     <string name="tunables_error">"%s ist nicht abstimmbar"</string>
     <string name="manual">"Manuel"</string>
     <string name="mc_power_saving">"Mehrkern Stromsparen"</string>
@@ -1116,7 +1114,6 @@ Bitte nur eins verwenden."</string>
     <string name="sections">"Auswahl"</string>
     <string name="default_section">"Standard Auswahl"</string>
     <string name="default_section_summary">"Der standert Tab der beim öffnen der App angezeigt wird!"</string>
-    <string name="credits">"Danksagungen"</string>
     <string name="special_mentions">"Besondere Anmerkungen"</string>
     <string name="source_code">"Quellcode"</string>
     <string name="source_code_summary">"Quellcode auf GitHub ansehen"</string>
@@ -1152,9 +1149,6 @@ Bitte nur eins verwenden."</string>
     <string name="no_internet">"Überprüfe deine Internetverbindung!"</string>
     <string name="translators">"Übersetzer"</string>
 
-    <!-- Should the first "!" not be a "?" ? -->
-    <string name="translators_message">"Du möchtest die App in deiner Sprache verwenden? Klicke hier, um mit der Übersetzung mit POEditor oder dem eingebauten Übersetzer zu beginnen!"</string>
-
     <!-- Translator -->
     <string name="edit_string_warning">"Dieser Text enthält spezielle Zeichen! Bitte sei vorsichtig."</string>
     <string name="delete_string">"Lösche Text"</string>
@@ -1189,8 +1183,6 @@ Bitte nur eins verwenden."</string>
     <string name="found_bugs_summary">"Antw. Bitte stellt soviele Informationen wie möglich bereit (welches Feature, Sreenshorts oder Logcats)und poste es auf der xda-developers Seite. Alternativ kannst du auch ein Issue auf der GitHub Seite eröffen."</string>
     <string name="can_i_contribute">"F9. Wie kann ich an dem Projekt mitwirken? Wenn ja wie?"</string>
     <string name="can_i_contribute_summary">"Antw. Natürlich. Jede Art der Unterstützung ist willkommen (Spenden, Code etc.). Bitte besuche den Über Bereich für mehr Informationen."</string>
-    <string name="translators_inbuilt">"Eingebauter übersetzer"</string>
-    <string name="translators_poeditor">"POEditor Lokalisierungs Service"</string>
 
     <!-- CPU -->
     <string name="cpu_note">"Bitte beachten Sie, dass einige Funktionen auf dieser Seite, wie z. B. CPU-Kerne und Frequenzsteuerung, weitgehend von Systemprozessen gesteuert werden. Infolgedessen bleiben die auf dieser Seite vorgenommenen Änderungen auf vielen Geräten möglicherweise nicht bestehen."</string>

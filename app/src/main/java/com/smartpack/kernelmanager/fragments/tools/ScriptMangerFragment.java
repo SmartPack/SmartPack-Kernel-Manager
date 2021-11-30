@@ -39,8 +39,6 @@ import com.smartpack.kernelmanager.utils.Common;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
-import com.smartpack.kernelmanager.utils.kernel.io.IOAdvanced;
-import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.utils.tools.Scripts;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -55,6 +53,8 @@ import java.util.Set;
 
 import in.sunilpaulmathew.rootfilepicker.activities.FilePickerActivity;
 import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
+import in.sunilpaulmathew.sCommon.Utils.sPackageUtils;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 18, 2019
@@ -126,7 +126,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     private void reload() {
         getHandler().postDelayed(() -> {
             clearItems();
-            new AsyncTasks() {
+            new sExecutor() {
                 private List<RecyclerViewItem> items;
 
                 @Override
@@ -241,7 +241,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
             }
         }
         if (items.size() == 0) {
-            if (!Utils.isPackageInstalled("com.smartpack.scriptmanager", requireActivity())) {
+            if (!sPackageUtils.isPackageInstalled("com.smartpack.scriptmanager", requireActivity())) {
                 // Advertise Own App
                 DescriptionView sm = new DescriptionView();
                 sm.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
@@ -255,7 +255,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
 
     @SuppressLint("StaticFieldLeak")
     private void execute(final String script) {
-        new AsyncTasks() {
+        new sExecutor() {
 
             @Override
             public void onPreExecute() {

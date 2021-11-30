@@ -94,7 +94,6 @@ public class WakelockFragment extends RecyclerViewFragment {
 
         CardView cardViewA = new CardView(getActivity());
         String titleA = getString(R.string.wkl_allowed);
-        CardView cardA = new CardView(getActivity());
         grxbwCardInit(cardViewA, titleA, wakelocksinfo, true);
         mWakeCard.add(cardViewA);
 

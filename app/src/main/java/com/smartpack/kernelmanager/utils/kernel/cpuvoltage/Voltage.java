@@ -110,7 +110,7 @@ public class Voltage {
                 if (value.length() > 0) {
                     value.append(" ");
                 }
-                value.append(String.valueOf(Utils.strToInt(volt) + adjust));
+                value.append((Utils.strToInt(volt) + adjust));
             }
         } else {
             value = new StringBuilder(String.valueOf(adjust * mOffset.get(PATH)));

@@ -27,7 +27,6 @@ import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
-import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.utils.tools.Scripts;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -40,6 +39,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
 /**
  * Created by willi on 04.08.16.
@@ -88,7 +89,7 @@ public class OnBootFragment extends RecyclerViewFragment {
     private void reload() {
         getHandler().postDelayed(() -> {
             clearItems();
-            new AsyncTasks() {
+            new sExecutor() {
                 private List<RecyclerViewItem> items;
 
                 @Override

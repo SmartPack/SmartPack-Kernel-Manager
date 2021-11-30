@@ -11,39 +11,37 @@
     <!-- No Root/BusyBox -->
     <string name="busybox_message">"Bu sorun neden oldu?
 
-A proper BusyBox installation is not found on your device. Unfortunately, SmartPack-Kernel Manager requires a number of BusyBox binaries to do several tasks (e.g. Auto-flashing)!
+        A proper BusyBox installation is not found on your device. Unfortunately, SmartPack-Kernel Manager requires a number of BusyBox binaries to do several tasks (e.g. Auto-flashing)!
 
 
-How to solve this issue?
+        How to solve this issue?
 
-Please install a standalone BusyBox system to solve this issue. A free and open-sourced BusyBox Installer, which allow users to install BusyBox binaries in few clicks, made by our team is available in PlayStore!"</string>
+        Please install a standalone BusyBox system to solve this issue. A free and open-sourced BusyBox Installer, which allow users to install BusyBox binaries in few clicks, made by our team is available in PlayStore!"</string>
     <string name="busybox_install_message">"PlayStore'dan BusyBox Installer'ı almak için buraya tıklayın"</string>
     <string name="no_root_message">"Bu sorun neden oldu?
 
-Your device is either not rooted, or the root permission is declined for SmartPack-Kernel Manager by you!
+        Your device is either not rooted, or the root permission is declined for SmartPack-Kernel Manager by you!
 
 
-Why root permission needed?
+        Why root permission needed?
 
-In order to control kernel parameters, SmartPack-Kernel Manager need to modify some system files, that are not accessible without root!
-
-
-How can I root my device?
-
-A simple google search will help to find many guides to achieve root on your device. Please have a look at it!
+        In order to control kernel parameters, SmartPack-Kernel Manager need to modify some system files, that are not accessible without root!
 
 
-Is rooting a device safe?
+        How can I root my device?
 
-Rooting poses some security risk, but it's generally safe to do!"</string>
+        A simple google search will help to find many guides to achieve root on your device. Please have a look at it!
+
+
+        Is rooting a device safe?
+
+        Rooting poses some security risk, but it's generally safe to do!"</string>
 
     <!-- Security -->
     <string name="select_picture">"Resim Seç"</string>
     <string name="no_picture">"Resim Yok"</string>
     <string name="went_wrong">"Bir şeyler yanlış gitti!"</string>
     <string name="press_back_again_exit">"Çıkmak için tekrar geriye basın"</string>
-    <string name="cancel">"İptal"</string>
-    <string name="dismiss">"Vazgeç"</string>
     <string name="ok">"Tamam"</string>
     <string name="yes">"Evet"</string>
     <string name="unknown">"Bilinmeyen"</string>
@@ -1130,7 +1128,6 @@ Secure Hash Algorithm (sha1) is optional, but highly recommended to ensure the a
     <string name="sections">"Bölümler"</string>
     <string name="default_section">"Varsayılan Bölüm"</string>
     <string name="default_section_summary">"Uygulama açıldığında görüntülenecek varsayılan sekme!"</string>
-    <string name="credits">"Katkıda Bulunanlar"</string>
     <string name="special_mentions">"Özel Kişiler"</string>
     <string name="source_code">"Kaynak Kodu"</string>
     <string name="source_code_summary">"Kaynak kodunu GitHub'da görüntüleyin"</string>
@@ -1166,7 +1163,6 @@ Projelerime daha aktif devam etmem için beni çok motive edecek! Ayrıca, bu sa
     <string name="commits">"%d işlendi"</string>
     <string name="no_internet">"Lütfen internet bağlantınızı kontrol edin!"</string>
     <string name="translators">"Çevirmenler"</string>
-    <string name="translators_message">"Bu uygulamayı kendi dilinizde kullanmak mı istiyorsunuz? Öyleyse, POEditor yerelleştirme hizmetini veya yerleşik çevirmeni kullanarak çeviriye başlamak için buraya tıklayın!"</string>
 
     <!-- Translator -->
     <string name="edit_string_warning">"This string contains some special characters! Please be careful."</string>
@@ -1185,7 +1181,7 @@ Projelerime daha aktif devam etmem için beni çok motive edecek! Ayrıca, bu sa
 
     <!-- FAQ -->
     <string name="how_different">"S1. Bu uygulama Grarak'ın resmi Kernel Adiutor'undan ne kadar farklı?"</string>
-    <string name="how_different_summary">"Cvp. Bu uygulama, çeşitli kernel geliştiricilerinin ihtiyaçlarını karşılamak için büyük ölçüde değiştirildi. Bu uygulamanın eklenen özelliklerinden bazıları şunlardır, ancak bunlarla sınırlı değildir: \ n - Android sistemini çalıştırırken recovery zip dosyalarını flashlama seçeneği.\n - Basit ve kullanıcı dostu bir Özel Kontrolör.\n - Düzgün biçimlendirilmiş kabuk komut dosyalarını kolayca oluşturmak, içe aktarmak, düzenlemek ve yürütmek için Komut Dosyası Yöneticisi.\n - CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Uyandırma Kilidi Engelleyici gibi özellikler üzerinde kontrol.\n - Boeffla ve Flar'ın ayrı ayrı destekli ses kontrolleri.\n - ve çok daha fazlası."</string>
+    <string name="how_different_summary">"Cvp. Bu uygulama, çeşitli kernel geliştiricilerinin ihtiyaçlarını karşılamak için büyük ölçüde değiştirildi. Bu uygulamanın eklenen özelliklerinden bazıları şunlardır, ancak bunlarla sınırlı değildir: \ n - Android sistemini çalıştırırken recovery zip dosyalarını flashlama seçeneği.\n - Basit ve kullanıcı dostu bir Özel Kontrolör.\n - Düzgün biçimlendirilmiş kabuk komut dosyalarını kolayca oluşturmak, içe aktarmak, düzenlemek ve yürütmek için Komut Dosyası Yöneticisi.\n - CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Uyandırma Kilidi Engelleyici gibi özellikler üzerinde kontrol.\n - Boeffla ve Flar'ın ayrı destekli ses kontrolleri.\n - ve çok daha fazlası."</string>
     <string name="can_i_use">"S2. Bu Uygulamayı herhangi bir özel kerneli kontrol etmek için kullanabilir miyim?"</string>
     <string name="can_i_use_summary">"Cvp. Neden olmasın? Bu uygulama, root erişimi verildiği sürece herhangi bir kernelde her zamanki gibi çalışacaktır."</string>
     <string name="cpu_freq_not_sticking">"S3. Neden benim kararlı işlemci frekansım değişmiyor?"</string>
@@ -1202,8 +1198,6 @@ Projelerime daha aktif devam etmem için beni çok motive edecek! Ayrıca, bu sa
     <string name="found_bugs_summary">"Cvp. Lütfen mümkün olduğu kadar çok bilgi verin (hangi özellik çalışmıyor, ekran görüntüleri veya mümkünse logcat gibi) ve xda geliştiricileri sayfasında yayınlayın. Alternatif olarak, GitHub sayfasında da bildirebilirsiniz."</string>
     <string name="can_i_contribute">"S9. Projelerinize katkıda bulunabilir miyim? Öyleyse nasıl?"</string>
     <string name="can_i_contribute_summary">"Cvp. Kesinlikle. Her türlü katkı (Bağış, Kod vb.) Büyük memnuniyetle karşılanır ve çok takdir edilir. Daha fazla ayrıntı için lütfen Hakkında Bölümünü ziyaret edin."</string>
-    <string name="translators_inbuilt">"Yerleşik Çevirmen"</string>
-    <string name="translators_poeditor">"POEditor Yerelleştirme Hizmeti"</string>
 
     <!-- CPU -->
     <string name="cpu_note">"Lütfen bu sayfadaki İşlemci Çekirdekleri ve Frekans kontrolü gibi bazı özelliklerin büyük ölçüde sistem tarafından kontrol edildiğini unutmayın. Sonuç olarak, bu sayfada yapılan değişiklikler birçok cihazda kalıcı olmayabilir."</string>

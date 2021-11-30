@@ -55,6 +55,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Objects;
 
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
+
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on January 16, 2020
  */
@@ -122,9 +124,7 @@ public class UpdateCheck {
                 .setCancelable(false)
                 .setNegativeButton(R.string.cancel, (dialog, id) -> {
                 })
-                .setPositiveButton(R.string.get_it, (dialog, id) -> {
-                    updaterTask(context);
-                });
+                .setPositiveButton(R.string.get_it, (dialog, id) -> updaterTask(context));
     }
 
     private static String getChangeLogs() {
@@ -143,7 +143,7 @@ public class UpdateCheck {
 
     private static void getLatestApp(Context context) {
         Utils.prepareInternalDataStorage(context);
-        Utils.downloadFile(getLatestAPK(context), getUrl(), context);
+        Utils.downloadFile(getLatestAPK(context), getUrl());
     }
 
     static String readAll(Reader rd) throws IOException {
@@ -170,7 +170,7 @@ public class UpdateCheck {
     }
 
     private static void parseJSON(int updateCheckInterval, Activity activity) {
-        new AsyncTasks() {
+        new sExecutor() {
 
             private long ucTimeStamp;
             private int interval;
@@ -227,7 +227,7 @@ public class UpdateCheck {
     }
 
     private static void updaterTask(Context context) {
-        new AsyncTasks() {
+        new sExecutor() {
             private ProgressDialog mProgressDialog;
             @Override
             public void onPreExecute() {

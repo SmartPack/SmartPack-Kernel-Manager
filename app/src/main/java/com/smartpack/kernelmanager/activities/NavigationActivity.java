@@ -98,7 +98,6 @@ import com.smartpack.kernelmanager.utils.kernel.thermal.Thermal;
 import com.smartpack.kernelmanager.utils.kernel.wake.Wake;
 import com.smartpack.kernelmanager.utils.kernel.wakelock.Wakelocks;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
-import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.utils.tools.Backup;
 import com.smartpack.kernelmanager.utils.tools.KernelUpdater;
 import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
@@ -113,6 +112,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.PriorityQueue;
+
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
 public class NavigationActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -144,7 +145,7 @@ public class NavigationActivity extends BaseActivity
         }
     }
 
-    private static class FragmentLoader extends AsyncTasks {
+    private static class FragmentLoader extends sExecutor {
 
         private final WeakReference<NavigationActivity> mRefActivity;
 

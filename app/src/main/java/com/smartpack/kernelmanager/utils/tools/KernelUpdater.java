@@ -38,6 +38,8 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
+
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on January 21, 2020
  */
@@ -170,7 +172,7 @@ public class KernelUpdater {
     }
 
     private static void parse(int updateCheckInterval, Context context) {
-        new AsyncTasks() {
+        new sExecutor() {
 
             private long ucTimeStamp;
             private int interval;

@@ -15,7 +15,6 @@
     <string name="no_picture">사진이 없습니다!</string>
     <string name="went_wrong">무언가 잘못되었습니다!</string>
     <string name="press_back_again_exit">나가려면 뒤로가기를 다시 누르세요</string>
-    <string name="cancel">취소</string>
     <string name="ok">확인</string>
     <string name="yes">예</string>
     <string name="unknown">알 수 없음</string>
@@ -988,7 +987,6 @@
     <string name="sections">페이지</string>
 
     <!-- About -->
-    <string name="credits">도움을 주신 분들</string>
     <string name="special_mentions">특별히 언급하는 분들</string>
     <string name="source_code">소스 코드</string>
     <string name="source_code_summary">깃허브에서 소스 코드를 확인합니다.</string>

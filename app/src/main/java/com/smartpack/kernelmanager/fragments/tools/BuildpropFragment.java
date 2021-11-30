@@ -41,7 +41,6 @@ import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
-import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.utils.tools.Buildprop;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -51,6 +50,8 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
 /**
  * Created by willi on 10.07.16.
@@ -112,7 +113,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
         }, 250);
     }
 
-    private static class UILoader extends AsyncTasks {
+    private static class UILoader extends sExecutor {
 
         private final boolean mRead;
         private List<RecyclerViewItem> items;

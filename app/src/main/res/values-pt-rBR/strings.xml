@@ -11,39 +11,37 @@
     <!-- No Root/BusyBox -->
     <string name="busybox_message">"Por que esse problema aconteceu?
 
-Uma instalação adequada do BusyBox não foi encontrada no seu dispositivo. Infelizmente, o SmartPack-Kernel Manager requer um alguns binários BusyBox para fazer várias tarefas (por exemplo, flash automático)!
+        Uma instalação adequada do BusyBox não foi encontrada no seu dispositivo. Infelizmente, o SmartPack-Kernel Manager requer um alguns binários BusyBox para fazer várias tarefas (por exemplo, flash automático)!
 
 
-Como resolver esse problema?
+        Como resolver esse problema?
 
-Instale um sistema BusyBox autônomo para resolver este problema. Um Instalador BusyBox gratuito e de código aberto, que permite aos usuários instalar binários do BusyBox em poucos cliques, feito por nossa equipe está disponível na PlayStore!"</string>
+        Instale um sistema BusyBox autônomo para resolver este problema. Um Instalador BusyBox gratuito e de código aberto, que permite aos usuários instalar binários do BusyBox em poucos cliques, feito por nossa equipe está disponível na PlayStore!"</string>
     <string name="busybox_install_message">"Clique aqui para obter o Instalador BusyBox da Play Store"</string>
     <string name="no_root_message">"Por que esse problema aconteceu?
 
-O seu dispositivo não está enraizado ou a permissão de root foi recusada para o SmartPack-Kernel Manager por você!
+        O seu dispositivo não está enraizado ou a permissão de root foi recusada para o SmartPack-Kernel Manager por você!
 
 
-Por que a permissão de root é necessária?
+        Por que a permissão de root é necessária?
 
-Para controlar os parâmetros do kernel, o SmartPack-Kernel Manager precisa modificar alguns arquivos do sistema, que não são acessíveis sem o root!
-
-
-Como posso fazer o root em meu dispositivo?
-
-Uma simples pesquisa no Google ajudará a encontrar muitos guias para obter root em seu dispositivo. Por favor, dê uma olhada nisso!
+        Para controlar os parâmetros do kernel, o SmartPack-Kernel Manager precisa modificar alguns arquivos do sistema, que não são acessíveis sem o root!
 
 
-É seguro fazer o root de um dispositivo?
+        Como posso fazer o root em meu dispositivo?
 
-O root apresenta algum risco de segurança, mas geralmente é seguro fazer!"</string>
+        Uma simples pesquisa no Google ajudará a encontrar muitos guias para obter root em seu dispositivo. Por favor, dê uma olhada nisso!
+
+
+        É seguro fazer o root de um dispositivo?
+
+        O root apresenta algum risco de segurança, mas geralmente é seguro fazer!"</string>
 
     <!-- Security -->
     <string name="select_picture">"Selecionar imagem"</string>
     <string name="no_picture">"Nenhuma imagem"</string>
     <string name="went_wrong">"Algo deu errado!"</string>
     <string name="press_back_again_exit">"Pressione voltar novamente para sair"</string>
-    <string name="cancel">"Cancelar"</string>
-    <string name="dismiss">"Dispensar"</string>
     <string name="ok">"OK"</string>
     <string name="yes">"SIM"</string>
     <string name="unknown">"Desconhecido"</string>
@@ -1134,7 +1132,6 @@ Secure Hash Algorithm (sha1) é opcional, mas altamente recomendado para garanti
     <string name="sections">"Seções"</string>
     <string name="default_section">"Seção padrão"</string>
     <string name="default_section_summary">"A tela padrão a ser exibida ao abrir o aplicativo!"</string>
-    <string name="credits">"Créditos"</string>
     <string name="special_mentions">"Menções especiais"</string>
     <string name="source_code">"Código fonte"</string>
     <string name="source_code_summary">"Ver código fonte no GitHub"</string>
@@ -1170,7 +1167,6 @@ Isso vai me motivar muito para continuar meus projetos mais ativos! Além disso,
     <string name="commits">"%d commits"</string>
     <string name="no_internet">"Por favor, verifique sua conexão à Internet!"</string>
     <string name="translators">"Tradutores"</string>
-    <string name="translators_message">"Deseja usar este aplicativo no seu idioma? Então, clique aqui para começar a traduzir usando o serviço de localização POEditor ou o tradutor integrado!"</string>
 
     <!-- Translator -->
     <string name="edit_string_warning">"Esta string contém alguns caracteres especiais! Por favor, seja cuidadoso."</string>
@@ -1212,8 +1208,6 @@ Isso vai me motivar muito para continuar meus projetos mais ativos! Além disso,
     <string name="found_bugs_summary">"R. Forneça o máximo de informações possível (como qual opção, o que não funcionou, capturas de tela ou logcat, se possível) e poste na página xda-developers. Como alternativa, você também pode levantar um issue na página do GitHub."</string>
     <string name="can_i_contribute">"P9. Posso contribuir com seus projetos? Se sim, como?"</string>
     <string name="can_i_contribute_summary">"R. Absolutamente. Qualquer tipo de contribuição (Doações, Código etc.) é muito bem-vinda e muito apreciada. Por favor, visite a seção ''Sobre'' para mais detalhes."</string>
-    <string name="translators_inbuilt">"Tradutor Embutido"</string>
-    <string name="translators_poeditor">"Serviço de Localização POEditor"</string>
 
     <!-- CPU -->
     <string name="cpu_note">"Observe que alguns recursos nesta página, como núcleos de CPU e controle de frequência, são amplamente controlados por processos do sistema. Como resultado, as alterações feitas nesta página podem não persistir em muitos dispositivos."</string>

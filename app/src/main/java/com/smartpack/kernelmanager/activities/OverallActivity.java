@@ -34,7 +34,8 @@ import com.smartpack.kernelmanager.fragments.kernel.GPUFragment;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUTimes;
 import com.smartpack.kernelmanager.utils.kernel.cpuvoltage.Voltage;
 import com.smartpack.kernelmanager.utils.kernel.gpu.GPU;
-import com.smartpack.kernelmanager.views.recyclerview.PagerAdapter;
+
+import in.sunilpaulmathew.sCommon.Adapters.sPagerAdapter;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 18, 2020
@@ -50,7 +51,7 @@ public class OverallActivity extends BaseActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.view_pager);
 
-        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
+        sPagerAdapter adapter = new sPagerAdapter(getSupportFragmentManager());
         adapter.AddFragment(new CPUFragment(), getString(R.string.cpu));
         adapter.AddFragment(new CPUTimes(), getString(R.string.cpu_times));
         if (Voltage.getInstance().supported()) {

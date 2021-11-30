@@ -26,7 +26,7 @@ package com.smartpack.kernelmanager.utils.tools;
  */
 public class PathReader {
 
-    private static String mTitle, mPath, mError, mCategory;;
+    private static String mTitle, mPath, mError, mCategory;
     private static int mMin = -1, mMax = -1;
 
     public static String getTitle() {

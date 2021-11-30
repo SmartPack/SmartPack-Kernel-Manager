@@ -219,7 +219,7 @@ public class ProfileActivity extends BaseActivity {
         private final LinkedHashMap<String, Fragment> mFragments;
 
         private PagerAdapter(FragmentManager fm, LinkedHashMap<String, Fragment> fragments) {
-            super(fm);
+            super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
             mFragments = fragments;
         }
 

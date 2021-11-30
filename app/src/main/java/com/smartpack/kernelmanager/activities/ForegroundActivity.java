@@ -50,12 +50,8 @@ public class ForegroundActivity extends BaseActivity {
         if (Common.getDetailsTitle() != null) {
             mTitle.setText(Common.getDetailsTitle());
         }
-        mBack.setOnClickListener(v -> {
-            onBackPressed();
-        });
-        mCancel.setOnClickListener(v -> {
-            onBackPressed();
-        });
+        mBack.setOnClickListener(v -> onBackPressed());
+        mCancel.setOnClickListener(v -> onBackPressed());
 
         getSupportFragmentManager().beginTransaction().replace(R.id.foreground_content, new DetailsFragment()).commit();
     }

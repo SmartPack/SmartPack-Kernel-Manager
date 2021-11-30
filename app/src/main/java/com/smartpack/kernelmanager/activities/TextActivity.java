@@ -47,12 +47,7 @@ public class TextActivity extends BaseActivity {
         if (message != null)
             ((MaterialTextView) findViewById(R.id.message_text)).setText(message);
         if (url != null)
-            findViewById(R.id.help_fab).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Utils.launchUrl(url, TextActivity.this);
-                }
-            });
+            findViewById(R.id.help_fab).setOnClickListener(v -> Utils.launchUrl(url, TextActivity.this));
     }
 
 }

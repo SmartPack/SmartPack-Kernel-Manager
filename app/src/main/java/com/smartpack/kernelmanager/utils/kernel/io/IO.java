@@ -53,7 +53,7 @@ public class IO {
     private static final String NR_REQUESTS = "nr_requests";
 
     private static final List<String> mUSF = new ArrayList<>();
-    {
+    static {
         mUSF.add("/sys/block/sda/queue");
         mUSF.add("/sys/block/vda/queue");
     }
@@ -64,9 +64,9 @@ public class IO {
         Dm0
     }
 
-    private String INTERNAL;
+    private final String INTERNAL;
     private String EXTERNAL;
-    private String DM0;
+    private final String DM0;
 
     private IO() {
         List<String> sInternal = new ArrayList<>();

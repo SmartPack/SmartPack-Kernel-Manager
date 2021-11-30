@@ -668,11 +668,7 @@ public class SoundFragment extends RecyclerViewFragment {
 			}
 
 			final SeekBarManager manager = new SeekBarManager();
-			if (Prefs.getBoolean("perchannel", false, getActivity())) {
-				manager.showPerChannelSeekbars(true);
-			} else {
-				manager.showPerChannelSeekbars(false);
-			}
+			manager.showPerChannelSeekbars(Prefs.getBoolean("perchannel", false, getActivity()));
 			perChannel.addOnSwitchListener((switchview, isChecked) -> {
 				Prefs.saveBoolean("perchannel", isChecked, getActivity());
 				manager.showPerChannelSeekbars(isChecked);
@@ -767,11 +763,7 @@ public class SoundFragment extends RecyclerViewFragment {
 			}
 
 			final SeekBarManager manager = new SeekBarManager();
-			if (Prefs.getBoolean("perchannel", false, getActivity())) {
-				manager.showPerChannelSeekbars(true);
-			} else {
-				manager.showPerChannelSeekbars(false);
-			}
+			manager.showPerChannelSeekbars(Prefs.getBoolean("perchannel", false, getActivity()));
 			perChannel.addOnSwitchListener((switchview, isChecked) -> {
 				Prefs.saveBoolean("perchannel", isChecked, getActivity());
 				manager.showPerChannelSeekbars(isChecked);

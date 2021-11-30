@@ -31,7 +31,6 @@ import com.smartpack.kernelmanager.database.tools.profiles.Profiles;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
-import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -40,6 +39,8 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
 /**
  * Created by willi on 15.08.16.
@@ -166,7 +167,7 @@ public class ProfileEditActivity extends BaseActivity {
             mItem = null;
         }
 
-        private static class UILoader extends AsyncTasks {
+        private static class UILoader extends sExecutor {
             private List<RecyclerViewItem> items;
             private final WeakReference<ProfileEditFragment> mRefFragment;
 

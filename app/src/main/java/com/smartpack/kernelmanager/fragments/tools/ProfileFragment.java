@@ -60,7 +60,6 @@ import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
 import com.smartpack.kernelmanager.utils.root.Control;
-import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -73,6 +72,7 @@ import java.util.List;
 
 import in.sunilpaulmathew.rootfilepicker.activities.FilePickerActivity;
 import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
 /**
  * Created by willi on 10.07.16.
@@ -180,7 +180,7 @@ public class ProfileFragment extends RecyclerViewFragment {
         }, 250);
     }
 
-    private static class UILoader extends AsyncTasks {
+    private static class UILoader extends sExecutor {
 
         private List<RecyclerViewItem> items;
         private UILoader(ProfileFragment fragment) {

@@ -193,9 +193,7 @@ public class GPUFragment extends RecyclerViewFragment {
             PowerLevel.setOnGenericValueListener((genericSelectView, value) -> {
                 GPUMisc.setgpuPwrLevel(value, getActivity());
                 genericSelectView.setValue(value);
-                getHandler().postDelayed(() -> {
-                            PowerLevel.setValue(GPUMisc.getgpuPwrLevel());
-                        },
+                getHandler().postDelayed(() -> PowerLevel.setValue(GPUMisc.getgpuPwrLevel()),
                         500);
             });
 
@@ -251,9 +249,7 @@ public class GPUFragment extends RecyclerViewFragment {
             @Override
             public void onStop(SeekBarView seekBarView, int position, String value) {
 		SimpleGPU.setSimpleGpuLaziness(position, getActivity());
-		getHandler().postDelayed(() -> {
-		laziness.setProgress(SimpleGPU.getSimpleGpuLaziness());
-		},
+		getHandler().postDelayed(() -> laziness.setProgress(SimpleGPU.getSimpleGpuLaziness()),
 	    500);
             }
 	});
@@ -276,9 +272,7 @@ public class GPUFragment extends RecyclerViewFragment {
             @Override
             public void onStop(SeekBarView seekBarView, int position, String value) {
 		SimpleGPU.setSimpleGpuRampThreshold(position, getActivity());
-		getHandler().postDelayed(() -> {
-		rampThreshold.setProgress(SimpleGPU.getSimpleGpuRampThreshold());
-		},
+		getHandler().postDelayed(() -> rampThreshold.setProgress(SimpleGPU.getSimpleGpuRampThreshold()),
 	    500);
             }
 	});
@@ -345,9 +339,7 @@ public class GPUFragment extends RecyclerViewFragment {
             @Override
             public void onStop(SeekBarView seekBarView, int position, String value) {
 		AdrenoIdler.setAdrenoIdlerDownDiff(position, getActivity());
-		getHandler().postDelayed(() -> {
-		downDiff.setProgress(AdrenoIdler.getAdrenoIdlerDownDiff());
-		},
+		getHandler().postDelayed(() -> downDiff.setProgress(AdrenoIdler.getAdrenoIdlerDownDiff()),
 	    500);
             }
 	});
@@ -370,9 +362,7 @@ public class GPUFragment extends RecyclerViewFragment {
             @Override
             public void onStop(SeekBarView seekBarView, int position, String value) {
 		AdrenoIdler.setAdrenoIdlerIdleWait(position, getActivity());
-		getHandler().postDelayed(() -> {
-		idleWait.setProgress(AdrenoIdler.getAdrenoIdlerIdleWait());
-		},
+		getHandler().postDelayed(() -> idleWait.setProgress(AdrenoIdler.getAdrenoIdlerIdleWait()),
 	    500);
             }
 	});
@@ -396,9 +386,7 @@ public class GPUFragment extends RecyclerViewFragment {
             @Override
             public void onStop(SeekBarView seekBarView, int position, String value) {
 		AdrenoIdler.setAdrenoIdlerIdleWorkload(position + 1, getActivity());
-		getHandler().postDelayed(() -> {
-		idleWorkload.setProgress(AdrenoIdler.getAdrenoIdlerIdleWorkload() - 1);
-		},
+		getHandler().postDelayed(() -> idleWorkload.setProgress(AdrenoIdler.getAdrenoIdlerIdleWorkload() - 1),
 	    500);
             }
 	});
@@ -435,9 +423,7 @@ public class GPUFragment extends RecyclerViewFragment {
                  @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     Adrenoboost.setAdrenoBoost(position, getActivity());
-		    getHandler().postDelayed(() -> {
-		    boost.setProgress(Adrenoboost.getAdrenoBoost());
-		    },
+		    getHandler().postDelayed(() -> boost.setProgress(Adrenoboost.getAdrenoBoost()),
 	    	500);
                 }
             });
@@ -462,9 +448,7 @@ public class GPUFragment extends RecyclerViewFragment {
             dbduration.setOnGenericValueListener((genericSelectView, value) -> {
                 DevfreqBoost.setDevfreqboostDuration(value, getActivity());
                 genericSelectView.setValue(value);
-        getHandler().postDelayed(() -> {
-        dbduration.setValue(DevfreqBoost.getDevfreqboostDuration());
-        },
+        getHandler().postDelayed(() -> dbduration.setValue(DevfreqBoost.getDevfreqboostDuration()),
         500);
             });
 
@@ -481,9 +465,7 @@ public class GPUFragment extends RecyclerViewFragment {
             wakeBoostMS.setOnGenericValueListener((genericSelectView, value) -> {
                 DevfreqBoost.setwakeboostduration(value, getActivity());
                 genericSelectView.setValue(value);
-        getHandler().postDelayed(() -> {
-        wakeBoostMS.setValue(DevfreqBoost.getwakeboostduration());
-        },
+        getHandler().postDelayed(() -> wakeBoostMS.setValue(DevfreqBoost.getwakeboostduration()),
         500);
             });
 
@@ -499,9 +481,7 @@ public class GPUFragment extends RecyclerViewFragment {
             dbfreq.setOnGenericValueListener((genericSelectView, value) -> {
                 DevfreqBoost.setDevfreqboostFreq(value, getActivity());
                 genericSelectView.setValue(value);
-        getHandler().postDelayed(() -> {
-        dbfreq.setValue(DevfreqBoost.getDevfreqboostFreq());
-        },
+        getHandler().postDelayed(() -> dbfreq.setValue(DevfreqBoost.getDevfreqboostFreq()),
         500);
             });
 

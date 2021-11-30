@@ -96,9 +96,7 @@ public class IOFragment extends RecyclerViewFragment {
             scheduler.setItem(mIO.getScheduler(storage));
             scheduler.setOnItemSelected((selectView, position, item) -> {
                 mIO.setScheduler(storage, item, getActivity());
-                getHandler().postDelayed(() -> {
-                            scheduler.setItem(mIO.getScheduler(storage));
-                        },
+                getHandler().postDelayed(() -> scheduler.setItem(mIO.getScheduler(storage)),
                         500);
             });
 
@@ -153,9 +151,7 @@ public class IOFragment extends RecyclerViewFragment {
             rotational.setChecked(mIO.isRotationalEnabled(storage));
             rotational.addOnSwitchListener((switchView, isChecked) -> {
                 mIO.enableRotational(storage, isChecked, getActivity());
-                getHandler().postDelayed(() -> {
-                            rotational.setChecked(mIO.isRotationalEnabled(storage));
-                        },
+                getHandler().postDelayed(() -> rotational.setChecked(mIO.isRotationalEnabled(storage)),
                         500);
             });
 
@@ -169,9 +165,7 @@ public class IOFragment extends RecyclerViewFragment {
             iostats.setChecked(mIO.isIOStatsEnabled(storage));
             iostats.addOnSwitchListener((switchView, isChecked) -> {
                 mIO.enableIOstats(storage, isChecked, getActivity());
-                getHandler().postDelayed(() -> {
-                            iostats.setChecked(mIO.isIOStatsEnabled(storage));
-                        },
+                getHandler().postDelayed(() -> iostats.setChecked(mIO.isIOStatsEnabled(storage)),
                         500);
             });
 
@@ -185,9 +179,7 @@ public class IOFragment extends RecyclerViewFragment {
             addRandom.setChecked(mIO.isAddRandomEnabled(storage));
             addRandom.addOnSwitchListener((switchView, isChecked) -> {
                 mIO.enableAddRandom(storage, isChecked, getActivity());
-                getHandler().postDelayed(() -> {
-                            addRandom.setChecked(mIO.isAddRandomEnabled(storage));
-                        },
+                getHandler().postDelayed(() -> addRandom.setChecked(mIO.isAddRandomEnabled(storage)),
                         500);
             });
 
@@ -204,9 +196,7 @@ public class IOFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mIO.setRqAffinity(storage, position, getActivity());
-                    getHandler().postDelayed(() -> {
-                                rqAffinity.setProgress(mIO.getRqAffinity(storage));
-                            },
+                    getHandler().postDelayed(() -> rqAffinity.setProgress(mIO.getRqAffinity(storage)),
                             500);
                 }
 
@@ -228,9 +218,7 @@ public class IOFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mIO.setNomerges(storage, position, getActivity());
-                    getHandler().postDelayed(() -> {
-                                Nomerges.setProgress(mIO.getNomerges(storage));
-                            },
+                    getHandler().postDelayed(() -> Nomerges.setProgress(mIO.getNomerges(storage)),
                             500);
                 }
 
@@ -252,9 +240,7 @@ public class IOFragment extends RecyclerViewFragment {
             NrRequests.setOnGenericValueListener((genericSelectView, value) -> {
                 mIO.setNrRequests(storage, value, getActivity());
                 genericSelectView.setValue(value);
-                getHandler().postDelayed(() -> {
-                            NrRequests.setValueRaw(NrRequests.getValue());
-                        },
+                getHandler().postDelayed(() -> NrRequests.setValueRaw(NrRequests.getValue()),
                         500);
             });
 

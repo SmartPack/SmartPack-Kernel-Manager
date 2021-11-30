@@ -151,7 +151,7 @@ public class Device {
             return sInstance;
         }
 
-        private static String[] sProps = {
+        private static final String[] sProps = {
                 "ro.cm.version",
                 "ro.pa.version",
                 "ro.pac.version",
@@ -192,7 +192,7 @@ public class Device {
         }
 
         private static final String MEMINFO_PROC = "/proc/meminfo";
-        private String MEMINFO;
+        private final String MEMINFO;
 
         private MemInfo() {
             MEMINFO = Utils.readFile(MEMINFO_PROC);
@@ -305,7 +305,7 @@ public class Device {
             return sInstance;
         }
 
-        private static HashMap<String, String> PARTITIONS = new HashMap<>();
+        private static final HashMap<String, String> PARTITIONS = new HashMap<>();
 
         static {
             PARTITIONS.put("/dev/block/platform/msm_sdcc.1/by-name/tz", "QC_IMAGE_VERSION_STRING=");
@@ -393,8 +393,8 @@ public class Device {
         String format(String board);
     }
 
-    private static HashMap<String, BoardFormatter> sBoardFormatters = new HashMap<>();
-    private static HashMap<String, String> sBoardAliases = new HashMap<>();
+    private static final HashMap<String, BoardFormatter> sBoardFormatters = new HashMap<>();
+    private static final HashMap<String, String> sBoardAliases = new HashMap<>();
 
     static {
         sBoardFormatters.put(".*msm.+.\\d+.*", board -> "msm" + board.split("msm")[1].trim().split(" ")[0]);

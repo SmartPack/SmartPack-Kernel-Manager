@@ -22,7 +22,6 @@ package com.smartpack.kernelmanager.activities;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 
@@ -61,6 +60,8 @@ import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
 import org.frap129.spectrum.Spectrum;
 
 import java.lang.ref.WeakReference;
+
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
 /**
  * Created by willi on 14.04.16.
@@ -144,34 +145,12 @@ public class MainActivity extends BaseActivity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
-    private static class CheckingTask extends AsyncTask<Void, Integer, Void> {
+    private static class CheckingTask extends sExecutor {
 
         private final WeakReference<MainActivity> mRefActivity;
 
         private CheckingTask(MainActivity activity) {
             mRefActivity = new WeakReference<>(activity);
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            Common.hasRoot(RootUtils.rootAccess());
-            publishProgress(0);
-
-            if (Common.hasRoot()) {
-                Common.hasBusyBox(RootUtils.busyboxInstalled());
-                publishProgress(1);
-
-                if (Common.hasBusyBox()) {
-                    collectData();
-                    publishProgress(2);
-                }
-
-                // Initialize auto app update check
-                if (Common.isUpdateCheckEnabled()) {
-                    publishProgress(3);
-                }
-            }
-            return null;
         }
 
         /**
@@ -209,18 +188,7 @@ public class MainActivity extends BaseActivity {
 
         }
 
-        /**
-         * Let the user know what we are doing right now
-         *
-         * @param values progress
-         *               0: Checking root
-         *               1: Checking busybox/toybox
-         *               2: Collecting information
-         *               3: Check for updates
-         */
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
+        private void publishProgress(Integer... values) {
             MainActivity activity = mRefActivity.get();
             if (activity == null) return;
 
@@ -242,9 +210,44 @@ public class MainActivity extends BaseActivity {
             }
         }
 
+        /**
+         * Let the user know what we are doing right now
+         *
+         * @param values progress
+         *               0: Checking root
+         *               1: Checking busybox/toybox
+         *               2: Collecting information
+         *               3: Check for updates
+         */
+
         @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
+        public void onPreExecute() {
+
+        }
+
+        @Override
+        public void doInBackground() {
+            Common.hasRoot(RootUtils.rootAccess());
+            publishProgress(0);
+
+            if (Common.hasRoot()) {
+                Common.hasBusyBox(RootUtils.busyboxInstalled());
+                publishProgress(1);
+
+                if (Common.hasBusyBox()) {
+                    collectData();
+                    publishProgress(2);
+                }
+
+                // Initialize auto app update check
+                if (Common.isUpdateCheckEnabled()) {
+                    publishProgress(3);
+                }
+            }
+        }
+
+        @Override
+        public void onPostExecute() {
             MainActivity activity = mRefActivity.get();
             if (activity == null) return;
 

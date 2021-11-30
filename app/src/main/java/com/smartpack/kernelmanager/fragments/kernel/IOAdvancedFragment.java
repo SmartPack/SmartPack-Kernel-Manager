@@ -29,7 +29,6 @@ import com.smartpack.kernelmanager.activities.TunablesActivity;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.kernel.io.IOAdvanced;
-import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.utils.tools.PathReader;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -41,6 +40,8 @@ import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 14, 2021
@@ -65,7 +66,7 @@ public class IOAdvancedFragment extends RecyclerViewFragment {
     private void reload() {
         getHandler().postDelayed(() -> {
             clearItems();
-            new AsyncTasks() {
+            new sExecutor() {
                 private List<RecyclerViewItem> items;
 
                 @Override

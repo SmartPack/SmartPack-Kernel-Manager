@@ -40,6 +40,8 @@ import com.smartpack.kernelmanager.views.recyclerview.TitleView;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.sunilpaulmathew.sCommon.Utils.sPackageUtils;
+
 /**
  * Created by willi on 26.06.16.
  */
@@ -135,9 +137,7 @@ public class BatteryFragment extends RecyclerViewFragment {
             ACLevelCard.setItem(Battery.getFastChargeCustomAC());
             ACLevelCard.setOnItemSelected((selectView, position, item) -> {
                 mBattery.setFastChargeControlAC(item, getActivity());
-                getHandler().postDelayed(() -> {
-                            ACLevelCard.setItem(Battery.getFastChargeCustomAC());
-                        },
+                getHandler().postDelayed(() -> ACLevelCard.setItem(Battery.getFastChargeCustomAC()),
                         500);
             });
             acci.addItem(ACLevelCard);
@@ -152,9 +152,7 @@ public class BatteryFragment extends RecyclerViewFragment {
             USBLevelCard.setItem(Battery.getFastChargeCustomUSB());
             USBLevelCard.setOnItemSelected((selectView, position, item) -> {
                 mBattery.setFastChargeControlUSB(item, getActivity());
-                getHandler().postDelayed(() -> {
-                            USBLevelCard.setItem(Battery.getFastChargeCustomUSB());
-                        },
+                getHandler().postDelayed(() -> USBLevelCard.setItem(Battery.getFastChargeCustomUSB()),
                         500);
             });
             acci.addItem(USBLevelCard);
@@ -167,9 +165,7 @@ public class BatteryFragment extends RecyclerViewFragment {
             WirelessLevelCard.setItem(Battery.getFastChargeCustomWIRELESS());
             WirelessLevelCard.setOnItemSelected((selectView, position, item) -> {
                 mBattery.setFastChargeControlWIRELESS(item, getActivity());
-                getHandler().postDelayed(() -> {
-                            WirelessLevelCard.setItem(Battery.getFastChargeCustomWIRELESS());
-                        },
+                getHandler().postDelayed(() -> WirelessLevelCard.setItem(Battery.getFastChargeCustomWIRELESS()),
                         500);
             });
             acci.addItem(WirelessLevelCard);
@@ -210,9 +206,7 @@ public class BatteryFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mBattery.setchargeLevelAC((position * 25), getActivity());
-                    getHandler().postDelayed(() -> {
-                                chargeLevelAC.setProgress(Battery.getchargeLevelAC() / 25 );
-                            },
+                    getHandler().postDelayed(() -> chargeLevelAC.setProgress(Battery.getchargeLevelAC() / 25 ),
                             500);
                 }
 
@@ -235,9 +229,7 @@ public class BatteryFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mBattery.setchargeLevelUSB((position * 25), getActivity());
-                    getHandler().postDelayed(() -> {
-                                chargeLevelUSB.setProgress(Battery.getchargeLevelUSB() / 25 );
-                            },
+                    getHandler().postDelayed(() -> chargeLevelUSB.setProgress(Battery.getchargeLevelUSB() / 25 ),
                             500);
                 }
 
@@ -260,9 +252,7 @@ public class BatteryFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mBattery.setchargeLevelWL((position * 25), getActivity());
-                    getHandler().postDelayed(() -> {
-                                chargeLevelWL.setProgress(Battery.getchargeLevelWL() / 25 );
-                            },
+                    getHandler().postDelayed(() -> chargeLevelWL.setProgress(Battery.getchargeLevelWL() / 25 ),
                             500);
                 }
 
@@ -328,9 +318,7 @@ public class BatteryFragment extends RecyclerViewFragment {
             acharge.setOnGenericValueListener((genericSelectView, value) -> {
                 mBattery.setThunderChargeAC(value, getActivity());
                 genericSelectView.setValue(value);
-                getHandler().postDelayed(() -> {
-                            acharge.setValue(Battery.getThunderChargeAC());
-                        },
+                getHandler().postDelayed(() -> acharge.setValue(Battery.getThunderChargeAC()),
                         500);
             });
 
@@ -346,9 +334,7 @@ public class BatteryFragment extends RecyclerViewFragment {
             usbcharge.setOnGenericValueListener((genericSelectView, value) -> {
                 mBattery.setThunderChargeUSB(value, getActivity());
                 genericSelectView.setValue(value);
-                getHandler().postDelayed(() -> {
-                            usbcharge.setValue(Battery.getThunderChargeUSB());
-                        },
+                getHandler().postDelayed(() -> usbcharge.setValue(Battery.getThunderChargeUSB()),
                         500);
             });
 
@@ -369,7 +355,7 @@ public class BatteryFragment extends RecyclerViewFragment {
         battery_guru.setSummary(getString(R.string.battery_guru_summary));
         battery_guru.setFullSpan(true);
         battery_guru.setOnItemClickListener(item -> {
-            if (Utils.isPackageInstalled("com.paget96.batteryguru", requireActivity())) {
+            if (sPackageUtils.isPackageInstalled("com.paget96.batteryguru", requireActivity())) {
                 Intent launchIntent = requireActivity().getPackageManager().getLaunchIntentForPackage("com.paget96.batteryguru");
                 if (launchIntent != null) {
                     startActivity(launchIntent);

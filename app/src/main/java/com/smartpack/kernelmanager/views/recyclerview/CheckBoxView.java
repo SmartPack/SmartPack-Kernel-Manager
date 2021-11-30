@@ -86,9 +86,7 @@ public class CheckBoxView extends ValueView {
         mDialog = new Dialog(context)
 
                 .setMultiChoiceItems(items, mCheckBoxes,
-                        (dialog, which, isChecked) -> {
-                            mCheckBoxes[which] = isChecked;
-                        })
+                        (dialog, which, isChecked) -> mCheckBoxes[which] = isChecked)
 
                 .setPositiveButton(R.string.ok, (dialog, id) -> {
                     setIntValueFromCheckBoxes(context);

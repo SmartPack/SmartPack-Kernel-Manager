@@ -110,7 +110,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
         view.setInputType(InputType.TYPE_CLASS_NUMBER);
         view.setOnGenericValueListener((genericSelectView, value) -> {
             mVoltage.setVoltage(freq, value, getActivity());
-            getHandler().postDelayed(() -> reload(), 200);
+            getHandler().postDelayed(this::reload, 200);
         });
     }
 

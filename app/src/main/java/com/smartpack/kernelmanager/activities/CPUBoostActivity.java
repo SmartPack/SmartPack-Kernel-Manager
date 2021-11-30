@@ -35,7 +35,8 @@ import com.smartpack.kernelmanager.utils.kernel.cpu.boost.CPUBoost;
 import com.smartpack.kernelmanager.utils.kernel.cpu.boost.CPUInputBoost;
 import com.smartpack.kernelmanager.utils.kernel.cpu.boost.StuneBoost;
 import com.smartpack.kernelmanager.utils.kernel.cpu.boost.VoxPopuli;
-import com.smartpack.kernelmanager.views.recyclerview.PagerAdapter;
+
+import in.sunilpaulmathew.sCommon.Adapters.sPagerAdapter;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on May 19, 2020
@@ -51,7 +52,7 @@ public class CPUBoostActivity extends BaseActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.view_pager);
 
-        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
+        sPagerAdapter adapter = new sPagerAdapter(getSupportFragmentManager());
         if (CPUBoost.getInstance().supported() || CPUInputBoost.getInstance().supported()) {
             adapter.AddFragment(new CPUBoostFragment(), getString(R.string.cpu_boost));
         }

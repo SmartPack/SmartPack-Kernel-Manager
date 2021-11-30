@@ -174,7 +174,7 @@ public class KSMFragment extends RecyclerViewFragment {
         }
     }
 
-    private List<String> mInfoSummaries = new ArrayList<>();
+    private final List<String> mInfoSummaries = new ArrayList<>();
 
     @Override
     protected void refreshThread() {

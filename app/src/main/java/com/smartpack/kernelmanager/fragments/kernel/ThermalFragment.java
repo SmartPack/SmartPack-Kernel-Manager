@@ -82,9 +82,7 @@ public class ThermalFragment extends RecyclerViewFragment {
         thermald.setChecked(Thermald.isThermaldEnabled());
         thermald.addOnSwitchListener((switchView, isChecked) -> {
             Thermald.enableThermald(isChecked, getActivity());
-            getHandler().postDelayed(() -> {
-                        thermald.setChecked(Thermald.isThermaldEnabled());
-                    },
+            getHandler().postDelayed(() -> thermald.setChecked(Thermald.isThermaldEnabled()),
                     500);
         });
 
@@ -132,9 +130,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             coreControl.setChecked(mMSMThermal.isCoreControlEnabled());
             coreControl.addOnSwitchListener((switchView, isChecked) -> {
                 mMSMThermal.enableCoreControl(isChecked, getActivity());
-                getHandler().postDelayed(() -> {
-                            coreControl.setChecked(mMSMThermal.isCoreControlEnabled());
-                        },
+                getHandler().postDelayed(() -> coreControl.setChecked(mMSMThermal.isCoreControlEnabled()),
                         500);
             });
 
@@ -147,9 +143,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             vddRestriction.setChecked(mMSMThermal.isVddRestrictionEnabled());
             vddRestriction.addOnSwitchListener((switchView, isChecked) -> {
                 mMSMThermal.enableVddRestriction(isChecked, getActivity());
-                getHandler().postDelayed(() -> {
-                            vddRestriction.setChecked(mMSMThermal.isVddRestrictionEnabled());
-                        },
+                getHandler().postDelayed(() -> vddRestriction.setChecked(mMSMThermal.isVddRestrictionEnabled()),
                         500);
             });
 
@@ -322,9 +316,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             pollMs.setOnGenericValueListener((genericSelectView, value) -> {
                 mMSMThermal.setPollMs(value, getActivity());
                 genericSelectView.setValue(value);
-                getHandler().postDelayed(() -> {
-                            pollMs.setValue(com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.getPollMs());
-                        },
+                getHandler().postDelayed(() -> pollMs.setValue(com.smartpack.kernelmanager.utils.kernel.thermal.MSMThermal.getPollMs()),
                         500);
             });
 
@@ -769,9 +761,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             enableswitch.setChecked(MSMThermalSimple.issimplemsmthermalEnabled());
             enableswitch.addOnSwitchListener((switchView, isChecked) -> {
                 MSMThermalSimple.enablesimplemsmthermal(isChecked, getActivity());
-                getHandler().postDelayed(() -> {
-                            enableswitch.setChecked(MSMThermalSimple.issimplemsmthermalEnabled());
-                        },
+                getHandler().postDelayed(() -> enableswitch.setChecked(MSMThermalSimple.issimplemsmthermalEnabled()),
                         500);
             });
             SimpleMSMThermal.addItem(enableswitch);
@@ -785,9 +775,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             samplingMS.setOnGenericValueListener((genericSelectView, value) -> {
                 MSMThermalSimple.setSamplingMS(value, getActivity());
                 genericSelectView.setValue(value);
-                getHandler().postDelayed(() -> {
-                            samplingMS.setValue(MSMThermalSimple.getSamplingMS());
-                        },
+                getHandler().postDelayed(() -> samplingMS.setValue(MSMThermalSimple.getSamplingMS()),
                         500);
             });
 
@@ -802,9 +790,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             userMaxFreq.setOnGenericValueListener((genericSelectView, value) -> {
                 MSMThermalSimple.setUserMaxFreq(value, getActivity());
                 genericSelectView.setValue(value);
-                getHandler().postDelayed(() -> {
-                            userMaxFreq.setValue(MSMThermalSimple.getUserMaxFreq());
-                        },
+                getHandler().postDelayed(() -> userMaxFreq.setValue(MSMThermalSimple.getUserMaxFreq()),
                         500);
             });
 
@@ -823,9 +809,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 thermalZone.setOnGenericValueListener((genericSelectView, value) -> {
                     MSMThermalSimple.setValue(value, position, getActivity());
                     genericSelectView.setValue(value);
-                    getHandler().postDelayed(() -> {
-                                thermalZone.setValueRaw(thermalZone.getValue());
-                            },
+                    getHandler().postDelayed(() -> thermalZone.setValueRaw(thermalZone.getValue()),
                             500);
                 });
 

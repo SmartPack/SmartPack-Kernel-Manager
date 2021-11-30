@@ -123,10 +123,4 @@
         <item>20</item>
         <item>50</item>
     </string-array>
-
-    <!-- Translator -->
-    <string-array name="translator_options">
-        <item>@string/translators_poeditor</item>
-        <item>@string/translators_inbuilt</item>
-    </string-array>
 </resources>

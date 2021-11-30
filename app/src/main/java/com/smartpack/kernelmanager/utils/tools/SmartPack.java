@@ -33,6 +33,8 @@ import com.topjohnwu.superuser.io.SuFile;
 
 import java.io.File;
 
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
+
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on November 29, 2018
  */
@@ -56,7 +58,7 @@ public class SmartPack {
     }
 
     public static void flashingTask(File file, Context context) {
-        new AsyncTasks() {
+        new sExecutor() {
             @Override
             public void onPreExecute() {
                 Common.isFlashing(true);

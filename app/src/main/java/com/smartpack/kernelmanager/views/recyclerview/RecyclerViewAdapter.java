@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.views.recyclerview;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -125,6 +126,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return position;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onItemDismiss(int position) {
         try {

@@ -45,9 +45,9 @@ public class MSMPerformance {
     private static final String MAX_CPU_FREQ = PARENT + "/parameters/max_cpu_freq";
     private static final String CPU_MIN_FREQ = PARENT + "/parameters/cpu_min_freq";
 
-    private Boolean MAX_CPUS_SUPPORTED;
+    private final Boolean MAX_CPUS_SUPPORTED;
     private String CPU_MAX_FREQ_FILE;
-    private Boolean CPU_MIN_FREQ_SUPPORTED;
+    private final Boolean CPU_MIN_FREQ_SUPPORTED;
 
     private MSMPerformance() {
         MAX_CPUS_SUPPORTED = Utils.existFile(MAX_CPUS);

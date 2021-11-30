@@ -16,8 +16,6 @@
     <string name="no_picture">"No hay imagen"</string>
     <string name="went_wrong">"¡Algo salió mal!"</string>
     <string name="press_back_again_exit">"Presione de nuevo para salir"</string>
-    <string name="cancel">"Cancelar"</string>
-    <string name="dismiss">"Descartar"</string>
     <string name="ok">"OK"</string>
     <string name="yes">"Si"</string>
     <string name="unknown">"Desconocido"</string>

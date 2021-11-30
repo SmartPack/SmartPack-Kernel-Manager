@@ -19,8 +19,6 @@
     <string name="no_picture">No Picture</string>
     <string name="went_wrong">Something went wrong!</string>
     <string name="press_back_again_exit">Press back again to exit</string>
-    <string name="cancel">Cancel</string>
-    <string name="dismiss">Dismiss</string>
     <string name="ok">OK</string>
     <string name="yes">YES</string>
     <string name="unknown">Unknown</string>
@@ -1146,7 +1144,6 @@
 
     <!-- About -->
     <string name="about_me" translatable="false">SmartPack-Kernel Manager is a heavily modified version of \'Kernel Adiutor\', which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.</string>
-    <string name="credits">Credits</string>
     <string name="special_mentions">Special Mentions</string>
     <string name="source_code">Source Code</string>
     <string name="source_code_summary">View source code at GitHub</string>
@@ -1183,9 +1180,6 @@
     <string name="commits">%d commits</string>
     <string name="no_internet">Please check your internet connection!</string>
     <string name="translators">Translators</string>
-    <string name="translators_inbuilt">In-built Translator</string>
-    <string name="translators_message">Want to use this app in your language! Then, click here to start translating using POEditor localization service or the in-built translator!</string>
-    <string name="translators_poeditor">POEditor Localization Service</string>
     <string name="translators_summary">Click here to see an incomplete list of people who supported SmartPack-Kernel Manager with translations!</string>
 
     <!-- Translator -->

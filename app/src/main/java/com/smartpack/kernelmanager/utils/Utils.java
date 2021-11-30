@@ -24,7 +24,6 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
 import android.app.UiModeManager;
-import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -32,7 +31,6 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -50,7 +48,6 @@ import androidx.core.content.FileProvider;
 import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 import androidx.core.view.ViewCompat;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.StartActivity;
@@ -58,24 +55,18 @@ import com.smartpack.kernelmanager.activities.StartActivityMaterial;
 import com.smartpack.kernelmanager.activities.WebViewActivity;
 import com.smartpack.kernelmanager.utils.root.RootFile;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
-import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.topjohnwu.superuser.io.SuFile;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
@@ -90,6 +81,10 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
+import in.sunilpaulmathew.sCommon.Utils.sPackageUtils;
+import in.sunilpaulmathew.sCommon.Utils.sUtils;
+
 /**
  * Created by willi on 14.04.16.
  */
@@ -97,17 +92,8 @@ public class Utils {
 
     private static final String TAG = Utils.class.getSimpleName();
 
-    public static boolean isPackageInstalled(String id, Context context) {
-        try {
-            context.getPackageManager().getApplicationInfo(id, 0);
-            return true;
-        } catch (PackageManager.NameNotFoundException ignored) {
-            return false;
-        }
-    }
-
     public static boolean isSPDonated(Context context) {
-        return isPackageInstalled("com.smartpack.donate", context);
+        return sPackageUtils.isPackageInstalled("com.smartpack.donate", context);
     }
 
     public static boolean isDonated(Context context) {
@@ -291,29 +277,7 @@ public class Utils {
     }
 
     public static String readAssetFile(Context context, String file) {
-        InputStream input = null;
-        BufferedReader buf = null;
-        try {
-            StringBuilder s = new StringBuilder();
-            input = context.getAssets().open(file);
-            buf = new BufferedReader(new InputStreamReader(input));
-
-            String str;
-            while ((str = buf.readLine()) != null) {
-                s.append(str).append("\n");
-            }
-            return s.toString().trim();
-        } catch (IOException e) {
-            Log.e(TAG, "Unable to read " + file);
-        } finally {
-            try {
-                if (input != null) input.close();
-                if (buf != null) buf.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
+        return sUtils.readAssetFile(file, context);
     }
 
     public static boolean useFahrenheit(Context context) {
@@ -379,7 +343,6 @@ public class Utils {
         return null;
     }
 
-
     public static boolean isRTL(View view) {
         return ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_RTL;
     }
@@ -401,23 +364,11 @@ public class Utils {
     }
 
     public static void snackbar(View view, String message) {
-        Snackbar snackBar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
-        snackBar.setAction(R.string.dismiss, v -> snackBar.dismiss());
-        snackBar.show();
+        sUtils.snackBar(view, message).show();
     }
 
     public static void launchUrl(String url, Activity activity) {
-        if (!isNetworkAvailable(activity)) {
-            snackbar(activity.findViewById(android.R.id.content), activity.getString(R.string.no_internet));
-            return;
-        }
-        try {
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse(url));
-            activity.startActivity(i);
-        } catch (ActivityNotFoundException e) {
-            e.printStackTrace();
-        }
+        sUtils.launchUrl(url, activity);
     }
 
     public static void launchWebView(String title, String url, Activity activity) {
@@ -440,8 +391,7 @@ public class Utils {
     }
 
     public static int getOrientation(Activity activity) {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && activity.isInMultiWindowMode() ?
-                Configuration.ORIENTATION_PORTRAIT : activity.getResources().getConfiguration().orientation;
+        return sUtils.getOrientation(activity);
     }
 
     public static boolean isPropRunning(String key) {
@@ -466,20 +416,7 @@ public class Utils {
             return;
         }
 
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(path, append);
-            writer.write(text);
-            writer.flush();
-        } catch (IOException e) {
-            Log.e(TAG, "Failed to write " + path);
-        } finally {
-            try {
-                if (writer != null) writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        sUtils.create(text, new File(path));
     }
 
     public static String readFile(String file) {
@@ -491,26 +428,7 @@ public class Utils {
             return RootFile.read(file);
         }
 
-        BufferedReader buf = null;
-        try {
-            buf = new BufferedReader(new FileReader(file));
-
-            StringBuilder stringBuilder = new StringBuilder();
-            String line;
-            while ((line = buf.readLine()) != null) {
-                stringBuilder.append(line).append("\n");
-            }
-
-            return stringBuilder.toString().trim();
-        } catch (IOException ignored) {
-        } finally {
-            try {
-                if (buf != null) buf.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
+        return sUtils.read(new File(file));
     }
 
     public static boolean existFile(String file) {
@@ -518,20 +436,11 @@ public class Utils {
     }
 
     public static boolean existFile(String file, boolean root) {
-        return !root ? new File(file).exists() : RootFile.exists(file);
+        return !root ? sUtils.exist(new File(file)) : RootFile.exists(file);
     }
 
     public static void create(String text, File path) {
-        try {
-            path.createNewFile();
-            FileOutputStream fOut = new FileOutputStream(path);
-            OutputStreamWriter myOutWriter =
-                    new OutputStreamWriter(fOut);
-            myOutWriter.append(text);
-            myOutWriter.close();
-            fOut.close();
-        } catch (Exception ignored) {
-        }
+        sUtils.create(text, path);
     }
 
     public static void create(String text, String path) {
@@ -554,12 +463,12 @@ public class Utils {
         if (root) {
             RootFile.delete(file);
         } else {
-            new File(file).delete();
+            sUtils.delete(new File(file));
         }
     }
 
     public static void sleep(int sec) {
-        RootUtils.runCommand("sleep " + sec);
+        sUtils.sleep(sec);
     }
 
     public static void copy(String source, String dest) {
@@ -578,14 +487,7 @@ public class Utils {
         return "/data/adb/magisk/busybox";
     }
 
-    public static void importTranslation(String url, Activity activity) {
-        if (!existFile(Utils.getInternalDataStorage(activity) + "/strings.xml") && isNetworkAvailable(activity)) {
-            downloadFile(Utils.getInternalDataStorage(activity) + "/strings.xml",
-                    "https://github.com/SmartPack/SmartPack-Kernel-Manager/raw/master/app/src/main/res/" + url + "/strings.xml", activity);
-        }
-    }
-
-    public static void downloadFile(String path, String url, Context context) {
+    public static void downloadFile(String path, String url) {
         /*
          * Based on the following stackoverflow discussion
          * Ref: https://stackoverflow.com/questions/15758856/android-how-to-download-file-from-webserver
@@ -599,12 +501,6 @@ public class Utils {
             }
         } catch (Exception ignored) {
         }
-    }
-
-    public static boolean isNetworkAvailable(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        assert cm != null;
-        return (cm.getActiveNetworkInfo() != null) && cm.getActiveNetworkInfo().isConnectedOrConnecting();
     }
 
     /**
@@ -664,7 +560,7 @@ public class Utils {
     }
 
     public static void rebootCommand(Context context) {
-        new AsyncTasks() {
+        new sExecutor() {
             private ProgressDialog mProgressDialog;
             @Override
             public void onPreExecute() {

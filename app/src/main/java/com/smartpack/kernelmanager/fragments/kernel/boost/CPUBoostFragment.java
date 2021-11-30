@@ -106,9 +106,7 @@ public class CPUBoostFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mCPUBoost.setCpuBoostMs(position * 10, getActivity());
-                    getHandler().postDelayed(() -> {
-                                ms.setProgress(mCPUBoost.getCpuBootMs() / 10);
-                            },
+                    getHandler().postDelayed(() -> ms.setProgress(mCPUBoost.getCpuBootMs() / 10),
                             500);
                 }
             });
@@ -147,9 +145,7 @@ public class CPUBoostFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mCPUBoost.setCpuBoostInputMs(position, getActivity());
-                    getHandler().postDelayed(() -> {
-                                inputMs.setProgress(mCPUBoost.getCpuBootInputMs());
-                            },
+                    getHandler().postDelayed(() -> inputMs.setProgress(mCPUBoost.getCpuBootInputMs()),
                             500);
                 }
             });
@@ -163,9 +159,7 @@ public class CPUBoostFragment extends RecyclerViewFragment {
             SchedBoostOnInput.setChecked(mCPUBoost.isSchedBoostOnInputEnabled());
             SchedBoostOnInput.addOnSwitchListener((switchView, isChecked) -> {
                 mCPUBoost.enableSchedBoostOnInput(isChecked, getActivity());
-                getHandler().postDelayed(() -> {
-                            SchedBoostOnInput.setChecked(mCPUBoost.isSchedBoostOnInputEnabled());
-                        },
+                getHandler().postDelayed(() -> SchedBoostOnInput.setChecked(mCPUBoost.isSchedBoostOnInputEnabled()),
                         500);
             });
 
@@ -201,9 +195,7 @@ public class CPUBoostFragment extends RecyclerViewFragment {
             cpuiboostduration.setOnGenericValueListener((genericSelectView, value) -> {
                 mCPUInputBoost.setcpuiboostduration(value, getActivity());
                 genericSelectView.setValue(value);
-                getHandler().postDelayed(() -> {
-                            cpuiboostduration.setValue(mCPUInputBoost.getcpuiboostduration());
-                        },
+                getHandler().postDelayed(() -> cpuiboostduration.setValue(mCPUInputBoost.getcpuiboostduration()),
                         500);
             });
 
@@ -219,9 +211,7 @@ public class CPUBoostFragment extends RecyclerViewFragment {
             wakeBoostMS.setOnGenericValueListener((genericSelectView, value) -> {
                 mCPUInputBoost.setwakeboostduration(value, getActivity());
                 genericSelectView.setValue(value);
-                getHandler().postDelayed(() -> {
-                            wakeBoostMS.setValue(mCPUInputBoost.getwakeboostduration());
-                        },
+                getHandler().postDelayed(() -> wakeBoostMS.setValue(mCPUInputBoost.getwakeboostduration()),
                         500);
             });
 
@@ -237,9 +227,7 @@ public class CPUBoostFragment extends RecyclerViewFragment {
             iboostfreq.setOnGenericValueListener((genericSelectView, value) -> {
                 mCPUInputBoost.setcpuiboostfreq(value, getActivity());
                 genericSelectView.setValue(value);
-                getHandler().postDelayed(() -> {
-                            iboostfreq.setValue(mCPUInputBoost.getcpuiboostfreq());
-                        },
+                getHandler().postDelayed(() -> iboostfreq.setValue(mCPUInputBoost.getcpuiboostfreq()),
                         500);
             });
 
@@ -255,10 +243,8 @@ public class CPUBoostFragment extends RecyclerViewFragment {
                     + getString(R.string.mhz));
             cpuiboostlf.setOnItemSelected((selectView, position, item)
                     -> mCPUInputBoost.setcpuinputboostlf(mCPUFreq.getFreqs(mCPUFreq.getLITTLECpu()).get(position), getActivity()));
-            getHandler().postDelayed(() -> {
-                        cpuiboostlf.setItem((mCPUInputBoost.getcpuinputboostlf() / 1000)
-                                + getString(R.string.mhz));
-                    },
+            getHandler().postDelayed(() -> cpuiboostlf.setItem((mCPUInputBoost.getcpuinputboostlf() / 1000)
+                    + getString(R.string.mhz)),
                     500);
 
             items.add(cpuiboostlf);
@@ -272,10 +258,8 @@ public class CPUBoostFragment extends RecyclerViewFragment {
                     + getString(R.string.mhz));
             cpuiboosthf.setOnItemSelected((selectView, position, item)
                     -> mCPUInputBoost.setcpuinputboosthf(mCPUFreq.getFreqs().get(position), getActivity()));
-            getHandler().postDelayed(() -> {
-                        cpuiboosthf.setItem((mCPUInputBoost.getcpuinputboosthf() / 1000)
-                                + getString(R.string.mhz));
-                    },
+            getHandler().postDelayed(() -> cpuiboosthf.setItem((mCPUInputBoost.getcpuinputboosthf() / 1000)
+                    + getString(R.string.mhz)),
                     500);
 
             items.add(cpuiboosthf);
@@ -290,10 +274,8 @@ public class CPUBoostFragment extends RecyclerViewFragment {
                     + getString(R.string.mhz));
             iboostfreq.setOnItemSelected((selectView, position, item)
                     -> mCPUInputBoost.setremoveinputboostlf(mCPUFreq.getFreqs(mCPUFreq.getLITTLECpu()).get(position), getActivity()));
-            getHandler().postDelayed(() -> {
-                        iboostfreq.setItem((mCPUInputBoost.getremoveinputboostlf() / 1000)
-                                + getString(R.string.mhz));
-                    },
+            getHandler().postDelayed(() -> iboostfreq.setItem((mCPUInputBoost.getremoveinputboostlf() / 1000)
+                    + getString(R.string.mhz)),
                     500);
 
             items.add(iboostfreq);
@@ -307,10 +289,8 @@ public class CPUBoostFragment extends RecyclerViewFragment {
                     + getString(R.string.mhz));
             iboostfreq.setOnItemSelected((selectView, position, item)
                     -> mCPUInputBoost.setremoveinputboosthf(mCPUFreq.getFreqs().get(position), getActivity()));
-            getHandler().postDelayed(() -> {
-                        iboostfreq.setItem((mCPUInputBoost.getremoveinputboosthf() / 1000)
-                                + getString(R.string.mhz));
-                    },
+            getHandler().postDelayed(() -> iboostfreq.setItem((mCPUInputBoost.getremoveinputboosthf() / 1000)
+                    + getString(R.string.mhz)),
                     500);
 
             items.add(iboostfreq);
@@ -325,10 +305,8 @@ public class CPUBoostFragment extends RecyclerViewFragment {
                     + getString(R.string.mhz));
             cpuiboostfreq.setOnItemSelected((selectView, position, item)
                     -> mCPUInputBoost.setinputboostFreq(mCPUFreq.getFreqs().get(position), getActivity()));
-            getHandler().postDelayed(() -> {
-                        cpuiboostfreq.setItem((mCPUInputBoost.getinputboostFreq() / 1000)
-                                + getString(R.string.mhz));
-                    },
+            getHandler().postDelayed(() -> cpuiboostfreq.setItem((mCPUInputBoost.getinputboostFreq() / 1000)
+                    + getString(R.string.mhz)),
                     500);
 
             items.add(cpuiboostfreq);

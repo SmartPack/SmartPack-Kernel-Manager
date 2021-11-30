@@ -32,13 +32,11 @@ import androidx.annotation.Nullable;
 
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
-import com.smartpack.kernelmanager.activities.TranslatorActivity;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.other.Billing;
-import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
@@ -47,6 +45,8 @@ import com.smartpack.kernelmanager.views.recyclerview.TitleView;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+
+import in.sunilpaulmathew.sCommon.Utils.sTranslatorUtils;
 
 /**
  * Created by willi on 22.07.16.
@@ -114,9 +114,7 @@ public class AboutFragment extends RecyclerViewFragment {
         licence.setDrawable(getResources().getDrawable(R.drawable.ic_gpl));
         licence.setTitle(getString(R.string.licence));
         licence.setSummary(getString(R.string.licence_summary));
-        licence.setOnItemClickListener(item -> {
-            Utils.launchWebView(getString(R.string.licence), "https://www.gnu.org/licenses/gpl-3.0-standalone.html", requireActivity());
-        });
+        licence.setOnItemClickListener(item -> Utils.launchWebView(getString(R.string.licence), "https://www.gnu.org/licenses/gpl-3.0-standalone.html", requireActivity()));
 
         DescriptionView sourcecode = new DescriptionView();
         sourcecode.setDrawable(getResources().getDrawable(R.drawable.ic_source));
@@ -141,14 +139,8 @@ public class AboutFragment extends RecyclerViewFragment {
         appStore.setDrawable(getResources().getDrawable(Utils.isFDroidFlavor(requireActivity()) ? R.drawable.ic_fdroid : R.drawable.ic_playstore));
         appStore.setTitle(getString(Utils.isFDroidFlavor(requireActivity()) ? R.string.fdroid : R.string.playstore));
         appStore.setSummary(getString(Utils.isFDroidFlavor(requireActivity()) ? R.string.fdroid_summary : R.string.playstore_summary));
-        appStore.setOnItemClickListener(item -> {
-            if (!Utils.isNetworkAvailable(requireActivity())) {
-                Utils.snackbar(getRootView(), getString(R.string.no_internet));
-                return;
-            }
-            Utils.launchUrl(Utils.isFDroidFlavor(requireActivity()) ? "https://f-droid.org/packages/com.smartpack.kernelmanager" :
-                    "https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release", requireActivity());
-        });
+        appStore.setOnItemClickListener(item -> Utils.launchUrl(Utils.isFDroidFlavor(requireActivity()) ? "https://f-droid.org/packages/com.smartpack.kernelmanager" :
+                "https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release", requireActivity()));
 
         DescriptionView donatetome = new DescriptionView();
         donatetome.setDrawable(getResources().getDrawable(R.drawable.ic_donate));
@@ -266,40 +258,10 @@ public class AboutFragment extends RecyclerViewFragment {
         translatorCard.setFullSpan(true);
 
         DescriptionView translator = new DescriptionView();
-        translator.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_language, requireActivity()));
-        translator.setSummary(getString(R.string.translators_message));
-        translator.setOnItemClickListener(item -> {
-            new Dialog(requireActivity()).setItems(getResources().getStringArray(
-                    R.array.translator_options), (dialogInterface, i) -> {
-                switch (i) {
-                    case 0:
-                        Utils.launchUrl("https://poeditor.com/join/project?hash=qWFlVfAlp5", requireActivity());
-                        break;
-                    case 1:
-                        new AsyncTasks() {
-                            @Override
-                            public void onPreExecute() {
-                                showProgressMessage(getString(R.string.importing_string) + ("..."));
-                                showProgress();
-                            }
-
-                            @Override
-                            public void doInBackground() {
-                                Utils.importTranslation("values", getActivity());
-                            }
-
-                            @Override
-                            public void onPostExecute() {
-                                hideProgress();
-                                Intent intent = new Intent(requireActivity(), TranslatorActivity.class);
-                                startActivity(intent);
-                            }
-                        }.execute();
-                        break;
-                }
-            }).setOnDismissListener(dialogInterface -> {
-            }).show();
-        });
+        translator.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_translate, requireActivity()));
+        translator.setTitle(getString(R.string.translations));
+        translator.setSummary(getString(R.string.translations_summary));
+        translator.setOnItemClickListener(item -> new sTranslatorUtils(getString(R.string.smartpack), "https://poeditor.com/join/project?hash=qWFlVfAlp5", requireActivity()).show());
 
         translatorCard.addItem(translator);
         items.add(translatorCard);

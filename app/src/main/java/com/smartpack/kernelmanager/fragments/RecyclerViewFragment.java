@@ -62,7 +62,6 @@ import com.smartpack.kernelmanager.activities.NavigationActivity;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
-import com.smartpack.kernelmanager.utils.tools.AsyncTasks;
 import com.smartpack.kernelmanager.views.dialog.ViewPagerDialog;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewAdapter;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
@@ -75,6 +74,7 @@ import java.util.List;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 import io.codetail.animation.SupportAnimator;
 import io.codetail.animation.ViewAnimationUtils;
 
@@ -107,7 +107,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     private AppBarLayout mAppBarLayout;
     private Toolbar mToolBar;
 
-    private AsyncTasks mLoader;
+    private sExecutor mLoader;
 
     private SimpleItemTouchHelperCallback mItemCallback;
 
@@ -215,7 +215,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         return mRootView;
     }
 
-    private static class UILoader extends AsyncTasks {
+    private static class UILoader extends sExecutor {
 
         private final WeakReference<RecyclerViewFragment> mRefFragment;
         private List<RecyclerViewItem> items;

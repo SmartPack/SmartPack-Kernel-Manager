@@ -19,8 +19,6 @@
     <string name="no_picture">"Brak obrazka"</string>
     <string name="went_wrong">"Coś poszło nie tak!"</string>
     <string name="press_back_again_exit">"Naciśnij ponownie, aby wyjść"</string>
-    <string name="cancel">"Anuluj"</string>
-    <string name="dismiss">"Oddalić"</string>
     <string name="ok">"OK"</string>
     <string name="yes">"TAK"</string>
     <string name="unknown">"Nieznany"</string>
@@ -1091,7 +1089,6 @@
     <string name="sections">"Sekcje"</string>
     <string name="default_section">"Sekcja domyślna"</string>
     <string name="default_section_summary">"Domyślna karta wyświetlana podczas otwierania aplikacji!"</string>
-    <string name="credits">"Kredyty"</string>
     <string name="special_mentions">"Specjalne wyróżnienia"</string>
     <string name="source_code">"Kod źródłowy"</string>
     <string name="source_code_summary">"Wyświetl kod źródłowy na GitHub"</string>
@@ -1126,7 +1123,6 @@
     <string name="commits">"%d zatwierdza"</string>
     <string name="no_internet">"Proszę sprawdzić swoje połączenie z internetem!"</string>
     <string name="translators">"Tłumacze"</string>
-    <string name="translators_message">"Chcesz używać tej aplikacji w swoim języku! Następnie kliknij tutaj, aby rozpocząć tłumaczenie za pomocą wbudowanego tłumacza!"</string>
 
     <!-- Translator -->
     <string name="edit_string_warning">"Ten ciąg zawiera kilka znaków specjalnych! Proszę bądź ostrożny."</string>
@@ -1162,6 +1158,4 @@
     <string name="found_bugs_summary">"Odp. Podaj jak najwięcej informacji (takich jak jaka funkcja, co nie działa, zrzuty ekranu lub logcat, jeśli to możliwe) i opublikuj na stronie xda-developers. Alternatywnie możesz również zgłosić problem na stronie GitHub."</string>
     <string name="can_i_contribute">"Q9. Czy mogę wnieść swój wkład do twoich projektów? Jeśli tak to jak?"</string>
     <string name="can_i_contribute_summary">"Odp. Absolutnie. Wszelkiego rodzaju darowizny (darowizny, kod itp.) Są mile widziane i wysoko cenione. Więcej informacji można znaleźć w sekcji „Informacje”."</string>
-    <string name="translators_inbuilt">"Wbudowany Tłumacz"</string>
-    <string name="translators_poeditor">"Usługa Tłumaczeń POEditor"</string>
 </resources>

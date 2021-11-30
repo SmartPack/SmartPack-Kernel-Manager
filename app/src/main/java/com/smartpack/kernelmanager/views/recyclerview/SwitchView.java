@@ -57,7 +57,7 @@ public class SwitchView extends RecyclerViewItem {
     private OnMenuListener mOnMenuListener;
     private boolean mChecked;
 
-    private List<OnSwitchListener> mOnSwitchListeners = new ArrayList<>();
+    private final List<OnSwitchListener> mOnSwitchListeners = new ArrayList<>();
 
     @Override
     public int getLayoutRes() {
@@ -85,7 +85,7 @@ public class SwitchView extends RecyclerViewItem {
             mChecked = isChecked;
             List<OnSwitchListener> applied = new ArrayList<>();
             for (OnSwitchListener onSwitchListener : mOnSwitchListeners) {
-                if (applied.indexOf(onSwitchListener) == -1) {
+                if (!applied.contains(onSwitchListener)) {
                     onSwitchListener.onChanged(SwitchView.this, isChecked);
                     applied.add(onSwitchListener);
                 }
