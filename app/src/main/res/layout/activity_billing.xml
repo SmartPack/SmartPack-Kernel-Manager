@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_gravity="center"
-    android:padding="16dp">
+    android:layout_gravity="center" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?android:attr/colorBackground"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -32,7 +30,7 @@
                     android:layout_gravity="start"
                     android:src="@drawable/ic_back"
                     android:background="@color/colorPrimary"
-                    android:tint="?android:attr/colorAccent"/>
+                    android:tint="@color/colorWhite"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
@@ -40,7 +38,7 @@
                     android:layout_marginStart="50dp"
                     android:layout_marginEnd="50dp"
                     android:gravity="center_vertical"
-                    android:textColor="?android:attr/colorAccent"
+                    android:textColor="@color/colorWhite"
                     android:text="@string/support_development"
                     android:layout_gravity="center"
                     android:textStyle="bold"
@@ -64,14 +62,14 @@
                     android:layout_gravity="start|center"
                     android:src="@drawable/ic_heart"
                     android:background="@color/colorPrimary"
-                    android:tint="?attr/colorAccent"
+                    android:tint="@color/colorWhite"
                     android:visibility="gone" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/supporter_message"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorOnPrimary"
+                    android:textColor="@color/colorWhite"
                     android:text="@string/support_development_summary"
                     android:gravity="center"
                     android:padding="15dp" />
@@ -95,10 +93,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:layout_gravity="bottom|center"
+        android:layout_alignParentBottom="true"
         android:textStyle="bold"
         android:background="@color/colorPrimary"
         android:text="@string/cancel"
-        android:textColor="?android:attr/colorAccent"
+        android:textColor="@color/colorWhite"
         android:textSize="18sp" />
-</com.google.android.material.card.MaterialCardView>
+</RelativeLayout>
