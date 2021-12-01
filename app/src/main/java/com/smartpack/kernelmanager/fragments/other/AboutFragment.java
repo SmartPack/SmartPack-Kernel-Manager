@@ -196,7 +196,7 @@ public class AboutFragment extends RecyclerViewFragment {
         credits.setTitle(getString(R.string.credits));
         credits.setFullSpan(true);
         DescriptionView creditsSummary = new DescriptionView();
-        creditsSummary.setDrawable(getResources().getDrawable(R.drawable.ic_credits));
+        creditsSummary.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_credits, requireActivity()));
         creditsSummary.setSummary(getString(R.string.credits_summary));
         creditsSummary.setOnItemClickListener(item -> new sCreditsUtils(Common.getCredits(),
                 sUtils.getDrawable(R.mipmap.ic_launcher, requireActivity()),
