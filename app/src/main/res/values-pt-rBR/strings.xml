@@ -1165,22 +1165,6 @@ Isso vai me motivar muito para continuar meus projetos mais ativos! Além disso,
     <!-- Contributors -->
     <string name="commits">"%d commits"</string>
     <string name="no_internet">"Por favor, verifique sua conexão à Internet!"</string>
-    <string name="translators">"Tradutores"</string>
-
-    <!-- Translator -->
-    <string name="edit_string_warning">"Esta string contém alguns caracteres especiais! Por favor, seja cuidadoso."</string>
-    <string name="delete_string">"Deletar string"</string>
-    <string name="illegal_string_warning">"Você inseriu alguns caracteres ilegais! Suas alterações não serão salvas."</string>
-    <string name="import_string">"Importar string personalizada"</string>
-    <string name="import_string_message">"Por favor, remova a string atual desta página antes de importar uma nova!"</string>
-    <string name="importing_string">"Importando string da web"</string>
-    <string name="delete_string_message">"Tem certeza de que deseja excluir o atual string.xml do cartão SD?"</string>
-    <string name="reload_message">"O download do \string.xml falhou ou você o removeu! Por favor recarregue esta página!"</string>
-    <string name="save_string_error">"Você ainda não adicionou uma string! Abortando."</string>
-    <string name="save_string_message">"A nova string de tradução foi gerada como '%s'!"</string>
-    <string name="search_hint">"Digite o termo de pesquisa aqui!"</string>
-    <string name="translator">"Tradutor"</string>
-    <string name="translator_message">"Ajude-me a traduzir este aplicativo para o seu idioma! Quando terminar, transfira a nova string para mim pelo Telegram ou no GitHub."</string>
 
     <!-- FAQ -->
     <string name="how_different">"P1. O quão diferente é este aplicativo do Kernel Adiutor oficial do Grarak?"</string>
@@ -1243,5 +1227,4 @@ v%s"</string>
     <string name="gpu_throttling_summary">"Reduzir performance quando a GPU sobreaquecer."</string>
     <string name="printk_devkmsg">"Imprimir devkmsg"</string>
     <string name="printk_devkmsg_summary">"Desative a Impressão de devkmsg do serviço de registro do kernel para reduzir a sobrecarga"</string>
-    <string name="translators_summary">"Clique aqui para ver uma lista incompleta de pessoas que ajudaram com as traduções do SmartPack-Kernel Manager!"</string>
 </resources>

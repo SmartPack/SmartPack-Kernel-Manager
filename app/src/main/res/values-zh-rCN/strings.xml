@@ -1116,22 +1116,6 @@
     <!-- Contributors -->
     <string name="commits">"%d 提交"</string>
     <string name="no_internet">"请检查您是否正确连接网络！"</string>
-    <string name="translators">"翻译人员"</string>
-
-    <!-- Translator -->
-    <string name="edit_string_warning">"请注意，此字符串含有特殊字符。"</string>
-    <string name="delete_string">"删除字符串"</string>
-    <string name="illegal_string_warning">"您输入了一些非法字符! 您的更改不会被保存。"</string>
-    <string name="import_string">"导入自定义字符串"</string>
-    <string name="import_string_message">"导入新字符串前，请移除此页中的当前字符串。"</string>
-    <string name="importing_string">"从网址导入字符串"</string>
-    <string name="delete_string_message">"确定删除内部存储中的 string.xml？"</string>
-    <string name="reload_message">"下载 string.xml 失败，或者它已移除！请重新载入此页。"</string>
-    <string name="save_string_error">"尚未添加字符串。中止。"</string>
-    <string name="save_string_message">"新的翻译字符串已生成为 '%s'。"</string>
-    <string name="search_hint">"搜索字符串"</string>
-    <string name="translator">"翻译器"</string>
-    <string name="translator_message">"帮我翻译此软件到你说的语言。完成后请在 Telegram 或 GitHub 中将新字符串发给我。"</string>
 
     <!-- FAQ -->
     <string name="how_different">"问题1。 此应用与 Grarak 的官方版 Kernel Adiutor 有何不同之处？"</string>

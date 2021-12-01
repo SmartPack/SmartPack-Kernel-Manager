@@ -1126,22 +1126,6 @@ Get SmartPack-Kernel Manager from"</string>
     <!-- Contributors -->
     <string name="commits">"%d commits"</string>
     <string name="no_internet">"Verifique a sua ligação à Internet!"</string>
-    <string name="translators">"Tradutores"</string>
-
-    <!-- Translator -->
-    <string name="edit_string_warning">"Esta string contém alguns caracteres especiais! Por favor, tenha cuidado."</string>
-    <string name="delete_string">"Eliminar texto"</string>
-    <string name="illegal_string_warning">"Você inseriu alguns caracteres ilegais! As suas alterações não serão guardadas."</string>
-    <string name="import_string">"Importar string personalizada"</string>
-    <string name="import_string_message">"Por favor, remova a cadeia de caracteres actual desta página antes de importar uma nova!"</string>
-    <string name="importing_string">"A importar texto da Web"</string>
-    <string name="delete_string_message">"Tem a certeza de que pretende eliminar string.xml actual do sdcard?"</string>
-    <string name="reload_message">"O download do\string.xml' falhou ou você o removeu! Por favor, recarregue esta página!"</string>
-    <string name="save_string_error">"Ainda não adicionou uma sequência de caracteres! A interromper."</string>
-    <string name="save_string_message">"Nova string de tradução é gerada como '%s'!"</string>
-    <string name="search_hint">"Digite a palavra de pesquisa aqui!"</string>
-    <string name="translator">"Tradutor"</string>
-    <string name="translator_message">"Ajude-me a traduzir esta aplicação para o seu idioma! Assim que terminar, envie a nova string para o desenvolvedor no Telegram ou no GitHub."</string>
 
     <!-- FAQ -->
     <string name="how_different">"P1. Quão diferente é este aplicativo do Kernel Adiutor oficial da Grarak\?"</string>

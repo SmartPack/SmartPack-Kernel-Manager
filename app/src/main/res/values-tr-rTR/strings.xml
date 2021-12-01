@@ -1161,22 +1161,6 @@ Projelerime daha aktif devam etmem için beni çok motive edecek! Ayrıca, bu sa
     <!-- Contributors -->
     <string name="commits">"%d işlendi"</string>
     <string name="no_internet">"Lütfen internet bağlantınızı kontrol edin!"</string>
-    <string name="translators">"Çevirmenler"</string>
-
-    <!-- Translator -->
-    <string name="edit_string_warning">"This string contains some special characters! Please be careful."</string>
-    <string name="delete_string">"Delete string"</string>
-    <string name="illegal_string_warning">"You're entered some illegal characters! Your changes won't be saved."</string>
-    <string name="import_string">"Import custom string"</string>
-    <string name="import_string_message">"Please remove the current string from this page before importing a new one!"</string>
-    <string name="importing_string">"Importing string from web"</string>
-    <string name="delete_string_message">"Are you sure to delete current string.xml from sdcard?"</string>
-    <string name="reload_message">"\string.xml' indirilemedi veya kaldırdınız! Lütfen bu sayfayı yeniden yükleyin!"</string>
-    <string name="save_string_error">"You haven't added a string yet! Aborting."</string>
-    <string name="save_string_message">"New translation string is generated as '%s'!"</string>
-    <string name="search_hint">"Enter search word here!"</string>
-    <string name="translator">"Fatih Fırıncı"</string>
-    <string name="translator_message">"Bu uygulamayı kendi dilinize çevirmeme yardım edin! İşiniz bittiğinde, lütfen yeni dizeyi Telegram veya GitHub'dan geliştiriciye gönderin."</string>
 
     <!-- FAQ -->
     <string name="how_different">"S1. Bu uygulama Grarak'ın resmi Kernel Adiutor'undan ne kadar farklı?"</string>

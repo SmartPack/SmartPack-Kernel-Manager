@@ -1008,7 +1008,6 @@
     <!-- Contributors -->
     <string name="commits">%d 커밋</string>
     <string name="no_internet">인터넷 연결을 확인해주세요!</string>
-    <string name="translators">번역가들</string>
 
     <!-- FAQ -->
     <string name="how_different">Q1. 이 앱은 Garak님의 공식 Kernel Adiutor과 어떻게 다른가요?</string>

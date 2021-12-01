@@ -1178,24 +1178,7 @@
     <!-- Contributors -->
     <string name="commits">%d commits</string>
     <string name="no_internet">Please check your internet connection!</string>
-    <string name="translators">Translators</string>
-    <string name="translators_summary">Click here to see an incomplete list of people who supported SmartPack-Kernel Manager with translations!</string>
-
-    <!-- Translator -->
-    <string name="edit_string_warning">This string contains some special characters! Please be careful.</string>
-    <string name="delete_string">Delete string</string>
-    <string name="illegal_string_warning">You\'re entered some illegal characters! Your changes won\'t be saved.</string>
-    <string name="import_string">Import custom string</string>
-    <string name="import_string_message">Please remove the current string from this page before importing a new one!</string>
-    <string name="importing_string">Importing string from web</string>
-    <string name="delete_string_message">Are you sure to delete current string.xml from sdcard?</string>
-    <string name="reload_message">Downloading \string.xml\' failed, or you removed it! Please reload this page!</string>
-    <string name="save_string_error">You haven\'t added a string yet! Aborting.</string>
-    <string name="save_string_message">New translation string is generated as \'%s\'!</string>
-    <string name="search_hint">Enter search word here!</string>
-    <string name="translator">Translator</string>
-    <string name="translator_message">Help me to translate this app into your language! Once you\'re done, please send the new string to the developer in Telegram or GitHub.</string>
-
+    
     <!-- FAQ -->
     <string name="how_different">Q1. How different is this app from Grarak\’s official Kernel Adiutor?</string>
     <string name="how_different_summary">Ans. This app is heavily modified to meet the needs of various kernel developers. Some of the added features of this app include, but not limited to,\n - Option to flash recovery zip files while running Android OS.\n - A simple and user-friendly Custom Controller.\n - A Script Manager to easily create, import, edit and execute any properly formatted shell scripts.\n - Control over features, such as, CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Wakelock blocker, etc.\n - Boeffla and Flar\'s sound controls with per-channel support.\n - and a lot more.</string>

@@ -909,21 +909,6 @@ Mi motiverà molto a continuare i miei progetti più attivi! Inoltre, riceverai 
     <string name="share_app_summary">"Condividi quest'app con i tuoi amici"</string>
     <string name="share_app_message">"Ottieni SmartPack-Kernel Manager %s da"</string>
 
-    <!-- Translator -->
-    <string name="edit_string_warning">"Questa stringa contiene alcuni caratteri speciali! Fate attenzione."</string>
-    <string name="delete_string">"Elimina stringa"</string>
-    <string name="illegal_string_warning">"Hai inserito alcuni caratteri non concessi! Le tue modifiche non verranno salvate."</string>
-    <string name="import_string">"Importa un file string personalizzato"</string>
-    <string name="import_string_message">"Si prega di rimuovere la stringa corrente da questa pagina prima di importarne una nuova!"</string>
-    <string name="importing_string">"Importazione file string dal web"</string>
-    <string name="delete_string_message">"Sei sicuro di eliminare string.xml corrente da sdcard?"</string>
-    <string name="reload_message">"Il download di \string.xml' non è riuscito o l'hai rimosso! Si prega di ricaricare questa pagina!"</string>
-    <string name="save_string_error">"Non hai ancora aggiunto una stringa! Annullamento."</string>
-    <string name="save_string_message">"La nuova stringa di traduzione viene generata come '%s'!"</string>
-    <string name="search_hint">"Inserisci qui la parola di ricerca!"</string>
-    <string name="translator">"Traduttore"</string>
-    <string name="translator_message">"Aiutami a tradurre questa app nella tua lingua!  Una volta terminato, invia la nuova stringa allo sviluppatore in Telegram o GitHub."</string>
-
     <!-- FAQ -->
     <string name="how_different">"Q1. Quanto è diversa questa app dal Kernel Adiutor ufficiale di Grarak?"</string>
     <string name="how_different_summary">"Ans. Questa app è pesantemente modificata per soddisfare le esigenze di vari sviluppatori del kernel. Alcune delle funzionalità aggiuntive di questa app includono, ma non solo,
@@ -983,5 +968,4 @@ v%s"</string>
     <string name="gpu_throttling_summary">"Riduce le prestazioni quando la GPU si surriscalda."</string>
     <string name="printk_devkmsg">"Printk devkms"</string>
     <string name="printk_devkmsg_summary">"Disattiva il servizio di registrazione del kernel Printk devkmsg per ridurre il sovraccarico"</string>
-    <string name="translators_summary">"Clicca qui per visualizzare un elenco incompleto di persone che hanno supportato SmartPack-Kernel Manager con le traduzioni!"</string>
 </resources>

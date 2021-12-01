@@ -1146,22 +1146,6 @@ Bitte nur eins verwenden."</string>
     <!-- Contributors -->
     <string name="commits">"%d commits"</string>
     <string name="no_internet">"Überprüfe deine Internetverbindung!"</string>
-    <string name="translators">"Übersetzer"</string>
-
-    <!-- Translator -->
-    <string name="edit_string_warning">"Dieser Text enthält spezielle Zeichen! Bitte sei vorsichtig."</string>
-    <string name="delete_string">"Lösche Text"</string>
-    <string name="illegal_string_warning">"Du hast ein ungültiges Zeichen eingegeben! Deine Änderungen werden nicht übernommen."</string>
-    <string name="import_string">"Benutzerdefinierten Text importieren"</string>
-    <string name="import_string_message">"Bitte entferne den aktuellen Text von dieser Seite bevor du einen neuen importierst!"</string>
-    <string name="importing_string">"Text vom Internet importieren"</string>
-    <string name="delete_string_message">"Bist du sicher, dass du den aktuellen string.xml von der SD Karte löschen willst?"</string>
-    <string name="reload_message">"Der Download von \string.xml ist fehlgeschlagen, oder du hast es entfernt! Bitte lade die Seite neu!"</string>
-    <string name="save_string_error">"Du hast noch keinen Text hinzugefügt! Breche ab."</string>
-    <string name="save_string_message">"Der neue Übersetzungs-Text wurde generiert als '%s'!"</string>
-    <string name="search_hint">"Gebe das Such-Wort hier ein!"</string>
-    <string name="translator">"Übersetzer"</string>
-    <string name="translator_message">"Helfe mir die App in deine Sprache zu übersetzen! Sobald du fertig bist sende bitte den neuen Text zu dem Entwickler in Telegram oder Github."</string>
 
     <!-- FAQ -->
     <string name="how_different">"F1. Was ist der Unterschied zu Graraks Kernel Adiutor?"</string>

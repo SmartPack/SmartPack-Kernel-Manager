@@ -1072,7 +1072,6 @@
     <!-- Contributors -->
     <string name="commits">% d ተፈጽሟል</string>
     <string name="no_internet">እባክዎ የበይነመረብ ግንኙነትዎን ይፈትሹ!</string>
-    <string name="translators">ተርጓሚዎች</string>
 
     <!-- FAQ -->
     <string name="how_different">ጥ1. ይህ መተግበሪያ ከግራራክ ኦፊሴላዊው የከርነል አድቫር እንዴት ይለያል?</string>

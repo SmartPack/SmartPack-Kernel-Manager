@@ -1120,22 +1120,6 @@
     <!-- Contributors -->
     <string name="commits">"%d zatwierdza"</string>
     <string name="no_internet">"Proszę sprawdzić swoje połączenie z internetem!"</string>
-    <string name="translators">"Tłumacze"</string>
-
-    <!-- Translator -->
-    <string name="edit_string_warning">"Ten ciąg zawiera kilka znaków specjalnych! Proszę bądź ostrożny."</string>
-    <string name="delete_string">"Usuń ciąg"</string>
-    <string name="illegal_string_warning">"Wpisałeś jakieś niedozwolone znaki! Twoje zmiany nie zostaną zapisane."</string>
-    <string name="import_string">"Importuj ciąg niestandardowy"</string>
-    <string name="import_string_message">"Usuń bieżący ciąg z tej strony przed zaimportowaniem nowego!"</string>
-    <string name="importing_string">"Importowanie ciągu znaków z sieci"</string>
-    <string name="delete_string_message">"Czy na pewno chcesz usunąć bieżący ciąg string.xml z sdcard?"</string>
-    <string name="reload_message">"Pobieranie \string.xml' nie powiodło się lub go usunąłeś! Przeładuj stronę!"</string>
-    <string name="save_string_error">"Nie dodałeś jeszcze żadnego ciągu! Przerwanie."</string>
-    <string name="save_string_message">"Nowy ciąg tłumaczenia jest generowany jako '%s'!"</string>
-    <string name="search_hint">"Wpisz szukane słowo tutaj!"</string>
-    <string name="translator">"Tłumacz"</string>
-    <string name="translator_message">"Pomóż mi przetłumaczyć tę aplikację na swój język! Gdy skończysz, prześlij mi nowy ciąg znaków w Telegramie lub GitHubie."</string>
 
     <!-- FAQ -->
     <string name="how_different">"Pyt. 1. Czym różni się ta aplikacja od oficjalnego Kernel Adiutora firmy Grarak?"</string>
@@ -1192,7 +1176,6 @@
     <string name="gpu_throttling_summary">"Zmniejsza wydajność, gdy GPU się nagrzewa."</string>
     <string name="printk_devkmsg">"Printk devkmsg"</string>
     <string name="printk_devkmsg_summary">"Wyłącz usługę rejestrowania jądra Printk devkmsg, aby zmniejszyć obciążenie"</string>
-    <string name="translators_summary">"Kliknij tutaj, aby zobaczyć niepełną listę osób, które wsparły SmartPack-Kernel Manager z tłumaczeniami!"</string>
     <string name="battery_guru">"Guru baterii"</string>
     <string name="battery_guru_summary">"Monitoruj żywotność baterii urządzenia z Androidem, przedłużaj ją i utrzymuj w dobrym stanie."</string>
     <string name="process_reclaim">"Odzyskiwanie procesu"</string>

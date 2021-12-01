@@ -915,7 +915,6 @@
     <!-- Contributors -->
     <string name="commits">%d 提交</string>
     <string name="no_internet">請檢查您的網際網路連線！</string>
-    <string name="translators">翻譯人員</string>
 
     <!-- FAQ -->
     <string name="how_different">問題1。此應用程式跟 Grarak 的官方版 Kernel Adiutor 有何不同之處？</string>

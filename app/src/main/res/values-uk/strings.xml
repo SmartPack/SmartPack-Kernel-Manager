@@ -885,7 +885,6 @@
     <string name="touch_boost_summary">Підвищує вашу мінімальну швидкість CPU, якщо ви торкнетеся екрана або натиснете кнопку.</string>
     <string name="touch_boost_time">Інтервал Touch Boost</string>
     <string name="touch_boost_time_summary">Як довго процесор повинен бути збільшений після дотику до екрану.</string>
-    <string name="translators">Перекладачі</string>
     <string name="treble_status">Підтримка Project Treble</string>
     <string name="tri">Tri</string>
     <string name="tunables_error">%s не налаштовується</string>

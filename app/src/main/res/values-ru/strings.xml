@@ -1132,22 +1132,6 @@
     <!-- Contributors -->
     <string name="commits">"Изменения: %d"</string>
     <string name="no_internet">"Пожалуйста, проверьте интернет-соединение!"</string>
-    <string name="translators">"Переводчики"</string>
-
-    <!-- Translator -->
-    <string name="edit_string_warning">"Эта строка содержит некоторые специальные символы! Пожалуйста, будьте осторожны."</string>
-    <string name="delete_string">"Удалить строку"</string>
-    <string name="illegal_string_warning">"Вы ввели недопустимые символы! Ваши изменения не будут сохранены."</string>
-    <string name="import_string">"Импорт пользовательской строки"</string>
-    <string name="import_string_message">"Пожалуйста, удалите текущую строку с этой страницы, прежде чем импортировать новую!"</string>
-    <string name="importing_string">"Импорт строки из интернета"</string>
-    <string name="delete_string_message">"Удалить текущую string.xml с SD-карты? Вы уверены ?"</string>
-    <string name="reload_message">"Загрузка \string.xml' не удалась, или вы удалили! Пожалуйста, перезагрузите эту страницу!"</string>
-    <string name="save_string_error">"Вы еще не добавили строку! Отмена."</string>
-    <string name="save_string_message">"Новая строка перевода генерируется как '%s'!"</string>
-    <string name="search_hint">"Введите поисковое слово здесь!"</string>
-    <string name="translator">"Переводчик"</string>
-    <string name="translator_message">"Помогите мне перевести это приложение на ваш язык! Как только вы закончите, пожалуйста, передайте мне новые строки в Telegram или GitHub."</string>
 
     <!-- FAQ -->
     <string name="how_different">"В1. Чем это приложение отличается от официального Kernel Adiutor?"</string>
