@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Logs and exported profiles will now be saved into /sdcard/SP.\n - LMK: Added Process Reclaim support.\n - VM: Added VM stat interval & Directory change notifier service.\n - Replaced using depreciated AsyncTask (almost) with Executer.\n - Improved Update channel.\n - Added Italian translations (and updated Portuguese (Brazilian) and Turkish).\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v16.8/com.smartpack.kernelmanager-v16.8-fdroid-release.apk",
-  "sha1": "cd31e0482eb691fa1a8711456ab599388264ee6f",
-  "latestVersion": "16.8",
-  "latestVersionCode": 168
+  "releaseNotes": "Change-logs\n - Fixed profiles not exporting into /sdcard in Android 11 and above.\n - Improved CPU core detection.\n - Better Android 12 (S, SDK 31) support.\n - Added new credits page.\n - Updated translations.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v16.9/com.smartpack.kernelmanager-v16.9-fdroid-release.apk",
+  "sha1": "883dc7dc1223f325f9e4ff19a9e8accb199de496",
+  "latestVersion": "16.9",
+  "latestVersionCode": 169
 }

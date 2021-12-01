@@ -1,5 +1,9 @@
 # Change-logs
 
+## 126. December 02, 2021
+*Release-tag: v16.9*<br>
+Fixed profiles not exporting into /sdcard in Android 11 and above. Improved CPU core detection. Better Android 12 (S, SDK 31) support. Added new credits page. Updated translations. Miscellaneous changes.
+
 ## 126. September 05, 2021
 *Release-tag: v16.8*<br>
 Logs and exported profiles will now be saved into /sdcard/SP. LMK: Added Process Reclaim support. VM: Added VM stat interval & Directory change notifier service. Replaced using depreciated AsyncTask (almost) with Executer. Improved Update channel. Added Italian translations (and updated Portuguese (Brazilian) and Turkish). Miscellaneous changes.
