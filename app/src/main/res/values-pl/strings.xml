@@ -10,7 +10,7 @@
     <string name="open">"Otwórz %s"</string>
 
     <!-- No Root/BusyBox -->
-    <string name="busybox_message">"<b>Dlaczego ten problem się wydarzył?</b>\n\nNa urządzeniu nie znaleziono prawidłowej instalacji <i>BusyBox</i>. Niestety, SmartPack-Kernel Manager wymaga wielu plików binarnych <i>BusyBox</i> do wykonania kilku zadań (np. Automatycznego flashowania)!\n\n\n<b>Jak rozwiązać ten problem?</b>\n\nAby rozwiązać ten problem, zainstaluj samodzielny system <i>BusyBox</i>. Darmowy i otwarty instalator BusyBox, który umożliwia użytkownikom instalowanie plików binarnych <i>BusyBox</i> kilkoma kliknięciami, stworzony przez nasz zespół jest dostępny w sklepie Play!"</string>
+    <string name="busybox_message">"<b>Dlaczego ten problem się wydarzył?</b>\n\nNa urządzeniu nie znaleziono prawidłowej instalacji <b>BusyBox</b>. Niestety, SmartPack-Kernel Manager wymaga wielu plików binarnych <b>BusyBox</b> do wykonania kilku zadań (np. Automatycznego flashowania)!\n\n\n<b>Jak rozwiązać ten problem?</b>\n\nAby rozwiązać ten problem, zainstaluj samodzielny system <b>BusyBox</b>. Darmowy i otwarty instalator BusyBox, który umożliwia użytkownikom instalowanie plików binarnych <b>BusyBox</b> kilkoma kliknięciami, stworzony przez nasz zespół jest dostępny w sklepie Play!"</string>
     <string name="busybox_install_message">"Kliknij tutaj, aby pobrać instalator BusyBox ze Sklepu Play"</string>
     <string name="no_root_message">"<b>Dlaczego wystąpił ten problem?</b>\n\nTwoje urządzenie nie jest zrootowane lub uprawnienia roota dla SmartPack zostały przez Ciebie odrzucone!\n\n\n<b>Dlaczego potrzebne są uprawnienia roota?</b>\n\nAby kontrolować parametry jądra, SmartPack musi zmodyfikować niektóre pliki systemowe, które nie są dostępne bez uprawnień roota!\n\n\n<b>Jak mogę zrootować moje urządzenie?</b>\n\nProste wyszukiwanie w Google pomoże znaleźć wiele wskazówek, jak uzyskać roota na twoim urządzeniu. Proszę, spójrz na to!\n\n\n<b>Czy rootowanie urządzenia jest bezpieczne?</b>\n\nRootowanie wiąże się z pewnym zagrożeniem bezpieczeństwa, ale generalnie jest to bezpieczne!"</string>
 
@@ -471,7 +471,7 @@
     <string name="charge_level_summary">"Wybierz swój poziom (mA)"</string>
     <string name="mtp_fast_charge">"MTP podczas szybkiego ładowania"</string>
     <string name="mtp_fast_charge_summary">"Włącz MTP podczas szybkiego ładowania"</string>
-    <string name="screen_limit">"screen_limit"</string>
+    <string name="screen_limit">"Ekran przy limicie prądu"</string>
     <string name="screen_limit_summary">"Włącz ekran przy limicie prądu"</string>
     <string name="stockchargelogic">"Ustaw 0 dla logiki opłat magazynowych"</string>
 
@@ -482,26 +482,26 @@
     <string name="headset_highperf_mode">"Tryb wysokiej wydajności zestawu słuchawkowego"</string>
     <string name="headphone_gain">"Wzmocnienie słuchawek"</string>
     <string name="speaker_gain">"Wzmocnienie głośnika"</string>
-    <string name="speaker_tuning">"Strojenie Głośników"</string>
-    <string name="headphone_tpa6165_gain">"Headphone Amp Gain (TPA6165 Extension)"</string>
-    <string name="microphone_gain">"Microphone Gain"</string>
-    <string name="volume_gain">"Volume Gain"</string>
-    <string name="boefflasound">"Boeffla Sound"</string>
-    <string name="boefflasound_summary">"Turn On/Off Boeffla Sound Engine"</string>
-    <string name="earpiece_gain">"Słuchawki Gain (Calls)"</string>
-    <string name="faux_sound">"Faux Sound"</string>
-    <string name="faux_sound_summary">"Turn On/Off Faux Sound Engine"</string>
-    <string name="lock_mic_gain">"Lock Microphone Gain"</string>
+    <string name="speaker_tuning">"Strojenie głośników"</string>
+    <string name="headphone_tpa6165_gain">"Wzmocnienie słuchawek (rozszerzenie TPA6165)"</string>
+    <string name="microphone_gain">"Wzmocnienie mikrofonu"</string>
+    <string name="volume_gain">"Wzmocnienie głośności"</string>
+    <string name="boefflasound">"Dźwięk Boeffla"</string>
+    <string name="boefflasound_summary">"Włącz/wyłącz silnik dźwięku Boeffla"</string>
+    <string name="earpiece_gain">"Wzmocnienie słuchawek (połączenia)"</string>
+    <string name="faux_sound">"Sztuczny dźwięk"</string>
+    <string name="faux_sound_summary">"Włącz/wyłącz silnik sztucznego dźwięku"</string>
+    <string name="lock_mic_gain">"Zablokuj wzmocnienie mikrofonu"</string>
     <string name="lock_mic_gain_summary">"Zapobiegaj modyfikacjom wzmocnień mikrofonu"</string>
     <string name="per_channel_controls">"Sterowanie kanałami"</string>
     <string name="privacy_mode">"Tryb prywatny"</string>
-    <string name="dac_direct">"DAC Direct"</string>
-    <string name="dac_oversampling">"DAC OverSampling"</string>
-    <string name="fll_tuning">"FLL Tuning"</string>
+    <string name="dac_direct">"Bezpośredni DAC"</string>
+    <string name="dac_oversampling">"Nadpróbkowanie DAC"</string>
+    <string name="fll_tuning">"Strojenie FLL"</string>
     <string name="mono_downmix">"Mono DownMix"</string>
 
     <!-- Screen -->
-    <string name="screen_color">"Screen Color"</string>
+    <string name="screen_color">"Kolor ekranu"</string>
     <string name="red">"Czerwony"</string>
     <string name="green">"Zielony"</string>
     <string name="blue">"Niebieski"</string>
@@ -519,27 +519,27 @@
     <string name="high_brightness_mode">"Tryb wysokiej jasności"</string>
     <string name="srgb">"sRGB"</string>
     <string name="gamma">"Gamma"</string>
-    <string name="red_greys">"Red Greys"</string>
-    <string name="red_mids">"Red Mids"</string>
-    <string name="red_blacks">"Red Blacks"</string>
-    <string name="red_whites">"Red Whites"</string>
-    <string name="green_greys">"Green Greys"</string>
-    <string name="green_mids">"Green Mids"</string>
-    <string name="green_blacks">"Green Blacks"</string>
-    <string name="green_whites">"Green Whites"</string>
-    <string name="blue_greys">"Blue Greys"</string>
-    <string name="blue_mids">"Blue Mids"</string>
-    <string name="blue_blacks">"Blue Blacks"</string>
-    <string name="blue_whites">"Blue Whites"</string>
+    <string name="red_greys">"Czerwono-szary"</string>
+    <string name="red_mids">"Czerwony wypośrodkowany"</string>
+    <string name="red_blacks">"Czerwono-czarny"</string>
+    <string name="red_whites">"Czerwono-biały"</string>
+    <string name="green_greys">"Zielono-szary"</string>
+    <string name="green_mids">"Zielony wypośrodkowany"</string>
+    <string name="green_blacks">"Zielono-czarny"</string>
+    <string name="green_whites">"Zielono-biały"</string>
+    <string name="blue_greys">"Niebiesko-szary"</string>
+    <string name="blue_mids">"Niebieski wypośrodkowany"</string>
+    <string name="blue_blacks">"Niebiesko-czarny"</string>
+    <string name="blue_whites">"Niebieskio-biały"</string>
     <string name="contrast">"Kontrast"</string>
     <string name="brightness">"Jasność"</string>
-    <string name="red_positive">"Red Positive"</string>
-    <string name="red_negative">"Red Negative"</string>
-    <string name="green_positive">"Green Positive"</string>
-    <string name="green_negative">"Green Negative"</string>
-    <string name="blue_positive">"Blue Positive"</string>
-    <string name="blue_negative">"Blue Negative"</string>
-    <string name="white_point">"White Point"</string>
+    <string name="red_positive">"Czerwony w pozytywie"</string>
+    <string name="red_negative">"Czerwony w negatywie"</string>
+    <string name="green_positive">"Zielony w pozytywie"</string>
+    <string name="green_negative">"Zielony w negatywie"</string>
+    <string name="blue_positive">"Niebieski w pozytywie"</string>
+    <string name="blue_negative">"Niebieski w negatywie"</string>
+    <string name="white_point">"Punkt bieli"</string>
     <string name="lcd_backlight">"Tylne podświetlenie LCD"</string>
     <string name="gamma_profiles_summary">"Po wybraniu profilu wyłącz i włącz ekran."</string>
     <string name="brightness_mode">"Użyj wykładniczego trybu podświetlenia zamiast trybu liniowego."</string>
@@ -550,14 +550,14 @@
     <string name="backlight_dimmer">"Ściemniacz podświetlenia"</string>
     <string name="threshold">"Wartość progowa"</string>
     <string name="offset">"Offset"</string>
-    <string name="negative_toggle">"Negative Toggle"</string>
+    <string name="negative_toggle">"Przełącznik negatywu"</string>
     <string name="negative_toggle_summary">"Włącz odwracanie kolorów ekranu, naciskając szybko 4 razy przycisk MENU."</string>
     <string name="mdnie_global_controls">"mDNIe globalne kontrole"</string>
-    <string name="register_hook">"Register Hook"</string>
+    <string name="register_hook">"Zarejestruj Hook"</string>
     <string name="register_hook_summary">"Rejestr przechwycenia działa jak hak i umożliwia przechwytywanie ustawień scenariusza i modyfikowanie ich za pomocą elementów sterujących delta. Jeśli scenariusz nie ma ustawienia (rejestru) w swojej sekwencji bazowej, nie może być zmodyfikowany przez podpięcie."</string>
     <string name="master_sequence">"Sekwencja główna"</string>
     <string name="master_sequence_summary">"Włączenie sekwencji głównej spowoduje wyłączenie i zignorowanie profili i scenariuszy firmy Samsung, a sterowanie pamięcią ROM zostanie wyłączone."</string>
-    <string name="glove_mode">"Glove Mode"</string>
+    <string name="glove_mode">"Tryb rękawic"</string>
     <string name="glove_mode_summary">"Włączenie tej opcji pozwoli Ci korzystać z telefonu nawet w rękawiczkach."</string>
 
     <!-- K-lapse -->
@@ -569,14 +569,14 @@
     <string name="bright_scale">"Skalowanie na podstawie jasności"</string>
     <string name="night_mode_schedule">"Harmonogram trybu nocnego"</string>
     <string name="start_time">"Start"</string>
-    <string name="end_time">"End"</string>
+    <string name="end_time">"Koniec"</string>
     <string name="scaling_rate">"Współczynnik skalowania (Minute)"</string>
     <string name="scaling_rate_summary">"Kontroluje, jak szybko RGB przechodzi z trybu dziennego do nocnego w zakresie godzin rozpoczęcia i zakończenia."</string>
-    <string name="fadeback_time">"Fade-back Time (Minute)"</string>
+    <string name="fadeback_time">"Czas powrotu (minuty)"</string>
     <string name="fadeback_time_summary">"Liczba minut przed czasem zakończenia, kiedy RGB powinno zacząć wracać do kolorów dziennych."</string>
     <string name="daytime_rgb">"Kolory dzienne"</string>
     <string name="nightmode_rgb">"Kolory trybu nocnego"</string>
-    <string name="dimming">"Dimming"</string>
+    <string name="dimming">"Ściemnianie"</string>
     <string name="dimming_summary">"100: Dokładna jasność; 50: 50% of current intensity."</string>
     <string name="auto_dimming">"Automatyczne ściemnianie"</string>
     <string name="auto_dimming_summary">"Automatycznie ustaw współczynnik jasności w ustawionym zakresie czasu."</string>
@@ -594,19 +594,19 @@
     <string name="dt2w">"DoubleTap2Wake"</string>
     <string name="dt2w_summary">"Obudź swoje urządzenie, dwukrotnie dotykając ekranu."</string>
     <string name="center">"Środek"</string>
-    <string name="full">"Full"</string>
+    <string name="full">"Pełne"</string>
     <string name="bottom_half">"Dolna połowa"</string>
     <string name="top_half">"Górna połowa"</string>
     <string name="s2w">"Sweep2Wake"</string>
     <string name="s2w_summary">"Wybudź urządzenie, przesuwając palcem po ekranie."</string>
     <string name="s2s">"Sweep2Sleep"</string>
-    <string name="s2w_right">"Sweep2Wake Right"</string>
-    <string name="s2w_left">"Sweep2Wake Left"</string>
-    <string name="s2w_up">"Sweep2Wake Up"</string>
-    <string name="s2w_down">"Sweep2Wake Down"</string>
-    <string name="s2w_any">"Sweep2Wake Any"</string>
-    <string name="lenient">"Sweep2Wake Leniency"</string>
-    <string name="lenient_summary">"Do wyzwolenia potrzebny jest tylko 1 i 4 przycisk Sweep2Wake."</string>
+    <string name="s2w_right">"Sweep2Wake w prawo"</string>
+    <string name="s2w_left">"Sweep2Wake w lewo"</string>
+    <string name="s2w_up">"Sweep2Wake do góry"</string>
+    <string name="s2w_down">"Sweep2Wake na dół"</string>
+    <string name="s2w_any">"Sweep2Wake dowoly"</string>
+    <string name="lenient">"Sweep2Wake łagodny"</string>
+    <string name="lenient_summary">"Do wyzwolenia potrzebny jest tylko 1-szy i 4-ty przycisk Sweep2Wake."</string>
     <string name="t2w">"Tap2Wake"</string>
     <string name="t2w_summary">"Wybudź urządzenie, dotykając ekranu."</string>
     <string name="dt2s">"DoubleTap2Sleep"</string>
@@ -616,9 +616,9 @@
     <string name="dt2w_s2w">"DoubleTap2Wake + Sweep2Wake"</string>
     <string name="dt2w_s2w_charging">"DoubleTap2Wake + Sweep2Wake podczas ładowania"</string>
     <string name="s2s_summary">"Zablokuj urządzenie, przesuwając palcem po ekranie."</string>
-    <string name="s2s_right">"Sweep Right"</string>
-    <string name="s2s_left">"Sweep Left"</string>
-    <string name="s2s_any">"Sweep Left or Right"</string>
+    <string name="s2s_right">"Przesuń w prawo"</string>
+    <string name="s2s_left">"Przesuń w lewo"</string>
+    <string name="s2s_any">"Przesuń w lewo lub w prawo"</string>
     <string name="slide_up">"Zjechać w górę"</string>
     <string name="slide_down">"Zjechać w dół"</string>
     <string name="slide_left">"Zjechać w lewo"</string>
@@ -630,13 +630,13 @@
     <string name="draw_m">"Narysuj M"</string>
     <string name="camera_gesture">"Gest aparatu"</string>
     <string name="camera_gesture_summary">"Uruchom domyślną kamerę, rysując okrąg na ekranie."</string>
-    <string name="pocket_mode">"Pocket Mode"</string>
+    <string name="pocket_mode">"Tryb kieszonkowy"</string>
     <string name="pocket_mode_summary">"Włączenie tej opcji spowoduje wyłączenie funkcji wybudzania, gdy urządzenie jest w kieszeni."</string>
     <string name="timeout">"Koniec czasu"</string>
     <string name="timeout_summary">"Ustaw czas, po którym sterowanie wybudzeniem zostanie wyłączone po zgaśnięciu ekranu."</string>
-    <string name="charge_timeout">"Charge Timeout"</string>
+    <string name="charge_timeout">"Limit czasu ładowania"</string>
     <string name="charge_timeout_summary">"Ustaw czas, przez jaki sterowanie wybudzeniem zostanie wyłączone po zgaśnięciu ekranu podczas ładowania."</string>
-    <string name="power_key_suspend">"Power Key Suspend"</string>
+    <string name="power_key_suspend">"Zawieszenie klawisza zasilania"</string>
     <string name="power_key_suspend_summary">"Włączenie tej opcji spowoduje wyłączenie funkcji wybudzania, gdy ekran zostanie wyłączony klawiszem zasilania."</string>
     <string name="width">"Szerokość"</string>
     <string name="height">"Wysokość"</string>
@@ -658,7 +658,7 @@
     <string name="smart_wake">"Inteligentne budzenie"</string>
 
     <!-- LED -->
-    <string name="led_notification">"LED Notification"</string>
+    <string name="led_notification">"Powiadomienie LED"</string>
     <string name="fade">"miganie/blaknięcie"</string>
     <string name="led_intensity">"Intensywność"</string>
     <string name="led_speed">"Szybkość"</string>
@@ -668,38 +668,38 @@
     <string name="bright_light_environment_summary">"Ustaw względną intensywność diody LED w jasnym otoczeniu."</string>
     <string name="low_light_environment">"Środowisko o słabym oświetleniu"</string>
     <string name="low_light_environment_summary">"Ustaw względną intensywność diody LED w środowiskach o niskiej jasności."</string>
-    <string name="on">"On"</string>
-    <string name="off">"Off"</string>
-    <string name="fade_ramp_control">"Fade Ramp Control"</string>
-    <string name="fade_ramp_control_summary">"Włączanie lub wyłączanie sterowania LED fade-in/out (ramp) control."</string>
-    <string name="fade_in">"Pojawiają się"</string>
+    <string name="on">"Wł."</string>
+    <string name="off">"Wył."</string>
+    <string name="fade_ramp_control">"Kontrola zanikania rampy"</string>
+    <string name="fade_ramp_control_summary">"Włączanie lub wyłączanie sterowania pojawainiem/zanikaniem diody LED (rampa)."</string>
+    <string name="fade_in">"Pojawianie"</string>
     <string name="fade_in_summary">"Ustawia okres narastającego nachylenia."</string>
-    <string name="fade_out">"Fade out"</string>
+    <string name="fade_out">"Zanikanie"</string>
     <string name="fade_out_summary">"Ustawia okres opadania zbocza."</string>
     <string name="display_backlight">"Podświetlenie wyświetlacza"</string>
-    <string name="led_brightness">"Jasność LED (Max)"</string>
+    <string name="led_brightness">"Jasność LED (Maks.)"</string>
 
     <!-- I/O Scheduler -->
     <string name="internal_storage">"Pamięć wewnętrzna"</string>
     <string name="external_storage">"Pamieć zewnętrzna"</string>
-    <string name="dm0">"Adoptable Storage (DM-0)"</string>
-    <string name="scheduler">"Scheduler"</string>
-    <string name="scheduler_summary">"Ustaw algorytm aktywnej windy we / wy. Harmonogram decyduje o sposobie obsługi żądań we / wy."</string>
-    <string name="scheduler_tunable">"Scheduler Tunable"</string>
+    <string name="dm0">"Przyjmowana pamięć masowa (DM-0)"</string>
+    <string name="scheduler">"Zarządca harmonogramu"</string>
+    <string name="scheduler_summary">"Ustaw aktywny algorytm windy we./wy. Harmonogram decyduje o sposobie obsługi żądań We./Wy."</string>
+    <string name="scheduler_tunable">"Przestrajalny harmonogram"</string>
     <string name="scheduler_tunable_summary">"Różne elementy konfiguracji zależne od harmonogramu."</string>
-    <string name="read_ahead">"Read-ahead"</string>
+    <string name="read_ahead">"Czytaj z wyprzedzeniem"</string>
     <string name="read_ahead_summary">"Wartość odczytu z wyprzedzeniem w pamięci telefonu."</string>
-    <string name="rotational">"Rotational Storage"</string>
+    <string name="rotational">"Pamięć rotacyjna"</string>
     <string name="rotational_summary">"Traktuj urządzenie jako magazyn rotacyjny."</string>
     <string name="iostats">"I/O Statystyki"</string>
-    <string name="iostats_summary">"Utrzymuj statystyki we / wy dla tego urządzenia pamięci masowej. Wyłączenie spowoduje uszkodzenie aplikacji monitorujących wejścia / wyjścia."</string>
-    <string name="add_random">"Add Random"</string>
+    <string name="iostats_summary">"Utrzymuj statystyki we./wy. dla tego urządzenia pamięci masowej. Wyłączenie spowoduje uszkodzenie aplikacji monitorujących we./wy."</string>
+    <string name="add_random">"Dodaj losowo"</string>
     <string name="add_random_summary">"Narysuj entropię z wirującej (rotacyjnej) pamięci."</string>
-    <string name="rq_affitiny">"RQ Affinity"</string>
+    <string name="rq_affitiny">"Powiązanie RQ"</string>
     <string name="rq_affinity_summary">"Postaraj się, aby żądania harmonogramu były kompletne w rdzeniu procesora, z którego zostały utworzone. Wyższe wartości są bardziej agresywne."</string>
-    <string name="nomerges">"No-Merges"</string>
-    <string name="nomerges_summary">"Umożliwia to użytkownikowi wyłączenie logiki wyszukiwania związanej z żądaniami scalania we / wy w warstwie blokowej."</string>
-    <string name="nr_requests">"NR Requests"</string>
+    <string name="nomerges">"Brak łączenia"</string>
+    <string name="nomerges_summary">"Umożliwia to użytkownikowi wyłączenie logiki wyszukiwania związanej z żądaniami scalania we./wy. w warstwie blokowej."</string>
+    <string name="nr_requests">"Żądania NR"</string>
     <string name="nr_requests_summary">"Kontroluje, ile żądań może być przydzielonych w warstwie bloków dla żądań odczytu lub zapisu."</string>
 
     <!-- Kernel Samepage Merging -->
@@ -713,14 +713,14 @@
     <string name="sleep_milliseconds">"Śpij między skanami"</string>
     <string name="deferred_timer">"Odroczony licznik czasu"</string>
     <string name="deferred_timer_summary">"Zmniejsza zużycie procesora w zamian za mniejszą oszczędność pamięci."</string>
-    <string name="max_cpu_usage">"Max CPU Usage"</string>
+    <string name="max_cpu_usage">"Maks. wykorzystanie procesora"</string>
     <string name="max_cpu_usage_summary">"Maksymalny procent wykorzystania procesora podczas scalania stron."</string>
     <string name="uksm_governor">"UKSM CPU Governor"</string>
     <string name="uksm_governor_summary">"Ustaw CPU Governor na UKSM."</string>
 
     <!-- Low Memory Killer -->
     <string name="foreground_app">"Aplikacje pierwszoplanowe"</string>
-    <string name="lmk_adaptive">"Adaptacyjny Low Memory Killer"</string>
+    <string name="lmk_adaptive">"Adaptacyjny zabójca małej pamięci"</string>
     <string name="lmk_adaptive_summary">"Spraw, aby LMK był bardziej agresywny, gdy zostanie wykryty scenariusz szarpania."</string>
     <string name="lmk_fast_run">"Włącz szybkie uruchamianie"</string>
     <string name="visible_app">"Widoczne aplikacje"</string>
@@ -730,29 +730,29 @@
     <string name="empty_app">"Puste aplikacje"</string>
     <string name="very_light">"Bardzo lekki"</string>
     <string name="light">"Lekki"</string>
-    <string name="low">"Low"</string>
-    <string name="medium">"Medium"</string>
-    <string name="high">"High"</string>
+    <string name="low">"Niski"</string>
+    <string name="medium">"Średni"</string>
+    <string name="high">"Wysoki"</string>
     <string name="very_aggressive">"Bardzo agresywny"</string>
-    <string name="kill_lmk">"Kill LMK"</string>
+    <string name="kill_lmk">"Zabij LMK"</string>
     <string name="kill_lmk_summary">"Zabij LMK, gdy zamiana jest w użyciu."</string>
-    <string name="kill_lmk_threshold">"Kill LMK Threshold"</string>
+    <string name="kill_lmk_threshold">"Próg zabicia LMK"</string>
     <string name="kill_lmk_threshold_summary">"Jak pełna musi być wymiana, aby zabić LMK."</string>
 
     <!-- Wakelock -->
-    <string name="wakelock">"Wakelocks"</string>
-    <string name="wakelocks_other">"Inny Wakelocks"</string>
-    <string name="wakelock_summary">"Wakelocks są tam z jakiegoś powodu. Oznacza to, że blokując niektóre z nich możesz wprowadzić mniejsze lub większe problemy, wywołać dziwne efekty uboczne, aw najgorszym przypadku całkowicie uniemożliwić korzystanie z systemu. Za blokowanie wakelocków odpowiedzialny jest wyłącznie użytkownik."</string>
-    <string name="boeffla_wakelock">"Boeffla Generic Wakelock Blocker"</string>
-    <string name="wkl_order">"Inny Wakelocks"</string>
-    <string name="wkl_order_summary">"Wybierz kolejność aukcji Wakelocks"</string>
+    <string name="wakelock">" Wakelock"</string>
+    <string name="wakelocks_other">"Inne Wakelock"</string>
+    <string name="wakelock_summary">"Wakelock są tam z jakiegoś powodu. Oznacza to, że blokując niektóre z nich możesz wprowadzić mniejsze lub większe problemy, wywołać dziwne efekty uboczne, a w najgorszym przypadku całkowicie uniemożliwić korzystanie z systemu. Za blokowanie wakelocków odpowiedzialny jest wyłącznie użytkownik."</string>
+    <string name="boeffla_wakelock">"Ogólny bloker Wakelock firmy Boeffla"</string>
+    <string name="wkl_order">"Kolejność Wakelocks"</string>
+    <string name="wkl_order_summary">"Wybierz kolejność listowania Wakelocks"</string>
     <string name="wkl_blocked">"Zablokowane Wakelocks"</string>
-    <string name="wkl_allowed">"Wakelocks dozwolone"</string>
+    <string name="wkl_allowed">"Dozwolone Wakelocks"</string>
     <string name="wkl_total_time">"Czas"</string>
     <string name="wkl_wakep_count">"Budzenie"</string>
-    <string name="wkl_name">"Imię"</string>
+    <string name="wkl_name">"Nazwa"</string>
     <string name="wkl_time">"Czas"</string>
-    <string name="wkl_wakeup">"Wakeups"</string>
+    <string name="wkl_wakeup">"Wybudzenie"</string>
     <string name="smb135x_wakelock">"smb135x Wakelock"</string>
     <string name="smb135x_wakelock_summary">"Zapobiegaj wakelockowi po odłączeniu zasilania."</string>
     <string name="sensor_ind_wakelock">"sensor_ind Wakelock"</string>
@@ -792,22 +792,22 @@
     <string name="wkl_gps">"GPS"</string>
     <string name="wkl_gps_summary">"The bcm4359 Wakelock (GPS chip) jest jednym z największych źródeł przebudzenia Sensorhub &amp; SSP. Wyłącz, aby uzyskać lepszy głęboki sen i krótszy czas czuwania. Włącz dla zachowania zapasów."</string>
     <string name="wkl_wireless">"Wireless"</string>
-    <string name="wkl_wireless_summary">"Bezprzewodowy Wakelock. Wyłącz, aby uzyskać lepszy głęboki sen i krótszy czas czuwania. Włącz dla zachowania zapasów."</string>
+    <string name="wkl_wireless_summary">"Wireless Wakelock. Wyłącz, aby uzyskać lepszy głęboki sen i krótszy czas czuwania. Włącz dla zachowania zapasów."</string>
     <string name="wkl_bluetooth">"Bluetooth"</string>
     <string name="wkl_bluetooth_summary">"Bluetooth Wakelock. Wyłącz, aby uzyskać lepszy głęboki sen i krótszy czas czuwania. Włącz dla zachowania zapasów."</string>
 
     <!-- Virtual Memory -->
     <string name="zram">"Z-RAM"</string>
-    <string name="zram_algo">"Z-RAM Algorytm"</string>
+    <string name="zram_algo">"Algorytm Z-RAM"</string>
     <string name="zram_algo_summary">"Ustaw domyślny algorytm kompresji Z-RAM."</string>
     <string name="zram_algo_warning">"Rozmiar dysku Z-RAM zostanie tymczasowo zmniejszony do '0'. Ten proces może mieć poważny wpływ na niektóre urządzenia."</string>
     <string name="disksize">"Rozmiar Dysku"</string>
     <string name="disksize_summary">"Próbuje zwiększyć wydajność, unikając stronicowania w fizycznym magazynie, zamiast tego używając skompresowanego urządzenia wirtualnego w pamięci RAM. Stronicowanie odbywa się w pamięci RAM, dopóki nie będzie konieczne użycie przestrzeni wymiany w pamięci fizycznej."</string>
     <string name="zswap">"ZSWAP"</string>
     <string name="zswap_summary">"ZSwap to lekka skompresowana pamięć podręczna dla stron wymiany. Pobiera strony, które są w trakcie wymiany i próbuje skompresować je do dynamicznie przydzielanej puli pamięci opartej na pamięci RAM. Zswap zasadniczo zamienia cykle procesora na potencjalnie zmniejszoną wymianę I/O."</string>
-    <string name="memory_pool">"Memory pool"</string>
+    <string name="memory_pool">"Pula pamięci"</string>
     <string name="memory_pool_summary">"Pula pamięci procent pamięci głównej, która może być używana jako skompresowana pamięć podręczna stron."</string>
-    <string name="maximum_compression_ratio">"Maximum compression ratio"</string>
+    <string name="maximum_compression_ratio">"Maksymalny współczynnik kompresji"</string>
     <string name="maximum_compression_ratio_summary">"Maksymalny współczynnik kompresji w procentach dla akceptowalnej skompresowanej strony. Każda strona, która nie zostanie skompresowana przynajmniej o ten współczynnik, zostanie odrzucona."</string>
     <string name="virtual_memory_tunables">"Przestrajalna pamięć wirtualna"</string>
 
@@ -819,9 +819,9 @@
 
     <!-- Misc -->
     <string name="android_logger">"Rejestrowanie w systemie Android"</string>
-    <string name="android_logger_summary">"Włącz / wyłącz rejestrowanie w systemie Android"</string>
+    <string name="android_logger_summary">"Włącz/wyłącz rejestrowanie w systemie Android"</string>
     <string name="printk_logger">"Rejestrowanie PrintK"</string>
-    <string name="printk_logger_summary">"Włącz / wyłącz rejestrowanie Linux PrintK"</string>
+    <string name="printk_logger_summary">"Włącz/wyłącz rejestrowanie Linux PrintK"</string>
     <string name="crc">"Oprogramowanie kontroli CRC"</string>
     <string name="crc_summary">"CRC to mechanizm mający na celu zapobieganie uszkodzeniu danych, gdy jest włączony. Bloki danych mogą stracić do 30% swojej wydajności."</string>
     <string name="fsync">"Fsync"</string>
@@ -829,16 +829,16 @@
     <string name="dynamic_fsync">"Dynamiczna synchronizacja Fsync"</string>
     <string name="dynamic_fsync_summary">"Gdy włączone i ekran jest włączony, operacja fsync jest asynchroniczna. Gdy ekran jest wyłączony, ta operacja jest wykonywana synchronicznie."</string>
     <string name="gentlefairsleepers">"Gentle Fair Sleepers"</string>
-    <string name="gentlefairsleepers_summary">"Daj śpiącym tylko 50% ich deficytu usługowego. Wyłączenie tego może zaoszczędzić trochę energii baterii."</string>
-    <string name="arch_power">"Arch Power"</string>
-    <string name="arch_power_summary">"Włącz funkcję / oszczędności specyficzne dla łuku."</string>
+    <string name="gentlefairsleepers_summary">"Daj uśpionym tylko 50% ich deficytu usługowego. Wyłączenie tego może zaoszczędzić trochę energii baterii."</string>
+    <string name="arch_power">"Zasilanie Arch"</string>
+    <string name="arch_power_summary">"Włącz funkcję zasilania/oszczędności charakterystyczne dla Arch."</string>
     <string name="power_suspend">"Wstrzymanie zasilania"</string>
     <string name="power_suspend_mode">"Tryb wstrzymania zasilania"</string>
     <string name="power_suspend_mode_summary">"Kernel Mode, LCD Hooks i Highest Level Hook są automatycznie zarządzane przez jądro. Aby ręcznie włączyć lub wyłączyć stan zawieszenia zasilania, wybierz opcję Tryb użytkownika."</string>
     <string name="autosleep">"Automatyczne usypianie"</string>
     <string name="userspace">"Tryb użytkownika"</string>
-    <string name="lcd_panel">"LCD Panel"</string>
-    <string name="hybrid">"Hybrid"</string>
+    <string name="lcd_panel">"Panel LCD"</string>
+    <string name="hybrid">"Hybrydowy"</string>
     <string name="power_suspend_state">"Stan zawieszenia zasilania"</string>
     <string name="power_suspend_state_summary">"Sterownik zarządzania energią jądra, gdy ekran jest wyłączony. Lepsza oszczędność baterii, jeśli jest włączona. Uwaga: Możesz zmienić to ustawienie tylko wtedy, gdy tryb wstrzymania zasilania jest w trybie użytkownika."</string>
     <string name="network">"Sieć"</string>
@@ -863,17 +863,17 @@
     <string name="spec_balanced_summary">"Domyślny profil jądra zaprojektowany w celu płynnego wykonywania podstawowych zadań przy jednoczesnym zachowaniu dobrego poziomu baterii."</string>
     <string name="spec_performance">"Wydajność"</string>
     <string name="spec_performance_summary">"Dostrojony pod kątem najwyższej wydajności w standardowych zadaniach z dużo mniejszą liczbą regresji niż zrównoważony, ale utrzymuje baterię dzięki ograniczeniu grafiki."</string>
-    <string name="spec_battery">"Battery"</string>
+    <string name="spec_battery">"Bateria"</string>
     <string name="spec_battery_summary">"Niezwykle konserwatywny profil, który pozwala osiągnąć wysoką wydajność, aby osiągnąć długotrwałą żywotność baterii."</string>
-    <string name="spec_gaming">"Gaming"</string>
+    <string name="spec_gaming">"Granie"</string>
     <string name="spec_gaming_summary">"Identyczna z wydajnością w większości obszarów innych niż odblokowana wydajność grafiki."</string>
 
     <!-- Custom Controls -->
-    <string name="welcome">"Witamy"</string>
-    <string name="custom_controls_summary">"W tej sekcji możesz utworzyć niestandardowy kontroler dla dowolnej funkcji, która nie została jeszcze oficjalnie dodana do tej aplikacji. &lt;a href=\"https://smartpack.github.io/spkm/customcontrols/\"&gt;Documentation&lt;a&gt;"</string>
+    <string name="welcome">"Powitanie"</string>
+    <string name="custom_controls_summary">"W tej sekcji możesz utworzyć niestandardowy kontroler dla dowolnej funkcji, która nie została jeszcze oficjalnie dodana do tej aplikacji. &lt;a href=\"https://smartpack.github.io/spkm/customcontrols/\"&gt;Dokumentacja&lt;a&gt;"</string>
     <string name="custom_controls_message">"Zasadniczo możesz utworzyć niestandardowy kontroler dla dowolnej istniejącej ścieżki sysfs, pod warunkiem, że masz zainstalowany obsługiwany główny menedżer plików. Należy jednak pamiętać, że ta funkcja jest zbyt potężna, aby zepsuć urządzenie.\n\n***UŻYWAJ NA WŁASNE RYZYKO***"</string>
-    <string name="create">"utwórz"</string>
-    <string name="import_item">"Import"</string>
+    <string name="create">"Utwórz"</string>
+    <string name="import_item">"Importuj"</string>
     <string name="control_switch">"Przełącznik"</string>
     <string name="control_generic">"Ogólne"</string>
     <string name="documentation">"Dokumentacja"</string>
@@ -881,29 +881,28 @@
     <string name="invalid_controller">"%s nie jest prawidłowym kontrolerem niestandardowym! Przerwanie."</string>
     <string name="unsupported_controller">"'%s' nie istnieją w tym urządzeniu! Przerwanie."</string>
     <string name="edit">"Edycja"</string>
-    <string name="export">"Eksport"</string>
+    <string name="export">"Eksportuj"</string>
     <string name="delete">"Usuń"</string>
     <string name="share">"Udostępnij"</string>
     <string name="share_by">"'%s' | udostępnione przez SmartPack-Kernel Manager"</string>
-    <string name="share_controller">"Aby zastosować ten kontroler, po prostu zaimportuj ten plik 'SmartPack-Kernel Manager -> Custom Controls"</string>
+    <string name="share_controller">"Aby zastosować ten kontroler, po prostu zaimportuj ten plik 'SmartPack-Kernel Menedżer -&gt; Sterowanie niestandardowe"</string>
     <string name="share_with">"Udostępnij"</string>
     <string name="sure_question">"Jesteś pewny?"</string>
-    <string name="name">"Name"</string>
+    <string name="name">"Nazwa"</string>
     <string name="already_exists">"%s już istnieje!"</string>
     <string name="already_added">"Ścieżka sysfs path %s została już dodana! Przerwanie."</string>
     <string name="exported_item">"%1$s został wyeksportowany do %2$s"</string>
-    <string name="name_empty">"Imię jest puste!"</string>
+    <string name="name_empty">"Nazwa jest pusta!"</string>
     <string name="import_malformed">"Plik importu jest źle sformułowany!"</string>
     <string name="import_wrong_version">"Wersja pliku importu jest zbyt stara!"</string>
     <string name="got_it">"Rozumiem"</string>
 
     <!-- Backup -->
     <string name="boot_partition">"Partycja (boot/kernel)"</string>
-    <string name="recovery_partition">"Partycja (recovery/odzyskiwanie)"</string>
-    <string name="fota_partition">"Fota partycja"</string>
-    <string name="flash">"Flash (Wgraj)"</string>
-    <string name="flasher">"Flasher"</string>
-    <string name="flasher_summary">"Kliknij przycisk flash, aby wybrać i wgrać plik ZIP za pomocą odzyskiwania(recovery) bez ponownego uruchamiania w trybie nieoficjalnego odzyskiwania(recovery). Zmiany zostaną zastosowane po ponownym uruchomieniu."</string>
+    <string name="recovery_partition">"Partycja odzyskiwania"</string>
+    <string name="fota_partition">"Partycja Fota"</string>
+    <string name="flash">"Flash"</string>
+    <string name="flasher">"Flasher"</string><string name="flasher_summary">"Kliknij przycisk \"Flash\", aby wybrać i wgrać plik ZIP za pomocą odzyskiwania(recovery) bez ponownego uruchamiania w trybie nieoficjalnego odzyskiwania(recovery). Zmiany zostaną zastosowane po ponownym uruchomieniu."</string>
     <string name="file_size_limit">"Ostrzeżenie! Wybrano plik ~%s MB do flashowania. Flashowanie większych plików, takich jak ROM, za pomocą tej aplikacji może być niebezpieczne dla twojego urządzenia."</string>
     <string name="execute">"Wykonać"</string>
     <string name="sure_message">"Czy na pewno flashujesz %s?"</string>
@@ -914,8 +913,8 @@
     <string name="build_prop_uneditable">"Niestety, 'build.prop' w twoim urządzeniu nie ma możliwości zapisu!"</string>
     <string name="add">"Dodaj"</string>
     <string name="backup_item">"%1$s została utworzona kopia zapasowa do %2$s"</string>
-    <string name="item_count">"%s item"</string>
-    <string name="items_count">"%s items"</string>
+    <string name="item_count">"%s element"</string>
+    <string name="items_count">"%s elementów"</string>
     <string name="key">"Klucz"</string>
     <string name="value">"Wartość"</string>
     <string name="key_empty">"Klucz nie może być pusty!"</string>
@@ -930,13 +929,13 @@
     <string name="details">"Detale"</string>
     <string name="press_again_to_apply">"Naciśnij %s ponownie złożyć wniosek."</string>
     <string name="applied">"Stosowany"</string>
-    <string name="profile_tasker">"Profile Tasker"</string>
+    <string name="profile_tasker">"Profil Tasker"</string>
     <string name="profile_tasker_summary">"Jeśli chcesz zastosować profil podczas określonego wydarzenia, takiego jak uruchomienie aplikacji, musisz użyć Taskera."</string>
     <string name="profile_tasker_toast">"Pokaż toast, gdy Tasker zastosuje profil"</string>
-    <string name="profile_tile">"Profile Tile"</string>
+    <string name="profile_tile">"Profil kafelki"</string>
     <string name="profile_tile_summary">"Pokaż kafelek, który pozwala wybrać profil."</string>
     <string name="profile_select">"Wybierz profil"</string>
-    <string name="applying_profile">"Stosowanie %s!"</string>
+    <string name="applying_profile">"Zastosowanie %s!"</string>
     <string name="no_profiles">"Nie znaleziono profili! Najpierw musisz je utworzyć."</string>
     <string name="sections_disabled">"Wszystkie sekcje wyłączone! Brak profili dla Ciebie."</string>
     <string name="new_mode">"Nowy"</string>
@@ -956,7 +955,7 @@
     <string name="remove_script_question">"%s zostanie również usunięty z Menedżera skryptów.\n\nAre you sure?"</string>
     <string name="script_exists">"Skrypt o nazwie %s już istnieje! Przerwanie."</string>
     <string name="executing">"Wykonywanie"</string>
-    <string name="share_script">"Aby zastosować ten skrypt, po prostu zaimportuj ten plik do 'SmartPack-Kernel Manager -> Script Manager -> Import'."</string>
+    <string name="share_script">"Aby zastosować ten skrypt, po prostu zaimportuj ten plik do 'SmartPack-Kernel Manager -&gt; Menedżer skryptów -&gt; Importuj'."</string>
 
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">"Ta sekcja pokazuje, co się stanie, gdy urządzenie się uruchomi. Jeśli jest pusta, nic się nie stanie po uruchomieniu. Możesz przesunąć palcem w lewo lub w prawo, aby usunąć polecenie (nie profil ani skrypt)!"</string>
@@ -967,7 +966,7 @@
     <string name="acquiring">"Uzyskiwanie informacji o aktualizacji"</string>
     <string name="donations">"Darowizny"</string>
     <string name="donations_summary">"Przekaż darowiznę dla programisty"</string>
-    <string name="download">"Download"</string>
+    <string name="download">"Pobierz"</string>
     <string name="download_completed">"%s został pomyślnie pobrany. Chcesz to sflashować?"</string>
     <string name="downloading_update">"Pobieranie %s"</string>
     <string name="get_it_summary">"Pobierz najnowszą wersję jądra"</string>
@@ -997,40 +996,40 @@
     <string name="reboot_normal">"Normalny restart"</string>
     <string name="reboot_recovery">"Restart do Recovery"</string>
     <string name="reboot_bootloader">"Restart do Bootloader"</string>
-    <string name="rebooting_message">"Ponowne uruchamianie w 5s"</string>
+    <string name="rebooting_message">"Ponowne uruchamienie za 5s"</string>
     <string name="turn_off">"Wyłączyć"</string>
-    <string name="backing_up">"Tworzenie kopii zapasowych"</string>
-    <string name="flashing">"Flashing"</string>
-    <string name="flashing_failed">"Flashing Failed"</string>
-    <string name="flashing_finished">"Flashing Finished"</string>
+    <string name="backing_up">"Tworzenie kopii zapasowej"</string>
+    <string name="flashing">"Fleszowanie…"</string>
+    <string name="flashing_failed">"Fleszowanie nie powiodło się"</string>
+    <string name="flashing_finished">"Fleszowanie zakończone"</string>
     <string name="restoring">"Przywracanie"</string>
     <string name="reset_settings">"Zresetuj aplikację"</string>
     <string name="reset_settings_summary">"Zresetuj ustawienia użytkownika"</string>
     <string name="reset_settings_message">"Ustawienia aplikacji zostaną całkowicie usunięte. Jesteś pewny?"</string>
     <string name="unknown_link">"Nie zostały jeszcze dostarczone przez dewelopera!"</string>
-    <string name="remove">"Usunąć"</string>
-    <string name="share_channel_message">"Aby skonfigurować ten kanał aktualizacji, po prostu wprowadź '%s' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from"</string>
-    <string name="busybox_installer">"BusyBox Instalator"</string>
+    <string name="remove">"Usuń"</string>
+    <string name="share_channel_message">"Aby skonfigurować ten kanał aktualizacji, po prostu wprowadź '%s' on SmartPack-Kernel Manager -&gt; SmartPack -&gt; Update Channel Url.\n\nGet SmartPack-Kernel Manager from"</string>
+    <string name="busybox_installer">"Instalator BusyBox"</string>
     <string name="busybox_installer_summary">"Zdecydowanie zaleca się posiadanie samodzielnej instalacji BusyBox na urządzeniu, aby niektóre funkcje tej aplikacji działały poprawnie (e.g., 'unzip' &amp; 'mke2fs' binaries for flashing &amp; 'curl' or 'wget' binary for kernel OTA updates). Aby pomóc użytkownikom w tym problemie, udostępniono prostą aplikację, której można użyć jako narzędzia instalacyjnego BusyBox jednym kliknięciem dla urządzeń arm, arm64 i x86. Kliknij tutaj, aby to zdobyć!"</string>
     <string name="download_failed">"Wygląda na to, że pobieranie nie powiodło się lub został pobrany uszkodzony plik!"</string>
     <string name="check_update">"Sprawdź aktualizacje"</string>
 
     <!-- Update Channel -->
-    <string name="update_channel_message">"(<i>for developers only</i>)\nApp utworzy kanał aktualizacji (json) dla twojego jądra, o ile informacje podane na tej stronie są dokładne."</string>
+    <string name="update_channel_message">"(<b>for developers only</b>)\nApp utworzy kanał aktualizacji (json) dla twojego jądra, o ile informacje podane na tej stronie są dokładne."</string>
     <string name="update_channel_instructions">"<b>Kernel Name</b>, <b>Kernel Version</b> &amp; <b>Download Link</b> to pola obowiązkowe, które należy wypełnić przed kliknięciem przycisku tworzenia.\n\n<b>Change-logs</b> może być dostarczony jako dobrze sformatowany tekst lub jako łącze do strony internetowej.\n\nSecure Hash Algorithm (<b>sha1</b>) jest opcjonalny, ale wysoce zalecany, aby zapewnić autentyczność pobranego jądra."</string>
     <string name="kernel_name">"Nazwa Jądra"</string>
     <string name="kernel_name_summary">"Nazwa Kernela"</string>
-    <string name="kernel_version">"Kernel Version"</string>
+    <string name="kernel_version">"Wersja jądra"</string>
     <string name="kernel_version_summary">"Kernel_version"</string>
-    <string name="download_link">"Download Link"</string>
+    <string name="download_link">"Link do pobrania"</string>
     <string name="download_link_summary">"download_link"</string>
     <string name="changelog_summary">"changelog_texts_or_url"</string>
     <string name="sha1">"Bezpieczny algorytm haszowania"</string>
     <string name="sha1_summary">"sha1"</string>
     <string name="support_group">"Grupa wsparcia"</string>
-    <string name="support_group_summary">"łącze wsparcia"</string>
+    <string name="support_group_summary">"support_link"</string>
     <string name="donation_link">"Link do darowizny"</string>
-    <string name="donation_link_summary">"link do darowizny"</string>
+    <string name="donation_link_summary">"donation_link"</string>
     <string name="submit_failed">"Niektóre wymagane pola są puste! Przerwanie."</string>
     <string name="json_created">"Gratulacje! Aktualizacja kanału została pomyślnie utworzona pod adresem %s. Umieść go gdzieś i udostępnij bezpośredni link do pobrania swoim użytkownikom."</string>
     <string name="update_channel_create_warning">"Wprowadzone zmiany zostaną utracone!"</string>
@@ -1052,12 +1051,12 @@
     <string name="accent_color">"Kolor motywu"</string>
     <string name="section_icons">"Ikony sekcji"</string>
     <string name="instant">"Natychmiastowy"</string>
-    <string name="five_sec">"5 seconds"</string>
-    <string name="ten_sec">"10 seconds"</string>
-    <string name="twenty_sec">"20 seconds"</string>
-    <string name="fifty_sec">"50 seconds"</string>
+    <string name="five_sec">"5 sekund"</string>
+    <string name="ten_sec">"10 sekund"</string>
+    <string name="twenty_sec">"20 sekund"</string>
+    <string name="fifty_sec">"50 sekund"</string>
     <string name="enable_onboot">"Włącz podczas startu"</string>
-    <string name="enable_onboot_message">"Ustawienia przy rozruchu są wyłączone! Aplikacja nie zrobi nic po uruchomieniu urządzenia!"</string>
+    <string name="enable_onboot_message">"Ustawienia rozruchu są wyłączone! Aplikacja nic nie zrobi po uruchomieniu urządzenia!"</string>
     <string name="enable_onboot_summary">"Zezwól programowi SmartPack na uruchamianie ustawień przy rozruchu!"</string>
     <string name="apply_on_boot_test_summary">"Test zastosuj podczas rozruchu. Obejmuje to wszelkiego rodzaju rzeczy, które są stosowane podczas uruchamiania, takie jak niestandardowe elementy sterujące, profile, init.d itp."</string>
     <string name="apply_on_boot_running">"Usługa Zastosuj przy starcie jest już uruchomiona. Poczekaj, aż się skończy."</string>
@@ -1071,16 +1070,16 @@
     <string name="apply_on_boot_confirmation_notification_summary">"Po zastosowaniu przy rozruchu z widocznym powiadomieniem, pokaż następnie powiadomienie z potwierdzeniem, że zastosowanie podczas rozruchu zakończyło się pomyślnie."</string>
     <string name="script">"Skrypt"</string>
     <string name="apply_on_boot_script_summary">"Użyj skryptu powłoki, aby zastosować ustawienia. Włącz tę opcję tylko wtedy, gdy masz problemy z aplikacją podczas rozruchu. Jeśli problem nadal występuje po włączeniu tej opcji, upewnij się, że żadna inna aplikacja nie jest w konflikcie z programem SmartPack-Kernel Manager."</string>
-    <string name="logcat">"Logcat(s)"</string>
-    <string name="logcat_summary">"Zapisz wszystkie logcats, w tym radio i zdarzenia, w 'sdcard'"</string>
-    <string name="last_kmsg">"Ostatnia wiadomość jądra"</string>
+    <string name="logcat">"Logcat(y)"</string>
+    <string name="logcat_summary">"Zapisz wszystkie logcaty, w tym radio i zdarzenia, w 'sdcard'"</string>
+    <string name="last_kmsg">"Ostatnia informacja jądra"</string>
     <string name="last_kmsg_summary">"Zapisz /proc/last_kmsg into 'sdcard'"</string>
     <string name="console_ramoops">"Konsola Ramoops"</string>
-    <string name="console_ramoops_summary">"Zapisz /sys/fs/pstore/console-ramoops* into 'sdcard'"</string>
-    <string name="driver_message">"Driver Message"</string>
-    <string name="driver_message_summary">"Zapisz wiadomość kierowcy (dmesg) into 'sdcard'"</string>
-    <string name="driver_ramoops">"Kierowca Ramoops"</string>
-    <string name="driver_ramoops_summary">"Save /sys/fs/pstore/dmesg-ramoops* into 'sdcard'"</string>
+    <string name="console_ramoops_summary">"Zapisz /sys/fs/pstore/console-ramoops* na 'sdcard'"</string>
+    <string name="driver_message">"Komunikat sterownika"</string>
+    <string name="driver_message_summary">"Zapisz komunikat sterownika (dmesg) na 'sdcard'"</string>
+    <string name="driver_ramoops">"Sterownik Ramoops"</string>
+    <string name="driver_ramoops_summary">"Zapisz /sys/fs/pstore/dmesg-ramoops* na 'sdcard'"</string>
     <string name="security">"Bezpieczeństwo"</string>
     <string name="biometric">"Uwierzytelnianie Biometryczne"</string>
     <string name="biometric_summary">"Użyj uwierzytelniania biometrycznego, aby chronić SmartPack."</string>
@@ -1093,12 +1092,12 @@
     <string name="source_code_summary">"Wyświetl kod źródłowy na GitHub"</string>
     <string name="change_logs">"Dzienniki zmian"</string>
     <string name="change_logs_summary">"Wyświetl dzienniki zmian"</string>
-    <string name="playstore">"Sklep Play"</string>
-    <string name="playstore_summary">"Odwiedź stronę SklepuPlay"</string>
+    <string name="playstore">"Google Play"</string>
+    <string name="playstore_summary">"Odwiedź stronę Google Play"</string>
     <string name="donate_me_summary">"Chcesz docenić moją pracę darowizną? Kliknij tutaj"</string>
-    <string name="purchase_app">"Aplikacja darowizny"</string>
+    <string name="purchase_app">"Kup aplikację Donation"</string>
     <string name="billing_client_disconnected">"Nie udało się połączyć z klientem rozliczeń Google Play!"</string>
-    <string name="support_acknowledged">"Darowizna Potwierdzona \u2665"</string>
+    <string name="support_acknowledged">"Darowizna przyjęta \u2665"</string>
     <string name="support_development">"Wsparcie Rozwoju"</string>
     <string name="support_development_summary">"Jeśli chcesz docenić wysiłki dewelopera, aby udostępnić to narzędzie całkowicie za darmo, rozważ wysłanie niewielkiej darowizny, klikając jedną z poniższych opcji! Kupno któregokolwiek z tych produktów nagrodzi Cię tutaj odznaką kibica."</string>
     <string name="support_dinner">"Kup mi Obiad"</string>
@@ -1108,13 +1107,13 @@
     <string name="support_received_message">"Bardzo dziękuję za wsparcie \u2665\nBardzo mnie to zmotywuje do aktywniejszego kontynuowania moich projektów! Ponadto otrzymasz odznakę kibica na górze tej strony."</string>
     <string name="support_retry_message">"Spróbuj ponownie dokonać zakupu!"</string>
     <string name="support_status_message">"Bardzo dziękuję za wsparcie!"</string>
-    <string name="licence">"License"</string>
-    <string name="licence_summary">"Widok GPL V3"</string>
+    <string name="licence">"Licencja"</string>
+    <string name="licence_summary">"Pokaż GPL V3"</string>
     <string name="share_app">"Udostępnij aplikacje"</string>
     <string name="share_app_summary">"Udostępnij tę aplikację znajomym"</string>
-    <string name="share_app_message">"pobierz SmartPack-Kernel Manager %s from"</string>
+    <string name="share_app_message">"Pobierz SmartPack-Kernel Manager %s z"</string>
     <string name="grarak">"Willi Ye"</string>
-    <string name="grarak_summary">"Człowiek stojący za „Kernel Adiutor”, przodek SmartPack-Kernel Manager..Bez niego ten projekt nie będzie prawdziwy. Olbrzymi szacunek dla niego, nie tylko za jego ciężką pracę nad Kernel Adiutor, ale także za otwartość na oprogramowanie typu open source"</string>
+    <string name="grarak_summary">"Człowiek stojący za „Kernel Adiutor”, przodek SmartPack-Kernel Manager. Bez niego ten projekt nie będzie prawdziwy. Olbrzymi szacunek dla niego, nie tylko za jego ciężką pracę nad Kernel Adiutor, ale także za otwartość na oprogramowanie typu open source."</string>
     <string name="osm0sis">"Chris Renshaw"</string>
     <string name="osm0sis_summary">"Twórca słynnego projektu AnyKernel3. Bez jego szybkiego wsparcia i wskazówek funkcja automatycznego flashowania w tej aplikacji nie będzie działać."</string>
 
@@ -1131,7 +1130,7 @@
     <string name="import_string_message">"Usuń bieżący ciąg z tej strony przed zaimportowaniem nowego!"</string>
     <string name="importing_string">"Importowanie ciągu znaków z sieci"</string>
     <string name="delete_string_message">"Czy na pewno chcesz usunąć bieżący ciąg string.xml z sdcard?"</string>
-    <string name="reload_message">"Pobieranie \string.xml' nie powiodło się lub go usunąłeś! Proszę przeładować tę stronę!"</string>
+    <string name="reload_message">"Pobieranie \string.xml' nie powiodło się lub go usunąłeś! Przeładuj stronę!"</string>
     <string name="save_string_error">"Nie dodałeś jeszcze żadnego ciągu! Przerwanie."</string>
     <string name="save_string_message">"Nowy ciąg tłumaczenia jest generowany jako '%s'!"</string>
     <string name="search_hint">"Wpisz szukane słowo tutaj!"</string>
@@ -1139,22 +1138,68 @@
     <string name="translator_message">"Pomóż mi przetłumaczyć tę aplikację na swój język! Gdy skończysz, prześlij mi nowy ciąg znaków w Telegramie lub GitHubie."</string>
 
     <!-- FAQ -->
-    <string name="how_different">"Q1. Czym różni się ta aplikacja od oficjalnego Kernel Adiutora firmy Grarak?"</string>
+    <string name="how_different">"Pyt. 1. Czym różni się ta aplikacja od oficjalnego Kernel Adiutora firmy Grarak?"</string>
     <string name="how_different_summary">"Odp. Ta aplikacja jest mocno zmodyfikowana, aby sprostać potrzebom różnych programistów jądra. Niektóre z dodatkowych funkcji tej aplikacji obejmują między innymi,\n- Możliwość flashowania plików ZIP odzyskiwania podczas korzystania z systemu operacyjnego Android.\n- Prosty i przyjazny dla użytkownika kontroler niestandardowy.\n- Menedżer skryptów do łatwego tworzenia, importowania, edytowania i wykonywania dowolnych odpowiednio sformatowanych skryptów powłoki.\n- Kontrola nad funkcjami, takimi jak CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Wakelock blocker, etc.\n- Boeffla i Flar's kontrola dźwięku z obsługą każdego kanału.\n- i dużo więcej."</string>
-    <string name="can_i_use">"Q2. Czy mogę używać tej aplikacji do sterowania dowolnym niestandardowym jądrem?"</string>
+    <string name="can_i_use">"Pyt. 2. Czy mogę używać tej aplikacji do sterowania dowolnym niestandardowym jądrem?"</string>
     <string name="can_i_use_summary">"Odp. Dlaczego nie? Ta aplikacja będzie działać jak zwykle z każdym jądrem, o ile przyznany zostanie dostęp root."</string>
-    <string name="cpu_freq_not_sticking">"Q3. Dlaczego mój określony stan częstotliwości procesora nie jest?"</string>
+    <string name="cpu_freq_not_sticking">"Pyt. 3. Dlaczego mój określony stan częstotliwości procesora nie jest?"</string>
     <string name="cpu_freq_not_sticking_summary">"Odp. Może to mieć wiele przyczyn. Wiele jąder ma obecnie własny system podłączania na gorąco, który kontroluje częstotliwość procesora, a CyanogenMod ma własną implementację CPU Boost, która reguluje częstotliwość. Sugerowałbym, abyś nie dotykał częstotliwości procesora i pozwolił jądru wykonać swoją pracę. Dotyczy to również innych funkcji! Jeśli się nie trzymają, to dlatego, że jądro / system nie chce pozwolić ci go zmienić."</string>
-    <string name="feature_not_appearing">"Q4. Dlaczego nie pojawiają się cechy x i y?"</string>
+    <string name="feature_not_appearing">"Pyt. 4. Dlaczego nie pojawiają się cechy x i y?"</string>
     <string name="feature_not_appearing_summary">"Odp. Wyświetlane są tylko funkcje zaimplementowane w Twoim jądrze."</string>
-    <string name="add_new_features">"Q5. Czy możesz dodać funkcję X i Y do swojej aplikacji?"</string>
+    <string name="add_new_features">"Pyt. 5. Czy możesz dodać funkcję X i Y do swojej aplikacji?"</string>
     <string name="add_new_features_summary">"Odp. Chętnie sprawdzę i dodam, jeśli to możliwe, przydatne funkcje (chyba że jest to zbyt eksperymentalne lub niebezpieczne) do mojej aplikacji. Podaj swoje sugestie na stronie xda-developers."</string>
-    <string name="what_best">"Q6. Czy możesz mi powiedzieć najlepsze ustawienia wydajności / SOT?"</string>
+    <string name="what_best">"Pyt. 6. Czy możesz mi powiedzieć najlepsze ustawienia wydajności / SOT?"</string>
     <string name="what_best_summary">"Odp. Zależy to od kilku czynników. Mogę udostępniać tylko moje ulubione ustawienia, które dają najlepsze wyniki w mojej ulubionej pamięci ROM."</string>
-    <string name="cache_dalvik">"Q7. Czy muszę wyczyścić pamięć podręczną / pamięć podręczną dalvik przed / po flashowaniu jądra?"</string>
+    <string name="cache_dalvik">"Pyt. 7. Czy muszę wyczyścić pamięć podręczną / pamięć podręczną dalvik przed / po flashowaniu jądra?"</string>
     <string name="cache_dalvik_summary">"Odp. NIE. Ponieważ jądro nawet nie „widzi” pamięci podręcznej / pamięci podręcznej dalvik."</string>
-    <string name="found_bugs">"Q8. Znalazłem błąd w Twojej aplikacji, co mam zrobić?"</string>
+    <string name="found_bugs">"Pyt. 8. Znalazłem błąd w Twojej aplikacji, co mam zrobić?"</string>
     <string name="found_bugs_summary">"Odp. Podaj jak najwięcej informacji (takich jak jaka funkcja, co nie działa, zrzuty ekranu lub logcat, jeśli to możliwe) i opublikuj na stronie xda-developers. Alternatywnie możesz również zgłosić problem na stronie GitHub."</string>
-    <string name="can_i_contribute">"Q9. Czy mogę wnieść swój wkład do twoich projektów? Jeśli tak to jak?"</string>
+    <string name="can_i_contribute">"Pyt. 9. Czy mogę wnieść swój wkład do twoich projektów? Jeśli tak to jak?"</string>
     <string name="can_i_contribute_summary">"Odp. Absolutnie. Wszelkiego rodzaju darowizny (darowizny, kod itp.) Są mile widziane i wysoko cenione. Więcej informacji można znaleźć w sekcji „Informacje”."</string>
+
+    <!-- CPU -->
+    <string name="cpu_note">"Należy pamiętać, że niektóre funkcje na tej stronie, takie jak rdzenie procesora i kontrola częstotliwości, są w dużej mierze kontrolowane przez procesy systemowe. W rezultacie zmiany wprowadzone na tej stronie mogą nie zostać zachowane na wielu urządzeniach."</string>
+    <string name="doze">"Wymuś drzemkę"</string>
+    <string name="doze_summary">"Włącz tryb drzemki, aby uniemożliwić uruchamianie niektórych zadań, jeśli urządzenie jest w stanie bezczynności."</string>
+    <string name="selinux">"SELinux"</string>
+    <string name="selinux_summary">"Ustaw stan SELinux"</string>
+    <string name="selinux_permissive">"Dozwolony"</string>
+    <string name="selinux_enforcing">"Wymuszony"</string>
+    <string name="on_boot_swipe_drag_message">"Możesz przesunąć palcem w lewo lub w prawo, aby usunąć polecenie (nie profil ani skrypt)!"</string>
+    <string name="swipe_message">"Przepraszam! Nie możesz wyciągnąć pliku %s."</string>
+    <string name="drag_message">"Przepraszam! Nie możesz przeciągnąć %s w inne miejsce."</string>
+
+    <!-- App Updater -->
+    <string name="update_available">"Dostępna jest nowa aktualizacja!
+        v%s"</string>
+    <string name="get_it">"Zrób to"</string>
+    <string name="updated_dialog">"Gratulacje! Masz już aktualną wersję SmartPack-Kernel Manager!"</string>
+    <string name="auto_update_check">"Sprawdzanie aktualizacji"</string>
+    <string name="check_update_summary">"Sprawdź, czy są dostępne nowe wersje SmartPack-Kernel Manager"</string>
+    <string name="fdroid">"F-Droid"</string>
+    <string name="fdroid_summary">"Odwiedź stronę F-Droid"</string>
+
+    <!-- I/O Advanced -->
+    <string name="io_blocks">"Bloki we./wy. (%s)"</string>
+    <string name="io_blocks_summary">"Kliknij tutaj, aby dostroić różne bloki we./wy. w swoim urządzeniu! Należy jednak pamiętać, że niektóre parametry są tylko do odczytu i nie można ich zmieniać w niektórych blokach."</string>
+    <string name="io_blocks_select">"Wybierz blok we./wy."</string>
+    <string name="io_blocks_select_summary">"Wybierz preferowany blok we./wy. do dostrojenia."</string>
+    <string name="doze_deep">"Głęboka drzemka"</string>
+    <string name="doze_light">"Lekka drzemka"</string>
+    <string name="transmit_queue_length">"Długość kolejki transmisji"</string>
+    <string name="tunables_title">"Dostosuj elementy konfiguracji, które są skojarzone z '%s'"</string>
+    <string name="gpu_throttling">"Ograniczanie GPU"</string>
+    <string name="gpu_throttling_summary">"Zmniejsza wydajność, gdy GPU się nagrzewa."</string>
+    <string name="printk_devkmsg">"Printk devkmsg"</string>
+    <string name="printk_devkmsg_summary">"Wyłącz usługę rejestrowania jądra Printk devkmsg, aby zmniejszyć obciążenie"</string>
+    <string name="translators_summary">"Kliknij tutaj, aby zobaczyć niepełną listę osób, które wsparły SmartPack-Kernel Manager z tłumaczeniami!"</string>
+    <string name="battery_guru">"Guru baterii"</string>
+    <string name="battery_guru_summary">"Monitoruj żywotność baterii urządzenia z Androidem, przedłużaj ją i utrzymuj w dobrym stanie."</string>
+    <string name="process_reclaim">"Odzyskiwanie procesu"</string>
+    <string name="dir_change_notifier">"Powiadamianie o zmianie katalogu"</string>
+    <string name="dir_change_notifier_summary">"Usługa powiadamiania o zmianach w katalogu informuje procesy o zmianach w plikach/katalogach."</string>
+    <string name="vm_stat_interval">"Interwał statystyki VM"</string>
+    <string name="vm_stat_interval_summary">"Odstępy czasu między statystykami VM są aktualizowane."</string>
+    <string name="quick_tile">"Szybka kafelka"</string>
+    <string name="quick_tile_empty_message">"Żadne skrypty nie są ustawione do zastosowania z tego kafelka!"</string>
 </resources>
