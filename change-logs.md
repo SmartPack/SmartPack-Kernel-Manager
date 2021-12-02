@@ -1,6 +1,6 @@
 # Change-logs
 
-## 126. December 02, 2021
+## 127. December 02, 2021
 *Release-tag: v16.9*<br>
 Fixed profiles not exporting into /sdcard in Android 11 and above. Improved CPU core detection. Better Android 12 (S, SDK 31) support. Added new credits page. Updated translations. Miscellaneous changes.
 
