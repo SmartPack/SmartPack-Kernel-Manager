@@ -23,6 +23,8 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -196,16 +198,16 @@ public class MainActivity extends BaseActivity {
             int accent = ViewUtils.getThemeAccentColor(activity);
             switch (values[0]) {
                 case 0:
-                    activity.mRootAccess.setTextColor(Common.hasRoot() ? accent : red);
+                    new Handler(Looper.getMainLooper()).post(() -> activity.mRootAccess.setTextColor(Common.hasRoot() ? accent : red));
                     break;
                 case 1:
-                    activity.mBusybox.setTextColor(Common.hasBusyBox() ? accent : red);
+                    new Handler(Looper.getMainLooper()).post(() -> activity.mBusybox.setTextColor(Common.hasBusyBox() ? accent : red));
                     break;
                 case 2:
-                    activity.mCollectInfo.setTextColor(accent);
+                    new Handler(Looper.getMainLooper()).post(() -> activity.mCollectInfo.setTextColor(accent));
                     break;
                 case 3:
-                    activity.mUpdateInfo.setTextColor(accent);
+                    new Handler(Looper.getMainLooper()).post(() -> activity.mUpdateInfo.setTextColor(accent));
                     break;
             }
         }
