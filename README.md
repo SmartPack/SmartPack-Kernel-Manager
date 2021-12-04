@@ -1,8 +1,8 @@
 ![](banner.png)
 
-[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v16.9-green)](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release)
+[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v17.0-green)](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release)
 ![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/total)
-![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/v16.9/total)
+![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/v17.0/total)
 ![](https://img.shields.io/github/contributors/smartpack/SmartPack-Kernel-Manager)
 ![](https://img.shields.io/github/license/smartpack/SmartPack-Kernel-Manager)
 
@@ -21,7 +21,7 @@ Welcome to the development center of SmartPack-Kernel Manager, a heavily modifie
                     height="80">](https://apt.izzysoft.de/fdroid/index/apk/com.smartpack.kernelmanager)
                     [<img src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
                                              alt=""
-                                             height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v16.9/com.smartpack.kernelmanager-v16.9-fdroid-release.apk)
+                                             height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.0/com.smartpack.kernelmanager-v17.0-fdroid-release.apk)
 
 ## Features
 * Almost all the features available in Kernel Adiutor.

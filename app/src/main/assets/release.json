@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Fixed profiles not exporting into /sdcard in Android 11 and above.\n - Improved CPU core detection.\n - Better Android 12 (S, SDK 31) support.\n - Added new credits page.\n - Updated translations.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v16.9/com.smartpack.kernelmanager-v16.9-fdroid-release.apk",
-  "sha1": "883dc7dc1223f325f9e4ff19a9e8accb199de496",
-  "latestVersion": "16.9",
-  "latestVersionCode": 169
+  "releaseNotes": "Change-logs\n - Fixed occasional crashes on app launching.\n - Updated about page UI.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.0/com.smartpack.kernelmanager-v17.0-fdroid-release.apk",
+  "sha1": "127da07f4b6affcb2f9372e9dfac1123542f25f9",
+  "latestVersion": "17.0",
+  "latestVersionCode": 170
 }
