@@ -211,11 +211,11 @@ public class AboutFragment extends RecyclerViewFragment {
     @SuppressLint({"UseCompatLoadingForDrawables", "StaticFieldLeak"})
     private void translationsInit(List<RecyclerViewItem> items) {
         CardView translatorCard = new CardView(getActivity());
+        translatorCard.setTitle(getString(R.string.translations));
         translatorCard.setFullSpan(true);
 
         DescriptionView translator = new DescriptionView();
         translator.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_translate, requireActivity()));
-        translator.setTitle(getString(R.string.translations));
         translator.setSummary(getString(R.string.translations_summary));
         translator.setOnItemClickListener(item -> new sTranslatorUtils(getString(R.string.smartpack), "https://poeditor.com/join/project?hash=qWFlVfAlp5", requireActivity()).show());
 
