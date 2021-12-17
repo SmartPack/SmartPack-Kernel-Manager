@@ -61,9 +61,12 @@ import com.smartpack.kernelmanager.utils.tools.UpdateCheck;
 
 import org.frap129.spectrum.Spectrum;
 
+import java.io.File;
 import java.lang.ref.WeakReference;
 
+import in.sunilpaulmathew.sCommon.Utils.sCrashReporterUtils;
 import in.sunilpaulmathew.sCommon.Utils.sExecutor;
+import in.sunilpaulmathew.sCommon.Utils.sUtils;
 
 /**
  * Created by willi on 14.04.16.
@@ -145,6 +148,10 @@ public class MainActivity extends BaseActivity {
         startActivity(intent);
         finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+        // Record crashes
+        new sCrashReporterUtils(sUtils.getDrawable(R.drawable.ic_back, this), new File(getExternalFilesDir("log"), "crashLog"),
+                ViewUtils.getThemeAccentColor(this), 18).initialize(this);
     }
 
     private static class CheckingTask extends sExecutor {
