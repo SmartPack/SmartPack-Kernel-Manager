@@ -183,7 +183,7 @@
             android:icon="@drawable/ic_spectrum_logo"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             android:label="@string/profileTile"
-            android:exported="false"
+            android:exported="true"
             android:enabled="true" >
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>
@@ -196,7 +196,7 @@
             android:icon="@drawable/ic_console"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             android:label="@string/script"
-            android:exported="false"
+            android:exported="true"
             android:enabled="true" >
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>
@@ -209,7 +209,7 @@
             android:icon="@drawable/ic_klapse"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             android:label="@string/klapse"
-            android:exported="false"
+            android:exported="true"
             android:enabled="true" >
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>
