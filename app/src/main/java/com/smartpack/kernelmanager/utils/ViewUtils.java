@@ -19,7 +19,6 @@
  */
 package com.smartpack.kernelmanager.utils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
@@ -32,11 +31,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.widget.AppCompatEditText;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
@@ -46,6 +45,8 @@ import com.squareup.picasso.Target;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import in.sunilpaulmathew.sCommon.Utils.sUtils;
 
 /**
  * Created by willi on 16.04.16.
@@ -104,13 +105,13 @@ public class ViewUtils {
     }
 
     public static Drawable getColoredIcon(int icon, Context context) {
-        @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable = context.getResources().getDrawable(icon);
+        Drawable drawable = sUtils.getDrawable(icon, context);
         drawable.setTint(getThemeAccentColor(context));
         return drawable;
     }
 
     public static Drawable getWhiteColoredIcon(int icon, Context context) {
-        @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable = context.getResources().getDrawable(icon);
+        Drawable drawable = sUtils.getDrawable(icon, context);
         drawable.setTint(Color.WHITE);
         return drawable;
     }
