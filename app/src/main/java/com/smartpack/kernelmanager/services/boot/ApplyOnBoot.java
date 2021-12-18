@@ -26,6 +26,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 
 import androidx.core.app.NotificationCompat;
@@ -112,13 +113,14 @@ public class ApplyOnBoot {
         final boolean toast = Prefs.getBoolean("applyonboottoast", false, context);
         final boolean script = Prefs.getBoolean("applyonbootscript", false, context);
 
-        @SuppressLint("UnspecifiedImmutableFlag")
         PendingIntent cancelIntent = PendingIntent.getBroadcast(context, 1,
-                new Intent(context, CancelReceiver.class), PendingIntent.FLAG_UPDATE_CURRENT);
+                new Intent(context, CancelReceiver.class), Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S ?
+                        PendingIntent.FLAG_MUTABLE : PendingIntent.FLAG_UPDATE_CURRENT);
 
         Intent launchIntent = new Intent(context, MainActivity.class);
-        @SuppressLint("UnspecifiedImmutableFlag")
-        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, launchIntent, 0);
+
+        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, launchIntent, Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M ?
+                PendingIntent.FLAG_IMMUTABLE : 0);
 
         final NotificationManager notificationManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
