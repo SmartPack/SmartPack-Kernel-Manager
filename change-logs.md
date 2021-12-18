@@ -1,5 +1,9 @@
 # Change-logs
 
+## 129. December 18, 2021
+*Release-tag: v17.1*<br>
+Fixed Apply-on-Boot crashing on Android 12. Fixed quick settings tiles not working. App will now record and prompt to report crashes. Miscellaneous changes.
+
 ## 128. December 04, 2021
 *Release-tag: v17.0*<br>
 Fixed occasional crashes on app launching. Updated about page UI. Miscellaneous changes.

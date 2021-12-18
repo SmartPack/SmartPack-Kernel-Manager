@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Fixed occasional crashes on app launching.\n - Updated about page UI.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.0/com.smartpack.kernelmanager-v17.0-fdroid-release.apk",
-  "sha1": "127da07f4b6affcb2f9372e9dfac1123542f25f9",
-  "latestVersion": "17.0",
-  "latestVersionCode": 170
+  "releaseNotes": "Change-logs\n - Fixed Apply-on-Boot crashing on Android 12.\n - Fixed quick settings tiles not working.\n - App will now record and prompt to report crashes.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.1/com.smartpack.kernelmanager-v17.1-fdroid-release.apk",
+  "sha1": "45e3d1ad9cc48b24c83ec3af4f6a3b7f12f1721d",
+  "latestVersion": "17.1",
+  "latestVersionCode": 171
 }

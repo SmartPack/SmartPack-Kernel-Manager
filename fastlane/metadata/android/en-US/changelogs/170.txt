@@ -1,3 +1,0 @@
-* Fixed occasional crashes on app launching.
-* Updated about page UI.
-* Miscellaneous changes.
