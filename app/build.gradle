@@ -56,7 +56,7 @@ dependencies {
     implementation 'androidx.preference:preference:1.1.1'
     playImplementation 'com.android.billingclient:billing:4.0.0'
     implementation 'com.github.ozodrukh:CircularReveal:1.3.1'
-    implementation 'com.github.sunilpaulmathew:sCommon:cd77362712'
+    implementation 'com.github.sunilpaulmathew:sCommon:4d81497317'
     implementation 'com.github.sunilpaulmathew:RootFilePicker:792443f0d8'
     implementation 'com.github.topjohnwu.libsu:core:3.1.2'
     implementation "com.github.topjohnwu.libsu:io:3.1.2"
