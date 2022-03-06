@@ -25,6 +25,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
@@ -72,7 +73,8 @@ public class Widget extends AppWidgetProvider {
     private PendingIntent getPendingIntent(Context context, String action) {
         Intent intent = new Intent(context, getClass());
         intent.setAction(action);
-        return PendingIntent.getBroadcast(context, 0, intent, 0);
+        return PendingIntent.getBroadcast(context, 0, intent, Build.VERSION.SDK_INT >=
+                android.os.Build.VERSION_CODES.M ? PendingIntent.FLAG_IMMUTABLE : 0);
     }
 
     @Override
