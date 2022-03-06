@@ -38,6 +38,7 @@ import com.smartpack.kernelmanager.utils.kernel.screen.Calibration;
 import com.smartpack.kernelmanager.utils.kernel.screen.Gamma;
 import com.smartpack.kernelmanager.utils.kernel.screen.GammaProfiles;
 import com.smartpack.kernelmanager.utils.kernel.screen.Misc;
+import com.smartpack.kernelmanager.utils.kernel.screen.RGB;
 import com.smartpack.kernelmanager.views.ColorTable;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
 import com.smartpack.kernelmanager.views.recyclerview.DropDownView;
@@ -103,6 +104,8 @@ public class ScreenFragment extends RecyclerViewFragment {
     protected void addItems(List<RecyclerViewItem> items) {
         if (Misc.haskcalRed() || Misc.haskcalGreen() || Misc.haskcalBlue()) {
             kcalColorInit(items);
+        } else if (RGB.supported()) {
+            rgbColorInit(items);
         } else if (mCalibration.hasColors()) {
             screenColorInit(items);
         }
@@ -203,6 +206,68 @@ public class ScreenFragment extends RecyclerViewFragment {
 
         if (kcalCard.size() > 0) {
             items.add(kcalCard);
+        }
+    }
+
+    private void rgbColorInit(List<RecyclerViewItem> items) {
+        if (RGB.hasMTKRGBControl()) {
+            CardView kcalCard = new CardView(getActivity());
+            kcalCard.setTitle(getString(R.string.screen_color));
+
+            SeekBarView red = new SeekBarView();
+            red.setTitle(getString(R.string.red));
+            red.setMax(2000);
+            red.setProgress(RGB.getMTKRed());
+            red.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    RGB.setMTKRed((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            kcalCard.addItem(red);
+
+            SeekBarView green = new SeekBarView();
+            green.setTitle(getString(R.string.green));
+            green.setMax(2000);
+            green.setProgress(RGB.getMTKGreen());
+            green.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    RGB.setMTKGreen((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            kcalCard.addItem(green);
+
+            SeekBarView blue = new SeekBarView();
+            blue.setTitle(getString(R.string.blue));
+            blue.setMax(2000);
+            blue.setProgress(RGB.getMTKBlue());
+            blue.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    RGB.setMTKBlue((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            kcalCard.addItem(blue);
+
+            if (kcalCard.size() > 0) {
+                items.add(kcalCard);
+            }
         }
     }
 
