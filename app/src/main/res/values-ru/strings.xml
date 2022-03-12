@@ -479,6 +479,8 @@
     <string name="charging_enable_summary">"Предупреждение! Если отключить, зарядка будет немедленно остановлена."</string>
     <string name="thunder_charge">"Thunder Charge"</string>
     <string name="thunder_charge_summary">"Активировать Thunder Charge by varun.chitre15"</string>
+    <string name="battery_guru">"Аккумуляторный гуру"</string>
+    <string name="battery_guru_summary">"Следите за временем автономной работы вашего Android-устройства, продлевайте его и сохраняйте работоспособность."</string>
 
     <!-- Advanced Charge Control Interface -->
     <string name="acci">"Расширенный интерфейс управления зарядкой"</string>
@@ -517,6 +519,10 @@
     <string name="lock_mic_gain">"Заблокировать усиление микрофона"</string>
     <string name="lock_mic_gain_summary">"Предотвратить изменение усиления микрофона"</string>
     <string name="per_channel_controls">"Управление по каналам"</string>
+    <string name="privacy_mode">"Режим конфиденциальности"</string>
+    <string name="dac_direct">"ЦАП прямо"</string>
+    <string name="dac_oversampling">"Передискретизация ЦАП"</string>
+    <string name="fll_tuning">"FLL Тюнинг"</string>
 
     <!-- Screen -->
     <string name="screen_color">"Цвет экрана"</string>
@@ -741,6 +747,7 @@
     <string name="lmk_adaptive">"Адаптивный Low Memory Killer"</string>
     <string name="lmk_adaptive_summary">"Low Memory Killer будет становиться более агрессивным при обнаружении переполнения памяти."</string>
     <string name="lmk_fast_run">"Активировать быструю загрузку"</string>
+    <string name="process_reclaim">"Процесс восстановления"</string>
     <string name="visible_app">"Видимые приложения"</string>
     <string name="secondary_server">"Вторичные приложения"</string>
     <string name="hidden_app">"Скрытые приложения"</string>
@@ -828,6 +835,7 @@
     <string name="maximum_compression_ratio">"Максимальный коэффициент сжатия"</string>
     <string name="maximum_compression_ratio_summary">"Максимальная степень сжатия, в процентах, для сжимаемых страниц. Любая страница, которая не сжимается до этого соотношения, будет отклонена."</string>
     <string name="virtual_memory_tunables">"Тюнинг виртуальной памяти"</string>
+    <string name="dir_change_notifier">"Уведомление об изменении каталога"</string>
 
     <!-- Entropy -->
     <string name="available">"Доступно"</string>
@@ -868,7 +876,8 @@
     <string name="lease_break_time_summary">"Льготный период, который ядро предоставляет процессу, удерживающему аренду файла, после того, как оно отправило этому процессу сигнал, уведомляющий его о том, что другой процесс ожидает открытия файла."</string>
     <string name="auto_sync">"Автосинхронизация данных"</string>
     <string name="auto_sync_summary">"Разрешить приложениям автоматически обновлять данные.
-Обратите внимание: это будет применяться независимо от ваших настроек при загрузке."</string>
+        Обратите внимание: это будет применяться независимо от ваших настроек при загрузке."</string>
+    <string name="printk_devkmsg_summary">"Управляйте ведением журнала в /dev/kmsg из пользовательского пространства."</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">"Твики производительности"</string>
@@ -972,7 +981,7 @@
     <string name="remove_script_question">"%s также будет удален из Script Manager.\n\nВы уверены?"</string>
     <string name="script_exists">"Скрипт с именем %s уже существует! Отмена."</string>
     <string name="executing">"Выполнение"</string>
-    <string name="share_script">"Для установки этого скрипта, просто импортируйте этот файл в 'SmartPack-Kernel Manager -> Script Manager -> Import'."</string>
+    <string name="share_script">"Для установки этого скрипта, просто импортируйте этот файл в 'SmartPack-Kernel Manager -> Script Manager -&gt; Import'."</string>
 
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">"Этот раздел показывает вам, что произойдёт, когда ваше устройство загрузится. Если он пустой, то ничего не произойдет после загрузки."</string>
@@ -995,9 +1004,9 @@
     <string name="update_channel_empty">"Очистка обновления информации о канале!"</string>
     <string name="update_channel_info">"Связывая указанный выше канал обновления с подходящим файлом json для вашего устройства, вы можете добавить загрузку ядра и поддержку автоматической прошивки (не для всех устройств) для любого ядра, доступного для вашего устройства. Попросите вашего любимого разработчика ядра добавить поддержку этой функции. Загруженное ядро будет доступно по адресу %s.
 
-Советы! Вы можете импортировать файл json, созданный для FranciscoFranco (огромная благодарность ему) 'FK-Kernel Manager', и он будет просто работать.
+        Советы! Вы можете импортировать файл json, созданный для FranciscoFranco (огромная благодарность ему) 'FK-Kernel Manager', и он будет просто работать.
 
-Нужна дополнительная помощь? Кликните сюда!"</string>
+        Нужна дополнительная помощь? Кликните сюда!"</string>
     <string name="update_channel_invalid">"Вы ввели неверный Url-адрес! Отмена"</string>
     <string name="update_channel_summary">"Введите url канала обновлений"</string>
     <string name="update_check_message">"SmartPack-Kernel Manager проверит наличие новой версии %s раз в день!"</string>
@@ -1028,7 +1037,7 @@
     <string name="reset_settings_message">"Настройки приложения будут полностью удалены.\n\nВы уверены?"</string>
     <string name="unknown_link">"Еще не предоставлено разработчиком!"</string>
     <string name="remove">"Удалить"</string>
-    <string name="share_channel_message">"Чтобы настроить этот канал обновление, просто введите '%s' в SmartPack-Kernel Manager -> SmartPack -> Канал обновления ядра\n\nВам SmartPack-ядра диспетчер"</string>
+    <string name="share_channel_message">"Чтобы настроить этот канал обновление, просто введите '%s' в SmartPack-Kernel Manager -> SmartPack -&gt; Канал обновления ядра\n\nВам SmartPack-ядра диспетчер"</string>
     <string name="busybox_installer">"BusyBox Installer"</string>
     <string name="busybox_installer_summary">"Настоятельно рекомендуется иметь устаноленный BusyBox на вашем устройстве, для правильной работы с некоторыми функциями этого приложения (например, 'unzip' &amp; 'mke2fs' binaries for flashing &amp; 'curl' или 'wget' binary for kernel OTA updates). В качестве попытки помочь пользователям в этом вопросе доступно простое приложение, которое можно использовать в качестве утилиты установки BusyBox в один клик для устройств arm, arm64 и x86. Нажмите здесь, чтобы получить его!"</string>
     <string name="download_failed">"Похоже, скачать не удалось, или скачали поврежденный файл!"</string>
@@ -1038,9 +1047,9 @@
     <string name="update_channel_message">"(только для разработчиков)\nПриложение будет создать канал обновление (JSON), для вашего ядра, пока информация, указанные в настоящем разделе, являются точными."</string>
     <string name="update_channel_instructions">"Название ядра, Версия ядра и Ссылка для загрузки - это обязательные поля, которые необходимо заполнить перед нажатием кнопки создания.
 
-Логи изменений могут быть представлены либо в виде хорошо отформатированного текста, либо в виде ссылки на онлайн-страницу.
+        Логи изменений могут быть представлены либо в виде хорошо отформатированного текста, либо в виде ссылки на онлайн-страницу.
 
-Алгоритм безопасного хеширования (sha1) не является обязательным, но настоятельно рекомендуется для обеспечения подлинности загруженного ядра."</string>
+        Алгоритм безопасного хеширования (sha1) не является обязательным, но настоятельно рекомендуется для обеспечения подлинности загруженного ядра."</string>
     <string name="kernel_name">"Название ядра "</string>
     <string name="kernel_name_summary">"Kernel_name"</string>
     <string name="kernel_version">"Версия Ядра "</string>
@@ -1136,12 +1145,12 @@
     <!-- FAQ -->
     <string name="how_different">"В1. Чем это приложение отличается от официального Kernel Adiutor?"</string>
     <string name="how_different_summary">"Ответ. Это приложение сильно модифицировано для удовлетворения потребностей различных разработчиков ядра. Некоторые из дополнительных функций этого приложения включают, но не ограничиваются
-- возможностью прошивки zip-файлов для восстановления при работе под управлением ОС Android.
-- простым и удобным пользовательским контроллером.
-- менеджером скриптов для простого создания, импорта, редактирования и выполнения любых правильно отформатированных shell скриптов.
-- контролем над такими функциями, как CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Wakelock blocker и т. Д.
-- управлением звуком в Boeffla и Flar с поддержкой каждого канала.
-- и многими другими функциями."</string>
+        - возможностью прошивки zip-файлов для восстановления при работе под управлением ОС Android.
+        - простым и удобным пользовательским контроллером.
+        - менеджером скриптов для простого создания, импорта, редактирования и выполнения любых правильно отформатированных shell скриптов.
+        - контролем над такими функциями, как CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Wakelock blocker и т. Д.
+        - управлением звуком в Boeffla и Flar с поддержкой каждого канала.
+        - и многими другими функциями."</string>
     <string name="can_i_use">"В2. Могу ли я использовать это приложение для управления любыми кастомными ядрами?"</string>
     <string name="can_i_use_summary">"Ответ. Это приложение будет работать как обычно с любым ядром, если ему предоставлен root-доступ."</string>
     <string name="cpu_freq_not_sticking">"Почему моя частота ЦП не остается выбранной?"</string>
@@ -1161,8 +1170,7 @@
 
     <!-- CPU -->
     <string name="cpu_note">"Обратите внимание, что некоторые функции на этой странице, такие как управление ядрами ЦП и управление частотой, в значительной степени контролируются системными процессами. В результате изменения, внесенные на этой странице, могут не сохраняться на многих устройствах!"</string>
-    <string name="doze">"Force Doze
-"</string>
+    <string name="doze">"Force Doze"</string>
     <string name="doze_summary">"Включите режим Doze, чтобы запретить выполнение определенных задач, если ваше устройство находится в режиме ожидания."</string>
     <string name="selinux">"SELinux"</string>
     <string name="selinux_summary">"Состояние SELinux"</string>
@@ -1174,7 +1182,7 @@
 
     <!-- App Updater -->
     <string name="update_available">"Доступно новое обновление!
-v%s"</string>
+        v%s"</string>
     <string name="get_it">"Понятно"</string>
     <string name="updated_dialog">"Поздравляю! У вас уже есть последняя версия SmartPack-Kernel Manager!"</string>
     <string name="auto_update_check">"Автоматическая проверка обновлений"</string>
