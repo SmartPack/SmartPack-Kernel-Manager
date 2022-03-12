@@ -1,4 +1,0 @@
-* Fixed Apply-on-Boot crashing on Android 12.
-* Fixed quick settings tiles not working.
-* App will now record and prompt to report crashes.
-* Miscellaneous changes.

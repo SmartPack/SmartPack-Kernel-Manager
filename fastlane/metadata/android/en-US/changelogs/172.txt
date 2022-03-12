@@ -1,0 +1,6 @@
+* Screen: Added Mediatek display color control.
+* Updated profile widgets for Android 12.
+* Updated crash reporter.
+* Updated Russian translation.
+* Updated build tools and dependencies.
+* Miscellaneous changes.

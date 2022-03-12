@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Fixed Apply-on-Boot crashing on Android 12.\n - Fixed quick settings tiles not working.\n - App will now record and prompt to report crashes.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.1/com.smartpack.kernelmanager-v17.1-fdroid-release.apk",
-  "sha1": "45e3d1ad9cc48b24c83ec3af4f6a3b7f12f1721d",
-  "latestVersion": "17.1",
-  "latestVersionCode": 171
+  "releaseNotes": "Change-logs\n - Screen: Added Mediatek display color control.\n - Updated profile widgets for Android 12.\n - Updated crash reporter.\n - Updated Russian translation.\n - Updated build tools and dependencies.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.2/com.smartpack.kernelmanager-v17.2-fdroid-release.apk",
+  "sha1": "167e9ccac2e88135e12fd07670d10fa85ef37c30",
+  "latestVersion": "17.2",
+  "latestVersionCode": 172
 }

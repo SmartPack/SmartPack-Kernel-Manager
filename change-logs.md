@@ -1,5 +1,9 @@
 # Change-logs
 
+## 130. March 12, 2021
+*Release-tag: v17.2*<br>
+Screen: Added Mediatek display color control. Updated profile widgets for Android 12. Updated crash reporter. Updated Russian translation. Updated build tools and dependencies. Miscellaneous changes.
+
 ## 129. December 18, 2021
 *Release-tag: v17.1*<br>
 Fixed Apply-on-Boot crashing on Android 12. Fixed quick settings tiles not working. App will now record and prompt to report crashes. Miscellaneous changes.

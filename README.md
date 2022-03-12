@@ -1,8 +1,8 @@
 ![](banner.png)
 
-[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v17.1-green)](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release)
+[![](https://img.shields.io/badge/SmartPack--Kernel%20Manager-v17.2-green)](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release)
 ![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/total)
-![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/v17.1/total)
+![](https://img.shields.io/github/downloads/SmartPack/SmartPack-Kernel-Manager/v17.2/total)
 ![](https://img.shields.io/github/contributors/smartpack/SmartPack-Kernel-Manager)
 ![](https://img.shields.io/github/license/smartpack/SmartPack-Kernel-Manager)
 
@@ -21,7 +21,7 @@ Welcome to the development center of SmartPack-Kernel Manager, a heavily modifie
                     height="80">](https://apt.izzysoft.de/fdroid/index/apk/com.smartpack.kernelmanager)
                     [<img src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
                                              alt=""
-                                             height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.1/com.smartpack.kernelmanager-v17.1-fdroid-release.apk)
+                                             height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.2/com.smartpack.kernelmanager-v17.2-fdroid-release.apk)
 
 ## Features
 * Almost all the features available in Kernel Adiutor.
@@ -131,7 +131,7 @@ You can report a bug or request a feature by [opening an issue](https://github.c
 
 ## License
 
-    Copyright (C) 2021-2022 sunilpaulmathew <sunil.kde@gmail.com>
+    Copyright (C) 2022-2023 sunilpaulmathew <sunil.kde@gmail.com>
 
     SmartPack Kernel Manager is a free softwares: you can redistribute
     it and/or modify it under the terms of the GNU General Public License as
