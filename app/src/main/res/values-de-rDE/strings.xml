@@ -71,7 +71,7 @@
     <string name="lmk">"Low Memory Killer"</string>
     <string name="virtual_memory">"Virtueller Speicher"</string>
     <string name="entropy">"Entropie"</string>
-    <string name="misc">"Sontiges"</string>
+    <string name="misc">"Sonstiges"</string>
     <string name="custom_controls">"Benutzerdefinierte Steuerungen"</string>
     <string name="backup">"Sicherung"</string>
     <string name="build_prop_editor">"Build prop Editor"</string>
@@ -85,7 +85,7 @@
     <string name="faq">"FAQ"</string>
 
     <!-- Overall -->
-    <string name="overall_summary">"Willkommen zur Hauptseite von SmartPack-Kernel Manager. Auf dieser Seite sind generelle Informationen über dein Gerät sichtbar. Auf den jeweilligen Seiten können Kernel Einstellungen vorgenommen werden."</string>
+    <string name="overall_summary">"Willkommen zur Hauptseite des SmartPack-Kernel Managers. Auf dieser Seite sind generelle Informationen über dein Gerät sichtbar. Auf den jeweilligen Seiten können Kernel Einstellungen vorgenommen werden."</string>
     <string name="cpu_times">"CPU Zeiten"</string>
     <string name="offline">"Offline"</string>
     <string name="core">"Kern %d"</string>
@@ -129,26 +129,26 @@
     <string name="cpu_usage_string">"%s CPU Nutzung"</string>
     <string name="no_offline_core">"Du kannst diesen Kern nicht ausschalten!"</string>
     <string name="cpu_max_freq">"CPU Maximal Frequenz"</string>
-    <string name="cpu_max_freq_summary">"Die maximale Taktfrequenz des CPUs einstellen."</string>
+    <string name="cpu_max_freq_summary">"Die maximale Taktfrequenz der CPUs einstellen."</string>
     <string name="cpu_min_freq">"CPU Minimale Frequenz"</string>
-    <string name="cpu_min_freq_summary">"Die minimale Taktfrequenz des CPUs einstellen."</string>
+    <string name="cpu_min_freq_summary">"Die minimale Taktfrequenz der CPUs einstellen."</string>
     <string name="cpu_max_screen_off_freq">"Maximale Frequenz wenn der Bildschirm aus ist"</string>
     <string name="cpu_max_screen_off_freq_summary">"Die maximale Taktfrequenz einstellen wenn der Bildschirm aus ist."</string>
     <string name="cpu_governor">"CPU Governor"</string>
-    <string name="cpu_governor_summary">"Der CPU Governor bestimmt wie die CPU sich bei änderungen der Auslastung verhält. Durch die Änderungen des Governor werden die Frequenzbereiche der CPU anderst angesteuert."</string>
-    <string name="cpu_governor_tunables">"CPU Governor Abstimmungen"</string>
-    <string name="governor_tunables_summary">"Die verschiedenen Einstellungsmöglichkeiten sind Governor abhänig."</string>
+    <string name="cpu_governor_summary">"Der CPU Governor bestimmt wie die CPU sich bei Änderungen der Auslastung verhält. Durch die Änderungen des Governors werden die Frequenzbereiche der CPU anders angesteuert."</string>
+    <string name="cpu_governor_tunables">"CPU Governor Abstimmmungen"</string>
+    <string name="governor_tunables_summary">"Die verschiedenen Einstellungsmöglichkeiten sind Governor abhängig."</string>
     <string name="cpu_governor_tunables_read_error">"Der aktuelle Governor konnte nicht bestimmt werden.
 
-        Bei QCOM big.LITTLE Geräten ist es ein bekanntes Problem. Das System zwingt die CPU Kerne auszuschalten, dies erschwert das Auslesen der CPU Statistik. Versuche die Option nochmals. Der CPU weigert sich manchmal einen Kern einzuschalten."</string>
+        Bei QCOM big.LITTLE Geräten ist es ein bekanntes Problem. Das System zwingt die CPU Kerne auszuschalten, dies erschwert das Auslesen der CPU Statistik. Versuche die Option nochmals. Die CPU weigert sich manchmal einen Kern einzuschalten."</string>
     <string name="tunables_error">"%s ist nicht abstimmbar"</string>
-    <string name="manual">"Manuel"</string>
+    <string name="manual">"Manuell"</string>
     <string name="mc_power_saving">"Mehrkern Stromsparen"</string>
-    <string name="mc_power_saving_summary">"Aufgaben werden wenn möglich mit einer geringen Anzahl an Kernen ausgeführt."</string>
+    <string name="mc_power_saving_summary">"Aufgaben werden auf möglichst wenigen Kernen gruppiert."</string>
     <string name="disabled">"Deaktiviert"</string>
     <string name="enabled">"Aktiviert"</string>
     <string name="aggressive">"Aggressiv"</string>
-    <string name="power_saving_wq">"Arbeitsschlangen auf aktivie Kernel verteilen."</string>
+    <string name="power_saving_wq">"Arbeitsschlangen auf aktive Kernel verteilen."</string>
     <string name="cfs_scheduler_policy">"CFS Scheduler Richtlinie"</string>
     <string name="cfs_scheduler_policy_summary">"Durch die Richtlinien wird vorgegeben wie der CFS scheduler Aufgaben auf der CPU verteilt."</string>
     <string name="cpu_quiet">"CPUQuiet"</string>
@@ -195,7 +195,7 @@
 
     <!-- CPU Hotplug -->
     <string name="hotplug_warning">"Mehr als ein hotplugging system ist aktiviert!
-Bitte nur eins verwenden."</string>
+        Bitte nur eins verwenden."</string>
     <string name="mpdecision">"MPDecision"</string>
     <string name="mpdecision_summary">"Qualcomm's hotplugging Lösung. Du könntest Probleme mit schwankenden Frequenzen bekommen."</string>
     <string name="intelliplug">"IntelliPlug"</string>
@@ -867,7 +867,7 @@ Bitte nur eins verwenden."</string>
 
     <!-- Custom Controls -->
     <string name="welcome">"Willkommen"</string>
-    <string name="custom_controls_summary">"Hier kann ein benutzerdefinierter Kontroller erstellt werden für jedes Feature das nocht nicht offiziell in dieser App vorhanden ist. &lt;a href="https://smartpack.github.io/spkm/customcontrols/">Documentation&lt;a>"</string>
+    <string name="custom_controls_summary">"Hier kann ein benutzerdefinierter Kontroller erstellt werden für jedes Feature das nocht nicht offiziell in dieser App vorhanden ist. &lt;a href=\"https://smartpack.github.io/spkm/customcontrols/\"&gt;Documentation&lt;a&gt;"</string>
     <string name="custom_controls_message">"Du kannst grundsätzlich einen benutzerdefinierten Kontroller für jeden vorhandenen Sysfs-Pfad erstellen, vorausgesetzt, Du hast einen unterstützten Root-Dateimanager installiert. Dieses Feature ist sehr mächtig, sodass du dein Gerät zerstören kannst.\n\n***Benutzung auf eigene Gefahr***"</string>
     <string name="create">"Erstellen"</string>
     <string name="import_item">"Importieren"</string>
@@ -882,7 +882,7 @@ Bitte nur eins verwenden."</string>
     <string name="delete">"Löschen"</string>
     <string name="share">"Teilen"</string>
     <string name="share_by">"'%s' | geteilt von SmartPack-Kernel Manager"</string>
-    <string name="share_controller">"Um diesen Kontroller anzuwenden importiere die Datei mit 'SmartPack-Kernel Manager -> Benutzerdefinierte Einstellungen"</string>
+    <string name="share_controller">"Um diesen Kontroller anzuwenden importiere die Datei mit 'SmartPack-Kernel Manager -&gt; Benutzerdefinierte Einstellungen"</string>
     <string name="share_with">"Teilen mit"</string>
     <string name="sure_question">"Bist du sicher?"</string>
     <string name="name">"Name"</string>
@@ -953,7 +953,7 @@ Bitte nur eins verwenden."</string>
     <string name="remove_script_question">"%s wird auch im Script Manager entfernt.\n\nBist du sicher?"</string>
     <string name="script_exists">"Ein Skript mit dem Namen %s exitiert bereits! Breche ab."</string>
     <string name="executing">"Führe aus"</string>
-    <string name="share_script">"Um das Skript zuverwenden muss es in 'SmartPack-Kernel Manager importiert werden -> Script Manager -> Importieren'."</string>
+    <string name="share_script">"Um das Skript zuverwenden muss es in 'SmartPack-Kernel Manager importiert werden -&gt; Script Manager -&gt; Importieren'."</string>
 
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">"Dieser Bersch zeigt dir was beim Systemstart passieren wird. Wenn hier nichts angezeigt wird passiert auch nichts. Du kann nach links oder rechts wischen um einen Befehl zu löschen (kein Profil oder Skript)!"</string>
@@ -1006,7 +1006,7 @@ Bitte nur eins verwenden."</string>
     <string name="reset_settings_message">"Appeinstellungen werden gelöscht. Bist du sicher?"</string>
     <string name="unknown_link">"Noch nicht vom Entwickler zu Verfügung gestellt!"</string>
     <string name="remove">"Entfernen"</string>
-    <string name="share_channel_message">"Um den Update Kanal zu konfigurieren, einfach '%s' eingeben bei SmartPack-Kernel Manager -> SmartPack -> Update Kanal Url.\n\nHole SmartPack-Kernel Manager vom"</string>
+    <string name="share_channel_message">"Um den Update Kanal zu konfigurieren, einfach '%s' eingeben bei SmartPack-Kernel Manager -&gt; SmartPack -&gt; Update Kanal Url.\n\nHole SmartPack-Kernel Manager vom"</string>
     <string name="busybox_installer">"BusyBox Installer"</string>
     <string name="busybox_installer_summary">"Es wird empfohlen eine eingenständige Installation von BusyBox zu haben für Funktionen wie (z.B.: 'unzip' &amp; 'mke2fs' zum flashen &amp; 'curl' oder 'wget' für Kernel OTA Updates). Um Nutzer bei dem Problem zu helfen gibt es eine App die BusyBox mit einem Klick istalliert für arm, arm64 und x86 Geräte. Klicke hier um sie zu bekommen!"</string>
     <string name="download_failed">"Es scheint das der Download fehlgeschlagen ist oder die Datei beschädigt!"</string>
@@ -1173,4 +1173,8 @@ Bitte nur eins verwenden."</string>
     <string name="gpu_throttling_summary">"Reduziert die Geschwindigkeit wenn die GPU zu warm wird"</string>
     <string name="printk_devkmsg">"devkmsg anzeigen"</string>
     <string name="printk_devkmsg_summary">"Deaktivieren Sie den Printk devkmsg-Kernel-Protokollierungsdienst, um den Overhead zu reduzieren"</string>
+    <string name="battery_guru">"Battery Guru"</string>
+    <string name="battery_guru_summary">"Beobachtet die Nutzung ihres Akkus und versucht dessen Kapazität und Lebensdauer zu verlängern."</string>
+    <string name="quick_tile">"Kachel für Schnelleinstellungen"</string>
+    <string name="quick_tile_empty_message">"Für diese Kachel sind keine Scripte definiert!"</string>
 </resources>

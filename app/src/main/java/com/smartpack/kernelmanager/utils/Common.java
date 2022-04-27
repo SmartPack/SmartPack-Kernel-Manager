@@ -112,6 +112,7 @@ public class Common {
         mData.add(new sSerializableItems(null, "Catellone94", "Italian Translations", null));
         mData.add(new sSerializableItems(null, "Gianfranco. liguori.96", "Italian Translations", null));
         mData.add(new sSerializableItems(null, "Re*Index.(ot_inc)", "Japanese Translations", null));
+        mData.add(new sSerializableItems(null, "Gero. busse", "German Translations", null));
         return mData;
     }
 

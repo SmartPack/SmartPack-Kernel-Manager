@@ -102,7 +102,7 @@ Please help me to translate this application via [POEditor](https://poeditor.com
 * [SmgKhOaRn](https://github.com/SmgKhOaRn), Korean
 * [kiratt](http://4pda.ru/forum/index.php?showuser=5859577) & tommynok, Ukrainian
 * [Mikesew1320](https://github.com/Mikesew1320), Amharic
-* [free-bots](https://github.com/free-bots) & Lars S, German
+* [free-bots](https://github.com/free-bots), Gero. busse & Lars S, German
 * Alejandro YT & Cold, Spanish
 * [Fruity-0](https://github.com/Fruity-0), Polish
 * [Fatih Fırıncı](https://github.com/Fatih-BaKeR) & omerakgoz34, Turkish
