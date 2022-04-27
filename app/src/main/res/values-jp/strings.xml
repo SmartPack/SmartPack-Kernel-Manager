@@ -1,0 +1,656 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string name="checking_info">"情報を確認しています…"</string>
+    <string name="checking_root">"rootアクセスを確認しています"</string>
+    <string name="searching_busybox">"BusyBoxを検索しています"</string>
+    <string name="collecting_info">"情報を集めています"</string>
+    <string name="no_root">"root権限がありません"</string>
+    <string name="no_busybox">"BusyBoxがありません"</string>
+    <string name="open">"%sを開く"</string>
+
+    <!-- Security -->
+    <string name="select_picture">"画像を選択"</string>
+    <string name="no_picture">"画像がありません"</string>
+    <string name="went_wrong">"失敗をしました!"</string>
+    <string name="press_back_again_exit">"もう一度押すと終了します"</string>
+    <string name="ok">"OK"</string>
+    <string name="yes">"はい"</string>
+    <string name="unknown">"不明"</string>
+    <string name="warning">"警告!"</string>
+    <string name="apply_on_boot">"起動時に適用する"</string>
+    <string name="apply_on_boot_text">"%d秒後に設定を適用する。"</string>
+    <string name="apply_on_boot_complete">"設定を適用しました。"</string>
+    <string name="apply_on_boot_canceled">"設定の適用をキャンセルしました。"</string>
+    <string name="not_in_range">"範囲外"</string>
+    <string name="options">"オプション"</string>
+    <string name="more">"詳細"</string>
+
+    <!-- Permissions Denied -->
+    <string name="permission_denied_write_storage">"ストレージの書き込みが拒否されました!"</string>
+
+    <!-- Editor -->
+    <string name="save">"保存"</string>
+
+    <!-- Units -->
+    <string name="mhz">"MHz"</string>
+    <string name="celsius">"℃"</string>
+    <string name="fahrenheit">"°F"</string>
+    <string name="mb">"MB"</string>
+    <string name="ms">"ミリ秒"</string>
+    <string name="mv">"mV"</string>
+    <string name="min">"分"</string>
+    <string name="mah">"mAh"</string>
+    <string name="ma">"mA"</string>
+    <string name="kb">"KB"</string>
+    <string name="px">"ピクセル"</string>
+
+    <!-- Headers -->
+    <string name="statistics">"統計"</string>
+    <string name="kernel">"カーネル"</string>
+    <string name="tools">"ツール"</string>
+    <string name="other">"その他"</string>
+
+    <!-- Menus -->
+    <string name="overall">"全体"</string>
+    <string name="device">"デバイス"</string>
+    <string name="memory">"メモリ"</string>
+    <string name="inputs">"入力"</string>
+    <string name="cpu">"CPU"</string>
+    <string name="cpu_hotplug">"CPUホットプラグ"</string>
+    <string name="cpu_voltage">"CPU電圧"</string>
+    <string name="gpu">"GPU"</string>
+    <string name="thermal">"発熱"</string>
+    <string name="battery">"バッテリー"</string>
+    <string name="sound">"サウンド"</string>
+    <string name="screen">"画面"</string>
+    <string name="wake">"ウェイクジェスチャー"</string>
+    <string name="led">"画面とLED"</string>
+    <string name="io_scheduler">"I/Oスケジューラ"</string>
+    <string name="ksm">"KSM"</string>
+    <string name="uksm">"UKSM"</string>
+    <string name="lmk">"ローメモリキラー"</string>
+    <string name="virtual_memory">"仮想メモリ"</string>
+    <string name="entropy">"エントロピー"</string>
+    <string name="misc">"その他"</string>
+    <string name="custom_controls">"カスタムコントロール"</string>
+    <string name="backup">"バックアップ"</string>
+    <string name="build_prop_editor">"Build prop エディタ"</string>
+    <string name="profile">"プロファイル"</string>
+    <string name="script_manger">"スクリプトの管理"</string>
+    <string name="on_boot">"起動時"</string>
+    <string name="settings">"設定"</string>
+    <string name="smartpack">"SmartPack"</string>
+    <string name="about">"アプリについて"</string>
+    <string name="contributors">"貢献者"</string>
+    <string name="faq">"FAQ"</string>
+
+    <!-- Overall -->
+    <string name="overall_summary">"SmartPack-Kernel Managerのホームページへようこそ。
+        このページでは、使用しているデバイスの基本的な情報を提供します。カーネルを調整する高度なオプションはそれぞれのページにあります。"</string>
+    <string name="cpu_times">"CPU稼働時間"</string>
+    <string name="offline">"オフライン"</string>
+    <string name="core">"コア %d"</string>
+    <string name="gpu_freq">"GPU周波数"</string>
+    <string name="refresh">"更新"</string>
+    <string name="reset">"リセット"</string>
+    <string name="restore">"復元"</string>
+    <string name="restore_sure_message">"%sを復元してもよろしいですか?"</string>
+    <string name="deep_sleep">"ディープスリープ"</string>
+    <string name="uptime">"稼働時間"</string>
+    <string name="error_frequencies">"周波数の読み込みに失敗しました"</string>
+    <string name="unused_frequencies">"未使用の周波数"</string>
+
+    <!-- Device -->
+    <string name="processor">"プロセッサ"</string>
+    <string name="vendor">"ベンダー"</string>
+    <string name="features">"特徴"</string>
+    <string name="ram">"RAM"</string>
+    <string name="android_version">"Androidのバージョン"</string>
+    <string name="android_api_level">"Android SDK"</string>
+    <string name="android_codename">"Androidのコードネーム"</string>
+    <string name="fingerprint">"フィンガープリント"</string>
+    <string name="build_display_id">"ビルド表示ID"</string>
+    <string name="baseband">"ベースバンド"</string>
+    <string name="rom">"ROM"</string>
+    <string name="bootloader">"ブートローダー"</string>
+    <string name="hardware">"ハードウェア"</string>
+    <string name="architecture">"アーキテクチャ"</string>
+    <string name="treble_status">"Project Trebleの対応"</string>
+    <string name="gpu_lib">"GPUシステムライブラリ"</string>
+
+    <!-- Inputs -->
+    <string name="bus">"バス"</string>
+    <string name="product">"プロダクト"</string>
+    <string name="handlers">"ハンドラ"</string>
+
+    <!-- CPU -->
+    <string name="cores_singular">"コア %d"</string>
+    <string name="cores">"コア %d"</string>
+    <string name="cpu_usage">"CPU使用率"</string>
+    <string name="cpu_usage_string">"%sのCPU使用率"</string>
+    <string name="no_offline_core">"このコアをオフラインにできません!"</string>
+    <string name="cpu_max_freq">"CPU最大周波数"</string>
+    <string name="cpu_max_freq_summary">"CPUの最大周波数スケールを設定します。"</string>
+    <string name="cpu_min_freq">"CPU最低周波数"</string>
+    <string name="cpu_min_freq_summary">"CPUの最低周波数スケールを設定します。"</string>
+    <string name="cpu_max_screen_off_freq">"画面オフ時のCPU最大周波数"</string>
+    <string name="cpu_max_screen_off_freq_summary">"画面オフ時のCPUの最大周波数スケールを設定します。"</string>
+    <string name="cpu_governor">"CPUガバナー"</string>
+    <string name="cpu_governor_summary">"CPUガバナーとはCPUの負荷に応じてどのように動作をするのかを決める物です。ガバナーを変更するとCPUが利用できる周波数のステップを通じて周波数のスケーリングに変化を与えます。"</string>
+    <string name="cpu_governor_tunables">"CPUガバナー詳細設定"</string>
+    <string name="governor_tunables_summary">"CPUガバナーの詳細な設定項目を開きます。"</string>
+    <string name="cpu_governor_tunables_read_error">"現在のCPUガバナーの読み込みに失敗しました。
+
+        これはQualcommのbig.LITTLEデバイスで発生する既知の問題です。このシステムはCPUのコアを強制的にオフにするため、CPUの統計情報を読み出す事が非常に困難になります。このオプションを再度選択してください。場合によっては、CPUがコアをオンにすることを拒否する場合があります。"</string>
+    <string name="tunables_error">"%sは詳細設定ができません"</string>
+    <string name="manual">"手動"</string>
+    <string name="mc_power_saving">"マルチコアの省電力化"</string>
+    <string name="mc_power_saving_summary">"タスクをできる限り少ないコアでまとめるようにします。"</string>
+    <string name="disabled">"無効"</string>
+    <string name="enabled">"有効"</string>
+    <string name="aggressive">"アグレッシブ"</string>
+    <string name="power_saving_wq">"消費電力を抑えるために起動中のCPUでワークキューをスケジュールします。"</string>
+    <string name="cfs_scheduler_policy">"CFSスケジューラーのポリシー"</string>
+    <string name="cfs_scheduler_policy_summary">"CFSスケジューラーが異なるCPUユニットにタスクを割り当てるポリシーを設定します。"</string>
+    <string name="cpu_quiet">"CPUQuiet"</string>
+    <string name="cpu_quiet_summary">"CPUQuietはCPUコアを強制的に静止状態にしてプラグインを可能なポリシーを設定します。CPUQuietのポリシーは、パフォーマンスを低下させることをなく電力を抑えます。"</string>
+    <string name="cpu_quiet_governor">"CPUQuietガバナー"</string>
+    <string name="msm_limiter">"MSM Limiter"</string>
+    <string name="msm_limiter_summary">"MSM Limiterを有効にします。 by neobuddy89"</string>
+    <string name="freq_control">"周波数の制御"</string>
+    <string name="freq_control_summary">"MSM LimiterでCPUの周波数を制御可能にします。"</string>
+
+    <!-- CPU Boost -->
+    <string name="cpu_boost">"CPUブースト"</string>
+    <string name="stune_boost">"Stuneブースト"</string>
+    <string name="cpu_boost_settings">"CPUブーストの設定"</string>
+    <string name="debug_mask">"デバッグマスク"</string>
+    <string name="debug_mask_summary">"操作のデバッグマスクを有効にします。"</string>
+    <string name="interval">"間隔"</string>
+    <string name="interval_summary">"CPUがブーストするまでの最小の間隔。"</string>
+    <string name="sync_threshold">"同期のしきい値"</string>
+    <string name="sync_threshold_summary">"CPUの負荷が設定していたしきい値を越えた場合に現在のCPUの周波数を上げます。"</string>
+    <string name="input_interval">"入力の間隔"</string>
+    <string name="input_interval_summary">"入力が検出されたときにCPUをブーストする最小の間隔。"</string>
+    <string name="sched_boost_Input">"入力時の周波数のブーストのスケジュール"</string>
+    <string name="input_boost_freq">"入力時の周波数のブースト"</string>
+    <string name="input_boost_freq_core">"入力時の周波数のブーストのコア: %dコア"</string>
+    <string name="input_boost_freq_summary">"入力の検出時にブーストをするCPU周波数。"</string>
+    <string name="wakeup_boost">"ウェイクアップ時にブースト"</string>
+    <string name="wakeup_boost_summary">"ウェイクアップ時にブーストはCPU入力ブーストに似ていますが、これは画面がオンになっている場合にブーストをします。"</string>
+    <string name="hotplug_boost">"Hotplug Boost"</string>
+    <string name="hotplug_boost_summary">"Hotplug BoostはCPU Input Boostに似ていますが、これはCPUがオンラインになっている場合にブーストをします。"</string>
+    <string name="touch_boost">"タッチブースト"</string>
+    <string name="touch_boost_summary">"画面に触れたり、ボタンを押したりした場合に最小のCPUスピードが向上します。"</string>
+    <string name="cpu_input_boost">"CPU Input Boost"</string>
+    <string name="cpu_input_boost_summary">"イベントベースのCPUブーストドライバ「CPU Input Boost」を有効にします。by Sultanxda"</string>
+    <string name="cpuiboost_duration">"CPU Input Boostの時間"</string>
+    <string name="cpuiboost_duration_summary">"CPU Input Boost時間の設定"</string>
+    <string name="wake_boost_duration">"ウェイクアップ時のブーストの時間"</string>
+    <string name="cluster_return_freq">"クラスターリターンの周波数"</string>
+    <string name="dyn_stune_boost">"ダイナミックStuneブースト"</string>
+    <string name="stune_boost_ms">"Stuneブーストの時間"</string>
+    <string name="stune_boost_sett">"Stuneブーストの設定"</string>
+    <string name="powerhal">"Power HAL"</string>
+    <string name="powerhal_tunables">"Power HALのチューン"</string>
+
+    <!-- CPU Hotplug -->
+    <string name="hotplug_warning">"複数のホットプラグが有効になっています!
+        1つだけに設定をしてください。"</string>
+    <string name="mpdecision">"MPDecision"</string>
+    <string name="mpdecision_summary">"Qualcommのホットプラグソリューションです。これを有効にすると周波数の変更をする際に問題が発生する場合があります。"</string>
+    <string name="intelliplug">"IntelliPlug"</string>
+    <string name="intelliplug_summary">"カーネル内のMPDecisionをIntelliPlugに置き換えます。Developed by faux123"</string>
+    <string name="cpu_hotplug_profile_summary">"括弧内の数字は常時オンラインになっているコアの数です。"</string>
+    <string name="insanity">"InSaNiTy"</string>
+    <string name="balanced">"Balanced"</string>
+    <string name="performance">"Performance"</string>
+    <string name="conservative">"Conservative"</string>
+    <string name="eco_insanity">"Eco InSaNiTy"</string>
+    <string name="eco_performance">"Eco Performance"</string>
+    <string name="eco_conservative">"Eco Conservative"</string>
+    <string name="tri">"Tri"</string>
+    <string name="eco">"Eco"</string>
+    <string name="strict">"Strict"</string>
+    <string name="eco_mode">"Ecoモード"</string>
+    <string name="eco_mode_summary">"IntelliPlugを使用したバッテリー節約モードです。"</string>
+    <string name="hysteresis">"ヒステリシス値"</string>
+    <string name="hysteresis_summary">"低いほどレスポンスが速くなります。"</string>
+    <string name="cpu_threshold">"CPUしきい値"</string>
+    <string name="cpu_threshold_summary">"高いほどCPU使用率が少なくなります。"</string>
+    <string name="suspend">"サスペンド"</string>
+    <string name="suspend_summary">"サスペンドしないようにします。"</string>
+    <string name="cpus_boosted">"CPUブースト"</string>
+    <string name="cpus_boosted_summary">"同時にブーストをするCPUの最大数です。"</string>
+    <string name="min_cpu_online">"オンライン状態のCPUの最小数"</string>
+    <string name="min_cpu_online_summary">"オンライン状態にするCPUの最小数です。"</string>
+    <string name="max_cpu_online">"オンライン状態のCPUの最大数"</string>
+    <string name="max_cpu_online_summary">"オンライン状態にするCPUの最大数です。"</string>
+    <string name="max_cpu_online_screen_off">"画面オフ時のCPUのオンライン状態"</string>
+    <string name="max_cpu_online_screen_off_summary">"画面オフ時にCPUをオンライン状態にする最大数です。"</string>
+    <string name="suspend_defer_time">"サスペンドの一時停止時間"</string>
+    <string name="defer_sampling">"サンプリングを延ばす"</string>
+    <string name="boost_lock_duration">"ブーストロックまでの時間"</string>
+    <string name="boost_lock_duration_summary">"CPUをブーストする最小の間隔。"</string>
+    <string name="down_lock_duration">"ダウンロックまでの時間"</string>
+    <string name="down_lock_duration_summary">"CPUをオンラインにしておくまでの最小の間隔。"</string>
+    <string name="fshift">"FShift"</string>
+    <string name="lazyplug">"LazyPlug"</string>
+    <string name="lazyplug_summary">"カーネル内のMPDecisionをLazyPlugに置き換えます。Developed by arter97"</string>
+    <string name="lazy">"Lazy"</string>
+    <string name="possible_cpu_cores_summary">"LazyPlugが使用可能なコアです。"</string>
+    <string name="blu_plug">"Blu_Plug"</string>
+    <string name="blu_plug_summary">"カーネル内のMPDecisionをBlu_Plugに置き換えます。Developed by Code_Blue team"</string>
+    <string name="powersaver_mode">"パワーセーバーモード"</string>
+    <string name="powersaver_mode_summary">"CPUの最大コアを1つのみオンライン状態にし、周波数を1728MHzに設定します。"</string>
+    <string name="up_threshold">"しきい値の上限"</string>
+    <string name="up_threshold_summary">"しきい値を越えた場合、ドライバはもう1つのコアをオンラインにします。"</string>
+    <string name="up_timer_cnt">"アップタイマーコントロール"</string>
+    <string name="up_timer_cnt_summary">"CPUをアップさせるまでの制御タイマー。"</string>
+    <string name="down_timer_cnt">"ダウンタイマーコントロール"</string>
+    <string name="down_timer_cnt_summary">"CPUをダウンさせるまでの制御タイマー。"</string>
+    <string name="mako_hotplug">"Mako Hotplug"</string>
+    <string name="mako_hotplug_summary">"カーネル内のMPDecisionをMako Hotplugに置き換えます。Developed by franciscofranco"</string>
+    <string name="cpus_on_touch">"タッチ時のCPU"</string>
+    <string name="cpus_on_touch_summary">"画面に触れたり、ボタンを押した場合にCPUをオンラインにする数を設定します。"</string>
+    <string name="cpu_freq_unplug_limit">"アンプラグ時のCPU周波数制限。"</string>
+    <string name="first_level">"First Level"</string>
+    <string name="first_level_summary">"すべてのCPUをオンラインにするしきい値。"</string>
+    <string name="high_load_counter">"高負荷カウンター"</string>
+    <string name="load_threshold">"負荷のしきい値"</string>
+    <string name="load_threshold_summary">"すべてのCPUをオンラインにするしきい値。"</string>
+    <string name="max_load_counter">"最大負荷カウンター"</string>
+    <string name="min_time_cpu_online">"CPUをオンラインにする最短時間。"</string>
+    <string name="timer">"タイマー"</string>
+    <string name="screen_off_single_cpu">"画面オフ時にシングルCPUにする"</string>
+    <string name="delay">"ディレイ値"</string>
+    <string name="msm_hotplug">"MSM Hotplug"</string>
+    <string name="history_size">"ヒストリーサイズ"</string>
+    <string name="update_rate">"更新レート"</string>
+    <string name="offline_load">"オフラインで読み込み"</string>
+    <string name="alucard_hotplug">"Alucard Hotplug"</string>
+    <string name="sampling_rate">"サンプリングレート"</string>
+    <string name="cpu_down_rate">"CPUダウンレート"</string>
+    <string name="cpu_up_rate">"CPUアップレート"</string>
+    <string name="io_is_busy">"IOはビジー状態です"</string>
+    <string name="msm_mpdecision_hotplug">"MSM MPDecision Hotplug"</string>
+    <string name="bricked_hotplug">"Bricked Hotplug"</string>
+    <string name="start_delay">"開始までのディレイ値"</string>
+    <string name="pause">"一時停止"</string>
+    <string name="autosmp">"自動SMP"</string>
+    <string name="downrate_limits">"ダウンレート制限"</string>
+    <string name="uprate_limits">"アップレート制限"</string>
+    <string name="cycle_down">"サイクル低下"</string>
+    <string name="cycle_up">"サイクル向上"</string>
+    <string name="core_control">"コアコントロール"</string>
+    <string name="hotplug_suspend">"Hotplugのサスペンド"</string>
+    <string name="hcube">"H-Cube"</string>
+    <string name="hcube_summary">"OnePlusが改良したコアコントロールです。"</string>
+    <string name="offline_delay">"オフラインのディレイ値"</string>
+    <string name="online_delay">"オンラインのディレイ値"</string>
+    <string name="msm_sleeper">"MSM Sleeper"</string>
+    <string name="hotplug_load">"Hotplugの読み込み"</string>
+    <string name="hotplug_rate">"Hotplugのレート"</string>
+    <string name="hotplug_rq">"Hotplug RQ"</string>
+    <string name="aio_hotplug">"AiO Hotplug"</string>
+    <string name="aio_hotplug_summary">"Qualcommデバイス用のオールインワンなHotplugです。Developed by Shoaib0597"</string>
+    <string name="adv_sett">"高度な設定"</string>
+    <string name="thunder_plug">"ThunderPlug"</string>
+    <string name="dual_core_mode">"デュアルコアモード"</string>
+    <string name="quad_core_mode">"クアッドコアモード"</string>
+
+    <!-- GPU -->
+    <string name="gpu_2d_governor">"GPU 2D ガバナー"</string>
+    <string name="gpu_2d_governor_summary">"GPUの2Dガバナーを設定します。"</string>
+    <string name="gpu_governor">"GPUガバナー"</string>
+    <string name="gpu_governor_summary">"GPUガバナーを設定します。"</string>
+    <string name="simple_gpu_algorithm">"Simple GPU Algorithm"</string>
+    <string name="adrenoboost">"AdrenoBoost"</string>
+    <string name="gpu_powelevel">"GPUパワーレベル"</string>
+
+    <!-- Thermal -->
+    <string name="poll">"プール"</string>
+    <string name="temp_limit">"温度制限"</string>
+    <string name="core_control_mask">"コアコントロールマスク"</string>
+
+    <!-- Battery -->
+    <string name="capacity">"キャパシティ"</string>
+    <string name="blx">"Battery Life eXtender"</string>
+    <string name="charging_enable">"充電を有効"</string>
+    <string name="charging_enable_summary">"警告! このオプションを無効にすると充電が停止します。"</string>
+    <string name="thunder_charge">"Thunder Charge"</string>
+    <string name="thunder_charge_summary">"Thunder Chargeを有効 by varun.chitre15"</string>
+
+    <!-- Advanced Charge Control Interface -->
+    <string name="acci">"高度な充電制御インターフェース"</string>
+    <string name="fast_charge">"急速充電"</string>
+    <string name="fast_charge_summary">"USB接続時の急速充電を有効にします。カスタムレベルを選択するとレベルに応じてデバイスを急速充電することができます。オプションを変更するときはUSBを接続し直してください。"</string>
+    <string name="otg_enable">"OTG接続に切り替え"</string>
+    <string name="otg_enable_summary">"OTG(USB On-The-Go)に対応しているOnePlusの機種でOTG接続を永続的に有効にします。"</string>
+    <string name="usb_fast_charge_summary">"USB接続時の充電が速くなります。オプションを変更するときはUSBを接続し直してください。"</string>
+    <string name="custom_charge">"カスタムモード"</string>
+    <string name="charge_level_ac">"充電レベル (AC)"</string>
+    <string name="charge_level_usb">"充電レベル (USB)"</string>
+    <string name="charge_level_wireless">"充電レベル (ワイヤレス)"</string>
+    <string name="charge_level_summary">"レベルを選択してください (mA)"</string>
+    <string name="mtp_fast_charge">"MTP接続を行いながら急速充電"</string>
+    <string name="mtp_fast_charge_summary">"MTP接続を行いながら急速充電をします。"</string>
+
+    <!-- Sound -->
+    <string name="sound_control">"サウンドコントロール"</string>
+    <string name="headset_highperf_mode">"ヘッドセット高パフォーマンスモード"</string>
+    <string name="headphone_gain">"ヘッドホンのゲイン"</string>
+    <string name="speaker_gain">"スピーカーのゲイン"</string>
+    <string name="speaker_tuning">"スピーカーのチューニング"</string>
+    <string name="headphone_tpa6165_gain">"ヘッドホンアンプゲイン (TPA6165の拡張)"</string>
+    <string name="microphone_gain">"マイクのゲイン"</string>
+    <string name="volume_gain">"音量のゲイン"</string>
+    <string name="boefflasound">"Boeffla Sound"</string>
+    <string name="boefflasound_summary">"Boeffla Soundエンジンをオン/オフ"</string>
+    <string name="earpiece_gain">"イヤーピースのゲイン (通話時)"</string>
+    <string name="faux_sound">"Faux Sound"</string>
+    <string name="faux_sound_summary">"Faux Soundエンジンをオン/オフ"</string>
+    <string name="lock_mic_gain">"マイクのゲイン値を固定"</string>
+    <string name="lock_mic_gain_summary">"マイクのゲインの変更を固定します。"</string>
+    <string name="privacy_mode">"プライバシーモード"</string>
+    <string name="dac_oversampling">"DACオーバーサンプリング"</string>
+    <string name="mono_downmix">"モノラルにダウンミックス"</string>
+
+    <!-- Screen -->
+    <string name="screen_color">"画面の色"</string>
+    <string name="red">"赤色"</string>
+    <string name="green">"緑色"</string>
+    <string name="blue">"青色"</string>
+    <string name="white">"白色"</string>
+    <string name="yellow">"黄色"</string>
+    <string name="grayscale_mode">"グレースケールモード"</string>
+    <string name="screen_value">"スクリーンの値"</string>
+    <string name="screen_contrast">"画面のコントラスト"</string>
+    <string name="high_brightness_mode">"高輝度モード"</string>
+    <string name="srgb">"sRGB"</string>
+    <string name="gamma">"ガンマ"</string>
+    <string name="contrast">"コントラスト"</string>
+    <string name="brightness">"輝度"</string>
+    <string name="lcd_backlight">"LCDバックライト"</string>
+    <string name="min_brightness">"最小の輝度"</string>
+    <string name="min_brightness_summary">"画面の輝度を通常よりも下げるようにします。"</string>
+    <string name="max_brightness">"最大の輝度"</string>
+    <string name="max_brightness_summary">"画面の輝度を通常よりも上げるようにします。"</string>
+    <string name="offset">"オフセット"</string>
+    <string name="glove_mode">"手袋モード"</string>
+    <string name="glove_mode_summary">"手袋モードを有効にすると手袋を付けている状態でもデバイスの操作ができるようになります。"</string>
+
+    <!-- K-lapse -->
+    <string name="klapse">"K-lapse"</string>
+    <string name="export_settings">"K-lapseの設定をエクスポート"</string>
+    <string name="night_mode_schedule">"ナイトモードのスケジュール"</string>
+    <string name="start_time">"開始"</string>
+    <string name="end_time">"終了"</string>
+    <string name="backlight_range">"バックライトのレンジ"</string>
+
+    <!-- Wake -->
+    <string name="dt2w">"ダブルタップで起動"</string>
+    <string name="dt2w_summary">"デバイスの画面をダブルタップで起動するようにします。"</string>
+    <string name="center">"中央"</string>
+    <string name="full">"全画面"</string>
+    <string name="bottom_half">"下半分"</string>
+    <string name="top_half">"上半分"</string>
+    <string name="s2w">"Sweep2Wake"</string>
+    <string name="s2w_summary">"デバイスの画面をスワイプで起動するようにします。"</string>
+    <string name="s2s">"Sweep2Sleep"</string>
+    <string name="t2w">"タップで起動"</string>
+    <string name="t2w_summary">"デバイスの画面をタップで起動するようにします。"</string>
+    <string name="dt2s">"ダブルタップで消灯"</string>
+    <string name="dt2s_summary">"デバイスの画面をダブルタップで消灯するようにします。"</string>
+    <string name="draw_e">"Eを描く"</string>
+    <string name="draw_o">"Oを描く"</string>
+    <string name="draw_w">"Wを描く"</string>
+    <string name="draw_c">"Cを描く"</string>
+    <string name="draw_m">"Mを描く"</string>
+    <string name="camera_gesture">"カメラの起動ジェスチャ"</string>
+    <string name="camera_gesture_summary">"画面上に円を描くとカメラを起動するようにします。"</string>
+    <string name="pocket_mode">"ポケットモード"</string>
+    <string name="pocket_mode_summary">"ポケットモードを有効にするとポケットに入れたときにウェイクコントロールをオフにします。"</string>
+    <string name="timeout">"タイムアウト"</string>
+    <string name="charge_timeout">"充電のタイムアウト"</string>
+    <string name="width">"幅"</string>
+    <string name="height">"高さ"</string>
+    <string name="vibration">"振動"</string>
+    <string name="vibration_strength">"振動の強さ"</string>
+    <string name="override_vib">"振動を上書き"</string>
+    <string name="override_vib_summary">"デフォルトの振動設定を上書きできるようにします。"</string>
+    <string name="system_vib">"システムの振動設定"</string>
+    <string name="notification_vib">"通知"</string>
+    <string name="calls_vib">"通話"</string>
+    <string name="key_power_mode">"電源キーモード"</string>
+    <string name="charging_mode">"充電モード"</string>
+    <string name="up">"上"</string>
+    <string name="down">"下"</string>
+    <string name="left">"左"</string>
+    <string name="right">"右"</string>
+    <string name="smart_wake">"スマート起動"</string>
+
+    <!-- LED -->
+    <string name="led_notification">"LED通知"</string>
+    <string name="on">"オン"</string>
+    <string name="off">"オフ"</string>
+    <string name="fade_in">"フェードイン"</string>
+    <string name="fade_out">"フェードアウト"</string>
+    <string name="display_backlight">"画面のバックライト"</string>
+    <string name="led_brightness">"LEDの輝度 (最大)"</string>
+
+    <!-- I/O Scheduler -->
+    <string name="internal_storage">"内部ストレージ"</string>
+    <string name="external_storage">"外部ストレージ"</string>
+    <string name="scheduler">"スケジューラ"</string>
+    <string name="iostats">"I/Oの状態"</string>
+    <string name="add_random">"ランダムを追加"</string>
+
+    <!-- Kernel Samepage Merging -->
+    <string name="full_scans">"完全スキャン"</string>
+    <string name="uksm_governor">"UKSM CPUガバナー"</string>
+
+    <!-- Low Memory Killer -->
+    <string name="foreground_app">"フォアグラウンドのアプリ"</string>
+    <string name="lmk_adaptive">"アダプティブ ローメモリキラー"</string>
+    <string name="lmk_fast_run">"高速起動を有効"</string>
+    <string name="secondary_server">"セカンダリーサーバー"</string>
+    <string name="hidden_app">"隠したアプリ"</string>
+    <string name="content_providers">"コンテンツプロバイダー"</string>
+    <string name="low">"低"</string>
+    <string name="medium">"中"</string>
+    <string name="high">"高"</string>
+
+    <!-- Wakelock -->
+    <string name="wkl_total_time">"時間"</string>
+    <string name="wkl_name">"名前"</string>
+    <string name="wkl_time">"時間"</string>
+    <string name="wkl_ssp">"SSP"</string>
+    <string name="wkl_gps">"GPS"</string>
+    <string name="wkl_wireless">"無線"</string>
+    <string name="wkl_bluetooth">"Bluetooth"</string>
+
+    <!-- Virtual Memory -->
+    <string name="zram">"Z-RAM"</string>
+    <string name="zram_algo">"Z-RAMアルゴリズム"</string>
+    <string name="zram_algo_summary">"デフォルトのZ-RAMの圧縮アルゴリズムを設定します。"</string>
+    <string name="disksize">"ディスクサイズ"</string>
+    <string name="zswap">"ZSWAP"</string>
+    <string name="memory_pool">"メモリプール"</string>
+
+    <!-- Entropy -->
+    <string name="poolsize">"プールサイズ"</string>
+    <string name="read">"読み込み"</string>
+    <string name="write">"書き込み"</string>
+
+    <!-- Misc -->
+    <string name="android_logger">"Androidのロギング"</string>
+    <string name="android_logger_summary">"Androidのロギングをオン/オフ"</string>
+    <string name="printk_logger">"PrintKのロギング"</string>
+    <string name="printk_logger_summary">"PrintKのロギングをオン/オフ"</string>
+    <string name="crc">"ソフトウェアCRCコントロール"</string>
+    <string name="fsync">"Fsync"</string>
+    <string name="dynamic_fsync">"ダイナミックFsync"</string>
+    <string name="power_suspend">"パワーサスペンド"</string>
+    <string name="power_suspend_mode">"パワーサスペンドモード"</string>
+    <string name="autosleep">"自動スリープ"</string>
+    <string name="lcd_panel">"液晶パネル"</string>
+    <string name="hybrid">"ハイブリッド"</string>
+    <string name="power_suspend_state">"パワーサスペンドの状態"</string>
+    <string name="network">"ネットワーク"</string>
+    <string name="hostname">"ホスト名"</string>
+    <string name="wireguard">"WireGuard VPN"</string>
+    <string name="auto_sync">"データの自動同期"</string>
+
+    <!-- Performance Tweaks -->
+    <string name="spectrum">"パフォーマンスの調整"</string>
+    <string name="profileTile">"プロファイル"</string>
+    <string name="spec_title">"パフォーマンスの調整"</string>
+    <string name="spec_balanced">"バランス"</string>
+    <string name="spec_performance">"パフォーマンス"</string>
+    <string name="spec_battery">"バッテリー"</string>
+    <string name="spec_gaming">"ゲーミング"</string>
+
+    <!-- Custom Controls -->
+    <string name="welcome">"ようこそ"</string>
+    <string name="create">"作成"</string>
+    <string name="import_item">"インポート"</string>
+    <string name="control_switch">"切り替え"</string>
+    <string name="control_generic">"一般"</string>
+    <string name="edit">"編集"</string>
+    <string name="export">"エクスポート"</string>
+    <string name="delete">"削除"</string>
+    <string name="share">"共有"</string>
+    <string name="sure_question">"よろしいですか?"</string>
+    <string name="name">"名前"</string>
+    <string name="name_empty">"名前が空欄です!"</string>
+
+    <!-- Backup -->
+    <string name="boot_partition">"Bootパーティション"</string>
+    <string name="recovery_partition">"リカバリーパーティション"</string>
+    <string name="fota_partition">"FOTAパーティション"</string>
+    <string name="flash">"フラッシュ"</string>
+    <string name="flasher">"フラッシャー"</string>
+    <string name="flasher_summary">"フラッシュボタンをタップするとカスタムリカバリーを起動しなくてもZIPファイルを選択してフラッシュする事ができます。再起動後に適用されます。"</string>
+
+    <!-- Build prop Editor -->
+    <string name="add">"追加"</string>
+    <string name="key">"キー"</string>
+    <string name="value">"値"</string>
+    <string name="key_empty">"キーは空欄にできません!"</string>
+
+    <!-- Profile -->
+    <string name="apply">"適用"</string>
+    <string name="details">"詳細"</string>
+    <string name="profile_tasker">"Taskerのプロファイル"</string>
+    <string name="profile_tile">"プロファイルのタイル"</string>
+    <string name="profile_select">"プロファイルの選択"</string>
+    <string name="new_mode">"新規"</string>
+    <string name="current_settings">"現在の設定"</string>
+    <string name="select_all">"すべて選択"</string>
+    <string name="nothing_selected">"選択されていません"</string>
+    <string name="profile_empty">"プロファイルは空です!"</string>
+
+    <!-- SmartPack -->
+    <string name="donations">"寄付"</string>
+    <string name="donations_summary">"開発者に寄付"</string>
+    <string name="download">"ダウンロード"</string>
+    <string name="download_completed">"%sがダウンロードできました。フラッシュを行いますか?"</string>
+    <string name="downloading_update">"%sをダウンロード中です"</string>
+    <string name="get_it_summary">"最新のカーネルを入手"</string>
+    <string name="kernel_current">"現在のバージョン"</string>
+    <string name="kernel_latest">"最新のバージョン"</string>
+    <string name="kernel_information">"カーネルの情報"</string>
+    <string name="update_channel">"アップデートチャンネルURL"</string>
+    <string name="update_channel_create">"アップデートチャンネルを作成"</string>
+    <string name="other_options">"その他のオプション"</string>
+    <string name="shell">"シェルコマンドの起動"</string>
+    <string name="terminal">"ターミナル"</string>
+    <string name="support">"サポート"</string>
+    <string name="support_summary">"サポートページを開く"</string>
+    <string name="reboot">"再起動"</string>
+    <string name="rebooting">"再起動中です"</string>
+    <string name="reboot_options">"再起動オプション"</string>
+    <string name="reboot_options_summary">"デバイスの電源をオフまたは再起動。"</string>
+    <string name="reboot_normal">"通常の再起動"</string>
+    <string name="reboot_recovery">"リカバリーに再起動"</string>
+    <string name="reboot_bootloader">"ブートローダーに再起動"</string>
+    <string name="rebooting_message">"5秒後に再起動します"</string>
+    <string name="turn_off">"電源をオフ"</string>
+    <string name="backing_up">"バックアップ中"</string>
+    <string name="flashing">"フラッシュしています…"</string>
+    <string name="flashing_failed">"フラッシュに失敗しました"</string>
+    <string name="flashing_finished">"フラッシュが完了しました"</string>
+    <string name="restoring">"復元中"</string>
+    <string name="reset_settings">"アプリをリセット"</string>
+    <string name="reset_settings_summary">"ユーザー設定をリセットします。"</string>
+    <string name="reset_settings_message">"アプリの設定は完全に消去されます。よろしいですか?"</string>
+    <string name="remove">"削除"</string>
+    <string name="busybox_installer">"BusyBox Installer"</string>
+    <string name="check_update">"アップデートを確認"</string>
+
+    <!-- Update Channel -->
+    <string name="kernel_name">"カーネル名"</string>
+    <string name="kernel_name_summary">"カーネルの名前"</string>
+    <string name="kernel_version">"カーネルのバージョン"</string>
+    <string name="kernel_version_summary">"カーネルのバージョン"</string>
+    <string name="download_link">"ダウンロードリンク"</string>
+    <string name="download_link_summary">"ダウンロードリンク"</string>
+    <string name="changelog_summary">"更新履歴のテキストまたはURL"</string>
+    <string name="sha1">"セキュアハッシュアルゴリズム"</string>
+    <string name="sha1_summary">"sha1"</string>
+    <string name="support_group">"サポートグループ"</string>
+    <string name="support_group_summary">"サポートリンク"</string>
+    <string name="donation_link">"寄付のリンク"</string>
+    <string name="donation_link_summary">"寄付のリンク"</string>
+    <string name="clear">"すべてクリア"</string>
+
+    <!-- Settings -->
+    <string name="open_settings">"設定を開く"</string>
+    <string name="user_interface">"ユーザーインターフェース"</string>
+    <string name="dark_theme">"ダークテーマ"</string>
+    <string name="material_icon">"マテリアルアイコン"</string>
+    <string name="banner_resizer">"バナーのリサイズ"</string>
+    <string name="hide_banner">"バナーを隠す"</string>
+    <string name="accent_color">"アクセントカラー"</string>
+    <string name="section_icons">"セクションのアイコン"</string>
+    <string name="five_sec">"5秒"</string>
+    <string name="ten_sec">"10秒"</string>
+    <string name="twenty_sec">"20秒"</string>
+    <string name="fifty_sec">"50秒"</string>
+    <string name="enable_onboot">"起動時に有効"</string>
+    <string name="test">"テスト"</string>
+    <string name="hide">"隠す"</string>
+    <string name="always_show">"常に表示"</string>
+    <string name="toast">"トースト"</string>
+    <string name="script">"スクリプト"</string>
+    <string name="logcat">"Logcat"</string>
+    <string name="driver_message">"ドライバのメッセージ"</string>
+    <string name="security">"セキュリティー"</string>
+    <string name="sections">"セクション"</string>
+    <string name="default_section">"デフォルトのセクション"</string>
+    <string name="source_code">"ソースコード"</string>
+    <string name="source_code_summary">"GitHubでソースコードを見る"</string>
+    <string name="change_logs">"更新履歴"</string>
+    <string name="change_logs_summary">"更新履歴を表示"</string>
+    <string name="playstore">"Google Play"</string>
+    <string name="playstore_summary">"Google Playを開く"</string>
+    <string name="donate_me_summary">"プロジェクトの開発を支援する"</string>
+    <string name="purchase_app">"ドネーションアプリを購入"</string>
+    <string name="billing_client_disconnected">"Google Play Billing クライアントとの接続に失敗しました!"</string>
+    <string name="support_acknowledged">"あなたから寄付を受けました\u2665"</string>
+    <string name="support_development">"開発支援"</string>
+    <string name="support_development_summary">"無償で提供しているこのアプリの開発者に支援をしたいと思った方は、以下のオプションのいずれかを選択してください。寄付をしていただくとサポーターバッジが付与されます。"</string>
+    <string name="support_dinner">"ディナーを奢る"</string>
+    <string name="support_meal">"食事を奢る"</string>
+    <string name="support_coffee">"コーヒーを奢る"</string>
+    <string name="support_already_received_message">"前にこれで開発をサポートしてもらったんですよねー!"</string>
+    <string name="support_received_message">"ご支援ありがとうございます\u2665
+        このプロジェクトをもっと活発に続けていくキッカケになります! このページの上部にサポーターバッジが表示されます。"</string>
+    <string name="support_retry_message">"もう一度購入を試してみてください!"</string>
+    <string name="support_status_message">"ご支援いただきありがとうございます!"</string>
+
+    <!-- I/O Advanced -->
+    <string name="dir_change_notifier">"ディレクトリ変更の通知"</string>
+    <string name="quick_tile">"クイック設定のタイル"</string>
+</resources>

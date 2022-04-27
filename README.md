@@ -108,6 +108,7 @@ Please help me to translate this application via [POEditor](https://poeditor.com
 * [Fatih Fırıncı](https://github.com/Fatih-BaKeR) & omerakgoz34, Turkish
 * Phil, Portuguese (Portugal)
 * Catellone94 & Gianfranco. liguori.96, Italian
+* Re*Index.(ot_inc), Japanese
 * Many other people contributed via [POEditor](https://poeditor.com/join/project?hash=qWFlVfAlp5)
 
 _If you think I missed your name, please let me know._
