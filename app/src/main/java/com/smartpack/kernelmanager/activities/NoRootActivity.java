@@ -22,11 +22,8 @@
 package com.smartpack.kernelmanager.activities;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
 
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
@@ -44,25 +41,12 @@ public class NoRootActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noroot);
 
-        LinearLayout bbi = findViewById(R.id.bbi);
-        MaterialTextView mainTitle = findViewById(R.id.title_main);
         MaterialTextView mainMessage = findViewById(R.id.message_main);
-        bbi.setOnClickListener(v -> launchBBI());
         if (Common.hasRoot() && !Common.hasBusyBox()) {
-            bbi.setVisibility(View.VISIBLE);
-            mainTitle.setText(getString(R.string.no_busybox));
-            mainMessage.setText(R.string.busybox_message);
+            mainMessage.setText(R.string.no_busybox);
+            mainMessage.setOnClickListener(v -> Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.busyboxinstaller", this));
         } else {
-            mainTitle.setText(R.string.no_root);
-            mainMessage.setText(R.string.no_root_message);
+            mainMessage.setText(R.string.no_root);
         }
-        AppCompatImageButton mBack = findViewById(R.id.back_button);
-        mBack.setOnClickListener(v -> onBackPressed());
-        MaterialTextView mCancel = findViewById(R.id.cancel_button);
-        mCancel.setOnClickListener(v -> super.onBackPressed());
-    }
-
-    private void launchBBI() {
-        Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.busyboxinstaller", this);
     }
 }

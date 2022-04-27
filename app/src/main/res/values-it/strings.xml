@@ -8,31 +8,6 @@
     <string name="no_busybox">"Busybox assente"</string>
     <string name="open">"Apro %s"</string>
 
-    <!-- No Root/BusyBox -->
-    <string name="busybox_message">"Perché stai avendo questo errore?
-
-        BusyBox non è installato sul tuo dispositivo. Sfortunatamente, SmartPack-Kernel Manager richiede dei file di BusyBox per eseguire alcune azioni(esempio: Flash automatico)!
-
-        Come risolvere?
-
-        Per favore installa BusyBox per risolvere il problema. Sul Play Store è disponibile un edizione gratuita ed open source dell'installer di BusyBox, creata dal nostro team, che ti permette di installare i file binari di BusyBox in pochi click!"</string>
-    <string name="busybox_install_message">"Clicca qui per ottenere l'installer di BusyBox dal PlayStore "</string>
-    <string name="no_root_message">"Perché si è verificato questo problema?
-
-        Il tuo dispositivo non è rootato o l'autorizzazione di root è stata rifiutata da te per SmartPack-Kernel Manager
-
-        Perché è necessaria l'autorizzazione di root?
-
-        Per controllare i parametri del kernel, SmartPack-Kernel Manager deve modificare alcuni file di sistema, che non sono accessibili senza root!
-
-        Come posso eseguire il root del mio dispositivo?
-
-        Una semplice ricerca su Google ti aiuterà a trovare molte guide per ottenere il root sul tuo dispositivo. Dai un'occhiata!
-
-        Il rooting di un dispositivo è sicuro?
-
-        Il rooting pone alcuni rischi per la sicurezza, ma in genere è sicuro!"</string>
-
     <!-- Security -->
     <string name="select_picture">"Scegli un'immagine"</string>
     <string name="no_picture">"Nessuna immagine"</string>

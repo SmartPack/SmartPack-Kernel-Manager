@@ -9,11 +9,6 @@
     <string name="no_busybox">"Brak busybox"</string>
     <string name="open">"Otwórz %s"</string>
 
-    <!-- No Root/BusyBox -->
-    <string name="busybox_message">"<b>Dlaczego ten problem się wydarzył?</b>\n\nNa urządzeniu nie znaleziono prawidłowej instalacji <b>BusyBox</b>. Niestety, SmartPack-Kernel Manager wymaga wielu plików binarnych <b>BusyBox</b> do wykonania kilku zadań (np. Automatycznego flashowania)!\n\n\n<b>Jak rozwiązać ten problem?</b>\n\nAby rozwiązać ten problem, zainstaluj samodzielny system <b>BusyBox</b>. Darmowy i otwarty instalator BusyBox, który umożliwia użytkownikom instalowanie plików binarnych <b>BusyBox</b> kilkoma kliknięciami, stworzony przez nasz zespół jest dostępny w sklepie Play!"</string>
-    <string name="busybox_install_message">"Kliknij tutaj, aby pobrać instalator BusyBox ze Sklepu Play"</string>
-    <string name="no_root_message">"<b>Dlaczego wystąpił ten problem?</b>\n\nTwoje urządzenie nie jest zrootowane lub uprawnienia roota dla SmartPack zostały przez Ciebie odrzucone!\n\n\n<b>Dlaczego potrzebne są uprawnienia roota?</b>\n\nAby kontrolować parametry jądra, SmartPack musi zmodyfikować niektóre pliki systemowe, które nie są dostępne bez uprawnień roota!\n\n\n<b>Jak mogę zrootować moje urządzenie?</b>\n\nProste wyszukiwanie w Google pomoże znaleźć wiele wskazówek, jak uzyskać roota na twoim urządzeniu. Proszę, spójrz na to!\n\n\n<b>Czy rootowanie urządzenia jest bezpieczne?</b>\n\nRootowanie wiąże się z pewnym zagrożeniem bezpieczeństwa, ale generalnie jest to bezpieczne!"</string>
-
     <!-- Security -->
     <string name="select_picture">"Wybierz Obraz"</string>
     <string name="no_picture">"Brak obrazka"</string>

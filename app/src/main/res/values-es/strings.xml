@@ -8,9 +8,6 @@
     <string name="no_busybox">"Sin Busybox"</string>
     <string name="open">"Abriendo %s"</string>
 
-    <!-- No Root/BusyBox -->
-    <string name="busybox_install_message">"Haz clic aquí para obtener Busybox Installer desde la PlayStore"</string>
-
     <!-- Security -->
     <string name="select_picture">"Seleccionar Imagen"</string>
     <string name="no_picture">"No hay imagen"</string>

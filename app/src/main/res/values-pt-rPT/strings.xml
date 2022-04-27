@@ -8,11 +8,6 @@
     <string name="no_busybox">"Sem busybox"</string>
     <string name="open">"Abrir %s"</string>
 
-    <!-- No Root/BusyBox -->
-    <string name="busybox_message">"&lt;b&gt;Porque é que este problema aconteceu?&lt;/b&gt; Uma instalação adequada &lt;i&gt;do BusyBox&lt;/i&gt; não é encontrada no seu dispositivo. Infelizmente, o SmartPack-Kernel Manager requer uma série de binários &lt;i&gt;BusyBox&lt;/i&gt; para fazer várias tarefas (por exemplo, Auto-flashing)! &lt;b&gt;Como resolver este problema?&lt;/b&gt; Instale um sistema &lt;i&gt;BusyBox&lt;/i&gt; autônomo para resolver esse problema. Um instalador BusyBox gratuito e de código aberto, que permite aos usuários instalar binários &lt;i&gt;BusyBox&lt;/i&gt; em poucos cliques, feito pela nossa equipe, está disponível na PlayStore!"</string>
-    <string name="busybox_install_message">"Clique aqui para obter o BusyBox Installer da PlayStore"</string>
-    <string name="no_root_message">"&lt;b&gt;Porque é que este problema aconteceu?&lt;/b&gt; O seu dispositivo não está enraizado, ou a permissão raiz é recusada para o SmartPack-Kernel Manager por si! &lt;b&gt;Por que a permissão raiz é necessária?&lt;/b&gt; Para controlar os parâmetros do kernel, o SmartPack-Kernel Manager precisa modificar alguns arquivos do sistema, que não são acessíveis sem root! &lt;b&gt;Como posso enraizar o meu dispositivo?&lt;/b&gt; Uma pesquisa simples no google ajudará a encontrar muitos guias para alcançar a raiz no seu dispositivo. Por favor, dê uma vista de olhos! &lt;b&gt;O enraizamento de um dispositivo é seguro?&lt;/b&gt; O enraizamento representa algum risco de segurança, mas geralmente é seguro fazê-lo!"</string>
-
     <!-- Security -->
     <string name="select_picture">"Seleccionar Imagem"</string>
     <string name="no_picture">"Sem Imagem"</string>

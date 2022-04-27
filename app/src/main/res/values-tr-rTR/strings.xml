@@ -8,35 +8,6 @@
     <string name="no_busybox">"Busybox yok"</string>
     <string name="open">"%s aç"</string>
 
-    <!-- No Root/BusyBox -->
-    <string name="busybox_message">"Bu sorun neden oldu?
-
-        A proper BusyBox installation is not found on your device. Unfortunately, SmartPack-Kernel Manager requires a number of BusyBox binaries to do several tasks (e.g. Auto-flashing)!
-
-
-        How to solve this issue?
-
-        Please install a standalone BusyBox system to solve this issue. A free and open-sourced BusyBox Installer, which allow users to install BusyBox binaries in few clicks, made by our team is available in PlayStore!"</string>
-    <string name="busybox_install_message">"PlayStore'dan BusyBox Installer'ı almak için buraya tıklayın"</string>
-    <string name="no_root_message">"Bu sorun neden oldu?
-
-        Your device is either not rooted, or the root permission is declined for SmartPack-Kernel Manager by you!
-
-
-        Why root permission needed?
-
-        In order to control kernel parameters, SmartPack-Kernel Manager need to modify some system files, that are not accessible without root!
-
-
-        How can I root my device?
-
-        A simple google search will help to find many guides to achieve root on your device. Please have a look at it!
-
-
-        Is rooting a device safe?
-
-        Rooting poses some security risk, but it's generally safe to do!"</string>
-
     <!-- Security -->
     <string name="select_picture">"Resim Seç"</string>
     <string name="no_picture">"Resim Yok"</string>

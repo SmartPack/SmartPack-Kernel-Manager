@@ -8,34 +8,6 @@
     <string name="no_busybox">"Keine busybox Installation"</string>
     <string name="open">"Öffne %s"</string>
 
-    <!-- No Root/BusyBox -->
-    <string name="busybox_message">"Warum ist dieser Fehler aufgetreten?
-
-        Es wurde auf deinem Gerät keine richtige Installation von BusyBox gefunden.
-        Leider braucht der SmartPack-Kernel Manager eine Anzahl von BusyBox Binärdateien um die Aufgaben zu erledigen (z.B. Auto-flashing)!
-
-        Wie behebe ich das Problem?
-
-        Bitte installiere das eigenständige BusyBox System um das Problem zu beheben. Ein kostenloses open-source BusyBox Installier-Programm, welches die BusyBox Binärdateien in wenigen Klicks installiert, wurde von unserem Team gemacht und ist im PlayStore erhältlich!"</string>
-    <string name="no_root_message">"Wieso ist dieser Fehler aufgetreten?
-
-        Dein Gerät ist entweder nicht gerootet, oder du hast die Root-Berechtigung für SmartPack-Kernel Manager abgelehnt!
-
-
-        Wieso wird die Root-Berechtigung benötigt?
-
-        Um die Kern-Parameter zu kontrollieren muss der SmartPack-Kernel Manager manche System Dateien ändern, die ohne root nicht erreichbar sind!
-
-
-        Wie kann ich mein Gerät rooten?
-
-        Eine einfache Google Suche wird dir helfen viele Anleitungen für das rooten deines Gerätes zu finden. Bitte schaue es dir an, wie es funktioniert!
-
-
-        Ist es sicher das Gerät zu rooten?
-
-        Beim rooten besteht ein Sicherheitsrisiko, aber normalerweise sollte es sicher sein!"</string>
-
     <!-- Security -->
     <string name="select_picture">"Bild auswählen"</string>
     <string name="no_picture">"Kein Bild"</string>

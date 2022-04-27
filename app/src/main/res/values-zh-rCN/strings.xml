@@ -8,30 +8,6 @@
     <string name="no_busybox">"没有找到 Busybox"</string>
     <string name="open">"打开 %s"</string>
 
-    <!-- No Root/BusyBox -->
-    <string name="busybox_message">"<b>为什么会发生这个问题?</b>
-        在您的设备上没有找到合适的<b>BusyBox</b>。不幸的是，SmartPack-Kernel Manager需要<b>BusyBox</b>程序来完成几个任务(例如自动闪烁)!
-
-        <b>如何解决这个问题?</b>
-
-        请安装一个独立的<b>BusyBox</b>系统来解决这个问题。一个免费和开源的BusyBox安装程序，允许用户在点击几下安装<b>BusyBox</b>程序，由我们的团队在PlayStore可用!"</string>
-    <string name="busybox_install_message">"点击这里以在PlayStore获得BusyBox"</string>
-    <string name="no_root_message">"<b>为什么会发生这个问题?</b>
-
-        您的设备没有root，或者您拒绝了SmartPack-Kernel Manager的root申请!
-
-        <b>为什么需要root权限?</b>
-
-        为了控制内核参数，SmartPack-Kernel Manager需要修改一些系统文件，这些文件没有root是无法访问的!
-
-        <b>我如何root我的设备?</b>
-
-        一个简单的谷歌搜索将有助于找到许多指南，以实现root。请看一下!
-
-        <b>根设备安全吗?</b>
-
-        root会带来一些安全风险，但一般来说是安全的!"</string>
-
     <!-- Security -->
     <string name="select_picture">"选择图片"</string>
     <string name="no_picture">"没有图片"</string>
