@@ -128,7 +128,7 @@
     <string name="cores">"%d rdzeni"</string>
     <string name="cpu_usage">"Użycie CPU"</string>
     <string name="cpu_usage_string">"%s Użycie CPU"</string>
-    <string name="no_offline_core">"Możesz't offline tego rdzenia!"</string>
+    <string name="no_offline_core">"Nie możesz wyłączyć tego rdzenia!"</string>
     <string name="cpu_max_freq">"CPU Maxymalna częstotliwość"</string>
     <string name="cpu_max_freq_summary">"Ustaw maksymalną częstotliwość, do której skaluje rdzeń."</string>
     <string name="cpu_min_freq">"CPU Minimalna częstotliwość"</string>
@@ -159,9 +159,9 @@
     <string name="freq_control_summary">"Pozwól MSM Limiter kontrolować częstotliwości twoich procesorów."</string>
 
     <!-- CPU Boost -->
-    <string name="cpu_boost">"CPU Wzmocnienie"</string>
+    <string name="cpu_boost">"Wzmocnienie CPU"</string>
     <string name="stune_boost">"Stune Boost"</string>
-    <string name="cpu_boost_settings">"CPU Ustawienia wzmocnienie"</string>
+    <string name="cpu_boost_settings">"Ustawienia wzmocnienia CPU"</string>
     <string name="debug_mask">"Maska debugowania"</string>
     <string name="debug_mask_summary">"Umożliwia aktywację maski debugowania operacji."</string>
     <string name="interval">"Interwał"</string>
@@ -195,7 +195,7 @@
     <!-- CPU Hotplug -->
     <string name="hotplug_warning">"Włączony jest więcej niż jeden system hotplug!\nProszę używać tylko jednego."</string>
     <string name="mpdecision">"MPDecision"</string>
-    <string name="mpdecision_summary">"Qualcomm's hotplugging rozwiązanie. Gdy ta opcja jest włączona, mogą wystąpić problemy ze zmianą częstotliwości."</string>
+    <string name="mpdecision_summary">"Rozwiązanie hotpluggowania Qualcomm'u. Gdy ta opcja jest włączona, mogą wystąpić problemy ze zmianą częstotliwości."</string>
     <string name="intelliplug">"IntelliPlug"</string>
     <string name="intelliplug_summary">"Wbudowany w jądro zamiennik dla Qualcomm's MPDecision. Opracowany przez faux123."</string>
     <string name="cpu_hotplug_profile_summary">"Liczba w nawiasach wskazuje liczbę rdzeni online w dowolnym momencie."</string>
@@ -211,7 +211,7 @@
     <string name="strict">"Strict"</string>
     <string name="eco_mode">"Eco Mode"</string>
     <string name="eco_mode_summary">"Tryb oszczędzania baterii dla IntelliPlug."</string>
-    <string name="hysteresis">"Hysteresis Wartość"</string>
+    <string name="hysteresis">"Wartość Hysteresis"</string>
     <string name="hysteresis_summary">"Im niższa, tym szybsza odpowiedź."</string>
     <string name="cpu_threshold">"CPU Threshold"</string>
     <string name="cpu_threshold_summary">"Im wyższy, tym mniej procesorów jest używanych."</string>
@@ -233,7 +233,7 @@
     <string name="down_lock_duration_summary">"Minimalny odstęp czasu, w którym procesor jest utrzymywany w trybie online."</string>
     <string name="fshift">"FShift"</string>
     <string name="lazyplug">"LazyPlug"</string>
-    <string name="lazyplug_summary">"Wbudowany w jądro zamiennik dla Qualcomm's MPDecision. Opracowany przez arter97."</string>
+    <string name="lazyplug_summary">"Wbudowany w jądro zamiennik dla MPDecision Qualcomm'u. Opracowany przez arter97."</string>
     <string name="lazy">"Lazy"</string>
     <string name="possible_cpu_cores_summary">"Możliwe rdzenie procesora, których może używać lazyplug"</string>
     <string name="blu_plug">"Blu_Plug"</string>
