@@ -72,8 +72,9 @@ public class CustomControls {
     }
 
     public static void exportPath(String path, String folder) {
-        Utils.create(path, new File(folder + "/" + path.replaceFirst("/", "").
-                replace("/", "-")));
+        Utils.mkdir(folder);
+        Utils.create(path, folder + "/" + path.replaceFirst("/", "").
+                replace("/", "-"));
     }
 
     public static void delete(String string) {
