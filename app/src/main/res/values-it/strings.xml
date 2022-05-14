@@ -1,5 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name" translatable="false">SmartPack-Kernel Manager</string>
     
     <string name="checking_info">"Controllo informazioni…"</string>
     <string name="checking_root">"Controllo per l'accesso di root"</string>
@@ -47,10 +46,6 @@
     <string name="ma">"mA"</string>
     <string name="kb">"kB"</string>
     <string name="px">"px"</string>
-    
-    <!-- Special signs -->
-    <string name="minus" translatable="false">-</string>
-    <string name="plus" translatable="false">+</string>
 
     <!-- Headers -->
     <string name="statistics">"Statistiche"</string>
@@ -102,9 +97,6 @@
     <string name="reset">"Reset"</string>
     <string name="restore">"Ripristina"</string>
     <string name="restore_sure_message">"Sicuro di voler ripristinare %s?"</string>
-    <string name="cluster_big" translatable="false">big</string>
-    <string name="cluster_middle" translatable="false">Middle</string>
-    <string name="cluster_little" translatable="false">LITTLE</string>
     <string name="deep_sleep">"Sonno profondo"</string>
     <string name="uptime">"Attivo"</string>
     <string name="error_frequencies">"Errore nel caricamento delle frequenze"</string>
@@ -123,7 +115,6 @@
     <string name="baseband">"Baseband"</string>
     <string name="rom">"ROM"</string>
     <string name="bootloader">"Bootloader"</string>
-    <string name="trustzone" translatable="false">TrustZone</string>
     <string name="hardware">"Hardware"</string>
     <string name="architecture">"Architettura"</string>
     <string name="treble_status">"Supporto Project Treble"</string>
@@ -132,7 +123,6 @@
     <!-- Inputs -->
     <string name="bus">"Bus"</string>
     <string name="product">"Prodotto"</string>
-    <string name="sysfs" translatable="false">Sysfs</string>
     <string name="handlers">"Gestori"</string>
 
     <!-- CPU -->
@@ -1058,7 +1048,6 @@
     <string name="update_channel_instructions">"<b>Nome Kernel </b>, <b>Versione Kernel</b> &amp; <b>Link Download</b> è mandatorio compilare i campi prima di cliccare il pulsante crean.\n\n<b>Change-logs</b> può essere fornito, come testo ben formattato, o come link a una pagina online.\n\L\'Algoritmo Hash Sicuro (<b>sha1</b>) è opzionale, ma altamente raccomandato per garantire l'autenticità del kernel scaricato."</string>
     <string name="kernel_name">"Nome Kernel"</string>
     <string name="kernel_name_summary">"Kernel_name"</string>
-    <string name="kernel_name">"Nome Kernel"</string>
     <string name="kernel_version">"Versione Kernel"</string>
     <string name="download_link">"Link Download"</string>
     <string name="download_link_summary">"download_link"</string>
@@ -1137,7 +1126,6 @@
     <string name="default_section_summary">"La pagina di default da mostrare quando apri l\'app!"</string>
 	
 	<!-- About -->
-    <string name="about_me" translatable="false">SmartPack-Kernel Manager is a heavily modified version of \'Kernel Adiutor\', which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.</string>
     <string name="special_mentions">"Mentioni Speciali"</string>
     <string name="source_code">"Codice Sorgente"</string>
     <string name="source_code_summary">""isita il codice sorgente su GitHub"</string>
