@@ -766,7 +766,7 @@
     <string name="boeffla_wakelock">"Boeffla Generic Wakelock Blocker"</string>
     <string name="wkl_order">"Ordine dei Wakelocks"</string>
     <string name="wkl_order_summary">"Seleziona l'ordine dei Wakelocks"</string>
-	<string name="wkl_blocked">"Wakelocks Bloccati"</string>
+    <string name="wkl_blocked">"Wakelocks Bloccati"</string>
     <string name="wkl_allowed">"Wakelocks Consentiti"</string>
     <string name="wkl_total_time">"Tempo"</string>
     <string name="wkl_wakep_count">"Risvegli"</string>
@@ -794,8 +794,8 @@
     <string name="qcom_rx_wakelock">"Qcom rx Wakelock"</string>
     <string name="qcom_rx_wakelock_summary">"Impedisci Qcom rx wakelock."</string>
     <string name="timerfd_wakelock">"Timerfd Wakelock"</string>
-	<string name="timerfd_wakelock_summary">"Impedisci Timerfd wakelock."</string>
-	<string name="wlan_extscan_wl_ws_wakelock">"Extscan Wakelock"</string>
+    <string name="timerfd_wakelock_summary">"Impedisci Timerfd wakelock."</string>
+    <string name="wlan_extscan_wl_ws_wakelock">"Extscan Wakelock"</string>
     <string name="wlan_extscan_wl_ws_wakelock_summary">"Impedisci Extscan wakelock."</string>
     <string name="wlan_ws_wakelock">"wlan_ws Wakelock"</string>
     <string name="wlan_ws_wakelock_summary">"Impedisci wlan_ws wakelock."</string>
@@ -807,13 +807,13 @@
     <string name="bcmdhd_wakelock_divider">"BCMDHD Wakelock Divisore"</string>
     <string name="wkl_sensorhub">"SensorHub"</string>
     <string name="wkl_sensorhub_summary">"Il SensorHub Wakelock è una delle maggiori fonti di riattivazione.  Disabilita per un sonno profondo migliore e un minor tempo di veglia. Abilita per il comportamento delle scorte."</string>
-	<string name="wkl_ssp">"SSP"</string>
+    <string name="wkl_ssp">"SSP"</string>
     <string name="wkl_ssp_summary">"SSP Wakelock è una delle maggiori fonti di riattivazione dopo Sensorhub.  Disabilita per un sonno profondo migliore e un minor tempo di veglia.  Abilita per il comportamento delle scorte."</string>
-	<string name="wkl_gps">"GPS"</string>
+    <string name="wkl_gps">"GPS"</string>
     <string name="wkl_gps_summary">"Il bcm4359 Wakelock (chip GPS) è una delle maggiori fonti di riattivazione dopo Sensorhub e SSP. Disabilita per un sonno profondo migliore e un minor tempo di veglia. Abilita per il comportamento delle scorte."</string>
-	<string name="wkl_wireless">"Wireless"</string>
+    <string name="wkl_wireless">"Wireless"</string>
     <string name="wkl_wireless_summary">"Wakelock senza fili. Disabilita per un sonno profondo migliore e un minor tempo di veglia. Abilita per il comportamento delle scorte."</string>
-	<string name="wkl_bluetooth">"Bluetooth"</string>
+    <string name="wkl_bluetooth">"Bluetooth"</string>
     <string name="wkl_bluetooth_summary">"Bluetooth Wakelock. Disabilita per un sonno profondo migliore e un minor tempo di veglia. Abilita per il comportamento delle scorte."</string>
 
     <!-- Virtual Memory -->
@@ -821,15 +821,15 @@
     <string name="zram_algo">"Algoritmo Z-RAM"</string>
     <string name="zram_algo_summary">"Imposta l'algoritmo di compressione Z-RAM predefinito."</string>
     <string name="zram_algo_warning">"La dimensione del disco Z-RAM verrà temporaneamente ridotta a '0'. Questo processo potrebbe avere gravi ripercussioni su alcuni dispositivi."</string>
-	<string name="disksize">"Disksize"</string>
+    <string name="disksize">"Disksize"</string>
     <string name="disksize_summary">"Tenta di aumentare le prestazioni evitando il paging sull'archiviazione fisica, utilizzando invece un dispositivo virtuale compresso nella RAM. Il paging avviene nella RAM fino a quando non è necessario utilizzare lo spazio di swap sulla memoria fisica."</string>
     <string name="zswap">"ZSWAP"</string>
     <string name="zswap_summary">"ZSwap è una cache compressa leggera per le pagine di scambio. Prende le pagine che stanno per essere sostituite e tenta di comprimerle in un pool di memoria basato su RAM allocato dinamicamente. Zswap sostanzialmente scambia i cicli della CPU per I/O di swap potenzialmente ridotti."</string>
-	<string name="memory_pool">"Memory pool"</string>
+    <string name="memory_pool">"Memory pool"</string>
     <string name="memory_pool_summary">"La percentuale memory pool della memoria principale che può essere utilizzata come cache di pagine compresse."</string>
-	<string name="maximum_compression_ratio">"Rapporto di compressione massimo"</string>
+    <string name="maximum_compression_ratio">"Rapporto di compressione massimo"</string>
     <string name="maximum_compression_ratio_summary">"Rapporto di compressione massimo, in percentuale, per una pagina compressa accettabile. Qualsiasi pagina che non si comprime almeno di questo rapporto verrà respinta."</string>
-	<string name="virtual_memory_tunables">"Parametri Memoria Virtuale"</string>
+    <string name="virtual_memory_tunables">"Parametri Memoria Virtuale"</string>
     <string name="dir_change_notifier">"Notifica Cambio Cartella"</string>
     <string name="dir_change_notifier_summary">"Il servizio Notifica Cambio Cartella informa i processi sui cambiamenti di file/directory."</string>
     <string name="vm_stat_interval">"Intervallo Statistiche VM"</string>
@@ -844,39 +844,39 @@
     <!-- Misc -->
     <string name="android_logger">"Android logging"</string>
     <string name="android_logger_summary">"Attiva/disattiva la registrazione dei log di Android"</string>
-	<string name="printk_logger">"PrintK logging"</string>
+    <string name="printk_logger">"PrintK logging"</string>
     <string name="printk_logger_summary">"Attiva/disattiva la registrazione dei log di Linux PrintK"</string>
     <string name="crc">"Software CRC control"</string>
     <string name="crc_summary">"CRC è un meccanismo che mira a prevenire il danneggiamento dei dati quando abilitato. I blocchi di dati possono perdere fino al 30% delle loro prestazioni."</string>
-	<string name="fsync">"Fsync"</string>
+    <string name="fsync">"Fsync"</string>
     <string name="fsync_summary">"Disabilita per migliorare le prestazioni del file system a rischio di perdita di dati in caso di arresto anomalo del sistema."</string>
-	<string name="dynamic_fsync">"Fsync Dinamico"</string>
+    <string name="dynamic_fsync">"Fsync Dinamico"</string>
     <string name="dynamic_fsync_summary">"Quando è abilitato e lo schermo è acceso, l'operazione fsync è asincrona. Quando lo schermo è spento, questa operazione viene eseguita in modo sincrono."</string>
-	<string name="gentlefairsleepers">"Gentle Fair Sleepers"</string>
+    <string name="gentlefairsleepers">"Gentle Fair Sleepers"</string>
     <string name="gentlefairsleepers_summary">"Dai ai dormienti solo il 50% del loro deficit di servizio. Disabilitarlo può far risparmiare un po' di carica della batteria."</string>
-	<string name="arch_power">"Potenza Architettura"</string>
+    <string name="arch_power">"Potenza Architettura"</string>
     <string name="arch_power_summary">"Abilita la funzione/risparmio di potenza specifica dell'architettura."</string>>
-	<string name="power_suspend">"Sospensione Potenza"</string>
-	<string name="power_suspend_mode">Modalità Sospensione Potenza"</string>
+    <string name="power_suspend">"Sospensione Potenza"</string>
+    <string name="power_suspend_mode">Modalità Sospensione Potenza"</string>
     <string name="power_suspend_mode_summary">"Kernel Mode, LCD Hooks e Highest Level Hook sono gestiti automaticamente dal kernel. Per abilitare o disabilitare manualmente lo stato di sospensione dell'alimentazione, scegliere Modalità utente."</string>
-	<string name="autosleep">"Sonno automatico"</string>
+    <string name="autosleep">"Sonno automatico"</string>
     <string name="userspace">"Spazio utente"</string>
     <string name="lcd_panel">"Panello LCD"</string>
     <string name="hybrid">"Ibrido"</string>
     <string name="power_suspend_state">"Stato Sospensione Potenza"</string>
     <string name="power_suspend_state_summary">"Driver di gestione dell'alimentazione del kernel quando lo schermo è spento.  Migliore risparmio della batteria se abilitato. Nota: è possibile modificare questa impostazione solo se la modalità di sospensione dell'alimentazione è in modalità utente."</string>
-	<string name="network">"Rete"</string>
+    <string name="network">"Rete"</string>
     <string name="tcp">"Algoritmo di Congestione TCP"</string>
     <string name="tcp_summary">"Il Transmission Contro Protocol è uno dei protocolli principali della suite di protocolli Internet (IP) ed è così comune che l'intera suite è spesso chiamata TCP/IP."</string>
-	<string name="hostname">"Nome Host"</string>
+    <string name="hostname">"Nome Host"</string>
     <string name="wireguard">"VPN WireGuard"</string>
     <string name="leases_enable">"Abilita Leases"</string>
     <string name="leases_enable_summary">"Abilitare o disabilitare i lease di file su base a livello di sistema"</string>
-	<string name="lease_break_time">"Periodo di Graziea Lease"</string>
+    <string name="lease_break_time">"Periodo di Graziea Lease"</string>
     <string name="lease_break_time_summary">"Il periodo di grazia che il kernel concede a un processo che detiene un file lease dopo che ha inviato un segnale a quel processo notificandolo che un altro processo è in attesa di aprire il file."</string>
-	<string name="auto_sync">"Aggiorna Automaticamente i Dati"</string>
+    <string name="auto_sync">"Aggiorna Automaticamente i Dati"</string>
     <string name="auto_sync_summary">"Consenti alle app di aggiornare automaticamente i dati. Nota: verrà applicato, indipendentemente dalle impostazioni di avvio."</string>
-	<string name="cpuset">"Sets CPU"</string>
+    <string name="cpuset">"Sets CPU"</string>
     <string name="doze">"Doze Forzato"</string>
     <string name="doze_deep">"Doze Forzato"</string>
     <string name="doze_light">"Doze Leggero"</string>
@@ -890,9 +890,9 @@
     <string name="printk_devkmsg_summary">"Controlla registrazione dei log in /dev/kmsg dallo spazio utente."</string>
 
     <!-- Performance Tweaks -->
-	<string name="spectrum">"Modifiche Perfomance"</string>
+    <string name="spectrum">"Modifiche Perfomance"</string>
     <string name="profileTile">"Profilo"</string>
-	<string name="spec_title">"Modifiche Performance"</string>
+    <string name="spec_title">"Modifiche Performance"</string>
     <string name="spec_info">"Un adattamento dello Spectrum Manager di frap129.\nSeleziona uno tra i profili predefiniti disponibili."</string>
     <string name="spec_balanced">"Bilanciato"</string>
     <string name="spec_balanced_summary">"Il profilo del kernel predefinito progettato per prestazioni fluide nelle attività di base mantenendo una batteria fantastica."</string>
@@ -900,7 +900,7 @@
     <string name="spec_performance_summary">"Ottimizzato per prestazioni di alto livello nelle attività standard con molte meno regressioni rispetto a Balanced, ma mantiene la batteria limitando la grafica."</string>
     <string name="spec_battery">"Batteria"</string>
     <string name="spec_battery_summary">"Il profilo ultra-conservativo che consente alle prestazioni di subire un duro colpo per ottenere una durata della batteria di lunga durata."</string>
-	<string name="spec_gaming">"Gaming"</string>
+    <string name="spec_gaming">"Gaming"</string>
     <string name="spec_gaming_summary">"Identico a Performance nella maggior parte delle aree diverse dalle prestazioni grafiche sbloccate."</string>
 
     <!-- Custom Controls -->
@@ -949,14 +949,14 @@
     <string name="build_prop_uneditable">"Sfortunatamente, 'build.prop' nel tuo dispositivo non è scrivibile!"</string>
     <string name="add">"Aggiungi"</string>
     <string name="backup_item">"È stato eseguito il backup di %1$s su %2$s"</string>
-	<string name="item_count">"%s oggetto"</string>
+    <string name="item_count">"%s oggetto"</string>
     <string name="items_count">"%s oggetti"</string>
     <string name="key">"Chiave"</string>
     <string name="value">"Valore"</string>
     <string name="key_empty">"La chiave non può essere vuota!"</string>
 
     <!-- Profile -->
-	<string name="apply">"Applica"</string>
+    <string name="apply">"Applica"</string>
     <string name="apply_on_boot_not_available">"Nella modalità profii i cambiamenti non avranno impatto sull\'applicazione all\'avvio."</string>
     <string name="profile_warning">"Tutto quello che cambi qui sarà salvato sul tuo profilo. Ma attenzione! Anche le tue impostazioni saranno applicate, ma non saranno salvate sull\'applicazione all\'avvio."</string>
     <string name="no_changes">"Nessuna modifica effettuata!"</string>
@@ -986,7 +986,7 @@
     <string name="scripts_onboot_summary">"Se abiliti questa opzione, tutti gli script elencati in questa pagina verranno eseguiti all'avvio."</string>
     <string name="script_executed">"%s eseguito con successo!"</string>
     <string name="exceute_question">"Eseguire %s?"</string>
-	<string name="exceute_cancel_title">"Esecuzione %s cancellata!"</string>
+    <string name="exceute_cancel_title">"Esecuzione %s cancellata!"</string>
     <string name="exceute_cancel_question">"Cancellare esecuzione %s?"</string>
     <string name="remove_script_question">"%s sarà rimosso anche da Script Manager.\n\nSei sicuro?"</string>
     <string name="script_exists">"Uno script chiamato %s esiste già! Interrompendo.</string>
@@ -997,10 +997,10 @@
 
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">"Questa sezione mostra cosa accadrà all'avvio del dispositivo.  Se è vuoto, non succederà nulla dopo l'avvio."</string>
-	<string name="on_boot_swipe_drag_message">"Puoi scorrere a sinistra o destra per rimuovere un comando (non un profilo o script)!"</string>
+    <string name="on_boot_swipe_drag_message">"Puoi scorrere a sinistra o destra per rimuovere un comando (non un profilo o script)!"</string>
     <string name="delete_question">"Cancellare %s?"</string>
     <string name="disable_question">"Disabilitare %s?"</string>
-	<string name="swipe_message">"Mi dispiace! Non puoi rimuovere un a %s."</string>
+    <string name="swipe_message">"Mi dispiace! Non puoi rimuovere un a %s."</string>
     <string name="drag_message">"Mi dispiace! Non puoi trascinare un %s in una posi diversa."</string>
 
     <!-- SmartPack -->
@@ -1042,12 +1042,12 @@
     <string name="backing_up">"Eseguendo backup"</string>
     <string name="flashing">"Flashing…"</string>
     <string name="flashing_failed">"Flashing Fallito"</string>
-	<string name="flashing_finished">"Flashing Finito"</string>
+    <string name="flashing_finished">"Flashing Finito"</string>
     <string name="restoring">"Ripristinando"</string>
     <string name="reset_settings">"Resetta l'App"</string>
     <string name="reset_settings_summary">"Resetta impostazioni dell'utente"</string>
     <string name="reset_settings_message">"Le impostazioni dell'app verranno completamente cancellate. Sei sicuro?"</string>
-	<string name="unknown_link">"Non ancora fornito dallo sviluppatore!"</string>
+    <string name="unknown_link">"Non ancora fornito dallo sviluppatore!"</string>
     <string name="remove">"Rimuovi"</string>
     <string name="share_channel_message">"Per configurare questo canale di aggiornamentoT, semplicemente inserisci \'%s\' in SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nOttieni SmartPack-Kernel Manager da</string>
     <string name="busybox_installer">"BusyBox Installer"</string>
@@ -1055,20 +1055,20 @@
 
     <!-- Update Channel -->
     <string name="update_channel_message">"(solo per sviluppatori)\nL'app creerà un canale di aggiornamento (json) per il tuo kernel, purché le informazioni fornite in questa pagina siano accurate."</string>
-	<string name="update_channel_instructions">"<b>Nome Kernel </b>, <b>Versione Kernel</b> &amp; <b>Link Download</b> è mandatorio compilare i campi prima di cliccare il pulsante crean.\n\n<b>Change-logs</b> può essere fornito, come testo ben formattato, o come link a una pagina online.\n\L\'Algoritmo Hash Sicuro (<b>sha1</b>) è opzionale, ma altamente raccomandato per garantire l'autenticità del kernel scaricato."</string>
+    <string name="update_channel_instructions">"<b>Nome Kernel </b>, <b>Versione Kernel</b> &amp; <b>Link Download</b> è mandatorio compilare i campi prima di cliccare il pulsante crean.\n\n<b>Change-logs</b> può essere fornito, come testo ben formattato, o come link a una pagina online.\n\L\'Algoritmo Hash Sicuro (<b>sha1</b>) è opzionale, ma altamente raccomandato per garantire l'autenticità del kernel scaricato."</string>
     <string name="kernel_name">"Nome Kernel"</string>
     <string name="kernel_name_summary">"Kernel_name"</string>
     <string name="kernel_name">"Nome Kernel"</string>
     <string name="kernel_version">"Versione Kernel"</string>
     <string name="download_link">"Link Download"</string>
-	<string name="download_link_summary">"download_link"</string>
-	<string name="changelog_summary">"changelog_texts_or_url"</string>
+    <string name="download_link_summary">"download_link"</string>
+    <string name="changelog_summary">"changelog_texts_or_url"</string>
     <string name="sha1">"Secure Hash Algorithm"</string>
-	<string name="sha1_summary">"sha1"</string>
+    <string name="sha1_summary">"sha1"</string>
     <string name="support_group">"Gruppo di supporto"</string>
-	<string name="support_group_summary">"support_link"</string>
+    <string name="support_group_summary">"support_link"</string>
     <string name="donation_link">"Link Donazioni"</string>
-	<string name="donation_link_summary">"donation_link"</string>
+    <string name="donation_link_summary">"donation_link"</string>
     <string name="submit_failed">"Alcuni dei campi necessari sono vuoti! Annullamento."</string>
     <string name="json_created">"Congratulazioni! Il canale di aggiornamento è stato creato con successo in %s. Ospitalo da qualche parte e condividi un link per il download diretto con i tuoi utenti."</string>
     <string name="update_channel_create_warning">"Le modifiche da te apportate andranno perse!"</string>
@@ -1079,10 +1079,10 @@
 	<!-- App Updater -->
     <string name="update_available">"Nuovo aggiornamento disponibile! \nv%s"</string>
     <string name="get_it">"Ottienilo"</string>
-	<string name="download_failed">"Sembra che il download sia fallito, o è stato scaricato un file corrotto!"</string>
+    <string name="download_failed">"Sembra che il download sia fallito, o è stato scaricato un file corrotto!"</string>
     <string name="updated_dialog">"Congratulazioni!  Hai già una versione aggiornata di SmartPack-Kernel Manager!"</string>
     <string name="auto_update_check">"Controllo aggiornamento automatico"</string>
-	<string name="check_update">"Verifica Aggiornamenti"</string>
+    <string name="check_update">"Verifica Aggiornamenti"</string>
     <string name="check_update_summary">"Verifica la presenza di nuove versioni di SmartPack-Kernel Manager"</string>
 
     <!-- Settings -->
@@ -1143,10 +1143,10 @@
     <string name="source_code_summary">""isita il codice sorgente su GitHub"</string>
     <string name="change_logs">"Change-logs"</string>
     <string name="change_logs_summary">"Visita i Change-logs"</string>
-	<string name="fdroid">"F-Droid"</string>
+    <string name="fdroid">"F-Droid"</string>
     <string name="fdroid_summary">"Visita la pagina F-Droid"</string>
-	<string name="playstore">"Google Play"</string>
-	<string name="playstore_summary">"Visita la pagina Google Play"</string>
+    <string name="playstore">"Google Play"</string>
+    <string name="playstore_summary">"Visita la pagina Google Play"</string>
     <string name="donate_me_summary">"Supporta lo sviluppo di questo progetto"</string>
     <string name="purchase_app">"Compra l'App Donazione"</string>
     <string name="billing_client_disconnected">"Impossibile connettersi con il client di fatturazione di Google Play!"</string>
@@ -1165,7 +1165,7 @@
     <string name="share_app">"Condividi App"</string>
     <string name="share_app_summary">"Condividi quest'app con i tuoi amici"</string>
     <string name="share_app_message">"Ottieni SmartPack-Kernel Manager %s da"</string>
-	<string name="grarak">"Willi Ye"</string>
+    <string name="grarak">"Willi Ye"</string>
     <string name="grarak_summary">"La persona dietro \'Kernel Adiutor\', l\'antenato di SmartPack-Kernel Manager. Questo progetto non sarebbe vivo senza di lui. Grande \u2665 &amp; rispetto per lui, non solo per il suo duro lavoro su Kernel Adiutor, ma anche per essere aperto all\' open-source."</string>
     <string name="osm0sis">"Chris Renshaw"</string>
     <string name="osm0sis_summary">"Lo sviluppatore del famoso progetto \'AnyKernel3\'. Senza il suo tempestivo sostegno e guida, la funzione di auto-flashing non esisterebbe."</string>
