@@ -1,5 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-
+    <string name="app_name" translatable="false">SmartPack-Kernel Manager</string>
+    
     <string name="checking_info">"Controllo informazioni…"</string>
     <string name="checking_root">"Controllo per l'accesso di root"</string>
     <string name="searching_busybox">"Ricerco BusyBox"</string>
@@ -16,11 +17,14 @@
     <string name="ok">"OK"</string>
     <string name="yes">"SÌ"</string>
     <string name="unknown">"Sconosciuto"</string>
+    
     <string name="warning">"Attenzione!"</string>
+    
     <string name="apply_on_boot">"Applica all'avvio"</string>
     <string name="apply_on_boot_text">"Applico le impostazioni in %d secondi."</string>
     <string name="apply_on_boot_complete">"Impostazioni applicate."</string>
     <string name="apply_on_boot_canceled">"Impostazioni non applicate."</string>
+    
     <string name="not_in_range">"Non nel range"</string>
     <string name="options">"Opzioni"</string>
     <string name="more">"Di più"</string>
@@ -43,6 +47,10 @@
     <string name="ma">"mA"</string>
     <string name="kb">"kB"</string>
     <string name="px">"px"</string>
+    
+    <!-- Special signs -->
+    <string name="minus" translatable="false">-</string>
+    <string name="plus" translatable="false">+</string>
 
     <!-- Headers -->
     <string name="statistics">"Statistiche"</string>
@@ -94,6 +102,9 @@
     <string name="reset">"Reset"</string>
     <string name="restore">"Ripristina"</string>
     <string name="restore_sure_message">"Sicuro di voler ripristinare %s?"</string>
+    <string name="cluster_big" translatable="false">big</string>
+    <string name="cluster_middle" translatable="false">Middle</string>
+    <string name="cluster_little" translatable="false">LITTLE</string>
     <string name="deep_sleep">"Sonno profondo"</string>
     <string name="uptime">"Attivo"</string>
     <string name="error_frequencies">"Errore nel caricamento delle frequenze"</string>
@@ -112,6 +123,7 @@
     <string name="baseband">"Baseband"</string>
     <string name="rom">"ROM"</string>
     <string name="bootloader">"Bootloader"</string>
+    <string name="trustzone" translatable="false">TrustZone</string>
     <string name="hardware">"Hardware"</string>
     <string name="architecture">"Architettura"</string>
     <string name="treble_status">"Supporto Project Treble"</string>
@@ -120,9 +132,11 @@
     <!-- Inputs -->
     <string name="bus">"Bus"</string>
     <string name="product">"Prodotto"</string>
+    <string name="sysfs" translatable="false">Sysfs</string>
     <string name="handlers">"Gestori"</string>
 
     <!-- CPU -->
+    <string name="cpu_note">"Tieni presente che alcune funzionalità in questa pagina, come il controllo Frequenza e Cores, sono largamente controllati da processi di sistema. Di conseguenza, le modifiche fatte in questa pagina potrebbero non persistere su molti dispositivi."</string>
     <string name="cores_singular">"%d core"</string>
     <string name="cores">"%d cores"</string>
     <string name="cpu_usage">"Uso CPU"</string>
@@ -138,10 +152,9 @@
     <string name="cpu_governor_summary">"Il governor della CPU determina come si comporta la CPU in risposta ai cambiamenti nel carico di lavoro.  La modifica del governor influirà sul modo in cui la CPU scala i passaggi di frequenza disponibili per la CPU."</string>
     <string name="cpu_governor_tunables">"Parametri Governor CPU"</string>
     <string name="governor_tunables_summary">"I vari parametri di configurazione che dipendono dal Governor."</string>
-    <string name="cpu_governor_tunables_read_error">"Impossibile leggere l'attuale governor della CPU.
-
-Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sistema forza la CPU a disattivare i core rendendo estremamente difficile leggere le statistiche specifiche della CPU. Prova a selezionare di nuovo questa opzione. La CPU a volte si rifiuta di accendere un core."</string>
+    <string name="cpu_governor_tunables_read_error">"Impossibile leggere l'attuale governor della CPU. Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sistema forza la CPU a disattivare i core rendendo estremamente difficile leggere le statistiche specifiche della CPU. Prova a selezionare di nuovo questa opzione. La CPU a volte si rifiuta di accendere un core."</string>
     <string name="tunables_error">"%s non è modificabile"</string>
+    <string name="tunables_title">"Regola gli oggetti di configurazione che sono associati con \'%s\'"</string>
     <string name="manual">"Manuale"</string>
     <string name="mc_power_saving">"Multicore Power Saving"</string>
     <string name="mc_power_saving_summary">"Prova a raggruppare le attività nel minor numero di core possibile."</string>
@@ -386,6 +399,8 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
     <string name="workload">"Workload"</string>
     <string name="workload_summary">"Adreno idler tenterà più attivamente di ridurre la frequenza se questo è impostato su un valore più alto."</string>
     <string name="gpu_powelevel">"GPU Power Level"</string>
+    <string name="gpu_throttling">"Limitazione GPU"</string>
+    <string name="gpu_throttling_summary">"Limita la GPU quando il dispositivo si surriscalda."</string>
 
     <!-- Thermal -->
     <string name="thermal_info">"Utilizzare solo un thermal driver tra le seguenti opzioni, l'utilizzo di più driver contemporaneamente potrebbe causare un comportamento imprevisto."</string>
@@ -403,11 +418,14 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
     <string name="cpu_throttle_temp_summary">"Temperatura di inizio spegnimento delle CPU"</string>
     <string name="cpu_temp_hysteresis">"Temperatura di isteresi della CPU"</string>
     <string name="freq_step">"Step di frequenza"</string>
+    <string name="immediately_limit_stop">"Limite Stop Immediato"</string>
     <string name="poll">"Poll"</string>
     <string name="poll_summary">"Intervallo di Sampling della lettura del sensore"</string>
     <string name="temp_hysteresis">"Temperatura Isteresi"</string>
     <string name="thermal_limit_low">"Thermal Limit Low"</string>
     <string name="thermal_limit_high">"Thermal Limit High"</string>
+    <string name="temp_safety">"Sicurezza Temperatura"</string>
+    <string name="temp_throttle">"Limitazione Temperatura"</string>
     <string name="temp_throttle_summary">"Toggle della temperatura limite del SoC"</string>
     <string name="temp_limit">"Temperatura Limite"</string>
     <string name="temp_limit_summary">"Se la temperatura sale al di sopra, la termica limiterà la frequenza della CPU per abbassare la temperatura."</string>
@@ -415,9 +433,24 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
     <string name="freq_limit_debug_summary">"Esso consente di eseguire il debug del throttle della CPU quando la temperatura raggiunge il massimo."</string>
     <string name="temp_limit_min_freq">"Temperatura Limite Frequenza Minima"</string>
     <string name="temp_limit_min_freq_summary">"Il thermal userà questa temperatura per il "</string>
+    <string name="allowed_low_low">"Fase 1: Consentito Low Low"</string>
+    <string name="allowed_low_high">"Fase 1: Consentito Low High"</string>
+    <string name="allowed_low_freq">"Fase 1: Consentito Frequenza Low"</string>
+    <string name="allowed_mid_low">"Fase 2: Consentito Mid Low"</string>
+    <string name="allowed_mid_high">"Fase 2: Consentito Mid High"</string>
+    <string name="allowed_mid_freq">"Fase 2: Consentito Frequenza Mid"</string>
+    <string name="allowed_max_low">"Fase 3: Consentito Max Low"</string>
+    <string name="allowed_max_high">"Fase 3: Consentito Max High"</string>
+    <string name="allowed_max_freq">"Fase 3: Consentito Frequenza Max"</string>
+    <string name="check_interval">"Controllo Intervallo"</string>
+    <string name="shutdown_temp">"Temperatura di Spegnimento"</string>
     <string name="msm_thermal">"MSM Thermal"</string>
+    <string name="msm_thermal_simple">"Simple Thermal Monitor"</string>
     <string name="msm_thermal_simple_summary">"Un sostituto nel kernel per Thermald di Qualcomm. Sviluppato da Sultanxda."</string>
+    <string name="usermax_freq">"Frequenza Massima Utente"</string>
+    <string name="freq_mitg_temp">"Frequenza Temperatura di Mitigazione"</string>
     <string name="freq_mitg_temp_summary">"Temperatura di soglia per mitigare la frequenza massima della CPU."</string>
+    <string name="hotplug_temp">"Soglia di Temperatura"</string>
     <string name="hotplug_temp_summary">"Soglia di temperatura per iniziare a spegnere i cores."</string>
     <string name="core_control_mask">"Core Control Mask"</string>
     <string name="core_control_mask_summary">"La maschera della CPU che verrà utilizzata per determinare se un core può essere controllato o meno (impostare 0 per disabilitare)."</string>
@@ -428,11 +461,14 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
 
     <!-- Battery -->
     <string name="capacity">"Capacità"</string>
+    <string name="blx">"Battery Life eXtender"</string>
     <string name="blx_summary">"Impostare un limite per la capacità a cui verrà caricata la batteria passando un valore compreso tra 0 e 100."</string>
     <string name="charging_enable">"Abilita la Ricarica"</string>
     <string name="charging_enable_summary">"Attenzione! La ricarica verrà interrotta immediatamente se disabilitata."</string>
     <string name="thunder_charge">"Thunder Charge"</string>
     <string name="thunder_charge_summary">"Abilita il Thunder Charge sviluppato da varun.chitre15"</string>
+    <string name="battery_guru">"Battery Guru"</string>
+    <string name="battery_guru_summary">"Monitora la vita della batteria del tuo dispositivo Android, prolungala e tienila sana."</string>
 
     <!-- Advanced Charge Control Interface -->
     <string name="acci">"Advanced Charge Control Interface"</string>
@@ -448,18 +484,33 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
     <string name="charge_level_summary">"Scegli il tuo Livello (mA)"</string>
     <string name="mtp_fast_charge">"MTP while Fast Charge"</string>
     <string name="mtp_fast_charge_summary">"Abilità l'MTP mentre è abilitata la ricarica rapida"</string>
+    <string name="screen_limit">"Screen On Current Limit"</string>
     <string name="screen_limit_summary">"Abilita Screen On Current Limit"</string>
+    <string name="stockchargelogic">"Imposta 0 per logica di carica di fabbrica"</string>
 
     <!-- Sound -->
     <string name="sound_control">"Sound Control"</string>
+    <string name="speaker_leakage">"Speaker Driver Leakage"</string>
     <string name="speaker_leakage_summary">"Soluzione alternativa al software per evitare perdite sul driver dell'altoparlante"</string>
+    <string name="headset_highperf_mode">"Modalità Cuffie Alte Prestazioni"</string>
+    <string name="headphone_gain">"Guadagno Cuffie"</string>
+    <string name="speaker_gain">"Guadagno Altoparlanti"</string>
+    <string name="speaker_tuning">"Regolazione Altoparlanti"</string>
+    <string name="headphone_tpa6165_gain">"Amplificatore Guadagno Cuffie (Estensione TPA6165)</string>
+    <string name="microphone_gain">"Guadagno Microfono</string>
+    <string name="volume_gain">"Guadagno Volume"</string>
+    <string name="boefflasound">"Boeffla Sound"</string>
     <string name="boefflasound_summary">"Attiva/Disattiva Boeffla Sound Engine"</string>
+    <string name="earpiece_gain">"Guadagno Auricolare (Chiamate)"</string>
+    <string name="faux_sound">"Faux Sound"</string>
     <string name="faux_sound_summary">"Attiva/Disattiva Faux Sound Engine"</string>
+    <string name="lock_mic_gain">"Guadagno Blocco Microfono"</string>
     <string name="lock_mic_gain_summary">"Prevenire modifiche ai guadagni del microfono"</string>
+    <string name="per_channel_controls">"Controlli per-canale"</string>
     <string name="privacy_mode">"Modalità Privacy"</string>
     <string name="dac_direct">"DAC Direct"</string>
     <string name="dac_oversampling">"DAC OverSampling"</string>
-    <string name="fll_tuning">"FLL Tuning"</string>
+    <string name="fll_tuning">"Regolazione FLL"</string>
     <string name="mono_downmix">"Mono DownMix"</string>
 
     <!-- Screen -->
@@ -478,6 +529,30 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
     <string name="screen_hue_summary">"Potresti avere problemi con il SoC MSM8x26 quando imposti un valore alto."</string>
     <string name="screen_value">"Valore"</string>
     <string name="screen_contrast">"Contrasto"</string>
+    <string name="high_brightness_mode">"Modalità ad Alta Luminosità"</string>
+    <string name="srgb">"sRGB"</string>
+    <string name="gamma">"Gamma"</string>
+    <string name="red_greys">"Rossi Grigi"</string>
+    <string name="red_mids">"Rossi Medi"</string>
+    <string name="red_blacks">"Rossi Neri"</string>
+    <string name="red_whites">"Rossi Bianchi"</string>
+    <string name="green_greys">"Verdi Grigi"</string>
+    <string name="green_mids">"Verdi Medi"</string>
+    <string name="green_blacks">"Verdi Neri"</string>
+    <string name="green_whites">"Verdi Bianchi"</string>
+    <string name="blue_greys">"Blu Grigi"</string>
+    <string name="blue_mids">"Blu Medi"</string>
+    <string name="blue_blacks">"Blu Neri"</string>
+    <string name="blue_whites">"Blu Bianchi"</string>
+    <string name="contrast">"Contrasto"</string>
+    <string name="brightness">"Luminosità"</string>
+    <string name="red_positive">"Rosso Positivo"</string>
+    <string name="red_negative">"Rosso Negativo"</string>
+    <string name="green_positive">"Verde Positivo"</string>
+    <string name="green_negative">"Verde Negativo"</string>
+    <string name="blue_positive">"Blu Positivo"</string>
+    <string name="blue_negative">"Blu Negativo"</string>
+    <string name="white_point">"Punto Bianco"</string>
     <string name="lcd_backlight">"Retroilluminazione LCD"</string>
     <string name="gamma_profiles_summary">"Dopo aver selezionato un profilo, spegni e riaccendi lo schermo."</string>
     <string name="brightness_mode">"Usa la modalità di retroilluminazione esponenziale invece della modalità lineare."</string>
@@ -491,7 +566,9 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
     <string name="negative_toggle">"Negative Toggle"</string>
     <string name="negative_toggle_summary">"Abilitare l'inversione dei colori dello schermo premendo rapidamente il pulsante MENU 4 volte."</string>
     <string name="mdnie_global_controls">"mDNIe controlli globali"</string>
+    <string name="register_hook">"Register Hook"</string>
     <string name="register_hook_summary">"Register intercetta e agisce come un hook e consentirà di catturare le impostazioni dello scenario e modificarle tramite i controlli delta. Se uno scenario non ha un'impostazione (registro) nella sua sequenza di base, non può essere modificato dall'hook."</string>
+    <string name="master_sequence">"Master Sequence"</string>
     <string name="master_sequence_summary">"L'abilitazione della master sequence disabiliterà e ignorerà i profili e gli scenari di Samsung, i controlli della ROM verranno disabilitati."</string>
     <string name="glove_mode">"Modalità Guanti"</string>
     <string name="glove_mode_summary">"Abilitando questa opzione ti consentirà di utilizzare il telefono anche indossando i guanti."</string>
@@ -499,15 +576,26 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
     <!-- K-lapse -->
     <string name="klapse">"K-lapse"</string>
     <string name="klapse_summary">"Seleziona la modalità K-lapse preferita, un modulo live-display a livello di kernel di tanish2k09. Questo non dovrebbe essere disattivato per regolare il resto dei parametri K-lapse."</string>
+    <string name="klapse_off">"Spento"</string>
     <string name="export_settings">"Esporta i settaggi di K-lapse"</string>
+    <string name="time_scale">"Scaling Basato sul Tempo"</string>
+    <string name="bright_scale">"Scaling Basato sulla Luminosità"</string>
+    <string name="night_mode_schedule">"Programma Modalità Notte"</string>
+    <string name="start_time">"Inizio"</string>
+    <string name="end_time">"Fine"</string>
     <string name="scaling_rate">"Scaling Rate (Minuti)"</string>
     <string name="scaling_rate_summary">"Controlla quanto tempo l'RGB passa dalla modalita diurna a quella notturna all'interno dell'intervallo di ore di inizio e fine."</string>
     <string name="fadeback_time">"Fade-back Time (Minuti)"</string>
     <string name="fadeback_time_summary">"Il numero di minuti prima dell'ora di fine in cui RGB dovrebbe iniziare a tornare ai colori diurni."</string>
     <string name="daytime_rgb">"Colori diurni"</string>
     <string name="nightmode_rgb">"Colori notturni"</string>
+    <string name="dimming">"Attenuazione"</string>
     <string name="dimming_summary">"100: Luminosità accurata;  50: 50% dell'intensità di corrente."</string>
+    <string name="auto_dimming">"Auto Attenuazione"</string>
     <string name="auto_dimming_summary">"Imposta automaticamente il fattore di luminosità in un intervallo di tempo impostato."</string>
+    <string name="auto_dimming_schedule">"Programma Auto Attenuazione"</string>
+    <string name="backlight_range">"Gamma Retroilluminazione"</string>
+    <string name="pulse_freq">"Pulse Frequency"</string>
     <string name="pulse_freq_summary">"Il numero di millisecondi dopo i quali viene chiamato klapse_pulse."</string>
     <string name="flow_freq">"Flow Frequency"</string>
     <string name="flow_freq_summary">"La quantità di millisecondi dopo i quali viene spostato 1 fotogramma RGB."</string>
@@ -518,9 +606,19 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
     <!-- Wake -->
     <string name="dt2w">"DoubleTap2Wake"</string>
     <string name="dt2w_summary">"Riattiva il dispositivo toccando due volte lo schermo."</string>
+    <string name="center">"Centro"</string>
+    <string name="full">"Pieno"</string>
+    <string name="bottom_half">"Metà sotto"</string>
+    <string name="top_half">"Metà sopra"</string>
     <string name="s2w">"Sweep2Wake"</string>
     <string name="s2w_summary">"Riattiva il dispositivo scorrendo sullo schermo."</string>
     <string name="s2s">"Sweep2Sleep"</string>
+    <string name="s2w_right">"Sweep2Wake Destra"</string>
+    <string name="s2w_left">"Sweep2Wake Sinistra"</string>
+    <string name="s2w_up">"Sweep2Wake Sopra"</string>
+    <string name="s2w_down">"Sweep2Wake Sotto"</string>
+    <string name="s2w_any">"Sweep2Wake Qualunque"</string>
+    <string name="lenient">"Sweep2Wake Clemente"</string>
     <string name="lenient_summary">"Richiede solo il primo e il quarto pulsante per attivare Sweep2Wake."</string>
     <string name="t2w">"Tap2Wake"</string>
     <string name="t2w_summary">"Riattiva il dispositivo toccando lo schermo."</string>
@@ -531,13 +629,27 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
     <string name="dt2w_s2w">"DoubleTap2Wake + Sweep2Wake"</string>
     <string name="dt2w_s2w_charging">"DoubleTap2Wake + Sweep2Wake durante la ricarica"</string>
     <string name="s2s_summary">"Blocca il dispositivo scorrendo sullo schermo."</string>
+    <string name="s2s_right">"Sweep Destra"</string>
+    <string name="s2s_left">"Sweep Sinistra"</string>
+    <string name="s2s_any">"Sweep Sinistra o Destra"</string>
+    <string name="slide_up">"Trascina su"</string>
+    <string name="slide_down">"Trascina giù""</string>
+    <string name="slide_left">"Trascina a sinistra"</string>
+    <string name="slide_right">"Trascina a destra"</string>
+    <string name="draw_e">"Disegna E"</string>
+    <string name="draw_o">"Disegna O"</string>
+    <string name="draw_w">"Disegna W"</string>
+    <string name="draw_c">"Disegna C"</string>
+    <string name="draw_m">"Disegna M"</string>
     <string name="camera_gesture">"Canera Gesture"</string>
     <string name="camera_gesture_summary">"Avvia la fotocamera predefinita disegnando un cerchio sullo schermo."</string>
     <string name="pocket_mode">"Modalità Tasca"</string>
     <string name="pocket_mode_summary">"L'attivazione di questa opzione disattiverà i controlli di riattivazione quando il dispositivo è in tasca."</string>
     <string name="timeout">"Timeout"</string>
     <string name="timeout_summary">"Imposta una durata in cui i controlli di riattivazione saranno disabilitati dopo lo spegnimento dello schermo."</string>
+    <string name="charge_timeout">"Timeout Ricarica"</string>
     <string name="charge_timeout_summary">"Imposta una durata in cui i controlli di riattivazione saranno disabilitati dopo che lo schermo si spegne durante la ricarica."</string>
+    <string name="power_key_suspend">"Sospensione Tasto di Spegnimento"</string>
     <string name="power_key_suspend_summary">"L'abilitazione di questa opzione disattiverà i controlli di riattivazione quando lo schermo viene spento dal tasto di accensione."</string>
     <string name="width">"Larghezza"</string>
     <string name="height">"Altezza"</string>
@@ -548,23 +660,34 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
     <string name="system_vib">"Vibrazione di Sistema"</string>
     <string name="notification_vib">"Notifiche"</string>
     <string name="calls_vib">"Chiamate"</string>
+    <string name="key_power_mode">"Modalità Tasto di Spegnimento"</string>
     <string name="key_power_mode_summary">"I controlli di riattivazione saranno attivi solo quando metti il ​​dispositivo in sospensione con il tasto di accensione."</string>
     <string name="charging_mode">"Modalità di Ricarica"</string>
     <string name="charging_mode_summary">"I controlli di riattivazione saranno attivi solo quando il dispositivo è in carica."</string>
     <string name="up">"Su"</string>
     <string name="down">"Giù"</string>
     <string name="left">"Sinistra"</string>
+    <string name="right">"Destra"</string>
+    <string name="smart_wake">"Wake Intelligente"</string>
 
     <!-- LED -->
     <string name="led_notification">"Notifica LED"</string>
     <string name="fade">"Lampeggio/Dissolvenza"</string>
     <string name="led_intensity">"Intensità"</string>
     <string name="led_speed">"Velocità"</string>
+    <string name="stock">"Predefinito"</string>
+    <string name="continuous_light">"Luce continua"</string>
+    <string name="bright_light_environment">"Ambiente ad Alta Luminosità"</string>
     <string name="bright_light_environment_summary">"Imposta l'intensità relativa del LED in ambienti luminosi."</string>
     <string name="low_light_environment_summary">"Imposta l'intensità relativa del LED in ambienti a bassa luminosità."</string>
+    <string name="low_light_environment">"Ambiente a Bassa Luminosità"</string>
+    <string name="on">"Acceso"</string>
+    <string name="off">"Spento"</string>
     <string name="fade_ramp_control">"Fade Ramp Control"</string>
     <string name="fade_ramp_control_summary">"Abilita o disabilita il controllo LED fade-in/out (ramp)."</string>
+    <string name="fade_in">"Fade in"</string>
     <string name="fade_in_summary">"Imposta il periodo di tempo della pendenza in salita."</string>
+    <string name="fade_out">"Fade out"</string>
     <string name="fade_out_summary">"Imposta il periodo di tempo della pendenza discendente."</string>
     <string name="display_backlight">"Retroilluminazione Display"</string>
     <string name="led_brightness">"Luminosità LED (Max)"</string>
@@ -572,6 +695,7 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
     <!-- I/O Scheduler -->
     <string name="internal_storage">"Memoria Interna"</string>
     <string name="external_storage">"Memoria Esterna"</string>
+    <string name="dm0">"Memoria Adottabile (DM-0)"</string>
     <string name="scheduler">"Scheduler"</string>
     <string name="scheduler_summary">"Impostare l'algoritmo dell'elevatore I/O attivo. Lo Scheduler decide come gestire le richieste di I/O."</string>
     <string name="scheduler_tunable">"Parametri Scheduler"</string>
@@ -586,18 +710,50 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
     <string name="add_random_summary">"Disegna l'entropia dalla memoria rotante (rotazionale)."</string>
     <string name="rq_affitiny">"RQ Affinity"</string>
     <string name="rq_affinity_summary">"Prova a completare le richieste dello scheduler sul core della CPU da cui sono state fatte. I valori più alti sono più aggressivi."</string>
+    <string name="nomerges">"No-Merges"</string>
     <string name="nomerges_summary">"Ciò consente all'utente di disabilitare la logica di ricerca coinvolta con le richieste di unione di I/O nel livello di blocco."</string>
+    <string name="nr_requests">"Richieste NR"</string>
     <string name="nr_requests_summary">"Questo controlla quante richieste possono essere allocate nel livello di blocco per le richieste di lettura o scrittura."</string>
 
+    <!-- I/O Advanced -->
+    <string name="io_blocks">"Blocchi I/O (%s)"</string>
+    <string name="io_blocks_summary">"Clicca qui per mettere a punto vari blocchi I/O sul tuo dispositivo! Tuttavia, tieni presente che alcuni parametri sono di sola lettura e non possono essere modificati su alcuni blocchi."</string>
+    <string name="io_blocks_select">"Selezionare Blocco I/O"</string>
+    <string name="io_blocks_select_summary">"Selezionare il Blocco I/O preferito per la messa a punto."</string>
+
     <!-- Kernel Samepage Merging -->
+    <string name="full_scans">"Scansioni complete"</string>
+    <string name="pages_shared">"Pagine condivise"</string>
+    <string name="pages_sharing">"Pagine in condivisione"</string>
+    <string name="pages_unshared">"Pagine non condivise"</string>
+    <string name="pages_volatile">"Pagine volatili"</string>
     <string name="ksm_summary">"Riduce l'utilizzo della memoria ma ha un impatto sull'utilizzo della CPU."</string>
+    <string name="pages_to_scan">"Pagine da scansionare"</string>
+    <string name="sleep_milliseconds">"Sonno tra scansioni"</string>
+    <string name="deferred_timer">"Timer Differito"</string>
     <string name="deferred_timer_summary">"Riduce l'utilizzo della CPU in cambio di un minor risparmio di memoria."</string>
+    <string name="max_cpu_usage">"Utilizzo Massimo CPU"</string>
     <string name="max_cpu_usage_summary">"Percentuale massima di CPU da utilizzare durante l'unione delle pagine."</string>
+    <string name="uksm_governor">"Regolatore della CPU UKSM"</string>
     <string name="uksm_governor_summary">"Imposta il regolatore della CPU per UKSM."</string>
 
     <!-- Low Memory Killer -->
+    <string name="foreground_app">"Applicazioni in Primo Piano"</string>
+    <string name="lmk_adaptive">"Low Memory Killer Adattivo"</string>
     <string name="lmk_adaptive_summary">"Rendi LMK più aggressivo in modo dinamico quando viene rilevato un trashing scenario."</string>
     <string name="lmk_fast_run">"Abilita Fast Run"</string>
+    <string name="process_reclaim">"Reclamo Processo"</string>
+    <string name="visible_app">"Applicazioni Visibili"</string>
+    <string name="secondary_server">"Server Secondario"</string>
+    <string name="hidden_app">"Applicazioni Nascoste"</string>
+    <string name="content_providers">"Fornitori di Contenuti"</string>
+    <string name="empty_app">"Applicazioni Vuote"</string>
+    <string name="very_light">"Molto leggero"</string>
+    <string name="light">"Leggero"</string>
+    <string name="low">"Basso"</string>
+    <string name="medium">"Medio"</string>
+    <string name="high">"Alto"</string>
+    <string name="very_aggressive">"Molto Aggressivo"</string>
     <string name="kill_lmk">"Kill LMK"</string>
     <string name="kill_lmk_summary">"Killa l'LMK quando la swap è in uso."</string>
     <string name="kill_lmk_threshold">"Kill LMK Threshold"</string>
@@ -610,6 +766,14 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
     <string name="boeffla_wakelock">"Boeffla Generic Wakelock Blocker"</string>
     <string name="wkl_order">"Ordine dei Wakelocks"</string>
     <string name="wkl_order_summary">"Seleziona l'ordine dei Wakelocks"</string>
+    <string name="wkl_blocked">"Wakelocks Bloccati"</string>
+    <string name="wkl_allowed">"Wakelocks Consentiti"</string>
+    <string name="wkl_total_time">"Tempo"</string>
+    <string name="wkl_wakep_count">"Risvegli"</string>
+    <string name="wkl_name">"Nome"</string>
+    <string name="wkl_time">"Tempo"</string>
+    <string name="wkl_wakeup">"Risvegli"</string>
+    <string name="smb135x_wakelock">smb135x Wakelock</string>
     <string name="smb135x_wakelock_summary">"Prevenire il wakelock quando l'alimentazione è scollegata."</string>
     <string name="sensor_ind_wakelock">"sensor_ind Wakelock"</string>
     <string name="sensor_ind_wakelock_summary">"Impedisci il wakelock quando l'Ambient Display è disabilitato."</string>
@@ -626,14 +790,30 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
     <string name="ipa_wakelock">"Ipa Wakelock"</string>
     <string name="ipa_wakelock_summary">"Impedisci Ipa wakelock."</string>
     <string name="netlink_wakelock">"NetLink Wakelock"</string>
-    <string name="netlink_wakelock_summary">"Impedisci NetLink wakelock"</string>
+    <string name="netlink_wakelock_summary">"Impedisci NetLink wakelock."</string>
     <string name="qcom_rx_wakelock">"Qcom rx Wakelock"</string>
     <string name="qcom_rx_wakelock_summary">"Impedisci Qcom rx wakelock."</string>
     <string name="timerfd_wakelock">"Timerfd Wakelock"</string>
-    <string name="wkl_sensorhub_summary">"Il SensorHub Wakelock è una delle maggiori fonti di riattivazione.  LDisabilita per un sonno profondo migliore e un minor tempo di veglia. Abilita per il comportamento delle scorte."</string>
+    <string name="timerfd_wakelock_summary">"Impedisci Timerfd wakelock."</string>
+    <string name="wlan_extscan_wl_ws_wakelock">"Extscan Wakelock"</string>
+    <string name="wlan_extscan_wl_ws_wakelock_summary">"Impedisci Extscan wakelock."</string>
+    <string name="wlan_ws_wakelock">"wlan_ws Wakelock"</string>
+    <string name="wlan_ws_wakelock_summary">"Impedisci wlan_ws wakelock."</string>
+    <string name="bluedroid_timer_wakelock">"Bluedroid Timer Wakelock"</string>
+    <string name="bluedroid_timer_wakelock_summary">"Impedisci Bluedroid Timer wakelock."</string>
+    <string name="wlan_rx_wakelock_divider">"wlan_rx Wakelock Divisore"</string>
+    <string name="wlan_ctrl_wakelock_divider">"wlan_ctrl Wakelock Divisore"</string>
+    <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divisore"</string>
+    <string name="bcmdhd_wakelock_divider">"BCMDHD Wakelock Divisore"</string>
+    <string name="wkl_sensorhub">"SensorHub"</string>
+    <string name="wkl_sensorhub_summary">"Il SensorHub Wakelock è una delle maggiori fonti di riattivazione.  Disabilita per un sonno profondo migliore e un minor tempo di veglia. Abilita per il comportamento delle scorte."</string>
+    <string name="wkl_ssp">"SSP"</string>
     <string name="wkl_ssp_summary">"SSP Wakelock è una delle maggiori fonti di riattivazione dopo Sensorhub.  Disabilita per un sonno profondo migliore e un minor tempo di veglia.  Abilita per il comportamento delle scorte."</string>
+    <string name="wkl_gps">"GPS"</string>
     <string name="wkl_gps_summary">"Il bcm4359 Wakelock (chip GPS) è una delle maggiori fonti di riattivazione dopo Sensorhub e SSP. Disabilita per un sonno profondo migliore e un minor tempo di veglia. Abilita per il comportamento delle scorte."</string>
+    <string name="wkl_wireless">"Wireless"</string>
     <string name="wkl_wireless_summary">"Wakelock senza fili. Disabilita per un sonno profondo migliore e un minor tempo di veglia. Abilita per il comportamento delle scorte."</string>
+    <string name="wkl_bluetooth">"Bluetooth"</string>
     <string name="wkl_bluetooth_summary">"Bluetooth Wakelock. Disabilita per un sonno profondo migliore e un minor tempo di veglia. Abilita per il comportamento delle scorte."</string>
 
     <!-- Virtual Memory -->
@@ -641,48 +821,92 @@ Se stai usando un dispositivo QCOM big.LITTLE questo è un problema noto. Il sis
     <string name="zram_algo">"Algoritmo Z-RAM"</string>
     <string name="zram_algo_summary">"Imposta l'algoritmo di compressione Z-RAM predefinito."</string>
     <string name="zram_algo_warning">"La dimensione del disco Z-RAM verrà temporaneamente ridotta a '0'. Questo processo potrebbe avere gravi ripercussioni su alcuni dispositivi."</string>
+    <string name="disksize">"Disksize"</string>
     <string name="disksize_summary">"Tenta di aumentare le prestazioni evitando il paging sull'archiviazione fisica, utilizzando invece un dispositivo virtuale compresso nella RAM. Il paging avviene nella RAM fino a quando non è necessario utilizzare lo spazio di swap sulla memoria fisica."</string>
     <string name="zswap">"ZSWAP"</string>
     <string name="zswap_summary">"ZSwap è una cache compressa leggera per le pagine di scambio. Prende le pagine che stanno per essere sostituite e tenta di comprimerle in un pool di memoria basato su RAM allocato dinamicamente. Zswap sostanzialmente scambia i cicli della CPU per I/O di swap potenzialmente ridotti."</string>
+    <string name="memory_pool">"Memory pool"</string>
     <string name="memory_pool_summary">"La percentuale memory pool della memoria principale che può essere utilizzata come cache di pagine compresse."</string>
+    <string name="maximum_compression_ratio">"Rapporto di compressione massimo"</string>
     <string name="maximum_compression_ratio_summary">"Rapporto di compressione massimo, in percentuale, per una pagina compressa accettabile. Qualsiasi pagina che non si comprime almeno di questo rapporto verrà respinta."</string>
+    <string name="virtual_memory_tunables">"Parametri Memoria Virtuale"</string>
+    <string name="dir_change_notifier">"Notifica Cambio Cartella"</string>
+    <string name="dir_change_notifier_summary">"Il servizio Notifica Cambio Cartella informa i processi sui cambiamenti di file/directory."</string>
+    <string name="vm_stat_interval">"Intervallo Statistiche VM"</string>
+    <string name="vm_stat_interval_summary">"L\'intervallo tra il quale le statistiche delle VM sono aggiornate".</string>
+	
+	<!-- Entropy -->
+    <string name="available">"Disponibile"</string>
+    <string name="poolsize">"Dimensione pool"</string>
+    <string name="read">"Lettura"</string>
+    <string name="write">"Scrittura"</string>
 
     <!-- Misc -->
     <string name="android_logger">"Android logging"</string>
     <string name="android_logger_summary">"Attiva/disattiva la registrazione dei log di Android"</string>
+    <string name="printk_logger">"PrintK logging"</string>
     <string name="printk_logger_summary">"Attiva/disattiva la registrazione dei log di Linux PrintK"</string>
     <string name="crc">"Software CRC control"</string>
     <string name="crc_summary">"CRC è un meccanismo che mira a prevenire il danneggiamento dei dati quando abilitato. I blocchi di dati possono perdere fino al 30% delle loro prestazioni."</string>
+    <string name="fsync">"Fsync"</string>
     <string name="fsync_summary">"Disabilita per migliorare le prestazioni del file system a rischio di perdita di dati in caso di arresto anomalo del sistema."</string>
+    <string name="dynamic_fsync">"Fsync Dinamico"</string>
     <string name="dynamic_fsync_summary">"Quando è abilitato e lo schermo è acceso, l'operazione fsync è asincrona. Quando lo schermo è spento, questa operazione viene eseguita in modo sincrono."</string>
+    <string name="gentlefairsleepers">"Gentle Fair Sleepers"</string>
     <string name="gentlefairsleepers_summary">"Dai ai dormienti solo il 50% del loro deficit di servizio. Disabilitarlo può far risparmiare un po' di carica della batteria."</string>
+    <string name="arch_power">"Potenza Architettura"</string>
     <string name="arch_power_summary">"Abilita la funzione/risparmio di potenza specifica dell'architettura."</string>>
+    <string name="power_suspend">"Sospensione Potenza"</string>
+    <string name="power_suspend_mode">Modalità Sospensione Potenza"</string>
     <string name="power_suspend_mode_summary">"Kernel Mode, LCD Hooks e Highest Level Hook sono gestiti automaticamente dal kernel. Per abilitare o disabilitare manualmente lo stato di sospensione dell'alimentazione, scegliere Modalità utente."</string>
+    <string name="autosleep">"Sonno automatico"</string>
+    <string name="userspace">"Spazio utente"</string>
+    <string name="lcd_panel">"Panello LCD"</string>
+    <string name="hybrid">"Ibrido"</string>
+    <string name="power_suspend_state">"Stato Sospensione Potenza"</string>
     <string name="power_suspend_state_summary">"Driver di gestione dell'alimentazione del kernel quando lo schermo è spento.  Migliore risparmio della batteria se abilitato. Nota: è possibile modificare questa impostazione solo se la modalità di sospensione dell'alimentazione è in modalità utente."</string>
+    <string name="network">"Rete"</string>
     <string name="tcp">"Algoritmo di Congestione TCP"</string>
     <string name="tcp_summary">"Il Transmission Contro Protocol è uno dei protocolli principali della suite di protocolli Internet (IP) ed è così comune che l'intera suite è spesso chiamata TCP/IP."</string>
+    <string name="hostname">"Nome Host"</string>
+    <string name="wireguard">"VPN WireGuard"</string>
+    <string name="leases_enable">"Abilita Leases"</string>
     <string name="leases_enable_summary">"Abilitare o disabilitare i lease di file su base a livello di sistema"</string>
+    <string name="lease_break_time">"Periodo di Graziea Lease"</string>
     <string name="lease_break_time_summary">"Il periodo di grazia che il kernel concede a un processo che detiene un file lease dopo che ha inviato un segnale a quel processo notificandolo che un altro processo è in attesa di aprire il file."</string>
+    <string name="auto_sync">"Aggiorna Automaticamente i Dati"</string>
     <string name="auto_sync_summary">"Consenti alle app di aggiornare automaticamente i dati. Nota: verrà applicato, indipendentemente dalle impostazioni di avvio."</string>
+    <string name="cpuset">"Sets CPU"</string>
+    <string name="doze">"Doze Forzato"</string>
+    <string name="doze_deep">"Doze Forzato"</string>
+    <string name="doze_light">"Doze Leggero"</string>
+    <string name="doze_summary">"Abilita modalità doze per prevenire alcune attività dall\'essere eseguite se il tuo dispositivo è in stato di inattività."</string>
+    <string name="selinux">"SELinux"</string>
+    <string name="selinux_summary">"Imposta stato SELinux"</string>
+    <string name="selinux_permissive">"Permissivo"</string>
+    <string name="selinux_enforcing">"Enforcing"</string>
+    <string name="transmit_queue_length">"Trasmetti Lunghezza Coda"</string>
+    <string name="printk_devkmsg">"Printk devkmsg"</string>
+    <string name="printk_devkmsg_summary">"Controlla registrazione dei log in /dev/kmsg dallo spazio utente."</string>
 
     <!-- Performance Tweaks -->
+    <string name="spectrum">"Modifiche Perfomance"</string>
     <string name="profileTile">"Profilo"</string>
-    <string name="spec_info">"Un adattamento dello Spectrum Manager di frap129.
-Seleziona uno tra i profili predefiniti disponibili."</string>
+    <string name="spec_title">"Modifiche Performance"</string>
+    <string name="spec_info">"Un adattamento dello Spectrum Manager di frap129.\nSeleziona uno tra i profili predefiniti disponibili."</string>
     <string name="spec_balanced">"Bilanciato"</string>
     <string name="spec_balanced_summary">"Il profilo del kernel predefinito progettato per prestazioni fluide nelle attività di base mantenendo una batteria fantastica."</string>
     <string name="spec_performance">"Performance"</string>
     <string name="spec_performance_summary">"Ottimizzato per prestazioni di alto livello nelle attività standard con molte meno regressioni rispetto a Balanced, ma mantiene la batteria limitando la grafica."</string>
     <string name="spec_battery">"Batteria"</string>
     <string name="spec_battery_summary">"Il profilo ultra-conservativo che consente alle prestazioni di subire un duro colpo per ottenere una durata della batteria di lunga durata."</string>
+    <string name="spec_gaming">"Gaming"</string>
     <string name="spec_gaming_summary">"Identico a Performance nella maggior parte delle aree diverse dalle prestazioni grafiche sbloccate."</string>
 
     <!-- Custom Controls -->
     <string name="welcome">"Benvenuto/a"</string>
     <string name="custom_controls_summary">"In questa sezione puoi creare un controller personalizzato per qualsiasi funzione, che non è ancora ufficialmente aggiunta a questa app. &lt;a href="https://smartpack.github.io/spkm/customcontrols/">Documentation&lt;a>"</string>
-    <string name="custom_controls_message">"Puoi creare un controller personalizzato per qualsiasi percorso sysfs esistente, a condizione che tu abbia installato un Root File Manager supportato. Tuttavia, tieni presente che questa funzione è troppo potente per rovinare il tuo dispositivo.
-
- ***UTILIZZARE A PROPRIO RISCHIO***"</string>
+    <string name="custom_controls_message">"Puoi creare un controller personalizzato per qualsiasi percorso sysfs esistente, a condizione che tu abbia installato un Root File Manager supportato. Tuttavia, tieni presente che questa funzione è troppo potente per rovinare il tuo dispositivo.\n\n***UTILIZZARE A PROPRIO RISCHIO***"</string>
     <string name="create">"Crea"</string>
     <string name="import_item">"Importa"</string>
     <string name="control_switch">"Switch"</string>
@@ -725,8 +949,21 @@ Seleziona uno tra i profili predefiniti disponibili."</string>
     <string name="build_prop_uneditable">"Sfortunatamente, 'build.prop' nel tuo dispositivo non è scrivibile!"</string>
     <string name="add">"Aggiungi"</string>
     <string name="backup_item">"È stato eseguito il backup di %1$s su %2$s"</string>
+    <string name="item_count">"%s oggetto"</string>
+    <string name="items_count">"%s oggetti"</string>
+    <string name="key">"Chiave"</string>
+    <string name="value">"Valore"</string>
+    <string name="key_empty">"La chiave non può essere vuota!"</string>
 
     <!-- Profile -->
+    <string name="apply">"Applica"</string>
+    <string name="apply_on_boot_not_available">"Nella modalità profii i cambiamenti non avranno impatto sull\'applicazione all\'avvio."</string>
+    <string name="profile_warning">"Tutto quello che cambi qui sarà salvato sul tuo profilo. Ma attenzione! Anche le tue impostazioni saranno applicate, ma non saranno salvate sull\'applicazione all\'avvio."</string>
+    <string name="no_changes">"Nessuna modifica effettuata!"</string>
+    <string name="apply_question">"Applicare %s?"</string>
+    <string name="append">"Aggiungi"</string>
+    <string name="details">"Dettagli"</string>
+    <string name="press_again_to_apply">"Premi %s ancora per applicare."</string>
     <string name="applied">"Applicato"</string>
     <string name="profile_tasker">"Profilo Tasker"</string>
     <string name="profile_tasker_summary">"Se vuoi applicare un profilo a un evento specifico, come l'avvio di un'applicazione, devi usare Tasker."</string>
@@ -749,11 +986,22 @@ Seleziona uno tra i profili predefiniti disponibili."</string>
     <string name="scripts_onboot_summary">"Se abiliti questa opzione, tutti gli script elencati in questa pagina verranno eseguiti all'avvio."</string>
     <string name="script_executed">"%s eseguito con successo!"</string>
     <string name="exceute_question">"Eseguire %s?"</string>
+    <string name="exceute_cancel_title">"Esecuzione %s cancellata!"</string>
+    <string name="exceute_cancel_question">"Cancellare esecuzione %s?"</string>
+    <string name="remove_script_question">"%s sarà rimosso anche da Script Manager.\n\nSei sicuro?"</string>
+    <string name="script_exists">"Uno script chiamato %s esiste già! Interrompendo.</string>
+    <string name="executing">"Eseguendo"</string>
+    <string name="share_script">"Per applicare queso script, semplicemente importa questo file in \'SmartPack-Kernel Manager -> Script Manager -> Import\'."</string>
+    <string name="quick_tile">"Tile Veloce"</string>
+    <string name="quick_tile_empty_message">"Nessuno script è impostato da applicare da questo tile!"</string>
 
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">"Questa sezione mostra cosa accadrà all'avvio del dispositivo.  Se è vuoto, non succederà nulla dopo l'avvio."</string>
+    <string name="on_boot_swipe_drag_message">"Puoi scorrere a sinistra o destra per rimuovere un comando (non un profilo o script)!"</string>
     <string name="delete_question">"Cancellare %s?"</string>
     <string name="disable_question">"Disabilitare %s?"</string>
+    <string name="swipe_message">"Mi dispiace! Non puoi rimuovere un a %s."</string>
+    <string name="drag_message">"Mi dispiace! Non puoi trascinare un %s in una posi diversa."</string>
 
     <!-- SmartPack -->
     <string name="acquiring">"Acquisendo informazioni aggiornamento"</string>
@@ -769,11 +1017,7 @@ Seleziona uno tra i profili predefiniti disponibili."</string>
     <string name="update_channel">"URL Canale di aggiornamento"</string>
     <string name="update_channel_create">"Crea un Canale di Aggiornamento"</string>
     <string name="update_channel_empty">"Pulizia delle le informazioni del canale di aggiornamento!"</string>
-    <string name="update_channel_info">"Collegando il canale di aggiornamento sopra con un file json appropriato per il tuo dispositivo, puoi sostanzialmente aggiungere il download del kernel e il supporto per l'auto-flash (non per tutti i dispositivi) a qualsiasi kernel disponibile per il tuo dispositivo. Chiedi al tuo sviluppatore kernel preferito di aggiungere supporto a questa funzione. Il kernel scaricato sarà disponibile su '%s'.
-
-Suggerimenti! Puoi importare un file json creato per 'FK-Kernel Manager' di franciscofranco (enorme \u2665 e rispetto a lui) e funzionerà semplicemente.
-
-Serve ancora aiuto? Clicca qui!"</string>
+    <string name="update_channel_info">"Collegando il canale di aggiornamento sopra con un file json appropriato per il tuo dispositivo, puoi sostanzialmente aggiungere il download del kernel e il supporto per l'auto-flash (non per tutti i dispositivi) a qualsiasi kernel disponibile per il tuo dispositivo. Chiedi al tuo sviluppatore kernel preferito di aggiungere supporto a questa funzione. Il kernel scaricato sarà disponibile su '%s'.\n\nSuggerimenti! Puoi importare un file json creato per 'FK-Kernel Manager' di franciscofranco (enorme \u2665 e rispetto a lui) e funzionerà semplicemente.\n\nServe ancora aiuto? Clicca qui!"</string>
     <string name="update_channel_invalid">"Hai inserito un URL invalido! Annullamento."</string>
     <string name="update_channel_summary">"Inserisci-l'url-del-canale-aggiornamento-qui"</string>
     <string name="update_check_message">"SmartPack-Kernel Manager verificherà una nuova versione di %s una volta al giorno!"</string>
@@ -798,26 +1042,48 @@ Serve ancora aiuto? Clicca qui!"</string>
     <string name="backing_up">"Eseguendo backup"</string>
     <string name="flashing">"Flashing…"</string>
     <string name="flashing_failed">"Flashing Fallito"</string>
+    <string name="flashing_finished">"Flashing Finito"</string>
+    <string name="restoring">"Ripristinando"</string>
     <string name="reset_settings">"Resetta l'App"</string>
     <string name="reset_settings_summary">"Resetta impostazioni dell'utente"</string>
     <string name="reset_settings_message">"Le impostazioni dell'app verranno completamente cancellate. Sei sicuro?"</string>
+    <string name="unknown_link">"Non ancora fornito dallo sviluppatore!"</string>
+    <string name="remove">"Rimuovi"</string>
+    <string name="share_channel_message">"Per configurare questo canale di aggiornamentoT, semplicemente inserisci \'%s\' in SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nOttieni SmartPack-Kernel Manager da</string>
+    <string name="busybox_installer">"BusyBox Installer"</string>
     <string name="busybox_installer_summary">"Si consiglia vivamente di avere un'installazione autonoma di BusyBox sul dispositivo per far funzionare correttamente alcune funzionalità di questa app (ad esempio, binari 'unzip' e 'mke2fs' per il flashing e binario 'curl' o 'wget' per gli aggiornamenti OTA del kernel). Nel tentativo di aiutare gli utenti su questo problema, viene resa disponibile una semplice app, che può essere utilizzata come utility di installazione BusyBox con un clic per dispositivi arm, arm64 e x86. Clicca qui per ottenerlo!"</string>
 
     <!-- Update Channel -->
-    <string name="update_channel_message">"(solo per sviluppatori)
- L'app creerà un canale di aggiornamento (json) per il tuo kernel, purché le informazioni fornite in questa pagina siano accurate."</string>
+    <string name="update_channel_message">"(solo per sviluppatori)\nL'app creerà un canale di aggiornamento (json) per il tuo kernel, purché le informazioni fornite in questa pagina siano accurate."</string>
+    <string name="update_channel_instructions">"<b>Nome Kernel </b>, <b>Versione Kernel</b> &amp; <b>Link Download</b> è mandatorio compilare i campi prima di cliccare il pulsante crean.\n\n<b>Change-logs</b> può essere fornito, come testo ben formattato, o come link a una pagina online.\n\L\'Algoritmo Hash Sicuro (<b>sha1</b>) è opzionale, ma altamente raccomandato per garantire l'autenticità del kernel scaricato."</string>
+    <string name="kernel_name">"Nome Kernel"</string>
+    <string name="kernel_name_summary">"Kernel_name"</string>
     <string name="kernel_name">"Nome Kernel"</string>
     <string name="kernel_version">"Versione Kernel"</string>
-    <string name="download_link">"Download link"</string>
+    <string name="download_link">"Link Download"</string>
+    <string name="download_link_summary">"download_link"</string>
+    <string name="changelog_summary">"changelog_texts_or_url"</string>
     <string name="sha1">"Secure Hash Algorithm"</string>
+    <string name="sha1_summary">"sha1"</string>
     <string name="support_group">"Gruppo di supporto"</string>
+    <string name="support_group_summary">"support_link"</string>
     <string name="donation_link">"Link Donazioni"</string>
+    <string name="donation_link_summary">"donation_link"</string>
     <string name="submit_failed">"Alcuni dei campi necessari sono vuoti! Annullamento."</string>
     <string name="json_created">"Congratulazioni! Il canale di aggiornamento è stato creato con successo in %s. Ospitalo da qualche parte e condividi un link per il download diretto con i tuoi utenti."</string>
     <string name="update_channel_create_warning">"Le modifiche da te apportate andranno perse!"</string>
     <string name="clear">"Pulisci tutto"</string>
     <string name="clear_message">"Tutti i campi sono vuoti. Annullamento."</string>
     <string name="clear_all_summary">"Tutto ciò che hai aggiunto a questa pagina verrà cancellato!"</string>
+	
+	<!-- App Updater -->
+    <string name="update_available">"Nuovo aggiornamento disponibile! \nv%s"</string>
+    <string name="get_it">"Ottienilo"</string>
+    <string name="download_failed">"Sembra che il download sia fallito, o è stato scaricato un file corrotto!"</string>
+    <string name="updated_dialog">"Congratulazioni!  Hai già una versione aggiornata di SmartPack-Kernel Manager!"</string>
+    <string name="auto_update_check">"Controllo aggiornamento automatico"</string>
+    <string name="check_update">"Verifica Aggiornamenti"</string>
+    <string name="check_update_summary">"Verifica la presenza di nuove versioni di SmartPack-Kernel Manager"</string>
 
     <!-- Settings -->
     <string name="open_settings">"Apri Impostazioni"</string>
@@ -863,6 +1129,23 @@ Serve ancora aiuto? Clicca qui!"</string>
     <string name="driver_ramoops">"Driver Ramoops"</string>
     <string name="driver_ramoops_summary">"Salva /sys/fs/pstore/dmesg-ramoops* in 'sdcard'"</string>
     <string name="security">"Sicurezza"</string>
+    <string name="biometric">"Autenticazione Biometrica"</string>
+    <string name="biometric_summary">"Usa l\'autenticazione biometrica per proteggere SmartPack-Kernel Manager."</string>
+    <string name="authenticate">"Autenticati"</string>
+    <string name="sections">"Sezioni"</string>
+    <string name="default_section">"Sezione di Default"</string>
+    <string name="default_section_summary">"La pagina di default da mostrare quando apri l\'app!"</string>
+	
+	<!-- About -->
+    <string name="about_me" translatable="false">SmartPack-Kernel Manager is a heavily modified version of \'Kernel Adiutor\', which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.</string>
+    <string name="special_mentions">"Mentioni Speciali"</string>
+    <string name="source_code">"Codice Sorgente"</string>
+    <string name="source_code_summary">""isita il codice sorgente su GitHub"</string>
+    <string name="change_logs">"Change-logs"</string>
+    <string name="change_logs_summary">"Visita i Change-logs"</string>
+    <string name="fdroid">"F-Droid"</string>
+    <string name="fdroid_summary">"Visita la pagina F-Droid"</string>
+    <string name="playstore">"Google Play"</string>
     <string name="playstore_summary">"Visita la pagina Google Play"</string>
     <string name="donate_me_summary">"Supporta lo sviluppo di questo progetto"</string>
     <string name="purchase_app">"Compra l'App Donazione"</string>
@@ -874,8 +1157,7 @@ Serve ancora aiuto? Clicca qui!"</string>
     <string name="support_meal">"Comprami un pasto"</string>
     <string name="support_coffee">"Comprami un caffè"</string>
     <string name="support_already_received_message">"Hai già supportato lo sviluppo con questo articolo prima!"</string>
-    <string name="support_received_message">"Grazie mille per il tuo supporto \u2665.
-Mi motiverà molto a continuare i miei progetti più attivi! Inoltre, riceverai un badge di sostenitore nella parte superiore di questa pagina."</string>
+    <string name="support_received_message">"Grazie mille per il tuo supporto \u2665.\nMi motiverà molto a continuare i miei progetti più attivi! Inoltre, riceverai un badge di sostenitore nella parte superiore di questa pagina."</string>
     <string name="support_retry_message">"Per favore riprova ad acquistare!"</string>
     <string name="support_status_message">"Grazie mille per il tuo sostegno!"</string>
     <string name="licence">"Licenza"</string>
@@ -883,16 +1165,18 @@ Mi motiverà molto a continuare i miei progetti più attivi! Inoltre, riceverai 
     <string name="share_app">"Condividi App"</string>
     <string name="share_app_summary">"Condividi quest'app con i tuoi amici"</string>
     <string name="share_app_message">"Ottieni SmartPack-Kernel Manager %s da"</string>
+    <string name="grarak">"Willi Ye"</string>
+    <string name="grarak_summary">"La persona dietro \'Kernel Adiutor\', l\'antenato di SmartPack-Kernel Manager. Questo progetto non sarebbe vivo senza di lui. Grande \u2665 &amp; rispetto per lui, non solo per il suo duro lavoro su Kernel Adiutor, ma anche per essere aperto all\' open-source."</string>
+    <string name="osm0sis">"Chris Renshaw"</string>
+    <string name="osm0sis_summary">"Lo sviluppatore del famoso progetto \'AnyKernel3\'. Senza il suo tempestivo sostegno e guida, la funzione di auto-flashing non esisterebbe."</string>
 
+	<!-- Contributors -->
+    <string name="commits">"%d commits"</string>
+    <string name="no_internet">"Controlla la tua connessione a internet per favore!"</string>
+	
     <!-- FAQ -->
     <string name="how_different">"Q1. Quanto è diversa questa app dal Kernel Adiutor ufficiale di Grarak?"</string>
-    <string name="how_different_summary">"Ans. Questa app è pesantemente modificata per soddisfare le esigenze di vari sviluppatori del kernel. Alcune delle funzionalità aggiuntive di questa app includono, ma non solo,
-- Opzione per eseguire il flash dei file zip di ripristino durante l'esecuzione del sistema operativo Android.
-- Un controller personalizzato semplice e intuitivo.
-- Uno Script Manager per creare, importare, modificare ed eseguire facilmente qualsiasi script di shell correttamente formattato.
-- Controllo su funzionalità, come CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Wakelock blocker, ecc.
-- Controlli audio di Boeffla e Flar con supporto per canale.
-- e molto di più."</string>
+    <string name="how_different_summary">"Ans. Questa app è pesantemente modificata per soddisfare le esigenze di vari sviluppatori del kernel. Alcune delle funzionalità aggiuntive di questa app includono, ma non solo,\n - Opzione per eseguire il flash dei file zip di ripristino durante l'esecuzione del sistema operativo Android.\n - Un controller personalizzato semplice e intuitivo.\n - Uno Script Manager per creare, importare, modificare ed eseguire facilmente qualsiasi script di shell correttamente formattato.\n - Controllo su funzionalità, come CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Wakelock blocker, ecc.\n - Controlli audio di Boeffla e Flar con supporto per canale.\n - e molto di più."</string>
     <string name="can_i_use">"Q2. Posso usare questa app per controllare qualsiasi kernel personalizzato?"</string>
     <string name="can_i_use_summary">"Ans. Perché no? Questa app funzionerà come al solito con qualsiasi kernel, purché venga concesso l'accesso root."</string>
     <string name="cpu_freq_not_sticking">"Q3. Perché la frequenza della mia CPU da me applicata non rimane applicata?"</string>
@@ -909,38 +1193,4 @@ Mi motiverà molto a continuare i miei progetti più attivi! Inoltre, riceverai 
     <string name="found_bugs_summary">"Ans. Fornisci quante più informazioni possibili (come quale funzione, cosa non ha funzionato, screenshot o logcat se possibile) e posta nella pagina xda-developers. In alternativa, puoi anche sollevare un problema nella pagina GitHub."</string>
     <string name="can_i_contribute">"Q9. Posso contribuire ai vostri progetti? E come?"</string>
     <string name="can_i_contribute_summary">"Ans. Assolutamente. Qualsiasi tipo di contributo (donazioni, codice ecc.) è il benvenuto e molto apprezzato. Si prega di visitare la sezione Informazioni per maggiori dettagli."</string>
-
-    <!-- CPU -->
-    <string name="cpu_note">"Tieni presente che alcune funzionalità di questa pagina, come i core della CPU e il controllo della frequenza, sono ampiamente controllate dai processi di sistema.  Di conseguenza, le modifiche apportate in questa pagina potrebbero non persistere su molti dispositivi."</string>
-    <string name="doze">"Force Doze"</string>
-    <string name="doze_summary">"Abilita la modalità doze per impedire l'esecuzione di determinate attività se il dispositivo è inattivo."</string>
-    <string name="selinux">"SELinux"</string>
-    <string name="selinux_summary">"Imposta lo stato di SELinux"</string>
-    <string name="selinux_permissive">"Permissive"</string>
-    <string name="selinux_enforcing">"Enforcing"</string>
-    <string name="on_boot_swipe_drag_message">"Puoi scorrere verso sinistra o destra per rimuovere un comando (non un profilo o uno script)!"</string>
-    <string name="swipe_message">"Scusa! Non puoi eliminare %s."</string>
-    <string name="drag_message">"Scusa! Non puoi trascinare %s in una posizione diversa."</string>
-
-    <!-- App Updater -->
-    <string name="update_available">"Nuovo aggiornamento disponibile!
-v%s"</string>
-    <string name="get_it">"Ottienilo"</string>
-    <string name="updated_dialog">"Congratulazioni!  Hai già una versione aggiornata di SmartPack-Kernel Manager!"</string>
-    <string name="auto_update_check">"Controllo aggiornamento automatico"</string>
-    <string name="check_update_summary">"Verifica la presenza di nuove versioni di SmartPack-Kernel Manager"</string>
-    <string name="fdroid">"F-Droid"</string>
-    <string name="fdroid_summary">"Visita la pagina F-Droid"</string>
-
-    <!-- I/O Advanced -->
-    <string name="io_blocks">"Blocchi I/O (%s)"</string>
-    <string name="io_blocks_summary">"Clicca qui per mettere a punto vari blocchi I/O sul tuo dispositivo!  Tuttavia, tieni presente che alcuni parametri sono di sola lettura e non possono essere modificati su alcuni blocchi."</string>
-    <string name="io_blocks_select">"Selezionare Blocco I/O"</string>
-    <string name="io_blocks_select_summary">"Selezionare il Blocco I/O preferito per la messa a punto."</string>
-    <string name="doze_deep">"Deep Doze"</string>
-    <string name="doze_light">"Light Doze"</string>
-    <string name="gpu_throttling">"GPU Throttling"</string>
-    <string name="gpu_throttling_summary">"Riduce le prestazioni quando la GPU si surriscalda."</string>
-    <string name="printk_devkmsg">"Printk devkms"</string>
-    <string name="printk_devkmsg_summary">"Disattiva il servizio di registrazione del kernel Printk devkmsg per ridurre il sovraccarico"</string>
 </resources>
