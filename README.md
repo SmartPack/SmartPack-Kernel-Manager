@@ -56,18 +56,21 @@ Welcome to the development center of SmartPack-Kernel Manager, a heavily modifie
 ## Donations
 If you like to appreciate my efforts to provide this applications entirely free, non-intrusive and without Ads, please consider supporting the development in some way. Maintaining this project takes the most majority of free time in my life. So, each and every support from the android community will be hugely appreciated.
 
+[<img src="https://raw.githubusercontent.com/SmartPack/SmartPack.github.io/master/assets/pic014.png"
+     alt=""
+     height="50">](https://github.com/sponsors/sunilpaulmathew)
 [<img src="https://liberapay.com/assets/widgets/donate.svg"
      alt=""
-     height="50">](https://liberapay.com/sunilpaulmathew/donate/)
-[<img src="https://raw.githubusercontent.com/SmartPack/SmartPack.github.io/master/asset/pic005.png"
+     height="50">](https://liberapay.com/sunilpaulmathew/donate)
+[<img src="https://raw.githubusercontent.com/SmartPack/SmartPack.github.io/master/assets/pic005.png"
      alt=""
      height="50">](https://www.paypal.me/menacherry/)
-[<img src="https://raw.githubusercontent.com/SmartPack/SmartPack.github.io/master/asset/pic010.png"
-     alt=""
-     height="50">](https://ko-fi.com/sunilpaulmathew/)
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
      alt=""
      height="50">](https://play.google.com/store/apps/details?id=com.smartpack.donate)
+[<img src="https://raw.githubusercontent.com/SmartPack/SmartPack.github.io/master/assets/pic010.png"
+     alt=""
+     height="50">](https://ko-fi.com/sunilpaulmathew/)
 
 #### Some other ways to support this project includes, but not limited to
 * Leave a good rating or/and review in [Google Play](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release) (It's free)!
