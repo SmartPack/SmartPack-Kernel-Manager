@@ -1045,7 +1045,7 @@
 
     <!-- Update Channel -->
     <string name="update_channel_message">"(solo per sviluppatori)\nL'app creerà un canale di aggiornamento (json) per il tuo kernel, purché le informazioni fornite in questa pagina siano accurate."</string>
-    <string name="update_channel_instructions">"<b>Nome Kernel </b>, <b>Versione Kernel</b> &amp; <b>Link Download</b> è mandatorio compilare i campi prima di cliccare il pulsante crean.\n\n<b>Change-logs</b> può essere fornito, come testo ben formattato, o come link a una pagina online.\n\L\'Algoritmo Hash Sicuro (<b>sha1</b>) è opzionale, ma altamente raccomandato per garantire l'autenticità del kernel scaricato."</string>
+    <string name="update_channel_instructions">"<b>Nome Kernel</b>, <b>Versione Kernel</b> &amp; <b>Link Download</b> è mandatorio compilare i campi prima di cliccare il pulsante crean.\n\n<b>Change-logs</b> può essere fornito, come testo ben formattato, o come link a una pagina online.\n\nAlgoritmo Hash Sicuro (<b>sha1</b>) è opzionale, ma altamente raccomandato per garantire l\'autenticità del kernel scaricato."</string>
     <string name="kernel_name">"Nome Kernel"</string>
     <string name="kernel_name_summary">"Kernel_name"</string>
     <string name="kernel_version">"Versione Kernel"</string>
