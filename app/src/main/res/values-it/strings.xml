@@ -825,7 +825,7 @@
     <string name="vm_stat_interval">"Intervallo Statistiche VM"</string>
     <string name="vm_stat_interval_summary">"L\'intervallo tra il quale le statistiche delle VM sono aggiornate".</string>
 	
-	<!-- Entropy -->
+    <!-- Entropy -->
     <string name="available">"Disponibile"</string>
     <string name="poolsize">"Dimensione pool"</string>
     <string name="read">"Lettura"</string>
@@ -1045,7 +1045,7 @@
 
     <!-- Update Channel -->
     <string name="update_channel_message">"(solo per sviluppatori)\nL'app creerà un canale di aggiornamento (json) per il tuo kernel, purché le informazioni fornite in questa pagina siano accurate."</string>
-    <string name="update_channel_instructions">"<b>Nome Kernel</b>, <b>Versione Kernel</b> &amp; <b>Link Download</b> è mandatorio compilare i campi prima di cliccare il pulsante crean.\n\n<b>Change-logs</b> può essere fornito, come testo ben formattato, o come link a una pagina online.\n\nAlgoritmo Hash Sicuro (<b>sha1</b>) è opzionale, ma altamente raccomandato per garantire l\'autenticità del kernel scaricato."</string>
+    <string name="update_channel_instructions">"<b>Nome Kernel</b>, <b>Versione Kernel</b> &amp; <b>Link Download</b> è mandatorio compilare i campi prima di cliccare il pulsante crea.\n\n<b>Change-logs</b> può essere fornito, come testo ben formattato, o come link a una pagina online.\n\nAlgoritmo Hash Sicuro (<b>sha1</b>) è opzionale, ma altamente raccomandato per garantire l\'autenticità del kernel scaricato."</string>
     <string name="kernel_name">"Nome Kernel"</string>
     <string name="kernel_name_summary">"Kernel_name"</string>
     <string name="kernel_version">"Versione Kernel"</string>
@@ -1065,7 +1065,7 @@
     <string name="clear_message">"Tutti i campi sono vuoti. Annullamento."</string>
     <string name="clear_all_summary">"Tutto ciò che hai aggiunto a questa pagina verrà cancellato!"</string>
 	
-	<!-- App Updater -->
+    <!-- App Updater -->
     <string name="update_available">"Nuovo aggiornamento disponibile! \nv%s"</string>
     <string name="get_it">"Ottienilo"</string>
     <string name="download_failed">"Sembra che il download sia fallito, o è stato scaricato un file corrotto!"</string>
@@ -1125,7 +1125,7 @@
     <string name="default_section">"Sezione di Default"</string>
     <string name="default_section_summary">"La pagina di default da mostrare quando apri l\'app!"</string>
 	
-	<!-- About -->
+    <!-- About -->
     <string name="special_mentions">"Mentioni Speciali"</string>
     <string name="source_code">"Codice Sorgente"</string>
     <string name="source_code_summary">""isita il codice sorgente su GitHub"</string>
@@ -1158,7 +1158,7 @@
     <string name="osm0sis">"Chris Renshaw"</string>
     <string name="osm0sis_summary">"Lo sviluppatore del famoso progetto \'AnyKernel3\'. Senza il suo tempestivo sostegno e guida, la funzione di auto-flashing non esisterebbe."</string>
 
-	<!-- Contributors -->
+    <!-- Contributors -->
     <string name="commits">"%d commits"</string>
     <string name="no_internet">"Controlla la tua connessione a internet per favore!"</string>
 	
