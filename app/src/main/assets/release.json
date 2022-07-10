@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Screen: Added Mediatek display color control.\n - Updated profile widgets for Android 12.\n - Updated crash reporter.\n - Updated Russian translation.\n - Updated build tools and dependencies.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.2/com.smartpack.kernelmanager-v17.2-fdroid-release.apk",
-  "sha1": "167e9ccac2e88135e12fd07670d10fa85ef37c30",
-  "latestVersion": "17.2",
-  "latestVersionCode": 172
+  "releaseNotes": "Change-logs\n - Fixed custom controller create option failing.\n - Added Japanese (partial) Translations and updated others.\n - Updated build tools and dependencies.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.3/com.smartpack.kernelmanager-v17.3-fdroid-release.apk",
+  "sha1": "1ad651cc1edf7a6be0ac82011e75078bc6fc261a",
+  "latestVersion": "17.3",
+  "latestVersionCode": 173
 }

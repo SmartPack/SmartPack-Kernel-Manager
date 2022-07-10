@@ -1,6 +1,10 @@
 # Change-logs
 
-## 130. March 12, 2021
+## 130. July 11, 2022
+*Release-tag: v17.3*<br>
+Fixed custom controller create option failing. Added Japanese (partial) Translations and updated others. Updated build tools and dependencies. Miscellaneous changes.
+
+## 130. March 12, 2022
 *Release-tag: v17.2*<br>
 Screen: Added Mediatek display color control. Updated profile widgets for Android 12. Updated crash reporter. Updated Russian translation. Updated build tools and dependencies. Miscellaneous changes.
 
