@@ -924,7 +924,6 @@
 
     <!-- Script Manager -->
     <string name="scripts_manager_summary">"在此板块中，您可以创建、导入、编辑和执行任何格式正确的 Shell 脚本。"</string>
-    <string name="scripts_manager_message">"想要一个独立的应用程序来管理脚本？点击这里！"</string>
     <string name="scripts_onboot_summary">"如果启用此开关，此页面中列出的所有脚本将在系统启动时执行。"</string>
     <string name="script_executed">"%s 执行成功！"</string>
     <string name="exceute_question">"执行 %s 吗？"</string>
@@ -1068,17 +1067,6 @@
     <string name="playstore_summary">"Play 商店页面"</string>
     <string name="donate_me_summary">"通过捐赠来致谢我的成果请点这里"</string>
     <string name="purchase_app">"购买应用"</string>
-    <string name="billing_client_disconnected">"连接Google Play结算失败!"</string>
-    <string name="support_development">"支持开发"</string>
-    <string name="support_development_summary">"如果你想感谢开发人员的努力，让这个工具完全免费，请考虑一个小捐赠，通过点击下面提供的选项！购买任何这产品，将会奖励你一个支持者徽章。"</string>
-    <string name="support_dinner">"请我吃饭"</string>
-    <string name="support_meal">"给我买一顿饭"</string>
-    <string name="support_coffee">"给我买杯咖啡"</string>
-    <string name="support_already_received_message">"您已经支持过这个项目的开发了!"</string>
-    <string name="support_received_message">"非常感谢你的支持
-        这会让我更积极地继续开发我的项目！此外，您将在本页的顶部获得一个支持者徽章。"</string>
-    <string name="support_retry_message">"请再次尝试购买！"</string>
-    <string name="support_status_message">"非常感谢你的支持!"</string>
     <string name="licence">"许可证"</string>
     <string name="licence_summary">"查看 GPL V3"</string>
     <string name="share_app">"分享应用"</string>

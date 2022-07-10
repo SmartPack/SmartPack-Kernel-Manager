@@ -867,7 +867,7 @@
     <string name="custom_controls_summary">"Nesta secção, pode criar um controlador personalizado para qualquer funcionalidade, que ainda não foi oficialmente adicionada a esta aplicação.&lt;a href=https://smartpack.github.io/spkm/customcontrols/&gt;Documentation&lt;a&gt;"</string>
     <string name="custom_controls_message">"Você pode basicamente criar um controlador personalizado para qualquer caminho do sysfs existente, desde que você tenha um Gerenciador de Arquivos Root suportado instalado. No entanto, tenha em atenção que esta funcionalidade é demasiado poderosa para danificar o seu dispositivo.
 
-***USE AT YOUR OWN RISK*** ***USE POR SUA CONTA E RISCO***"</string>
+        ***USE AT YOUR OWN RISK*** ***USE POR SUA CONTA E RISCO***"</string>
     <string name="create">"Criar"</string>
     <string name="import_item">"Importar"</string>
     <string name="control_switch">"Interruptor"</string>
@@ -943,7 +943,6 @@
 
     <!-- Script Manager -->
     <string name="scripts_manager_summary">"Nesta secção, pode criar, importar, editar e executar facilmente quaisquer scripts de shell devidamente formatados."</string>
-    <string name="scripts_manager_message">"Gostaria de ter uma aplicação autónoma para gerir os seus scripts? Clique aqui!"</string>
     <string name="scripts_onboot_summary">"Se ativar esta opção, todos os scripts listados nesta página serão executados no arranque."</string>
     <string name="script_executed">"%s executado com sucesso!"</string>
     <string name="exceute_question">"Executar %s?"</string>
@@ -951,7 +950,7 @@
     <string name="exceute_cancel_question">"Cancelar a execução de %s?"</string>
     <string name="remove_script_question">"%s também será removido do Gestor de Scripts.
 
-Are you sure?"</string>
+        Are you sure?"</string>
     <string name="script_exists">"Já existe um script chamado %s! A interromper."</string>
     <string name="executing">"A executar"</string>
     <string name="share_script">"Para aplicar este script, basta importar este arquivo em 'SmartPack-Kernel Manager -&gt; Script Manager -&gt; Import'."</string>
@@ -1009,7 +1008,7 @@ Are you sure?"</string>
     <string name="remove">"Remover"</string>
     <string name="share_channel_message">"Para configurar este canal de atualização, basta inserir '%s' on SmartPack-Kernel Manager -&gt; SmartPack -&gt; Update Channel Url.
 
-Get SmartPack-Kernel Manager from"</string>
+        Get SmartPack-Kernel Manager from"</string>
     <string name="busybox_installer">"Instalador BusyBox"</string>
     <string name="busybox_installer_summary">"É altamente recomendável ter uma instalação BusyBox autônoma em seu dispositivo para trabalhar algumas características deste aplicativo corretamente (por exemplo, binários 'unzip' &amp; 'mke2fs' para piscar &amp; 'curl' ou 'wget' binário para atualizações OTA do kernel). Como uma tentativa de ajudar os usuários nesta questão, um aplicativo simples é disponibilizado, que pode ser usado como um utilitário de instalação BusyBox de um clique para dispositivo arm, arm64 e x86. Clique aqui para obtê-lo!"</string>
     <string name="download_failed">"Parece que o download falhou, ou um arquivo corrompido é baixado!"</string>
@@ -1097,17 +1096,6 @@ Get SmartPack-Kernel Manager from"</string>
     <string name="playstore_summary">"Visite a página do Google Play"</string>
     <string name="donate_me_summary">"Apoiar o desenvolvimento deste projecto"</string>
     <string name="purchase_app">"Comprar Aplicação de Doação"</string>
-    <string name="billing_client_disconnected">"Falha ao conectar-se com o cliente de faturamento do Google Play!"</string>
-    <string name="support_acknowledged">"Doação reconhecida \u2665"</string>
-    <string name="support_development">"Desenvolvimento de Suporte"</string>
-    <string name="support_development_summary">"Se você gosta de apreciar os esforços do desenvolvedor para fornecer esta ferramenta totalmente gratuita, considere enviar uma pequena doação clicando em uma das opções abaixo fornecidas! Comprar qualquer um destes produtos irá atribuir-lhe um crachá de apoiante aqui."</string>
-    <string name="support_dinner">"Paga-me um jantar"</string>
-    <string name="support_meal">"Compre-me uma refeição"</string>
-    <string name="support_coffee">"Compre-me um café"</string>
-    <string name="support_already_received_message">"Você já apoiou o desenvolvimento com este item antes!"</string>
-    <string name="support_received_message">"Muito obrigado pelo seu apoio \u2665 Isso vai motivar-me muito para continuar os meus projetos mais ativos! Além disso, receberá um crachá de apoiante na parte superior desta página."</string>
-    <string name="support_retry_message">"Por favor, tente comprar novamente!"</string>
-    <string name="support_status_message">"Muito obrigado pelo seu apoio!"</string>
     <string name="licence">"Licença"</string>
     <string name="licence_summary">"Ver GPL V3"</string>
     <string name="share_app">"Partilhar App"</string>
@@ -1124,13 +1112,13 @@ Get SmartPack-Kernel Manager from"</string>
 
     <!-- FAQ -->
     <string name="how_different">"P1. Quão diferente é este aplicativo do Kernel Adiutor oficial da Grarak\?"</string>
-    <string name="how_different_summary">"Ans. Este aplicativo é fortemente modificado para atender às necessidades de vários desenvolvedores do kernel. Alguns dos recursos adicionados deste aplicativo incluem, mas não se limitam a, ,
-- Opção de recuperação flash arquivos zip durante a execução do sistema operacional Android. -,
-- Um controlador personalizado simples e de fácil utilização. ,
--Um Gerenciador de Scripts para facilmente criar, importar, editar e executar quaisquer scripts shell devidamente formatados. ,
--Controle sobre características, tais como, CPU Input Boost, Dynamic Stune Boost, K-lapso, Boeffla Wakelock bloqueador, etc. ,
--Controles sonoros Boeffla e Flar com suporte por canal. ,
--e muito mais."</string>
+    <string name="how_different_summary">"Ans. Este aplicativo é fortemente modificado para atender às necessidades de vários desenvolvedores do kernel. Alguns dos recursos adicionados deste aplicativo incluem, mas não se limitam a,
+        - Opção de recuperação flash arquivos zip durante a execução do sistema operacional Android.,
+        - Um controlador personalizado simples e de fácil utilização.,
+        - Um Gerenciador de Scripts para facilmente criar, importar, editar e executar quaisquer scripts shell devidamente formatados.,
+        - Controle sobre características, tais como, CPU Input Boost, Dynamic Stune Boost, K-lapso, Boeffla Wakelock bloqueador, etc.,
+        - Controles sonoros Boeffla e Flar com suporte por canal.,
+        - e muito mais."</string>
     <string name="can_i_use">"Q2. Posso usar este App para controlar qualquer kernel personalizado?"</string>
     <string name="can_i_use_summary">"Ans. Por que não? Este aplicativo funcionará como de costume com qualquer kernel, desde que o acesso root seja concedido."</string>
     <string name="cpu_freq_not_sticking">"Q3. Por que a minha frequência de CPU determinada não cola?"</string>

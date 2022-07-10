@@ -22,9 +22,6 @@
 package com.smartpack.kernelmanager.utils.other;
 
 import android.app.Activity;
-import android.content.Intent;
-
-import com.smartpack.kernelmanager.activities.BillingActivity;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 06, 2021
@@ -32,7 +29,6 @@ import com.smartpack.kernelmanager.activities.BillingActivity;
 public class Billing {
 
     public static void showDonationMenu(Activity activity) {
-        Intent intent = new Intent(activity, BillingActivity.class);
-        activity.startActivity(intent);
+        // Do nothing
     }
 }

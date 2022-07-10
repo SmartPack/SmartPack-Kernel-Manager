@@ -54,7 +54,6 @@ import java.util.Set;
 import in.sunilpaulmathew.rootfilepicker.activities.FilePickerActivity;
 import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
 import in.sunilpaulmathew.sCommon.Utils.sExecutor;
-import in.sunilpaulmathew.sCommon.Utils.sPackageUtils;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 18, 2019
@@ -238,17 +237,6 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 });
 
                 items.add(descriptionView);
-            }
-        }
-        if (items.size() == 0) {
-            if (!sPackageUtils.isPackageInstalled("com.smartpack.scriptmanager", requireActivity())) {
-                // Advertise Own App
-                DescriptionView sm = new DescriptionView();
-                sm.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
-                sm.setSummary(getString(R.string.scripts_manager_message));
-                sm.setFullSpan(true);
-                sm.setOnItemClickListener(item -> Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.scriptmanager", getActivity()));
-                items.add(sm);
             }
         }
     }

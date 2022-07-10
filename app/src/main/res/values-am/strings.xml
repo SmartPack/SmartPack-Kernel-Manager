@@ -18,14 +18,11 @@
     <string name="ok">እሺ</string>
     <string name="yes">አዎ</string>
     <string name="unknown">ያልታወቀ</string>
-
     <string name="warning">ማስጠንቀቂያ!</string>
-
     <string name="apply_on_boot">በማስነሻ ላይ ያመልክቱ</string>
     <string name="apply_on_boot_text">ቅንብሮችን በ% d ሰከንዶች ውስጥ በመተግበር ላይ።</string>
     <string name="apply_on_boot_complete">ቅንብሮችን ማመልከት ተጠናቅቋል።</string>
     <string name="apply_on_boot_canceled">ቅንብሮችን ማመልከት ተሰር .ል።</string>
-
     <string name="not_in_range">በክልል ውስጥ የለም</string>
     <string name="options">አማራጮች</string>
     <string name="more">ተጨማሪ</string>

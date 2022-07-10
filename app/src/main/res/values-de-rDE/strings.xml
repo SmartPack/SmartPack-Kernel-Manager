@@ -944,7 +944,6 @@
 
     <!-- Script Manager -->
     <string name="scripts_manager_summary">"Hier kann ein Shell-Skript erstellt, importiert, editiert und ausgeführt werden."</string>
-    <string name="scripts_manager_message">"Willst du eine selbstständige App zum verwalten von Skripten haben? Hier klicken!"</string>
     <string name="scripts_onboot_summary">"Wenn du den Schalter aktivierts werden alle Skripte beim Systemstart ausgeführt."</string>
     <string name="script_executed">"%s erfolgreich ausgeführt!"</string>
     <string name="exceute_question">"%s ausführen?"</string>
@@ -1094,17 +1093,6 @@
     <string name="playstore_summary">"PlayStore Seite ansehen"</string>
     <string name="donate_me_summary">"Meine Arbeit mit einer Spende unterstützten? Klicke hier"</string>
     <string name="purchase_app">"Spenden App"</string>
-    <string name="billing_client_disconnected">"Verbindung zu Google Play Abrechnungen Client fehlgeschlagen!"</string>
-    <string name="support_acknowledged">"Spende bestätigt \u2665"</string>
-    <string name="support_development">"Entwicklung untersützen"</string>
-    <string name="support_development_summary">"Wenn du die Bemühungen des Entwicklers schätzt, dass er alles total kostenlos macht, gebe ihm bitte eine kleine Spende durch das Klicken auf die Spenden Option. Wenn du eines dieser Produkte kaufst, erhältst du eine Belohnung, indem du als Spender hier angezeigt wirst. "</string>
-    <string name="support_dinner">"Kaufe mir ein Abendessen"</string>
-    <string name="support_meal">"Kaufe mir ein Mittagessen"</string>
-    <string name="support_coffee">"Kaufe mir einen Kaffe"</string>
-    <string name="support_already_received_message">"Du hast die Entwicklung mit dieser Option bereits unterstützt!"</string>
-    <string name="support_received_message">"Vielen Dank für deine Unterstützung \u2665\nEs wird mich dazu motivieren, viele weitere Projekte aktiv weiter zu entwickeln!\nAußerdem wirst du als Unterstützer oben auf dieser Seite angezeigt."</string>
-    <string name="support_retry_message">"Bitte versuche den Kauf  erneut!"</string>
-    <string name="support_status_message">"Vielen dank für deine Hilfe!"</string>
     <string name="licence">"Lizenz"</string>
     <string name="licence_summary">"Betrachte GPL V3"</string>
     <string name="share_app">"App teilen"</string>

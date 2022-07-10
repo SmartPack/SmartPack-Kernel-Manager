@@ -92,12 +92,8 @@ public class Utils {
 
     private static final String TAG = Utils.class.getSimpleName();
 
-    public static boolean isSPDonated(Context context) {
-        return sPackageUtils.isPackageInstalled("com.smartpack.donate", context);
-    }
-
     public static boolean isDonated(Context context) {
-        return isSPDonated(context) || Prefs.getBoolean("support_received", false, context);
+        return sPackageUtils.isPackageInstalled("com.smartpack.donate", context);
     }
 
     public static boolean isFDroidFlavor(Context context) {

@@ -3,11 +3,10 @@
     package="com.smartpack.kernelmanager">
 
     <application >
-        <activity android:name=".activities.BillingActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.smartpack.kernelmanager.release.provider"
+            android:authorities="com.smartpack.kernelmanager.pro.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

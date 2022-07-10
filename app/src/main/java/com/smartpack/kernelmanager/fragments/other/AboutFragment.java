@@ -82,7 +82,7 @@ public class AboutFragment extends RecyclerViewFragment {
         DescriptionView versioninfo = new DescriptionView();
         versioninfo.setDrawable(getResources().getDrawable(R.drawable.ic_on_boot_notification));
         versioninfo.setTitle(getString(R.string.version,"").replace(": ", ""));
-        versioninfo.setSummary((Utils.isDonated(requireActivity()) ? " Pro " : " ") + BuildConfig.VERSION_NAME);
+        versioninfo.setSummary(((Utils.isDonated(requireActivity()) || !Utils.isFDroidFlavor(requireActivity())) ? " Pro " : " ") + BuildConfig.VERSION_NAME);
         versioninfo.setOnItemClickListener(item -> {
             Intent settings = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
             settings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -127,7 +127,7 @@ public class AboutFragment extends RecyclerViewFragment {
         appStore.setTitle(getString(Utils.isFDroidFlavor(requireActivity()) ? R.string.fdroid : R.string.playstore));
         appStore.setSummary(getString(Utils.isFDroidFlavor(requireActivity()) ? R.string.fdroid_summary : R.string.playstore_summary));
         appStore.setOnItemClickListener(item -> Utils.launchUrl(Utils.isFDroidFlavor(requireActivity()) ? "https://f-droid.org/packages/com.smartpack.kernelmanager" :
-                "https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release", requireActivity()));
+                "https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.pro", requireActivity()));
 
         DescriptionView donatetome = new DescriptionView();
         donatetome.setDrawable(getResources().getDrawable(R.drawable.ic_donate));
@@ -145,7 +145,7 @@ public class AboutFragment extends RecyclerViewFragment {
             shareapp.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
             shareapp.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_app_message,BuildConfig.VERSION_NAME)
                     + (Utils.isFDroidFlavor(requireActivity()) ? " F-Droid: https://f-droid.org/packages/com.smartpack.kernelmanager"
-                    : " Google Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release"));
+                    : " Google Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.pro"));
             shareapp.setType("text/plain");
             Intent shareIntent = Intent.createChooser(shareapp, null);
             startActivity(shareIntent);
@@ -157,7 +157,9 @@ public class AboutFragment extends RecyclerViewFragment {
         items.add(support);
         items.add(changelogs);
         items.add(sourcecode);
-        items.add(donatetome);
+        if (Utils.isFDroidFlavor(requireActivity())) {
+            items.add(donatetome);
+        }
         items.add(share);
         items.add(appStore);
     }
@@ -202,7 +204,7 @@ public class AboutFragment extends RecyclerViewFragment {
                 sUtils.getDrawable(R.mipmap.ic_launcher, requireActivity()),
                 sUtils.getDrawable(R.drawable.ic_back, requireActivity()),
                 ViewUtils.getThemeAccentColor(requireActivity()),
-                18, getString(R.string.app_name), "2021-2022, sunilpaulmathew",
+                18, getString(R.string.app_name), "2022-2023, sunilpaulmathew",
                 BuildConfig.VERSION_NAME).launchCredits(requireActivity()));
         credits.addItem(creditsSummary);
         items.add(credits);

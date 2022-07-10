@@ -948,7 +948,6 @@
 
     <!-- Script Manager -->
     <string name="scripts_manager_summary">"Bu bölümde, uygun şekilde biçimlendirilmiş kabuk komut dosyalarını oluşturabilir, içe aktarabilir, düzenleyebilir ve kolayca çalıştırabilirsiniz."</string>
-    <string name="scripts_manager_message">"Komut dosyalarınızı yönetmek için bağımsız bir uygulamaya mı sahip olmak istiyorsunuz? Buraya Tıklayın!"</string>
     <string name="scripts_onboot_summary">"Bu anahtarı etkinleştirirseniz, bu sayfada listelenen tüm komut dosyaları açılışta çalıştırılacaktır."</string>
     <string name="script_executed">"%s başarıyla çalıştırıldı!"</string>
     <string name="exceute_question">"%s çalıştırılsın mı?"</string>
@@ -1100,18 +1099,6 @@
     <string name="playstore_summary">"PlayStore sayfasını ziyaret edin"</string>
     <string name="donate_me_summary">"Bu projenin gelişimini destekleyin"</string>
     <string name="purchase_app">"Bağış Uygulamasını Satın Al"</string>
-    <string name="billing_client_disconnected">"Google Play Faturalandırma istemcisiyle bağlantı kurulamadı!"</string>
-    <string name="support_acknowledged">"Bağış Kabul Edildi \u2665"</string>
-    <string name="support_development">"Geliştirmeyi Destekle"</string>
-    <string name="support_development_summary">"Geliştiricinin bu aracı tamamen ücretsiz sağlama çabalarını takdir etmek isterseniz, lütfen aşağıda verilen seçeneklerden birini tıklayarak küçük bir bağış göndermeyi düşünün! Bu üründen herhangi birini satın almak size burada bir destekçi rozeti kazandıracaktır."</string>
-    <string name="support_dinner">"Bana bir akşam yemeği ısmarla"</string>
-    <string name="support_meal">"Bana bir yemek ısmarla"</string>
-    <string name="support_coffee">"Bana bir kahve ısmarla"</string>
-    <string name="support_already_received_message">"Geliştirmeyi daha önce bu öğeyle zaten desteklediniz!"</string>
-    <string name="support_received_message">"Desteğiniz için çok teşekkürler \u2665
-        Projelerime daha aktif devam etmem için beni çok motive edecek! Ayrıca, bu sayfanın üst kısmında bir destekçi rozeti alacaksınız."</string>
-    <string name="support_retry_message">"Lütfen tekrar satın almayı deneyin!"</string>
-    <string name="support_status_message">"Desteğiniz için çok teşekkürler!"</string>
     <string name="licence">"Lisans"</string>
     <string name="licence_summary">"GPL V3'ü görüntüleyin"</string>
     <string name="share_app">"Uygulamayı Paylaş"</string>
@@ -1128,7 +1115,7 @@
 
     <!-- FAQ -->
     <string name="how_different">"S1. Bu uygulama Grarak'ın resmi Kernel Adiutor'undan ne kadar farklı?"</string>
-    <string name="how_different_summary">"Cvp. Bu uygulama, çeşitli kernel geliştiricilerinin ihtiyaçlarını karşılamak için büyük ölçüde değiştirildi. Bu uygulamanın eklenen özelliklerinden bazıları şunlardır, ancak bunlarla sınırlı değildir: \ n - Android sistemini çalıştırırken recovery zip dosyalarını flashlama seçeneği.\n - Basit ve kullanıcı dostu bir Özel Kontrolör.\n - Düzgün biçimlendirilmiş kabuk komut dosyalarını kolayca oluşturmak, içe aktarmak, düzenlemek ve yürütmek için Komut Dosyası Yöneticisi.\n - CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Uyandırma Kilidi Engelleyici gibi özellikler üzerinde kontrol.\n - Boeffla ve Flar'ın ayrı ayrı destekli ses kontrolleri.\n - ve çok daha fazlası."</string>
+    <string name="how_different_summary">"Cvp. Bu uygulama, çeşitli kernel geliştiricilerinin ihtiyaçlarını karşılamak için büyük ölçüde değiştirildi. Bu uygulamanın eklenen özelliklerinden bazıları şunlardır, ancak bunlarla sınırlı değildir: \ n - Android sistemini çalıştırırken recovery zip dosyalarını flashlama seçeneği.\n - Basit ve kullanıcı dostu bir Özel Kontrolör.\n - Düzgün biçimlendirilmiş kabuk komut dosyalarını kolayca oluşturmak, içe aktarmak, düzenlemek ve yürütmek için Komut Dosyası Yöneticisi.\n - CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Uyandırma Kilidi Engelleyici gibi özellikler üzerinde kontrol.\n - Boeffla ve Flar'ın ayrı destekli ses kontrolleri.\n - ve çok daha fazlası."</string>
     <string name="can_i_use">"S2. Bu Uygulamayı herhangi bir özel kerneli kontrol etmek için kullanabilir miyim?"</string>
     <string name="can_i_use_summary">"Cvp. Neden olmasın? Bu uygulama, root erişimi verildiği sürece herhangi bir kernelde her zamanki gibi çalışacaktır."</string>
     <string name="cpu_freq_not_sticking">"S3. Neden benim kararlı işlemci frekansım değişmiyor?"</string>

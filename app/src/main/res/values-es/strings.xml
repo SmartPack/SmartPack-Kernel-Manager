@@ -435,7 +435,7 @@
     <string name="lease_break_time_summary">"El período de gracia que el kernel otorga a un proceso que tiene una concesión de archivo después de haber enviado una señal a ese proceso notificándole que otro proceso está esperando para abrir el archivo."</string>
     <string name="auto_sync">"Sincronizacion automática de datos"</string>
     <string name="auto_sync_summary">"Permita que las aplicaciones actualicen datos automáticamente.
-Nota: se aplicará, independientemente de la configuración de inicio."</string>
+        Nota: se aplicará, independientemente de la configuración de inicio."</string>
     <string name="cpuset">"Conjuntos de CPU"</string>
 
     <!-- Performance Tweaks -->
@@ -462,13 +462,12 @@ Nota: se aplicará, independientemente de la configuración de inicio."</string>
 
     <!-- Script Manager -->
     <string name="scripts_manager_summary">"En esta sección, puede crear, importar, editar y ejecutar fácilmente cualquier script de shell con el formato adecuado"</string>
-    <string name="scripts_manager_message">"¿Le gustaría tener una aplicación independiente para administrar sus scripts? ¡Haga clic aquí!"</string>
     <string name="scripts_onboot_summary">"Si habilita este modificador, todos los scripts enumerados en esta página se ejecutarán en el arranque."</string>
     <string name="script_executed">"%s ejecutado con éxito!"</string>
     <string name="exceute_question">"Ejecutar %s?"</string>
     <string name="remove_script_question">"%s también se eliminará del Administrador de secuencias de comandos.
 
-¿Estás seguro?"</string>
+        ¿Estás seguro?"</string>
     <string name="script_exists">"A script named %s ya existe! Abortar"</string>
     <string name="executing">"Ejecutando"</string>
     <string name="share_script">"Para aplicar este script, simplemente importe este archivo en 'SmartPack-Kernel Manager -&gt; Script Manager -&gt; Importar'."</string>
@@ -526,10 +525,6 @@ Nota: se aplicará, independientemente de la configuración de inicio."</string>
     <string name="playstore">"Google Play"</string>
     <string name="playstore_summary">"Visitar página de Google play"</string>
     <string name="donate_me_summary">"Apoyar el desarrollo de este proyecto"</string>
-    <string name="support_development_summary">"Si quiere agradecer los esfuerzos del desarrollador por ofrecer esta herramienta de forma totalmente gratuita, considere la posibilidad de enviar una pequeña donación haciendo clic en una de las opciones que se ofrecen a continuación. La compra de cualquiera de estos productos le otorgará una insignia de colaborador aquí."</string>
-    <string name="support_coffee">"Cómprame un café"</string>
-    <string name="support_already_received_message">"¡Ya ha apoyado el desarrollo con este artículo antes!"</string>
-    <string name="support_status_message">"¡Muchas gracias por su apoyo."</string>
     <string name="licence">"Licencia"</string>
     <string name="licence_summary">"Ver GPL V3"</string>
     <string name="share_app">"Compartir app"</string>

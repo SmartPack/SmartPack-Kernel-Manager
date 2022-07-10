@@ -942,7 +942,6 @@
 
     <!-- Script Manager -->
     <string name="scripts_manager_summary">"W tej sekcji możesz tworzyć, importować, edytować i łatwo wykonywać dowolne odpowiednio sformatowane skrypty powłoki."</string>
-    <string name="scripts_manager_message">"Chcesz mieć samodzielną aplikację do zarządzania skryptami? Kliknij tutaj!"</string>
     <string name="scripts_onboot_summary">"Jeśli włączysz ten przełącznik, wszystkie skrypty wymienione na tej stronie będą wykonywane podczas rozruchu."</string>
     <string name="script_executed">"%s wykonane pomyślnie!"</string>
     <string name="exceute_question">"Wykonać %s?"</string>
@@ -1092,17 +1091,6 @@
     <string name="playstore_summary">"Odwiedź stronę Google Play"</string>
     <string name="donate_me_summary">"Chcesz docenić moją pracę darowizną? Kliknij tutaj"</string>
     <string name="purchase_app">"Kup aplikację Donation"</string>
-    <string name="billing_client_disconnected">"Nie udało się połączyć z klientem rozliczeń Google Play!"</string>
-    <string name="support_acknowledged">"Darowizna przyjęta \u2665"</string>
-    <string name="support_development">"Wsparcie Rozwoju"</string>
-    <string name="support_development_summary">"Jeśli chcesz docenić wysiłki dewelopera, aby udostępnić to narzędzie całkowicie za darmo, rozważ wysłanie niewielkiej darowizny, klikając jedną z poniższych opcji! Kupno któregokolwiek z tych produktów nagrodzi Cię tutaj odznaką kibica."</string>
-    <string name="support_dinner">"Kup mi Obiad"</string>
-    <string name="support_meal">"Kup mi posiłek"</string>
-    <string name="support_coffee">"Kup mi Kawę"</string>
-    <string name="support_already_received_message">"Już wcześniej wspierałeś rozwój tego elementu!"</string>
-    <string name="support_received_message">"Bardzo dziękuję za wsparcie \u2665\nBardzo mnie to zmotywuje do aktywniejszego kontynuowania moich projektów! Ponadto otrzymasz odznakę kibica na górze tej strony."</string>
-    <string name="support_retry_message">"Spróbuj ponownie dokonać zakupu!"</string>
-    <string name="support_status_message">"Bardzo dziękuję za wsparcie!"</string>
     <string name="licence">"Licencja"</string>
     <string name="licence_summary">"Pokaż GPL V3"</string>
     <string name="share_app">"Udostępnij aplikacje"</string>

@@ -943,7 +943,6 @@
 
     <!-- Script Manager -->
     <string name="scripts_manager_summary">"В этом разделе вы можете создавать, импортировать, редактировать и легко выполнять любые правильно отформатированные сценарии оболочки."</string>
-    <string name="scripts_manager_message">"Хотите иметь отдельное приложение для управления вашими скриптами? Нажмите здесь!"</string>
     <string name="scripts_onboot_summary">"Если вы включите этот переключатель, все скрипты, перечисленные на этой странице, будут выполняться при загрузке."</string>
     <string name="script_executed">"%s выполнено успешно!"</string>
     <string name="exceute_question">"Выполнить %s?"</string>
