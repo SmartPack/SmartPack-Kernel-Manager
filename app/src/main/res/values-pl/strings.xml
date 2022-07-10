@@ -49,7 +49,7 @@
     <string name="statistics">"Statystyki"</string>
     <string name="kernel">"Kernel"</string>
     <string name="tools">"Przybory"</string>
-    <string name="other">"Inny"</string>
+    <string name="other">"Inne"</string>
 
     <!-- Menus -->
     <string name="overall">"Ogólne"</string>
@@ -86,9 +86,9 @@
     <string name="faq">"FAQ"</string>
 
     <!-- Overall -->
-    <string name="overall_summary">"Witamy na stronie głównej aplikacji SmartPack-Kernel Manager. Ta strona zawiera podstawowe informacje o Twoim urządzeniu. Zaawansowane opcje podkręcania jądra można znaleźć na odpowiednich stronach."</string>
+    <string name="overall_summary">"Witamy na stronie głównej programu SmartPack-Kernel Manager. Ta strona zawiera bardzo podstawowe informacje o Twoim urządzeniu. Zaawansowane opcje podkręcania jądra można znaleźć na odpowiednich stronach."</string>
     <string name="cpu_times">"CPU Times"</string>
-    <string name="offline">"Offline"</string>
+    <string name="offline">"Wyłączone"</string>
     <string name="core">"Rdzeń %d"</string>
     <string name="gpu_freq">"GPU Częstotliwość"</string>
     <string name="refresh">"Odśwież"</string>
@@ -101,7 +101,7 @@
     <string name="unused_frequencies">"Nieużywane częstotliwości"</string>
 
     <!-- Device -->
-    <string name="processor">"Processor"</string>
+    <string name="processor">"Procesor"</string>
     <string name="vendor">"Dostawca"</string>
     <string name="features">"Cechy"</string>
     <string name="ram">"RAM"</string>
@@ -125,7 +125,7 @@
 
     <!-- CPU -->
     <string name="cores_singular">"%d rdzeń"</string>
-    <string name="cores">"%d rdzeni"</string>
+    <string name="cores">"%d rdzenie"</string>
     <string name="cpu_usage">"Użycie CPU"</string>
     <string name="cpu_usage_string">"%s Użycie CPU"</string>
     <string name="no_offline_core">"Nie możesz wyłączyć tego rdzenia!"</string>
@@ -135,9 +135,9 @@
     <string name="cpu_min_freq_summary">"Ustaw minimalną częstotliwość, do której skaluje rdzeń."</string>
     <string name="cpu_max_screen_off_freq">"Maksymalna częstotliwość wyłączania ekranu procesora"</string>
     <string name="cpu_max_screen_off_freq_summary">"Ustaw maksymalną częstotliwość, z jaką procesor się skaluje, gdy ekran jest wyłączony."</string>
-    <string name="cpu_governor">"Zarządca CPU"</string>
+    <string name="cpu_governor">"CPU Zarządca"</string>
     <string name="cpu_governor_summary">"Zarządca procesora określa, jak zachowuje się procesor CPU w odpowiedzi na zmiany obciążenia. Zmiana regulatora wpłynie na sposób skalowania procesora poprzez kroki częstotliwości dostępne dla procesora."</string>
-    <string name="cpu_governor_tunables">"Przestrajanie zarządcy CPU"</string>
+    <string name="cpu_governor_tunables">"CPU Zarządca Przestrajane"</string>
     <string name="governor_tunables_summary">"Różne elementy konfiguracji zależne od gubernatora."</string>
     <string name="cpu_governor_tunables_read_error">"Nie można odczytać aktualnego zarządcy procesora.\n\nIf Jeśli używasz urządzenia QCOM big.LITTLE jest to znany problem. System zmusza procesor do wyłączenia rdzeni, co bardzo utrudnia odczyt statystyk specyficznych dla procesora. Spróbuj ponownie wybrać tę opcję. CPU czasami odmawia włączenia rdzenia."</string>
     <string name="tunables_error">"%s nie jest przestrajalny"</string>
@@ -151,7 +151,7 @@
     <string name="cfs_scheduler_policy">"Zasady dotyczące harmonogramu CFS"</string>
     <string name="cfs_scheduler_policy_summary">"Polityka decyduje, jak CFS scheduler ma zrównoważyć zadania na różnych jednostkach CPU."</string>
     <string name="cpu_quiet">"CPUQuiet"</string>
-    <string name="cpu_quiet_summary">"CPUQuiet wprowadza podłączone rdzenie procesora w stan uśpienia. Odpowiednie zasady pozwolą oszczędzić energię bez obniżania wydajności."</string>
+    <string name="cpu_quiet_summary">"CPUQuiet implementuje przełączane zasady, aby zmusić rdzenie procesora w stan uśpienia. Odpowiednie zasady pozwolą oszczędzić energię bez obniżania wydajności."</string>
     <string name="cpu_quiet_governor">"CPUQuiet Governor"</string>
     <string name="msm_limiter">"MSM Limiter"</string>
     <string name="msm_limiter_summary">"Włącz ogranicznik MSM Limiter przez neobuddy89."</string>
@@ -159,9 +159,9 @@
     <string name="freq_control_summary">"Pozwól MSM Limiter kontrolować częstotliwości twoich procesorów."</string>
 
     <!-- CPU Boost -->
-    <string name="cpu_boost">"Wzmocnienie CPU"</string>
+    <string name="cpu_boost">"CPU Wzmocnienie"</string>
     <string name="stune_boost">"Stune Boost"</string>
-    <string name="cpu_boost_settings">"Ustawienia wzmocnienia CPU"</string>
+    <string name="cpu_boost_settings">"CPU Ustawienia wzmocnienie"</string>
     <string name="debug_mask">"Maska debugowania"</string>
     <string name="debug_mask_summary">"Umożliwia aktywację maski debugowania operacji."</string>
     <string name="interval">"Interwał"</string>
@@ -195,10 +195,10 @@
     <!-- CPU Hotplug -->
     <string name="hotplug_warning">"Włączony jest więcej niż jeden system hotplug!\nProszę używać tylko jednego."</string>
     <string name="mpdecision">"MPDecision"</string>
-    <string name="mpdecision_summary">"Rozwiązanie hotpluggowania Qualcomm'u. Gdy ta opcja jest włączona, mogą wystąpić problemy ze zmianą częstotliwości."</string>
+    <string name="mpdecision_summary">"Qualcomm's hotplugging rozwiązanie. Gdy ta opcja jest włączona, mogą wystąpić problemy ze zmianą częstotliwości."</string>
     <string name="intelliplug">"IntelliPlug"</string>
     <string name="intelliplug_summary">"Wbudowany w jądro zamiennik dla Qualcomm's MPDecision. Opracowany przez faux123."</string>
-    <string name="cpu_hotplug_profile_summary">"Liczba w nawiasach wskazuje liczbę rdzeni online w dowolnym momencie."</string>
+    <string name="cpu_hotplug_profile_summary">"Liczba w nawiasach wskazuje liczbę włączonych rdzeni w dowolnym momencie."</string>
     <string name="insanity">"InSaNiTy"</string>
     <string name="balanced">"Balanced"</string>
     <string name="performance">"Performance"</string>
@@ -211,7 +211,7 @@
     <string name="strict">"Strict"</string>
     <string name="eco_mode">"Eco Mode"</string>
     <string name="eco_mode_summary">"Tryb oszczędzania baterii dla IntelliPlug."</string>
-    <string name="hysteresis">"Wartość Hysteresis"</string>
+    <string name="hysteresis">"Hysteresis Wartość"</string>
     <string name="hysteresis_summary">"Im niższa, tym szybsza odpowiedź."</string>
     <string name="cpu_threshold">"CPU Threshold"</string>
     <string name="cpu_threshold_summary">"Im wyższy, tym mniej procesorów jest używanych."</string>
@@ -233,7 +233,7 @@
     <string name="down_lock_duration_summary">"Minimalny odstęp czasu, w którym procesor jest utrzymywany w trybie online."</string>
     <string name="fshift">"FShift"</string>
     <string name="lazyplug">"LazyPlug"</string>
-    <string name="lazyplug_summary">"Wbudowany w jądro zamiennik dla MPDecision Qualcomm'u. Opracowany przez arter97."</string>
+    <string name="lazyplug_summary">"Wbudowany w jądro zamiennik dla Qualcomm's MPDecision. Opracowany przez arter97."</string>
     <string name="lazy">"Lazy"</string>
     <string name="possible_cpu_cores_summary">"Możliwe rdzenie procesora, których może używać lazyplug"</string>
     <string name="blu_plug">"Blu_Plug"</string>
@@ -273,8 +273,8 @@
     <string name="fast_lane_load_summary">"Zmniejsz opóźnienia, natychmiast przełączając wszystkie procesory w tryb online, jeśli bieżące obciążenie któregokolwiek z procesorów przekracza określony próg."</string>
     <string name="fast_lane_min_freq">"Fast Lane Minimalna częstotliwość"</string>
     <string name="fast_lane_min_freq_summary">"Ustawia minimalną częstotliwość, z jaką procesor skaluje się w dół, gdy szybki pas osiągnie powyższe obciążenie."</string>
-    <string name="offline_load">"Offline Load"</string>
-    <string name="offline_load_summary">"Nie odłączaj procesora w tryb offline, jeśli spadnie poniżej progu obciążenia niższego poziomu."</string>
+    <string name="offline_load">"Obciążenie offline"</string>
+    <string name="offline_load_summary">"Nie wyłączaj procesora, jeśli spadnie poniżej progu obciążenia niższego poziomu."</string>
     <string name="alucard_hotplug">"Alucard Hotplug"</string>
     <string name="alucard_hotplug_summary">"Wbudowany w jądro zamiennik dla Qualcomm's MPDecision. Opracowany przez Alucard."</string>
     <string name="sampling_rate">"Częstotliwość próbkowania"</string>
@@ -284,7 +284,7 @@
     <string name="io_is_busy_summary">"Służy do tego, aby hotplug uwzględniał czas we / wy jako czas ładowania procesora."</string>
     <string name="msm_mpdecision_hotplug">"MSM MPDecision Hotplug"</string>
     <string name="bricked_hotplug">"Murowany Hotplug"</string>
-    <string name="mb_hotplug_summary">"Wbudowany w jądro zamiennik dla MPDecision Qualcomm'u. Opracowany przez show-p1984."</string>
+    <string name="mb_hotplug_summary">"Wbudowany w jądro zamiennik dla Qualcomm's MPDecision. Opracowany przez show-p1984."</string>
     <string name="idle_frequency">"Częstotliwość bezczynności"</string>
     <string name="idle_frequency_summary">"Jeśli pierwszy rdzeń jest poniżej tej częstotliwości, nie podłączaj pozostałych rdzeni."</string>
     <string name="touch_boost_time">"Touch Boost Time"</string>
@@ -295,7 +295,7 @@
     <string name="pause">"Pause"</string>
     <string name="pause_summary">"Jeśli coś innego podłącza się do procesora, zasypiaj na tyle milisekund."</string>
     <string name="autosmp">"AutoSMP"</string>
-    <string name="autosmp_summary">"Wbudowany w jądro zamiennik dla MPDecision Qualcomm'u. Opracowany przez mrg666."</string>
+    <string name="autosmp_summary">"Wbudowany w jądro zamiennik dla Qualcomm's MPDecision. Opracowany przez mrg666."</string>
     <string name="downrate_limits">"Ograniczenia obniżenia ceny"</string>
     <string name="uprate_limits">"Zaktualizuj limity"</string>
     <string name="cycle_down">"Cykl w dół"</string>
@@ -315,7 +315,7 @@
     <string name="busy_up_threshold_summary">"Próg, w którym należy włączyć mocne rdzenie."</string>
     <string name="task_threshold">"Task Threshold"</string>
     <string name="task_threshold_summary">"Próg przy równoważeniu zadań do dużych jednostek CPU."</string>
-    <string name="offline_delay">"Offline Delay"</string>
+    <string name="offline_delay">"Opóźnienie offline"</string>
     <string name="offline_delay_summary">"Czas przed wyłączeniem procesora."</string>
     <string name="online_delay">"Online Delay"</string>
     <string name="online_delay_summary">"Time before turning on a CPU."</string>
@@ -323,13 +323,13 @@
     <string name="msm_sleeper_summary">"Wbudowany w jądro zamiennik dla Qualcomm's MPDecision. Opracowany przez flar2."</string>
     <string name="max_down_count">"Próg rdzenia offline"</string>
     <string name="max_up_count">"Próg rdzenia online"</string>
-    <string name="suspend_max_online">"Maksymalna liczba rdzeni online podczas wstrzymania"</string>
+    <string name="suspend_max_online">"Maksymalna liczba włączonych rdzeni podczas wstrzymania"</string>
     <string name="hotplug_frequency">"Hotplug Częstotliwość"</string>
     <string name="hotplug_load">"Hotplug Load"</string>
     <string name="hotplug_rate">"Hotplug Rate"</string>
     <string name="hotplug_rq">"Hotplug RQ"</string>
     <string name="aio_hotplug">"AiO Hotplug"</string>
-    <string name="aio_hotplug_summary">"Wszystko w jednym HotPlug dla urządzeń z procesorem Qualcomm'u. Opracowany przez Shoaib0597."</string>
+    <string name="aio_hotplug_summary">"Wszystko w jednym HotPlug dla Qualcomm devices. Opracowany przez Shoaib0597."</string>
     <string name="max_cpu_online_big">"Maksymalnie BIG procesory online"</string>
     <string name="max_cpu_online_big_summary">"Maksymalna liczba BIG procesorów, które będą online."</string>
     <string name="max_cpu_online_little">"Maksymalna liczba procesorów LITTLE online"</string>
@@ -338,7 +338,7 @@
     <string name="nr_min_cpu">"Minimalna liczba procesorów online"</string>
     <string name="adv_sett">"Zaawansowane ustawienia"</string>
     <string name="thunder_plug">"ThunderPlug"</string>
-    <string name="thunder_plug_summary">"Wbudowany w jądro zamiennik dla MPDecision Qualcomm'u. Opracowany przez varun.chitre15"</string>
+    <string name="thunder_plug_summary">"Wbudowany w jądro zamiennik dla Qualcomm's MPDecision. Opracowany przez varun.chitre15"</string>
     <string name="dual_core_mode">"Tryb dwurdzeniowy"</string>
     <string name="quad_core_mode">"Tryb czterordzeniowy"</string>
     <string name="endurance_level">"Poziom wytrzymałości"</string>
@@ -360,9 +360,9 @@
     <string name="gpu_min_freq_summary">"Ustaw minimalną częstotliwość skalowania GPU w dół."</string>
     <string name="gpu_2d_governor">"GPU 2D Governor"</string>
     <string name="gpu_2d_governor_summary">"Ustaw zarządcę 2D GPU."</string>
-    <string name="gpu_governor">"Zarządca GPU"</string>
+    <string name="gpu_governor">"GPU Governor"</string>
     <string name="gpu_governor_summary">"Ustaw zarządcę GPU."</string>
-    <string name="gpu_governor_tunables">"Przestrajanie zarządcy GPU"</string>
+    <string name="gpu_governor_tunables">"GPU Governor Tunables"</string>
     <string name="simple_gpu_algorithm">"Prosty algorytm GPU"</string>
     <string name="simple_gpu_algorithm_summary">"Dodatek do MSM Adreno TZ GPU Governor. Developed by faux123."</string>
     <string name="adrenoboost">"AdrenoBoost"</string>
@@ -391,9 +391,9 @@
     <string name="thermald">"Thermald"</string>
     <string name="thermald_summary">"Standardowy sterownik termiczny, który zapobiega przegrzaniu urządzenia. Powinno to być wyłączone, jeśli obecne jądro ma alternatywę."</string>
     <string name="intellithermal">"Intellithermal"</string>
-    <string name="intellithermal_summary">"Wbudowany w jądro zamiennik dla Thermald Qualcomm'u. Opracowany przez faux123."</string>
+    <string name="intellithermal_summary">"Wbudowany w jądro zamiennik dla Qualcomm's Thermald. Opracowany przez faux123."</string>
     <string name="intellithermal_optimized">"Intellithermal Optimized"</string>
-    <string name="intellithermal_optimized_summary">"Wbudowany w jądro zamiennik dla Thermald Qualcomm'u. Opracowany przez faux123 and alucard_24."</string>
+    <string name="intellithermal_optimized_summary">"An in-kernel replacement for Qualcomm's Thermald. Opracowany przez faux123 and alucard_24."</string>
     <string name="thermal_debug_mask_summary">"Umożliwia aktywację maski debugowania dla operacji termicznych."</string>
     <string name="vdd_restriction">"VDD Ograniczenie"</string>
     <string name="freq_throttle_temp">"Temperatura dławienia częstotliwości"</string>
@@ -430,7 +430,7 @@
     <string name="shutdown_temp">"Temperatura wyłączenia"</string>
     <string name="msm_thermal">"MSM Thermal"</string>
     <string name="msm_thermal_simple">"Prosty monitor termiczny"</string>
-    <string name="msm_thermal_simple_summary">"Wbudowany w jądro zamiennik dla Thermald Qualcomm'u. Opracowany przez Sultanxda."</string>
+    <string name="msm_thermal_simple_summary">"Wbudowany w jądro zamiennik dla Qualcomm's Thermald. Opracowany przez Sultanxda."</string>
     <string name="usermax_freq">"Maksymalna częstotliwość użytkownika"</string>
     <string name="freq_mitg_temp">"Temperatura łagodzenia częstotliwości"</string>
     <string name="freq_mitg_temp_summary">"Próg temperatury w celu złagodzenia maksymalnej częstotliwości procesora."</string>
@@ -454,7 +454,7 @@
 
     <!-- Advanced Charge Control Interface -->
     <string name="acci">"Zaawansowany interfejs kontroli ładowania"</string>
-    <string name="fast_charge">"Szybkie ładowanie"</string>
+    <string name="fast_charge">"Fast Charge"</string>
     <string name="fast_charge_summary">"Jeśli jest włączona, urządzenie będzie ładować się szybciej po podłączeniu do USB. Wybierz tryb niestandardowy, aby ładować urządzenie na niestandardowym poziomie. Wymień ładowarkę podczas zmiany tych opcji."</string>
     <string name="otg_enable">"OTG Switch"</string>
     <string name="otg_enable_summary">"Włącz na stałe tryb USB On-The-Go (OTG) na obsługiwanych urządzeniach OnePlus."</string>
@@ -691,7 +691,7 @@
     <string name="add_random">"Dodaj losowo"</string>
     <string name="add_random_summary">"Narysuj entropię z wirującej (rotacyjnej) pamięci."</string>
     <string name="rq_affitiny">"Powiązanie RQ"</string>
-    <string name="rq_affinity_summary">"Postaraj się, aby żądania harmonogramu były kompletne w rdzeniu procesora z którego zostały utworzone. Wyższe wartości są bardziej agresywne."</string>
+    <string name="rq_affinity_summary">"Postaraj się, aby żądania harmonogramu były kompletne w rdzeniu procesora, z którego zostały utworzone. Wyższe wartości są bardziej agresywne."</string>
     <string name="nomerges">"Brak łączenia"</string>
     <string name="nomerges_summary">"Umożliwia to użytkownikowi wyłączenie logiki wyszukiwania związanej z żądaniami scalania we./wy. w warstwie blokowej."</string>
     <string name="nr_requests">"Żądania NR"</string>
@@ -736,13 +736,13 @@
 
     <!-- Wakelock -->
     <string name="wakelock">" Wakelock"</string>
-    <string name="wakelocks_other">"Inne Wakelocki"</string>
+    <string name="wakelocks_other">"Inne Wakelock"</string>
     <string name="wakelock_summary">"Wakelock są tam z jakiegoś powodu. Oznacza to, że blokując niektóre z nich możesz wprowadzić mniejsze lub większe problemy, wywołać dziwne efekty uboczne, a w najgorszym przypadku całkowicie uniemożliwić korzystanie z systemu. Za blokowanie wakelocków odpowiedzialny jest wyłącznie użytkownik."</string>
-    <string name="boeffla_wakelock">"Ogólny bloker Wakeloców firmy Boeffla"</string>
-    <string name="wkl_order">"Kolejność Wakelocków"</string>
-    <string name="wkl_order_summary">"Wybierz kolejność listowania Wakelocków"</string>
-    <string name="wkl_blocked">"Zablokowane Wakelocki"</string>
-    <string name="wkl_allowed">"Dozwolone Wakelocki"</string>
+    <string name="boeffla_wakelock">"Ogólny bloker Wakelock firmy Boeffla"</string>
+    <string name="wkl_order">"Kolejność Wakelocks"</string>
+    <string name="wkl_order_summary">"Wybierz kolejność listowania Wakelocks"</string>
+    <string name="wkl_blocked">"Zablokowane Wakelocks"</string>
+    <string name="wkl_allowed">"Dozwolone Wakelocks"</string>
     <string name="wkl_total_time">"Czas"</string>
     <string name="wkl_wakep_count">"Budzenie"</string>
     <string name="wkl_name">"Nazwa"</string>
@@ -776,10 +776,10 @@
     <string name="wlan_ws_wakelock_summary">"Zapobiegaj wlan_ws wakelock."</string>
     <string name="bluedroid_timer_wakelock">"Bluedroid Timer Wakelock"</string>
     <string name="bluedroid_timer_wakelock_summary">"Zapobiegaj Bluedroid Timer wakelock."</string>
-    <string name="wlan_rx_wakelock_divider">"Rozdzielacz wlan_rx Wakelock"</string>
-    <string name="wlan_ctrl_wakelock_divider">"Rozdzielacz wlan_ctrl Wakelock"</string>
-    <string name="msm_hsic_wakelock_divider">"Rozdzielacz msm_hsic Wakelock"</string>
-    <string name="bcmdhd_wakelock_divider">"Rozdzielacz BCMDHD Wakelock"</string>
+    <string name="wlan_rx_wakelock_divider">"wlan_rx Wakelock Rozdzielacz"</string>
+    <string name="wlan_ctrl_wakelock_divider">"wlan_ctrl Wakelock Rozdzielacz"</string>
+    <string name="msm_hsic_wakelock_divider">"msm_hsic Wakelock Rozdzielacz"</string>
+    <string name="bcmdhd_wakelock_divider">"BCMDHD Wakelock Rozdzielacz"</string>
     <string name="wkl_sensorhub">"SensorHub"</string>
     <string name="wkl_sensorhub_summary">"SensorHub Wakelock jest jednym z największych źródeł przebudzenia. Wyłącz, aby uzyskać lepszy głęboki sen i krótszy czas czuwania. Włącz dla zachowania zapasów."</string>
     <string name="wkl_ssp">"SSP"</string>
@@ -847,7 +847,7 @@
     <string name="lease_break_time_summary">"Okres karencji, który jądro przyznaje procesowi posiadającemu dzierżawę pliku po wysłaniu sygnału do tego procesu powiadamiającego, że inny proces oczekuje na otwarcie pliku."</string>
     <string name="auto_sync">"Automatyczna synchronizacja danych"</string>
     <string name="auto_sync_summary">"Zezwalaj aplikacjom na automatyczne odświeżanie danych.\nUwaga: zostanie to zastosowane niezależnie od ustawień podczas rozruchu."</string>
-    <string name="cpuset">"Zestawy CPU"</string>
+    <string name="cpuset">"CPU Zestawy"</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">"Poprawki wydajności"</string>
@@ -865,7 +865,7 @@
 
     <!-- Custom Controls -->
     <string name="welcome">"Powitanie"</string>
-    <string name="custom_controls_summary">"W tej sekcji możesz utworzyć niestandardowy kontroler dla dowolnej funkcji, która nie została jeszcze oficjalnie dodana do tej aplikacji. &lt;a href=\"https://smartpack.github.io/spkm/customcontrols/\"&gt;Dokumentacja&lt;a&gt;"</string>
+    <string name="custom_controls_summary">"W tej sekcji możesz utworzyć niestandardowy kontroler dla dowolnej funkcji, która nie została jeszcze oficjalnie dodana do tej aplikacji. &lt;a href="https://smartpack.github.io/spkm/customcontrols/">Dokumentacja&lt;a>"</string>
     <string name="custom_controls_message">"Zasadniczo możesz utworzyć niestandardowy kontroler dla dowolnej istniejącej ścieżki sysfs, pod warunkiem, że masz zainstalowany obsługiwany główny menedżer plików. Należy jednak pamiętać, że ta funkcja jest zbyt potężna, aby zepsuć urządzenie.\n\n***UŻYWAJ NA WŁASNE RYZYKO***"</string>
     <string name="create">"Utwórz"</string>
     <string name="import_item">"Importuj"</string>
@@ -897,7 +897,8 @@
     <string name="recovery_partition">"Partycja odzyskiwania"</string>
     <string name="fota_partition">"Partycja Fota"</string>
     <string name="flash">"Flash"</string>
-    <string name="flasher">"Flasher"</string><string name="flasher_summary">"Kliknij przycisk \"Flash\", aby wybrać i wgrać plik ZIP za pomocą recovery bez ponownego uruchamiania w trybie nieoficjalnego recovery. Zmiany zostaną zastosowane po ponownym uruchomieniu."</string>
+    <string name="flasher">"Flasher"</string>
+    <string name="flasher_summary">"Kliknij przycisk \"Flash\", aby wybrać i wgrać plik ZIP za pomocą odzyskiwania (recovery) bez ponownego uruchamiania w trybie nieoficjalnego odzyskiwania (recovery). Zmiany zostaną zastosowane po ponownym uruchomieniu."</string>
     <string name="file_size_limit">"Ostrzeżenie! Wybrano plik ~%s MB do flashowania. Flashowanie większych plików, takich jak ROM, za pomocą tej aplikacji może być niebezpieczne dla twojego urządzenia."</string>
     <string name="execute">"Wykonać"</string>
     <string name="sure_message">"Czy na pewno flashujesz %s?"</string>
@@ -926,7 +927,7 @@
     <string name="applied">"Stosowany"</string>
     <string name="profile_tasker">"Profil Tasker"</string>
     <string name="profile_tasker_summary">"Jeśli chcesz zastosować profil podczas określonego wydarzenia, takiego jak uruchomienie aplikacji, musisz użyć Taskera."</string>
-    <string name="profile_tasker_toast">"Pokaż powiadomienie toast, gdy Tasker zastosuje profil"</string>
+    <string name="profile_tasker_toast">"Pokaż toast, gdy Tasker zastosuje profil"</string>
     <string name="profile_tile">"Profil kafelki"</string>
     <string name="profile_tile_summary">"Pokaż kafelek, który pozwala wybrać profil."</string>
     <string name="profile_select">"Wybierz profil"</string>
@@ -971,7 +972,7 @@
     <string name="update_channel">"Zaktualizuj adres URL kanału"</string>
     <string name="update_channel_create">"Utwórz kanał aktualizacji"</string>
     <string name="update_channel_empty">"Czyszczenie informacji o kanale aktualizacji!"</string>
-    <string name="update_channel_info">"Łącząc powyższy kanał aktualizacji z odpowiednim plikiem json dla twojego urządzenia, możesz dodać obsługę pobierania jądra i automatycznego flashowania (nie dla wszystkich urządzeń) do dowolnego jądra dostępnego dla twojego urządzenia. Poproś swojego ulubionego programistę jądra o dodanie obsługi tej funkcji. Pobrane jądro będzie dostępne pod adresem '%s'.\n\nTips! Możesz zaimportować plik JSON utworzony dla franciscofranco's (huge \u2665 &amp; respect to him) 'FK-Kernel Manager' i po prostu zadziała.\n\nPotrzebujesz więcej pomocy? Kliknij tutaj!"</string>
+    <string name="update_channel_info">"Łącząc powyższy kanał aktualizacji z odpowiednim plikiem json dla twojego urządzenia, możesz w zasadzie dodać obsługę pobierania jądra i automatycznego flashowania (nie dla wszystkich urządzeń) do dowolnego jądra dostępnego dla twojego urządzenia. Poproś swojego ulubionego programistę jądra o dodanie obsługi tej funkcji. Pobrane jądro będzie dostępne pod adresem '%s'.\n\nWskazówka! Możesz zaimportować plik JSON utworzony dla franciscofranco's (dużo \u2665 i szacunku dla niego) 'FK-Kernel Manager' i po prostu zadziała.\n\nPotrzebujesz więcej pomocy? Kliknij tutaj!"</string>
     <string name="update_channel_invalid">"Podałeś nieprawidłowy adres URL! Przerwanie."</string>
     <string name="update_channel_summary">"Wprowadź-aktualizację-kanału-url-tutaj"</string>
     <string name="update_check_message">"SmartPack-Kernel Manager sprawdzi dostępność nowej wersji %s raz dziennie!"</string>
@@ -990,13 +991,13 @@
     <string name="reboot_dialog">"Zdecydowanie zaleca się ponowne uruchomienie urządzenia po %s."</string>
     <string name="reboot_normal">"Normalny restart"</string>
     <string name="reboot_recovery">"Restart do Recovery"</string>
-    <string name="reboot_bootloader">"Restart do Bootloadera"</string>
+    <string name="reboot_bootloader">"Restart do Bootloader"</string>
     <string name="rebooting_message">"Ponowne uruchamienie za 5s"</string>
     <string name="turn_off">"Wyłączyć"</string>
     <string name="backing_up">"Tworzenie kopii zapasowej"</string>
-    <string name="flashing">"Flashowanie…"</string>
-    <string name="flashing_failed">"Flashowanie nie powiodło się"</string>
-    <string name="flashing_finished">"Flashowanie zakończone"</string>
+    <string name="flashing">"Fleszowanie…"</string>
+    <string name="flashing_failed">"Fleszowanie nie powiodło się"</string>
+    <string name="flashing_finished">"Fleszowanie zakończone"</string>
     <string name="restoring">"Przywracanie"</string>
     <string name="reset_settings">"Zresetuj aplikację"</string>
     <string name="reset_settings_summary">"Zresetuj ustawienia użytkownika"</string>
@@ -1005,12 +1006,12 @@
     <string name="remove">"Usuń"</string>
     <string name="share_channel_message">"Aby skonfigurować ten kanał aktualizacji, po prostu wprowadź '%s' on SmartPack-Kernel Manager -&gt; SmartPack -&gt; Update Channel Url.\n\nGet SmartPack-Kernel Manager from"</string>
     <string name="busybox_installer">"Instalator BusyBox"</string>
-    <string name="busybox_installer_summary">"Zdecydowanie zaleca się posiadanie samodzielnej instalacji BusyBox na urządzeniu, aby niektóre funkcje tej aplikacji działały poprawnie (e.g., 'unzip' &amp; 'mke2fs' binaries for flashing &amp; 'curl' or 'wget' binary for kernel OTA updates). Aby pomóc użytkownikom w tym problemie, udostępniono prostą aplikację, której można użyć jako narzędzia instalacyjnego BusyBox jednym kliknięciem dla urządzeń arm, arm64 i x86. Kliknij tutaj, aby to zdobyć!"</string>
+    <string name="busybox_installer_summary">"Zdecydowanie zaleca się posiadanie samodzielnej instalacji BusyBox na urządzeniu, aby niektóre funkcje tej aplikacji działały poprawnie (n.p., 'unzip' &amp; 'mke2fs' pliki binarne do flashowania oraz 'curl' or 'wget' pliki binarne do aktualizacji OTA kernelu). Aby pomóc użytkownikom w tym problemie, udostępniono prostą aplikację, której można użyć jako narzędzia instalacyjnego BusyBox jednym kliknięciem dla urządzeń arm, arm64 i x86. Kliknij tutaj, aby to zdobyć!"</string>
     <string name="download_failed">"Wygląda na to, że pobieranie nie powiodło się lub został pobrany uszkodzony plik!"</string>
     <string name="check_update">"Sprawdź aktualizacje"</string>
 
     <!-- Update Channel -->
-    <string name="update_channel_message">"(<b>for developers only</b>)\nApp utworzy kanał aktualizacji (json) dla twojego jądra, o ile informacje podane na tej stronie są dokładne."</string>
+    <string name="update_channel_message">"(<i>for developers only</i>)\nApp utworzy kanał aktualizacji (json) dla twojego jądra, o ile informacje podane na tej stronie są dokładne."</string>
     <string name="update_channel_instructions">"<b>Kernel Name</b>, <b>Kernel Version</b> &amp; <b>Download Link</b> to pola obowiązkowe, które należy wypełnić przed kliknięciem przycisku tworzenia.\n\n<b>Change-logs</b> może być dostarczony jako dobrze sformatowany tekst lub jako łącze do strony internetowej.\n\nSecure Hash Algorithm (<b>sha1</b>) jest opcjonalny, ale wysoce zalecany, aby zapewnić autentyczność pobranego jądra."</string>
     <string name="kernel_name">"Nazwa Jądra"</string>
     <string name="kernel_name_summary">"Nazwa Kernela"</string>
@@ -1034,8 +1035,8 @@
 
     <!-- Settings -->
     <string name="open_settings">"Otwórz ustawienia"</string>
-    <string name="fahrenheit_summary">"Do pomiaru użyj stopni Fahrenheita"</string>
-    <string name="force_english">"Wymuś język angielski"</string>
+    <string name="fahrenheit_summary">"Do pomiaru, użyj stopni Fahrenheita"</string>
+    <string name="force_english">"Włącz język angielski"</string>
     <string name="user_interface">"Interfejs użytkownika"</string>
     <string name="dark_theme">"Ciemny motyw"</string>
     <string name="material_icon">"Włącz ikonę (material)"</string>
@@ -1043,7 +1044,7 @@
     <string name="banner_resizer_message">"Orientacja ekranu telefonu powinna być 'Portrait'!"</string>
     <string name="hide_banner">"Ukryj baner"</string>
     <string name="force_cards_summary">"Jeśli to możliwe, używaj kart do przedmiotów"</string>
-    <string name="accent_color">"Kolor akcentu"</string>
+    <string name="accent_color">"Kolor motywu"</string>
     <string name="section_icons">"Ikony sekcji"</string>
     <string name="instant">"Natychmiastowy"</string>
     <string name="five_sec">"5 sekund"</string>
@@ -1052,8 +1053,8 @@
     <string name="fifty_sec">"50 sekund"</string>
     <string name="enable_onboot">"Włącz podczas startu"</string>
     <string name="enable_onboot_message">"Ustawienia rozruchu są wyłączone! Aplikacja nic nie zrobi po uruchomieniu urządzenia!"</string>
-    <string name="enable_onboot_summary">"Zezwól aplikacji SmartPack na uruchamianie ustawień przy rozruchu!"</string>
-    <string name="apply_on_boot_test_summary">"Testuj zastosowanie podczas rozruchu. Obejmuje to wszelkiego rodzaju rzeczy, które są stosowane podczas uruchamiania, takie jak niestandardowe elementy sterujące, profile, init.d itp."</string>
+    <string name="enable_onboot_summary">"Zezwól programowi SmartPack na uruchamianie ustawień przy rozruchu!"</string>
+    <string name="apply_on_boot_test_summary">"Test zastosuj podczas rozruchu. Obejmuje to wszelkiego rodzaju rzeczy, które są stosowane podczas uruchamiania, takie jak niestandardowe elementy sterujące, profile, init.d itp."</string>
     <string name="apply_on_boot_running">"Usługa Zastosuj przy starcie jest już uruchomiona. Poczekaj, aż się skończy."</string>
     <string name="test">"Test"</string>
     <string name="nothing_apply">"Nie znaleziono nic do zastosowania!"</string>
@@ -1062,13 +1063,13 @@
     <string name="apply_on_boot_hide_summary">"Ukryj powiadomienie o zastosowaniu podczas rozruchu. Opóźnienie nadal pozostanie!"</string>
     <string name="toast">"Dymek"</string>
     <string name="confirmation_notification">"Powiadomienie o potwierdzeniu"</string>
-    <string name="apply_on_boot_confirmation_notification_summary">"Po zastosowaniu przy rozruchu z widocznym powiadomieniem, pokaż powiadomienie z potwierdzeniem, że zastosowanie podczas rozruchu zakończyło się pomyślnie."</string>
+    <string name="apply_on_boot_confirmation_notification_summary">"Po zastosowaniu przy rozruchu z widocznym powiadomieniem, pokaż następnie powiadomienie z potwierdzeniem, że zastosowanie podczas rozruchu zakończyło się pomyślnie."</string>
     <string name="script">"Skrypt"</string>
     <string name="apply_on_boot_script_summary">"Użyj skryptu powłoki, aby zastosować ustawienia. Włącz tę opcję tylko wtedy, gdy masz problemy z aplikacją podczas rozruchu. Jeśli problem nadal występuje po włączeniu tej opcji, upewnij się, że żadna inna aplikacja nie jest w konflikcie z programem SmartPack-Kernel Manager."</string>
     <string name="logcat">"Logcat(y)"</string>
     <string name="logcat_summary">"Zapisz wszystkie logcaty, w tym radio i zdarzenia, w 'sdcard'"</string>
     <string name="last_kmsg">"Ostatnia informacja jądra"</string>
-    <string name="last_kmsg_summary">"Zapisz /proc/last_kmsg into 'sdcard'"</string>
+    <string name="last_kmsg_summary">"Zapisz /proc/last_kmsg na 'sdcard'"</string>
     <string name="console_ramoops">"Konsola Ramoops"</string>
     <string name="console_ramoops_summary">"Zapisz /sys/fs/pstore/console-ramoops* na 'sdcard'"</string>
     <string name="driver_message">"Komunikat sterownika"</string>
@@ -1104,20 +1105,20 @@
     <string name="support_status_message">"Bardzo dziękuję za wsparcie!"</string>
     <string name="licence">"Licencja"</string>
     <string name="licence_summary">"Pokaż GPL V3"</string>
-    <string name="share_app">"Udostępnij aplikację"</string>
+    <string name="share_app">"Udostępnij aplikacje"</string>
     <string name="share_app_summary">"Udostępnij tę aplikację znajomym"</string>
     <string name="share_app_message">"Pobierz SmartPack-Kernel Manager %s z"</string>
     <string name="grarak">"Willi Ye"</string>
-    <string name="grarak_summary">"Człowiek stojący za „Kernel Adiutorem”, przodkiem SmartPack-Kernel Manager. Bez niego ten projekt nie byłby możliwy. Olbrzymi szacunek dla niego, nie tylko za jego ciężką pracę nad Kernel Adiutorem, ale także za otwartość na oprogramowanie typu open source."</string>
+    <string name="grarak_summary">"Człowiek stojący za „Kernel Adiutor”, przodek SmartPack-Kernel Manager. Bez niego ten projekt nie będzie prawdziwy. Olbrzymi szacunek dla niego, nie tylko za jego ciężką pracę nad Kernel Adiutor, ale także za otwartość na oprogramowanie typu open source."</string>
     <string name="osm0sis">"Chris Renshaw"</string>
-    <string name="osm0sis_summary">"Twórca słynnego projektu AnyKernel3. Bez jego szybkiego wsparcia i wskazówek funkcja automatycznego flashowania w tej aplikacji nie mogłaby działać."</string>
+    <string name="osm0sis_summary">"Twórca słynnego projektu AnyKernel3. Bez jego szybkiego wsparcia i wskazówek funkcja automatycznego flashowania w tej aplikacji nie będzie działać."</string>
 
     <!-- Contributors -->
-    <string name="commits">"%d zatwierdza"</string>
+    <string name="commits">"%d aktywności"</string>
     <string name="no_internet">"Proszę sprawdzić swoje połączenie z internetem!"</string>
 
     <!-- FAQ -->
-    <string name="how_different">"Pyt. 1. Czym różni się ta aplikacja od oficjalnego Kernel Adiutora autorstwa Graraka?"</string>
+    <string name="how_different">"Pyt. 1. Czym różni się ta aplikacja od oficjalnego Kernel Adiutora firmy Grarak?"</string>
     <string name="how_different_summary">"Odp. Ta aplikacja jest mocno zmodyfikowana, aby sprostać potrzebom różnych programistów jądra. Niektóre z dodatkowych funkcji tej aplikacji obejmują między innymi,\n- Możliwość flashowania plików ZIP odzyskiwania podczas korzystania z systemu operacyjnego Android.\n- Prosty i przyjazny dla użytkownika kontroler niestandardowy.\n- Menedżer skryptów do łatwego tworzenia, importowania, edytowania i wykonywania dowolnych odpowiednio sformatowanych skryptów powłoki.\n- Kontrola nad funkcjami, takimi jak CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Wakelock blocker, etc.\n- Boeffla i Flar's kontrola dźwięku z obsługą każdego kanału.\n- i dużo więcej."</string>
     <string name="can_i_use">"Pyt. 2. Czy mogę używać tej aplikacji do sterowania dowolnym niestandardowym jądrem?"</string>
     <string name="can_i_use_summary">"Odp. Dlaczego nie? Ta aplikacja będzie działać jak zwykle z każdym jądrem, o ile przyznany zostanie dostęp root."</string>

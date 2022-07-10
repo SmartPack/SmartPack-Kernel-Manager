@@ -140,7 +140,7 @@
     <string name="governor_tunables_summary">"İşlemci düzenleyicisine bağlı çeşitli yapılandırmalar."</string>
     <string name="cpu_governor_tunables_read_error">"Mevcut işlemci düzenleyici okunamadı..
 
-Bir QCOM big.LITTLE aygıtı kullanıyorsanız, bu bilinen bir sorundur. Sistem, işlemciyi çekirdeği kapatmaya zorlar ve işlemciye özgü istatistiklerin okunmasını son derece zor hale getirir. Bu seçeneği tekrar seçmeyi deneyin. İşlemci bazen bir çekirdeği açmayı reddeder."</string>
+        Bir QCOM big.LITTLE aygıtı kullanıyorsanız, bu bilinen bir sorundur. Sistem, işlemciyi çekirdeği kapatmaya zorlar ve işlemciye özgü istatistiklerin okunmasını son derece zor hale getirir. Bu seçeneği tekrar seçmeyi deneyin. İşlemci bazen bir çekirdeği açmayı reddeder."</string>
     <string name="tunables_error">"%s ayarlanabilir değil"</string>
     <string name="manual">"Kılavuz"</string>
     <string name="mc_power_saving">"Çoklu Çekirdek Güç Tasarrufu"</string>
@@ -195,7 +195,7 @@ Bir QCOM big.LITTLE aygıtı kullanıyorsanız, bu bilinen bir sorundur. Sistem,
 
     <!-- CPU Hotplug -->
     <string name="hotplug_warning">"Birden fazla hotplugging sistemi etkin!
-Lütfen yalnızca birini kullanın."</string>
+        Lütfen yalnızca birini kullanın."</string>
     <string name="mpdecision">"MPDecision"</string>
     <string name="mpdecision_summary">"Qualcomm'un hotplugging çözümü. Bu etkinleştirildiğinde frekans değiştirmeyle ilgili sorunlar yaşayabilirsiniz."</string>
     <string name="intelliplug">"IntelliPlug"</string>
@@ -849,7 +849,7 @@ Lütfen yalnızca birini kullanın."</string>
     <string name="lease_break_time_summary">"The grace period that the kernel grants to a process holding a file lease after it has sent a signal to that process notifying it that another process is waiting to open the file."</string>
     <string name="auto_sync">"Verileri Otomatik Senkronize Et"</string>
     <string name="auto_sync_summary">"Uygulamaların verileri otomatik olarak yenilemesine izin ver.
-Lütfen Unutmayın: Önyükleme ayarlarınızdan bağımsız olarak uygulanacaktır."</string>
+        Lütfen Unutmayın: Önyükleme ayarlarınızdan bağımsız olarak uygulanacaktır."</string>
     <string name="cpuset">"İşlemci Ayarları"</string>
 
     <!-- Performance Tweaks -->
@@ -857,7 +857,7 @@ Lütfen Unutmayın: Önyükleme ayarlarınızdan bağımsız olarak uygulanacakt
     <string name="profileTile">"Profil"</string>
     <string name="spec_title">"Performans Ayarlamaları"</string>
     <string name="spec_info">"Spektrum Yöneticisinin frap129 tarafından uyarlanması.
-Mevcut önceden tanımlanmış profillerden birini seçin."</string>
+        Mevcut önceden tanımlanmış profillerden birini seçin."</string>
     <string name="spec_balanced">"Dengeli"</string>
     <string name="spec_balanced_summary">"Pili olağanüstü bir şekilde korurken temel görevlerde sorunsuz performans için tasarlanmış varsayılan çekirdek profili."</string>
     <string name="spec_performance">"Performans"</string>
@@ -872,7 +872,7 @@ Mevcut önceden tanımlanmış profillerden birini seçin."</string>
     <string name="custom_controls_summary">"Bu bölümde, uygulamada (henüz) olmayan özel denetimleri oluşturabilir veya içe aktarabilirsiniz. &lt;a href="https://smartpack.github.io/spkm/customcontrols/">Documentation&lt;a>"</string>
     <string name="custom_controls_message">"Desteklenen bir Kök Dosya Yöneticinizin kurulu olması koşuluyla, temelde mevcut herhangi bir sysfs yolu için özel bir denetleyici oluşturabilirsiniz. Ancak, lütfen bu özelliğin cihazınızı bozabilecek kadar güçlü olduğunu unutmayın.
 
-***RİSKLERİ GÖZE ALARAK KULLANIN***"</string>
+        ***RİSKLERİ GÖZE ALARAK KULLANIN***"</string>
     <string name="create">"Oluştur"</string>
     <string name="import_item">"İçe aktar"</string>
     <string name="control_switch">"Aç/kapa"</string>
@@ -956,7 +956,7 @@ Mevcut önceden tanımlanmış profillerden birini seçin."</string>
     <string name="exceute_cancel_question">"%s çalıştırma iptal edilsin mi?"</string>
     <string name="remove_script_question">"%s ayrıca Komut Dosyası Yöneticisinden de kaldırılacak.
 
-Emin misiniz?"</string>
+        Emin misiniz?"</string>
     <string name="script_exists">"%s adında bir komut dosyası zaten var! İptal ediliyor."</string>
     <string name="executing">"Çalıştırılıyor"</string>
     <string name="share_script">"To apply this script, simply import this file on 'SmartPack-Kernel Manager -&gt; Script Manager -&gt; Import'."</string>
@@ -1014,20 +1014,13 @@ Emin misiniz?"</string>
     <string name="remove">"Kaldır"</string>
     <string name="share_channel_message">"To configure this update channel, simply input '%s' on SmartPack-Kernel Manager -&gt; SmartPack -&gt; Update Channel Url.
 
-Get SmartPack-Kernel Manager from"</string>
+        Get SmartPack-Kernel Manager from"</string>
     <string name="busybox_installer">"BusyBox Yükleyici"</string>
     <string name="busybox_installer_summary">"Bu uygulamanın bazı özelliklerinin düzgün çalışması için cihazınızda bağımsız bir BusyBox kurulumuna sahip olmanız şiddetle tavsiye edilir (örn. 'unzip' &amp; 'mke2fs' binaries for flashing &amp; 'curl' or 'wget' binary for kernel OTA updates). Kullanıcılara bu konuda yardımcı olmak amacıyla, arm, arm64 ve x86 cihazlar için tek tıklamayla BusyBox kurulum aracı olarak kullanılabilecek basit bir uygulama kullanıma sunulmuştur. Almak için buraya tıklayın!"</string>
     <string name="download_failed">"Görünüşe göre indirme başarısız oldu veya bozuk bir dosya indirildi!"</string>
     <string name="check_update">"Güncellemeleri Kontrol Et"</string>
 
     <!-- Update Channel -->
-    <string name="update_channel_message">"(for developers only)
-App will create an update channel (json) for your kernel, as long as the information's provided in this page are accurate."</string>
-    <string name="update_channel_instructions">"Kernel Name, Kernel Version &amp; Download Link are the mandatory fields to be filled before clicking the create button.
-
-Change-logs could be provided, either as a well formatted text, or as a link to an online page.
-
-Secure Hash Algorithm (sha1) is optional, but highly recommended to ensure the authenticity of the downloaded kernel."</string>
     <string name="kernel_name">"Kernel Adı"</string>
     <string name="kernel_name_summary">"Kernel_name"</string>
     <string name="kernel_version">"Kernel Sürümü"</string>
@@ -1116,7 +1109,7 @@ Secure Hash Algorithm (sha1) is optional, but highly recommended to ensure the a
     <string name="support_coffee">"Bana bir kahve ısmarla"</string>
     <string name="support_already_received_message">"Geliştirmeyi daha önce bu öğeyle zaten desteklediniz!"</string>
     <string name="support_received_message">"Desteğiniz için çok teşekkürler \u2665
-Projelerime daha aktif devam etmem için beni çok motive edecek! Ayrıca, bu sayfanın üst kısmında bir destekçi rozeti alacaksınız."</string>
+        Projelerime daha aktif devam etmem için beni çok motive edecek! Ayrıca, bu sayfanın üst kısmında bir destekçi rozeti alacaksınız."</string>
     <string name="support_retry_message">"Lütfen tekrar satın almayı deneyin!"</string>
     <string name="support_status_message">"Desteğiniz için çok teşekkürler!"</string>
     <string name="licence">"Lisans"</string>
@@ -1135,7 +1128,7 @@ Projelerime daha aktif devam etmem için beni çok motive edecek! Ayrıca, bu sa
 
     <!-- FAQ -->
     <string name="how_different">"S1. Bu uygulama Grarak'ın resmi Kernel Adiutor'undan ne kadar farklı?"</string>
-    <string name="how_different_summary">"Cvp. Bu uygulama, çeşitli kernel geliştiricilerinin ihtiyaçlarını karşılamak için büyük ölçüde değiştirildi. Bu uygulamanın eklenen özelliklerinden bazıları şunlardır, ancak bunlarla sınırlı değildir: \ n - Android sistemini çalıştırırken recovery zip dosyalarını flashlama seçeneği.\n - Basit ve kullanıcı dostu bir Özel Kontrolör.\n - Düzgün biçimlendirilmiş kabuk komut dosyalarını kolayca oluşturmak, içe aktarmak, düzenlemek ve yürütmek için Komut Dosyası Yöneticisi.\n - CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Uyandırma Kilidi Engelleyici gibi özellikler üzerinde kontrol.\n - Boeffla ve Flar'ın ayrı destekli ses kontrolleri.\n - ve çok daha fazlası."</string>
+    <string name="how_different_summary">"Cvp. Bu uygulama, çeşitli kernel geliştiricilerinin ihtiyaçlarını karşılamak için büyük ölçüde değiştirildi. Bu uygulamanın eklenen özelliklerinden bazıları şunlardır, ancak bunlarla sınırlı değildir: \ n - Android sistemini çalıştırırken recovery zip dosyalarını flashlama seçeneği.\n - Basit ve kullanıcı dostu bir Özel Kontrolör.\n - Düzgün biçimlendirilmiş kabuk komut dosyalarını kolayca oluşturmak, içe aktarmak, düzenlemek ve yürütmek için Komut Dosyası Yöneticisi.\n - CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Uyandırma Kilidi Engelleyici gibi özellikler üzerinde kontrol.\n - Boeffla ve Flar'ın ayrı ayrı destekli ses kontrolleri.\n - ve çok daha fazlası."</string>
     <string name="can_i_use">"S2. Bu Uygulamayı herhangi bir özel kerneli kontrol etmek için kullanabilir miyim?"</string>
     <string name="can_i_use_summary">"Cvp. Neden olmasın? Bu uygulama, root erişimi verildiği sürece herhangi bir kernelde her zamanki gibi çalışacaktır."</string>
     <string name="cpu_freq_not_sticking">"S3. Neden benim kararlı işlemci frekansım değişmiyor?"</string>
@@ -1167,11 +1160,14 @@ Projelerime daha aktif devam etmem için beni çok motive edecek! Ayrıca, bu sa
 
     <!-- App Updater -->
     <string name="update_available">"Yeni güncelleme mevcut!
-v%s"</string>
+        v%s"</string>
     <string name="get_it">"Anladım"</string>
     <string name="updated_dialog">"Tebrikler! SmartPack-Kernel Manager'ın güncel bir sürümüne zaten sahipsiniz!"</string>
     <string name="auto_update_check">"Otomatik Güncelleme Kontrolü"</string>
     <string name="check_update_summary">"SmartPack-Kernel Manager'ın yeni sürümlerini kontrol edin"</string>
     <string name="fdroid">"F-Droid"</string>
     <string name="fdroid_summary">"F-Droid sayfasını ziyaret edin"</string>
+
+    <!-- I/O Advanced -->
+    <string name="battery_guru">"Battery Guru"</string>
 </resources>
