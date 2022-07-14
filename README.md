@@ -12,7 +12,7 @@ Welcome to the development center of SmartPack-Kernel Manager, a heavily modifie
 ## Download
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
      alt=""
-     height="80">](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release)
+     height="80">](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.pro)
      [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
           alt=""
           height="80">](https://f-droid.org/packages/com.smartpack.kernelmanager)
