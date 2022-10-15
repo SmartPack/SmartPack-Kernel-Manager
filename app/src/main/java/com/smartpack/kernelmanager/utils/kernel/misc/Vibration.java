@@ -44,6 +44,8 @@ public class Vibration {
 
     private static final String VIB_LIGHT = "/sys/devices/virtual/timed_output/vibrator/vmax_mv_light";
     private static final String VIB_ENABLE = "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_enable";
+    private static final String VIB_LIGHT_QTI = "/sys/module/qti_haptics/parameters/vmax_mv_override";
+    private static final String VIB_ENABLE_QTI = "/sys/module/qti_haptics/parameters/vmax_mv_enable";
 
     private final HashMap<String, MinMax> mVibrations = new HashMap<>();
 
@@ -61,6 +63,7 @@ public class Vibration {
         mVibrations.put("/sys/module/qpnp_vibrator/parameters/vib_voltage", new MinMax(12, 31));
         mVibrations.put("/sys/vibrator/pwmvalue", new MinMax(0, 127));
         mVibrations.put("/sys/kernel/thunderquake_engine/level", new MinMax(0, 7));
+        mVibrations.put("/sys/module/qti_haptics/parameters/vmax_mv_override", new MinMax(116, 3596));
     }
 
     private String FILE;
@@ -80,17 +83,25 @@ public class Vibration {
         MAX = Objects.requireNonNull(mVibrations.get(FILE)).getMax();
     }
 
+    private static boolean hasEnable() {
+        return Utils.existFile(VIB_ENABLE_QTI) || Utils.existFile(VIB_ENABLE);
+    }
+
     public void setVibration(int value, Context context) {
-        boolean enable = Utils.existFile(VIB_ENABLE);
-        if (enable) {
-            run(Control.write("1", VIB_ENABLE), VIB_ENABLE + "enable", context);
+        if (hasEnable()) {
+            run(Control.write("1", Utils.existFile(VIB_ENABLE_QTI) ? VIB_ENABLE_QTI : VIB_ENABLE),
+                    Utils.existFile(VIB_ENABLE_QTI) ? VIB_ENABLE_QTI : VIB_ENABLE + "enable", context);
         }
         run(Control.write(String.valueOf(value), FILE), FILE, context);
-        if (Utils.existFile(VIB_LIGHT)) {
-            run(Control.write(String.valueOf(Math.max(value - 300, 116)), VIB_LIGHT), VIB_LIGHT, context);
+        String text = String.valueOf(Math.max(value - 300, 116));
+        if (Utils.existFile(VIB_LIGHT_QTI)) {
+            run(Control.write(text, VIB_LIGHT_QTI), VIB_LIGHT_QTI, context);
+        } else if (Utils.existFile(VIB_LIGHT)) {
+            run(Control.write(text, VIB_LIGHT), VIB_LIGHT, context);
         }
-        if (enable) {
-            run(Control.write("0", VIB_ENABLE), VIB_ENABLE + "disable", context);
+        if (hasEnable()) {
+            run(Control.write("0", Utils.existFile(VIB_ENABLE_QTI) ? VIB_ENABLE_QTI : VIB_ENABLE),
+                    Utils.existFile(VIB_ENABLE_QTI) ? VIB_ENABLE_QTI : VIB_ENABLE + "disable", context);
         }
     }
 
