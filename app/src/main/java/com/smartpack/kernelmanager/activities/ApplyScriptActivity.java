@@ -35,6 +35,7 @@ import com.smartpack.kernelmanager.utils.root.RootUtils;
 import com.smartpack.kernelmanager.utils.tools.Scripts;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 
+import java.lang.ref.WeakReference;
 import java.util.ConcurrentModificationException;
 
 /*
@@ -61,32 +62,40 @@ public class ApplyScriptActivity extends AppCompatActivity {
         mScriptTitle.setText(getString(R.string.executing) + " " + Scripts.mScriptName);
 
         mBackButton.setOnClickListener(v -> onBackPressed());
-        refreshStatus();
+
+        Thread mRefreshThread = new RefreshThread(this);
+        mRefreshThread.start();
     }
 
-    public void refreshStatus() {
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    while (!isInterrupted()) {
-                        Thread.sleep(100);
-                        runOnUiThread(() -> {
-                            try {
-                                mOutput.setText(Utils.getOutput(Scripts.mOutput).isEmpty() ? getString(R.string.executing) + " ..." : Utils.getOutput(Scripts.mOutput));
-                            } catch (ConcurrentModificationException ignored) {}
-                            if (Scripts.mApplying) {
-                                mScriptTitle.setText(getString(R.string.executing));
-                                mScrollView.fullScroll(NestedScrollView.FOCUS_DOWN);
-                            } else {
-                                mScriptTitle.setText(mCancelled ? getString(R.string.exceute_cancel_title, Scripts.mScriptName) : getString(R.string.script_executed, Scripts.mScriptName));
-                                mOutput.setText(Utils.getOutput(Scripts.mOutput).isEmpty() ? getString(R.string.script_executed, Scripts.mScriptName) : Utils.getOutput(Scripts.mOutput));
-                            }
-                        });
+    private class RefreshThread extends Thread {
+        WeakReference<ApplyScriptActivity> mInstallerActivityRef;
+        RefreshThread(ApplyScriptActivity activity) {
+            mInstallerActivityRef = new WeakReference<>(activity);
+        }
+        @Override
+        public void run() {
+            try {
+                while (!isInterrupted()) {
+                    Thread.sleep(250);
+                    final ApplyScriptActivity activity = mInstallerActivityRef.get();
+                    if(activity == null){
+                        break;
                     }
-                } catch (InterruptedException ignored) {}
-            }
-        }.start();
+                    activity.runOnUiThread(() -> {
+                        try {
+                            mOutput.setText(Utils.getOutput(Scripts.mOutput).isEmpty() ? getString(R.string.executing) + " ..." : Utils.getOutput(Scripts.mOutput));
+                        } catch (ConcurrentModificationException ignored) {}
+                        if (Scripts.mApplying) {
+                            mScriptTitle.setText(getString(R.string.executing));
+                            mScrollView.fullScroll(NestedScrollView.FOCUS_DOWN);
+                        } else {
+                            mScriptTitle.setText(mCancelled ? getString(R.string.exceute_cancel_title, Scripts.mScriptName) : getString(R.string.script_executed, Scripts.mScriptName));
+                            mOutput.setText(Utils.getOutput(Scripts.mOutput).isEmpty() ? getString(R.string.script_executed, Scripts.mScriptName) : Utils.getOutput(Scripts.mOutput));
+                        }
+                    });
+                }
+            } catch (InterruptedException ignored) {}
+        }
     }
 
     @Override

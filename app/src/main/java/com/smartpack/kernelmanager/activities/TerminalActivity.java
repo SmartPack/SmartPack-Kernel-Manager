@@ -39,6 +39,7 @@ import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.List;
@@ -122,34 +123,40 @@ public class TerminalActivity extends BaseActivity {
             }
         });
 
-        refreshStatus();
+        Thread mRefreshThread = new RefreshThread(this);
+        mRefreshThread.start();
     }
 
-    public void refreshStatus() {
-        new Thread() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void run() {
-                try {
-                    while (!isInterrupted()) {
-                        Thread.sleep(100);
-                        runOnUiThread(() -> {
-                            if (mRunning) {
-                                mScrollView.fullScroll(NestedScrollView.FOCUS_DOWN);
-                                mClearAll.setText(R.string.cancel);
-                                try {
-                                    mShellOutput.setText(Utils.getOutput(mResult));
-                                } catch (ConcurrentModificationException | NullPointerException ignored) {
-                                }
-                            } else {
-                                mShellOutput.setTextIsSelectable(true);
-                                mClearAll.setText(R.string.clear);
-                            }
-                        });
+    private class RefreshThread extends Thread {
+        WeakReference<TerminalActivity> mActivityRef;
+        RefreshThread(TerminalActivity activity) {
+            mActivityRef = new WeakReference<>(activity);
+        }
+        @Override
+        public void run() {
+            try {
+                while (!isInterrupted()) {
+                    Thread.sleep(500);
+                    final TerminalActivity activity = mActivityRef.get();
+                    if(activity == null){
+                        break;
                     }
-                } catch (InterruptedException ignored) {}
-            }
-        }.start();
+                    activity.runOnUiThread(() -> {
+                        if (mRunning) {
+                            mScrollView.fullScroll(NestedScrollView.FOCUS_DOWN);
+                            mClearAll.setText(R.string.cancel);
+                            try {
+                                mShellOutput.setText(Utils.getOutput(mResult));
+                            } catch (ConcurrentModificationException | NullPointerException ignored) {
+                            }
+                        } else {
+                            mShellOutput.setTextIsSelectable(true);
+                            mClearAll.setText(R.string.clear);
+                        }
+                    });
+                }
+            } catch (InterruptedException ignored) {}
+        }
     }
 
     @SuppressLint({"SetTextI18n", "StaticFieldLeak"})

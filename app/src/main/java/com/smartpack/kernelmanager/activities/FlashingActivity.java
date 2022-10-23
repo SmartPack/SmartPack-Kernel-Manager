@@ -37,6 +37,7 @@ import com.smartpack.kernelmanager.utils.Common;
 import com.smartpack.kernelmanager.utils.Utils;
 
 import java.io.File;
+import java.lang.ref.WeakReference;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 23, 2020
@@ -76,34 +77,42 @@ public class FlashingActivity extends BaseActivity {
             onBackPressed();
             Utils.rebootCommand(this);
         });
-        refreshStatus();
+
+        Thread mRefreshThread = new RefreshThread(this);
+        mRefreshThread.start();
     }
 
-    public void refreshStatus() {
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    while (!isInterrupted()) {
-                        Thread.sleep(100);
-                        runOnUiThread(() -> {
-                            if (Common.isFlashing()) {
-                                mScrollView.fullScroll(NestedScrollView.FOCUS_DOWN);
-                            } else {
-                                mProgressLayout.setVisibility(View.GONE);
-                                mSaveButton.setVisibility(Utils.getOutput(Common.getFlashingOutput()).endsWith("\nsuccess") ? View.VISIBLE : View.GONE);
-                                mRebootButton.setVisibility(Utils.getOutput(Common.getFlashingOutput()).endsWith("\nsuccess") ? View.VISIBLE : View.GONE);
-                                mCancelButton.setVisibility(View.VISIBLE);
-                            }
-                            mFlashingHeading.setText(Common.isFlashing() ? getString(R.string.flashing) : Utils.getOutput(Common.getFlashingOutput()).endsWith("\nsuccess") ?
-                                    getString(R.string.flashing_finished) : getString(R.string.flashing_failed));
-                            mFlashingResult.setText(!Utils.getOutput(Common.getFlashingOutput()).isEmpty() ? Utils.getOutput(Common.getFlashingOutput())
-                                    .replace("\nsuccess","") : Common.isFlashing() ? "" : Common.getFlashingResult().toString());
-                        });
+    private class RefreshThread extends Thread {
+        WeakReference<FlashingActivity> mInstallerActivityRef;
+        RefreshThread(FlashingActivity activity) {
+            mInstallerActivityRef = new WeakReference<>(activity);
+        }
+        @Override
+        public void run() {
+            try {
+                while (!isInterrupted()) {
+                    Thread.sleep(250);
+                    final FlashingActivity activity = mInstallerActivityRef.get();
+                    if(activity == null){
+                        break;
                     }
-                } catch (InterruptedException ignored) {}
-            }
-        }.start();
+                    activity.runOnUiThread(() -> {
+                        if (Common.isFlashing()) {
+                            mScrollView.fullScroll(NestedScrollView.FOCUS_DOWN);
+                        } else {
+                            mProgressLayout.setVisibility(View.GONE);
+                            mSaveButton.setVisibility(Utils.getOutput(Common.getFlashingOutput()).endsWith("\nsuccess") ? View.VISIBLE : View.GONE);
+                            mRebootButton.setVisibility(Utils.getOutput(Common.getFlashingOutput()).endsWith("\nsuccess") ? View.VISIBLE : View.GONE);
+                            mCancelButton.setVisibility(View.VISIBLE);
+                        }
+                        mFlashingHeading.setText(Common.isFlashing() ? getString(R.string.flashing) : Utils.getOutput(Common.getFlashingOutput()).endsWith("\nsuccess") ?
+                                getString(R.string.flashing_finished) : getString(R.string.flashing_failed));
+                        mFlashingResult.setText(!Utils.getOutput(Common.getFlashingOutput()).isEmpty() ? Utils.getOutput(Common.getFlashingOutput())
+                                .replace("\nsuccess","") : Common.isFlashing() ? "" : Common.getFlashingResult().toString());
+                    });
+                }
+            } catch (InterruptedException ignored) {}
+        }
     }
 
     @Override
