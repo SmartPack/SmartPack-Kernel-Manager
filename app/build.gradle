@@ -11,15 +11,15 @@ android {
         }
     }
 
-    compileSdkVersion 31
+    compileSdkVersion 33
     buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId "com.smartpack.kernelmanager"
         minSdkVersion 21
-        targetSdkVersion 31
-        versionCode 173
-        versionName "v17.3"
+        targetSdkVersion 33
+        versionCode 174
+        versionName "v17.4"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -53,14 +53,15 @@ android {
 
 dependencies {
     implementation 'androidx.biometric:biometric:1.1.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
     implementation 'androidx.preference:preference:1.2.0'
     implementation 'com.github.ozodrukh:CircularReveal:1.3.1'
-    implementation 'com.github.sunilpaulmathew:sCommon:f741dad243'
+    implementation 'com.github.sunilpaulmathew:sCommon:947d85b85e'
     implementation 'com.github.sunilpaulmathew:RootFilePicker:15245677c6'
     implementation 'com.github.topjohnwu.libsu:core:4.0.3'
     implementation "com.github.topjohnwu.libsu:io:3.1.2"
     implementation 'com.google.android.apps.dashclock:dashclock-api:2.0.0'
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'org.cyanogenmod:platform.sdk:6.0'
     implementation project (':seekbar')

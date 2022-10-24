@@ -1,5 +1,9 @@
 # Change-logs
 
+## 131. October 23, 2022
+*Release-tag: v17.4*<br>
+Added QTI haptic vibration control support. Improved Terminal, Flashing and Apply Script process. Updated build tools and dependencies. Miscellaneous changes.
+
 ## 130. July 11, 2022
 *Release-tag: v17.3*<br>
 Fixed custom controller create option failing. Added Japanese (partial) Translations and updated others. Updated build tools and dependencies. Miscellaneous changes.

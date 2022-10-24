@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Fixed custom controller create option failing.\n - Added Japanese (partial) Translations and updated others.\n - Updated build tools and dependencies.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.3/com.smartpack.kernelmanager-v17.3-fdroid-release.apk",
-  "sha1": "1ad651cc1edf7a6be0ac82011e75078bc6fc261a",
-  "latestVersion": "17.3",
-  "latestVersionCode": 173
+  "releaseNotes": "Change-logs\n - Added QTI haptic vibration control support.\n - Improved Terminal, Flashing and Apply Script process.\n - Updated build tools and dependencies.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.4/com.smartpack.kernelmanager-v17.4-fdroid-release.apk",
+  "sha1": "6129c16e89cb36f8b1771b95da2e7fb72ef5ef94",
+  "latestVersion": "17.4",
+  "latestVersionCode": 174
 }

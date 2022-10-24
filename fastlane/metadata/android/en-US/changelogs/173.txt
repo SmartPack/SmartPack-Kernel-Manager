@@ -1,4 +1,0 @@
-* Fixed custom controller create option failing.
-* Added Japanese (partial) Translations and updated others.
-* Updated build tools and dependencies.
-* Miscellaneous changes.

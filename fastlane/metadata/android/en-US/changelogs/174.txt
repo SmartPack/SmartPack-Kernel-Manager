@@ -1,0 +1,4 @@
+* Added QTI haptic vibration control support.
+* Improved Terminal, Flashing and Apply Script process.
+* Updated build tools and dependencies.
+* Miscellaneous changes.
