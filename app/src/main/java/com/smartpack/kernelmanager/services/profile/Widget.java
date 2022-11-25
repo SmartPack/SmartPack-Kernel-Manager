@@ -74,7 +74,7 @@ public class Widget extends AppWidgetProvider {
         Intent intent = new Intent(context, getClass());
         intent.setAction(action);
         return PendingIntent.getBroadcast(context, 0, intent, Build.VERSION.SDK_INT >=
-                android.os.Build.VERSION_CODES.M ? PendingIntent.FLAG_IMMUTABLE : 0);
+                android.os.Build.VERSION_CODES.M ? PendingIntent.FLAG_MUTABLE : 0);
     }
 
     @Override
