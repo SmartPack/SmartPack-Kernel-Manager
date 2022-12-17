@@ -65,7 +65,7 @@ public class RootUtils {
     }
 
     public static void chmod(String file, String permission) {
-        Shell.su("chmod " + permission + " " + file).submit();
+        Shell.cmd("chmod " + permission + " " + file).submit();
     }
 
     public static String getProp(String prop) {
@@ -93,18 +93,18 @@ public class RootUtils {
     }
 
     public static void runCommand(String command) {
-        Shell.su(command).exec();
+        Shell.cmd(command).exec();
     }
 
     public static void runAndGetLiveOutput(String command, List<String> output) {
-        Shell.su(command).to(output, output).exec();
+        Shell.cmd(command).to(output, output).exec();
     }
 
     @NonNull
     public static String runAndGetOutput(String command) {
         StringBuilder sb = new StringBuilder();
         try {
-            List<String> outputs = Shell.su(command).exec().getOut();
+            List<String> outputs = Shell.cmd(command).exec().getOut();
             if (ShellUtils.isValidOutput(outputs)) {
                 for (String output : outputs) {
                     sb.append(output).append("\n");
@@ -122,7 +122,7 @@ public class RootUtils {
         List<String> outputs = new ArrayList<>();
         List<String> stderr = new ArrayList<>();
         try {
-            Shell.su(command).to(outputs, stderr).exec();
+            Shell.cmd(command).to(outputs, stderr).exec();
             outputs.addAll(stderr);
             if (ShellUtils.isValidOutput(outputs)) {
                 for (String output : outputs) {
