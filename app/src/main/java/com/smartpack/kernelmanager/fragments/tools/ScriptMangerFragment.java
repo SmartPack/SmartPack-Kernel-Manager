@@ -20,7 +20,6 @@
 
 package com.smartpack.kernelmanager.fragments.tools;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -55,7 +54,7 @@ import in.sunilpaulmathew.rootfilepicker.activities.FilePickerActivity;
 import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
 import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
-/**
+/*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 18, 2019
  * Largely based on the InitdFragment.java from https://github.com/Grarak/KernelAdiutor
  * Ref: https://github.com/Grarak/KernelAdiutor/blob/master/app/src/main/java/com/grarak/kerneladiutor/fragments/tools/InitdFragment.java
@@ -63,7 +62,7 @@ import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
 public class ScriptMangerFragment extends RecyclerViewFragment {
 
-    private boolean mLoaded, mPermissionDenied, mShowCreateNameDialog;
+    private boolean mShowCreateNameDialog;
 
     private Dialog mDeleteDialog, mExecuteDialog, mOptionsDialog;
 
@@ -116,10 +115,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        if (!mLoaded) {
-            mLoaded = true;
-            requestPermission(0, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        }
+        reload();
     }
 
     private void reload() {
@@ -153,13 +149,13 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     @SuppressLint("UseCompatLoadingForDrawables")
     private void load(List<RecyclerViewItem> items) {
         final Set<String> onBootScripts = Prefs.getStringSet("on_boot_scripts", new HashSet<>(), requireContext());
-        for (final String script : Scripts.list(requireActivity())) {
+        for (final String script : Scripts.list()) {
             if (Utils.getExtension(script).equals("sh")) {
                 DescriptionView descriptionView = new DescriptionView();
                 descriptionView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_file, requireContext()));
                 descriptionView.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
                 descriptionView.setTitle(script);
-                descriptionView.setSummary(Scripts.scriptFile(requireActivity()) + "/" + script);
+                descriptionView.setSummary(Scripts.scriptFile() + "/" + script);
 
                 if (Prefs.getBoolean("enable_onboot", true, getActivity()) && onBootScripts.contains(script)) {
                     descriptionView.setIndicator(ViewUtils.getColoredIcon(R.drawable.ic_flash, requireActivity()));
@@ -191,12 +187,12 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                                 mEditScript = script;
                                 Intent intent = new Intent(getActivity(), EditorActivity.class);
                                 intent.putExtra(EditorActivity.TITLE_INTENT, script);
-                                intent.putExtra(EditorActivity.TEXT_INTENT, Scripts.read(script, requireActivity()));
+                                intent.putExtra(EditorActivity.TEXT_INTENT, Scripts.read(script));
                                 startActivityForResult(intent, 0);
                                 break;
                             case 2:
                                 Common.setDetailsTitle(script.replace(".sh","").toUpperCase());
-                                Common.setDetailsTxt(Scripts.read(script, requireActivity()));
+                                Common.setDetailsTxt(Scripts.read(script));
                                 Intent details = new Intent(getActivity(), ForegroundActivity.class);
                                 startActivity(details);
                                 break;
@@ -219,14 +215,14 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                                 reload();
                                 break;
                             case 5:
-                                Utils.shareItem(getActivity(), script, Scripts.scriptFile(requireActivity()) + "/" + script, getString(R.string.share_script)
+                                Utils.shareItem(getActivity(), script, Scripts.scriptFile() + "/" + script, getString(R.string.share_script)
                                         + "\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
                                 break;
                             case 6:
                                 mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
                                         (dialogInterface, i) -> {
                                         }, (dialogInterface, i) -> {
-                                            Scripts.delete(script, requireActivity());
+                                            Scripts.delete(script);
                                             reload();
                                         }, dialogInterface -> mDeleteDialog = null, getActivity());
                                 mDeleteDialog.show();
@@ -256,7 +252,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
 
             @Override
             public void doInBackground() {
-                Scripts.execute(script, requireActivity());
+                Scripts.execute(script);
             }
 
             @Override
@@ -267,34 +263,15 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     }
 
     @Override
-    public void onPermissionGranted(int request) {
-        super.onPermissionGranted(request);
-        if (request == 0) {
-            mPermissionDenied = false;
-            reload();
-        }
-    }
-
-    @Override
-    public void onPermissionDenied(int request) {
-        super.onPermissionDenied(request);
-        if (request == 0) {
-            mPermissionDenied = true;
-
-            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
-        }
-    }
-
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (data == null) return;
         if (requestCode == 0) {
-            Scripts.write(mEditScript, Objects.requireNonNull(data.getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString(), requireActivity());
+            Scripts.write(mEditScript, Objects.requireNonNull(data.getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString());
             reload();
         } else if (requestCode == 1) {
-            Scripts.write(mCreateName, Objects.requireNonNull(data.getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString(), requireActivity());
+            Scripts.write(mCreateName, Objects.requireNonNull(data.getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString());
             mCreateName = null;
             reload();
         } else if (requestCode == 2) {
@@ -303,7 +280,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".sh"));
                 return;
             }
-            if (Utils.existFile(Scripts.scriptExistsCheck(mSelectedFile.getName(), requireActivity()))) {
+            if (Utils.existFile(Scripts.scriptExistsCheck(mSelectedFile.getName()))) {
                 Utils.snackbar(getRootView(), getString(R.string.script_exists, mSelectedFile.getName()));
                 return;
             }
@@ -312,7 +289,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
             selectQuestion.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
             selectQuestion.setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {
-                Scripts.importScript(mSelectedFile.getAbsolutePath(), requireActivity());
+                Scripts.importScript(mSelectedFile.getAbsolutePath());
                 reload();
             });
             selectQuestion.show();
@@ -322,11 +299,6 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     @Override
     protected void onTopFabClick() {
         super.onTopFabClick();
-
-        if (mPermissionDenied) {
-            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
-            return;
-        }
 
         mOptionsDialog = new Dialog(requireActivity()).setItems(getResources().getStringArray(
                 R.array.scripts_options), (dialogInterface, i) -> {
@@ -363,7 +335,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 text = text.replace(" ", "_");
             }
 
-            if (Scripts.list(requireActivity()).contains(text)) {
+            if (Scripts.list().contains(text)) {
                 Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
                 return;
             }
@@ -377,9 +349,4 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 dialogInterface -> mShowCreateNameDialog = false).show();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mLoaded = false;
-    }
 }

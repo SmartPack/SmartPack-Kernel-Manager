@@ -25,6 +25,7 @@ import android.content.Context;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.Control;
+import com.topjohnwu.superuser.io.SuFile;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -37,12 +38,12 @@ import java.util.Objects;
 
 public class CustomControls {
 
-    public static File switchFile(Context context) {
-        return new File(Utils.getInternalDataStorage(context) + "/controls/switch");
+    public static File switchFile() {
+        return SuFile.open(Utils.getInternalDataStorage() + "/controls/switch");
     }
 
-    public static File genericFile(Context context) {
-        return new File(Utils.getInternalDataStorage(context) + "/controls/generic");
+    public static File genericFile() {
+        return SuFile.open(Utils.getInternalDataStorage() + "/controls/generic");
     }
 
     public static String getGenericValue(String string) {
@@ -78,24 +79,23 @@ public class CustomControls {
     }
 
     public static void delete(String string) {
-        File file = new File(string);
-        file.delete();
+        Utils.delete(string);
     }
 
-    public static List<String> switchList(Context context) {
+    public static List<String> switchList() {
         List<String> mList = new ArrayList<>();
-        if (switchFile(context).exists()) {
-            for (File file : Objects.requireNonNull(switchFile(context).listFiles())) {
+        if (switchFile().exists()) {
+            for (File file : Objects.requireNonNull(switchFile().listFiles())) {
                 mList.add(file.getName());
             }
         }
         return mList;
     }
 
-    public static List<String> genericList(Context context) {
+    public static List<String> genericList() {
         List<String> mList = new ArrayList<>();
-        if (genericFile(context).exists()) {
-            for (File file : Objects.requireNonNull(genericFile(context).listFiles())) {
+        if (genericFile().exists()) {
+            for (File file : Objects.requireNonNull(genericFile().listFiles())) {
                 mList.add(file.getName());
             }
         }

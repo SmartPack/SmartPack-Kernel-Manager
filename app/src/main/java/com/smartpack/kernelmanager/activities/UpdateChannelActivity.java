@@ -48,13 +48,8 @@ import java.util.Objects;
 
 public class UpdateChannelActivity extends BaseActivity {
 
-    private AppCompatEditText mKernelNameHint;
-    private AppCompatEditText mKernelVersionHint;
-    private AppCompatEditText mDownloadLinkHint;
-    private AppCompatEditText mChangelogHint;
-    private AppCompatEditText mSHA1Hint;
-    private AppCompatEditText mSupportHint;
-    private AppCompatEditText mDonationHint;
+    private AppCompatEditText mKernelNameHint, mKernelVersionHint, mDownloadLinkHint, mChangelogHint,
+            mSHA1Hint, mSupportHint, mDonationHint;
     private MaterialCardView mCardView;
 
     @Override
@@ -138,8 +133,8 @@ public class UpdateChannelActivity extends BaseActivity {
                         support.put("link", mSupportHint.getText());
                         support.put("donation", mDonationHint.getText());
                         obj.put("support", support);
-                        File jsonFile = SuFile.open(Environment.getExternalStorageDirectory(), "SP/" + text);
-                        SuFile.open(Environment.getExternalStorageDirectory(), "SP/").mkdirs();
+                        File jsonFile = SuFile.open(Utils.getInternalDataStorage(), text);
+                        Utils.getInternalDataStorage().mkdirs();
                         Utils.create(obj.toString(), jsonFile.getAbsolutePath());
                         new Dialog(this)
                                 .setMessage(getString(R.string.json_created,new File(Environment.getExternalStorageDirectory(), "SP/")))

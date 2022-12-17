@@ -62,7 +62,6 @@ import in.sunilpaulmathew.sCommon.Utils.sUtils;
 
 public class ApplyOnBoot {
 
-    private static final String TAG = ApplyOnBoot.class.getSimpleName();
     private static boolean sCancel;
 
     public interface ApplyOnBootListener {
@@ -191,7 +190,7 @@ public class ApplyOnBoot {
                     String setting = item.getSetting();
                     String id = item.getId();
                     CPUFreq.ApplyCpu applyCpu;
-                    if (mCategoryEnabled.get(category)) {
+                    if (Boolean.TRUE.equals(mCategoryEnabled.get(category))) {
                         if (category.equals(ApplyOnBootFragment.CPU)
                                 && id.contains("%d")
                                 && setting.startsWith("#")
@@ -211,7 +210,7 @@ public class ApplyOnBoot {
                     for (String command : commands) {
                         s.append(command).append("\n");
                     }
-                    Utils.create(s.toString(), new File(context.getCacheDir(), "kerneladiutortmp.sh"));
+                    Utils.create(s.toString(), context.getCacheDir() + "/kerneladiutortmp.sh");
                     RootFile.execute(new File(context.getCacheDir(), "kerneladiutortmp.sh").getAbsolutePath());
                 } else {
                     for (String command : commands) {
@@ -237,7 +236,7 @@ public class ApplyOnBoot {
                     for (String command : profileCommands) {
                         s.append(command).append("\n");
                     }
-                    Utils.create(s.toString(), new File(context.getCacheDir(), "kerneladiutortmp.sh"));
+                    Utils.create(s.toString(), context.getCacheDir() + "/kerneladiutortmp.sh");
                     RootFile.execute(new File(context.getCacheDir(), "kerneladiutortmp.sh").getAbsolutePath());
                 } else {
                     for (String command : profileCommands) {

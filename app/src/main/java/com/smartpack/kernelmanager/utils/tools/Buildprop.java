@@ -19,12 +19,9 @@
  */
 package com.smartpack.kernelmanager.utils.tools;
 
-import android.content.Context;
-
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
-import java.io.File;
 import java.util.LinkedHashMap;
 
 /**
@@ -37,8 +34,9 @@ public class Buildprop {
     public static boolean mWritableSystem = true;
     public static boolean mWritableRoot = true;
 
-    public static void backup(Context context) {
-        Utils.create(Utils.readFile(BUILD_PROP), new File(Utils.getInternalDataStorage(context), "build.prop"));
+    public static void backup() {
+        Utils.getInternalDataStorage().mkdirs();
+        Utils.create(Utils.readFile(BUILD_PROP), Utils.getInternalDataStorage() + "/build.prop");
     }
 
     public static void overwrite(String oldKey, String oldValue, String newKey, String newValue) {

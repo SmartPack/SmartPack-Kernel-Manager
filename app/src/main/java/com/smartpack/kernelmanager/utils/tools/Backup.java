@@ -20,11 +20,11 @@
 package com.smartpack.kernelmanager.utils.tools;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.util.Log;
 
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
+import com.topjohnwu.superuser.io.SuFile;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -106,8 +106,9 @@ public class Backup {
         RootUtils.runCommand(command);
     }
 
-    public static void backup(String name, PARTITION partition_type, Context context) {
-        String command = "dd if=" + getPartition(partition_type) + " of='" + getPath(partition_type, context) + "/" + name + "'";
+    public static void backup(String name, PARTITION partition_type) {
+        SuFile.open(getPath(partition_type)).mkdirs();
+        String command = "dd if=" + getPartition(partition_type) + " of='" + getPath(partition_type) + "/" + name + "'";
         Log.i(TAG, "Executing: " + command);
         RootUtils.runCommand(command);
     }
@@ -125,8 +126,7 @@ public class Backup {
         }
     }
 
-    @SuppressLint("SdCardPath")
-    public static String getPath(PARTITION PARTITION_type, Context context) {
+    public static String getPath(PARTITION PARTITION_type) {
         String folder = null;
         switch (PARTITION_type) {
             case BOOT:
@@ -139,7 +139,7 @@ public class Backup {
                 folder = "fota";
                 break;
         }
-        File file = new File(Utils.getInternalDataStorage(context), "backup/" + folder);
+        File file = SuFile.open(Utils.getInternalDataStorage(), "backup/" + folder);
         if (file.exists() && file.isFile()) {
             file.delete();
         }
@@ -147,10 +147,10 @@ public class Backup {
         return file.toString();
     }
 
-    public static List<String> getItemsList(PARTITION PARTITION_type, Context context) {
+    public static List<String> getItemsList(PARTITION PARTITION_type) {
         List<String> mList = new ArrayList<>();
-        if (Utils.existFile(getPath(PARTITION_type, context))) {
-            for (File file : Objects.requireNonNull(new File(getPath(PARTITION_type, context)).listFiles())) {
+        if (Utils.existFile(getPath(PARTITION_type))) {
+            for (File file : Objects.requireNonNull(new File(getPath(PARTITION_type)).listFiles())) {
                 mList.add(file.getName());
             }
         }

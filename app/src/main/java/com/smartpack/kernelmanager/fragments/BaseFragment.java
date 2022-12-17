@@ -19,20 +19,13 @@
  */
 package com.smartpack.kernelmanager.fragments;
 
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-
 import android.view.View;
 import android.view.ViewTreeObserver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by willi on 28.12.15.
@@ -66,40 +59,6 @@ public abstract class BaseFragment extends Fragment {
 
     public boolean onBackPressed() {
         return false;
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            onPermissionGranted(requestCode);
-        } else {
-            onPermissionDenied(requestCode);
-        }
-    }
-
-    public void requestPermission(int request, String... permissions) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            List<String> needrequest = new ArrayList<>();
-            for (String permission : permissions) {
-                if (ContextCompat.checkSelfPermission(requireActivity(), permission)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    needrequest.add(permission);
-                }
-            }
-            if (needrequest.size() > 0) {
-                requestPermissions(needrequest.toArray(new String[0]), request);
-                return;
-            }
-        }
-        onPermissionGranted(request);
-    }
-
-    public void onPermissionGranted(int request) {
-    }
-
-    public void onPermissionDenied(int request) {
     }
 
 }

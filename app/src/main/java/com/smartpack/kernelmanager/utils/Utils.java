@@ -211,20 +211,15 @@ public class Utils {
         return path;
     }
 
-    public static File getInternalDataStorage(Context context) {
-        if (Build.VERSION.SDK_INT >= 29) {
-            return context.getExternalFilesDir("");
-        } else {
-            return new File(Environment.getExternalStorageDirectory(), "SP");
-        }
+    public static File getInternalDataStorage() {
+        return SuFile.open(Environment.getExternalStorageDirectory(), "SP");
     }
 
-    public static void prepareInternalDataStorage(Context context) {
-        File file = getInternalDataStorage(context);
-        if (file.exists() && file.isFile()) {
-            delete(file.getAbsolutePath());
+    public static void prepareInternalDataStorage() {
+        if (getInternalDataStorage().exists() && getInternalDataStorage().isFile()) {
+            delete(getInternalDataStorage().getAbsolutePath());
         }
-        mkdir(file.getAbsolutePath());
+        mkdir(getInternalDataStorage().getAbsolutePath());
     }
 
     private static String calculateMD5(File updateFile) {
@@ -376,7 +371,7 @@ public class Utils {
 
     public static void shareItem(Context context, String name, String path, String string) {
         Uri uriFile = FileProvider.getUriForFile(context,
-                BuildConfig.APPLICATION_ID + ".provider", new File(path));
+                BuildConfig.APPLICATION_ID + ".provider", SuFile.open(path));
         Intent shareScript = new Intent(Intent.ACTION_SEND);
         shareScript.setType("*/*");
         shareScript.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.share_by, name));
@@ -412,7 +407,7 @@ public class Utils {
             return;
         }
 
-        sUtils.create(text, new File(path));
+        create(text, path);
     }
 
     public static String readFile(String file) {
@@ -433,10 +428,6 @@ public class Utils {
 
     public static boolean existFile(String file, boolean root) {
         return !root ? sUtils.exist(new File(file)) : RootFile.exists(file);
-    }
-
-    public static void create(String text, File path) {
-        sUtils.create(text, path);
     }
 
     public static void create(String text, String path) {
@@ -499,7 +490,7 @@ public class Utils {
         }
     }
 
-    /**
+    /*
      * Taken and used almost as such from yoinx's Kernel Adiutor Mod (https://github.com/yoinx/kernel_adiutor/)
      */
     @SuppressLint("DefaultLocale")
@@ -546,13 +537,12 @@ public class Utils {
     }
 
     public static String prepareReboot() {
-        String prepareReboot = "am broadcast android.intent.action.ACTION_SHUTDOWN " + "&&" +
+        return "am broadcast android.intent.action.ACTION_SHUTDOWN " + "&&" +
                 " sync " + "&&" +
                 " echo 3 > /proc/sys/vm/drop_caches " + "&&" +
                 " sync " + "&&" +
                 " sleep 3 " + "&&" +
                 " reboot";
-        return prepareReboot;
     }
 
     public static void rebootCommand(Context context) {
@@ -579,7 +569,7 @@ public class Utils {
         }.execute();
     }
 
-    /**
+    /*
      * Taken and used almost as such from the following stackoverflow discussion
      * https://stackoverflow.com/questions/3571223/how-do-i-get-the-file-extension-of-a-file-in-java
      */

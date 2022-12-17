@@ -25,6 +25,7 @@ import android.content.Context;
 
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
+import com.topjohnwu.superuser.io.SuFile;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,114 +53,121 @@ public class KernelUpdater {
     }
 
     public static boolean isUpdateTime(Context context) {
-        return Prefs.getBoolean("update_check", false, context) && !KernelUpdater.getUpdateChannel(
-                context).equals("Unavailable") && System.currentTimeMillis() > Prefs.getLong("kernelUCTimeStamp",
+        return Prefs.getBoolean("update_check", false, context) && !KernelUpdater.getUpdateChannel()
+                .equals("Unavailable") && System.currentTimeMillis() > Prefs.getLong("kernelUCTimeStamp",
                 0, context) + 24 * 60 * 60 * 1000;
     }
 
-    public static File updateInfo(Context context) {
-        return new File(context.getExternalFilesDir(""), "release");
+    public static File updateInfo() {
+        return SuFile.open(Utils.getInternalDataStorage(), "release");
     }
 
-    public static File updateChannelInfo(Context context) {
-        return new File(context.getExternalFilesDir(""), "updatechannel");
+    public static File updateChannelInfo() {
+        return SuFile.open(Utils.getInternalDataStorage(), "updatechannel");
+    }
+
+    public static void saveUpdateInfo(Context context) {
+        Utils.getInternalDataStorage().mkdirs();
+        Utils.create(KernelUpdater.getJSONObject().toString(), KernelUpdater.updateInfo().getAbsolutePath());
+        Prefs.saveLong("kernelUCTimeStamp", System.currentTimeMillis(), context);
     }
 
     public static JSONObject getJSONObject() {
         return mJSONObject;
     }
 
-    private static String getKernelInfo(Context context) {
+    private static String getKernelInfo() {
         try {
-            JSONObject obj = new JSONObject(Utils.readFile(updateInfo(context).getAbsolutePath()));
+            JSONObject obj = new JSONObject(Utils.readFile(updateInfo().getAbsolutePath()));
             return (obj.getString("kernel"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    private static String getSupportInfo(Context context) {
+    private static String getSupportInfo() {
         try {
-            JSONObject obj = new JSONObject(Utils.readFile(updateInfo(context).getAbsolutePath()));
+            JSONObject obj = new JSONObject(Utils.readFile(updateInfo().getAbsolutePath()));
             return (obj.getString("support"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static String getUpdateChannel(Context context) {
-        if (Utils.existFile(updateChannelInfo(context).getAbsolutePath())) {
-            return Utils.readFile(updateChannelInfo(context).getAbsolutePath());
+    public static String getUpdateChannel() {
+        if (Utils.existFile(updateChannelInfo().getAbsolutePath())) {
+            return Utils.readFile(updateChannelInfo().getAbsolutePath());
         } else {
             return "Unavailable";
         }
     }
 
-    public static String getKernelName(Context context) {
+    public static String getKernelName() {
         try {
-            JSONObject obj = new JSONObject(getKernelInfo(context));
+            JSONObject obj = new JSONObject(getKernelInfo());
             return (obj.getString("name"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static String getLatestVersion(Context context) {
+    public static String getLatestVersion() {
         try {
-            JSONObject obj = new JSONObject(getKernelInfo(context));
+            JSONObject obj = new JSONObject(getKernelInfo());
             return (obj.getString("version"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static String getUrl(Context context) {
+    public static String getUrl() {
         try {
-            JSONObject obj = new JSONObject(getKernelInfo(context));
+            JSONObject obj = new JSONObject(getKernelInfo());
             return (obj.getString("link"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static String getChecksum(Context context) {
+    public static String getChecksum() {
         try {
-            JSONObject obj = new JSONObject(getKernelInfo(context));
+            JSONObject obj = new JSONObject(getKernelInfo());
             return (obj.getString("sha1"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static String getChangeLog(Context context) {
+    public static String getChangeLog() {
         try {
-            JSONObject obj = new JSONObject(getKernelInfo(context));
+            JSONObject obj = new JSONObject(getKernelInfo());
             return (obj.getString("changelog_url"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static String getSupport(Context context) {
+    public static String getSupport() {
         try {
-            JSONObject obj = new JSONObject(getSupportInfo(context));
+            JSONObject obj = new JSONObject(getSupportInfo());
             return (obj.getString("link"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static String getDonationLink(Context context) {
+    public static String getDonationLink() {
         try {
-            JSONObject obj = new JSONObject(getSupportInfo(context));
+            JSONObject obj = new JSONObject(getSupportInfo());
             return (obj.getString("donation"));
         } catch (JSONException e) {
             return "Unavailable";
         }
     }
 
-    public static void saveUpdateChannel(String value, Context context) {
-        Utils.create(value, updateChannelInfo(context));
+    public static void saveUpdateChannel(String value) {
+        Utils.getInternalDataStorage().mkdirs();
+        Utils.create(value, updateChannelInfo().getAbsolutePath());
     }
 
     public static void acquireUpdateInfo(String value) {
@@ -180,19 +188,20 @@ public class KernelUpdater {
             public void onPreExecute() {
                 ucTimeStamp = Prefs.getLong("kernelUCTimeStamp", 0, context);
                 interval = updateCheckInterval * 60 * 60 * 1000;
+                Utils.getInternalDataStorage().mkdirs();
             }
 
             @Override
             public void doInBackground() {
                 if (System.currentTimeMillis() > ucTimeStamp + interval) {
-                    acquireUpdateInfo(Objects.requireNonNull(Utils.readFile(KernelUpdater.updateChannelInfo(context).getAbsolutePath())));
+                    acquireUpdateInfo(Objects.requireNonNull(Utils.readFile(KernelUpdater.updateChannelInfo().getAbsolutePath())));
                 }
             }
 
             @Override
             public void onPostExecute() {
                 if (mJSONObject != null) {
-                    Utils.create(mJSONObject.toString(), updateInfo(context));
+                    Utils.create(mJSONObject.toString(), updateInfo().getAbsolutePath());
                     Prefs.saveLong("kernelUCTimeStamp", System.currentTimeMillis(), context);
                 }
             }

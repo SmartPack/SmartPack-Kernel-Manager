@@ -21,7 +21,6 @@
 
 package com.smartpack.kernelmanager.fragments.tools;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -92,7 +91,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
         reload();
-        requestPermission(0, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
     private void reload() {
@@ -135,7 +133,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
     @SuppressLint("StringFormatInvalid")
     private void SmartPackInit(List<RecyclerViewItem> items) {
         TitleView smartpack = new TitleView();
-        smartpack.setText(!KernelUpdater.getKernelName(requireActivity()).equals("Unavailable") ? KernelUpdater.getKernelName(requireActivity()) :
+        smartpack.setText(!KernelUpdater.getKernelName().equals("Unavailable") ? KernelUpdater.getKernelName() :
                 getString(R.string.kernel_information));
 
         items.add(smartpack);
@@ -149,12 +147,12 @@ public class SmartPackFragment extends RecyclerViewFragment {
         GenericInputView updateChannel = new GenericInputView();
         updateChannel.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
         updateChannel.setTitle(getString(R.string.update_channel));
-        updateChannel.setValue((!KernelUpdater.getKernelName(requireActivity()).equals("Unavailable"))
-                ? KernelUpdater.getUpdateChannel(requireActivity()) : getString(R.string.update_channel_summary));
+        updateChannel.setValue((!KernelUpdater.getKernelName().equals("Unavailable"))
+                ? KernelUpdater.getUpdateChannel() : getString(R.string.update_channel_summary));
         updateChannel.setOnGenericValueListener((genericSelectView, value) -> {
             if (value.isEmpty()) {
-                KernelUpdater.updateChannelInfo(requireActivity()).delete();
-                KernelUpdater.updateInfo(requireActivity()).delete();
+                KernelUpdater.updateChannelInfo().delete();
+                KernelUpdater.updateInfo().delete();
                 reload();
                 return;
             }
@@ -164,7 +162,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             acquireUpdateInfo(value, getActivity());
 
         });
-        if (!KernelUpdater.getKernelName(requireActivity()).equals("Unavailable")) {
+        if (!KernelUpdater.getKernelName().equals("Unavailable")) {
             updateChannel.setOnMenuListener((itemslist1, popupMenu) -> {
                 Menu menu = popupMenu.getMenu();
                 menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.remove));
@@ -177,8 +175,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                     .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
                                     })
                                     .setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {
-                                        KernelUpdater.updateChannelInfo(requireActivity()).delete();
-                                        KernelUpdater.updateInfo(requireActivity()).delete();
+                                        KernelUpdater.updateChannelInfo().delete();
+                                        KernelUpdater.updateInfo().delete();
                                         reload();
                                     })
                                     .show();
@@ -188,7 +186,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                             shareChannel.setAction(Intent.ACTION_SEND);
                             shareChannel.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
                             shareChannel.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_channel_message,
-                                    Utils.readFile(KernelUpdater.updateChannelInfo(requireActivity()).getAbsolutePath())) + (Utils
+                                    Utils.readFile(KernelUpdater.updateChannelInfo().getAbsolutePath())) + (Utils
                                     .isFDroidFlavor(requireActivity()) ? " F-Droid: https://f-droid.org/packages/com.smartpack.kernelmanager" :
                                     " Google Play: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager.release"));
                             shareChannel.setType("text/plain");
@@ -203,11 +201,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
         items.add(updateChannel);
 
-        if (KernelUpdater.getLatestVersion(requireActivity()).equals("Unavailable")) {
+        if (KernelUpdater.getLatestVersion().equals("Unavailable")) {
             DescriptionView info = new DescriptionView();
             info.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_info, requireContext()));
             info.setMenuIcon(ViewUtils.getWhiteColoredIcon(R.drawable.ic_dots, requireActivity()));
-            info.setTitle(getString(R.string.update_channel_info, Utils.getInternalDataStorage(requireActivity())));
+            info.setTitle(getString(R.string.update_channel_info, Utils.getInternalDataStorage()));
             info.setOnItemClickListener(item -> Utils.launchUrl("https://smartpack.github.io/kerneldownloads/", getActivity()));
             info.setFullSpan(true);
             info.setOnMenuListener((info1, popupMenu) -> {
@@ -223,26 +221,26 @@ public class SmartPackFragment extends RecyclerViewFragment {
             items.add(info);
         }
 
-        if (!KernelUpdater.getLatestVersion(requireActivity()).equals("Unavailable")) {
+        if (!KernelUpdater.getLatestVersion().equals("Unavailable")) {
             DescriptionView latest = new DescriptionView();
             latest.setTitle(getString(R.string.kernel_latest));
-            latest.setSummary(KernelUpdater.getLatestVersion(requireActivity()));
+            latest.setSummary(KernelUpdater.getLatestVersion());
 
             items.add(latest);
         }
 
-        if (!KernelUpdater.getChangeLog(requireActivity()).equals("Unavailable")) {
+        if (!KernelUpdater.getChangeLog().equals("Unavailable")) {
             DescriptionView changelogs = new DescriptionView();
             changelogs.setTitle(getString(R.string.change_logs));
             changelogs.setSummary(getString(R.string.change_logs_summary));
             changelogs.setOnItemClickListener(item -> {
-                if (KernelUpdater.getChangeLog(requireActivity()).contains("https://") ||
-                        KernelUpdater.getChangeLog(requireActivity()).contains("http://")) {
-                    Utils.launchUrl(KernelUpdater.getChangeLog(requireActivity()), getActivity());
+                if (KernelUpdater.getChangeLog().contains("https://") ||
+                        KernelUpdater.getChangeLog().contains("http://")) {
+                    Utils.launchUrl(KernelUpdater.getChangeLog(), getActivity());
                 } else {
                     new Dialog(requireActivity())
-                            .setTitle(KernelUpdater.getKernelName(requireActivity()) + " " + KernelUpdater.getLatestVersion(requireActivity()))
-                            .setMessage(KernelUpdater.getChangeLog(requireActivity()))
+                            .setTitle(KernelUpdater.getKernelName() + " " + KernelUpdater.getLatestVersion())
+                            .setMessage(KernelUpdater.getChangeLog())
                             .setPositiveButton(getString(R.string.cancel), (dialog1, id1) -> {
                             })
                             .show();
@@ -252,14 +250,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
             items.add(changelogs);
         }
 
-        if (!KernelUpdater.getSupport(requireActivity()).equals("Unavailable")) {
+        if (!KernelUpdater.getSupport().equals("Unavailable")) {
             DescriptionView support = new DescriptionView();
             support.setTitle(getString(R.string.support));
             support.setSummary(getString(R.string.support_summary));
             support.setOnItemClickListener(item -> {
-                if (KernelUpdater.getSupport(requireActivity()).contains("https://") ||
-                        KernelUpdater.getSupport(requireActivity()).contains("http://")) {
-                    Utils.launchUrl(KernelUpdater.getSupport(requireActivity()), getActivity());
+                if (KernelUpdater.getSupport().contains("https://") || KernelUpdater.getSupport().contains("http://")) {
+                    Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
                 } else {
                     Utils.snackbar(getRootView(), getString(R.string.unknown_link));
                 }
@@ -268,7 +265,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             items.add(support);
         }
 
-        if (!KernelUpdater.getUrl(requireActivity()).equals("Unavailable")) {
+        if (!KernelUpdater.getUrl().equals("Unavailable")) {
             DescriptionView download = new DescriptionView();
             download.setTitle(getString(R.string.download));
             download.setSummary(getString(R.string.get_it_summary));
@@ -277,14 +274,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
             items.add(download);
         }
 
-        if (!KernelUpdater.getLatestVersion(requireActivity()).equals("Unavailable")) {
+        if (!KernelUpdater.getLatestVersion().equals("Unavailable")) {
             DescriptionView donations = new DescriptionView();
             donations.setTitle(getString(R.string.donations));
             donations.setSummary(getString(R.string.donations_summary));
             donations.setOnItemClickListener(item -> {
-                if (KernelUpdater.getDonationLink(requireActivity()).contains("https://") ||
-                            KernelUpdater.getDonationLink(requireActivity()).contains("http://")) {
-                    Utils.launchUrl(KernelUpdater.getDonationLink(requireActivity()), getActivity());
+                if (KernelUpdater.getDonationLink().contains("https://") || KernelUpdater.getDonationLink().contains("http://")) {
+                    Utils.launchUrl(KernelUpdater.getDonationLink(), getActivity());
                 } else {
                     Utils.snackbar(getRootView(), getString(R.string.unknown_link));
                 }
@@ -294,15 +290,15 @@ public class SmartPackFragment extends RecyclerViewFragment {
             items.add(donations);
         }
 
-        if (!KernelUpdater.getKernelName(requireActivity()).equals("Unavailable")) {
+        if (!KernelUpdater.getKernelName().equals("Unavailable")) {
             SwitchView update_check = new SwitchView();
             update_check.setSummary(getString(R.string.check_update));
             update_check.setChecked(Prefs.getBoolean("update_check", false, getActivity()));
             update_check.addOnSwitchListener((switchview, isChecked) -> {
                 Prefs.saveBoolean("update_check", isChecked, getActivity());
                 if (Prefs.getBoolean("update_check", true, getActivity())) {
-                    Utils.snackbar(getRootView(), getString(R.string.update_check_message, !KernelUpdater.getKernelName(requireActivity()).
-                            equals("Unavailable") ? KernelUpdater.getKernelName(requireActivity()) : "this"));
+                    Utils.snackbar(getRootView(), getString(R.string.update_check_message, !KernelUpdater.getKernelName().
+                            equals("Unavailable") ? KernelUpdater.getKernelName() : "this"));
                 }
             });
 
@@ -451,29 +447,30 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
             @Override
             public void onPreExecute() {
-                showProgressMessage(getString(R.string.downloading_update, KernelUpdater.getKernelName(requireActivity()) +
-                        "-" + KernelUpdater.getLatestVersion(requireActivity())) + "...");
+                showProgressMessage(getString(R.string.downloading_update, KernelUpdater.getKernelName() +
+                        "-" + KernelUpdater.getLatestVersion()) + "...");
             }
 
             @Override
             public void doInBackground() {
-                Utils.prepareInternalDataStorage(requireActivity());
-                Utils.downloadFile(Utils.getInternalDataStorage(requireActivity()) + "/Kernel.zip", KernelUpdater.getUrl(requireActivity()));
+                Utils.prepareInternalDataStorage();
+                Utils.downloadFile(requireActivity().getExternalFilesDir("kernelUpdater") + "/Kernel.zip", KernelUpdater.getUrl());
             }
 
             @Override
             public void onPostExecute() {
                 hideProgressMessage();
-                if (KernelUpdater.getChecksum(requireActivity()).equals("Unavailable") || !KernelUpdater.getChecksum(requireActivity()).equals("Unavailable") &&
-                        Utils.getChecksum(Utils.getInternalDataStorage(requireActivity()) + "/Kernel.zip").contains(KernelUpdater.getChecksum(requireActivity()))) {
+                if (KernelUpdater.getChecksum().equals("Unavailable") || !KernelUpdater.getChecksum().equals("Unavailable") &&
+                        Utils.getChecksum(requireActivity().getExternalFilesDir("kernelUpdater") + "/Kernel.zip")
+                                .contains(KernelUpdater.getChecksum())) {
                     new Dialog(requireActivity())
                             .setMessage(getString(R.string.download_completed,
-                                    KernelUpdater.getKernelName(requireActivity()) + "-" + KernelUpdater.getLatestVersion(requireActivity())))
+                                    KernelUpdater.getKernelName() + "-" + KernelUpdater.getLatestVersion()))
                             .setCancelable(false)
                             .setNegativeButton(getString(R.string.cancel), (dialog, id) -> {
                             })
-                            .setPositiveButton(getString(R.string.flash), (dialog, id) ->SmartPack.flashingTask(new File(
-                                    Utils.getInternalDataStorage(requireActivity()) + "/Kernel.zip"), requireActivity()))
+                            .setPositiveButton(getString(R.string.flash), (dialog, id) -> SmartPack.flashingTask(new File(requireActivity()
+                                    .getExternalFilesDir("kernelUpdater"), "Kernel.zip"), requireActivity()))
                             .show();
                 } else {
                     new Dialog(requireActivity())
@@ -493,13 +490,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
             @Override
             public void onPreExecute() {
                 showProgressMessage(getString(R.string.acquiring) + ("..."));
-                KernelUpdater.updateInfo(context).delete();
+                KernelUpdater.updateInfo().delete();
             }
 
             @Override
             public void doInBackground() {
                 KernelUpdater.acquireUpdateInfo(value);
-                KernelUpdater.saveUpdateChannel(value, context);
+                KernelUpdater.saveUpdateChannel(value);
                 Utils.sleep(1);
             }
 
@@ -507,8 +504,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             public void onPostExecute() {
                 hideProgressMessage();
                 if (KernelUpdater.getJSONObject() != null) {
-                    Utils.create(KernelUpdater.getJSONObject().toString(), KernelUpdater.updateInfo(context));
-                    Prefs.saveLong("kernelUCTimeStamp", System.currentTimeMillis(), context);
+                    KernelUpdater.saveUpdateInfo(requireActivity());
                     reload();
                 } else {
                     Utils.toast(R.string.update_channel_invalid, context);

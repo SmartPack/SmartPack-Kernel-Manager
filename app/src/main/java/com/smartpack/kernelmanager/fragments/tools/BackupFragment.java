@@ -19,7 +19,6 @@
  */
 package com.smartpack.kernelmanager.fragments.tools;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
@@ -52,16 +51,12 @@ import in.sunilpaulmathew.sCommon.Utils.sExecutor;
  */
 public class BackupFragment extends RecyclerViewFragment {
 
-    private boolean mPermissionDenied;
-
     private Dialog mOptionsDialog;
     private Dialog mBackupFlashingDialog;
     private Backup.PARTITION mBackupPartition;
     private Dialog mItemOptionsDialog;
     private Dialog mDeleteDialog;
     private Dialog mRestoreDialog;
-
-    private boolean mLoaded;
 
     @Override
     protected boolean showTopFab() {
@@ -123,10 +118,7 @@ public class BackupFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        if (!mLoaded) {
-            mLoaded = true;
-            requestPermission(0, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        }
+        reload();
     }
 
     private void reload() {
@@ -191,10 +183,10 @@ public class BackupFragment extends RecyclerViewFragment {
     }
 
     private void itemInit(List<RecyclerViewItem> items, final Backup.PARTITION partition) {
-        if (new File(Backup.getPath(partition, requireActivity())).exists() && new File(Backup.getPath(partition, requireActivity())).length() > 0
-                && Backup.getItemsList(partition, requireActivity()).size() > 0) {
-            for (final String backup : Backup.getItemsList(partition, requireActivity())) {
-                final File image = new File(Backup.getPath(partition, requireActivity()) + "/" + backup);
+        if (new File(Backup.getPath(partition)).exists() && new File(Backup.getPath(partition)).length() > 0
+                && Backup.getItemsList(partition).size() > 0) {
+            for (final String backup : Backup.getItemsList(partition)) {
+                final File image = new File(Backup.getPath(partition) + "/" + backup);
                 if (image.isFile()) {
                     DescriptionView descriptionView = new DescriptionView();
                     descriptionView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_file, requireContext()));
@@ -226,10 +218,6 @@ public class BackupFragment extends RecyclerViewFragment {
     @Override
     protected void onTopFabClick() {
         super.onTopFabClick();
-        if (mPermissionDenied) {
-            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
-            return;
-        }
 
         mOptionsDialog = new Dialog(requireActivity()).setItems(getResources().getStringArray(
                 R.array.backup_options), (dialogInterface, i) -> {
@@ -325,24 +313,6 @@ public class BackupFragment extends RecyclerViewFragment {
         mDeleteDialog.show();
     }
 
-    @Override
-    public void onPermissionDenied(int request) {
-        super.onPermissionDenied(request);
-        if (request == 0) {
-            mPermissionDenied = true;
-            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
-        }
-    }
-
-    @Override
-    public void onPermissionGranted(int request) {
-        super.onPermissionGranted(request);
-        if (request == 0) {
-            mPermissionDenied = false;
-            reload();
-        }
-    }
-
     private void backup(final Backup.PARTITION partition) {
         mBackupPartition = partition;
         ViewUtils.dialogEditText(partition == Backup.PARTITION.BOOT ? Device.getKernelVersion(false) : null,
@@ -361,7 +331,7 @@ public class BackupFragment extends RecyclerViewFragment {
                         text = text.replace(" ", "_");
                     }
 
-                    if (Utils.existFile(Backup.getPath(partition, requireActivity()) + "/" + text)) {
+                    if (Utils.existFile(Backup.getPath(partition) + "/" + text)) {
                         Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
                         return;
                     }
@@ -376,7 +346,7 @@ public class BackupFragment extends RecyclerViewFragment {
 
                         @Override
                         public void doInBackground() {
-                            Backup.backup(path, partition, requireActivity());
+                            Backup.backup(path, partition);
                         }
 
                         @Override
@@ -414,13 +384,6 @@ public class BackupFragment extends RecyclerViewFragment {
             }
             showBackupFlashingDialog(mSelectedFile);
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mPermissionDenied = false;
-        mLoaded = false;
     }
 
 }

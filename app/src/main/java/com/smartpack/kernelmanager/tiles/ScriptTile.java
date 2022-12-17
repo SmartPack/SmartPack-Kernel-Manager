@@ -33,6 +33,7 @@ import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 import com.smartpack.kernelmanager.utils.tools.Scripts;
+import com.topjohnwu.superuser.io.SuFile;
 
 import java.io.File;
 
@@ -64,7 +65,7 @@ public class ScriptTile extends TileService {
         mTile = this.getQsTile();
 
         mQuickTile = Prefs.getString("apply_tile", null, this);
-        mSupported = RootUtils.rootAccess() && mQuickTile != null && Utils.existFile(new File(Scripts.scriptFile(context),
+        mSupported = RootUtils.rootAccess() && mQuickTile != null && Utils.existFile(new File(Scripts.scriptFile(),
                 mQuickTile).getAbsolutePath());
 
         if (mSupported) {
@@ -78,7 +79,7 @@ public class ScriptTile extends TileService {
                 }
                 @Override
                 public void doInBackground() {
-                    RootUtils.runCommand("sh " + new File(Scripts.scriptFile(context), mQuickTile).getAbsolutePath());
+                    RootUtils.runCommand("sh " + SuFile.open(Scripts.scriptFile(), mQuickTile).getAbsolutePath());
                 }
                 @Override
                 public void onPostExecute() {
@@ -101,7 +102,7 @@ public class ScriptTile extends TileService {
         mTile = this.getQsTile();
 
         mQuickTile = Prefs.getString("apply_tile", null, this);
-        mSupported = RootUtils.rootAccess() && mQuickTile != null && Utils.existFile(new File(Scripts.scriptFile(this),
+        mSupported = RootUtils.rootAccess() && mQuickTile != null && Utils.existFile(SuFile.open(Scripts.scriptFile(),
                 mQuickTile).getAbsolutePath());
 
         if (mSupported) {

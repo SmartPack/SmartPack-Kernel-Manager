@@ -36,7 +36,6 @@ import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Common;
 import com.smartpack.kernelmanager.utils.Utils;
 
-import java.io.File;
 import java.lang.ref.WeakReference;
 
 /**
@@ -68,8 +67,8 @@ public class FlashingActivity extends BaseActivity {
         mProgressMessage.setVisibility(View.VISIBLE);
         mSaveButton.setOnClickListener(v -> {
             Utils.create("## Flasher log created by SmartPack-Kernel Manager\n\n" + Common.getFlashingResult().toString(),
-                    new File(Utils.getInternalDataStorage(this), "/flasher_log-" + Common.getZipName().replace(".zip", "")));
-            Utils.snackbar(findViewById(android.R.id.content), getString(R.string.flash_log_summary, Utils.getInternalDataStorage(this)
+                    Utils.getInternalDataStorage() + "/flasher_log-" + Common.getZipName().replace(".zip", ""));
+            Utils.snackbar(findViewById(android.R.id.content), getString(R.string.flash_log_summary, Utils.getInternalDataStorage()
                     + "/flasher_log-" + Common.getZipName().replace(".zip", "")));
         });
         mCancelButton.setOnClickListener(v -> onBackPressed());

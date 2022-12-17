@@ -138,11 +138,10 @@ public class UpdateCheck {
     }
 
     private static String getLatestAPK(Context context) {
-        return Utils.getInternalDataStorage(context) + "/" + BuildConfig.APPLICATION_ID + ".apk";
+        return context.getExternalFilesDir("kernelUpdater") + "/" + BuildConfig.APPLICATION_ID + ".apk";
     }
 
     private static void getLatestApp(Context context) {
-        Utils.prepareInternalDataStorage(context);
         Utils.downloadFile(getLatestAPK(context), getUrl());
     }
 

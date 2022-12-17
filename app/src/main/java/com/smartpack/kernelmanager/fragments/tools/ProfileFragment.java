@@ -19,7 +19,6 @@
  */
 package com.smartpack.kernelmanager.fragments.tools;
 
-import android.Manifest;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -63,6 +62,7 @@ import com.smartpack.kernelmanager.utils.root.Control;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
+import com.topjohnwu.superuser.io.SuFile;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -87,8 +87,6 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     private boolean mTaskerMode;
     private Profiles mProfiles;
-
-    private boolean mLoaded;
 
     private LinkedHashMap<String, String> mCommands;
     private Dialog mDeleteDialog;
@@ -167,10 +165,7 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        if (!mLoaded) {
-            mLoaded = true;
-            load(items);
-        }
+        reload();
     }
 
     private void reload() {
@@ -292,7 +287,6 @@ public class ProfileFragment extends RecyclerViewFragment {
                             break;
                         case 5:
                             mExportProfile = items1.get(position);
-                            requestPermission(0, Manifest.permission.WRITE_EXTERNAL_STORAGE);
                             break;
                         case 6:
                             mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
@@ -503,24 +497,6 @@ public class ProfileFragment extends RecyclerViewFragment {
         }, getActivity()).setOnDismissListener(dialogInterface -> mCommands = null).setTitle(getString(R.string.name)).show();
     }
 
-    @Override
-    public void onPermissionDenied(int request) {
-        super.onPermissionDenied(request);
-
-        if (request == 0) {
-            Utils.snackbar(getRootView(), getString(R.string.permission_denied_write_storage));
-        }
-    }
-
-    @Override
-    public void onPermissionGranted(int request) {
-        super.onPermissionGranted(request);
-
-        if (request == 0) {
-            showExportDialog();
-        }
-    }
-
     private void showExportDialog() {
         ViewUtils.dialogEditText(null, (dialogInterface, i) -> {
         }, text -> {
@@ -531,17 +507,11 @@ public class ProfileFragment extends RecyclerViewFragment {
 
             if (new ExportProfile(mExportProfile, mProfiles.getVersion()).export(text)) {
                 Utils.snackbar(getRootView(), getString(R.string.exported_item, text,
-                        new File(Environment.getExternalStorageDirectory(), "SP/profiles").getAbsolutePath()));
+                        SuFile.open(Environment.getExternalStorageDirectory(), "SP/profiles").getAbsolutePath()));
             } else {
                 Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
             }
         }, getActivity()).setOnDismissListener(dialogInterface -> mExportProfile = null).setTitle(getString(R.string.name)).show();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mLoaded = false;
     }
 
     public static class TaskerToastFragment extends BaseFragment {

@@ -98,17 +98,17 @@ public class ApplyOnBootService extends Service {
 
             // Apply everything regardless
             if (Prefs.getBoolean("scripts_onboot", false, this)
-                    && !Scripts.list(this).isEmpty()) {
-                for (final String script : Scripts.list(this)) {
+                    && !Scripts.list().isEmpty()) {
+                for (final String script : Scripts.list()) {
                     if (Utils.getExtension(script).equals("sh")) {
-                        RootFile.execute(Scripts.scriptFile(this) + "/" + script);
+                        RootFile.execute(Scripts.scriptFile() + "/" + script);
                     }
                 }
             } else {
-                for (final String script : Scripts.list(this)) {
+                for (final String script : Scripts.list()) {
                     if (Utils.getExtension(script).equals("sh")) {
                         if (Prefs.getStringSet("on_boot_scripts", new HashSet<>(), this).contains(script)) {
-                            RootFile.execute(Scripts.scriptFile(this) + "/" + script);
+                            RootFile.execute(Scripts.scriptFile() + "/" + script);
                         }
                     }
                 }

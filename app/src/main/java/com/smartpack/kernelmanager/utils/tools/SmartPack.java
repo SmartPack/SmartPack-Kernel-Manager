@@ -42,7 +42,7 @@ import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 public class SmartPack {
 
     public static String getLogFolderPath() {
-        return new File(Environment.getExternalStorageDirectory(), "SP/logs").getAbsolutePath();
+        return SuFile.open(Environment.getExternalStorageDirectory(), "SP/logs").getAbsolutePath();
     }
 
     public static void prepareFolder(String path) {
@@ -71,10 +71,10 @@ public class SmartPack {
             @Override
             public void doInBackground() {
                 Common.getFlashingResult().append("** Preparing to flash ").append(file.getName()).append("...\n\n");
-                Common.getFlashingResult().append("** Path: '").append(file.toString()).append("'\n\n");
+                Common.getFlashingResult().append("** Path: '").append(file).append("'\n\n");
                 Utils.delete(context.getCacheDir() + "/flash.zip");
                 Common.getFlashingResult().append("** Copying '").append(file.getName()).append("' into temporary folder: ");
-                Common.getFlashingResult().append(RootUtils.runAndGetError("cp '" + file.toString() + "' " + context.getCacheDir() + "/flash.zip"));
+                Common.getFlashingResult().append(RootUtils.runAndGetError("cp '" + file + "' " + context.getCacheDir() + "/flash.zip"));
                 Common.getFlashingResult().append(Utils.existFile(context.getCacheDir() + "/flash.zip") ? "Done *\n\n" : "\n\n");
                 manualFlash(context);
             }
@@ -91,8 +91,8 @@ public class SmartPack {
          * Also include code from https://github.com/topjohnwu/Magisk/
          * Ref: https://github.com/topjohnwu/Magisk/blob/a848f10bba4f840248ecf314f7c9d55511d05a0f/app/src/main/java/com/topjohnwu/magisk/core/tasks/FlashZip.kt#L47
          */
-        String mScriptPath = Utils.getInternalDataStorage(context) + "/flash/META-INF/com/google/android/update-binary",
-                FLASH_FOLDER = Utils.getInternalDataStorage(context) + "/flash",
+        String mScriptPath = Utils.getInternalDataStorage() + "/flash/META-INF/com/google/android/update-binary",
+                FLASH_FOLDER = Utils.getInternalDataStorage() + "/flash",
                 CLEANING_COMMAND = "rm -r '" + FLASH_FOLDER + "'",
                 mZipPath = context.getCacheDir() + "/flash.zip";
         String flashingCommand = "BOOTMODE=true sh " + mScriptPath + " dummy 1 " + mZipPath + " 2>/dev/null && echo success";
@@ -109,7 +109,7 @@ public class SmartPack {
             if (Utils.readFile(mScriptPath.replace("update-binary","updater-script")).equals("#MAGISK")) {
                 Common.getFlashingResult().append(" Magisk Module *\n\n");
                 Common.isMagiskModule(true);
-            } else if (Utils.existFile(Utils.getInternalDataStorage(context) + "/flash/anykernel.sh")) {
+            } else if (Utils.existFile(Utils.getInternalDataStorage() + "/flash/anykernel.sh")) {
                 Common.getFlashingResult().append(" AnyKernel *\n\n");
             } else {
                 Common.getFlashingResult().append(" Unknown *\n\n");

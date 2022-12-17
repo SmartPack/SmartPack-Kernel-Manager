@@ -28,6 +28,7 @@ import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.Control;
+import com.topjohnwu.superuser.io.SuFile;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -341,19 +342,19 @@ public class KLapse {
             FLOW_FREQ, BACKLIGHT_RANGE_UPPER, BACKLIGHT_RANGE_LOWER
     };
 
-    public static File profileFolder(Context context) {
-        return new File(Utils.getInternalDataStorage(context), "klapse/");
+    public static File profileFolder() {
+        return SuFile.open(Utils.getInternalDataStorage(), "klapse/");
     }
 
-    public static void prepareProfileFolder(Context context) {
-        if (profileFolder(context).exists() && profileFolder(context).isDirectory()) {
-            profileFolder(context).delete();
+    public static void prepareProfileFolder() {
+        if (profileFolder().exists() && profileFolder().isDirectory()) {
+            profileFolder().delete();
         }
-        profileFolder(context).mkdirs();
+        profileFolder().mkdirs();
     }
 
-    public static void exportKlapseSettings(String name, int position, Context context) {
-        prepareProfileFolder(context);
+    public static void exportKlapseSettings(String name, int position) {
+        prepareProfileFolder();
         String value = Utils.readFile(KLAPSE_PROFILE[position]);
         if (value.contains("Y")) {
             value = "1";
@@ -362,7 +363,7 @@ public class KLapse {
         }
         if (Utils.existFile(KLAPSE_PROFILE[position])) {
             String command = "echo " + value + " > " + KLAPSE_PROFILE[position];
-            Utils.append (command, profileFolder(context).toString() + "/" + name);
+            Utils.append (command, profileFolder() + "/" + name);
         }
     }
 

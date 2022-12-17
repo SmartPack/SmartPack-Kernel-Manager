@@ -49,7 +49,7 @@ public class ExportProfile {
     public boolean export(String name) {
         if (!name.endsWith(".json")) name += ".json";
         File exportFiles = SuFile.open(Environment.getExternalStorageDirectory(), "SP/profiles");
-        File file = SuFile.open(exportFiles.toString() + "/" + name);
+        File file = SuFile.open(exportFiles, name);
         if (file.exists()) return false;
         exportFiles.mkdirs();
         Utils.writeFile(file.toString(), mMain.toString(), false, true);
