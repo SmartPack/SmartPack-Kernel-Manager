@@ -21,29 +21,35 @@
 
 package com.smartpack.kernelmanager.activities;
 
-import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.List;
-import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
@@ -52,31 +58,29 @@ import in.sunilpaulmathew.sCommon.Utils.sExecutor;
  */
 public class TerminalActivity extends BaseActivity {
 
-    private AppCompatEditText mShellCommand;
-    private MaterialTextView mClearAll, mShellCommandTitle, mShellOutput;
-    private boolean mRunning = false;
-    private CharSequence mHistory = null;
+    private AppCompatAutoCompleteTextView mShellCommand;
+    private AppCompatImageButton mRecent;
+    private MaterialTextView mClearAll;
     private int i;
-    private List<String> mResult = null;
-    private NestedScrollView mScrollView;
-    private String mPWD = RootUtils.runAndGetOutput("pwd");
+    private List<String> mResult = null, mLastCommand = null;
+    private RecyclerView mRecyclerView;
+    private ShellOutputAdapter mShellOutputAdapter = null;
     private final String whoAmI = RootUtils.runAndGetOutput("whoami");
-    private final StringBuilder mLastCommand = new StringBuilder();
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terminal);
 
         AppCompatImageButton mBack = findViewById(R.id.back_button);
-        AppCompatImageButton mRecent = findViewById(R.id.recent_button);
+        mRecent = findViewById(R.id.recent_button);
+        MaterialCardView mCard = findViewById(R.id.send_button);
         mShellCommand = findViewById(R.id.shell_command);
-        mShellCommandTitle = findViewById(R.id.shell_command_title);
-        mShellOutput = findViewById(R.id.shell_output);
-        mScrollView = findViewById(R.id.scroll_view);
+        mRecyclerView = findViewById(R.id.recycler_view);
 
-        mShellCommandTitle.setText(whoAmI + ": " + mPWD + ": ");
+        mResult = new ArrayList<>();
+        mLastCommand = new ArrayList<>();
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mShellCommand.addTextChangedListener(new TextWatcher() {
             @Override
@@ -87,41 +91,52 @@ public class TerminalActivity extends BaseActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.toString().endsWith("\n")) {
-                    runCommand();
+                if (s != null && !s.toString().trim().isEmpty()) {
+                    mRecent.setImageDrawable(ViewUtils.getWhiteColoredIcon(R.drawable.ic_send, TerminalActivity.this));
+                    if (s.toString().contains("\n")) {
+                        if (!s.toString().endsWith("\n")) {
+                            mShellCommand.setText(s.toString().replace("\n", ""));
+                        }
+                        runCommand(s.toString().replace("\n", ""));
+                    }
+                } else {
+                    if (mLastCommand.size() > 0) {
+                        mRecent.setImageDrawable(ViewUtils.getWhiteColoredIcon(R.drawable.ic_up, TerminalActivity.this));
+                    }
                 }
             }
         });
 
         mBack.setOnClickListener(v -> onBackPressed());
-        mRecent.setOnClickListener(v -> {
-            String[] lines = mLastCommand.toString().split(",");
-            PopupMenu popupMenu = new PopupMenu(this, mShellCommand);
-            Menu menu = popupMenu.getMenu();
-            if (mLastCommand.toString().isEmpty()) {
-                return;
-            }
-            for (i = 0; i < lines.length; i++) {
-                menu.add(Menu.NONE, i, Menu.NONE, lines[i]);
-            }
-            popupMenu.setOnMenuItemClickListener(item -> {
-                for (i = 0; i < lines.length; i++) {
-                    if (item.getItemId() == i) {
-                        mShellCommand.setText(lines[i]);
-                    }
-                }
-                return false;
-            });
-            popupMenu.show();
-        });
-        mClearAll = findViewById(R.id.clear_all);
-        mClearAll.setOnClickListener(v -> {
-            if (mRunning) {
-                RootUtils.closeSU();
+
+        mCard.setOnClickListener(v -> {
+            if (!mShellCommand.getText().toString().trim().isEmpty()) {
+                runCommand(mShellCommand.getText().toString().trim());
             } else {
-                clearAll();
+                PopupMenu popupMenu = new PopupMenu(this, mShellCommand);
+                Menu menu = popupMenu.getMenu();
+                if (mLastCommand.size() == 0) {
+                    return;
+                }
+                for (i = 0; i < mLastCommand.size(); i++) {
+                    menu.add(Menu.NONE, i, Menu.NONE, mLastCommand.get(i));
+                }
+                popupMenu.setOnMenuItemClickListener(item -> {
+                    for (i = 0; i < mLastCommand.size(); i++) {
+                        if (item.getItemId() == i) {
+                            mShellCommand.setText(mLastCommand.get(i));
+                            mShellCommand.setSelection(mShellCommand.getText().length());
+                        }
+                    }
+                    return false;
+                });
+                popupMenu.show();
             }
         });
+
+        mClearAll = findViewById(R.id.clear_all);
+
+        mClearAll.setOnClickListener(v -> clearAll());
 
         Thread mRefreshThread = new RefreshThread(this);
         mRefreshThread.start();
@@ -136,22 +151,14 @@ public class TerminalActivity extends BaseActivity {
         public void run() {
             try {
                 while (!isInterrupted()) {
-                    Thread.sleep(500);
+                    Thread.sleep(250);
                     final TerminalActivity activity = mActivityRef.get();
                     if(activity == null){
                         break;
                     }
                     activity.runOnUiThread(() -> {
-                        if (mRunning) {
-                            mScrollView.fullScroll(NestedScrollView.FOCUS_DOWN);
-                            mClearAll.setText(R.string.cancel);
-                            try {
-                                mShellOutput.setText(Utils.getOutput(mResult));
-                            } catch (ConcurrentModificationException | NullPointerException ignored) {
-                            }
-                        } else {
-                            mShellOutput.setTextIsSelectable(true);
-                            mClearAll.setText(R.string.clear);
+                        if (mResult != null && mResult.size() > 0 && !mResult.get(mResult.size() - 1).equals("Terminal: Finish")) {
+                            updateUI(mResult);
                         }
                     });
                 }
@@ -159,69 +166,84 @@ public class TerminalActivity extends BaseActivity {
         }
     }
 
-    @SuppressLint({"SetTextI18n", "StaticFieldLeak"})
-    private void runCommand() {
-        if (mShellCommand.getText() != null) {
-            String[] array = Objects.requireNonNull(mShellCommand.getText()).toString().trim().split("\\s+");
-            StringBuilder sb = new StringBuilder();
-            for (String s : array) {
-                if (s != null && !s.isEmpty())
-                    sb.append(" ").append(s);
-            }
-            final String[] mCommand = {sb.toString().replaceFirst(" ","")};
-            mLastCommand.append(mCommand[0]).append(",");
-            if (mCommand[0].endsWith("\n")) {
-                mCommand[0] = mCommand[0].replace("\n","");
-            }
-            if (mShellCommand.getText() != null && !mCommand[0].isEmpty()) {
-                if (mCommand[0].equals("clear")) {
-                    clearAll();
-                } else if (mCommand[0].equals("exit")) {
-                    onBackPressed();
-                } else if (mCommand[0].equals("su") || mCommand[0].contains("su ")) {
-                    mShellCommand.setText(null);
-                } else {
-                    new sExecutor() {
-                        @Override
-                        public void onPreExecute() {
-                            mShellOutput.setTextIsSelectable(false);
-                            mHistory = mShellOutput.getText();
-                            mRunning = true;
-                            mResult = new ArrayList<>();
-                            mShellOutput.setVisibility(View.VISIBLE);
-                        }
-                        @Override
-                        public void doInBackground() {
-                            if (mShellCommand.getText() != null && !mCommand[0].isEmpty()) {
-                                mResult.add(whoAmI + ": " + mCommand[0]);
-                                RootUtils.runAndGetLiveOutput(mCommand[0], mResult);
-                                if (Utils.getOutput(mResult).equals(whoAmI + ": " + mCommand[0] + "\n")) {
-                                    mResult.add(whoAmI + ": " + mCommand[0] + "\n" + mCommand[0]);
-                                }
-                            }
-                        }
-                        @Override
-                        public void onPostExecute() {
-                            mPWD = RootUtils.runAndGetOutput("pwd");
-                            mShellCommand.setText(null);
-                            if (mHistory != null && !mHistory.toString().isEmpty()) {
-                                mShellOutput.setText(mHistory + "\n\n" + Utils.getOutput(mResult));
-                            } else {
-                                mShellOutput.setText(Utils.getOutput(mResult));
-                            }
-                            mShellCommandTitle.setText(whoAmI + ": " + mPWD + ": ");
-                            mHistory = null;
-                            mRunning = false;
-                        }
-                    }.execute();
+    private void runCommand(String command) {
+        mShellCommand.setText(null);
+        mLastCommand.add(command);
+        if (command.equals("clear")) {
+            clearAll();
+        } else if (command.equals("exit")) {
+            onBackPressed();
+        } else if (command.equals("su") || command.startsWith("su ")) {
+            mResult.add("<font color=" + ViewUtils.getThemeAccentColor(TerminalActivity.this)
+                    + ">" + whoAmI + "@" + Build.MODEL + "</font># <i>" + command);
+            mResult.add("<b></b>");
+            mResult.add("Terminal: Finish");
+            updateUI(mResult);
+        } else {
+            new sExecutor() {
+                @Override
+                public void onPreExecute() {
+                    mClearAll.setText(R.string.cancel);
+                    mResult.add("<font color=" + ViewUtils.getThemeAccentColor(TerminalActivity.this)
+                            + ">" + whoAmI + "@" + Build.MODEL + "</font># <i>" + command);
                 }
-            }
+                @Override
+                public void doInBackground() {
+                    RootUtils.runAndGetLiveOutput(command, mResult);
+                    mResult.add("<b></b>");
+                    mResult.add("Terminal: Finish");
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(250);
+                    } catch (InterruptedException ignored) {}
+                }
+                @Override
+                public void onPostExecute() {
+                    updateUI(mResult);
+                    if (mLastCommand.size() > 0) {
+                        mRecent.setImageDrawable(ViewUtils.getWhiteColoredIcon(R.drawable.ic_up, TerminalActivity.this));
+                    }
+                    mClearAll.setText(R.string.clear);
+                }
+            }.execute();
         }
     }
 
+    private void updateUI(List<String> data) {
+        List<String> mData = new ArrayList<>();
+        try {
+            for (String result : data) {
+                if (!result.trim().isEmpty() && !result.equals("Terminal: Finish")) {
+                    mData.add(result);
+                }
+            }
+        } catch (ConcurrentModificationException ignored) {
+        }
+
+        new sExecutor() {
+            @Override
+            public void onPreExecute() {
+
+            }
+
+            @Override
+            public void doInBackground() {
+                mShellOutputAdapter = new ShellOutputAdapter(mData);
+            }
+
+            @Override
+            public void onPostExecute() {
+                mRecyclerView.setAdapter(mShellOutputAdapter);
+                mRecyclerView.scrollToPosition(mData.size() - 1);
+            }
+        }.execute();
+    }
+
     private void clearAll() {
-        mShellOutput.setText(null);
-        mShellCommand.setText(null);
+        if (mResult.size() > 0 && !mResult.get(mResult.size() - 1).equals("Terminal: Finish")) {
+            RootUtils.closeSU();
+        }
+        mResult.clear();
+        updateUI(mResult);
     }
 
     @Override
@@ -232,8 +254,44 @@ public class TerminalActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if (mRunning) return;
+        if (mResult != null && mResult.size() > 0 && !mResult.get(mResult.size() - 1).equals("Terminal: Finish")) return;
         super.onBackPressed();
+    }
+
+    public static class ShellOutputAdapter extends RecyclerView.Adapter<ShellOutputAdapter.ViewHolder> {
+
+        private final List<String> data;
+
+        public ShellOutputAdapter(List<String> data) {
+            this.data = data;
+        }
+
+        @NonNull
+        @Override
+        public ShellOutputAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View rowItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_shell_output, parent, false);
+            return new ViewHolder(rowItem);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ShellOutputAdapter.ViewHolder holder, int position) {
+            holder.mOutput.setText(Utils.htmlFrom(this.data.get(position)));
+        }
+
+        @Override
+        public int getItemCount() {
+            return this.data.size();
+        }
+
+        public static class ViewHolder extends RecyclerView.ViewHolder {
+            private final MaterialTextView mOutput;
+
+            public ViewHolder(View view) {
+                super(view);
+                this.mOutput = view.findViewById(R.id.shell_output);
+            }
+        }
+
     }
 
 }
