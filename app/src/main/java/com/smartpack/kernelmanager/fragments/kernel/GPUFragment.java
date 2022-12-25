@@ -19,15 +19,16 @@
  */
 package com.smartpack.kernelmanager.fragments.kernel;
 
-import android.content.Intent;
 import android.text.InputType;
 
 import com.smartpack.kernelmanager.R;
-import com.smartpack.kernelmanager.activities.TunablesActivity;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
+import com.smartpack.kernelmanager.utils.kernel.cpuhotplug.Adrenoboost;
 import com.smartpack.kernelmanager.utils.kernel.gpu.AdrenoIdler;
+import com.smartpack.kernelmanager.utils.kernel.gpu.DevfreqBoost;
 import com.smartpack.kernelmanager.utils.kernel.gpu.GPUFreq;
+import com.smartpack.kernelmanager.utils.kernel.gpu.GPUMisc;
 import com.smartpack.kernelmanager.utils.kernel.gpu.SimpleGPU;
 import com.smartpack.kernelmanager.utils.tools.PathReader;
 import com.smartpack.kernelmanager.views.recyclerview.CardView;
@@ -38,10 +39,6 @@ import com.smartpack.kernelmanager.views.recyclerview.SeekBarView;
 import com.smartpack.kernelmanager.views.recyclerview.SelectView;
 import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
 import com.smartpack.kernelmanager.views.recyclerview.XYGraphView;
-
-import com.smartpack.kernelmanager.utils.kernel.cpuhotplug.Adrenoboost;
-import com.smartpack.kernelmanager.utils.kernel.gpu.DevfreqBoost;
-import com.smartpack.kernelmanager.utils.kernel.gpu.GPUMisc;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -157,14 +154,8 @@ public class GPUFragment extends RecyclerViewFragment {
                 tunables.setTitle(getString(R.string.gpu_governor_tunables));
                 tunables.setSummary(getString(R.string.governor_tunables_summary));
                 tunables.setOnItemClickListener(item -> {
-                    PathReader.setTitle(mGPUFreq.getGovernor());
-                    PathReader.setError(getString(R.string.tunables_error, mGPUFreq.getGovernor()));
-                    PathReader.setPath(mGPUFreq.getTunables(mGPUFreq.getGovernor()));
-                    PathReader.setCategory(ApplyOnBootFragment.GPU);
-                    PathReader.setMax(-1);
-                    PathReader.setMin(-1);
-                    Intent intent = new Intent(requireActivity(), TunablesActivity.class);
-                    startActivity(intent);
+                    new PathReader(-1, -1, mGPUFreq.getGovernor(), mGPUFreq.getTunables(mGPUFreq.getGovernor()), getString(R.string.tunables_error,
+                            mGPUFreq.getGovernor()), ApplyOnBootFragment.GPU, requireActivity()).launch();
                 });
 
                 gpuCard.addItem(tunables);

@@ -24,7 +24,6 @@ import android.text.InputType;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.AdvancedIOActivity;
-import com.smartpack.kernelmanager.activities.TunablesActivity;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.kernel.io.IO;
@@ -105,16 +104,8 @@ public class IOFragment extends RecyclerViewFragment {
             DescriptionView tunable = new DescriptionView();
             tunable.setTitle(getString(R.string.scheduler_tunable));
             tunable.setSummary(getString(R.string.scheduler_tunable_summary));
-            tunable.setOnItemClickListener(item -> {
-                PathReader.setTitle(mIO.getScheduler(storage));
-                PathReader.setError(getString(R.string.tunables_error, mIO.getScheduler(storage)));
-                PathReader.setPath(mIO.getIOSched(storage));
-                PathReader.setCategory(ApplyOnBootFragment.IO);
-                PathReader.setMax(-1);
-                PathReader.setMin(-1);
-                Intent intent = new Intent(requireActivity(), TunablesActivity.class);
-                startActivity(intent);
-            });
+            tunable.setOnItemClickListener(item -> new PathReader(-1, -1, mIO.getScheduler(storage), mIO.getIOSched(storage), getString(
+                    R.string.tunables_error, mIO.getScheduler(storage)), ApplyOnBootFragment.IO, requireActivity()).launch());
 
             StorageCard.addItem(tunable);
         }

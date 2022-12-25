@@ -21,11 +21,9 @@
 
 package com.smartpack.kernelmanager.fragments.kernel;
 
-import android.content.Intent;
 import android.text.InputType;
 
 import com.smartpack.kernelmanager.R;
-import com.smartpack.kernelmanager.activities.TunablesActivity;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
 import com.smartpack.kernelmanager.utils.kernel.io.IOAdvanced;
@@ -125,16 +123,8 @@ public class IOAdvancedFragment extends RecyclerViewFragment {
 
             DescriptionView tunable = new DescriptionView();
             tunable.setSummary(getString(R.string.scheduler_tunable));
-            tunable.setOnItemClickListener(item -> {
-                PathReader.setTitle(IOAdvanced.getScheduler(requireActivity()));
-                PathReader.setError(getString(R.string.tunables_error, IOAdvanced.getScheduler(requireActivity())));
-                PathReader.setPath(IOAdvanced.getSchedulerPath(requireActivity()));
-                PathReader.setCategory(ApplyOnBootFragment.IO);
-                PathReader.setMax(-1);
-                PathReader.setMin(-1);
-                Intent intent = new Intent(requireActivity(), TunablesActivity.class);
-                startActivity(intent);
-            });
+            tunable.setOnItemClickListener(item -> new PathReader(-1, -1, IOAdvanced.getScheduler(requireActivity()), IOAdvanced.getSchedulerPath(requireActivity()),
+                    getString(R.string.tunables_error,IOAdvanced.getScheduler(requireActivity())), ApplyOnBootFragment.IO, requireActivity()).launch());
 
             blocksCard.addItem(tunable);
         }

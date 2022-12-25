@@ -95,27 +95,29 @@ public class PathReaderFragment extends RecyclerViewFragment {
         if (path.contains("%d")) {
             path = Utils.strFormat(PathReader.getPath(), PathReader.getMin());
         }
-        for (final File file : Objects.requireNonNull(SuFile.open(path).listFiles())) {
-            final String name = file.getName();
-            final String value = Utils.readFile(file.getAbsolutePath());
-            if (!value.isEmpty() && !value.contains("\n")) {
-                DescriptionView descriptionView = new DescriptionView();
-                descriptionView.setTitle(name);
-                descriptionView.setSummary(value);
-                descriptionView.setOnItemClickListener(item -> {
-                    List<Integer> freqs = CPUFreq.getInstance(getActivity()).getFreqs(PathReader.getMin());
-                    int freq = Utils.strToInt(value);
-                    if (freqs != null && freq != 0 && freqs.contains(freq)) {
-                        String[] values = new String[freqs.size()];
-                        for (int i = 0; i < values.length; i++) {
-                            values[i] = String.valueOf(freqs.get(i));
+        if (Utils.existFile(path)) {
+            for (final File file : Objects.requireNonNull(SuFile.open(path).listFiles())) {
+                final String name = file.getName();
+                final String value = Utils.readFile(file.getAbsolutePath());
+                if (!value.isEmpty() && !value.contains("\n")) {
+                    DescriptionView descriptionView = new DescriptionView();
+                    descriptionView.setTitle(name);
+                    descriptionView.setSummary(value);
+                    descriptionView.setOnItemClickListener(item -> {
+                        List<Integer> freqs = CPUFreq.getInstance(getActivity()).getFreqs(PathReader.getMin());
+                        int freq = Utils.strToInt(value);
+                        if (freqs != null && freq != 0 && freqs.contains(freq)) {
+                            String[] values = new String[freqs.size()];
+                            for (int i = 0; i < values.length; i++) {
+                                values[i] = String.valueOf(freqs.get(i));
+                            }
+                            showArrayDialog(value, values, PathReader.getPath() + "/" + name, name);
+                        } else {
+                            showEditTextDialog(value, name);
                         }
-                        showArrayDialog(value, values, PathReader.getPath() + "/" + name, name);
-                    } else {
-                        showEditTextDialog(value, name);
-                    }
-                });
-                items.add(descriptionView);
+                    });
+                    items.add(descriptionView);
+                }
             }
         }
     }

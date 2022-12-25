@@ -21,13 +21,29 @@
 
 package com.smartpack.kernelmanager.utils.tools;
 
+import android.app.Activity;
+import android.content.Intent;
+
+import com.smartpack.kernelmanager.activities.TunablesActivity;
+
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 21, 2021
  */
 public class PathReader {
 
+    private final Activity mActivity;
     private static String mTitle, mPath, mError, mCategory;
     private static int mMin = -1, mMax = -1;
+
+    public PathReader(int min, int max, String title, String path, String error, String category, Activity activity) {
+        mTitle = title;
+        mPath = path;
+        mError = error;
+        mCategory = category;
+        mMin = min;
+        mMax = max;
+        mActivity = activity;
+    }
 
     public static String getTitle() {
         return mTitle;
@@ -53,28 +69,9 @@ public class PathReader {
         return mMax;
     }
 
-    public static void setTitle(String title) {
-        mTitle = title;
-    }
-
-    public static void setPath(String path) {
-        mPath = path;
-    }
-
-    public static void setError(String error) {
-        mError = error;
-    }
-
-    public static void setCategory(String category) {
-        mCategory = category;
-    }
-
-    public static void setMin(int min) {
-        mMin = min;
-    }
-
-    public static void setMax(int max) {
-        mMax = max;
+    public void launch() {
+        Intent intent = new Intent(mActivity, TunablesActivity.class);
+        mActivity.startActivity(intent);
     }
 
 }

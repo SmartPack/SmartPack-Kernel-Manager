@@ -25,7 +25,6 @@ import android.util.SparseArray;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.CPUBoostActivity;
-import com.smartpack.kernelmanager.activities.TunablesActivity;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
@@ -33,10 +32,10 @@ import com.smartpack.kernelmanager.utils.Device;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
-import com.smartpack.kernelmanager.utils.kernel.cpu.boost.CPUBoost;
 import com.smartpack.kernelmanager.utils.kernel.cpu.CPUFreq;
-import com.smartpack.kernelmanager.utils.kernel.cpu.boost.CPUInputBoost;
 import com.smartpack.kernelmanager.utils.kernel.cpu.Misc;
+import com.smartpack.kernelmanager.utils.kernel.cpu.boost.CPUBoost;
+import com.smartpack.kernelmanager.utils.kernel.cpu.boost.CPUInputBoost;
 import com.smartpack.kernelmanager.utils.kernel.cpu.boost.StuneBoost;
 import com.smartpack.kernelmanager.utils.kernel.cpu.boost.VoxPopuli;
 import com.smartpack.kernelmanager.utils.kernel.cpuhotplug.MSMLimiter;
@@ -345,14 +344,8 @@ public class CPUFragment extends RecyclerViewFragment {
                     }, dialog -> mGovernorTunableErrorDialog = null, getActivity());
             mGovernorTunableErrorDialog.show();
         } else {
-            PathReader.setTitle(governor);
-            PathReader.setError(getString(R.string.tunables_error, governor));
-            PathReader.setPath(mCPUFreq.getGovernorTunablesPath(min, governor));
-            PathReader.setCategory(ApplyOnBootFragment.CPU);
-            PathReader.setMax(max);
-            PathReader.setMin(min);
-            Intent intent = new Intent(requireActivity(), TunablesActivity.class);
-            startActivity(intent);
+            new PathReader(min, max, governor, mCPUFreq.getGovernorTunablesPath(min, governor), getString(R.string.tunables_error,
+                    governor), ApplyOnBootFragment.CPU, requireActivity()).launch();
         }
         if (offline) {
             mCPUFreq.onlineCpu(min, false, false, null);
