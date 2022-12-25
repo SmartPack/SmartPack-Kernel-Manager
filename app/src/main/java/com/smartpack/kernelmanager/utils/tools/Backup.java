@@ -19,7 +19,6 @@
  */
 package com.smartpack.kernelmanager.utils.tools;
 
-import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.smartpack.kernelmanager.utils.Utils;
@@ -37,10 +36,7 @@ import java.util.Objects;
 public class Backup {
 
     private static final String TAG = Backup.class.getSimpleName();
-
-    private static String boot;
-    private static String recovery;
-    private static String fota;
+    private static boolean identified;
 
     public enum PARTITION {
         BOOT, RECOVERY, FOTA
@@ -61,7 +57,7 @@ public class Backup {
             "/dev/block/nandc",
             "/dev/bootimg",
             "/dev/boot",
-            /* 
+            /*
              * A/B devices: Partitions has both Boot & Recovery
              * Ref: https://source.android.com/devices/bootloader/partitions-images
              */
@@ -94,10 +90,6 @@ public class Backup {
             "/dev/block/nandg",
             "/dev/block/acta",
             "/dev/recovery"
-    };
-
-    private static final String[] Fota = {
-            "/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel"
     };
 
     public static void restore(File file, PARTITION partition_type) {
@@ -150,7 +142,7 @@ public class Backup {
     public static List<String> getItemsList(PARTITION PARTITION_type) {
         List<String> mList = new ArrayList<>();
         if (Utils.existFile(getPath(PARTITION_type))) {
-            for (File file : Objects.requireNonNull(new File(getPath(PARTITION_type)).listFiles())) {
+            for (File file : Objects.requireNonNull(SuFile.open(getPath(PARTITION_type)).listFiles())) {
                 mList.add(file.getName());
             }
         }
@@ -158,43 +150,55 @@ public class Backup {
     }
 
     public static String getBootPartition() {
-        if (boot == null) {
-            for (String partition : Boot) {
-                if (Utils.existFile(partition)) {
-                    boot = partition;
-                    return partition;
-                }
+        identified = false;
+        for (String partition : Boot) {
+            if (Utils.existFile(partition)) {
+                identified = true;
+                return partition;
             }
         }
-        return boot;
+        if (!identified) {
+            String boot = RootUtils.runAndGetOutput("find /dev/block/ -type l -iname boot" + getBootSlot()).trim().split("\\r?\\n")[0];
+            if (!boot.isEmpty() && Utils.existFile(boot)) {
+                return boot;
+            }
+        }
+        return null;
     }
 
     public static String getRecoveryPartition() {
-        if (recovery == null) {
+        if (!isABDevice()) {
+            identified = false;
             for (String partition : Recovery) {
                 if (Utils.existFile(partition)) {
-                    recovery = partition;
+                    identified = true;
                     return partition;
                 }
             }
+            if (!identified) {
+                String recovery = RootUtils.runAndGetOutput("find /dev/block/ -type l -iname recovery").trim().split("\\r?\\n")[0];
+                if (!recovery.isEmpty() && Utils.existFile(recovery)) {
+                    return recovery;
+                }
+            }
         }
-        return recovery;
+        return null;
     }
 
     public static String getFotaPartition() {
-        if (fota == null) {
-            for (String partition : Fota) {
-                if (Utils.existFile(partition)) {
-                    fota = partition;
-                    return partition;
-                }
-            }
+        String fota = "/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel";
+        if (Utils.existFile(fota)) {
+            return fota;
         }
-        return fota;
+        return null;
     }
 
     private static String getBootSlot() {
         return RootUtils.runAndGetOutput("getprop ro.boot.slot_suffix");
+    }
+
+    public static boolean isABDevice() {
+        return getBootPartition() != null && (getBootPartition().contains("boot_a") || getBootPartition().contains("boot_b"));
     }
 
     public static boolean hasBackup() {

@@ -35,7 +35,7 @@ public class RootFile {
 
     public static boolean exists(String mFile) {
         String output = RootUtils.runAndGetOutput("[ -e " + mFile + " ] && echo true");
-        return !output.isEmpty() && output.equals("true");
+        return output.equals("true");
     }
 
     public boolean isEmpty(String mFile) {

@@ -36,6 +36,7 @@ import com.smartpack.kernelmanager.views.dialog.Dialog;
 import com.smartpack.kernelmanager.views.recyclerview.DescriptionView;
 import com.smartpack.kernelmanager.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.views.recyclerview.TitleView;
+import com.topjohnwu.superuser.io.SuFile;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -183,10 +184,10 @@ public class BackupFragment extends RecyclerViewFragment {
     }
 
     private void itemInit(List<RecyclerViewItem> items, final Backup.PARTITION partition) {
-        if (new File(Backup.getPath(partition)).exists() && new File(Backup.getPath(partition)).length() > 0
+        if (SuFile.open(Backup.getPath(partition)).exists() && SuFile.open(Backup.getPath(partition)).length() > 0
                 && Backup.getItemsList(partition).size() > 0) {
             for (final String backup : Backup.getItemsList(partition)) {
-                final File image = new File(Backup.getPath(partition) + "/" + backup);
+                final File image = SuFile.open(Backup.getPath(partition) + "/" + backup);
                 if (image.isFile()) {
                     DescriptionView descriptionView = new DescriptionView();
                     descriptionView.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_file, requireContext()));
