@@ -19,8 +19,6 @@
  */
 package com.smartpack.kernelmanager.database.tools.profiles;
 
-import android.os.Environment;
-
 import com.smartpack.kernelmanager.utils.Utils;
 import com.topjohnwu.superuser.io.SuFile;
 
@@ -40,7 +38,6 @@ public class ExportProfile {
         mMain = new JSONObject();
         try {
             mMain.put("version", version);
-            item.getItem().remove("name");
             mMain.put("profile", item.getItem());
         } catch (JSONException ignored) {
         }
@@ -48,11 +45,11 @@ public class ExportProfile {
 
     public boolean export(String name) {
         if (!name.endsWith(".json")) name += ".json";
-        File exportFiles = SuFile.open(Environment.getExternalStorageDirectory(), "SP/profiles");
+        File exportFiles = SuFile.open(Utils.getInternalDataStorage(), "profiles");
         File file = SuFile.open(exportFiles, name);
         if (file.exists()) return false;
         exportFiles.mkdirs();
-        Utils.writeFile(file.toString(), mMain.toString(), false, true);
+        Utils.writeFile(file.toString(), mMain.toString(), false, false);
         return true;
     }
 

@@ -91,9 +91,7 @@ public class ProfileFragment extends RecyclerViewFragment {
     private LinkedHashMap<String, String> mCommands;
     private Dialog mDeleteDialog;
     private Dialog mApplyDialog;
-    private Profiles.ProfileItem mExportProfile;
     private Dialog mOptionsDialog;
-    private ImportProfile mImportProfile;
     private Dialog mSelectDialog;
 
     @Override
@@ -152,14 +150,8 @@ public class ProfileFragment extends RecyclerViewFragment {
         if (mApplyDialog != null) {
             mApplyDialog.show();
         }
-        if (mExportProfile != null) {
-            showExportDialog();
-        }
         if (mOptionsDialog != null) {
             mOptionsDialog.show();
-        }
-        if (mImportProfile != null) {
-            showImportDialog(mImportProfile);
         }
     }
 
@@ -234,7 +226,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 menu.add(Menu.NONE, 5, Menu.NONE, getString(R.string.export));
                 menu.add(Menu.NONE, 6, Menu.NONE, getString(R.string.delete));
                 popupMenu.setOnMenuItemClickListener(item -> {
-                    List<Profiles.ProfileItem> items1 = mProfiles.getAllProfiles();
+                    List<Profiles.ProfileItem> profileItem = mProfiles.getAllProfiles();
                     switch (item.getItemId()) {
                         case 0:
                             applyProfile(descriptionView, position);
@@ -250,8 +242,8 @@ public class ProfileFragment extends RecyclerViewFragment {
                             startActivityForResult(edit, 3);
                             break;
                         case 3:
-                            if (items1.get(position).getName() != null) {
-                                List<Profiles.ProfileItem.CommandItem> commands = items1.get(position).getCommands();
+                            if (profileItem.get(position).getName() != null) {
+                                List<Profiles.ProfileItem.CommandItem> commands = profileItem.get(position).getCommands();
                                 if (commands.size() > 0) {
                                     StringBuilder mCommandsText = new StringBuilder();
                                     for (Profiles.ProfileItem.CommandItem command : commands) {
@@ -266,7 +258,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                                             mCommandsText.append(command.getCommand()).append("\n");
                                         }
                                     }
-                                    Common.setDetailsTitle(items1.get(position).getName().toUpperCase());
+                                    Common.setDetailsTitle(profileItem.get(position).getName().toUpperCase());
                                     Common.setDetailsTxt(mCommandsText.toString());
                                     Intent details = new Intent(getActivity(), ForegroundActivity.class);
                                     startActivity(details);
@@ -278,7 +270,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                         case 4:
                             if (Prefs.getBoolean("enable_onboot", true, getActivity())) {
                                 onBoot.setChecked(!onBoot.isChecked());
-                                items1.get(position).enableOnBoot(onBoot.isChecked());
+                                profileItem.get(position).enableOnBoot(onBoot.isChecked());
                                 mProfiles.commit();
                             } else {
                                 Utils.snackbar(getRootView(), getString(R.string.enable_onboot_message));
@@ -286,7 +278,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                             reload();
                             break;
                         case 5:
-                            mExportProfile = items1.get(position);
+                            showExportDialog(profileItem.get(position));
                             break;
                         case 6:
                             mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
@@ -444,7 +436,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                     Utils.snackbar(getRootView(), getString(R.string.import_wrong_version));
                     return;
                 }
-                showImportDialog(importProfile);
+                showImportDialog(importProfile, mSelectedFile.getName().replace(".json", ""));
             });
             selectProfile.show();
         } else if (requestCode == 3) {
@@ -452,9 +444,8 @@ public class ProfileFragment extends RecyclerViewFragment {
         }
     }
 
-    private void showImportDialog(final ImportProfile importProfile) {
-        mImportProfile = importProfile;
-        ViewUtils.dialogEditText(null, (dialogInterface, i) -> {
+    private void showImportDialog(final ImportProfile importProfile, String fileName) {
+        ViewUtils.dialogEditText(fileName, (dialogInterface, i) -> {
         }, text -> {
             if (text.isEmpty()) {
                 Utils.snackbar(getRootView(), getString(R.string.name_empty));
@@ -472,7 +463,8 @@ public class ProfileFragment extends RecyclerViewFragment {
             mProfiles.commit();
             reload();
         }, getActivity()).setTitle(getString(R.string.name)).setOnDismissListener(
-                dialogInterface -> mImportProfile = null).show();
+                dialogInterface -> {
+                }).show();
     }
 
     private void create(final LinkedHashMap<String, String> commands) {
@@ -497,21 +489,22 @@ public class ProfileFragment extends RecyclerViewFragment {
         }, getActivity()).setOnDismissListener(dialogInterface -> mCommands = null).setTitle(getString(R.string.name)).show();
     }
 
-    private void showExportDialog() {
-        ViewUtils.dialogEditText(null, (dialogInterface, i) -> {
+    private void showExportDialog(Profiles.ProfileItem exportProfile) {
+        ViewUtils.dialogEditText(exportProfile.getName(), (dialogInterface, i) -> {
         }, text -> {
             if (text.isEmpty()) {
                 Utils.snackbar(getRootView(), getString(R.string.name_empty));
                 return;
             }
 
-            if (new ExportProfile(mExportProfile, mProfiles.getVersion()).export(text)) {
+            if (new ExportProfile(exportProfile, mProfiles.getVersion()).export(text)) {
                 Utils.snackbar(getRootView(), getString(R.string.exported_item, text,
-                        SuFile.open(Environment.getExternalStorageDirectory(), "SP/profiles").getAbsolutePath()));
+                        SuFile.open(Utils.getInternalDataStorage(), "profiles").getAbsolutePath()));
             } else {
                 Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
             }
-        }, getActivity()).setOnDismissListener(dialogInterface -> mExportProfile = null).setTitle(getString(R.string.name)).show();
+        }, getActivity()).setOnDismissListener(dialogInterface -> {
+        }).setTitle(getString(R.string.name)).show();
     }
 
     public static class TaskerToastFragment extends BaseFragment {
