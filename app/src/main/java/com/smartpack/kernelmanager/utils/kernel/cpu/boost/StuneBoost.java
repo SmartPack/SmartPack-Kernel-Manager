@@ -37,9 +37,6 @@ public class StuneBoost {
     private static final String DYN_STUNE_BOOST_MS = getParent() + "/dynamic_stune_boost_ms";
 
     private static final String ADVANCED = "/dev/stune";
-    private static final String SCHED_BOOST = ADVANCED + "/schedtune.sched_boost";
-    private static final String SCHED_BOOST_ENABLED = ADVANCED + "/schedtune.sched_boost_enabled";
-    private static final String SCHED_BOOST_NO_OVERRIDE = ADVANCED + "/schedtune.sched_boost_no_override";
 
     private static final String[] STUNE = {"schedtune.boost", "schedtune.sched_boost", "schedtune.sched_boost_enabled",
             "schedtune.sched_boost_no_override", "schedtune.prefer_idle", "schedtune.colocate", "cgroup.clone_children",
@@ -114,7 +111,7 @@ public class StuneBoost {
     }
 
     public static boolean supported() {
-        return hasDynStuneBoost() || hasDynStuneBoostDuration() || isStuneBoostSupported();
+        return (getParent() != null && (hasDynStuneBoost() || hasDynStuneBoostDuration())) || isStuneBoostSupported();
     }
 
     private static void run(String command, String id, Context context) {
