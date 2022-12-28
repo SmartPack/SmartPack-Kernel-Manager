@@ -45,10 +45,11 @@ import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import in.sunilpaulmathew.sCommon.Utils.sExecutor;
@@ -137,33 +138,12 @@ public class TerminalActivity extends BaseActivity {
         mClearAll = findViewById(R.id.clear_all);
 
         mClearAll.setOnClickListener(v -> clearAll());
-
-        Thread mRefreshThread = new RefreshThread(this);
-        mRefreshThread.start();
-    }
-
-    private class RefreshThread extends Thread {
-        WeakReference<TerminalActivity> mActivityRef;
-        RefreshThread(TerminalActivity activity) {
-            mActivityRef = new WeakReference<>(activity);
-        }
-        @Override
-        public void run() {
-            try {
-                while (!isInterrupted()) {
-                    Thread.sleep(250);
-                    final TerminalActivity activity = mActivityRef.get();
-                    if(activity == null){
-                        break;
-                    }
-                    activity.runOnUiThread(() -> {
-                        if (mResult != null && mResult.size() > 0 && !mResult.get(mResult.size() - 1).equals("Terminal: Finish")) {
-                            updateUI(mResult);
-                        }
-                    });
-                }
-            } catch (InterruptedException ignored) {}
-        }
+        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+        executor.scheduleAtFixedRate(() -> {
+            if (mResult != null && mResult.size() > 0 && !mResult.get(mResult.size() - 1).equals("Terminal: Finish")) {
+                updateUI(mResult);
+            }
+        }, 0, 250, TimeUnit.MILLISECONDS);
     }
 
     private void runCommand(String command) {
