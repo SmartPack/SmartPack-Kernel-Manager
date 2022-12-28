@@ -47,8 +47,6 @@ import java.util.Objects;
  */
 public class Widget extends AppWidgetProvider {
 
-    private static final String TAG = Widget.class.getSimpleName();
-
     private static final String LIST_ITEM_CLICK = "list_item";
     private static final String ITEM_ARG = "item_extra";
 
@@ -64,17 +62,18 @@ public class Widget extends AppWidgetProvider {
             RemoteViews widget = new RemoteViews(context.getPackageName(), R.layout.widget_profile);
             widget.setRemoteAdapter(R.id.profile_list, svcIntent);
 
-            widget.setPendingIntentTemplate(R.id.profile_list, getPendingIntent(context, LIST_ITEM_CLICK));
+            widget.setPendingIntentTemplate(R.id.profile_list, getPendingIntent(context));
 
             appWidgetManager.updateAppWidget(appWidgetId, widget);
         }
     }
 
-    private PendingIntent getPendingIntent(Context context, String action) {
+    private PendingIntent getPendingIntent(Context context) {
         Intent intent = new Intent(context, getClass());
-        intent.setAction(action);
+        intent.setAction(LIST_ITEM_CLICK);
         return PendingIntent.getBroadcast(context, 0, intent, Build.VERSION.SDK_INT >=
-                android.os.Build.VERSION_CODES.M ? PendingIntent.FLAG_MUTABLE : 0);
+                android.os.Build.VERSION_CODES.M ? Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S ?
+                PendingIntent.FLAG_MUTABLE : PendingIntent.FLAG_IMMUTABLE: 0);
     }
 
     @Override
