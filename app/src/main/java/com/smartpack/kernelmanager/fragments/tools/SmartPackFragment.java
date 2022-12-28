@@ -29,6 +29,9 @@ import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.view.Menu;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.TerminalActivity;
 import com.smartpack.kernelmanager.activities.UpdateChannelActivity;
@@ -520,27 +523,27 @@ public class SmartPackFragment extends RecyclerViewFragment {
         FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
         FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
         Intent intent = new Intent(requireContext(), FilePickerActivity.class);
-        startActivityForResult(intent, 0);
+        pickFileForFlashing.launch(intent);
     }
 
     @SuppressLint({"StringFormatInvalid", "StringFormatMatches"})
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 0 && data != null && FilePicker.getSelectedFile().exists()) {
-            File mSelectedFile = FilePicker.getSelectedFile();
-            new Dialog(requireActivity())
-                    .setIcon(R.mipmap.ic_launcher)
-                    .setTitle(getString(R.string.flasher))
-                    .setMessage(getString(R.string.sure_message, mSelectedFile.getName()) + (SmartPack.fileSize(mSelectedFile) >= 100000000 ?
-                            ("\n\n") + getString(R.string.file_size_limit, (SmartPack.fileSize(mSelectedFile) / 1000000)) : ""))
-                    .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                    })
-                    .setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> SmartPack.flashingTask(
-                            mSelectedFile, requireActivity())
-                    ).show();
-        }
-    }
+    ActivityResultLauncher<Intent> pickFileForFlashing = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getData() != null && FilePicker.getSelectedFile().exists()) {
+                    File mSelectedFile = FilePicker.getSelectedFile();
+                    new Dialog(requireActivity())
+                            .setIcon(R.mipmap.ic_launcher)
+                            .setTitle(getString(R.string.flasher))
+                            .setMessage(getString(R.string.sure_message, mSelectedFile.getName()) + (SmartPack.fileSize(mSelectedFile) >= 100000000 ?
+                                    ("\n\n") + getString(R.string.file_size_limit, (SmartPack.fileSize(mSelectedFile) / 1000000)) : ""))
+                            .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                            })
+                            .setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> SmartPack.flashingTask(
+                                    mSelectedFile, requireActivity())
+                            ).show();
+                }
+            }
+    );
 
 }

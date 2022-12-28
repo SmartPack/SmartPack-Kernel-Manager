@@ -55,13 +55,12 @@ public class Scripts {
         Utils.create(text, SuFile.open(scriptFile(), file).getAbsolutePath());
     }
 
-    public static void importScript(String string) {
+    public static void importScript(File file) {
         if (scriptFile().exists() && scriptFile().isFile()) {
             scriptFile().delete();
         }
         scriptFile().mkdirs();
-        Utils.create(Utils.readFile(string), SuFile.open(scriptFile().getAbsolutePath(),
-                SuFile.open(string).getName()).getAbsolutePath());
+        Utils.copy(file.getAbsolutePath(), SuFile.open(scriptFile(), file.getName()).getAbsolutePath());
     }
 
     public static void delete(String file) {

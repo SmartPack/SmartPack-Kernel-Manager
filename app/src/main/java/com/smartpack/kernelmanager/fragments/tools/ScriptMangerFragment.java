@@ -21,10 +21,14 @@
 package com.smartpack.kernelmanager.fragments.tools;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.view.Menu;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
@@ -188,7 +192,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                                 Intent intent = new Intent(getActivity(), EditorActivity.class);
                                 intent.putExtra(EditorActivity.TITLE_INTENT, script);
                                 intent.putExtra(EditorActivity.TEXT_INTENT, Scripts.read(script));
-                                startActivityForResult(intent, 0);
+                                editScript.launch(intent);
                                 break;
                             case 2:
                                 Common.setDetailsTitle(script.replace(".sh","").toUpperCase());
@@ -263,40 +267,6 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (data == null) return;
-        if (requestCode == 0) {
-            Scripts.write(mEditScript, Objects.requireNonNull(data.getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString());
-            reload();
-        } else if (requestCode == 1) {
-            Scripts.write(mCreateName, Objects.requireNonNull(data.getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString());
-            mCreateName = null;
-            reload();
-        } else if (requestCode == 2) {
-            File mSelectedFile = FilePicker.getSelectedFile();
-            if (!Utils.getExtension(mSelectedFile.getAbsolutePath()).equals("sh")) {
-                Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".sh"));
-                return;
-            }
-            if (Utils.existFile(Scripts.scriptExistsCheck(mSelectedFile.getName()))) {
-                Utils.snackbar(getRootView(), getString(R.string.script_exists, mSelectedFile.getName()));
-                return;
-            }
-            Dialog selectQuestion = new Dialog(requireActivity());
-            selectQuestion.setMessage(getString(R.string.select_question, mSelectedFile.getName()));
-            selectQuestion.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-            });
-            selectQuestion.setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {
-                Scripts.importScript(mSelectedFile.getAbsolutePath());
-                reload();
-            });
-            selectQuestion.show();
-        }
-    }
-
-    @Override
     protected void onTopFabClick() {
         super.onTopFabClick();
 
@@ -311,7 +281,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                             FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
                             FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
                             Intent intent = new Intent(requireContext(), FilePickerActivity.class);
-                            startActivityForResult(intent, 2);
+                            importScript.launch(intent);
                             break;
                     }
                 }).setOnDismissListener(dialogInterface -> mOptionsDialog = null);
@@ -344,9 +314,56 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
             Intent intent = new Intent(getActivity(), EditorActivity.class);
             intent.putExtra(EditorActivity.TITLE_INTENT, mCreateName);
             intent.putExtra(EditorActivity.TEXT_INTENT, "#!/system/bin/sh\n\n");
-            startActivityForResult(intent, 1);
+            createScript.launch(intent);
         }, getActivity()).setTitle(getString(R.string.name)).setOnDismissListener(
                 dialogInterface -> mShowCreateNameDialog = false).show();
     }
+
+    ActivityResultLauncher<Intent> createScript = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() != Activity.RESULT_OK && result.getData() != null) {
+                    Scripts.write(mCreateName, Objects.requireNonNull(result.getData().getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString());
+                    mCreateName = null;
+                    reload();
+                }
+            }
+    );
+
+    ActivityResultLauncher<Intent> editScript = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() != Activity.RESULT_OK && result.getData() != null) {
+                    Scripts.write(mEditScript, Objects.requireNonNull(result.getData().getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString());
+                    reload();
+                }
+            }
+    );
+
+    ActivityResultLauncher<Intent> importScript = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getData() != null && FilePicker.getSelectedFile().exists()) {
+                    File mSelectedFile = FilePicker.getSelectedFile();
+                    if (!Utils.getExtension(mSelectedFile.getAbsolutePath()).equals("sh")) {
+                        Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".sh"));
+                        return;
+                    }
+                    if (Utils.existFile(Scripts.scriptExistsCheck(mSelectedFile.getName()))) {
+                        Utils.snackbar(getRootView(), getString(R.string.script_exists, mSelectedFile.getName()));
+                        return;
+                    }
+                    Dialog selectQuestion = new Dialog(requireActivity());
+                    selectQuestion.setMessage(getString(R.string.select_question, mSelectedFile.getName()));
+                    selectQuestion.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                    });
+                    selectQuestion.setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {
+                        Scripts.importScript(mSelectedFile);
+                        reload();
+                    });
+                    selectQuestion.show();
+                }
+            }
+    );
 
 }

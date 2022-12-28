@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -27,6 +28,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.textview.MaterialTextView;
@@ -117,25 +120,23 @@ public class MainActivity extends BaseActivity {
              */
             if (Prefs.getBoolean("use_biometric", false, this)) {
                 Intent intent = new Intent(this, SecurityActivity.class);
-                startActivityForResult(intent, 0);
+                checkingTask.launch(intent);
             } else {
                 new CheckingTask(this).execute();
             }
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 0) {
-            if (resultCode == 1) {
-                new CheckingTask(this).execute();
-            } else {
-                finish();
+    ActivityResultLauncher<Intent> checkingTask = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    new CheckingTask(this).execute();
+                } else {
+                    finish();
+                }
             }
-        }
-    }
+    );
 
     private void launch() {
         Intent intent = new Intent(this, NavigationActivity.class);
@@ -216,7 +217,7 @@ public class MainActivity extends BaseActivity {
             }
         }
 
-        /**
+        /*
          * Let the user know what we are doing right now
          *
          * @param values progress

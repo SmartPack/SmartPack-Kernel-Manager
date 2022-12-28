@@ -24,6 +24,9 @@ import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
@@ -231,7 +234,7 @@ public class BackupFragment extends RecyclerViewFragment {
                             FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
                             FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
                             Intent intent = new Intent(requireContext(), FilePickerActivity.class);
-                            startActivityForResult(intent, 0);
+                            flashImage.launch(intent);
                             break;
                     }
                 }).setOnDismissListener(dialogInterface -> mOptionsDialog = null);
@@ -373,18 +376,18 @@ public class BackupFragment extends RecyclerViewFragment {
         return partitions;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 0 && data != null) {
-            File mSelectedFile = FilePicker.getSelectedFile();
-            if (!Utils.getExtension(mSelectedFile.getAbsolutePath()).equals("img")) {
-                Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".img"));
-                return;
+    ActivityResultLauncher<Intent> flashImage = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getData() != null && FilePicker.getSelectedFile().exists()) {
+                    File mSelectedFile = FilePicker.getSelectedFile();
+                    if (!Utils.getExtension(mSelectedFile.getAbsolutePath()).equals("img")) {
+                        Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".img"));
+                        return;
+                    }
+                    showBackupFlashingDialog(mSelectedFile);
+                }
             }
-            showBackupFlashingDialog(mSelectedFile);
-        }
-    }
+    );
 
 }

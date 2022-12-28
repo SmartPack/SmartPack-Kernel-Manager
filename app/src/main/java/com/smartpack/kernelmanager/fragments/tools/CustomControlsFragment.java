@@ -28,6 +28,9 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.View;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
@@ -58,11 +61,9 @@ import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 public class CustomControlsFragment extends RecyclerViewFragment {
 
     private boolean mAlertDialogue = true;
-
+    private int mControllerType = -1;
     private Dialog mDeleteDialog;
     private Dialog mSelectionMenu;
-
-    private Intent mIntent = null;
 
     @Override
     protected boolean showTopFab() {
@@ -226,18 +227,10 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                                     R.array.create_controls_options), (dialogInterface1, i1) -> {
                                         switch (i1) {
                                             case 0:
-                                                FilePicker.setExtension(null);
-                                                FilePicker.setPath("/sys");
-                                                FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
-                                                mIntent = new Intent(requireContext(), FilePickerActivity.class);
-                                                startActivityForResult(mIntent, 0);
+                                                createController(0, "/sys");
                                                 break;
                                             case 1:
-                                                FilePicker.setExtension(null);
-                                                FilePicker.setPath("/sys");
-                                                FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
-                                                mIntent = new Intent(requireContext(), FilePickerActivity.class);
-                                                startActivityForResult(mIntent, 1);
+                                                createController(1, "/sys");
                                                 break;
                                         }
                                     }).setOnDismissListener(dialogInterface12 -> mSelectionMenu = null);
@@ -248,18 +241,10 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                                     R.array.create_controls_options), (dialogInterface13, i12) -> {
                                         switch (i12) {
                                             case 0:
-                                                FilePicker.setExtension(null);
-                                                FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
-                                                FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
-                                                mIntent = new Intent(requireContext(), FilePickerActivity.class);
-                                                startActivityForResult(mIntent, 2);
+                                                createController(2, Environment.getExternalStorageDirectory().toString());
                                                 break;
                                             case 1:
-                                                FilePicker.setExtension(null);
-                                                FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
-                                                FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
-                                                mIntent = new Intent(requireContext(), FilePickerActivity.class);
-                                                startActivityForResult(mIntent, 3);
+                                                createController(3, Environment.getExternalStorageDirectory().toString());
                                                 break;
                                         }
                                     }).setOnDismissListener(dialogInterface14 -> mSelectionMenu = null);
@@ -270,49 +255,62 @@ public class CustomControlsFragment extends RecyclerViewFragment {
         mSelectionMenu.show();
     }
 
-    @SuppressLint("StringFormatInvalid")
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (data != null) {
-            File mSelectedFile = FilePicker.getSelectedFile();
-            if (requestCode == 0 || requestCode == 1) {
-                if (!Utils.getExtension(mSelectedFile.getName()).isEmpty() || mSelectedFile.getName().startsWith("/storage/")) {
-                    Utils.snackbar(getRootView(), getString(R.string.invalid_path, mSelectedFile.getName()));
-                    return;
-                }
-            } else {
-                if ((requestCode == 2 || requestCode == 3) && !Utils.existFile(Utils.readFile(mSelectedFile.getAbsolutePath()))) {
-                    Utils.snackbar(getRootView(), getString(R.string.unsupported_controller, mSelectedFile.getName()));
-                    return;
-                }
-            }
-            File controls = (requestCode == 0 || requestCode == 2 ? CustomControls.switchFile() : CustomControls.genericFile());
-            if (Utils.existFile(controls + "/" + mSelectedFile.getAbsolutePath().replaceFirst("/", "").
-                    replace("/", "-")) || Utils.existFile(controls + "/" + mSelectedFile.getName())) {
-                Utils.snackbar(getRootView(), getString(R.string.already_added, mSelectedFile.getName()));
-                return;
-            }
-            Dialog selectControl = new Dialog(requireActivity());
-            selectControl.setMessage(getString(R.string.select_question, mSelectedFile.getName()));
-            selectControl.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
-            });
-            selectControl.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
-                if (controls.exists() && controls.isFile()) {
-                    controls.delete();
-                }
-                Utils.mkdir(controls.getAbsolutePath());
-                if (requestCode == 0 || requestCode == 1) {
-                    CustomControls.exportPath(mSelectedFile.getAbsolutePath(), (requestCode == 0 ? CustomControls.switchFile().toString() : CustomControls.genericFile().toString()));
-                } else {
-                    Utils.copy(mSelectedFile.getAbsolutePath(), (requestCode == 2 ? CustomControls.switchFile().toString() : CustomControls.genericFile().toString()));
-                }
-                reload();
-            });
-            selectControl.show();
-        }
+    private void createController(int controllerType, String path) {
+        mControllerType = controllerType;
+        FilePicker.setExtension(null);
+        FilePicker.setPath(path);
+        FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
+        Intent create = new Intent(requireContext(), FilePickerActivity.class);
+        createController.launch(create);
     }
+
+    @SuppressLint("StringFormatInvalid")
+    ActivityResultLauncher<Intent> createController = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getData() != null && FilePicker.getSelectedFile().exists()) {
+                    File mSelectedFile = FilePicker.getSelectedFile();
+                    if (mControllerType == -1) {
+                        return;
+                    }
+                    if (mControllerType == 0 || mControllerType == 1) {
+                        if (!Utils.getExtension(mSelectedFile.getName()).isEmpty() || mSelectedFile.getName().startsWith("/storage/")) {
+                            Utils.snackbar(getRootView(), getString(R.string.invalid_path, mSelectedFile.getName()));
+                            return;
+                        }
+                    } else {
+                        if ((mControllerType == 2 || mControllerType == 3) && !Utils.existFile(Utils.readFile(mSelectedFile.getAbsolutePath()))) {
+                            Utils.snackbar(getRootView(), getString(R.string.unsupported_controller, mSelectedFile.getName()));
+                            return;
+                        }
+                    }
+                    File controls = (mControllerType == 0 || mControllerType == 2 ? CustomControls.switchFile() : CustomControls.genericFile());
+                    if (Utils.existFile(controls + "/" + mSelectedFile.getAbsolutePath().replaceFirst("/", "").
+                            replace("/", "-")) || Utils.existFile(controls + "/" + mSelectedFile.getName())) {
+                        Utils.snackbar(getRootView(), getString(R.string.already_added, mSelectedFile.getName()));
+                        return;
+                    }
+                    Dialog selectControl = new Dialog(requireActivity());
+                    selectControl.setMessage(getString(R.string.select_question, mSelectedFile.getName()));
+                    selectControl.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
+                    });
+                    selectControl.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
+                        if (controls.exists() && controls.isFile()) {
+                            controls.delete();
+                        }
+                        Utils.mkdir(controls.getAbsolutePath());
+                        if (mControllerType == 0 || mControllerType == 1) {
+                            CustomControls.exportPath(mSelectedFile.getAbsolutePath(), (mControllerType == 0 ? CustomControls.switchFile().toString() : CustomControls.genericFile().toString()));
+                        } else {
+                            Utils.copy(mSelectedFile.getAbsolutePath(), (mControllerType == 2 ? CustomControls.switchFile().toString() : CustomControls.genericFile().toString()));
+                        }
+                        reload();
+                    });
+                    selectControl.show();
+
+                }
+            }
+    );
 
     /*
      * Taken and used almost as such from https://github.com/morogoku/MTweaks-KernelAdiutorMOD/

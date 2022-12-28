@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.fragments.tools;
 
+import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -32,6 +33,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -234,12 +237,12 @@ public class ProfileFragment extends RecyclerViewFragment {
                         case 1:
                             Intent create = createProfileActivityIntent();
                             create.putExtra(ProfileActivity.POSITION_INTENT, position);
-                            startActivityForResult(create, 2);
+                            appendToProfile.launch(create);
                             break;
                         case 2:
                             Intent edit = new Intent(getActivity(), ProfileEditActivity.class);
                             edit.putExtra(ProfileEditActivity.POSITION_INTENT, position);
-                            startActivityForResult(edit, 3);
+                            editProfile.launch(edit);
                             break;
                         case 3:
                             if (profileItem.get(position).getName() != null) {
@@ -347,14 +350,14 @@ public class ProfileFragment extends RecyclerViewFragment {
                 R.array.profile_options), (dialogInterface, i) -> {
                     switch (i) {
                         case 0:
-                            startActivityForResult(createProfileActivityIntent(), 0);
+                            createProfile.launch(createProfileActivityIntent());
                             break;
                         case 1:
                             FilePicker.setExtension("json");
                             FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
                             FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
                             Intent intent = new Intent(requireContext(), FilePickerActivity.class);
-                            startActivityForResult(intent, 1);
+                            importProfile.launch(intent);
                             break;
                     }
                 }).setOnDismissListener(dialogInterface -> mOptionsDialog = null);
@@ -383,66 +386,91 @@ public class ProfileFragment extends RecyclerViewFragment {
         return intent;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (data == null) return;
-        if (requestCode == 0 || requestCode == 2) {
-            LinkedHashMap<String, String> commandsList = new LinkedHashMap<>();
-            ArrayList<String> ids = data.getStringArrayListExtra(ProfileActivity.RESULT_ID_INTENT);
-            ArrayList<String> commands = data.getStringArrayListExtra(ProfileActivity.RESULT_COMMAND_INTENT);
-            assert ids != null;
-            for (int i = 0; i < ids.size(); i++) {
-                assert commands != null;
-                commandsList.put(ids.get(i), commands.get(i));
-            }
-
-            if (requestCode == 0) {
-                create(commandsList);
-            } else {
-                Profiles.ProfileItem profileItem = mProfiles.getAllProfiles().get(data.getIntExtra(
-                        ProfileActivity.POSITION_INTENT, 0));
-
-                for (Profiles.ProfileItem.CommandItem commandItem : profileItem.getCommands()) {
-                    if (ids.contains(commandItem.getPath())) {
-                        profileItem.delete(commandItem);
+    ActivityResultLauncher<Intent> appendToProfile = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() != Activity.RESULT_OK && result.getData() != null) {
+                    LinkedHashMap<String, String> commandsList = new LinkedHashMap<>();
+                    ArrayList<String> ids = result.getData().getStringArrayListExtra(ProfileActivity.RESULT_ID_INTENT);
+                    ArrayList<String> commands = result.getData().getStringArrayListExtra(ProfileActivity.RESULT_COMMAND_INTENT);
+                    assert ids != null;
+                    for (int i = 0; i < ids.size(); i++) {
+                        assert commands != null;
+                        commandsList.put(ids.get(i), commands.get(i));
                     }
-                }
+                    Profiles.ProfileItem profileItem = mProfiles.getAllProfiles().get(result.getData().getIntExtra(
+                            ProfileActivity.POSITION_INTENT, 0));
 
-                for (String path : commandsList.keySet()) {
-                    profileItem.putCommand(new Profiles.ProfileItem.CommandItem(
-                            path, commandsList.get(path)));
+                    for (Profiles.ProfileItem.CommandItem commandItem : profileItem.getCommands()) {
+                        if (ids.contains(commandItem.getPath())) {
+                            profileItem.delete(commandItem);
+                        }
+                    }
+
+                    for (String path : commandsList.keySet()) {
+                        profileItem.putCommand(new Profiles.ProfileItem.CommandItem(
+                                path, commandsList.get(path)));
+                    }
+                    mProfiles.commit();
                 }
-                mProfiles.commit();
             }
-        } else if (requestCode == 1) {
-            File mSelectedFile = FilePicker.getSelectedFile();
-            if (!Utils.getExtension(mSelectedFile.getAbsolutePath()).equals("json")) {
-                Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".json"));
-                return;
+    );
+
+    ActivityResultLauncher<Intent> createProfile = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() != Activity.RESULT_OK && result.getData() != null) {
+                    LinkedHashMap<String, String> commandsList = new LinkedHashMap<>();
+                    ArrayList<String> ids = result.getData().getStringArrayListExtra(ProfileActivity.RESULT_ID_INTENT);
+                    ArrayList<String> commands = result.getData().getStringArrayListExtra(ProfileActivity.RESULT_COMMAND_INTENT);
+                    assert ids != null;
+                    for (int i = 0; i < ids.size(); i++) {
+                        assert commands != null;
+                        commandsList.put(ids.get(i), commands.get(i));
+                    }
+                    create(commandsList);
+                }
             }
-            Dialog selectProfile = new Dialog(requireActivity());
-            selectProfile.setMessage(getString(R.string.select_question, mSelectedFile.getName()));
-            selectProfile.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
-            });
-            selectProfile.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
-                ImportProfile importProfile = new ImportProfile(mSelectedFile.getAbsolutePath());
-                if (!importProfile.readable()) {
-                    Utils.snackbar(getRootView(), getString(R.string.import_malformed));
-                    return;
+    );
+
+    ActivityResultLauncher<Intent> editProfile = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() != Activity.RESULT_OK && result.getData() != null) {
+                    reload();
                 }
-                if (!importProfile.matchesVersion()) {
-                    Utils.snackbar(getRootView(), getString(R.string.import_wrong_version));
-                    return;
+            }
+    );
+
+    ActivityResultLauncher<Intent> importProfile = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getData() != null && FilePicker.getSelectedFile().exists()) {
+                    File mSelectedFile = FilePicker.getSelectedFile();
+                    if (!Utils.getExtension(mSelectedFile.getAbsolutePath()).equals("json")) {
+                        Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".json"));
+                        return;
+                    }
+                    Dialog selectProfile = new Dialog(requireActivity());
+                    selectProfile.setMessage(getString(R.string.select_question, mSelectedFile.getName()));
+                    selectProfile.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
+                    });
+                    selectProfile.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
+                        ImportProfile importProfile = new ImportProfile(mSelectedFile.getAbsolutePath());
+                        if (!importProfile.readable()) {
+                            Utils.snackbar(getRootView(), getString(R.string.import_malformed));
+                            return;
+                        }
+                        if (!importProfile.matchesVersion()) {
+                            Utils.snackbar(getRootView(), getString(R.string.import_wrong_version));
+                            return;
+                        }
+                        showImportDialog(importProfile, mSelectedFile.getName().replace(".json", ""));
+                    });
+                    selectProfile.show();
                 }
-                showImportDialog(importProfile, mSelectedFile.getName().replace(".json", ""));
-            });
-            selectProfile.show();
-        } else if (requestCode == 3) {
-            reload();
-        }
-    }
+            }
+    );
 
     private void showImportDialog(final ImportProfile importProfile, String fileName) {
         ViewUtils.dialogEditText(fileName, (dialogInterface, i) -> {
