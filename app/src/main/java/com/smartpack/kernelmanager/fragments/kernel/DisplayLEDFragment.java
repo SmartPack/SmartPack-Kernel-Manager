@@ -65,7 +65,7 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
         CardView DisplyAndLED = new CardView(getActivity());
         DisplyAndLED.setTitle(getString(R.string.led));
 
-	if (mLED.hasBacklightMax()) {
+        if (mLED.hasBacklightMax()) {
             GenericSelectView backlightMax = new GenericSelectView();
             backlightMax.setTitle(getString(R.string.display_backlight));
             backlightMax.setSummary("Max");
@@ -74,8 +74,8 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
             backlightMax.setOnGenericValueListener((genericSelectView, value) -> {
                 mLED.setBacklightMax(value, getActivity());
                 genericSelectView.setValue(value);
-        getHandler().postDelayed(() -> backlightMax.setValue(mLED.getBacklightMax()),
-        500);
+                getHandler().postDelayed(() -> backlightMax.setValue(mLED.getBacklightMax()),
+                        500);
             });
 
             DisplyAndLED.addItem(backlightMax);
@@ -141,45 +141,41 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
             DisplyAndLED.addItem(charginglight);
 	}
 
-	if (mLED.hasSpeed()) {
+        if (mLED.hasSpeed()) {
             SeekBarView speed = new SeekBarView();
-	    if (mLED.hasIntensity() || mLED.hascharginglight()) {
-	    // We do not need a title in this case
-	    } else {
-            	speed.setTitle(getString(R.string.led_notification));
-	    }
+            if (!mLED.hasIntensity() && !mLED.hascharginglight()) {
+                speed.setTitle(getString(R.string.led_notification));
+            }
             speed.setSummary(getString(R.string.led_speed));
             speed.setItems(mLED.getSpeedMenu(getActivity()));
             speed.setProgress(mLED.getSpeed());
             speed.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		@Override
-		public void onStop(SeekBarView seekBarView, int position, String value) {
-		    mLED.setSpeed(position, getActivity());
-		    getHandler().postDelayed(() -> speed.setProgress(mLED.getSpeed()),
-	    	500);
-		}
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mLED.setSpeed(position, getActivity());
+                    getHandler().postDelayed(() -> speed.setProgress(mLED.getSpeed()),
+                            500);
+                }
 
-		@Override
-		public void onMove(SeekBarView seekBarView, int position, String value) {
-		}
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
             });
 
             DisplyAndLED.addItem(speed);
-	}
+        }
 
         if (mLED.hasFade()) {
             SwitchView fade = new SwitchView();
-	    if (mLED.hasIntensity() || mLED.hascharginglight()) {
-	    // We do not need a title in this case
-	    } else {
-            	fade.setTitle(getString(R.string.led_notification));
-	    }
+            if (!mLED.hasIntensity() && !mLED.hascharginglight()) {
+                fade.setTitle(getString(R.string.led_notification));
+            }
             fade.setSummary(getString(R.string.fade));
             fade.setChecked(mLED.isFadeEnabled());
             fade.addOnSwitchListener((switchView, isChecked) -> {
                 mLED.enableFade(isChecked, getActivity());
-        getHandler().postDelayed(() -> fade.setChecked(mLED.isFadeEnabled()),
-        500);
+                getHandler().postDelayed(() -> fade.setChecked(mLED.isFadeEnabled()),
+                        500);
             });
 
             DisplyAndLED.addItem(fade);

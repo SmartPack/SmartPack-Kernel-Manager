@@ -246,8 +246,6 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
         @Override
         public void onPostExecute() {
-            //if (isCancelled() || recyclerViewItems == null) return;
-
             final RecyclerViewFragment fragment = mRefFragment.get();
 
             for (RecyclerViewItem item : items) {

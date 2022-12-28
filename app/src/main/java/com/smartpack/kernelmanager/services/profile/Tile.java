@@ -23,6 +23,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 
 import com.smartpack.kernelmanager.R;
@@ -102,7 +103,9 @@ public class Tile extends BroadcastReceiver {
             }
             intent.putExtra(NAME, profiles.get(i).getName());
             intent.putExtra(COMMANDS, commands.toArray(new String[0]));
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, i, intent, 0);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, i, intent, Build.VERSION.SDK_INT >=
+                    android.os.Build.VERSION_CODES.M ? Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S ?
+                    PendingIntent.FLAG_MUTABLE : PendingIntent.FLAG_IMMUTABLE: 0);
 
             expandedListItem.setExpandedListItemOnClickIntent(pendingIntent);
             expandedListItems.add(expandedListItem);

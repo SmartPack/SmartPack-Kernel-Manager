@@ -16,6 +16,10 @@
  */
 package com.viewpagerindicator;
 
+import static android.graphics.Paint.ANTI_ALIAS_FLAG;
+import static android.widget.LinearLayout.HORIZONTAL;
+import static android.widget.LinearLayout.VERTICAL;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
@@ -32,17 +36,12 @@ import android.view.View;
 import android.view.ViewConfiguration;
 
 import androidx.core.content.ContextCompat;
-import androidx.core.view.MotionEventCompat;
 import androidx.core.view.ViewConfigurationCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.smartpack.kernelmanager.R;
 
 import java.util.Objects;
-
-import static android.graphics.Paint.ANTI_ALIAS_FLAG;
-import static android.widget.LinearLayout.HORIZONTAL;
-import static android.widget.LinearLayout.VERTICAL;
 
 /**
  * Draws circles (one for each view). The current view position is filled and

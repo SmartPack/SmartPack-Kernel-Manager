@@ -67,7 +67,7 @@ public class DashClock extends DashClockExtension {
                             }
                             if (cpu.length() > 0) {
                                 message.append(getString(R.string.cpu)).append(": ")
-                                        .append(cpu.toString()).append("\n");
+                                        .append(cpu).append("\n");
                             }
                             message.append(getString(R.string.cpu_governor)).append(": ")
                                     .append(cpuFreq.getGovernor(false)).append("\n");

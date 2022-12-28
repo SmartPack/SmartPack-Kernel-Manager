@@ -101,10 +101,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         setRetainInstance(true);
     }
 
+    @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = super.onCreateView(inflater, container, savedInstanceState);
-        assert mRootView != null;
         mRootView.setPadding(mRootView.getPaddingLeft(),
                 Math.round(ViewUtils.getActionBarSize(requireActivity())),
                 mRootView.getPaddingRight(), mRootView.getPaddingBottom());
@@ -128,7 +128,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         findPreference(KEY_RESET_SETTINGS).setOnPreferenceClickListener(this);
         SwitchPreferenceCompat forceEnglish = findPreference(KEY_FORCE_ENGLISH);
         if (java.util.Locale.getDefault().getLanguage().startsWith("en")) {
-            getPreferenceScreen().removePreference(forceEnglish);
+            getPreferenceScreen().removePreference(Objects.requireNonNull(forceEnglish));
         } else {
             assert forceEnglish != null;
             forceEnglish.setOnPreferenceChangeListener(this);

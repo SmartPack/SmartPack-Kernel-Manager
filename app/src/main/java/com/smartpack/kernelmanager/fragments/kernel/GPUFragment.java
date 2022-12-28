@@ -153,10 +153,10 @@ public class GPUFragment extends RecyclerViewFragment {
                 DescriptionView tunables = new DescriptionView();
                 tunables.setTitle(getString(R.string.gpu_governor_tunables));
                 tunables.setSummary(getString(R.string.governor_tunables_summary));
-                tunables.setOnItemClickListener(item -> {
-                    new PathReader(-1, -1, mGPUFreq.getGovernor(), mGPUFreq.getTunables(mGPUFreq.getGovernor()), getString(R.string.tunables_error,
-                            mGPUFreq.getGovernor()), ApplyOnBootFragment.GPU, requireActivity()).launch();
-                });
+                tunables.setOnItemClickListener(item ->
+                        new PathReader(-1, -1, mGPUFreq.getGovernor(), mGPUFreq.getTunables(mGPUFreq.getGovernor()), getString(
+                                R.string.tunables_error, mGPUFreq.getGovernor()), ApplyOnBootFragment.GPU, requireActivity()).launch()
+                );
 
                 gpuCard.addItem(tunables);
             }

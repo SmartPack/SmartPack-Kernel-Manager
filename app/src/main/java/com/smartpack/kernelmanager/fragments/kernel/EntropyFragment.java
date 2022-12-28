@@ -103,9 +103,9 @@ public class EntropyFragment extends RecyclerViewFragment {
 
         EntropyCard.addItem(write);
 
-	if (EntropyCard.size() > 0) {
+        if (EntropyCard.size() > 0) {
             items.add(EntropyCard);
-	}
+        }
     }
 
     private String getAvailableDescription(int available, int poolsize) {

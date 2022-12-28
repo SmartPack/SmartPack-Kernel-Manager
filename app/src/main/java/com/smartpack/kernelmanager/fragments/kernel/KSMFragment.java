@@ -75,7 +75,7 @@ public class KSMFragment extends RecyclerViewFragment {
             ksm.addItem(enable);
         }
 
-	if (mKSM.hasCpuGovernor()) {
+        if (mKSM.hasCpuGovernor()) {
             SelectView governor = new SelectView();
             governor.setTitle(getString(R.string.uksm_governor));
             governor.setSummary(getString(R.string.uksm_governor_summary));
@@ -83,7 +83,7 @@ public class KSMFragment extends RecyclerViewFragment {
             governor.setItem(mKSM.getCpuGovernor());
             governor.setOnItemSelected((selectView, position, item)
                     -> mKSM.setCpuGovernor(item, getActivity()));
-             ksm.addItem(governor);
+            ksm.addItem(governor);
         }
 
         if (mKSM.hasDeferredTimer()) {

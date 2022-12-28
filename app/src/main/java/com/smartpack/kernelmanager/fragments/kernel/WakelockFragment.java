@@ -64,7 +64,7 @@ public class WakelockFragment extends RecyclerViewFragment {
         if (Wakelocks.boefflawlsupported()){
             boefflaWakelockInit(items);
         }
-	wakelockInit(items);
+        wakelockInit(items);
     }
 
     private void boefflaWakelockInit(List<RecyclerViewItem> items){
