@@ -1,0 +1,8 @@
+* Several internal updates to make app more compatible with newer android versions.
+* Largely improved terminal page.
+* Fixed (hopefully) crashing governor tunables page.
+* Fixed permissions related issues on newer android versions.
+* Backup boot/recovery feature now works on more devices.
+* Hopefully fixed widgets doesn't work well.
+* Updated build tools and dependencies.
+* Miscellaneous changes.

@@ -1,5 +1,9 @@
 # Change-logs
 
+## 132. December 29, 2022
+*Release-tag: v17.5*<br>
+Several updates to make app more compatible with newer android versions. Largely improved terminal page. Fixed (hopefully) crashing governor tunables page. Fixed permissions related issues on newer android versions. Backup boot/recovery feature now works on more devices. Hopefully fixed widgets doesn't work well. Updated build tools and dependencies. Miscellaneous changes. Miscellaneous changes.
+
 ## 131. October 23, 2022
 *Release-tag: v17.4*<br>
 Added QTI haptic vibration control support. Improved Terminal, Flashing and Apply Script process. Updated build tools and dependencies. Miscellaneous changes.
