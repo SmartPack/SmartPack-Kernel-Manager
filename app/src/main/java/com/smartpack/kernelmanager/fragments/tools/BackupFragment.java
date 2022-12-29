@@ -46,7 +46,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import in.sunilpaulmathew.rootfilepicker.activities.FilePickerActivity;
 import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
 import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
@@ -230,11 +229,12 @@ public class BackupFragment extends RecyclerViewFragment {
                             showBackupFlashingDialog(null);
                             break;
                         case 1:
-                            FilePicker.setExtension("img");
-                            FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
-                            FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
-                            Intent intent = new Intent(requireContext(), FilePickerActivity.class);
-                            flashImage.launch(intent);
+                            new FilePicker(
+                                    "img",
+                                    Environment.getExternalStorageDirectory().toString(),
+                                    ViewUtils.getThemeAccentColor(requireContext()),
+                                    flashImage,
+                                    requireActivity()).launch();
                             break;
                     }
                 }).setOnDismissListener(dialogInterface -> mOptionsDialog = null);

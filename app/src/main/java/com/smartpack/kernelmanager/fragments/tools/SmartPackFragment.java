@@ -54,7 +54,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.sunilpaulmathew.rootfilepicker.activities.FilePickerActivity;
 import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
 import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 import in.sunilpaulmathew.sCommon.Utils.sPackageUtils;
@@ -519,11 +518,12 @@ public class SmartPackFragment extends RecyclerViewFragment {
     @Override
     protected void onTopFabClick() {
         super.onTopFabClick();
-        FilePicker.setExtension("zip");
-        FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
-        FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
-        Intent intent = new Intent(requireContext(), FilePickerActivity.class);
-        pickFileForFlashing.launch(intent);
+        new FilePicker(
+                "zip",
+                Environment.getExternalStorageDirectory().toString(),
+                ViewUtils.getThemeAccentColor(requireContext()),
+                pickFileForFlashing,
+                requireActivity()).launch();
     }
 
     @SuppressLint({"StringFormatInvalid", "StringFormatMatches"})

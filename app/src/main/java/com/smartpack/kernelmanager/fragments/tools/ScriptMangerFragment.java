@@ -54,7 +54,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import in.sunilpaulmathew.rootfilepicker.activities.FilePickerActivity;
 import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
 import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
@@ -277,11 +276,12 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                             showCreateDialog();
                             break;
                         case 1:
-                            FilePicker.setExtension("sh");
-                            FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
-                            FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
-                            Intent intent = new Intent(requireContext(), FilePickerActivity.class);
-                            importScript.launch(intent);
+                            new FilePicker(
+                                    "sh",
+                                    Environment.getExternalStorageDirectory().toString(),
+                                    ViewUtils.getThemeAccentColor(requireContext()),
+                                    importScript,
+                                    requireActivity()).launch();
                             break;
                     }
                 }).setOnDismissListener(dialogInterface -> mOptionsDialog = null);

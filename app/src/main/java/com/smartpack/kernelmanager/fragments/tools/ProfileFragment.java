@@ -73,7 +73,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import in.sunilpaulmathew.rootfilepicker.activities.FilePickerActivity;
 import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
 import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
@@ -353,11 +352,12 @@ public class ProfileFragment extends RecyclerViewFragment {
                             createProfile.launch(createProfileActivityIntent());
                             break;
                         case 1:
-                            FilePicker.setExtension("json");
-                            FilePicker.setPath(Environment.getExternalStorageDirectory().toString());
-                            FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
-                            Intent intent = new Intent(requireContext(), FilePickerActivity.class);
-                            importProfile.launch(intent);
+                            new FilePicker(
+                                    "json",
+                                    Environment.getExternalStorageDirectory().toString(),
+                                    ViewUtils.getThemeAccentColor(requireContext()),
+                                    importProfile,
+                                    requireActivity()).launch();
                             break;
                     }
                 }).setOnDismissListener(dialogInterface -> mOptionsDialog = null);

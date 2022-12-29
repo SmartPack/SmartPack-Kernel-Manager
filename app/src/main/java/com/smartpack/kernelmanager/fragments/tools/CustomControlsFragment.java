@@ -50,7 +50,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.sunilpaulmathew.rootfilepicker.activities.FilePickerActivity;
 import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
 import in.sunilpaulmathew.sCommon.Utils.sExecutor;
 
@@ -257,11 +256,12 @@ public class CustomControlsFragment extends RecyclerViewFragment {
 
     private void createController(int controllerType, String path) {
         mControllerType = controllerType;
-        FilePicker.setExtension(null);
-        FilePicker.setPath(path);
-        FilePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
-        Intent create = new Intent(requireContext(), FilePickerActivity.class);
-        createController.launch(create);
+        new FilePicker(
+                null,
+                path,
+                ViewUtils.getThemeAccentColor(requireContext()),
+                createController,
+                requireActivity()).launch();
     }
 
     @SuppressLint("StringFormatInvalid")
