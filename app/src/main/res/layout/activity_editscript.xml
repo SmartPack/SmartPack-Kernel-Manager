@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryVariant"
+        android:orientation="horizontal" >
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:background="@color/colorPrimaryVariant"
+            android:tint="?android:attr/colorAccent"
+            android:layout_gravity="start|center"
+            android:src="@drawable/ic_back"
+            android:layout_marginEnd="50dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:gravity="center_vertical"
+            android:textColor="?android:attr/colorAccent"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/save"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:background="@color/colorPrimaryVariant"
+            android:tint="?android:attr/colorAccent"
+            android:layout_gravity="end|center"
+            android:layout_marginStart="50dp"
+            android:src="@drawable/ic_save" />
+    </FrameLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="true"
+            android:gravity="top|start"
+            android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
+            android:textSize="13sp" />
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.appcompat.widget.LinearLayoutCompat>

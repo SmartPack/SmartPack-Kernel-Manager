@@ -74,7 +74,7 @@
             android:exported="false" />
         <activity android:name=".activities.CPUBoostActivity"
             android:exported="false" />
-        <activity android:name=".activities.EditorActivity"
+        <activity android:name=".activities.ScriptEditorActivity"
             android:exported="false" />
         <activity android:name=".activities.FlashingActivity"
             android:exported="false" />

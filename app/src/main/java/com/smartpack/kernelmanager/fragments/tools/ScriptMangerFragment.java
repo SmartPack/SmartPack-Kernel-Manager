@@ -33,7 +33,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.activities.ApplyScriptActivity;
-import com.smartpack.kernelmanager.activities.EditorActivity;
+import com.smartpack.kernelmanager.activities.ScriptEditorActivity;
 import com.smartpack.kernelmanager.activities.ForegroundActivity;
 import com.smartpack.kernelmanager.fragments.DescriptionFragment;
 import com.smartpack.kernelmanager.fragments.RecyclerViewFragment;
@@ -69,7 +69,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
 
     private Dialog mDeleteDialog, mExecuteDialog, mOptionsDialog;
 
-    private String mCreateName, mEditScript;
+    private String mCreateName;
 
     @Override
     protected Drawable getTopFabDrawable() {
@@ -187,11 +187,10 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                                 mExecuteDialog.show();
                                 break;
                             case 1:
-                                mEditScript = script;
-                                Intent intent = new Intent(getActivity(), EditorActivity.class);
-                                intent.putExtra(EditorActivity.TITLE_INTENT, script);
-                                intent.putExtra(EditorActivity.TEXT_INTENT, Scripts.read(script));
-                                editScript.launch(intent);
+                                Intent intent = new Intent(getActivity(), ScriptEditorActivity.class);
+                                intent.putExtra(ScriptEditorActivity.TITLE_INTENT, script);
+                                intent.putExtra(ScriptEditorActivity.TEXT_INTENT, Scripts.read(script));
+                                startActivity(intent);
                                 break;
                             case 2:
                                 Common.setDetailsTitle(script.replace(".sh","").toUpperCase());
@@ -276,12 +275,11 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                             showCreateDialog();
                             break;
                         case 1:
-                            new FilePicker(
-                                    "sh",
-                                    Environment.getExternalStorageDirectory().toString(),
-                                    ViewUtils.getThemeAccentColor(requireContext()),
-                                    importScript,
-                                    requireActivity()).launch();
+                            FilePicker filePicker = new FilePicker(importScript, requireActivity());
+                            filePicker.setExtension("sh");
+                            filePicker.setPath(Environment.getExternalStorageDirectory().toString());
+                            filePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
+                            filePicker.launch();
                             break;
                     }
                 }).setOnDismissListener(dialogInterface -> mOptionsDialog = null);
@@ -305,15 +303,15 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 text = text.replace(" ", "_");
             }
 
-            if (Scripts.list().contains(text)) {
+            if (Utils.existFile(Scripts.scriptExistsCheck(text))) {
                 Utils.snackbar(getRootView(), getString(R.string.already_exists, text));
                 return;
             }
 
             mCreateName = text;
-            Intent intent = new Intent(getActivity(), EditorActivity.class);
-            intent.putExtra(EditorActivity.TITLE_INTENT, mCreateName);
-            intent.putExtra(EditorActivity.TEXT_INTENT, "#!/system/bin/sh\n\n");
+            Intent intent = new Intent(getActivity(), ScriptEditorActivity.class);
+            intent.putExtra(ScriptEditorActivity.TITLE_INTENT, mCreateName);
+            intent.putExtra(ScriptEditorActivity.TEXT_INTENT, "#!/system/bin/sh\n\n");
             createScript.launch(intent);
         }, getActivity()).setTitle(getString(R.string.name)).setOnDismissListener(
                 dialogInterface -> mShowCreateNameDialog = false).show();
@@ -322,19 +320,9 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     ActivityResultLauncher<Intent> createScript = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getResultCode() != Activity.RESULT_OK && result.getData() != null) {
-                    Scripts.write(mCreateName, Objects.requireNonNull(result.getData().getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString());
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                    Scripts.write(mCreateName, Objects.requireNonNull(result.getData().getCharSequenceExtra(ScriptEditorActivity.TEXT_INTENT)).toString());
                     mCreateName = null;
-                    reload();
-                }
-            }
-    );
-
-    ActivityResultLauncher<Intent> editScript = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() != Activity.RESULT_OK && result.getData() != null) {
-                    Scripts.write(mEditScript, Objects.requireNonNull(result.getData().getCharSequenceExtra(EditorActivity.TEXT_INTENT)).toString());
                     reload();
                 }
             }
@@ -343,7 +331,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     ActivityResultLauncher<Intent> importScript = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getData() != null && FilePicker.getSelectedFile().exists()) {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null && FilePicker.getSelectedFile().exists()) {
                     File mSelectedFile = FilePicker.getSelectedFile();
                     if (!Utils.getExtension(mSelectedFile.getAbsolutePath()).equals("sh")) {
                         Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".sh"));

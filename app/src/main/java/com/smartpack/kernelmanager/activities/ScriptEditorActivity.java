@@ -19,77 +19,64 @@
  */
 package com.smartpack.kernelmanager.activities;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.appcompat.widget.AppCompatImageButton;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.smartpack.kernelmanager.R;
-
-import java.util.Objects;
+import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.tools.Scripts;
 
 /**
  * Created by willi on 01.07.16.
  */
-public class EditorActivity extends BaseActivity {
+public class ScriptEditorActivity extends BaseActivity {
 
     public static final String TITLE_INTENT = "title";
     public static final String TEXT_INTENT = "text";
-    private static final String EDITTEXT_INTENT = "edittext";
-
-    private AppCompatEditText mEditText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editor);
+        setContentView(R.layout.activity_editscript);
 
-        initToolBar();
+        AppCompatEditText mEditText = findViewById(R.id.edittext);
+        AppCompatImageButton mBack = findViewById(R.id.back);
+        AppCompatImageButton mSave = findViewById(R.id.save);
+        MaterialTextView mTitle = findViewById(R.id.title);
+
         String title = getIntent().getStringExtra(TITLE_INTENT);
         if (title != null) {
-            Objects.requireNonNull(getSupportActionBar()).setTitle(title);
+            mTitle.setText(title);
         }
 
         CharSequence text = getIntent().getCharSequenceExtra(TEXT_INTENT);
-        mEditText = findViewById(R.id.edittext);
         if (text != null) {
             mEditText.append(text);
         }
 
         mEditText.requestFocus();
-    }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putCharSequence(EDITTEXT_INTENT, mEditText.getText());
-    }
+        mBack.setOnClickListener(v -> finish());
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.ic_save);
-        assert drawable != null;
-        DrawableCompat.setTint(drawable, Color.WHITE);
-        menu.add(0, Menu.FIRST, Menu.FIRST, getString(R.string.save)).setIcon(drawable)
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent = new Intent();
-        intent.putExtra(TEXT_INTENT, mEditText.getText());
-        setResult(0, intent);
-        finish();
-        return super.onOptionsItemSelected(item);
+        mSave.setOnClickListener(v -> {
+            if (mEditText.getText() == null || mEditText.getText().toString().trim().isEmpty()) {
+                return;
+            }
+            if (Utils.existFile(Scripts.scriptExistsCheck(mTitle.getText().toString()))) {
+                Scripts.write(mTitle.getText().toString(), mEditText.getText().toString().trim());
+            } else {
+                Intent intent = new Intent();
+                intent.putExtra(TEXT_INTENT, mEditText.getText());
+                setResult(Activity.RESULT_OK, intent);
+            }
+            finish();
+        });
     }
 
 }
