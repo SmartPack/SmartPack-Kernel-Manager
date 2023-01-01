@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.activities.tools.profile;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -186,7 +187,7 @@ public class ProfileActivity extends BaseActivity {
             intent.putExtra(POSITION_INTENT, mProfilePosition);
             intent.putExtra(RESULT_ID_INTENT, ids);
             intent.putExtra(RESULT_COMMAND_INTENT, commands);
-            setResult(0, intent);
+            setResult(Activity.RESULT_OK, intent);
             finish();
         } else {
             Utils.snackbar(findViewById(android.R.id.content), getString(R.string.no_changes));

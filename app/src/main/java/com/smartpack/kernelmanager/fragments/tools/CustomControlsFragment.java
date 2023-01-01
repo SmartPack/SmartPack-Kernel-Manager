@@ -21,6 +21,7 @@
 package com.smartpack.kernelmanager.fragments.tools;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
@@ -148,9 +149,8 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                                 mDeleteDialog.show();
                                 break;
                             case 1:
-                                Utils.shareItem(getActivity(), switchItems, CustomControls.switchFile() + "/" +
-                                        switchItems,getString(R.string.share_controller, CustomControls.switchFile()) +
-                                        " -> Import -> Switch'.\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
+                                Utils.shareItem(getActivity(), switchItems, CustomControls.switchFile() + "/" + switchItems, getString(R.string.share_controller,
+                                        CustomControls.switchFile()) + " -> Import -> Switch'.\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
                                 break;
                         }
                         return false;
@@ -195,9 +195,8 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                                 mDeleteDialog.show();
                                 break;
                             case 1:
-                                Utils.shareItem(getActivity(), genericItems, CustomControls.genericFile() +
-                                        "/" + genericItems,getString(R.string.share_controller, CustomControls.genericFile()) +
-                                        " -> Import -> Generic'.\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
+                                Utils.shareItem(getActivity(), genericItems, CustomControls.genericFile() + "/" + genericItems, getString(R.string.share_controller,
+                                        CustomControls.genericFile()) + " -> Import -> Generic'.\n\n" + getString(R.string.share_app_message, BuildConfig.VERSION_NAME));
                                 break;
                         }
                         return false;
@@ -256,19 +255,18 @@ public class CustomControlsFragment extends RecyclerViewFragment {
 
     private void createController(int controllerType, String path) {
         mControllerType = controllerType;
-        new FilePicker(
-                null,
-                path,
-                ViewUtils.getThemeAccentColor(requireContext()),
-                createController,
-                requireActivity()).launch();
+        FilePicker filePicker = new FilePicker(createController, requireActivity());
+        filePicker.setExtension(null);
+        filePicker.setPath(path);
+        filePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
+        filePicker.launch();
     }
 
     @SuppressLint("StringFormatInvalid")
     ActivityResultLauncher<Intent> createController = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getData() != null && FilePicker.getSelectedFile().exists()) {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null && FilePicker.getSelectedFile().exists()) {
                     File mSelectedFile = FilePicker.getSelectedFile();
                     if (mControllerType == -1) {
                         return;

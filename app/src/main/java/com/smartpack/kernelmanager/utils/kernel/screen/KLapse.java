@@ -25,7 +25,6 @@ import android.content.Context;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.ApplyOnBootFragment;
-
 import com.smartpack.kernelmanager.utils.Utils;
 import com.smartpack.kernelmanager.utils.root.Control;
 import com.topjohnwu.superuser.io.SuFile;
@@ -33,6 +32,7 @@ import com.topjohnwu.superuser.io.SuFile;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on March 5, 2019
@@ -335,40 +335,30 @@ public class KLapse {
                 "0" + timeMin : timeMin) + (timeHr > 12 ? " PM" : " AM");
     }
 
-    private static final String[] KLAPSE_PROFILE = {
-            KLAPSE_ENABLE, KLAPSE_TARGET_R, KLAPSE_TARGET_G, KLAPSE_TARGET_B,
-            DAYTIME_R, DAYTIME_G, DAYTIME_B, KLAPSE_START_MIN, KLAPSE_END_MIN, KLAPSE_TARGET_MIN,
-            FADEBACK_MINUTES, DIMMER_FACTOR, DIMMER_FACTOR_AUTO, DIMMER_START, DIMMER_END, PULSE_FREQ,
-            FLOW_FREQ, BACKLIGHT_RANGE_UPPER, BACKLIGHT_RANGE_LOWER
-    };
-
-    public static File profileFolder() {
-        return SuFile.open(Utils.getInternalDataStorage(), "klapse/");
+    public static File profileFolder(Context context) {
+        return context.getExternalFilesDir("klapse");
     }
 
-    public static void prepareProfileFolder() {
-        if (profileFolder().exists() && profileFolder().isDirectory()) {
-            profileFolder().delete();
+    public static String klapseSettings() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("#!/system/bin/sh\n\n# Created by SmartPack-Kernel Manager");
+        if (supported()) {
+            sb.append("\n# K-lapse");
+            for (File file : Objects.requireNonNull(SuFile.open(KLAPSE).listFiles())) {
+                if (file.exists() && file.isFile() && !file.getName().equals("version")) {
+                    String value = Utils.readFile(file.getAbsolutePath());
+                    if (value.contains("Y")) {
+                        value = "1";
+                    } else if (value.contains("N")) {
+                        value = "0";
+                    }
+                    String command = "echo " + value + " > " + file.getAbsolutePath();
+                    sb.append(command);
+                }
+            }
         }
-        profileFolder().mkdirs();
-    }
-
-    public static void exportKlapseSettings(String name, int position) {
-        prepareProfileFolder();
-        String value = Utils.readFile(KLAPSE_PROFILE[position]);
-        if (value.contains("Y")) {
-            value = "1";
-        } else if (value.contains("N")) {
-            value = "0";
-        }
-        if (Utils.existFile(KLAPSE_PROFILE[position])) {
-            String command = "echo " + value + " > " + KLAPSE_PROFILE[position];
-            Utils.append (command, profileFolder() + "/" + name);
-        }
-    }
-
-    public static int size() {
-        return KLAPSE_PROFILE.length;
+        sb.append("\n# The END | tee /dev/kmsg");
+        return sb.toString();
     }
 
     public static boolean supported() {

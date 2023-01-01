@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.activities.tools.profile;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -79,7 +80,7 @@ public class ProfileEditActivity extends BaseActivity {
     @Override
     public void finish() {
         if (sChanged) {
-            setResult(0, new Intent());
+            setResult(Activity.RESULT_OK, new Intent());
         }
         sChanged = false;
         super.finish();

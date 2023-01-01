@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.fragments.tools;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
@@ -229,12 +230,11 @@ public class BackupFragment extends RecyclerViewFragment {
                             showBackupFlashingDialog(null);
                             break;
                         case 1:
-                            new FilePicker(
-                                    "img",
-                                    Environment.getExternalStorageDirectory().toString(),
-                                    ViewUtils.getThemeAccentColor(requireContext()),
-                                    flashImage,
-                                    requireActivity()).launch();
+                            FilePicker filePicker = new FilePicker(flashImage, requireActivity());
+                            filePicker.setExtension("img");
+                            filePicker.setPath(Environment.getExternalStorageDirectory().toString());
+                            filePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
+                            filePicker.launch();
                             break;
                     }
                 }).setOnDismissListener(dialogInterface -> mOptionsDialog = null);
@@ -379,7 +379,7 @@ public class BackupFragment extends RecyclerViewFragment {
     ActivityResultLauncher<Intent> flashImage = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getData() != null && FilePicker.getSelectedFile().exists()) {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null && FilePicker.getSelectedFile().exists()) {
                     File mSelectedFile = FilePicker.getSelectedFile();
                     if (!Utils.getExtension(mSelectedFile.getAbsolutePath()).equals("img")) {
                         Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".img"));

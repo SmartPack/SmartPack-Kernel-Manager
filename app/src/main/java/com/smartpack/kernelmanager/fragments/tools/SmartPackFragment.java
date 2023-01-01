@@ -22,6 +22,7 @@
 package com.smartpack.kernelmanager.fragments.tools;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -518,19 +519,18 @@ public class SmartPackFragment extends RecyclerViewFragment {
     @Override
     protected void onTopFabClick() {
         super.onTopFabClick();
-        new FilePicker(
-                "zip",
-                Environment.getExternalStorageDirectory().toString(),
-                ViewUtils.getThemeAccentColor(requireContext()),
-                pickFileForFlashing,
-                requireActivity()).launch();
+        FilePicker filePicker = new FilePicker(pickFileForFlashing, requireActivity());
+        filePicker.setExtension("zip");
+        filePicker.setPath(Environment.getExternalStorageDirectory().toString());
+        filePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
+        filePicker.launch();
     }
 
     @SuppressLint({"StringFormatInvalid", "StringFormatMatches"})
     ActivityResultLauncher<Intent> pickFileForFlashing = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getData() != null && FilePicker.getSelectedFile().exists()) {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null && FilePicker.getSelectedFile().exists()) {
                     File mSelectedFile = FilePicker.getSelectedFile();
                     new Dialog(requireActivity())
                             .setIcon(R.mipmap.ic_launcher)

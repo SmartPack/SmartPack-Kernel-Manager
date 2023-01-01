@@ -352,12 +352,11 @@ public class ProfileFragment extends RecyclerViewFragment {
                             createProfile.launch(createProfileActivityIntent());
                             break;
                         case 1:
-                            new FilePicker(
-                                    "json",
-                                    Environment.getExternalStorageDirectory().toString(),
-                                    ViewUtils.getThemeAccentColor(requireContext()),
-                                    importProfile,
-                                    requireActivity()).launch();
+                            FilePicker filePicker = new FilePicker(importProfile, requireActivity());
+                            filePicker.setExtension("json");
+                            filePicker.setPath(Environment.getExternalStorageDirectory().toString());
+                            filePicker.setAccentColor(ViewUtils.getThemeAccentColor(requireContext()));
+                            filePicker.launch();
                             break;
                     }
                 }).setOnDismissListener(dialogInterface -> mOptionsDialog = null);
@@ -389,7 +388,7 @@ public class ProfileFragment extends RecyclerViewFragment {
     ActivityResultLauncher<Intent> appendToProfile = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getResultCode() != Activity.RESULT_OK && result.getData() != null) {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
                     LinkedHashMap<String, String> commandsList = new LinkedHashMap<>();
                     ArrayList<String> ids = result.getData().getStringArrayListExtra(ProfileActivity.RESULT_ID_INTENT);
                     ArrayList<String> commands = result.getData().getStringArrayListExtra(ProfileActivity.RESULT_COMMAND_INTENT);
@@ -419,7 +418,7 @@ public class ProfileFragment extends RecyclerViewFragment {
     ActivityResultLauncher<Intent> createProfile = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getResultCode() != Activity.RESULT_OK && result.getData() != null) {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
                     LinkedHashMap<String, String> commandsList = new LinkedHashMap<>();
                     ArrayList<String> ids = result.getData().getStringArrayListExtra(ProfileActivity.RESULT_ID_INTENT);
                     ArrayList<String> commands = result.getData().getStringArrayListExtra(ProfileActivity.RESULT_COMMAND_INTENT);
@@ -436,7 +435,7 @@ public class ProfileFragment extends RecyclerViewFragment {
     ActivityResultLauncher<Intent> editProfile = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getResultCode() != Activity.RESULT_OK && result.getData() != null) {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
                     reload();
                 }
             }
@@ -445,7 +444,7 @@ public class ProfileFragment extends RecyclerViewFragment {
     ActivityResultLauncher<Intent> importProfile = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getData() != null && FilePicker.getSelectedFile().exists()) {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null && FilePicker.getSelectedFile().exists()) {
                     File mSelectedFile = FilePicker.getSelectedFile();
                     if (!Utils.getExtension(mSelectedFile.getAbsolutePath()).equals("json")) {
                         Utils.snackbar(getRootView(), getString(R.string.wrong_extension, ".json"));
