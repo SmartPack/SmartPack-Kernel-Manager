@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Several updates to make app more compatible with newer android versions.\n - Largely improved terminal page.\n - Fixed (hopefully) crashing governor tunables page.\n - Fixed permissions related issues on newer android versions.\n - Backup boot/recovery feature now works on more devices.\n - Hopefully fixed widgets doesn't work well.\n - Updated build tools and dependencies.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.5/com.smartpack.kernelmanager-v17.5-fdroid-release.apk",
-  "sha1": "9841f1b9f52320de47d742b40b159aa57e4fbffa",
-  "latestVersion": "17.5",
-  "latestVersionCode": 175
+  "releaseNotes": "Change-logs\n - Fixed app not opening after setting biometric lock.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.6/com.smartpack.kernelmanager-v17.6-fdroid-release.apk",
+  "sha1": "d88da0be89d1abe3a1ce1179347b1650d0785669",
+  "latestVersion": "17.6",
+  "latestVersionCode": 176
 }
