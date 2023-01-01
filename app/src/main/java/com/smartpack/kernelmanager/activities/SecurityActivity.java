@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.activities;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -52,7 +53,7 @@ public class SecurityActivity extends BaseActivity {
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                setResult(1);
+                setResult(Activity.RESULT_OK);
                 finish();
             }
 
