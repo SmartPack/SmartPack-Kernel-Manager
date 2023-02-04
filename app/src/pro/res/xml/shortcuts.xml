@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_settings"
+        android:shortcutId="settings"
+        android:shortcutLongLabel="@string/open_settings"
+        android:shortcutShortLabel="@string/settings"
+        tools:targetApi="n_mr1" >
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.smartpack.kernelmanager.activities.StartActivity"
+            android:targetPackage="com.smartpack.kernelmanager.pro" >
+            <extra
+                android:name="selection"
+                android:value="com.smartpack.kernelmanager.fragments.other.SettingsFragment" />
+        </intent>
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+</shortcuts>
