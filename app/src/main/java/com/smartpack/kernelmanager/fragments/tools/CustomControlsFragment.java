@@ -52,7 +52,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
-import in.sunilpaulmathew.sCommon.Utils.sExecutor;
+import in.sunilpaulmathew.sCommon.CommonUtils.sExecutor;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 15, 2018

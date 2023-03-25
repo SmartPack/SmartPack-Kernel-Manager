@@ -39,7 +39,7 @@ import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.sunilpaulmathew.sCommon.Utils.sExecutor;
+import in.sunilpaulmathew.sCommon.CommonUtils.sExecutor;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on April 14, 2021

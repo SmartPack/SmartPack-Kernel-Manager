@@ -46,7 +46,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import in.sunilpaulmathew.sCommon.Utils.sUtils;
+import in.sunilpaulmathew.sCommon.CommonUtils.sCommonUtils;
 
 /**
  * Created by willi on 16.04.16.
@@ -105,13 +105,13 @@ public class ViewUtils {
     }
 
     public static Drawable getColoredIcon(int icon, Context context) {
-        Drawable drawable = sUtils.getDrawable(icon, context);
+        Drawable drawable = sCommonUtils.getDrawable(icon, context);
         drawable.setTint(getThemeAccentColor(context));
         return drawable;
     }
 
     public static Drawable getWhiteColoredIcon(int icon, Context context) {
-        Drawable drawable = sUtils.getDrawable(icon, context);
+        Drawable drawable = sCommonUtils.getDrawable(icon, context);
         drawable.setTint(Color.WHITE);
         return drawable;
     }

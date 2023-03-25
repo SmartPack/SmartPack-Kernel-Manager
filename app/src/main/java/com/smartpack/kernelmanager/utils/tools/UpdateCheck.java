@@ -55,7 +55,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Objects;
 
-import in.sunilpaulmathew.sCommon.Utils.sExecutor;
+import in.sunilpaulmathew.sCommon.CommonUtils.sExecutor;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on January 16, 2020

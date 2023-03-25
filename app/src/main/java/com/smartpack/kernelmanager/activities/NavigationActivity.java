@@ -113,7 +113,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.PriorityQueue;
 
-import in.sunilpaulmathew.sCommon.Utils.sExecutor;
+import in.sunilpaulmathew.sCommon.CommonUtils.sExecutor;
 
 public class NavigationActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {

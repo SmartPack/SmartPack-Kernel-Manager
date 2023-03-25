@@ -46,9 +46,9 @@ import com.smartpack.kernelmanager.views.recyclerview.TitleView;
 
 import java.util.List;
 
-import in.sunilpaulmathew.sCommon.Utils.sCreditsUtils;
-import in.sunilpaulmathew.sCommon.Utils.sTranslatorUtils;
-import in.sunilpaulmathew.sCommon.Utils.sUtils;
+import in.sunilpaulmathew.sCommon.CommonUtils.sCommonUtils;
+import in.sunilpaulmathew.sCommon.Credits.sCreditsUtils;
+import in.sunilpaulmathew.sCommon.TranslatorUtils.sTranslatorUtils;
 
 /**
  * Created by willi on 22.07.16.
@@ -82,7 +82,7 @@ public class AboutFragment extends RecyclerViewFragment {
         DescriptionView versioninfo = new DescriptionView();
         versioninfo.setDrawable(getResources().getDrawable(R.drawable.ic_on_boot_notification));
         versioninfo.setTitle(getString(R.string.version,"").replace(": ", ""));
-        versioninfo.setSummary(((Utils.isDonated(requireActivity()) || !Utils.isFDroidFlavor(requireActivity())) ? " Pro " : " ") + BuildConfig.VERSION_NAME);
+        versioninfo.setSummary(((Utils.isDonated() || !Utils.isFDroidFlavor(requireActivity())) ? " Pro " : " ") + BuildConfig.VERSION_NAME);
         versioninfo.setOnItemClickListener(item -> {
             Intent settings = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
             settings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -201,8 +201,8 @@ public class AboutFragment extends RecyclerViewFragment {
         creditsSummary.setDrawable(ViewUtils.getColoredIcon(R.drawable.ic_credits, requireActivity()));
         creditsSummary.setSummary(getString(R.string.credits_summary));
         creditsSummary.setOnItemClickListener(item -> new sCreditsUtils(Common.getCredits(),
-                sUtils.getDrawable(R.mipmap.ic_launcher, requireActivity()),
-                sUtils.getDrawable(R.drawable.ic_back, requireActivity()),
+                sCommonUtils.getDrawable(R.mipmap.ic_launcher, requireActivity()),
+                sCommonUtils.getDrawable(R.drawable.ic_back, requireActivity()),
                 ViewUtils.getThemeAccentColor(requireActivity()),
                 18, getString(R.string.app_name), "2022-2023, sunilpaulmathew",
                 BuildConfig.VERSION_NAME).launchCredits(requireActivity()));

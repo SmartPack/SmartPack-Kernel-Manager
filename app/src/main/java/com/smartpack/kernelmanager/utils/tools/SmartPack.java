@@ -33,7 +33,7 @@ import com.topjohnwu.superuser.io.SuFile;
 
 import java.io.File;
 
-import in.sunilpaulmathew.sCommon.Utils.sExecutor;
+import in.sunilpaulmathew.sCommon.CommonUtils.sExecutor;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on November 29, 2018

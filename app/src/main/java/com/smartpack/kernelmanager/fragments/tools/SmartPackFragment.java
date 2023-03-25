@@ -56,8 +56,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.sunilpaulmathew.rootfilepicker.utils.FilePicker;
-import in.sunilpaulmathew.sCommon.Utils.sExecutor;
-import in.sunilpaulmathew.sCommon.Utils.sPackageUtils;
+import in.sunilpaulmathew.sCommon.CommonUtils.sExecutor;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on July 24, 2018
@@ -311,7 +310,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private void OtherOptionsInit(List<RecyclerViewItem> items) {
-        if (!sPackageUtils.isPackageInstalled("com.smartpack.busyboxinstaller", requireActivity())) {
+        if (!Utils.isPackageInstalled("com.smartpack.busyboxinstaller")) {
             // Advertise Own App
             TitleView bb = new TitleView();
             bb.setText(getString(R.string.busybox_installer));

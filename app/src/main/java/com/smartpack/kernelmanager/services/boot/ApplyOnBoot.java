@@ -54,7 +54,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import in.sunilpaulmathew.sCommon.Utils.sUtils;
+import in.sunilpaulmathew.sCommon.CommonUtils.sCommonUtils;
 
 /**
  * Created by willi on 24.11.17.
@@ -71,7 +71,7 @@ public class ApplyOnBoot {
     @SuppressLint("StringFormatMatches")
     static boolean apply(final Context context, final ApplyOnBootListener listener) {
         if (!Prefs.getBoolean(ApplyOnBootFragment.getAssignment(CPUHotplugFragment.class), false, context)) {
-            sUtils.remove("core_ctl_min_cpus_big", context);
+            sCommonUtils.remove("core_ctl_min_cpus_big", context);
         }
 
         boolean enabled = false;

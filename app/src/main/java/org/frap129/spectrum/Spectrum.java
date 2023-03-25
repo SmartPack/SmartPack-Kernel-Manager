@@ -23,7 +23,7 @@ package org.frap129.spectrum;
 
 import com.smartpack.kernelmanager.utils.root.RootUtils;
 
-import in.sunilpaulmathew.sCommon.Utils.sExecutor;
+import in.sunilpaulmathew.sCommon.CommonUtils.sExecutor;
 
 /*
  * Based on the original implementation of Spectrum Kernel Manager by frap129 <joe@frap129.org>

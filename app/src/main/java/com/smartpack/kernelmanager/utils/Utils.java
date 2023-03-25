@@ -81,9 +81,9 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-import in.sunilpaulmathew.sCommon.Utils.sExecutor;
-import in.sunilpaulmathew.sCommon.Utils.sPackageUtils;
-import in.sunilpaulmathew.sCommon.Utils.sUtils;
+import in.sunilpaulmathew.sCommon.CommonUtils.sCommonUtils;
+import in.sunilpaulmathew.sCommon.CommonUtils.sExecutor;
+import in.sunilpaulmathew.sCommon.FileUtils.sFileUtils;
 
 /**
  * Created by willi on 14.04.16.
@@ -92,12 +92,16 @@ public class Utils {
 
     private static final String TAG = Utils.class.getSimpleName();
 
-    public static boolean isDonated(Context context) {
-        return sPackageUtils.isPackageInstalled("com.smartpack.donate", context);
+    public static boolean isDonated() {
+        return isPackageInstalled("com.smartpack.donate");
     }
 
     public static boolean isFDroidFlavor(Context context) {
         return context.getPackageName().equals("com.smartpack.kernelmanager");
+    }
+
+    public static boolean isPackageInstalled(String packageName) {
+        return RootUtils.runAndGetOutput("pm list packages " + packageName).equals("package:" + packageName);
     }
 
     public static void initializeAppTheme(Context context) {
@@ -268,7 +272,7 @@ public class Utils {
     }
 
     public static String readAssetFile(Context context, String file) {
-        return sUtils.readAssetFile(file, context);
+        return sFileUtils.readAssetFile(file, context);
     }
 
     public static boolean useFahrenheit(Context context) {
@@ -355,11 +359,11 @@ public class Utils {
     }
 
     public static void snackbar(View view, String message) {
-        sUtils.snackBar(view, message).show();
+        sCommonUtils.snackBar(view, message).show();
     }
 
     public static void launchUrl(String url, Activity activity) {
-        sUtils.launchUrl(url, activity);
+        sCommonUtils.launchUrl(url, activity);
     }
 
     public static void launchWebView(String title, String url, Activity activity) {
@@ -382,7 +386,7 @@ public class Utils {
     }
 
     public static int getOrientation(Activity activity) {
-        return sUtils.getOrientation(activity);
+        return sCommonUtils.getOrientation(activity);
     }
 
     public static boolean isPropRunning(String key) {
@@ -419,7 +423,7 @@ public class Utils {
             return RootFile.read(file);
         }
 
-        return sUtils.read(new File(file));
+        return sFileUtils.read(new File(file));
     }
 
     public static boolean existFile(String file) {
@@ -427,7 +431,7 @@ public class Utils {
     }
 
     public static boolean existFile(String file, boolean root) {
-        return !root ? sUtils.exist(new File(file)) : RootFile.exists(file);
+        return !root ? sFileUtils.exist(new File(file)) : RootFile.exists(file);
     }
 
     public static void create(String text, String path) {
@@ -450,12 +454,12 @@ public class Utils {
         if (root) {
             RootFile.delete(file);
         } else {
-            sUtils.delete(new File(file));
+            sFileUtils.delete(new File(file));
         }
     }
 
     public static void sleep(int sec) {
-        sUtils.sleep(sec);
+        sCommonUtils.sleep(sec);
     }
 
     public static void copy(String source, String dest) {

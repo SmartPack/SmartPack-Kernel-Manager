@@ -23,7 +23,7 @@ import android.content.Context;
 
 import java.util.Set;
 
-import in.sunilpaulmathew.sCommon.Utils.sUtils;
+import in.sunilpaulmathew.sCommon.CommonUtils.sCommonUtils;
 
 /**
  * Created by willi on 01.01.16.
@@ -31,42 +31,42 @@ import in.sunilpaulmathew.sCommon.Utils.sUtils;
 public class Prefs {
 
     public static int getInt(String name, int defaults, Context context) {
-        return sUtils.getInt(name, defaults, context);
+        return sCommonUtils.getInt(name, defaults, context);
     }
 
     public static long getLong(String name, long defaults, Context context) {
-        return sUtils.getLong(name, defaults, context);
+        return sCommonUtils.getLong(name, defaults, context);
     }
 
     public static void saveInt(String name, int value, Context context) {
-        sUtils.saveInt(name, value, context);
+        sCommonUtils.saveInt(name, value, context);
     }
 
     public static void saveLong(String name, long value, Context context) {
-        sUtils.saveLong(name, value, context);
+        sCommonUtils.saveLong(name, value, context);
     }
 
     public static boolean getBoolean(String name, boolean defaults, Context context) {
-        return sUtils.getBoolean(name, defaults, context);
+        return sCommonUtils.getBoolean(name, defaults, context);
     }
 
     public static void saveBoolean(String name, boolean value, Context context) {
-        sUtils.saveBoolean(name, value, context);
+        sCommonUtils.saveBoolean(name, value, context);
     }
 
     public static String getString(String name, String defaults, Context context) {
-        return sUtils.getString(name, defaults, context);
+        return sCommonUtils.getString(name, defaults, context);
     }
 
     public static void saveString(String name, String value, Context context) {
-        sUtils.saveString(name, value, context);
+        sCommonUtils.saveString(name, value, context);
     }
 
     public static void saveStringSet(String name, Set<String> value, Context context) {
-        sUtils.saveStringSet(name, value, context);
+        sCommonUtils.saveStringSet(name, value, context);
     }
 
     public static Set<String> getStringSet(String name, Set<String> defaults, Context context) {
-        return sUtils.getStringSet(name, defaults, context);
+        return sCommonUtils.getStringSet(name, defaults, context);
     }
 }

@@ -40,8 +40,6 @@ import com.smartpack.kernelmanager.views.recyclerview.TitleView;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.sunilpaulmathew.sCommon.Utils.sPackageUtils;
-
 /**
  * Created by willi on 26.06.16.
  */
@@ -355,7 +353,7 @@ public class BatteryFragment extends RecyclerViewFragment {
         battery_guru.setSummary(getString(R.string.battery_guru_summary));
         battery_guru.setFullSpan(true);
         battery_guru.setOnItemClickListener(item -> {
-            if (sPackageUtils.isPackageInstalled("com.paget96.batteryguru", requireActivity())) {
+            if (Utils.isPackageInstalled("com.paget96.batteryguru")) {
                 Intent launchIntent = requireActivity().getPackageManager().getLaunchIntentForPackage("com.paget96.batteryguru");
                 if (launchIntent != null) {
                     startActivity(launchIntent);

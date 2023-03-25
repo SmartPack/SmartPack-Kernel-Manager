@@ -66,8 +66,8 @@ import org.frap129.spectrum.Spectrum;
 
 import java.lang.ref.WeakReference;
 
-import in.sunilpaulmathew.sCommon.Utils.sCrashReporterUtils;
-import in.sunilpaulmathew.sCommon.Utils.sExecutor;
+import in.sunilpaulmathew.sCommon.CommonUtils.sExecutor;
+import in.sunilpaulmathew.sCommon.CrashReporter.sCrashReporter;
 
 /**
  * Created by willi on 14.04.16.
@@ -149,7 +149,10 @@ public class MainActivity extends BaseActivity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
         // Record crashes
-        new sCrashReporterUtils(ViewUtils.getThemeAccentColor(this), 18, this).initialize();
+        sCrashReporter crashReporter = new sCrashReporter(this);
+        crashReporter.setAccentColor(ViewUtils.getThemeAccentColor(this));
+        crashReporter.setTitleSize(18);
+        crashReporter.initialize();
     }
 
     private static class CheckingTask extends sExecutor {

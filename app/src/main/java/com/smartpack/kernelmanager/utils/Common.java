@@ -31,7 +31,7 @@ import com.smartpack.kernelmanager.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.sunilpaulmathew.sCommon.Utils.sSerializableItems;
+import in.sunilpaulmathew.sCommon.CommonUtils.sSerializableItems;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on May 08, 2021

@@ -44,7 +44,7 @@ import com.smartpack.kernelmanager.views.recyclerview.SwitchView;
 import java.io.File;
 import java.util.List;
 
-import in.sunilpaulmathew.sCommon.Utils.sExecutor;
+import in.sunilpaulmathew.sCommon.CommonUtils.sExecutor;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on May 29, 2018
