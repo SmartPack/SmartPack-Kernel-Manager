@@ -24,7 +24,7 @@
     <string name="apply_on_boot_canceled">"Применение настроек отменено."</string>
     <string name="not_in_range">"Не в диапазоне"</string>
     <string name="options">"Опции"</string>
-    <string name="more">"Больше"</string>
+    <string name="more">"Еще"</string>
 
     <!-- Permissions Denied -->
     <string name="permission_denied_write_storage">"Отказано в разрешении на запись в память устройства!"</string>
@@ -39,11 +39,11 @@
     <string name="mb">"МБ"</string>
     <string name="ms">"мс"</string>
     <string name="mv">"мВ"</string>
-    <string name="min">"мин"</string>
+    <string name="min">"мин."</string>
     <string name="mah">"мА/ч"</string>
     <string name="ma">"мА"</string>
     <string name="kb">"кБ"</string>
-    <string name="px">"пкс"</string>
+    <string name="px">"px"</string>
 
     <!-- Headers -->
     <string name="statistics">"Статистика"</string>
@@ -56,9 +56,9 @@
     <string name="device">"Устройство"</string>
     <string name="memory">"Память"</string>
     <string name="inputs">"Устройства ввода"</string>
-    <string name="cpu">"ЦП"</string>
-    <string name="cpu_hotplug">"Hotplug ЦП"</string>
-    <string name="cpu_voltage">"Напряжение ЦП"</string>
+    <string name="cpu">"Центральный процессор"</string>
+    <string name="cpu_hotplug">"Управление CPU"</string>
+    <string name="cpu_voltage">"Напряжение CPU"</string>
     <string name="gpu">"Графический процессор"</string>
     <string name="thermal">"Температура"</string>
     <string name="battery">"Батарея"</string>
@@ -83,6 +83,7 @@
     <string name="smartpack">"SmartPack"</string>
     <string name="about">"О приложении"</string>
     <string name="contributors">"Имена разработчиков"</string>
+    <string name="faq">"FAQ"</string>
 
     <!-- Overall -->
     <string name="overall_summary">"Добро пожаловать на главную страницу SmartPack-Kernel Manager.\nЭта страница содержит самую основную информацию о вашем устройстве. Дополнительные параметры настройки ядра можно найти на соответствующих страницах."</string>
@@ -125,20 +126,20 @@
     <!-- CPU -->
     <string name="cores_singular">"Ядро %d"</string>
     <string name="cores">"Ядра: %d"</string>
-    <string name="cpu_usage">"Использование ЦП"</string>
-    <string name="cpu_usage_string">"Использование ЦП: %s"</string>
+    <string name="cpu_usage">"Использование CPU"</string>
+    <string name="cpu_usage_string">"Использование CPU: %s"</string>
     <string name="no_offline_core">"Вы не можете отключить это ядро!"</string>
-    <string name="cpu_max_freq">"Максимальная частота ЦП"</string>
-    <string name="cpu_max_freq_summary">"Установите максимальную частоту работы ЦП."</string>
-    <string name="cpu_min_freq">"Минимальная частота ЦП"</string>
-    <string name="cpu_min_freq_summary">"Установите минимальную частоту работы ЦП."</string>
-    <string name="cpu_max_screen_off_freq">"Максимальная частота ЦП при выключенном экране"</string>
-    <string name="cpu_max_screen_off_freq_summary">"Установите максимальную частоту работы ЦП при выключенном экране."</string>
-    <string name="cpu_governor">"Регулятор ЦП"</string>
-    <string name="cpu_governor_summary">"Регулятор ЦП решает, как ЦП реагирует на изменения рабочей нагрузки. Смена регулятора повлияет на обработку рабочих частот, доступных для вашего ЦП."</string>
-    <string name="cpu_governor_tunables">"Переменные регулятора ЦП"</string>
+    <string name="cpu_max_freq">"Максимальная частота CPU"</string>
+    <string name="cpu_max_freq_summary">"Установите максимальную частоту работы CPU."</string>
+    <string name="cpu_min_freq">"Минимальная частота CPU"</string>
+    <string name="cpu_min_freq_summary">"Установите минимальную частоту работы CPU."</string>
+    <string name="cpu_max_screen_off_freq">"Максимальная частота CPU при выключенном экране"</string>
+    <string name="cpu_max_screen_off_freq_summary">"Установите максимальную частоту работы CPU при выключенном экране."</string>
+    <string name="cpu_governor">"Регулятор CPU"</string>
+    <string name="cpu_governor_summary">"Регулятор CPU решает, как CPU реагирует на изменения рабочей нагрузки. Смена регулятора повлияет на обработку рабочих частот, доступных для вашего CPU."</string>
+    <string name="cpu_governor_tunables">"Переменные регулятора CPU"</string>
     <string name="governor_tunables_summary">"Различные элементы конфигурации, которые зависят от регулятора."</string>
-    <string name="cpu_governor_tunables_read_error">"Не удалось прочитать текущий регулятор ЦП.\n\nЕсли вы используете устройство QCOM big.LITTLE, это известная проблема. Система заставляет ЦП отключать ядра, что делает чрезвычайно трудным считывание специфической статистики ЦП. Попробуйте выбрать этот вариант еще раз. Процессор иногда отказывается включать ядро."</string>
+    <string name="cpu_governor_tunables_read_error">"Не удалось прочитать текущий регулятор CPU.\n\nЕсли вы используете устройство QCOM big.LITTLE, это известная проблема. Система заставляет процессор отключать ядра, что делает чрезвычайно трудным считывание специфической статистики. Попробуйте выбрать этот вариант еще раз. Процессор иногда отказывается включать ядро."</string>
     <string name="tunables_error">"%s не настраивается"</string>
     <string name="manual">"Ручная установка"</string>
     <string name="mc_power_saving">"Многоядерное энергосбережение"</string>
@@ -146,39 +147,39 @@
     <string name="disabled">"Отключено"</string>
     <string name="enabled">"Включено"</string>
     <string name="aggressive">"Агрессивное"</string>
-    <string name="power_saving_wq">"Планировать задания на рабочих ЦП для экономии энергии."</string>
+    <string name="power_saving_wq">"Планировать задания на рабочих CPU для экономии энергии."</string>
     <string name="cfs_scheduler_policy">"Политика планировщика CFS"</string>
-    <string name="cfs_scheduler_policy_summary">"Политика планировщика CFS решает, как сбалансировать задачи на разные блоки ЦП."</string>
+    <string name="cfs_scheduler_policy_summary">"Политика планировщика CFS решает, как сбалансировать задачи на разные блоки CPU."</string>
     <string name="cpu_quiet">"CPUQuiet"</string>
     <string name="cpu_quiet_summary">"CPUQuiet реализует политику по отключению ядер процессора. Данная политика сохраняет заряд батареи без вреда производительности."</string>
     <string name="cpu_quiet_governor">"Регулятор CPUQuiet"</string>
     <string name="msm_limiter">"MSM Limiter"</string>
-    <string name="msm_limiter_summary">"Включить MSM Limiter by neobuddy89."</string>
+    <string name="msm_limiter_summary">"Включить MSM Limiter от neobuddy89."</string>
     <string name="freq_control">"Контроль частоты"</string>
     <string name="freq_control_summary">"Разрешить MSM Limiter контролировать частоты ваших процессоров."</string>
 
     <!-- CPU Boost -->
-    <string name="cpu_boost">"Усиление ЦП"</string>
+    <string name="cpu_boost">"Усиление CPU"</string>
     <string name="stune_boost">"Stune Boost"</string>
     <string name="cpu_boost_settings">"Настройки ускорения Cpu"</string>
     <string name="debug_mask">"Маска отладки"</string>
     <string name="debug_mask_summary">"Позволяет вам активировать маску отладки для операций."</string>
     <string name="interval">"Интервал"</string>
-    <string name="interval_summary">"Минимальный интервал ускорения ЦП."</string>
+    <string name="interval_summary">"Минимальный интервал ускорения CPU."</string>
     <string name="sync_threshold">"Порог синхронизации"</string>
     <string name="sync_threshold_summary">"Когда загрузка ядра превышает установленный порог, текущее ядро повышается до этой частоты."</string>
     <string name="input_interval">"Укажите интервал"</string>
-    <string name="input_interval_summary">"Минимальный интервал усиления ЦП при обнаружении ввода."</string>
+    <string name="input_interval_summary">"Минимальный интервал усиления CPU при обнаружении ввода."</string>
     <string name="sched_boost_Input">"Sched Boost On Input"</string>
     <string name="input_boost_freq">"Частота усиления при вводе"</string>
     <string name="input_boost_freq_core">"Повышение частоты ядра %d при вводе"</string>
-    <string name="input_boost_freq_summary">"Частота ЦП будет повышена до этой при обнаружении ввода."</string>
+    <string name="input_boost_freq_summary">"Частота CPU будет повышена до этой при обнаружении ввода."</string>
     <string name="wakeup_boost">"Усиление при пробуждении"</string>
     <string name="wakeup_boost_summary">"Усиление при пробуждении похоже на усиление при вводе, но срабатывает при включении экрана."</string>
     <string name="hotplug_boost">"Усиление при hotplug-е"</string>
     <string name="hotplug_boost_summary">"Усиление при hotplug-е похоже на усиление при вводе, но срабатывает при переходе ядра в онлайн."</string>
     <string name="touch_boost">"Усиление при касании"</string>
-    <string name="touch_boost_summary">"Повышает вашу минимальную скорость ЦП, при касании экрана или нажатии кнопки."</string>
+    <string name="touch_boost_summary">"Повышает вашу минимальную скорость CPU, при касании экрана или нажатии кнопки."</string>
     <string name="cpu_input_boost">"CPU Input Boost"</string>
     <string name="cpu_input_boost_summary">"Включите CPU Input Boost, драйвер повышения производительности CPU от Sultanxda."</string>
     <string name="cpuiboost_duration">"Input Boost Duration"</string>
@@ -217,7 +218,7 @@
     <string name="suspend">"Приостановить"</string>
     <string name="suspend_summary">"Предотвращение перехода в ожидание."</string>
     <string name="cpus_boosted">"Усиление ядер"</string>
-    <string name="cpus_boosted_summary">"Макс. количество одновременно ускоренных ядер ЦП."</string>
+    <string name="cpus_boosted_summary">"Максимальное количество одновременно ускоренных ядер CPU."</string>
     <string name="min_cpu_online">"Минимальное количество работающих ядер"</string>
     <string name="min_cpu_online_summary">"Минимальное количество ядер, которые будут работать."</string>
     <string name="max_cpu_online">"Максимальное количество работающих ядер"</string>
@@ -236,13 +237,13 @@
     <string name="lazy">"Lazy"</string>
     <string name="possible_cpu_cores_summary">"Ядра процессора, который может использовать lazyplug."</string>
     <string name="blu_plug">"Blu_Plug"</string>
-    <string name="blu_plug_summary">"Замена в ядре для Qualcomm MPDecision.. Разработано командой Code_Blue."</string>
+    <string name="blu_plug_summary">"Замена в ядре для Qualcomm MPDecision. Разработано командой Code_Blue."</string>
     <string name="powersaver_mode">"Режим энергосбережения"</string>
     <string name="powersaver_mode_summary">"Устанавливает максимум одно ядро онлайн с частотой @1728 МГц."</string>
     <string name="up_threshold">"Высший порог"</string>
     <string name="up_threshold_summary">"При превышении этого порога загрузки, драйвер включит ещё одно ядро."</string>
     <string name="up_timer_cnt">"Управление таймером включения"</string>
-    <string name="up_timer_cnt_summary">"Таймер управления для ЦП."</string>
+    <string name="up_timer_cnt_summary">"Таймер управления для CPU."</string>
     <string name="down_timer_cnt">"Таймер отключения"</string>
     <string name="down_timer_cnt_summary">"Управление таймером понижения частоты процессора."</string>
     <string name="mako_hotplug">"Mako Hotplug"</string>
@@ -256,7 +257,7 @@
     <string name="load_threshold">"Порог нагрузки"</string>
     <string name="load_threshold_summary">"Порог нагрузки для включения всех CPU."</string>
     <string name="max_load_counter">"Счётчик максимальной нагрузки"</string>
-    <string name="min_time_cpu_online">"Минимальное время работы ЦП"</string>
+    <string name="min_time_cpu_online">"Минимальное время работы CPU"</string>
     <string name="timer">"Таймер"</string>
     <string name="screen_off_single_cpu">"Одно ядро при выключенном экране"</string>
     <string name="screen_off_single_cpu_summary">"Использовать только одно ядро, когда экран выключен."</string>
@@ -267,18 +268,18 @@
     <string name="history_size">"Размер истории"</string>
     <string name="history_size_summary">"Количество выборок, учитываемых при средней загрузке процессоров. Меньше значит быстрее/неустойчивее."</string>
     <string name="update_rate">"Частота обновления"</string>
-    <string name="update_rate_summary">"Интервал между выборками нагрузки между процессорами.. Меньше значит быстрее/более неустойчивой."</string>
+    <string name="update_rate_summary">"Интервал между выборками нагрузки между процессорами. Меньше значит быстрее/более неустойчивой."</string>
     <string name="fast_lane_load">"Нагрузка Fast Lane"</string>
-    <string name="fast_lane_load_summary">"Уменьшить задержку методом включения всех ядер ЦП если загрузка превышает определенный порог."</string>
-    <string name="fast_lane_min_freq">"Мин частота Fast Lane "</string>
-    <string name="fast_lane_min_freq_summary">"Устанавливает минимальную частоту, до которой масштабируется ЦП, когда быстрая полоса достигает указанной выше нагрузки."</string>
+    <string name="fast_lane_load_summary">"Уменьшить задержку методом включения всех ядер CPU если загрузка превышает определенный порог."</string>
+    <string name="fast_lane_min_freq">"Мин частота Fast Lane"</string>
+    <string name="fast_lane_min_freq_summary">"Устанавливает минимальную частоту, до которой масштабируется CPU, когда быстрая полоса достигает указанной выше нагрузки."</string>
     <string name="offline_load">"Автономная нагрузка"</string>
-    <string name="offline_load_summary">"Не отключать ЦП, если его частота падает ниже пороговой нагрузки нижнего уровня."</string>
+    <string name="offline_load_summary">"Не отключать CPU, если его частота падает ниже пороговой нагрузки нижнего уровня."</string>
     <string name="alucard_hotplug">"Alucard Hotplug"</string>
     <string name="alucard_hotplug_summary">"Замена в ядре для Qualcomm's MPDecision. Разработано Alucard"</string>
     <string name="sampling_rate">"Частота дискретизации"</string>
-    <string name="cpu_down_rate">"Скорость снижения ЦП"</string>
-    <string name="cpu_up_rate">"Скорость загрузки ЦП"</string>
+    <string name="cpu_down_rate">"Скорость снижения CPU"</string>
+    <string name="cpu_up_rate">"Скорость загрузки CPU"</string>
     <string name="io_is_busy">"I/O не отвечает"</string>
     <string name="io_is_busy_summary">"Используется для того, чтобы заставить hotplug рассматривать время ввода/вывода, как время загрузки процессора."</string>
     <string name="msm_mpdecision_hotplug">"MSM MPDecision Hotplug"</string>
@@ -295,11 +296,11 @@
     <string name="pause_summary">"Если что-то еще включается в процессор, засыпайте на это много миллисекунд времени."</string>
     <string name="autosmp">"AutoSMP"</string>
     <string name="autosmp_summary">"Замена ядра в Qualcomm MPDecision. Разработано mrg666."</string>
-    <string name="downrate_limits">"Downrate Limits"</string>
-    <string name="uprate_limits">"Uprate Limits"</string>
-    <string name="cycle_down">"Cycle Down"</string>
+    <string name="downrate_limits">"Пределы понижения лимитов"</string>
+    <string name="uprate_limits">"Пределы повышения лимитов"</string>
+    <string name="cycle_down">"Цикл вниз"</string>
     <string name="cycle_down_summary">"Циклы ожидания после последнего события горячего подключения для отключения другого ядра."</string>
-    <string name="cycle_up">"Cycle Up"</string>
+    <string name="cycle_up">"Цикл вверх"</string>
     <string name="cycle_up_summary">"Циклы ожидания после последнего события горячей замены для подключения другого ядра."</string>
     <string name="core_control">"Управление ядрами"</string>
     <string name="min_boost_freq">"Минимальная частота ускорения"</string>
@@ -309,11 +310,11 @@
     <string name="min_cpus_big">"Минимум процессоров BIG"</string>
     <string name="min_cpus_big_summary">"Минимальное количество процессоров BIG, которые должны быть онлайн."</string>
     <string name="busy_down_threshold">"Нижний порог занятости"</string>
-    <string name="busy_down_threshold_summary">"Порог для отключения кластера big CPU."</string>
+    <string name="busy_down_threshold_summary">"Порог для отключения кластера BIG."</string>
     <string name="busy_up_threshold">"Верхний порог занятости"</string>
-    <string name="busy_up_threshold_summary">"Порог для включения кластера big CPU."</string>
+    <string name="busy_up_threshold_summary">"Порог для включения кластера BIG."</string>
     <string name="task_threshold">"Порог задания"</string>
-    <string name="task_threshold_summary">"Порог при балансировке задач в большие процессорные модули."</string>
+    <string name="task_threshold_summary">"Пороговое значение при балансировке задач между большими процессорными блоками"</string>
     <string name="offline_delay">"Задержка оффлайн"</string>
     <string name="offline_delay_summary">"Время до отключения ядра."</string>
     <string name="online_delay">"Задержка онлайн"</string>
@@ -329,8 +330,8 @@
     <string name="hotplug_rq">"Hotplug RQ"</string>
     <string name="aio_hotplug">"AiO Hotplug"</string>
     <string name="aio_hotplug_summary">"All in One HotPlug для устройств Qualcomm . Разработано Shoaib0597."</string>
-    <string name="max_cpu_online_big">"Максимум активных Big ядер"</string>
-    <string name="max_cpu_online_big_summary">"Максимум активных Big ядер"</string>
+    <string name="max_cpu_online_big">"Максимум активных BIG ядер"</string>
+    <string name="max_cpu_online_big_summary">"Максимум активных BIG ядер"</string>
     <string name="max_cpu_online_little">"Максимум активных Little ядер"</string>
     <string name="max_cpu_online_little_summary">"Максимум активных Little ядер"</string>
     <string name="nr_max_cpu">"Максимум активных ядер"</string>
@@ -413,7 +414,7 @@
     <string name="temp_limit">"Ограничение температуры"</string>
     <string name="temp_limit_summary">"Если температура поднимается, термодатчик будет регулировать частоту процессора для снижения температуры."</string>
     <string name="freq_limit_debug">"Отладка лимита частот"</string>
-    <string name="freq_limit_debug_summary">"Это позволяет отладить троттлинг ЦП при достижении температурного максимума."</string>
+    <string name="freq_limit_debug_summary">"Это позволяет отладить троттлинг CPU при достижении температурного максимума."</string>
     <string name="temp_limit_min_freq">"Минимальная частота лимита температур"</string>
     <string name="temp_limit_min_freq_summary">"Данная частота будет использоваться при достижении температурного лимита."</string>
     <string name="allowed_low_low">"Этап 1: Разрешен Low Low"</string>
@@ -450,8 +451,6 @@
     <string name="charging_enable_summary">"Предупреждение! Если отключить, зарядка будет немедленно остановлена."</string>
     <string name="thunder_charge">"Thunder Charge"</string>
     <string name="thunder_charge_summary">"Активировать Thunder Charge by varun.chitre15"</string>
-    <string name="battery_guru">"Аккумуляторный гуру"</string>
-    <string name="battery_guru_summary">"Следите за временем автономной работы вашего Android-устройства, продлевайте его и сохраняйте работоспособность."</string>
 
     <!-- Advanced Charge Control Interface -->
     <string name="acci">"Расширенный интерфейс управления зарядкой"</string>
@@ -494,6 +493,7 @@
     <string name="dac_direct">"ЦАП прямо"</string>
     <string name="dac_oversampling">"Передискретизация ЦАП"</string>
     <string name="fll_tuning">"FLL Тюнинг"</string>
+    <string name="mono_downmix">"Моно DownMix"</string>
 
     <!-- Screen -->
     <string name="screen_color">"Цвет экрана"</string>
@@ -677,7 +677,7 @@
     <!-- I/O Scheduler -->
     <string name="internal_storage">"Внутренняя память"</string>
     <string name="external_storage">"Внешняя память"</string>
-    <string name="dm0">"Adoptable Storage (DM-0)"</string>
+    <string name="dm0">"Приемлемое хранилище (DM-0)"</string>
     <string name="scheduler">"Планировщик"</string>
     <string name="scheduler_summary">"Установите алгоритм подъёма I/O. Планировщик решает, как обрабатывать запросы I/O."</string>
     <string name="scheduler_tunable">"Настройки планировщика"</string>
@@ -694,7 +694,7 @@
     <string name="rq_affinity_summary">"Установка выполнения запросов планировщика ядрами процессора, от которых эти запросы исходили. Чем больше значение, тем выше агрессивность."</string>
     <string name="nomerges">"Без слияния"</string>
     <string name="nomerges_summary">"Это позволяет пользователю отключить логику поиска, связанную с запросами на слияние ввода-вывода на уровне блоков."</string>
-    <string name="nr_requests">"NR Requests"</string>
+    <string name="nr_requests">"Запросы NR"</string>
     <string name="nr_requests_summary">"Это контролирует, сколько запросов может быть выделено на уровне блоков для запросов на чтение или запись."</string>
 
     <!-- Kernel Samepage Merging -->
@@ -703,13 +703,13 @@
     <string name="pages_sharing">"Страницы обмена"</string>
     <string name="pages_unshared">"Необъединённых страниц"</string>
     <string name="pages_volatile">"Необъединяемых страниц"</string>
-    <string name="ksm_summary">"Снижает загрузку памяти, но влияет на загрузку ЦП."</string>
+    <string name="ksm_summary">"Снижает загрузку памяти, но влияет на загрузку CPU."</string>
     <string name="pages_to_scan">"Страницы для сканирования"</string>
     <string name="sleep_milliseconds">"Период между сканированием в миллисекундах"</string>
     <string name="deferred_timer">"Отложенный таймер"</string>
-    <string name="deferred_timer_summary">"Уменьшает некоторую загрузку ЦП, взамен на меньшее сбережение памяти."</string>
-    <string name="max_cpu_usage">"Максимальная загрузка ЦП"</string>
-    <string name="max_cpu_usage_summary">"Максимальный процент загрузки ЦП при объединении страниц."</string>
+    <string name="deferred_timer_summary">"Уменьшает некоторую загрузку CPU, взамен на меньшее сбережение памяти."</string>
+    <string name="max_cpu_usage">"Максимальная загрузка CPU"</string>
+    <string name="max_cpu_usage_summary">"Максимальный процент загрузки CPU при объединении страниц."</string>
     <string name="uksm_governor">"UKSM CPU Governor"</string>
     <string name="uksm_governor_summary">"Установите CPU Governor для UKSM."</string>
 
@@ -718,7 +718,6 @@
     <string name="lmk_adaptive">"Адаптивный Low Memory Killer"</string>
     <string name="lmk_adaptive_summary">"Low Memory Killer будет становиться более агрессивным при обнаружении переполнения памяти."</string>
     <string name="lmk_fast_run">"Активировать быструю загрузку"</string>
-    <string name="process_reclaim">"Процесс восстановления"</string>
     <string name="visible_app">"Видимые приложения"</string>
     <string name="secondary_server">"Вторичные приложения"</string>
     <string name="hidden_app">"Скрытые приложения"</string>
@@ -800,13 +799,12 @@
     <string name="disksize">"Размер диска"</string>
     <string name="disksize_summary">"Улучшает производительность методом сжатия данных в ОЗУ вместо постоянной памяти. Использует ОЗУ до тех пор, пока не возникнет необходимость записи данных в постоянную память."</string>
     <string name="zswap">"ZSWAP"</string>
-    <string name="zswap_summary">"ZSwap — это лёгкий сжатый кэш для подкачки страниц. Он берёт страницы, которые находятся в процессе выгрузки, и пробует их сжать в динамически размещённом пуле памяти ОЗУ. В основном, Zswap обменивает циклы ЦП на возможно сниженный ввод/вывод подкачки."</string>
+    <string name="zswap_summary">"ZSwap — это лёгкий сжатый кэш для подкачки страниц. Он берёт страницы, которые находятся в процессе выгрузки, и пробует их сжать в динамически размещённом пуле памяти ОЗУ. В основном, Zswap обменивает циклы CPU на возможно сниженный ввод/вывод подкачки."</string>
     <string name="memory_pool">"Пул памяти"</string>
     <string name="memory_pool_summary">"Процент пула памяти от основной памяти, который может быть использован как кэш сжатых страниц."</string>
     <string name="maximum_compression_ratio">"Максимальный коэффициент сжатия"</string>
     <string name="maximum_compression_ratio_summary">"Максимальная степень сжатия, в процентах, для сжимаемых страниц. Любая страница, которая не сжимается до этого соотношения, будет отклонена."</string>
     <string name="virtual_memory_tunables">"Тюнинг виртуальной памяти"</string>
-    <string name="dir_change_notifier">"Уведомление об изменении каталога"</string>
 
     <!-- Entropy -->
     <string name="available">"Доступно"</string>
@@ -843,12 +841,13 @@
     <string name="tcp_summary">"TCP протокол - один из сетевых протоколов (IP), также известный как TCP/IP."</string>
     <string name="hostname">"Имя устройства"</string>
     <string name="wireguard">"WireGuard VPN"</string>
+    <string name="leases_enable">"Включить в аренду"</string>
     <string name="leases_enable_summary">"Включение или отключение аренды файлов для всей системы"</string>
+    <string name="lease_break_time">"Время перерыва в аренде"</string>
     <string name="lease_break_time_summary">"Льготный период, который ядро предоставляет процессу, удерживающему аренду файла, после того, как оно отправило этому процессу сигнал, уведомляющий его о том, что другой процесс ожидает открытия файла."</string>
     <string name="auto_sync">"Автосинхронизация данных"</string>
-    <string name="auto_sync_summary">"Разрешить приложениям автоматически обновлять данные.
-        Обратите внимание: это будет применяться независимо от ваших настроек при загрузке."</string>
-    <string name="printk_devkmsg_summary">"Управляйте ведением журнала в /dev/kmsg из пользовательского пространства."</string>
+    <string name="auto_sync_summary">"Разрешить приложениям автоматически обновлять данные. Обратите внимание: это будет применяться независимо от ваших настроек при загрузке."</string>
+    <string name="cpuset">"Наборы CPU"</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">"Твики производительности"</string>
@@ -881,7 +880,7 @@
     <string name="delete">"Удалить"</string>
     <string name="share">"Поделиться"</string>
     <string name="share_by">"'%s'  | поделиться SmartPack-Kernel Manager"</string>
-    <string name="share_controller">"Чтобы применить этот контроллер, просто импортируйте этот файл в 'SmartPack-Kernel Manager -> Custom Controls"</string>
+    <string name="share_controller">"Чтобы применить этот контроллер, просто импортируйте этот файл в 'SmartPack-Kernel Manager -&gt; Custom Controls"</string>
     <string name="share_with">"Поделиться с помощью"</string>
     <string name="sure_question">"Вы уверены?"</string>
     <string name="name">"Название"</string>
@@ -951,7 +950,7 @@
     <string name="remove_script_question">"%s также будет удален из Script Manager.\n\nВы уверены?"</string>
     <string name="script_exists">"Скрипт с именем %s уже существует! Отмена."</string>
     <string name="executing">"Выполнение"</string>
-    <string name="share_script">"Для установки этого скрипта, просто импортируйте этот файл в 'SmartPack-Kernel Manager -> Script Manager -&gt; Import'."</string>
+    <string name="share_script">"Для установки этого скрипта, просто импортируйте этот файл в 'SmartPack-Kernel Manager -&gt; Script Manager -&gt; Import'."</string>
 
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">"Этот раздел показывает вам, что произойдёт, когда ваше устройство загрузится. Если он пустой, то ничего не произойдет после загрузки."</string>
@@ -982,6 +981,7 @@
     <string name="update_check_message">"SmartPack-Kernel Manager проверит наличие новой версии %s раз в день!"</string>
     <string name="other_options">"Другие опции"</string>
     <string name="shell">"Запуск Shell Command"</string>
+    <string name="terminal">"Терминал"</string>
     <string name="shell_summary">"Напишите здесь команду"</string>
     <string name="support">"Поддержка"</string>
     <string name="support_summary">"Посетить страницу поддержки на xda-developers.com"</string>
@@ -1007,7 +1007,7 @@
     <string name="reset_settings_message">"Настройки приложения будут полностью удалены.\n\nВы уверены?"</string>
     <string name="unknown_link">"Еще не предоставлено разработчиком!"</string>
     <string name="remove">"Удалить"</string>
-    <string name="share_channel_message">"Чтобы настроить этот канал обновление, просто введите '%s' в SmartPack-Kernel Manager -> SmartPack -&gt; Канал обновления ядра\n\nВам SmartPack-ядра диспетчер"</string>
+    <string name="share_channel_message">"Чтобы настроить этот канал обновление, просто введите '%s' в SmartPack-Kernel Manager -&gt; SmartPack -&gt; Канал обновления ядра\n\nВам SmartPack-ядра диспетчер"</string>
     <string name="busybox_installer">"BusyBox Installer"</string>
     <string name="busybox_installer_summary">"Настоятельно рекомендуется иметь устаноленный BusyBox на вашем устройстве, для правильной работы с некоторыми функциями этого приложения (например, 'unzip' &amp; 'mke2fs' binaries for flashing &amp; 'curl' или 'wget' binary for kernel OTA updates). В качестве попытки помочь пользователям в этом вопросе доступно простое приложение, которое можно использовать в качестве утилиты установки BusyBox в один клик для устройств arm, arm64 и x86. Нажмите здесь, чтобы получить его!"</string>
     <string name="download_failed">"Похоже, скачать не удалось, или скачали поврежденный файл!"</string>
@@ -1100,6 +1100,7 @@
     <string name="donate_me_summary">"Хотите оценить мою работу пожертвованием? Кликните сюда"</string>
     <string name="purchase_app">"Приложение для пожертвований"</string>
     <string name="licence">"Лицензии"</string>
+    <string name="licence_summary">"Посмотреть GPL V3"</string>
     <string name="share_app">"Поделиться приложением"</string>
     <string name="share_app_summary">"Поделитесь этим приложением с друзьями"</string>
     <string name="share_app_message">"Получить SmartPack-Kernel Manager %s из\n"</string>
@@ -1123,7 +1124,7 @@
         - и многими другими функциями."</string>
     <string name="can_i_use">"В2. Могу ли я использовать это приложение для управления любыми кастомными ядрами?"</string>
     <string name="can_i_use_summary">"Ответ. Это приложение будет работать как обычно с любым ядром, если ему предоставлен root-доступ."</string>
-    <string name="cpu_freq_not_sticking">"Почему моя частота ЦП не остается выбранной?"</string>
+    <string name="cpu_freq_not_sticking">"Почему моя частота CPU не остается выбранной?"</string>
     <string name="cpu_freq_not_sticking_summary">"Ответ. Это может быть вызвано многими причинами. Многие ядра в настоящее время имеют собственную hotplugging систему, которая контролирует частоту процессора, а CyanogenMod имеет собственную реализацию CPU Boost, которая регулирует частоту. Я бы посоветовал вам не трогать частоты процессора и позволить ядру делать свою работу. Это также относится к другим функциям! Если они не сохраняются, это потому, что ядро/система не хотят позволять вам это менять.."</string>
     <string name="feature_not_appearing">"В4. Почему функции x и y не отображаются?"</string>
     <string name="feature_not_appearing_summary">"Ответ. Отображаются только те функции, которые реализованы в вашем ядре."</string>
@@ -1139,8 +1140,8 @@
     <string name="can_i_contribute_summary">"Ответ. Конечно же. Любой вид поддержки (пожертвования, помощь в разработка кода и т.д.) приветствуются и высоко ценятся. Пожалуйста, посетите раздел \"О нас\" для получения более подробной информации."</string>
 
     <!-- CPU -->
-    <string name="cpu_note">"Обратите внимание, что некоторые функции на этой странице, такие как управление ядрами ЦП и управление частотой, в значительной степени контролируются системными процессами. В результате изменения, внесенные на этой странице, могут не сохраняться на многих устройствах!"</string>
-    <string name="doze">"Force Doze"</string>
+    <string name="cpu_note">"Обратите внимание, что некоторые функции на этой странице, такие как управление ядрами CPU и управление частотой, в значительной степени контролируются системными процессами. В результате изменения, внесенные на этой странице, могут не сохраняться на многих устройствах!"</string>
+    <string name="doze">"Режим Doze"</string>
     <string name="doze_summary">"Включите режим Doze, чтобы запретить выполнение определенных задач, если ваше устройство находится в режиме ожидания."</string>
     <string name="selinux">"SELinux"</string>
     <string name="selinux_summary">"Состояние SELinux"</string>
@@ -1157,9 +1158,11 @@
     <string name="updated_dialog">"Поздравляю! У вас уже есть последняя версия SmartPack-Kernel Manager!"</string>
     <string name="auto_update_check">"Автоматическая проверка обновлений"</string>
     <string name="check_update_summary">"Проверить наличие новых версий SmartPack-Kernel Manager"</string>
+    <string name="fdroid">"F-Droid"</string>
     <string name="fdroid_summary">"Посетить страницу F-Droid"</string>
 
     <!-- I/O Advanced -->
+    <string name="io_blocks">"Блоки ввода/вывода (%s)"</string>
     <string name="io_blocks_summary">"Щелкните здесь, чтобы точно настроить различные  I/O блоки на вашем устройстве! Однако имейте в виду, что некоторые параметры доступны только для чтения и не могут быть изменены в некоторых блоках."</string>
     <string name="io_blocks_select">"Выбрать  I/O блоки"</string>
     <string name="io_blocks_select_summary">"Выберите предпочтительный I/O блок для точной настройки."</string>
@@ -1167,6 +1170,17 @@
     <string name="doze_light">"Легкий Doze"</string>
     <string name="transmit_queue_length">"Длина очереди передачи"</string>
     <string name="tunables_title">"Настройте элементы конфигурации, связанные с '%s'"</string>
-    <string name="gpu_throttling">"Тротилинг ГП"</string>
-    <string name="gpu_throttling_summary">"Снижает производительность, когда графический процессор (ГП) нагревается."</string>
+    <string name="gpu_throttling">"Троттлинг GPU"</string>
+    <string name="gpu_throttling_summary">"Снижает производительность, когда GPU нагревается."</string>
+    <string name="printk_devkmsg">"Печать devkmsg"</string>
+    <string name="printk_devkmsg_summary">"Управляйте ведением журнала в /dev/kmsg из пользовательского пространства."</string>
+    <string name="battery_guru">"Статистика батареи"</string>
+    <string name="battery_guru_summary">"Следите за временем автономной работы вашего Android-устройства, продлевайте его и сохраняйте работоспособность."</string>
+    <string name="process_reclaim">"Процесс восстановления"</string>
+    <string name="dir_change_notifier">"Уведомление об изменении каталога"</string>
+    <string name="dir_change_notifier_summary">"Служба уведомления об изменении каталога информирует процессы об изменениях файла/каталога."</string>
+    <string name="vm_stat_interval">"Интервал статистики VM"</string>
+    <string name="vm_stat_interval_summary">"Интервал времени, между которым обновляется статистика VM."</string>
+    <string name="quick_tile">"Плитка быстрого доступа"</string>
+    <string name="quick_tile_empty_message">"С этой плитки не настроено применение скриптов!"</string>
 </resources>
