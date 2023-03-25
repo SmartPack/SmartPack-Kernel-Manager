@@ -33,6 +33,7 @@ import com.smartpack.kernelmanager.activities.TerminalActivity;
 import com.smartpack.kernelmanager.activities.ToolsActivity;
 import com.smartpack.kernelmanager.fragments.other.AboutFragment;
 import com.smartpack.kernelmanager.utils.Common;
+import com.smartpack.kernelmanager.utils.ViewUtils;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 24, 2020
@@ -50,6 +51,11 @@ public class MultiItemsView extends RecyclerViewItem {
         AppCompatImageButton mInfo = view.findViewById(R.id.icon_info);
         MaterialCardView mTerminal = view.findViewById(R.id.card_terminal);
         MaterialCardView mTools = view.findViewById(R.id.card_tools);
+
+        mTerminal.setCardBackgroundColor(ViewUtils.getThemeAccentColor(view.getContext()));
+        mTerminal.setStrokeColor(ViewUtils.getThemeAccentColor(view.getContext()));
+        mTools.setCardBackgroundColor(ViewUtils.getThemeAccentColor(view.getContext()));
+        mTools.setStrokeColor(ViewUtils.getThemeAccentColor(view.getContext()));
 
         mTerminal.setOnClickListener(v -> {
             Intent intent = new Intent(view.getContext(), TerminalActivity.class);
