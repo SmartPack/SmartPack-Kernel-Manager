@@ -69,7 +69,7 @@ public class BackupFragment extends RecyclerViewFragment {
 
     @Override
     protected Drawable getTopFabDrawable() {
-        return ViewUtils.getColoredIcon(R.drawable.ic_add, requireActivity());
+        return ViewUtils.getWhiteColoredIcon(R.drawable.ic_add, requireActivity());
     }
 
     @Override
