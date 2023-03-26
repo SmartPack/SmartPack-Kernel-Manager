@@ -28,10 +28,10 @@ import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -39,14 +39,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
-import java.util.HashSet;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Objects;
-import java.util.Set;
 
 import in.sunilpaulmathew.sCommon.CommonUtils.sCommonUtils;
+import in.sunilpaulmathew.sCommon.CommonUtils.sExecutor;
 
 /**
  * Created by willi on 16.04.16.
@@ -234,39 +234,33 @@ public class ViewUtils {
         return dialog;
     }
 
-    private static final Set<CustomTarget> mProtectedFromGarbageCollectorTargets = new HashSet<>();
+    public static sExecutor loadImagefromUrl(String url, AppCompatImageView imageView) {
+        return new sExecutor() {
+            private Drawable drawable = null;
+            @Override
+            public void onPreExecute() {
 
-    public static void loadImagefromUrl(String url, ImageView imageView, int maxWidth, int maxHeight) {
-        CustomTarget target = new CustomTarget(imageView, maxWidth, maxHeight);
-        mProtectedFromGarbageCollectorTargets.add(target);
-        Picasso.get().load(url).into(target);
-    }
+            }
 
-    private static class CustomTarget implements Target {
-        private final ImageView mImageView;
-        private final int mMaxWidth;
-        private final int mMaxHeight;
+            @Override
+            public void doInBackground() {
+                try {
+                    InputStream iStream = (InputStream) new URL(url).getContent();
+                    drawable = Drawable.createFromStream(iStream, "src name");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
-        private CustomTarget(ImageView imageView, int maxWidth, int maxHeight) {
-            mImageView = imageView;
-            mMaxWidth = maxWidth;
-            mMaxHeight = maxHeight;
-        }
+            }
 
-        @Override
-        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            mImageView.setImageBitmap(scaleDownBitmap(bitmap, mMaxWidth, mMaxHeight));
-            mProtectedFromGarbageCollectorTargets.remove(this);
-        }
+            @Override
+            public void onPostExecute() {
+                if (drawable != null) {
+                    imageView.setImageDrawable(drawable);
+                }
 
-        @Override
-        public void onBitmapFailed(java.lang.Exception e, android.graphics.drawable.Drawable errorDrawable) {
-            mProtectedFromGarbageCollectorTargets.remove(this);
-        }
-
-        @Override
-        public void onPrepareLoad(Drawable placeHolderDrawable) {
-        }
+            }
+        };
     }
 
     public static Bitmap scaleDownBitmap(Bitmap bitmap, int maxWidth, int maxHeight) {

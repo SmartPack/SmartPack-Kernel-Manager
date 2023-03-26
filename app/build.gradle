@@ -76,6 +76,5 @@ dependencies {
 
     implementation "com.google.android.material:material:${materialLibVersion}"
 
-    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'org.cyanogenmod:platform.sdk:6.0'
 }

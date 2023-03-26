@@ -54,11 +54,11 @@ public class ContributorView extends RecyclerViewItem {
         MaterialTextView name = view.findViewById(R.id.name);
         MaterialTextView contributions = view.findViewById(R.id.contributions);
 
-        ViewUtils.loadImagefromUrl(mContributor.getAvatarUrl(), image, 200, 200);
+        ViewUtils.loadImagefromUrl(mContributor.getAvatarUrl(), image).execute();
         name.setText(mContributor.getLogin());
         contributions.setText(view.getResources().getString(R.string.commits, mContributor.getContributions()));
 
-        view.setOnClickListener(v -> Utils.launchUrl(mContributor.getHtmlUrl(), (Activity) v.getContext()));
+        view.setOnClickListener(v -> Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager/commits?author=" + mContributor.getLogin(), (Activity) v.getContext()));
     }
 
 }
