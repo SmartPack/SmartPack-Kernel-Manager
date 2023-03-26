@@ -1083,6 +1083,7 @@
     <string name="auto_update_check">Auto Update Check</string>
     <string name="check_update">Check for Updates</string>
     <string name="check_update_summary">Check for new versions of SmartPack-Kernel Manager</string>
+    <string name="installing">Installing SmartPack-Kernel Manager %s…</string>
 
     <!-- Settings-->
     <string name="open_settings">Open Settings</string>

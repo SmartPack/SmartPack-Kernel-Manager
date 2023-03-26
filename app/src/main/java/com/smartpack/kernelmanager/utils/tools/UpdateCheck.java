@@ -25,19 +25,16 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.net.Uri;
-
-import androidx.core.content.FileProvider;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.smartpack.kernelmanager.BuildConfig;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.Prefs;
 import com.smartpack.kernelmanager.utils.Utils;
+import com.smartpack.kernelmanager.utils.root.RootUtils;
 import com.smartpack.kernelmanager.views.dialog.Dialog;
 
 import org.json.JSONException;
@@ -228,6 +225,7 @@ public class UpdateCheck {
     private static void updaterTask(Context context) {
         new sExecutor() {
             private ProgressDialog mProgressDialog;
+            private String mSid = null;
             @Override
             public void onPreExecute() {
                 mProgressDialog = new ProgressDialog(context);
@@ -239,6 +237,14 @@ public class UpdateCheck {
             @Override
             public void doInBackground() {
                 getLatestApp(context);
+                if (Utils.existFile(getLatestAPK(context)) && Utils.getChecksum(getLatestAPK(context)).contains(getChecksum())) {
+                    mProgressDialog.setMessage(context.getString(R.string.installing, getVersionName()));
+                    RootUtils.runCommand("sleep 2");
+                    mSid = RootUtils.runAndGetOutput("pm install-create").replace(
+                            "Success: created install session [","").replace("]", "");
+                    File mAPK = new File(getLatestAPK(context));
+                    RootUtils.runCommand("pm install-write -S " + mAPK.length() + " " + mSid + " " + mAPK.getName() + " " + mAPK);
+                }
             }
             @Override
             public void onPostExecute() {
@@ -246,8 +252,8 @@ public class UpdateCheck {
                     mProgressDialog.dismiss();
                 } catch (IllegalArgumentException ignored) {
                 }
-                if (Utils.existFile(getLatestAPK(context)) && Utils.getChecksum(getLatestAPK(context)).contains(getChecksum())) {
-                    installUpdate(context);
+                if (mSid != null) {
+                    RootUtils.runCommand("pm install-commit " + mSid);
                 } else {
                     new Dialog(context)
                             .setMessage(context.getString(R.string.download_failed))
@@ -257,16 +263,6 @@ public class UpdateCheck {
                 }
             }
         }.execute();
-    }
-
-    private static void installUpdate(Context context) {
-        Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
-        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        Uri uriFile;
-        uriFile = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider",
-                new File(getLatestAPK(context)));
-        intent.setDataAndType(uriFile, "application/vnd.android.package-archive");
-        context.startActivity(Intent.createChooser(intent, ""));
     }
 
     public void initialize(int updateCheckInterval, Activity activity) {

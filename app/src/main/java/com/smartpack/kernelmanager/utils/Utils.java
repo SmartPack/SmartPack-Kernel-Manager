@@ -66,7 +66,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
@@ -484,7 +483,7 @@ public class Utils {
          * Ref: https://stackoverflow.com/questions/15758856/android-how-to-download-file-from-webserver
          */
         try (InputStream input = new URL(url).openStream();
-             OutputStream output = new FileOutputStream(path)) {
+             FileOutputStream output = new FileOutputStream(path)) {
             byte[] data = new byte[4096];
             int count;
             while ((count = input.read(data)) != -1) {
