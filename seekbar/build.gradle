@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'org.adw.library.widgets.discreteseekbar'
     compileSdk 33
     buildToolsVersion "30.0.3"
 
