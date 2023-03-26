@@ -246,7 +246,7 @@ public class ViewUtils {
             public void doInBackground() {
                 try {
                     InputStream iStream = (InputStream) new URL(url).getContent();
-                    drawable = Drawable.createFromStream(iStream, "src name");
+                    drawable = Drawable.createFromStream(iStream, null);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

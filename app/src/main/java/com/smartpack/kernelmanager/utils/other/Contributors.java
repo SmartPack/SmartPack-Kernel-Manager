@@ -74,10 +74,6 @@ public class Contributors {
             return getInt();
         }
 
-        public String getHtmlUrl() {
-            return getString("html_url");
-        }
-
         public String getAvatarUrl() {
             return getString("avatar_url");
         }
