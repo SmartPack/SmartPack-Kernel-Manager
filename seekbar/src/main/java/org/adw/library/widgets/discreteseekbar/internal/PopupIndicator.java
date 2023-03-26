@@ -30,8 +30,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-import androidx.core.view.GravityCompat;
-
 import org.adw.library.widgets.discreteseekbar.internal.compat.SeekBarCompat;
 import org.adw.library.widgets.discreteseekbar.internal.drawable.MarkerDrawable;
 
@@ -84,7 +82,7 @@ public class PopupIndicator {
         if (windowToken != null) {
             WindowManager.LayoutParams p = createPopupLayout(windowToken);
 
-            p.gravity = Gravity.TOP | GravityCompat.START;
+            p.gravity = Gravity.TOP | Gravity.START;
             updateLayoutParamsForPosiion(parent, p, touchBounds.bottom);
             mShowing = true;
 
