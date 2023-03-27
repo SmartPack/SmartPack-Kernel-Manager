@@ -1,5 +1,9 @@
 # Change-logs
 
+## 134. March 27, 2023
+*Release-tag: v17.7*<br>
+App now used Material3 DayNight theme (more modern app UI). Fixed shortcuts not working. Hopefully fixed tasker and apply on boot notifications on newer android versions. Updated Russian translations. Miscellaneous changes.
+
 ## 133. January 01, 2023
 *Release-tag: v17.6*<br>
 Fixed app not opening after setting biometric lock. Miscellaneous changes.

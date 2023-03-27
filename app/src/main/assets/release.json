@@ -1,7 +1,7 @@
 {
-  "releaseNotes": "Change-logs\n - Fixed app not opening after setting biometric lock.\n - Miscellaneous changes.",
-  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.6/com.smartpack.kernelmanager-v17.6-fdroid-release.apk",
-  "sha1": "d88da0be89d1abe3a1ce1179347b1650d0785669",
-  "latestVersion": "17.6",
-  "latestVersionCode": 176
+  "releaseNotes": "Change-logs\n - App now used Material3 DayNight theme (more modern UI).\n - Fixed shortcuts not working.\n - Hopefully fixed tasker and apply on boot notifications on newer android versions.\n - Updated Russian translations.\n - Miscellaneous changes.",
+  "releaseUrl": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v17.7/app-fdroid-release.apk",
+  "sha1": "c62c3730a94165c2a2550ae43d12ea54d6d99e6c",
+  "latestVersion": "17.7",
+  "latestVersionCode": 177
 }

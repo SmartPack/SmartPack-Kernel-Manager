@@ -1,0 +1,5 @@
+* App now used Material3 DayNight theme (more modern UI).
+* Fixed shortcuts not working.
+* Hopefully fixed tasker and apply on boot notifications on newer android versions.
+* Updated Russian translations.
+* Miscellaneous changes.

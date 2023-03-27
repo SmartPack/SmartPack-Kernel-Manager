@@ -23,11 +23,12 @@ android {
         applicationId "com.smartpack.kernelmanager"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 176
-        versionName "v17.6"
+        versionCode 177
+        versionName "v17.7"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testFunctionalTest = false
+        testHandleProfiling = false
     }
 
     buildTypes {

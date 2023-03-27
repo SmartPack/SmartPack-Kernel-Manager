@@ -1,2 +1,0 @@
-* Fixed app not opening after setting biometric lock.
-* Miscellaneous changes.
