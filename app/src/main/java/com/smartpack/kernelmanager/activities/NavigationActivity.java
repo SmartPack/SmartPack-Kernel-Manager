@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.activities;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
@@ -31,6 +32,7 @@ import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -41,6 +43,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.checkbox.MaterialCheckBox;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.fragments.BaseFragment;
@@ -539,6 +543,32 @@ public class NavigationActivity extends BaseActivity
     @Override
     public void onStart() {
         super.onStart();
+
+        // Request permission to post notification on Android 13 & above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && Utils.isPermissionDenied(Manifest.permission.POST_NOTIFICATIONS, this) &&
+                !Prefs.getBoolean("permission_notification", false, this)) {
+            View checkBoxView = View.inflate(this, R.layout.rv_checkbox, null);
+            MaterialCheckBox checkBox = checkBoxView.findViewById(R.id.checkbox);
+            checkBox.setChecked(!Prefs.getBoolean("permission_notification", false, this));
+            checkBox.setText(getString(R.string.always_show));
+            checkBox.setOnCheckedChangeListener((buttonView, isChecked)
+                    -> Prefs.saveBoolean("permission_notification", !isChecked, this)
+            );
+
+            new MaterialAlertDialogBuilder(this)
+                    .setView(checkBoxView)
+                    .setIcon(R.mipmap.ic_launcher)
+                    .setTitle(R.string.warning)
+                    .setMessage(getString(R.string.permission_notification_message))
+                    .setCancelable(false)
+                    .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
+                    })
+                    .setPositiveButton(R.string.permission_request, (dialogInterface, i) -> Utils.requestPermission(
+                            new String[] {
+                                    Manifest.permission.POST_NOTIFICATIONS
+                            }, this)
+                    ).show();
+        }
 
         // Initialize auto app update check
         if (Common.isUpdateCheckEnabled()) {

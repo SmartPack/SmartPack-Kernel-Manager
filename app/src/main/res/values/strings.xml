@@ -1001,6 +1001,8 @@
     <string name="disable_question">Disable %s?</string>
     <string name="swipe_message">Sorry! You can\'t swipe out a %s.</string>
     <string name="drag_message">Sorry! You can\'t drag a %s into different position.</string>
+    <string name="permission_notification_message">Inorder to work \'Apply on boot notifications\' on devices running android TIRAMISU and newer versions, it is necessary to have permission to post notifications granted by the user. If you like to have this feature working, please go ahead with requesting (and granting) the permission by clicking the button provided below.</string>
+    <string name="permission_request">Request Permission</string>
 
     <!-- SmartPack -->
     <string name="acquiring">Acquiring update info</string>

@@ -44,6 +44,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 import androidx.core.view.ViewCompat;
@@ -101,6 +102,14 @@ public class Utils {
 
     public static boolean isPackageInstalled(String packageName) {
         return RootUtils.runAndGetOutput("pm list packages " + packageName).equals("package:" + packageName);
+    }
+
+    public static boolean isPermissionDenied(String permission, Context context) {
+        return (context.checkCallingOrSelfPermission(permission) != PackageManager.PERMISSION_GRANTED);
+    }
+
+    public static void requestPermission(String[] permissions, Activity activity) {
+        ActivityCompat.requestPermissions(activity, permissions, 0);
     }
 
     public static void initializeAppTheme(Context context) {

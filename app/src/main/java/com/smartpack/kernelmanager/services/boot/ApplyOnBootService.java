@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.services.boot;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -66,6 +67,9 @@ public class ApplyOnBootService extends Service {
         super.onCreate();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && Utils.isPermissionDenied(Manifest.permission.POST_NOTIFICATIONS, this)) {
+                return;
+            }
             NotificationManager notificationManager =
                     (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID,
